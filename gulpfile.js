@@ -51,7 +51,7 @@ gulp.task('clean', clean)
 gulp.task('build', ['moveHandlebarPages', 'vendor', 'webpack'], () => sass())
 
 gulp.task('watch', ['build'], function () {
-  gulp.watch(['./public/js/app/**/*.js'], ['webpack'])
+  // gulp.watch(['./public/js/app/**/*.js'], ['webpack'])
   gulp.watch(['./public/js/vendor.js'], ['vendor'])
   gulp.watch(['./public/css/**/*.scss'], ['transpileSass'])
 })

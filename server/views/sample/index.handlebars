@@ -1,4 +1,5 @@
 {{prefixScript '/static/js/app/view/indexModule.js'}}
+{{prefixScript '/static/js/app.js' 'scripts'}}
 
 <div class="col">
   <h1>node-web</h1>
@@ -6,7 +7,7 @@
   {{#if error}}
     <p>Error: {{error}}</p>
   {{else}}
-    <div id="api-data">{{data}}</div>
+    <div id="kth-node">{{{html}}}</div>
   {{/if}}
 </div>
 
