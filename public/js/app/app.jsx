@@ -1,7 +1,7 @@
 import React from 'react'
 import { ReactDOM } from 'react-dom'
-import { BrowserRouter, Route, hashHistory, Switch } from 'react-router-dom'
-import { Provider, inject } from 'mobx-react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Provider } from 'mobx-react'
 
 // Store
 import RouterStore from './stores/RouterStore'
@@ -10,7 +10,8 @@ import RouterStore from './stores/RouterStore'
 import Start from './view/Start'
 
 const routerStore = new RouterStore()
-// routerStore.initializeStore('routerStore')
+routerStore.initializeStore('routerStore')
+console.log('!!!!routerStore', routerStore)
 
 function appFactory () {
   return (

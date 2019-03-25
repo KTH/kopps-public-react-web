@@ -1,13 +1,13 @@
 import React from 'react'
 import { inject, observer} from 'mobx-react'
 
-@inject(['routerStore'])
+@inject(['routerStore']) @observer
 class Start extends React.Component {
   render () {
-    console.log('????999?>routerStore>', this.props.routerStore)
     return (
       <div>
-        <h1>HELLO!!</h1>
+        <h1>HELLO!! The result is from router store:</h1>
+          <h2>{this.props.routerStore.test}</h2> 
       </div>
     )
   }

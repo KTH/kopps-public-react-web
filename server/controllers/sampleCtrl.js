@@ -34,7 +34,7 @@ function* getIndex(req, res, next) {
       },
       appFactory()
     )
-
+    renderProps.props.children.props.routerStore.getData()
     const html = ReactDOMServer.renderToString(renderProps)
 
     res.render('sample/index', {

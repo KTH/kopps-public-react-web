@@ -1,8 +1,7 @@
 import { observable, action } from 'mobx'
 
-console.log("hohohohohohohohoho")
 class RouterStore {
-  @observable test = ''
+  @observable test = 'no'
 
   @action getData(){
       this.test= 'En massa data'
