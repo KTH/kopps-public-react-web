@@ -1,10 +1,66 @@
 import { observable, action } from 'mobx'
 
 class RouterStore {
-  @observable test = 'no'
+  @observable test = 'This is the default string...'
 
   @action getData(){
-      this.test= 'En massa data'
+      return this.test = 'Happy coding!! :)'
+  }
+
+  @action getLdapUserByUsername (params) {
+    return axios.get(this.buildApiUrl(this.paths.api.searchLdapUser.uri, params), this._getOptions()).then((res) => {
+      return res.data
+    }).catch(err => {
+      if (err.response) {
+        throw new Error(err.message, err.response.data)
+      }
+      throw err
+    })
+  }
+
+  @action getBreadcrumbs () {
+    return {
+      url:'xxx',
+      label:'TODO'
+    }
+  }
+
+  @action setBrowserConfig (config, paths, apiHost, profileBaseUrl) {
+    this.browserConfig = config
+    this.paths = paths
+    this.apiHost = apiHost
+    this.profileBaseUrl = profileBaseUrl
+  }
+
+  @action __SSR__setCookieHeader (cookieHeader) {
+    if (typeof window === 'undefined') {
+      this.cookieHeader = cookieHeader || ''
+    }
+  }
+
+  @action doSetLanguage (lang) {
+    this.language = lang
+  }
+
+  @action getBrowserInfo () {
+    var navAttrs = ['appCodeName', 'appName', 'appMinorVersion', 'cpuClass',
+     'platform', 'opsProfile', 'userProfile', 'systemLanguage',
+     'userLanguage', 'appVersion', 'userAgent', 'onLine', 'cookieEnabled']
+    var docAttrs = ['referrer', 'title', 'URL']
+    var value = {document: {}, navigator: {}}
+
+    for (let i = 0; i < navAttrs.length; i++) {
+      if (navigator[navAttrs[i]] || navigator[navAttrs[i]] === false) {
+        value.navigator[navAttrs[i]] = navigator[navAttrs[i]]
+      }
+    }
+
+    for (let i = 0; i < docAttrs.length; i++) {
+      if (document[docAttrs[i]]) {
+        value.document[docAttrs[i]] = document[docAttrs[i]]
+      }
+    }
+    return value
   }
 
   initializeStore (storeName) {
