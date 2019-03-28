@@ -2,45 +2,45 @@
 
 const api = require('../api')
 const log = require('kth-node-log')
-const { safeGet } = require('safe-utils')
 
 const { toJS } = require('mobx')
 const ReactDOMServer = require('react-dom/server')
-let { staticFactory }  = require('../../dist/app.js')
 
-const browserConfig = require('../configuration').browser
-const serverConfig = require('../configuration').server
-const paths = require('../server').getPaths()
+function hydrateStores(renderProps) {
+  // This assumes that all stores are specified in a root element called Provider
+  const outp = {}
+  const { props } = renderProps.props.children
 
-module.exports = {
-  getIndex: getIndex
+  Object.keys(props).map(key => {
+    if (typeof props[key].initializeStore === 'function') {
+      outp[key] = encodeURIComponent(JSON.stringify(toJS(props[key], true)))
+    }
+  })
+
+  return outp
 }
 
-
-
-async function  getIndex (req, res, next) {
-  if (process.env['NODE_ENV'] === 'development') {
+function _staticRender(context, location) {
+  if (process.env.NODE_ENV === 'development') {
     delete require.cache[require.resolve('../../dist/app.js')]
-    const tmp = require('../../dist/app.js')
-    staticFactory = tmp.staticFactory
-    // doAllAsyncBefore = tmp.doAllAsyncBefore
   }
 
-  try {
-    // const client = api.nodeApi.client
-    // const paths = api.nodeApi.paths
-    // const resp = yield client.getAsync(client.resolve(paths.getDataById.uri, { id: '123' }), { useCache: true })
+  const { staticRender } = require('../../dist/app.js')
 
-    const renderProps = staticFactory()
-    const message = await renderProps.props.children.props.routerStore.getData()
-    console.log("message",message)
-    renderProps.props.children.props.routerStore.setBrowserConfig(browserConfig, paths, serverConfig.hostUrl)
-    renderProps.props.children.props.routerStore.__SSR__setCookieHeader(req.headers.cookie)
+  return staticRender(context, location)
+}
+
+async function getIndex(req, res, next) {
+  try {
+    const context = {}
+    const renderProps = _staticRender(context, req.url)
+
+    renderProps.props.children.props.routerStore.getData()
 
     const html = ReactDOMServer.renderToString(renderProps)
 
     res.render('sample/index', {
-      html: html,
+      html,
       title: 'TODO',
       initialState: JSON.stringify(hydrateStores(renderProps)),
       // lang: lang,
@@ -52,14 +52,6 @@ async function  getIndex (req, res, next) {
   }
 }
 
-function hydrateStores (renderProps) {
-  // This assumes that all stores are specified in a root element called Provider
-  const props = renderProps.props.children.props
-  const outp = {}
-  for (let key in props) {
-    if (typeof props[key].initializeStore === 'function') {
-      outp[key] = encodeURIComponent(JSON.stringify(toJS(props[key], true)))
-    }
-  }
-  return outp
+module.exports = {
+  getIndex
 }

@@ -38,11 +38,14 @@ const path = require('path')
 server.set('views', path.join(__dirname, '/views'))
 server.set('layouts', path.join(__dirname, '/views/layouts'))
 server.set('partials', path.join(__dirname, '/views/partials'))
-server.engine('handlebars', exphbs({
-  defaultLayout: 'publicLayout',
-  layoutsDir: server.settings.layouts,
-  partialsDir: server.settings.partials
-}))
+server.engine(
+  'handlebars',
+  exphbs({
+    defaultLayout: 'publicLayout',
+    layoutsDir: server.settings.layouts,
+    partialsDir: server.settings.partials
+  })
+)
 server.set('view engine', 'handlebars')
 // Register handlebar helpers
 require('./views/helpers')
@@ -59,11 +62,14 @@ server.use(accessLog(config.logging.accessLog))
  * ****************************
  */
 const browserConfig = require('./configuration').browser
-const browserConfigHandler = require('kth-node-configuration').getHandler(browserConfig, getPaths())
+const browserConfigHandler = require('kth-node-configuration').getHandler(
+  browserConfig,
+  getPaths()
+)
 const express = require('express')
 
 // helper
-function setCustomCacheControl (res, path) {
+function setCustomCacheControl(res, path) {
   if (express.static.mime.lookup(path) === 'text/html') {
     // Custom Cache-Control for HTML files
     res.setHeader('Cache-Control', 'no-cache')
@@ -72,16 +78,25 @@ function setCustomCacheControl (res, path) {
 
 // Files/statics routes--
 // Map components HTML files as static content, but set custom cache control header, currently no-cache to force If-modified-since/Etag check.
-server.use(config.proxyPrefixPath.uri + '/static/js/components', express.static('./dist/js/components', { setHeaders: setCustomCacheControl }))
+server.use(
+  config.proxyPrefixPath.uri + '/static/js/components',
+  express.static('./dist/js/components', { setHeaders: setCustomCacheControl })
+)
 // Expose browser configurations
-server.use(config.proxyPrefixPath.uri + '/static/browserConfig', browserConfigHandler)
+server.use(
+  config.proxyPrefixPath.uri + '/static/browserConfig',
+  browserConfigHandler
+)
 // Files/statics routes
-server.use(config.proxyPrefixPath.uri + '/static/kth-style', express.static('./node_modules/kth-style/dist'))
+server.use(
+  config.proxyPrefixPath.uri + '/static/kth-style',
+  express.static('./node_modules/kth-style/dist')
+)
 // Map static content like images, css and js.
 server.use(config.proxyPrefixPath.uri + '/static', express.static('./dist'))
 // Return 404 if static file isn't found so we don't go through the rest of the pipeline
-server.use(config.proxyPrefixPath.uri + '/static', function (req, res, next) {
-  var error = new Error('File not found: ' + req.originalUrl)
+server.use(config.proxyPrefixPath.uri + '/static', (req, res, next) => {
+  const error = new Error('File not found: ' + req.originalUrl)
   error.statusCode = 404
   next(error)
 })
@@ -122,22 +137,47 @@ server.use(config.proxyPrefixPath.uri, languageHandler)
  */
 const passport = require('passport')
 // const ldapClient = require('./adldapClient')
-const { authLoginHandler, authCheckHandler, logoutHandler, pgtCallbackHandler, serverLogin, getServerGatewayLogin } = require('kth-node-passport-cas').routeHandlers({
+const {
+  authLoginHandler,
+  authCheckHandler,
+  logoutHandler,
+  pgtCallbackHandler,
+  serverLogin,
+  getServerGatewayLogin
+} = require('kth-node-passport-cas').routeHandlers({
   casLoginUri: config.proxyPrefixPath.uri + '/login',
   casGatewayUri: config.proxyPrefixPath.uri + '/loginGateway',
   proxyPrefixPath: config.proxyPrefixPath.uri,
-  server: server
+  server
 })
 const { redirectAuthenticatedUserHandler } = require('./authentication')
 server.use(passport.initialize())
 server.use(passport.session())
 
 const authRoute = AppRouter()
-authRoute.get('cas.login', config.proxyPrefixPath.uri + '/login', authLoginHandler, redirectAuthenticatedUserHandler)
-authRoute.get('cas.gateway', config.proxyPrefixPath.uri + '/loginGateway', authCheckHandler, redirectAuthenticatedUserHandler)
-authRoute.get('cas.logout', config.proxyPrefixPath.uri + '/logout', logoutHandler)
+authRoute.get(
+  'cas.login',
+  config.proxyPrefixPath.uri + '/login',
+  authLoginHandler,
+  redirectAuthenticatedUserHandler
+)
+authRoute.get(
+  'cas.gateway',
+  config.proxyPrefixPath.uri + '/loginGateway',
+  authCheckHandler,
+  redirectAuthenticatedUserHandler
+)
+authRoute.get(
+  'cas.logout',
+  config.proxyPrefixPath.uri + '/logout',
+  logoutHandler
+)
 // Optional pgtCallback (use config.cas.pgtUrl?)
-authRoute.get('cas.pgtCallback', config.proxyPrefixPath.uri + '/pgtCallback', pgtCallbackHandler)
+authRoute.get(
+  'cas.pgtCallback',
+  config.proxyPrefixPath.uri + '/pgtCallback',
+  pgtCallbackHandler
+)
 server.use('/', authRoute.getRouter())
 
 // Convenience methods that should really be removed
@@ -148,15 +188,18 @@ server.gatewayLogin = getServerGatewayLogin
  * ******* CORTINA BLOCKS *******
  * ******************************
  */
-server.use(config.proxyPrefixPath.uri, require('kth-node-web-common/lib/web/cortina')({
-  blockUrl: config.blockApi.blockUrl,
-  proxyPrefixPath: config.proxyPrefixPath.uri,
-  hostUrl: config.hostUrl,
-  redisConfig: config.cache.cortinaBlock.redis,
-  blocks: {
-    secondaryMenu: '1.822592'
-  }
-}))
+server.use(
+  config.proxyPrefixPath.uri,
+  require('kth-node-web-common/lib/web/cortina')({
+    blockUrl: config.blockApi.blockUrl,
+    proxyPrefixPath: config.proxyPrefixPath.uri,
+    hostUrl: config.hostUrl,
+    redisConfig: config.cache.cortinaBlock.redis,
+    blocks: {
+      secondaryMenu: '1.822592'
+    }
+  })
+)
 
 /* ********************************
  * ******* CRAWLER REDIRECT *******
@@ -164,9 +207,12 @@ server.use(config.proxyPrefixPath.uri, require('kth-node-web-common/lib/web/cort
  */
 const excludePath = config.proxyPrefixPath.uri + '(?!/static).*'
 const excludeExpression = new RegExp(excludePath)
-server.use(excludeExpression, require('kth-node-web-common/lib/web/crawlerRedirect')({
-  hostUrl: config.hostUrl
-}))
+server.use(
+  excludeExpression,
+  require('kth-node-web-common/lib/web/crawlerRedirect')({
+    hostUrl: config.hostUrl
+  })
+)
 
 /* **********************************
  * ******* APPLICATION ROUTES *******
@@ -177,16 +223,39 @@ const { requireRole } = require('./authentication')
 
 // System routes
 const systemRoute = AppRouter()
-systemRoute.get('system.monitor', config.proxyPrefixPath.uri + '/_monitor', System.monitor)
-systemRoute.get('system.about', config.proxyPrefixPath.uri + '/_about', System.about)
-systemRoute.get('system.paths', config.proxyPrefixPath.uri + '/_paths', System.paths)
+systemRoute.get(
+  'system.monitor',
+  config.proxyPrefixPath.uri + '/_monitor',
+  System.monitor
+)
+systemRoute.get(
+  'system.about',
+  config.proxyPrefixPath.uri + '/_about',
+  System.about
+)
+systemRoute.get(
+  'system.paths',
+  config.proxyPrefixPath.uri + '/_paths',
+  System.paths
+)
 systemRoute.get('system.robots', '/robots.txt', System.robotsTxt)
 server.use('/', systemRoute.getRouter())
 
 // App routes
 const appRoute = AppRouter()
-appRoute.get('system.index', config.proxyPrefixPath.uri + '/', serverLogin, Sample.getIndex)
-appRoute.get('system.gateway', config.proxyPrefixPath.uri + '/gateway', getServerGatewayLogin('/'), requireRole('isAdmin'), Sample.getIndex)
+appRoute.get(
+  'system.index',
+  config.proxyPrefixPath.uri + '/',
+  serverLogin,
+  Sample.getIndex
+)
+appRoute.get(
+  'system.gateway',
+  config.proxyPrefixPath.uri + '/gateway',
+  getServerGatewayLogin('/'),
+  requireRole('isAdmin'),
+  Sample.getIndex
+)
 server.use('/', appRoute.getRouter())
 
 // Not found etc

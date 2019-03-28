@@ -1,2 +1,2 @@
-window.jQuery = window.$ = require('jquery')
-require('bootstrap')
+// window.jQuery = window.$ = require('jquery')
+// require('bootstrap')

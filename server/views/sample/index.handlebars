@@ -2,8 +2,7 @@
   window.__initialState__ = {{{initialState}}}
 </script>
 
-{{prefixScript '/static/js/app/view/indexModule.js'}}
-{{prefixScript '/static/app.js' 'scripts'}}
+<!--{{prefixScript '/static/app.js' 'scripts'}}-->
 
 <div class="col">
   <h1>node-web</h1>
@@ -11,7 +10,7 @@
   {{#if error}}
     <p>Error: {{error}}</p>
   {{else}}
-    <div id="kth-node">{{{html}}}</div>
+    <div id="app">{{{html}}}</div>
   {{/if}}
 </div>
 
