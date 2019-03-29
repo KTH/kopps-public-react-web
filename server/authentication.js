@@ -122,4 +122,4 @@ function requireRole() {
   }
 }
 
-module.exports = { requireRole }
+module.exports.requireRole = requireRole

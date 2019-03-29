@@ -19,9 +19,9 @@
     "codefix": "standard --fix",
     "docker": "npm install --development && npm run build && npm prune --production",
     "build": "NODE_ENV=production rm -rf dist && parcel build ./public/js/app/app.jsx && npm run vendor --preserve-comments",
-    "build-dev": "cross-env NODE_ENV=development rm -rf dist && parcel watch ./public/js/app/app.jsx && parcel watch ./public/js/vendor.js",
+    "build-dev": "cross-env NODE_ENV=development rm -rf dist && parcel build ./public/js/vendor.js && parcel watch ./public/js/app/app.jsx",
     "start": "NODE_ENV=production node app.js",
-    "start-dev": "NODE_ENV=development rm -rf dist && parcel build --no-minify ./public/js/app/app.jsx && npm run vendor && parcel watch ./public/js/app/app.jsx"
+    "start-dev": "cross-env NODE_ENV=development concurrently --kill-others \"nodemon --ignore dist/ --ignore public/ app.js\" \"npm run build-dev\""
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -34,7 +34,7 @@
     "kth-node-access-log": "^0.2.0",
     "kth-node-api-call": "^2.0.0",
     "kth-node-configuration": "^1.6.4",
-    "kth-node-express-routing": "^0.4.0",
+    "kth-node-express-routing": "^1.0.0",
     "kth-node-i18n": "^1.0.2",
     "kth-node-ldap": "^2.3.8",
     "kth-node-log": "^3.0.2",
@@ -43,7 +43,7 @@
     "kth-node-redis": "^2.0.0",
     "kth-node-server": "^3.1.1",
     "kth-node-session": "^1.0.3",
-    "kth-node-web-common": "^1.0.2",
+    "kth-node-web-common": "^3.0.5",
     "kth-style": "^3.2.4",
     "locale": "^0.1.0",
     "mobx": "^5.9.0",
@@ -96,7 +96,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run test"
+      "pre-push": "npm run test",
+      "pre-commit": "./pre-commit.sh"
     }
   }
 }

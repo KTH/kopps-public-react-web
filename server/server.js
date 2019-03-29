@@ -194,10 +194,7 @@ server.use(
     blockUrl: config.blockApi.blockUrl,
     proxyPrefixPath: config.proxyPrefixPath.uri,
     hostUrl: config.hostUrl,
-    redisConfig: config.cache.cortinaBlock.redis,
-    blocks: {
-      secondaryMenu: '1.822592'
-    }
+    redisConfig: config.cache.cortinaBlock.redis
   })
 )
 

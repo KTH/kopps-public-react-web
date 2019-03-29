@@ -7,14 +7,22 @@
  * *************************************************
  *
  */
-const { getEnv, devDefaults, unpackLDAPConfig, unpackRedisConfig, unpackNodeApiConfig } = require('kth-node-configuration')
+const {
+  getEnv,
+  devDefaults,
+  unpackLDAPConfig,
+  unpackRedisConfig,
+  unpackNodeApiConfig
+} = require('kth-node-configuration')
 const { safeGet } = require('safe-utils')
 
 // DEFAULT SETTINGS used for dev, if you want to override these for you local environment, use env-vars in .env
 const devPort = devDefaults(3000)
 const devSsl = devDefaults(false)
 const devUrl = devDefaults('http://localhost:' + devPort)
-const devInnovationApi = devDefaults('http://localhost:3001/api/node?defaultTimeout=10000') // required=true&
+const devInnovationApi = devDefaults(
+  'http://localhost:3001/api/node?defaultTimeout=10000'
+) // required=true&
 const devSessionKey = devDefaults('node-web.sid')
 const devSessionUseRedis = devDefaults(true)
 const devRedis = devDefaults('redis://localhost:6379/')
@@ -34,7 +42,9 @@ const ldapOptions = {
 
 module.exports = {
   hostUrl: getEnv('SERVER_HOST_URL', devUrl),
-  useSsl: safeGet(() => getEnv('SERVER_SSL', devSsl + '').toLowerCase() === 'true'),
+  useSsl: safeGet(
+    () => getEnv('SERVER_SSL', devSsl + '').toLowerCase() === 'true'
+  ),
   port: getEnv('SERVER_PORT', devPort),
   ssl: {
     // In development we don't have SSL feature enabled
@@ -54,7 +64,12 @@ module.exports = {
   cas: {
     ssoBaseURL: getEnv('CAS_SSO_URI', devSsoBaseURL)
   },
-  ldap: unpackLDAPConfig('LDAP_URI', getEnv('LDAP_PASSWORD'), devLdap, ldapOptions),
+  ldap: unpackLDAPConfig(
+    'LDAP_URI',
+    getEnv('LDAP_PASSWORD'),
+    devLdap,
+    ldapOptions
+  ),
 
   // Service API's
   nodeApi: {
@@ -63,7 +78,10 @@ module.exports = {
 
   // Cortina
   blockApi: {
-    blockUrl: getEnv('SERVER_HOST_URL', devDefaults('https://www-r-new.referens.sys.kth.se/cm/')) // Block API base URL
+    blockUrl: getEnv(
+      'SERVER_HOST_URL',
+      devDefaults('https://www-r.referens.sys.kth.se/cm/')
+    ) // Block API base URL
   },
 
   // Logging
@@ -88,10 +106,14 @@ module.exports = {
   sessionSecret: getEnv('SESSION_SECRET', devDefaults('1234567890')),
   session: {
     key: getEnv('SESSION_KEY', devSessionKey),
-    useRedis: safeGet(() => getEnv('SESSION_USE_REDIS', devSessionUseRedis) === 'true'),
+    useRedis: safeGet(
+      () => getEnv('SESSION_USE_REDIS', devSessionUseRedis) === 'true'
+    ),
     sessionOptions: {
       // do not set session secret here!!
-      cookie: { secure: safeGet(() => getEnv('SESSION_SECURE_COOKIE', false) === 'true') }
+      cookie: {
+        secure: safeGet(() => getEnv('SESSION_SECURE_COOKIE', false) === 'true')
+      }
     },
     redisOptions: unpackRedisConfig('REDIS_URI', devRedis)
   }
