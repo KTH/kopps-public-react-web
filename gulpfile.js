@@ -1,11 +1,12 @@
 'use strict'
+
 const gulp = require('gulp')
 
 const globals = {
   dirname: __dirname
 }
 
-const { webpack, sass, vendor, clean } = require('kth-node-build-commons').tasks(globals)
+const { clean } = require('kth-node-build-commons').tasks(globals)
 
 const { moveHandlebarPages } = require('kth-node-web-common/gulp')
 
@@ -30,7 +31,7 @@ gulp.task('moveHandlebarPages', moveHandlebarPages)
  *
  *    $ gulp clean
  *
- **/
+ ** /
 
 // *** JavaScript helper tasks ***
 gulp.task('webpack', webpack)
@@ -48,10 +49,4 @@ gulp.task('transpileSass', () => sass())
 
 gulp.task('clean', clean)
 
-gulp.task('build', ['moveHandlebarPages', 'vendor', 'webpack'], () => sass())
-
-gulp.task('watch', ['build'], function () {
-  // gulp.watch(['./public/js/app/**/*.js'], ['webpack'])
-  gulp.watch(['./public/js/vendor.js'], ['vendor'])
-  gulp.watch(['./public/css/**/*.scss'], ['transpileSass'])
-})
+gulp.task('build', ['moveHandlebarPages'])

@@ -11,5 +11,7 @@ module.exports = ldap.createClient({
   bindCredentials: config.ldap.password,
   checkInterval: config.ldap.checkinterval,
   maxIdleTime: config.ldap.maxidletime,
+  reconnectOnIdle: config.ldap.reconnectOnIdle,
+  reconnectTime: config.ldap.reconnectTime,
   reconnect: true
 })
