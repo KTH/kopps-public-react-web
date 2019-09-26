@@ -105,3 +105,14 @@ If you start Node.js from VS Code you can set breakpoints in your editor. The la
 ```
 
 Setting NODE_ENV is currently required.
+
+### Stack
+
+- Parcel (Alternative to webpack)
+- Babel 7
+- Eslint
+- Prettier
+- Husky (Pre-commit)
+- Sass
+- React
+- Mobx (State management)

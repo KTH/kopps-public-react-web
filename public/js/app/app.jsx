@@ -1,32 +1,32 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { StaticRouter } from 'react-router'
-import { Provider } from 'mobx-react'
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { StaticRouter } from "react-router";
+import { Provider } from "mobx-react";
 
 // Sass
-import '../../css/node-web.scss'
+import "../../css/node-web.scss";
 
 // Store
-import RouterStore from './stores/RouterStore'
+import RouterStore from "./stores/RouterStore";
 
 // Pages
-import Start from './pages/Start'
+import Start from "./pages/Start";
 
 function appFactory() {
-  const routerStore = new RouterStore()
+  const routerStore = new RouterStore();
 
-  if (typeof window !== 'undefined') {
-    routerStore.initializeStore('routerStore')
+  if (typeof window !== "undefined") {
+    routerStore.initializeStore("routerStore");
   }
 
   return (
     <Provider routerStore={routerStore}>
       <Switch>
-        <Route path="/" component={Start} />
+        <Route exact path="/node" component={Start} />
       </Switch>
     </Provider>
-  )
+  );
 }
 
 function staticRender(context, location) {
@@ -34,14 +34,14 @@ function staticRender(context, location) {
     <StaticRouter location={location} context={context}>
       {appFactory()}
     </StaticRouter>
-  )
+  );
 }
 
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   ReactDOM.render(
     <BrowserRouter>{appFactory()}</BrowserRouter>,
-    document.getElementById('app')
-  )
+    document.getElementById("app")
+  );
 }
 
-export { appFactory, staticRender }
+export { appFactory, staticRender };
