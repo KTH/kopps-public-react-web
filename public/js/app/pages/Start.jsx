@@ -9,8 +9,7 @@ class Start extends Component {
     buttonClicked: false
   }
 
-  toggleButton = () =>
-    this.setState({ buttonClicked: !this.state.buttonClicked })
+  toggleButton = () => this.setState({ buttonClicked: !this.state.buttonClicked })
 
   render() {
     const { message } = this.props.routerStore

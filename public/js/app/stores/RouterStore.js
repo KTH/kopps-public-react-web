@@ -43,9 +43,7 @@ class RouterStore {
         }
         delete window.__initialState__[storeName] */
 
-      const tmp = JSON.parse(
-        decodeURIComponent(window.__initialState__[storeName])
-      )
+      const tmp = JSON.parse(decodeURIComponent(window.__initialState__[storeName]))
 
       Object.keys(tmp).map(key => {
         store[key] = tmp[key]

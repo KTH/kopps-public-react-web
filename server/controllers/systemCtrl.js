@@ -121,10 +121,7 @@ function _monitor(req, res) {
 
   // Determine system health based on the results of the checks above. Expects
   // arrays of promises as input. This returns a promise
-  const systemHealthUtil = registry.getUtility(
-    IHealthCheck,
-    'kth-node-system-check'
-  )
+  const systemHealthUtil = registry.getUtility(IHealthCheck, 'kth-node-system-check')
   const systemStatus = systemHealthUtil.status(localSystems, subSystems)
 
   systemStatus

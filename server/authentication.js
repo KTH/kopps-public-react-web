@@ -108,10 +108,7 @@ function requireRole() {
     const ldapUser = req.session.authUser || {}
 
     // Check if we have any of the roles passed
-    const hasAuthorizedRole = roles.reduce(
-      (prev, curr) => prev || ldapUser[curr],
-      false
-    )
+    const hasAuthorizedRole = roles.reduce((prev, curr) => prev || ldapUser[curr], false)
     // If we don't have one of these then access is forbidden
     if (!hasAuthorizedRole) {
       const error = new Error('Forbidden')
