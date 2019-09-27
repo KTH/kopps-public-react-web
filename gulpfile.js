@@ -6,9 +6,8 @@ const globals = {
   dirname: __dirname
 }
 
-const { clean } = require('kth-node-build-commons').tasks(globals)
-
 const { moveHandlebarPages } = require('kth-node-web-common/gulp')
+const { clean } = require('kth-node-build-commons').tasks(globals)
 
 gulp.task('moveHandlebarPages', moveHandlebarPages)
 
@@ -22,4 +21,4 @@ gulp.task('moveHandlebarPages', moveHandlebarPages)
 
 gulp.task('clean', clean)
 
-gulp.task('build', ['moveHandlebarPages'])
+gulp.task('build', gulp.series(gulp.parallel('moveHandlebarPages')))
