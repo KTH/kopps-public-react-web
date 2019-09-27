@@ -4,7 +4,7 @@ const server = require('kth-node-server')
 const config = require('./configuration').server
 require('./api')
 const AppRouter = require('kth-node-express-routing').PageRouter
-const getPaths = require('kth-node-express-routing').getPaths
+const { getPaths } = require('kth-node-express-routing')
 
 // Expose the server and paths
 server.locals.secret = new Map()
@@ -18,7 +18,7 @@ module.exports.getPaths = () => getPaths()
 const log = require('kth-node-log')
 const packageFile = require('../package.json')
 
-let logConfiguration = {
+const logConfiguration = {
   name: packageFile.name,
   app: packageFile.name,
   env: process.env.NODE_ENV,
@@ -27,6 +27,7 @@ let logConfiguration = {
   stdout: config.logging.stdout,
   src: config.logging.src
 }
+
 log.init(logConfiguration)
 
 /* **************************
