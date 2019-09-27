@@ -36,7 +36,17 @@ function _getFriendlyErrorMessage(lang, statusCode) {
 
 // this function must keep this signature for it to work properly
 function _final(err, req, res) {
-  log.error({ err }, 'Unhandled error')
+  switch (err.status) {
+    case 403:
+      log.info({ err }, `403 Forbidden ${err.message}`)
+      break
+    case 404:
+      log.info({ err }, `404 Not found ${err.message}`)
+      break
+    default:
+      log.error({ err }, `Unhandled error ${err.message}`)
+      break
+  }
 
   const statusCode = err.status || err.statusCode || 500
   const isProd = /prod/gi.test(process.env.NODE_ENV)
