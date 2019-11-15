@@ -14,12 +14,12 @@
   "scripts": {
     "vendor": "parcel build  ./public/js/vendor.js",
     "test": "NODE_ENV=development mocha --exit test/unit/*.js",
-    "codefix": "pretty-quick",
     "docker": "npm install --development && npm run build && npm prune --production",
-    "build": "NODE_ENV=production gulp build && rm -rf dist && parcel build ./public/js/app/app.jsx && npm run vendor --preserve-comments",
-    "build-dev": "cross-env NODE_ENV=development gulp build && rm -rf dist && parcel build ./public/js/vendor.js --public-url /node/static && parcel watch ./public/js/app/app.jsx --public-url /node/static",
+    "build": "NODE_ENV=production npm run move-handlebar-pages && rm -rf dist && parcel build ./public/js/app/app.jsx && npm run vendor --preserve-comments",
+    "build-dev": "cross-env NODE_ENV=development npm run move-handlebar-pages && rm -rf dist && parcel build ./public/js/vendor.js --public-url /node/static && parcel watch ./public/js/app/app.jsx --public-url /node/static",
     "start": "NODE_ENV=production node app.js",
-    "start-dev": "cross-env NODE_ENV=development concurrently --kill-others \"npm run build-dev\" \"nodemon --ignore dist/ --ignore public/ app.js\""
+    "start-dev": "cross-env NODE_ENV=development concurrently --kill-others \"npm run build-dev\" \"nodemon --ignore dist/ --ignore public/ app.js\"",
+    "move-handlebar-pages": "cp ./node_modules/kth-node-web-common/lib/handlebars/pages/views/error.handlebars ./server/views/system/error.handlebars && cp ./node_modules/kth-node-web-common/lib/handlebars/pages/layouts/errorLayout.handlebars ./server/views/layouts/errorLayout.handlebars"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -28,7 +28,7 @@
     "cookie-parser": "^1.4.3",
     "dotenv": "^6.1.0",
     "express": "^4.17.1",
-    "express-handlebars": "^3.1.0",
+    "express-handlebars": "^3.0.0",
     "kth-node-access-log": "^0.2.0",
     "kth-node-api-call": "^2.0.4",
     "kth-node-configuration": "^1.6.4",
@@ -74,7 +74,6 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.14.3",
-    "gulp": "^4.0.2",
     "husky": "^1.3.1",
     "kth-node-build-commons": "^4.0.3",
     "merge-stream": "^1.0.1",
@@ -83,7 +82,7 @@
     "nock": "^10.0.2",
     "node-mocks-http": "^1.8.0",
     "nodemon": "^1.19.2",
-    "parcel-bundler": "^1.12.3",
+    "parcel-bundler": "^1.12.4",
     "prettier": "^1.18.2",
     "pretty-quick": "^1.11.1",
     "sass": "^1.22.12",
@@ -100,5 +99,11 @@
       "pre-push": "npm run test",
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "semi": false,
+    "trailingComma": "none"
   }
 }
