@@ -22,6 +22,7 @@
     "move-handlebar-pages": "cp ./node_modules/kth-node-web-common/lib/handlebars/pages/views/error.handlebars ./server/views/system/error.handlebars && cp ./node_modules/kth-node-web-common/lib/handlebars/pages/layouts/errorLayout.handlebars ./server/views/layouts/errorLayout.handlebars"
   },
   "dependencies": {
+    "applicationinsights": "^1.6.0",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.1.3",
     "component-registry": "^1.0.0",
