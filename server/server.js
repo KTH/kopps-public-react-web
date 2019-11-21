@@ -6,6 +6,20 @@ require('./api')
 const AppRouter = require('kth-node-express-routing').PageRouter
 const { getPaths } = require('kth-node-express-routing')
 
+if (config.appInsights && config.appInsights.instrumentationKey) {
+  const appInsights = require('applicationinsights')
+
+  appInsights
+    .setup(config.appInsights.instrumentationKey)
+    .setAutoDependencyCorrelation(false)
+    .setAutoCollectRequests(true)
+    .setAutoCollectPerformance(true)
+    .setAutoCollectExceptions(false)
+    .setAutoCollectDependencies(true)
+    .setAutoCollectConsole(true)
+    .start()
+}
+
 // Expose the server and paths
 server.locals.secret = new Map()
 module.exports = server
@@ -84,10 +98,7 @@ server.use(
 // Expose browser configurations
 server.use(config.proxyPrefixPath.uri + '/static/browserConfig', browserConfigHandler)
 // Files/statics routes
-server.use(
-  config.proxyPrefixPath.uri + '/static/kth-style',
-  express.static('./node_modules/kth-style/dist')
-)
+server.use(config.proxyPrefixPath.uri + '/static/kth-style', express.static('./node_modules/kth-style/dist'))
 // Map static content like images, css and js.
 server.use(config.proxyPrefixPath.uri + '/static', express.static('./dist'))
 // Return 404 if static file isn't found so we don't go through the rest of the pipeline
@@ -151,12 +162,7 @@ server.use(passport.initialize())
 server.use(passport.session())
 
 const authRoute = AppRouter()
-authRoute.get(
-  'cas.login',
-  config.proxyPrefixPath.uri + '/login',
-  authLoginHandler,
-  redirectAuthenticatedUserHandler
-)
+authRoute.get('cas.login', config.proxyPrefixPath.uri + '/login', authLoginHandler, redirectAuthenticatedUserHandler)
 authRoute.get(
   'cas.gateway',
   config.proxyPrefixPath.uri + '/loginGateway',
