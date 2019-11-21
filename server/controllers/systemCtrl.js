@@ -10,6 +10,7 @@ const packageFile = require('../../package.json')
 const ldapClient = require('../adldapClient')
 const { getPaths } = require('kth-node-express-routing')
 const language = require('kth-node-web-common/lib/language')
+const os = require('os')
 const i18n = require('../../i18n')
 const api = require('../api')
 const registry = require('component-registry').globalRegistry
@@ -100,6 +101,7 @@ function _about(req, res) {
     dockerName: JSON.stringify(version.dockerName),
     dockerVersion: JSON.stringify(version.dockerVersion),
     language: language.getLanguage(res),
+    hostname: os.hostname(),
     env: require('../server').get('env')
   })
 }
