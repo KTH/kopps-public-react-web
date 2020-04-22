@@ -5,7 +5,8 @@
  */
 const log = require('kth-node-log')
 const version = require('../../config/version')
-const config = require('../configuration').server
+const allConfig = require('../configuration')
+const config = allConfig.server
 const packageFile = require('../../package.json')
 const ldapClient = require('../adldapClient')
 const { getPaths } = require('kth-node-express-routing')
