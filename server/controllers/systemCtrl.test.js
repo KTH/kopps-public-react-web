@@ -1,8 +1,6 @@
 describe('Not found', () => {
   test('Gets correct error code', done => {
-    jest.mock('../configuration', () => {
-      return { server: {} }
-    })
+    jest.mock('../configuration')
     jest.mock('../api', () => {})
     jest.mock('../adldapClient', () => {})
 
@@ -11,10 +9,10 @@ describe('Not found', () => {
     const req = { originalUrl: 'http://localhost' }
 
     const next = err => {
-      expect(err).toBeDefined()
+      expect(err).toBeInstanceOf(Error)
       expect(err.status).toBeDefined()
       expect(err.status).toEqual(404)
-      expect(err.message).toMatch(/http:\/\/localhost/)
+      expect(err.message).toMatch('http://localhost')
       done()
     }
 

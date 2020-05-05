@@ -81,8 +81,10 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^3.0.0",
     "husky": "^3.0.9",
     "jest": "^25.2.4",
+    "jest-extended": "^0.11.5",
     "kth-node-build-commons": "^4.0.5",
     "merge-stream": "^2.0.0",
     "mocha": "6.2.2",
@@ -93,7 +95,6 @@
     "parcel-bundler": "^1.12.4",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
-    "regenerator-runtime": "^0.13.5",
     "sass": "^1.23.3",
     "zombie": "6.1.4"
   },
