@@ -14,6 +14,6 @@ const devPrefixPath = devDefaults('/node')
 module.exports = {
   // The proxy prefix path if the application is proxied. E.g /places
   proxyPrefixPath: {
-    uri: getEnv('SERVICE_PUBLISH', devPrefixPath)
-  }
+    uri: getEnv('SERVICE_PUBLISH', devPrefixPath),
+  },
 }
