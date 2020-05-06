@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`loads and displays greeting 1`] = `
+<DocumentFragment>
+  <h1
+    class="display-3"
+  >
+    Node-web
+  </h1>
+  <h2>
+    You are upp and running kth-node react!
+  </h2>
+  <hr
+    class="my-2"
+  />
+  <h3
+    data-testid="message-header"
+  >
+    Message from routerStore: This is a message
+  </h3>
+  <button
+    type="button"
+  >
+    Try me
+  </button>
+  <p
+    data-testid="click-message"
+  />
+</DocumentFragment>
+`;
+
+exports[`loads and displays greeting 2`] = `
+<DocumentFragment>
+  <h1
+    class="display-3"
+  >
+    Node-web
+  </h1>
+  <h2>
+    You are upp and running kth-node react!
+  </h2>
+  <hr
+    class="my-2"
+  />
+  <h3
+    data-testid="message-header"
+  >
+    Message from routerStore: This is a message
+  </h3>
+  <button
+    type="button"
+  >
+    Try me
+  </button>
+  <p
+    data-testid="click-message"
+  >
+    Button works!
+  </p>
+</DocumentFragment>
+`;
