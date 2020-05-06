@@ -1,4 +1,4 @@
-jest.mock('../configuration')
+jest.mock('../configuration', () => ({ server: {} }))
 jest.mock('../api', () => {})
 jest.mock('../adldapClient', () => {})
 

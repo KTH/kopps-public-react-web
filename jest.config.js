@@ -1,3 +1,6 @@
 module.exports = {
-  setupFilesAfterEnv: ['jest-extended']
+  clearMocks: true,
+  notifyMode: 'failure-change',
+  setupFilesAfterEnv: ['jest-extended'],
+  verbose: true,
 }
