@@ -3,10 +3,10 @@
   "env": {
     "node": true,
     "browser": true,
-    "jest": true
+    "jest/global": true
   },
   "extends": ["airbnb", "prettier"],
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "jest"],
   "rules": {
     "import/newline-after-import": ["error", { "count": 0 }],
     "semi": ["error", "never"],

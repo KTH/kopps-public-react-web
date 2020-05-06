@@ -1,11 +1,11 @@
+jest.mock('../configuration')
+jest.mock('../api', () => {})
+jest.mock('../adldapClient', () => {})
+
+const systemCtrl = require('./systemCtrl')
+
 describe('Not found', () => {
   test('Gets correct error code', done => {
-    jest.mock('../configuration')
-    jest.mock('../api', () => {})
-    jest.mock('../adldapClient', () => {})
-
-    const systemCtrl = require('./systemCtrl')
-
     const req = { originalUrl: 'http://localhost' }
 
     const next = err => {
