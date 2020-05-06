@@ -21,7 +21,9 @@
     "build-dev": "cross-env NODE_ENV=development npm run move-handlebar-pages && rm -rf dist && parcel build ./public/js/vendor.js --public-url /node/static && parcel watch ./public/js/app/app.jsx --public-url /node/static",
     "start": "NODE_ENV=production node app.js",
     "start-dev": "cross-env NODE_ENV=development concurrently --kill-others \"npm run build-dev\" \"nodemon --ignore dist/ --ignore dist-dev/ app.js\"",
-    "move-handlebar-pages": "cp ./node_modules/kth-node-web-common/lib/handlebars/pages/views/error.handlebars ./server/views/system/error.handlebars && cp ./node_modules/kth-node-web-common/lib/handlebars/pages/layouts/errorLayout.handlebars ./server/views/layouts/errorLayout.handlebars"
+    "move-handlebar-pages": "cp ./node_modules/kth-node-web-common/lib/handlebars/pages/views/error.handlebars ./server/views/system/error.handlebars && cp ./node_modules/kth-node-web-common/lib/handlebars/pages/layouts/errorLayout.handlebars ./server/views/layouts/errorLayout.handlebars",
+    "linting": "eslint --ext .js,.jsx server/ public/",
+    "linting:fix": "eslint --ext .js,.jsx server/ public/ --fix"
   },
   "dependencies": {
     "applicationinsights": "^1.7.5",

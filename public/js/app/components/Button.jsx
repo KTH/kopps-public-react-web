@@ -1,10 +1,10 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 
 function Button({ message = 'N/A' }) {
   const [buttonClicked, setButtonClicked] = useState(false)
 
   return (
-    <Fragment>
+    <>
       <h1 className="display-3">Node-web</h1>
       <h2>You are upp and running kth-node react!</h2>
       <hr className="my-2" />
@@ -13,7 +13,7 @@ function Button({ message = 'N/A' }) {
         Try me
       </button>
       <p data-testid="click-message">{buttonClicked ? 'Button works!' : ''}</p>
-    </Fragment>
+    </>
   )
 }
 

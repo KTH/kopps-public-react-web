@@ -19,7 +19,7 @@ async function getIndex(req, res, next) {
       title: 'TODO',
       initialState: '""',
       // lang: lang,
-      description: 'TODO' // lang === 'sv' ? "KTH  för "+courseCode.toUpperCase() : "KTH course information "+courseCode.toUpperCase()
+      description: 'TODO', // lang === 'sv' ? "KTH  för "+courseCode.toUpperCase() : "KTH course information "+courseCode.toUpperCase()
     })
   } catch (err) {
     log.error('Error in getIndex', { error: err })
@@ -28,5 +28,5 @@ async function getIndex(req, res, next) {
 }
 
 module.exports = {
-  getIndex
+  getIndex,
 }

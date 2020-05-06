@@ -10,7 +10,7 @@ const log = require('kth-node-log')
 const Parcel = process.env.NODE_ENV === 'development' ? require('parcel-bundler') : null
 
 const Global = {
-  ServerSideFunctions: null
+  ServerSideFunctions: null,
 }
 
 _prepare()

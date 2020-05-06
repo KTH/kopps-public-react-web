@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import Button from '../components/Button'
 
@@ -6,7 +6,8 @@ import Button from '../components/Button'
 @observer
 class Start extends Component {
   render() {
-    const { message } = this.props.routerStore
+    const { routerStore } = this.props
+    const { message } = routerStore
     return <Button message={message} />
   }
 }
