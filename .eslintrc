@@ -3,7 +3,7 @@
   "env": {
     "node": true,
     "browser": true,
-    "jest/global": true
+    "jest/globals": true
   },
   "extends": ["airbnb", "prettier"],
   "plugins": ["prettier", "jest"],

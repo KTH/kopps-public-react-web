@@ -15,11 +15,12 @@
     "vendor": "parcel build  ./public/js/vendor.js",
     "test": "NODE_ENV=development jest",
     "test:watch": "NODE_ENV=development jest --watch",
+    "test:notify": "NODE_ENV=development jest --watch --notify",
     "docker": "npm install --development && npm run build && npm prune --production",
     "build": "NODE_ENV=production npm run move-handlebar-pages && rm -rf dist && parcel build ./public/js/app/app.jsx && npm run vendor --preserve-comments",
     "build-dev": "cross-env NODE_ENV=development npm run move-handlebar-pages && rm -rf dist && parcel build ./public/js/vendor.js --public-url /node/static && parcel watch ./public/js/app/app.jsx --public-url /node/static",
     "start": "NODE_ENV=production node app.js",
-    "start-dev": "cross-env NODE_ENV=development concurrently --kill-others \"npm run build-dev\" \"nodemon --ignore dist/ --ignore public/ app.js\"",
+    "start-dev": "cross-env NODE_ENV=development concurrently --kill-others \"npm run build-dev\" \"nodemon --ignore dist/ app.js\"",
     "move-handlebar-pages": "cp ./node_modules/kth-node-web-common/lib/handlebars/pages/views/error.handlebars ./server/views/system/error.handlebars && cp ./node_modules/kth-node-web-common/lib/handlebars/pages/layouts/errorLayout.handlebars ./server/views/layouts/errorLayout.handlebars"
   },
   "dependencies": {
@@ -108,9 +109,6 @@
   },
   "engines": {
     "node": "8.16.1"
-  },
-  "alias": {
-    "react": "./node_modules/react we"
   },
   "jshintConfig": {
     "maxerr": 5
