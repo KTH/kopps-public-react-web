@@ -15,7 +15,7 @@ const i18n = require('../../i18n')
 const api = require('../api')
 const registry = require('component-registry').globalRegistry
 const { IHealthCheck } = require('kth-node-monitor').interfaces
-
+const started = new Date()
 /**
  * Get request on not found (404)
  * Renders the view 'notFound' with the layout 'exampleLayout'.
@@ -61,7 +61,7 @@ function _final(err, req, res) {
         friendly: _getFriendlyErrorMessage(lang, statusCode),
         error: isProd ? {} : err,
         status: statusCode,
-        debug: 'debug' in req.query
+        debug: 'debug' in req.query,
       })
     },
 
@@ -69,7 +69,7 @@ function _final(err, req, res) {
       res.status(statusCode).json({
         message: err.message,
         friendly: _getFriendlyErrorMessage(lang, statusCode),
-        error: isProd ? undefined : err.stack
+        error: isProd ? undefined : err.stack,
       })
     },
 
@@ -78,7 +78,7 @@ function _final(err, req, res) {
         .status(statusCode)
         .type('text')
         .send(isProd ? err.message : err.stack)
-    }
+    },
   })
 }
 
@@ -102,7 +102,7 @@ function _about(req, res) {
     dockerVersion: JSON.stringify(version.dockerVersion),
     language: language.getLanguage(res),
     hostname: os.hostname(),
-    env: require('../server').get('env')
+    started,
   })
 }
 
@@ -116,7 +116,7 @@ function _monitor(req, res) {
   const subSystems = Object.keys(api).map(apiKey => {
     const apiHealthUtil = registry.getUtility(IHealthCheck, 'kth-node-api')
     return apiHealthUtil.status(api[apiKey], {
-      required: apiConfig[apiKey].required
+      required: apiConfig[apiKey].required,
     })
   })
   // Check LDAP
@@ -144,17 +144,11 @@ function _monitor(req, res) {
         res.status(status.statusCode).json(outp)
       } else {
         const outp = systemHealthUtil.renderText(status)
-        res
-          .type('text')
-          .status(status.statusCode)
-          .send(outp)
+        res.type('text').status(status.statusCode).send(outp)
       }
     })
     .catch(err => {
-      res
-        .type('text')
-        .status(500)
-        .send(err)
+      res.type('text').status(500).send(err)
     })
 }
 
@@ -184,5 +178,5 @@ module.exports = {
   robotsTxt: _robotsTxt,
   paths: _paths,
   notFound: _notFound,
-  final: _final
+  final: _final,
 }
