@@ -21,9 +21,7 @@
     "build-dev": "cross-env NODE_ENV=development npm run move-handlebar-pages && rm -rf dist && parcel build ./public/js/vendor.js --public-url /node/static && parcel watch ./public/js/app/app.jsx --public-url /node/static",
     "start": "NODE_ENV=production node app.js",
     "start-dev": "cross-env NODE_ENV=development concurrently --kill-others \"npm run build-dev\" \"nodemon --ignore dist/ --ignore dist-dev/ app.js\"",
-    "move-handlebar-pages": "cp ./node_modules/kth-node-web-common/lib/handlebars/pages/views/error.handlebars ./server/views/system/error.handlebars && cp ./node_modules/kth-node-web-common/lib/handlebars/pages/layouts/errorLayout.handlebars ./server/views/layouts/errorLayout.handlebars",
-    "linting": "eslint --ext .js,.jsx server/ public/",
-    "linting:fix": "eslint --ext .js,.jsx server/ public/ --fix"
+    "move-handlebar-pages": "cp ./node_modules/kth-node-web-common/lib/handlebars/pages/views/error.handlebars ./server/views/system/error.handlebars && cp ./node_modules/kth-node-web-common/lib/handlebars/pages/layouts/errorLayout.handlebars ./server/views/layouts/errorLayout.handlebars"
   },
   "dependencies": {
     "applicationinsights": "^1.7.5",
@@ -50,7 +48,7 @@
     "kth-style": "^4.2.28",
     "locale": "^0.1.0",
     "mobx": "^5.15.4",
-    "mobx-react": "^5.4.4",
+    "mobx-react": "^6.2.2",
     "passport": "^0.4.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",

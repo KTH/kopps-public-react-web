@@ -6,17 +6,14 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { StaticRouter } from 'react-router'
-import { Provider } from 'mobx-react'
-
+import { useStaticRendering } from 'mobx-react'
 import ReactDOMServer from 'react-dom/server'
 
-// Sass
+import { MobxStoreProvider, compressStoreIntoJavascriptCode, uncompressStoreInPlaceFromDocument } from './mobx'
+import createApplicationStore from './stores/createApplicationStore'
+
 import '../../css/node-web.scss'
 
-// Store
-import RouterStore from './stores/RouterStore'
-
-// Pages
 import Start from './pages/Start'
 
 export default _getServerSideFunctions()
@@ -24,36 +21,29 @@ export default _getServerSideFunctions()
 _renderOnClientSide()
 
 function _getServerSideFunctions() {
-  const result = {}
+  return {
+    createStore() {
+      return createApplicationStore()
+    },
 
-  result.render = ({ applicationStore, location, basename }) => {
-    const app = (
-      <StaticRouter basename={basename} location={location}>
-        {_appFactory()}
-      </StaticRouter>
-    )
+    getCompressedStoreCode(store) {
+      const code = compressStoreIntoJavascriptCode(store)
+      return code
+    },
 
-    const html = ReactDOMServer.renderToString(app)
-    return html
+    renderStaticPage({ applicationStore, location, basename }) {
+      useStaticRendering(true)
+
+      const app = (
+        <StaticRouter basename={basename} location={location}>
+          {_appFactory(applicationStore)}
+        </StaticRouter>
+      )
+
+      const html = ReactDOMServer.renderToString(app)
+      return html
+    },
   }
-
-  return result
-}
-
-function _appFactory() {
-  const routerStore = new RouterStore()
-
-  if (typeof window !== 'undefined') {
-    routerStore.initializeStore('routerStore')
-  }
-
-  return (
-    <Provider routerStore={routerStore}>
-      <Switch>
-        <Route exact path="/" component={Start} />
-      </Switch>
-    </Provider>
-  )
 }
 
 function _renderOnClientSide() {
@@ -66,9 +56,21 @@ function _renderOnClientSide() {
   // const basename = window.config.proxyPrefixPath.uri
   const basename = '/node'
 
-  const app = <BrowserRouter basename={basename}>{_appFactory()}</BrowserRouter>
+  const applicationStore = createApplicationStore()
+  uncompressStoreInPlaceFromDocument(applicationStore)
+
+  const app = <BrowserRouter basename={basename}>{_appFactory(applicationStore)}</BrowserRouter>
 
   const domElement = document.getElementById('app')
+  ReactDOM.hydrate(app, domElement)
+}
 
-  ReactDOM.render(app, domElement)
+function _appFactory(applicationStore) {
+  return (
+    <MobxStoreProvider initCallback={() => applicationStore}>
+      <Switch>
+        <Route exact path="/" component={Start} />
+      </Switch>
+    </MobxStoreProvider>
+  )
 }

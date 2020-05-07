@@ -1,15 +1,14 @@
-import React, { Component } from 'react'
-import { inject, observer } from 'mobx-react'
+import React from 'react'
+
+import { observer } from 'mobx-react'
+import { useStore } from '../mobx'
+
 import Button from '../components/Button'
 
-@inject(['routerStore'])
-@observer
-class Start extends Component {
-  render() {
-    const { routerStore } = this.props
-    const { message } = routerStore
-    return <Button message={message} />
-  }
+const Start = () => {
+  const { getMessage } = useStore()
+
+  return <Button message={getMessage()} />
 }
 
-export default Start
+export default observer(Start)
