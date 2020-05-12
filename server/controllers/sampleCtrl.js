@@ -1,50 +1,32 @@
-'use strict'
+/* eslint no-use-before-define: ["error", "nofunc"] */
+
+// @ts-check
 
 const api = require('../api')
 const log = require('kth-node-log')
+const serverConfig = require('../configuration').server
 
-const { toJS } = require('mobx')
-const ReactDOMServer = require('react-dom/server')
-
-function hydrateStores(renderProps) {
-  // This assumes that all stores are specified in a root element called Provider
-  const outp = {}
-  const { props } = renderProps.props.children
-
-  Object.keys(props).map(key => {
-    if (typeof props[key].initializeStore === 'function') {
-      outp[key] = encodeURIComponent(JSON.stringify(toJS(props[key], true)))
-    }
-  })
-
-  return outp
-}
-
-function _staticRender(context, location) {
-  if (process.env.NODE_ENV === 'development') {
-    delete require.cache[require.resolve('../../dist/app.js')]
-  }
-
-  const { staticRender } = require('../../dist/app.js')
-
-  return staticRender(context, location)
-}
+const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
 async function getIndex(req, res, next) {
   try {
-    const context = {}
-    const renderProps = _staticRender(context, req.url)
+    const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
 
-    renderProps.props.children.props.routerStore.getData()
+    const applicationStore = createStore()
 
-    const html = ReactDOMServer.renderToString(renderProps)
+    await _fillApplicationStoreOnServerSide({ applicationStore, query: req.query })
+
+    const compressedStoreCode = getCompressedStoreCode(applicationStore)
+
+    const { uri: basename } = serverConfig.proxyPrefixPath
+    const html = renderStaticPage({ applicationStore, location: req.url, basename })
 
     res.render('sample/index', {
       html,
       title: 'TODO',
-      initialState: JSON.stringify(hydrateStores(renderProps)),
+      compressedStoreCode,
       // lang: lang,
-      description: 'TODO' // lang === 'sv' ? "KTH  för "+courseCode.toUpperCase() : "KTH course information "+courseCode.toUpperCase()
+      description: 'TODO', // lang === 'sv' ? "KTH  för "+courseCode.toUpperCase() : "KTH course information "+courseCode.toUpperCase()
     })
   } catch (err) {
     log.error('Error in getIndex', { error: err })
@@ -52,6 +34,10 @@ async function getIndex(req, res, next) {
   }
 }
 
+async function _fillApplicationStoreOnServerSide({ applicationStore, query }) {
+  applicationStore.setMessage('Tjena!')
+}
+
 module.exports = {
-  getIndex
+  getIndex,
 }

@@ -1,44 +1,76 @@
+/* eslint no-use-before-define: ["error", "nofunc"] */
+
+// @ts-check
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { StaticRouter } from 'react-router'
-import { Provider } from 'mobx-react'
+import { useStaticRendering } from 'mobx-react'
+import ReactDOMServer from 'react-dom/server'
 
-// Sass
+import { MobxStoreProvider, compressStoreIntoJavascriptCode, uncompressStoreInPlaceFromDocument } from './mobx'
+import createApplicationStore from './stores/createApplicationStore'
+
 import '../../css/node-web.scss'
 
-// Store
-import RouterStore from './stores/RouterStore'
-
-// Pages
 import Start from './pages/Start'
 
-function appFactory() {
-  const routerStore = new RouterStore()
+export default _getServerSideFunctions()
 
-  if (typeof window !== 'undefined') {
-    routerStore.initializeStore('routerStore')
+_renderOnClientSide()
+
+function _getServerSideFunctions() {
+  return {
+    createStore() {
+      return createApplicationStore()
+    },
+
+    getCompressedStoreCode(store) {
+      const code = compressStoreIntoJavascriptCode(store)
+      return code
+    },
+
+    renderStaticPage({ applicationStore, location, basename }) {
+      useStaticRendering(true)
+
+      const app = (
+        <StaticRouter basename={basename} location={location}>
+          {_appFactory(applicationStore)}
+        </StaticRouter>
+      )
+
+      const html = ReactDOMServer.renderToString(app)
+      return html
+    },
+  }
+}
+
+function _renderOnClientSide() {
+  const isClientSide = typeof window !== 'undefined'
+  if (!isClientSide) {
+    return
   }
 
+  // @ts-ignore
+  // const basename = window.config.proxyPrefixPath.uri
+  const basename = '/node'
+
+  const applicationStore = createApplicationStore()
+  uncompressStoreInPlaceFromDocument(applicationStore)
+
+  const app = <BrowserRouter basename={basename}>{_appFactory(applicationStore)}</BrowserRouter>
+
+  const domElement = document.getElementById('app')
+  ReactDOM.hydrate(app, domElement)
+}
+
+function _appFactory(applicationStore) {
   return (
-    <Provider routerStore={routerStore}>
+    <MobxStoreProvider initCallback={() => applicationStore}>
       <Switch>
-        <Route exact path="/node" component={Start} />
+        <Route exact path="/" component={Start} />
       </Switch>
-    </Provider>
+    </MobxStoreProvider>
   )
 }
-
-function staticRender(context, location) {
-  return (
-    <StaticRouter location={location} context={context}>
-      {appFactory()}
-    </StaticRouter>
-  )
-}
-
-if (typeof window !== 'undefined') {
-  ReactDOM.render(<BrowserRouter>{appFactory()}</BrowserRouter>, document.getElementById('app'))
-}
-
-export { appFactory, staticRender }

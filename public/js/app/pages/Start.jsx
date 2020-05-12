@@ -1,30 +1,14 @@
-import React, { Component, Fragment } from 'react'
-import { inject, observer } from 'mobx-react'
+import React from 'react'
 
-@inject(['routerStore'])
-@observer
-class Start extends Component {
-  state = {
-    buttonClicked: false,
-  }
+import { observer } from 'mobx-react'
+import { useStore } from '../mobx'
 
-  toggleButton = () => this.setState({ buttonClicked: !this.state.buttonClicked })
+import Button from '../components/Button'
 
-  render() {
-    const { message } = this.props.routerStore
-    return (
-      <Fragment>
-        <h1 className="display-3">Node-web</h1>
-        <h2>You are upp and running kth-node react!</h2>
-        <hr className="my-2" />
-        <h3>{`Message from routerStore: ${message}`}</h3>
-        <button type="button" onClick={this.toggleButton}>
-          Try me
-        </button>
-        <p>{this.state.buttonClicked ? 'Button works!' : ''}</p>
-      </Fragment>
-    )
-  }
+const Start = () => {
+  const { getMessage } = useStore()
+
+  return <Button message={getMessage()} />
 }
 
-export default Start
+export default observer(Start)
