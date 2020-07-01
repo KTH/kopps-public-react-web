@@ -2,14 +2,18 @@
 
 // @ts-check
 
-const api = require('../api')
 const log = require('kth-node-log')
+const language = require('kth-node-web-common/lib/language')
+
+const api = require('../api')
 const serverConfig = require('../configuration').server
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
 async function getIndex(req, res, next) {
   try {
+    const lang = language.getLanguage(res)
+
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
 
     const applicationStore = createStore()
@@ -25,8 +29,9 @@ async function getIndex(req, res, next) {
       html,
       title: 'TODO',
       compressedStoreCode,
-      // lang: lang,
-      description: 'TODO', // lang === 'sv' ? "KTH  för "+courseCode.toUpperCase() : "KTH course information "+courseCode.toUpperCase()
+      description: 'TODO',
+      breadcrumbsPath: [],
+      lang,
     })
   } catch (err) {
     log.error('Error in getIndex', { error: err })
