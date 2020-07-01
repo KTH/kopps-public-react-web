@@ -33,13 +33,16 @@
     {{{render 'head-scripts'}}}
   </head>
   <body>
-      {{> kthHeader }}
-      <div class="container main">
-        <div class="row">
+    <a class="skipToMainContent" href="#mainContent" tabindex="1">{{i18n 'skip_to_main_content' lang}}</a>
+    {{> kthHeader }}
+    <div class="container main">
+      <div class="row">
+        <div class="col app">
           {{{body}}}
         </div>
       </div>
-      {{> kthFooter }}
+    </div>
+    {{> kthFooter }}
     {{{render 'scripts'}}}
   </body>
 </html>

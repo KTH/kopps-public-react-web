@@ -1,5 +1,5 @@
 module.exports = {
-  shortNames: [ 'sv', 'se' ],
+  shortNames: ['sv', 'se'],
   longNameSe: 'Svenska',
   longNameEn: 'Swedish',
   messages: {
@@ -33,7 +33,8 @@ module.exports = {
     locale_text: 'Node.js på svenska',
 
     site_name: 'Node.js Mall',
-    host_name: 'KTH'
-  }
+    host_name: 'KTH',
 
+    skip_to_main_content: 'Hoppa till huvudinnehållet',
+  },
 }

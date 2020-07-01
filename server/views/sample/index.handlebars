@@ -1,15 +1,11 @@
-<script>
-  {{{compressedStoreCode}}}
-</script>
+<script>{{{compressedStoreCode}}}</script>
 
 <!--{{prefixScript '/static/app.js' 'scripts'}}-->
 
-<div class="col">
-  <h1>node-web</h1>
-
-  {{#if error}}
+{{#if error}}
+  <main id="mainContent">
     <p>Error: {{error}}</p>
-  {{else}}
-    <div id="app">{{{html}}}</div>
-  {{/if}}
-</div>
+  </main>
+{{else}}
+  <div id="app">{{{html}}}</div>
+{{/if}}
