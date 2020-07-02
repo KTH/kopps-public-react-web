@@ -3,21 +3,14 @@ module.exports = {
   longNameSe: 'Engelska',
   longNameEn: 'English',
   messages: {
-    /**
-     * General stuff
-     */
+    // General stuff
     date_format_short: '%d-%b-%Y',
 
-    /**
-     * Error messages
-     */
-
+    // Error messages
     error_not_found: "Sorry, we can't find your requested page",
     error_generic: 'Something went wrong on the server, please try again later.',
 
-    /**
-     * Message keys
-     */
+    // Message keys
     service_name: 'Node application name',
 
     example_message_key: 'This is an english translation of a label',
@@ -36,5 +29,10 @@ module.exports = {
     host_name: 'KTH',
 
     skip_to_main_content: 'Skip to main content',
+
+    template_app_works: 'You are up and running kth-node with React!',
+    template_store_text: 'Message from applicationStore',
+    template_try_me: 'Try me',
+    template_button_works: 'Button works!',
   },
 }

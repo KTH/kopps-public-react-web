@@ -2,36 +2,22 @@
 
 // @ts-check
 
+// eslint-disable-next-line no-unused-vars
 import { observable, action } from 'mobx'
 
 export default createApplicationStore
 
 function createApplicationStore() {
   const store = {
+    language: null,
+
     message: 'Hallo',
 
     setMessage: action(function setMessage(text = 'Happy coding!! :)') {
       this.message = text
     }),
 
-    getMessage: action(function getMessage() {
-      return this.message
-    }),
-
-    setBrowserConfig: action(function setBrowserConfig(config, paths, apiHost, profileBaseUrl) {
-      this.browserConfig = config
-      this.paths = paths
-      this.apiHost = apiHost
-      this.profileBaseUrl = profileBaseUrl
-    }),
-
-    SSRsetCookieHeader: action(function SSRsetCookieHeader(cookieHeader) {
-      if (typeof window === 'undefined') {
-        this.cookieHeader = cookieHeader || ''
-      }
-    }),
-
-    doSetLanguage: action(function doSetLanguage(lang) {
+    setLanguage: action(function setLanguage(lang) {
       this.language = lang
     }),
   }

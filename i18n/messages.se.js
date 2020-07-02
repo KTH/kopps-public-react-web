@@ -3,21 +3,14 @@ module.exports = {
   longNameSe: 'Svenska',
   longNameEn: 'Swedish',
   messages: {
-    /**
-     * General stuff
-     */
+    // General stuff
     date_format_short: '%Y-%m-%d',
 
-    /**
-     * Error messages
-     */
-
+    // Error messages
     error_not_found: 'Tyvärr kunde vi inte hitta sidan du söker',
     error_generic: 'Något gick fel på servern, var god försök igen senare',
 
-    /**
-     * Message keys
-     */
+    // Message keys
     service_name: 'Node-applikationsnamn',
 
     example_message_key: 'Här är en svensk översättning på en label',
@@ -36,5 +29,10 @@ module.exports = {
     host_name: 'KTH',
 
     skip_to_main_content: 'Hoppa till huvudinnehållet',
+
+    template_app_works: 'kth-node är igång med hjälp av React!',
+    template_store_text: 'Meddelandet från applicationStore',
+    template_try_me: 'Testa ut',
+    template_button_works: 'Knappen fungerar!',
   },
 }

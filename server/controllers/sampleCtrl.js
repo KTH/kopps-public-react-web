@@ -17,6 +17,7 @@ async function getIndex(req, res, next) {
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
 
     const applicationStore = createStore()
+    applicationStore.setLanguage(lang)
 
     await _fillApplicationStoreOnServerSide({ applicationStore, query: req.query })
 

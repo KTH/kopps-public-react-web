@@ -3,20 +3,20 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { useStore } from '../mobx'
 
+import i18n from '../../../../i18n'
+
 import Button from '../components/Button'
 
 const Start = () => {
-  const { getMessage } = useStore()
-
-  const message = getMessage()
+  const { message, language: lang } = useStore()
 
   return (
     <main id="mainContent">
-      <h1 className="display-3">Node-web</h1>
-      <h2>You are up and running kth-node with React!</h2>
+      <h1>Node-web</h1>
+      <h2>{i18n.message('template_app_works', lang)}</h2>
       <hr className="my-2" />
-      <h3 data-testid="message-header">{`Message from applicationStore: ${message}`}</h3>
-      <Button caption="Try me" />
+      <p>{`${i18n.message('template_store_text', lang)}: ${message}`}</p>
+      <Button caption={i18n.message('template_try_me', lang)} />
     </main>
   )
 }
