@@ -23,18 +23,18 @@ function _prepare() {
 
   // @ts-ignore
   // eslint-disable-next-line import/no-unresolved
-  Global.ServerSideFunctions = require('../../dist/app').default
+  Global.ServerSideFunctions = require('../../dist/serverSideFunctions').default
 }
 
 function _avoidConflictsBetweenParcelAndNodeDuringStartDev() {
   const _requireClientAppWithParcel = async () => {
     log.info('Server-side rendering: Bundling with Parcel in "./dist-dev"...')
-    const parcel = new Parcel('./public/js/app/app.jsx', { outDir: './dist-dev' })
+    const parcel = new Parcel('./public/js/app/serverSideFunctions.js', { outDir: './dist-dev' })
     await parcel.bundle()
 
     // @ts-ignore
     // eslint-disable-next-line import/no-unresolved
-    Global.ServerSideFunctions = require('../../dist-dev/app').default
+    Global.ServerSideFunctions = require('../../dist-dev/serverSideFunctions').default
     log.info('Server-side rendering: Parcel finished bundling "./dist-dev", client app prepared')
   }
   _requireClientAppWithParcel()
