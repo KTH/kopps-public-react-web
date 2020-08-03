@@ -87,9 +87,12 @@ function _final(err, req, res) {
  * About page
  */
 function _about(req, res) {
+  const { uri: proxyPrefix } = config.proxyPrefixPath
+
   res.render('system/about', {
     debug: 'debug' in req.query,
     layout: 'systemLayout',
+    proxyPrefix,
     appName: JSON.stringify(packageFile.name),
     appVersion: JSON.stringify(packageFile.version),
     appDescription: JSON.stringify(packageFile.description),
