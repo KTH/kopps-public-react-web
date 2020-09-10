@@ -6,8 +6,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-import 'mobx-react/batchingForReactDom'
-
 import { MobxStoreProvider, uncompressStoreInPlaceFromDocument } from './mobx'
 import createApplicationStore from './stores/createApplicationStore'
 

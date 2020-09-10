@@ -3,8 +3,6 @@ import { render, fireEvent, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import Button from './Button'
 
-import 'mobx-react/batchingForReactDom'
-
 describe('Component <Button>', () => {
   test('creates a button', () => {
     const { asFragment } = render(<Button caption="This is a message" />)
