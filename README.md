@@ -28,7 +28,7 @@ During local development the defaults in serverSettings.js should work fine. If 
 2. Clone the node-web repository by using:
 
 ```bash
-git clone git@github.com/KTH/node-web.git NEW_REPOSITORY_NAME
+git clone git@github.com:KTH/node-web.git NEW_REPOSITORY_NAME
 ```
 
 3. Navigate to the cloned project directory
