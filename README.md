@@ -45,7 +45,8 @@ If your application is going to be proxied on www.kth.se/your-path make sure you
 
 1. Set a new value in your `.env`-file for SERVICE_PUBLISH e.g
 
-```SERVICE_PUBLISH=/your-path
+```
+SERVICE_PUBLISH=/your-path
 ```
 
 2. Set you basePath property in /swagger.json e.g.
