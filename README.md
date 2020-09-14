@@ -41,15 +41,11 @@ git remote add origin https://github.com/KTH/<NEW_REPOSITORY_NAME>.git
 
 ## If your application is going to be proxied
 
-If your application is going to be proxied on www.kth.se/api/your-api-path make sure you set the following paths and properties.
+If your application is going to be proxied on www.kth.se/your-path make sure you set the following paths and properties.
 
-1. Make sure you add the proxy prefix path in your paths in /server/init/routing/paths.js e.g
+1. Set a new value in your `.env`-file for SERVICE_PUBLISH e.g
 
-```json
-monitor : {
-  uri : '/api/node/_monitor',
-  method : 'GET'
-}
+```SERVICE_PUBLISH=/your-path
 ```
 
 2. Set you basePath property in /swagger.json e.g.
