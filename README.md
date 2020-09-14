@@ -49,12 +49,6 @@ If your application is going to be proxied on www.kth.se/your-path make sure you
 SERVICE_PUBLISH=/your-path
 ```
 
-2. Set you basePath property in /swagger.json e.g.
-
-```javascript
-"basePath": "/api/node/v1"
-```
-
 ## Development
 
 Before you start coding it is important that you have both listed extensions installed in VS Code.
