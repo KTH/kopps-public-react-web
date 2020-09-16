@@ -56,6 +56,11 @@ Before you start coding it is important that you have both listed extensions ins
 - Prettier
 - Eslint
 
+If you have another path for your app i.e myApp you need to change the public path for Parcel (used for code splitting). Look for the `--public-url` flag in the "build-dev" script.
+```
+--public-url /node/static =CHANGE TO=>  --public-url /myApp/static
+```
+
 ### Starting the server
 
 Always start by installing dependencies:
