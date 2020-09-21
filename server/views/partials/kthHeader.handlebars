@@ -5,13 +5,15 @@
       <div class="header-container__top">
         {{{blocks.image}}} {{{blocks.title}}}
         <div id="mobileMenuWrapper">
-          <button id="nav-icon" class="navbar-toggler nav-icon" type="button" title="Öppna/stäng mobilmenyn">
+          <button id="nav-icon" class="navbar-toggler nav-icon" type="button"
+            title="{{i18n 'button_mobile_menu_label' lang}}">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
           </button>
-          <nav id="mobileMenu" class="block navbar navbar-expand-lg navbar-light">
+          <nav id="mobileMenu" aria-label="{{i18n 'mobile_menu_aria_label' lang}}" class=" block navbar
+            navbar-expand-lg navbar-light">
             <div id="mobileMenuContent" class="navbar-collapse collapse">
               <ul id="mobileMenuList" class="menu navbar-nav mr-auto"></ul>
             </div>

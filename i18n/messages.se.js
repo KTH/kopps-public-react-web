@@ -28,6 +28,9 @@ module.exports = {
     site_name: 'Node.js Mall',
     host_name: 'KTH',
 
+    button_mobile_menu_label: 'Öppna/stäng mobilmenyn',
+    mobile_menu_aria_label: 'Mobilemeny',
+
     skip_to_main_content: 'Hoppa till huvudinnehållet',
 
     template_app_works: 'kth-node är igång med hjälp av React!',

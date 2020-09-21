@@ -28,6 +28,9 @@ module.exports = {
     site_name: 'Node.js Template',
     host_name: 'KTH',
 
+    button_mobile_menu_label: 'Open/close the mobile menu',
+    mobile_menu_aria_label: 'Mobile menu',
+
     skip_to_main_content: 'Skip to main content',
 
     template_app_works: 'You are up and running kth-node with React!',
