@@ -18,6 +18,7 @@ RUN apk add --no-cache --virtual .gyp-dependencies python make g++ util-linux &&
   apk del .gyp-dependencies
 
 EXPOSE 3000
+ENV TZ=Europe/Stockholm
 
 ENV NODE_PATH /application
 CMD ["node", "app.js"]
