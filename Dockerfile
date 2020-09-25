@@ -21,4 +21,6 @@ EXPOSE 3000
 ENV TZ=Europe/Stockholm
 
 ENV NODE_PATH /application
+ENV TZ=Europe/Stockholm
+
 CMD ["node", "app.js"]
