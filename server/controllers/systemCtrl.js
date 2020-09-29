@@ -16,7 +16,29 @@ const i18n = require('../../i18n')
 const api = require('../api')
 const registry = require('component-registry').globalRegistry
 const { IHealthCheck } = require('kth-node-monitor').interfaces
-const started = new Date()
+
+/**
+ * Adds a zero (0) to numbers less then ten (10)
+ */
+function zeroPad(value) {
+  return value < 10 ? '0' + value : value
+}
+
+/**
+ * Takes a Date obeject and returns a simple date string.
+ */
+function _simpleDate(date) {
+  const year = date.getFullYear()
+  const month = zeroPad(date.getMonth() + 1)
+  const day = zeroPad(date.getDate())
+  const hours = zeroPad(date.getHours())
+  const minutes = zeroPad(date.getMinutes())
+  const seconds = zeroPad(date.getSeconds())
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
+}
+
+const started = _simpleDate(new Date())
+
 /**
  * Get request on not found (404)
  * Renders the view 'notFound' with the layout 'exampleLayout'.
