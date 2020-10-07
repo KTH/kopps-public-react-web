@@ -59,7 +59,8 @@ function _getFriendlyErrorMessage(lang, statusCode) {
 }
 
 // this function must keep this signature for it to work properly
-function _final(err, req, res) {
+// eslint-disable-next-line no-unused-vars
+function _final(err, req, res, next) {
   switch (err.status) {
     case 403:
       log.info({ err }, `403 Forbidden ${err.message}`)
