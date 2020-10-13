@@ -3,24 +3,40 @@
 // @ts-check
 
 // eslint-disable-next-line no-unused-vars
-import { observable, action } from 'mobx'
+import { observable } from 'mobx'
 
 export default createApplicationStore
 
 function createApplicationStore() {
   const store = {
+    /**
+     * @property {string} language
+     */
     language: null,
+    /**
+     * @method
+     * @param {string} lang
+     */
+    setLanguage,
 
+    /**
+     * @property {string} message
+     */
     message: 'Hallo',
-
-    setMessage: action(function setMessage(text = 'Happy coding!! :)') {
-      this.message = text
-    }),
-
-    setLanguage: action(function setLanguage(lang) {
-      this.language = lang
-    }),
+    /**
+     * @method
+     * @param {string} text
+     */
+    setMessage,
   }
 
   return store
+}
+
+function setLanguage(lang) {
+  this.language = lang
+}
+
+function setMessage(text = 'Happy coding!! :)') {
+  this.message = text
 }

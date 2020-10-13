@@ -4,7 +4,7 @@
 
 import React from 'react'
 import { StaticRouter } from 'react-router'
-import { useStaticRendering } from 'mobx-react'
+import { enableStaticRendering } from 'mobx-react'
 import ReactDOMServer from 'react-dom/server'
 
 import { compressStoreIntoJavascriptCode } from './mobx'
@@ -26,7 +26,7 @@ function _getServerSideFunctions() {
     },
 
     renderStaticPage({ applicationStore, location, basename }) {
-      useStaticRendering(true)
+      enableStaticRendering(true)
 
       const app = (
         <StaticRouter basename={basename} location={location}>
