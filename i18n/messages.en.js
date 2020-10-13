@@ -32,6 +32,7 @@ module.exports = {
     mobile_menu_aria_label: 'Mobile menu',
 
     skip_to_main_content: 'Skip to main content',
+    back_to_top_label: 'To page top',
 
     template_app_works: 'You are up and running kth-node with React!',
     template_store_text: 'Message from applicationStore',
