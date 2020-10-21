@@ -4,50 +4,33 @@
 
 module.exports = { getServerSideFunctions }
 
-const log = require('kth-node-log')
-
-// eslint-disable-next-line import/no-extraneous-dependencies
-const Parcel = process.env.NODE_ENV === 'development' ? require('parcel-bundler') : null
-
-const Global = {
-  ServerSideFunctions: null,
-}
-
-_prepare()
-
-function _prepare() {
-  if (process.env.NODE_ENV === 'development') {
-    _avoidConflictsBetweenParcelAndNodeDuringStartDev()
-    return
-  }
-
-  // @ts-ignore
-  // eslint-disable-next-line import/no-unresolved
-  Global.ServerSideFunctions = require('../../dist/serverSideFunctions').default
-}
-
-function _avoidConflictsBetweenParcelAndNodeDuringStartDev() {
-  const _requireClientAppWithParcel = async () => {
-    log.info('Server-side rendering: Bundling with Parcel in "./dist-dev"...')
-    const parcel = new Parcel('./public/js/app/serverSideFunctions.js', { outDir: './dist-dev' })
-    await parcel.bundle()
-
-    // @ts-ignore
-    // eslint-disable-next-line import/no-unresolved
-    Global.ServerSideFunctions = require('../../dist-dev/serverSideFunctions').default
-    log.info('Server-side rendering: Parcel finished bundling "./dist-dev", client app prepared')
-  }
-  _requireClientAppWithParcel()
-}
+const ENSURE_THAT_BUILDDEV_RECEIVES_UPDATED_SSR_PACKAGES = true
 
 /**
- * @returns {object} default export from public/js/app/app.jsx
- * @throws if applications is still preparing Server Side Rendering
+ * @returns {object}
+ * @throws e.g. if "build-dev" is still preparing client-packages
  */
 function getServerSideFunctions() {
-  if (Global.ServerSideFunctions == null) {
-    throw new Error('Server-side rendering: Too early access to client app - still preparing "./dist-dev"...')
+  if (process.env.NODE_ENV === 'production') {
+    // @ts-ignore
+    // eslint-disable-next-line import/no-unresolved,global-require
+    const parcelBuildForSSR = require('../../dist/ssr-app').default
+    return parcelBuildForSSR
   }
 
-  return Global.ServerSideFunctions
+  try {
+    if (ENSURE_THAT_BUILDDEV_RECEIVES_UPDATED_SSR_PACKAGES) {
+      delete require.cache[require.resolve('../../dist/ssr-app')]
+    }
+
+    // @ts-ignore
+    // eslint-disable-next-line import/no-unresolved,global-require
+    const parcelBuildDevForSSR = require('../../dist/ssr-app').default
+    return parcelBuildDevForSSR
+  } catch (error) {
+    if (error.message.includes('../../dist/ssr-app')) {
+      throw new Error(`Server-side rendering: Too early access to client app - still preparing "./dist"`)
+    }
+    throw error
+  }
 }
