@@ -12,10 +12,9 @@ const {
   devDefaults,
   unpackLDAPConfig,
   unpackRedisConfig,
-  unpackNodeApiConfig
+  unpackNodeApiConfig,
 } = require('kth-node-configuration')
 const { typeConversion } = require('kth-node-configuration/lib/utils')
-const { safeGet } = require('safe-utils')
 
 // DEFAULT SETTINGS used for dev, if you want to override these for you local environment, use env-vars in .env
 const devPort = devDefaults(3000)
@@ -42,7 +41,7 @@ const ldapOptions = {
   reconnectTime: typeConversion(getEnv('LDAP_IDLE_RECONNECT_INTERVAL', null)),
   reconnectOnIdle: getEnv('LDAP_IDLE_RECONNECT_INTERVAL', null) !== null,
   connecttimeout: typeConversion(getEnv('LDAP_CONNECT_TIMEOUT', null)),
-  searchtimeout: typeConversion(getEnv('LDAP_SEARCH_TIMEOUT', null))
+  searchtimeout: typeConversion(getEnv('LDAP_SEARCH_TIMEOUT', null)),
 }
 
 Object.keys(ldapOptions).forEach(key => {
@@ -53,68 +52,71 @@ Object.keys(ldapOptions).forEach(key => {
 
 module.exports = {
   hostUrl: getEnv('SERVER_HOST_URL', devUrl),
-  useSsl: safeGet(() => getEnv('SERVER_SSL', devSsl + '').toLowerCase() === 'true'),
+  useSsl: String(getEnv('SERVER_SSL', devSsl)).toLowerCase() === 'true',
   port: getEnv('SERVER_PORT', devPort),
   ssl: {
     // In development we don't have SSL feature enabled
     pfx: getEnv('SERVER_CERT_FILE', ''),
-    passphrase: getEnv('SERVER_CERT_PASSPHRASE', '')
+    passphrase: getEnv('SERVER_CERT_PASSPHRASE', ''),
   },
 
   // API keys
   apiKey: {
-    nodeApi: getEnv('NODE_API_KEY', devDefaults('1234'))
+    nodeApi: getEnv('NODE_API_KEY', devDefaults('1234')),
   },
 
   // Authentication
   auth: {
-    adminGroup: 'app.node.admin'
+    adminGroup: 'app.node.admin',
   },
   cas: {
-    ssoBaseURL: getEnv('CAS_SSO_URI', devSsoBaseURL)
+    ssoBaseURL: getEnv('CAS_SSO_URI', devSsoBaseURL),
   },
   ldap: unpackLDAPConfig('LDAP_URI', getEnv('LDAP_PASSWORD'), devLdap, ldapOptions),
 
   // Service API's
   nodeApi: {
-    nodeApi: unpackNodeApiConfig('NODE_API_URI', devInnovationApi)
+    nodeApi: unpackNodeApiConfig('NODE_API_URI', devInnovationApi),
   },
 
   // Cortina
   blockApi: {
-    blockUrl: getEnv('SERVER_HOST_URL', devDefaults('https://www-r.referens.sys.kth.se/cm/')) // Block API base URL
+    blockUrl: getEnv(
+      'SERVER_BLOCKS_URL',
+      getEnv('SERVER_HOST_URL', devDefaults('https://www-r.referens.sys.kth.se/cm/'))
+    ),
   },
 
   // Logging
   logging: {
     log: {
-      level: getEnv('LOGGING_LEVEL', 'debug')
+      level: getEnv('LOGGING_LEVEL', 'debug'),
     },
     accessLog: {
-      useAccessLog: getEnv('LOGGING_ACCESS_LOG', true)
-    }
+      useAccessLog: getEnv('LOGGING_ACCESS_LOG', true),
+    },
   },
   clientLogging: {
-    level: 'debug'
+    level: 'debug',
   },
   cache: {
     cortinaBlock: {
-      redis: unpackRedisConfig('REDIS_URI', devRedis)
-    }
+      redis: unpackRedisConfig('REDIS_URI', devRedis),
+    },
   },
 
   // Session
   sessionSecret: getEnv('SESSION_SECRET', devDefaults('1234567890')),
   session: {
     key: getEnv('SESSION_KEY', devSessionKey),
-    useRedis: safeGet(() => getEnv('SESSION_USE_REDIS', devSessionUseRedis) === 'true'),
+    useRedis: String(getEnv('SESSION_USE_REDIS', devSessionUseRedis)).toLowerCase() === 'true',
     sessionOptions: {
       // do not set session secret here!!
       cookie: {
-        secure: safeGet(() => getEnv('SESSION_SECURE_COOKIE', false) === 'true')
+        secure: String(getEnv('SESSION_SECURE_COOKIE', false)).toLowerCase() === 'true',
       },
-      proxy: safeGet(() => getEnv('SESSION_TRUST_PROXY', true) === 'true')
+      proxy: String(getEnv('SESSION_TRUST_PROXY', true)).toLowerCase() === 'true',
     },
-    redisOptions: unpackRedisConfig('REDIS_URI', devRedis)
-  }
+    redisOptions: unpackRedisConfig('REDIS_URI', devRedis),
+  },
 }
