@@ -3,6 +3,8 @@
 ENV=$1
 PROXY_PREFIX_PATH=$2
 
+trap avoidZombieProcessesAfterControlC SIGINT
+
 function main() {
   intro
 
@@ -51,24 +53,51 @@ function build() {
 
   # Run parcel build on the vendor.js file and put the optimized file into the /dist folder.
   echoYellow "  2. Bundling vendor.js into the /dist folder\n" 1
-  npx --no-install parcel build  ./public/js/vendor.js --public-url $PROXY_PREFIX_PATH/static
+  parcel build ./public/js/vendor.js --public-url $PROXY_PREFIX_PATH/static &
+  memorizePidAndWaitForProcessToFinish $!
 
   if [ "$ENV" == "prod" ]; then
     # Run parcel build on the /public/js files and put the optimized files into the /dist folder.
     echoYellow "  3. Bundling the client app into the /dist folder\n" 1
-    npx --no-install parcel build ./public/js/app/app.jsx ./public/js/app/ssr-app.js --public-url $PROXY_PREFIX_PATH/static
+    parcel build ./public/js/app/app.jsx ./public/js/app/ssr-app.js --public-url $PROXY_PREFIX_PATH/static &
+    memorizePidAndWaitForProcessToFinish $!
   fi
 
   # Only run Parcel watch in development
   if [ "$ENV" == "dev" ]; then
     # Run parcel build on the /public/js files and put the optimized files into the /dist folder.
     echoYellow "  3. Bundling the client app into the /dist folder to list results\n" 1
-    npx --no-install parcel build --no-minify ./public/js/app/app.jsx ./public/js/app/ssr-app.js --public-url http://localhost:3000$PROXY_PREFIX_PATH/static
+    parcel build --no-minify ./public/js/app/app.jsx ./public/js/app/ssr-app.js --public-url http://localhost:3000$PROXY_PREFIX_PATH/static &
+    memorizePidAndWaitForProcessToFinish $!
 
     # Run parcel watch on the js and sass files and put the optimized files into the /dist folder.
     echoYellow "  4. Running watch on jsx,js views and sass files. Check /dist for changes\n" 1
-    npx --no-install parcel watch ./public/js/app/app.jsx ./public/js/app/ssr-app.js --public-url http://localhost:3000$PROXY_PREFIX_PATH/static
+    parcel watch ./public/js/app/app.jsx ./public/js/app/ssr-app.js --public-url http://localhost:3000$PROXY_PREFIX_PATH/static &
+    memorizePidAndWaitForProcessToFinish $!
   fi
+}
+
+function memorizePidAndWaitForProcessToFinish() {
+  PID=$1
+  export BUILD_SH_LAST_PID=$PID
+#  while ps -p $PID > /dev/null; do
+  while kill -0 $PID > /dev/null 2>&1; do
+    sleep 1;
+  done
+}
+
+function avoidZombieProcessesAfterControlC() {
+  if [ -n "$BUILD_SH_LAST_PID" ]; then
+    # if ps -p $BUILD_SH_LAST_PID > /dev/null; then
+    if kill -0 $BUILD_SH_LAST_PID > /dev/null 2>&1; then
+      sleep 2
+      if kill -0 $BUILD_SH_LAST_PID > /dev/null 2>&1; then
+        echo -e "\n\n(Killing process with PID $BUILD_SH_LAST_PID...)"
+        kill $BUILD_SH_LAST_PID
+      fi
+    fi
+  fi
+  exit 0
 }
 
 function echoYellow() {
