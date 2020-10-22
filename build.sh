@@ -3,10 +3,12 @@
 ENV=$1
 PROXY_PREFIX_PATH=$2
 
-trap avoidZombieProcessesAfterControlC SIGINT
+[ "$BUILD_SH_LOG" == "debug" ] && ps -a
 
 function main() {
   intro
+
+  avoidZombieProcessesOnWindows
 
   if [[ "$ENV" == "dev" || "$ENV" == "prod" ]]; then
     if [ -n "$PROXY_PREFIX_PATH" ]; then
@@ -53,50 +55,78 @@ function build() {
 
   # Run parcel build on the vendor.js file and put the optimized file into the /dist folder.
   echoYellow "  2. Bundling vendor.js into the /dist folder\n" 1
-  parcel build ./public/js/vendor.js --public-url $PROXY_PREFIX_PATH/static &
-  memorizePidAndWaitForProcessToFinish $!
+  if [ "$AVOID_ZOMBIE_PROCESSES" == "true" ]; then
+    parcel build ./public/js/vendor.js --public-url $PROXY_PREFIX_PATH/static &
+    memorizePidAndWaitForProcessToFinish $!
+  else
+    parcel build ./public/js/vendor.js --public-url $PROXY_PREFIX_PATH/static
+  fi
 
   if [ "$ENV" == "prod" ]; then
-    # Run parcel build on the /public/js files and put the optimized files into the /dist folder.
+    # Run parcel build on the files in /public/js/app and put the optimized files into the /dist folder.
     echoYellow "  3. Bundling the client app into the /dist folder\n" 1
-    parcel build ./public/js/app/app.jsx ./public/js/app/ssr-app.js --public-url $PROXY_PREFIX_PATH/static &
-    memorizePidAndWaitForProcessToFinish $!
+    if [ "$AVOID_ZOMBIE_PROCESSES" == "true" ]; then
+      parcel build './public/js/app/{*.js,*.jsx}' --public-url $PROXY_PREFIX_PATH/static &
+      memorizePidAndWaitForProcessToFinish $!
+    else
+      parcel build './public/js/app/{*.js,*.jsx}' --public-url $PROXY_PREFIX_PATH/static
+    fi
+
+    echoYellow "  Done.\n" 1
   fi
 
   # Only run Parcel watch in development
   if [ "$ENV" == "dev" ]; then
-    # Run parcel build on the /public/js files and put the optimized files into the /dist folder.
+    # Run parcel build on the files in /public/js/app and put the optimized files into the /dist folder.
     echoYellow "  3. Bundling the client app into the /dist folder to list results\n" 1
-    parcel build --no-minify ./public/js/app/app.jsx ./public/js/app/ssr-app.js --public-url http://localhost:3000$PROXY_PREFIX_PATH/static &
-    memorizePidAndWaitForProcessToFinish $!
+    if [ "$AVOID_ZOMBIE_PROCESSES" == "true" ]; then
+      parcel build --no-minify './public/js/app/{*.js,*.jsx}' --public-url http://localhost:3000$PROXY_PREFIX_PATH/static &
+      memorizePidAndWaitForProcessToFinish $!
+    else
+      parcel build --no-minify './public/js/app/{*.js,*.jsx}' --public-url http://localhost:3000$PROXY_PREFIX_PATH/static
+    fi
 
-    # Run parcel watch on the js and sass files and put the optimized files into the /dist folder.
-    echoYellow "  4. Running watch on jsx,js views and sass files. Check /dist for changes\n" 1
-    parcel watch ./public/js/app/app.jsx ./public/js/app/ssr-app.js --public-url http://localhost:3000$PROXY_PREFIX_PATH/static &
-    memorizePidAndWaitForProcessToFinish $!
+    # Run parcel watch on the files in /public/js/app and put the optimized files into the /dist folder.
+    echoYellow "  4. Running watch on client app. Check /dist for changes\n" 1
+    if [ "$AVOID_ZOMBIE_PROCESSES" == "true" ]; then
+      parcel watch './public/js/app/{*.js,*.jsx}' --public-url http://localhost:3000$PROXY_PREFIX_PATH/static &
+      memorizePidAndWaitForProcessToFinish $!
+    else
+      parcel watch './public/js/app/{*.js,*.jsx}' --public-url http://localhost:3000$PROXY_PREFIX_PATH/static
+    fi
+  fi
+}
+
+function avoidZombieProcessesOnWindows() {
+  SYSTEM=`uname`
+  if [ "${SYSTEM:0:7}" == "MINGW64" ]; then
+    [ "$BUILD_SH_LOG" == "debug" ] && echo -e "  (Windows Git Bash detected)\n"
+    AVOID_ZOMBIE_PROCESSES=true
+    LATEST_PID=
+
+    trap avoidZombieProcessAfterControlC SIGINT
   fi
 }
 
 function memorizePidAndWaitForProcessToFinish() {
   PID=$1
-  export BUILD_SH_LAST_PID=$PID
-#  while ps -p $PID > /dev/null; do
-  while kill -0 $PID > /dev/null 2>&1; do
-    sleep 1;
-  done
+  LATEST_PID=$PID
+  [ "$BUILD_SH_LOG" == "debug" ] && echo -e "  (Waiting...)\n"
+  wait $LATEST_PID
+  [ "$BUILD_SH_LOG" == "debug" ] && echo -e "\n  (Ready.)"
+  LATEST_PID=
 }
 
-function avoidZombieProcessesAfterControlC() {
-  if [ -n "$BUILD_SH_LAST_PID" ]; then
-    # if ps -p $BUILD_SH_LAST_PID > /dev/null; then
-    if kill -0 $BUILD_SH_LAST_PID > /dev/null 2>&1; then
-      sleep 2
-      if kill -0 $BUILD_SH_LAST_PID > /dev/null 2>&1; then
-        echo -e "\n\n(Killing process with PID $BUILD_SH_LAST_PID...)"
-        kill $BUILD_SH_LAST_PID
-      fi
+function avoidZombieProcessAfterControlC() {
+  [ "$BUILD_SH_LOG" == "debug" ] && ps -a
+  if [ -n "$LATEST_PID" ]; then
+    echo -e "\n\n  (Ensuring that process with PID $LATEST_PID is gone...)"
+    if kill -0 $LATEST_PID > /dev/null 2>&1; then
+      [ "$BUILD_SH_LOG" == "debug" ] && echo -e "  (Killing process with PID $LATEST_PID)"
+      kill $LATEST_PID
     fi
   fi
+  [ "$BUILD_SH_LOG" == "debug" ] && echo "  (Cleanup done.)"
   exit 0
 }
 
