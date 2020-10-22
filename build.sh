@@ -6,33 +6,19 @@ PROXY_PREFIX_PATH=$2
 [ "$BUILD_SH_LOG" == "debug" ] && ps -a
 
 function main() {
-  intro
+  echo
+  echoYellow "|--------------------------------------------------------|"
+  echoYellow "| Building the application with Bash and Parcel          |"   
+  echoYellow "|--------------------------------------------------------|\n"
 
   avoidZombieProcessesOnWindows
 
-  if [[ "$ENV" == "dev" || "$ENV" == "prod" ]]; then
-    if [ -n "$PROXY_PREFIX_PATH" ]; then
-      if [ "$ENV" == "dev" ]; then
-        export NODE_ENV=development
-      else
-        export NODE_ENV=production
-      fi
-
-      build
-      exit 0
-    fi
+  if [ "$ENV" == "dev" ]; then
+    export NODE_ENV=development
+  else
+    export NODE_ENV=production
   fi
 
-  usage
-}
-
-function intro() {
-  echoYellow "|--------------------------------------------------------|" 1
-  echoYellow "| Building the application with Bash and Parcel          |"   
-  echoYellow "|--------------------------------------------------------|\n"
-}
-
-function build() {
   echoYellow "  1. Cleaning up & copying files"
 
   # Removing the dist folder
@@ -54,7 +40,8 @@ function build() {
   cp -R ./node_modules/kth-node-web-common/lib/handlebars/pages/layouts/. server/views/layouts
 
   # Run parcel build on the vendor.js file and put the optimized file into the /dist folder.
-  echoYellow "  2. Bundling vendor.js into the /dist folder\n" 1
+  echo
+  echoYellow "  2. Bundling vendor.js into the /dist folder\n"
   if [ "$AVOID_ZOMBIE_PROCESSES" == "true" ]; then
     parcel build ./public/js/vendor.js --public-url $PROXY_PREFIX_PATH/static &
     memorizePidAndWaitForProcessToFinish $!
@@ -64,7 +51,8 @@ function build() {
 
   if [ "$ENV" == "prod" ]; then
     # Run parcel build on the files in /public/js/app and put the optimized files into the /dist folder.
-    echoYellow "  3. Bundling the client app into the /dist folder\n" 1
+    echo
+    echoYellow "  3. Bundling the client app into the /dist folder\n"
     if [ "$AVOID_ZOMBIE_PROCESSES" == "true" ]; then
       parcel build './public/js/app/{*.js,*.jsx}' --public-url $PROXY_PREFIX_PATH/static &
       memorizePidAndWaitForProcessToFinish $!
@@ -78,7 +66,8 @@ function build() {
   # Only run Parcel watch in development
   if [ "$ENV" == "dev" ]; then
     # Run parcel build on the files in /public/js/app and put the optimized files into the /dist folder.
-    echoYellow "  3. Bundling the client app into the /dist folder to list results\n" 1
+    echo
+    echoYellow "  3. Bundling the client app into the /dist folder to list results\n"
     if [ "$AVOID_ZOMBIE_PROCESSES" == "true" ]; then
       parcel build --no-minify './public/js/app/{*.js,*.jsx}' --public-url http://localhost:3000$PROXY_PREFIX_PATH/static &
       memorizePidAndWaitForProcessToFinish $!
@@ -87,7 +76,8 @@ function build() {
     fi
 
     # Run parcel watch on the files in /public/js/app and put the optimized files into the /dist folder.
-    echoYellow "  4. Running watch on client app. Check /dist for changes\n" 1
+    echo
+    echoYellow "  4. Running watch on client app. Check /dist for changes\n"
     if [ "$AVOID_ZOMBIE_PROCESSES" == "true" ]; then
       parcel watch './public/js/app/{*.js,*.jsx}' --public-url http://localhost:3000$PROXY_PREFIX_PATH/static &
       memorizePidAndWaitForProcessToFinish $!
@@ -132,18 +122,7 @@ function avoidZombieProcessAfterControlC() {
 
 function echoYellow() {
   MSG=$1
-  NUMBER_OF_LINES_ABOVE_AVOIDING_SOME_PREFIX_DISABLES_COLORS=$2
-  for (( I=${NUMBER_OF_LINES_ABOVE_AVOIDING_SOME_PREFIX_DISABLES_COLORS:-0}; I>0; I-- )); do
-    echo
-  done
   printf "\033[1;33m$MSG\033[0m\n"
-}
-
-function usage() {
-  echo -e "Usage:\n"
-  echo -e "  $0 <env> <proxy-prefix-path>\n"
-  echo -e "  where <env>               is 'dev' or 'prod',"
-  echo -e "        <proxy-prefix-path> is a URL-path, e.g. '/' or '/node'\n"
 }
 
 main
