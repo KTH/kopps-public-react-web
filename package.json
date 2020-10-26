@@ -24,7 +24,8 @@
     "docker:start": "bash ./docker-local.sh start",
     "docker:stop": "bash ./docker-local.sh stop",
     "docker:clean": "bash ./docker-local.sh clean",
-    "docker:ps": "docker ps -a"
+    "docker:ps": "docker ps -a",
+    "docker:pre-push": "bash -c 'if [ -f .env ]; then source .env; fi; if [ \"$RUN_DOCKER_BUILD_BEFORE_GIT_PUSH\" == \"true\" ]; then docker build .; fi'"
   },
   "dependencies": {
     "@babel/runtime": "^7.12.1",
@@ -107,7 +108,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run test",
+      "pre-push": "npm run test && npm run docker:pre-push",
       "pre-commit": "pretty-quick --staged"
     }
   }

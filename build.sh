@@ -99,8 +99,7 @@ function avoidZombieProcessesOnWindows() {
 }
 
 function memorizePidAndWaitForProcessToFinish() {
-  PID=$1
-  LATEST_PID=$PID
+  LATEST_PID=$1
   [ "$BUILD_SH_LOG" == "debug" ] && echo -e "  (Waiting...)\n"
   wait $LATEST_PID
   [ "$BUILD_SH_LOG" == "debug" ] && echo -e "\n  (Ready.)"
