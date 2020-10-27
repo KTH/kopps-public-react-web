@@ -24,8 +24,8 @@
     "docker:start": "bash ./docker-local.sh start",
     "docker:stop": "bash ./docker-local.sh stop",
     "docker:clean": "bash ./docker-local.sh clean",
-    "docker:ps": "docker ps -a",
-    "docker:pre-push": "bash -c 'if [ -f .env ]; then source .env; fi; if [ \"$RUN_DOCKER_BUILD_BEFORE_GIT_PUSH\" == \"true\" ]; then docker build .; fi'"
+    "docker:pre-push": "bash ./docker-local.sh pre-push",
+    "docker:ps": "docker ps -a"
   },
   "dependencies": {
     "@babel/runtime": "^7.12.1",
