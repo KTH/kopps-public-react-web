@@ -9,7 +9,6 @@ COPY ["i18n", "i18n"]
 COPY ["public", "public"]
 COPY ["server", "server"]
 
-COPY [".babelrc", ".babelrc"]
 COPY ["app.js", "app.js"]
 COPY ["build.sh", "build.sh"]
 COPY ["package.json", "package.json"]

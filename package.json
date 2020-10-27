@@ -24,7 +24,6 @@
     "docker:start": "bash ./docker-local.sh start",
     "docker:stop": "bash ./docker-local.sh stop",
     "docker:clean": "bash ./docker-local.sh clean",
-    "docker:pre-push": "bash ./docker-local.sh pre-push",
     "docker:ps": "docker ps -a"
   },
   "dependencies": {
@@ -97,6 +96,16 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
+  "// (babel)": "configuration version 2020-10-21 (WEB) - might also reside in .babelrc.json",
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-runtime"
+    ]
+  },
   "// (jest)": "configuration version 2020-06-15 (WEB) - might also reside as module.exports in jest.config.js",
   "jest": {
     "clearMocks": true,
@@ -108,7 +117,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run test && npm run docker:pre-push",
+      "pre-push": "npm run test",
       "pre-commit": "pretty-quick --staged"
     }
   }

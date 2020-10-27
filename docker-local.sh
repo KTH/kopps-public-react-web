@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# File version tag: 2020-10-27
+# File version tag: 2020-10-28
 
 CMD=$1
 
@@ -11,20 +11,41 @@ PROJECTTAG=$PROJECTNAME:local
 PROJECTTYPE=${PROJECTNAME:${#PROJECTNAME}-3}
 
 function main() {
-  if [ "$CMD" == "start" ]; then
-    start
-  elif [ "$CMD" == "stop" ]; then
-    stop
-    printf "\nDone."
-  elif [ "$CMD" == "clean" ]; then
-    clean
-    printf "\nDone."
-  elif [ "$CMD" == "pre-push" ]; then
-    prepush
-    printf "\nDone."
-  else
-    usage
-  fi
+  case $CMD in
+    start)
+      start
+      ;;
+    stop)
+      stop
+      ;;
+    clean)
+      clean
+      ;;
+    pre-push | optional-pre-push)
+      prepush
+      ;;
+    forced-pre-push)
+      prepush force
+      ;;
+    *)
+      usage
+      ;;
+  esac
+}
+
+function usage() {
+  echo "Tool for testing current project in production mode using Docker locally."
+  echo
+  echo "Usage:"
+  echo "  $0 <command> <project-tag?>"
+  echo
+  echo "  where <command>      is 'start', 'stop', 'clean', 'optional-pre-push' or 'forced-pre-push',"
+  echo "        <project-tag?> is a project name that ends with '-api' or '-web'"
+  echo "                       (or IMAGE_FILE from docker.conf will be used, if omitted)"
+  echo
+  echo "Examples:"
+  echo "  $0 start"
+  echo "  $0 start program-web"
 }
 
 function start() {
@@ -44,19 +65,17 @@ function start() {
   echoYellow "--> Docker image of $PROJECTNAME ready <--\n"
   docker images $PROJECTTAG || exit 1
 
-  if [ -f docker-local.env ]; then
-    echo
-    echoYellow "--> Starting new Docker container with $PROJECTNAME <--"
-    echoYellow "   (Using port $PORT and file 'docker-local.env')"
-    echoYellow "  Remember 'npm run docker:stop' when you are done!\n"
-    docker run --publish $PORT:$PORT --env-file docker-local.env $PROJECTTAG || exit 1
+  if [ -r docker-local.env ]; then
+    CONTAINER_ENV=docker-local.env
   else
-    echo
-    echoYellow "--> Starting new Docker container with $PROJECTNAME <--"
-    echoYellow "   (Using port $PORT and file '.env')"
-    echoYellow "  Remember 'npm run docker:stop' when you are done!\n"
-    docker run --publish $PORT:$PORT --env-file .env $PROJECTTAG || exit 1
+    CONTAINER_ENV=.env
   fi
+
+  echo
+  echoYellow "--> Starting new Docker container with $PROJECTNAME <--"
+  echoYellow "   (Using port $PORT and file '$CONTAINER_ENV')"
+  echoYellow "  Remember '$0 stop' when you are done!\n"
+  docker run --publish $PORT:$PORT --env-file $CONTAINER_ENV $PROJECTTAG || exit 1
 }
 
 function stop() {
@@ -73,6 +92,8 @@ function stop() {
     echoYellow "--> Removing any stopped Docker container <--\n"
     docker rm --volumes $(echo "$IDS2") || exit 1
   fi
+
+  printf "\nDone."
 }
 
 function clean() {
@@ -84,13 +105,21 @@ function clean() {
     echoYellow "--> Deleting Docker images of $PROJECTNAME <--\n"
     docker rmi --force $(echo "$IDS3") || exit 1
   fi
+
+  printf "\nDone."
 }
 
 function prepush() {
-  if [ -r .env ]; then
-    source .env 2> /dev/null
-  elif [ -r docker-local.env ]; then
-    source docker-local.env 2> /dev/null
+  ARG=$1
+  if [ "$ARG" == "force" ]; then
+    RUN_DOCKER_BUILD_BEFORE_GIT_PUSH=true
+  else
+    if [ -r .env ]; then
+      source .env 2> /dev/null
+    fi
+    if [ -r docker-local.env ]; then
+      source docker-local.env 2> /dev/null
+    fi
   fi
 
   if [ "$RUN_DOCKER_BUILD_BEFORE_GIT_PUSH" == "true" ]; then
@@ -103,21 +132,8 @@ function prepush() {
     echo " Add the following in .env or docker-local.env to activate this step:"
     echo "    RUN_DOCKER_BUILD_BEFORE_GIT_PUSH=true"
   fi
-}
 
-function usage() {
-  echo "Tool for testing current project in production mode using Docker locally."
-  echo
-  echo "Usage:"
-  echo "  $0 <command> <project-tag?>"
-  echo
-  echo "  where <command>      is 'start', 'stop', 'clean' or 'pre-push',"
-  echo "        <project-tag?> is a project name that ends with '-api' or '-web'"
-  echo "                       (or IMAGE_FILE from docker.conf will be used, if omitted)"
-  echo
-  echo "Examples:"
-  echo "  $0 start"
-  echo "  $0 start program-web"
+  printf "\nDone."
 }
 
 function error() {
