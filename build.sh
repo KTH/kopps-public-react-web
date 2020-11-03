@@ -60,7 +60,8 @@ function main() {
       parcel build './public/js/app/{*.js,*.jsx}' --public-url $PROXY_PREFIX_PATH/static
     fi
 
-    echoYellow "  Done.\n" 1
+    echo
+    echoYellow "  Done.\n"
   fi
 
   # Only run Parcel watch in development
