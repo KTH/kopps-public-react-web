@@ -24,8 +24,16 @@ function zeroPad(value) {
   return value < 10 ? '0' + value : value
 }
 
+function getTimezone(timezoneOffset) {
+  const hoursBeforeGMT = -timezoneOffset / 60
+  if (hoursBeforeGMT >= 0 && hoursBeforeGMT <= 2) {
+    return ['GMT', 'CET', 'CEST'][hoursBeforeGMT]
+  }
+  return hoursBeforeGMT < 0 ? `GMT${zeroPad(hoursBeforeGMT)}:00` : `GMT+${zeroPad(hoursBeforeGMT)}:00`
+}
+
 /**
- * Takes a Date obeject and returns a simple date string.
+ * Takes a Date object and returns a simple date string.
  */
 function _simpleDate(date) {
   const year = date.getFullYear()
@@ -34,7 +42,8 @@ function _simpleDate(date) {
   const hours = zeroPad(date.getHours())
   const minutes = zeroPad(date.getMinutes())
   const seconds = zeroPad(date.getSeconds())
-  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
+  const timezone = getTimezone(date.getTimezoneOffset())
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds} ${timezone}`
 }
 
 const started = _simpleDate(new Date())
