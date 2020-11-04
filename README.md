@@ -56,9 +56,24 @@ Before you start coding it is important that you have both listed extensions ins
 - Prettier
 - Eslint
 
-If you have another path for your app i.e myApp you need to change the public path for Parcel (used for code splitting). Look for the `--public-url` flag in the "build-dev" script.
+If you have another path for your app i.e myApp you need to change the public path for Parcel. Look at the build scripts in package.json
+
+You need to change **/node** on both these lines. This is the path for the application.
+
 ```
---public-url /node/static =CHANGE TO=>  --public-url /myApp/static
+    ...
+    "build": "bash ./build.sh prod /node",
+    "build-dev": "bash ./build.sh dev /node",
+    ...
+```
+
+Example after change:
+
+```
+    ...
+    "build": "bash ./build.sh prod /myApp",
+    "build-dev": "bash ./build.sh dev /myApp",
+    ...
 ```
 
 ### Starting the server
@@ -101,6 +116,14 @@ If you start Node.js from VS Code you can set breakpoints in your editor. The la
 ```
 
 Setting NODE_ENV is currently required.
+
+### Linting
+
+_From Wikipedia: lint, or a linter, is a static code analysis tool used to flag programming errors, bugs, stylistic errors, and suspicious constructs._
+
+We use ESLint for our linting and our default config comes from the module [eslint-config-kth](https://github.com/KTH/eslint-config-kth)
+
+See .eslintrc file
 
 ### Stack
 
