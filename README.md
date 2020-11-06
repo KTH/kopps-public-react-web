@@ -32,8 +32,6 @@ And go to http://localhost:3000/node
 
 > Note: node-web is by deafult connected to a api. If you don't have it running when starting node-web there will be errors in your log. No fear, node-web is still working.
 
----
-
 ## Development
 
 ### How do I use node-web template project for a project of my own?
