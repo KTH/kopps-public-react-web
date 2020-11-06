@@ -112,16 +112,16 @@ function _final(err, req, res, next) {
  * About page
  */
 function _about(req, res) {
-  const { uri: proxyPrefix } = config.proxyPrefixPath
+  const paths = getPaths()
 
   res.render('system/about', {
-    debug: 'debug' in req.query,
     layout: 'systemLayout',
-    proxyPrefix,
-    appName: JSON.stringify(packageFile.name),
-    appVersion: JSON.stringify(packageFile.version),
-    appDescription: JSON.stringify(packageFile.description),
-    version: JSON.stringify(version),
+    title: `About ${packageFile.name}`,
+    appName: packageFile.name,
+    appVersion: packageFile.version,
+    appDescription: packageFile.description,
+    monitorUri: paths.system.monitor.uri,
+    robotsUri: paths.system.robots.uri,
     config: JSON.stringify(config.templateConfig),
     gitBranch: JSON.stringify(version.gitBranch),
     gitCommit: JSON.stringify(version.gitCommit),
