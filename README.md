@@ -23,7 +23,7 @@ It's important that we try to make changes that affect the template projects in 
 3.  Create a `.env` file in the root of the project [Read more](#Configuration)
 4.  Add LDAP config in `.env` [Read more](#Where-do-you-keep-you-secrets)
 5.  Start your Redis [Read more](#Redis---Mandatory)
-6.  Start the server
+6.  Start the server [Read more](#Starting-the-server)
     ```bash
     $ npm run start-dev
     ```
@@ -36,7 +36,7 @@ And go to http://localhost:3000/node
 
 ### How do I use node-web template project for a project of my own?
 
-1. Create a new git repository on github.com/KTH (or other somewhere else).
+1. Create a new git repository on github.com/KTH (or somewhere else).
 
 2. Clone the node-web repository by using:
 
@@ -51,6 +51,8 @@ git clone git@github.com:KTH/node-web.git NEW_REPOSITORY_NAME
 ```bash
 git remote add origin https://github.com/KTH/<NEW_REPOSITORY_NAME>.git
 ```
+
+5. Time to code!
 
 ### Configuration
 
@@ -76,7 +78,7 @@ Simply add a line in the .env file:
 SERVER_PORT=8080
 ```
 
-If you want changes that should be used by everyone developing your project, change the default variables in the settings-files.
+If you want changes that should be used by everyone developing your project, change the default variables in the settings-files (see the `/config` folder).
 
 ### Where do you keep you secrets?
 
@@ -84,7 +86,7 @@ Secrets during local development are **ALWAYS** stored in the `.env`-file in the
 
 #### LDAP - Mandatory
 
-It needs to contain at least ldap connection URI and password in order for authentication to work properly:
+Node-web needs ldap connection URI and password in order for authentication to work properly:
 
 ```
 LDAP_URI=ldaps://[usertname]@ldap.ref.ug.kth.se
@@ -105,19 +107,25 @@ If you would like to change this configuration you can add
 
 to you .env file
 
-### If your application is going to be proxied
+### Path
 
-If your application is going to be proxied on www.kth.se/your-path make sure you set the following paths and properties.
+If your application is going to be proxied on www.kth.se/your-path make sure you make the following configuration
 
-1. Set a new value in your `.env`-file for SERVICE_PUBLISH e.g
+#### SERVICE_PUBLISH
+
+Set a new value in your `.env`-file for SERVICE_PUBLISH e.g
 
 ```
 SERVICE_PUBLISH=/your-path
 ```
 
-### URL Path
+More info, see `config/commonSettings.js`
 
-If you want another path for your app i.e localhost:3000/myApp you need to change the public path for Parcel. Look at the build scripts in package.json
+#### Setup Parcel
+
+Parcel needs a correct path when generating URLs.
+
+Look at the build scripts in package.json
 
 You need to change **/node** on both these lines. This is the path for the application.
 
@@ -132,8 +140,8 @@ Example after change:
 
 ```
     ...
-    "build": "bash ./build.sh prod /myApp",
-    "build-dev": "bash ./build.sh dev /myApp",
+    "build": "bash ./build.sh prod /your-path",
+    "build-dev": "bash ./build.sh dev /your-path",
     ...
 ```
 
@@ -163,10 +171,14 @@ And go to http://localhost:3000/node
 
 > Before you start coding it is important that you have both listed extensions installed in VS Code.
 
-- Prettier
-- Eslint
+- [Prettier](https://www.npmjs.com/package/prettier)
+- [Eslint](https://www.npmjs.com/package/eslint)
 
-#### Linting - Eslint
+```bash
+$ npm install eslint prettier --save-dev
+```
+
+#### Linting
 
 > _From Wikipedia: lint, or a linter, is a static code analysis tool used to flag programming errors, bugs, stylistic errors, and suspicious constructs._
 
