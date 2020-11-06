@@ -4,8 +4,8 @@ In an attempt to simplify the process of starting up new node.js based projects,
 
 The two projects are [node-web](https://github.com/KTH/node-web), a web server with express and react, and [node-api](https://github.com/KTH/node-api), a RESTful api. Both of them use OpenID Connect and/or CAS as a mechanism for authorisation and authentication.
 
-**The projects can be found here:**
-[https://github.com/KTH/node-web](https://github.com/KTH/node-web)
+**The projects can be found here:**  
+[https://github.com/KTH/node-web](https://github.com/KTH/node-web)  
 [https://github.com/KTH/node-api](https://github.com/KTH/node-api)
 
 It's important that we try to make changes that affect the template projects in the template projects themselves.
@@ -21,14 +21,16 @@ It's important that we try to make changes that affect the template projects in 
     $ npm install
     ```
 3.  Create a `.env` file in the root of the project [Read more](#Configuration)
-4.  Add LDAP config in `.env` [Read more](#Where-do-you-keep-you-secrets?)
-5.  Start your Redis [Read more](#Redis---**Mandatory**)
+4.  Add LDAP config in `.env` [Read more](#Where-do-you-keep-you-secrets)
+5.  Start your Redis [Read more](#Redis---Mandatory)
 6.  Start the server
     ```bash
     $ npm run start-dev
     ```
 
 And go to http://localhost:3000/node
+
+> Note: node-web is by deafult connected to a api. If you don't have it running when starting node-web there will be errors in your log. No fear, node-web is still working.
 
 ---
 
@@ -58,7 +60,7 @@ Configuration during local development are stored in a `.env`-file in the root o
 
 The .env file should **never** be pushed and is therefore included in the .gitignore file
 
-When running the app in development mode it's configured to work out of the box except for the LDAP (authentication), [read more about this below](#Where-do-you-keep-you-secrets?).
+When running the app in development mode it's configured to work out of the box except for the LDAP (authentication), [read more about this below](#Where-do-you-keep-you-secrets).
 
 Most of the apps configuration resides in `./config/serverSettings.js`. Here you will find what is configured and how to override it.
 
@@ -82,7 +84,7 @@ If you want changes that should be used by everyone developing your project, cha
 
 Secrets during local development are **ALWAYS** stored in the `.env`-file in the root of your project. This file is included in .gitignore so that it's never added to the repository.
 
-#### LDAP - **Mandatory**
+#### LDAP - Mandatory
 
 It needs to contain at least ldap connection URI and password in order for authentication to work properly:
 
@@ -91,7 +93,7 @@ LDAP_URI=ldaps://[usertname]@ldap.ref.ug.kth.se
 LDAP_PASSWORD=[password]
 ```
 
-### Redis - **Mandatory**
+### Redis - Mandatory
 
 We use [Redis](https://redis.io/) for storing sessions and data from Cortina (KTH.se CRM). You need to have a Redis running.
 
