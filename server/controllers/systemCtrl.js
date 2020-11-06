@@ -124,7 +124,6 @@ function _about(req, res) {
     appDescription: packageFile.description,
     monitorUri: paths.system.monitor.uri,
     robotsUri: paths.system.robots.uri,
-    config: JSON.stringify(config.templateConfig),
     gitBranch: JSON.stringify(version.gitBranch),
     gitCommit: JSON.stringify(version.gitCommit),
     jenkinsBuild: JSON.stringify(version.jenkinsBuild),
@@ -136,7 +135,7 @@ function _about(req, res) {
     language: language.getLanguage(res),
     hostname: os.hostname(),
     started,
-    env: require('../server').get('env'),
+    env: process.env.NODE_ENV,
   })
 }
 
