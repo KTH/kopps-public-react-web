@@ -128,7 +128,9 @@ function _about(req, res) {
     gitBranch: JSON.stringify(version.gitBranch),
     gitCommit: JSON.stringify(version.gitCommit),
     jenkinsBuild: JSON.stringify(version.jenkinsBuild),
-    jenkinsBuildDate: JSON.stringify(version.jenkinsBuildDate),
+    jenkinsBuildDate: /^\d{4}-/.test(version.jenkinsBuildDate)
+      ? _simpleDate(new Date(version.jenkinsBuildDate))
+      : JSON.stringify(version.jenkinsBuildDate),
     dockerName: JSON.stringify(version.dockerName),
     dockerVersion: JSON.stringify(version.dockerVersion),
     language: language.getLanguage(res),
