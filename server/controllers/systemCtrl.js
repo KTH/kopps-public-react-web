@@ -112,11 +112,13 @@ function _final(err, req, res, next) {
  * About page
  */
 function _about(req, res) {
+  const { uri: proxyPrefix } = config.proxyPrefixPath
   const paths = getPaths()
 
   res.render('system/about', {
     layout: 'systemLayout',
     title: `About ${packageFile.name}`,
+    proxyPrefix,
     appName: packageFile.name,
     appVersion: packageFile.version,
     appDescription: packageFile.description,
