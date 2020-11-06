@@ -30,7 +30,7 @@ It's important that we try to make changes that affect the template projects in 
 
 And go to http://localhost:3000/node
 
-> Note: node-web is by deafult connected to a api. If you don't have it running when starting node-web there will be errors in your log. No fear, node-web is still working.
+> Note: node-web is by default configured to connected to a api. If you don't have it running when starting node-web there will be errors in your log. No fear, node-web is still working.
 
 ## Development
 
