@@ -107,7 +107,7 @@ server.use(config.proxyPrefixPath.uri + '/static/icon/favicon', express.static('
 // Return 404 if static file isn't found so we don't go through the rest of the pipeline
 server.use(config.proxyPrefixPath.uri + '/static', (req, res, next) => {
   const error = new Error('File not found: ' + req.originalUrl)
-  error.statusCode = 404
+  error.status = 404
   next(error)
 })
 
