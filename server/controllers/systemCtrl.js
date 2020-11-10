@@ -3,19 +3,21 @@
 /**
  * System controller for functions such as /about and /monitor
  */
+const os = require('os')
+
 const log = require('kth-node-log')
-const version = require('../../config/version')
-const allConfig = require('../configuration')
-const config = allConfig.server
-const packageFile = require('../../package.json')
-const ldapClient = require('../adldapClient')
 const { getPaths } = require('kth-node-express-routing')
 const language = require('kth-node-web-common/lib/language')
-const os = require('os')
-const i18n = require('../../i18n')
-const api = require('../api')
 const registry = require('component-registry').globalRegistry
 const { IHealthCheck } = require('kth-node-monitor').interfaces
+
+const version = require('../../config/version')
+const i18n = require('../../i18n')
+const packageFile = require('../../package.json')
+
+const ldapClient = require('../adldapClient')
+const api = require('../api')
+const { server: config } = require('../configuration')
 
 /**
  * Adds a zero (0) to numbers less then ten (10)
