@@ -1,10 +1,10 @@
 'use strict'
 
 const passport = require('passport')
-const config = require('./configuration').server
 const log = require('kth-node-log')
 const CasStrategy = require('kth-node-passport-cas').Strategy
 const { GatewayStrategy } = require('kth-node-passport-cas')
+const config = require('./configuration').server
 
 /**
  * Passport will maintain persistent login sessions. In order for persistent sessions to work, the authenticated
@@ -74,6 +74,7 @@ passport.use(
 // redirects to appropriate place when returning from CAS login
 // The unpackLdapUser function transforms an ldap user to a user object that is stored as
 const ldapClient = require('./adldapClient')
+// eslint-disable-next-line import/order
 const { hasGroup } = require('kth-node-ldap').utils
 module.exports.redirectAuthenticatedUserHandler = require('kth-node-passport-cas').routeHandlers.getRedirectAuthenticatedUser(
   {

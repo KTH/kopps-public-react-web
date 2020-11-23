@@ -23,7 +23,9 @@
 
 import { toJS } from 'mobx'
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import pako from 'pako'
+// eslint-disable-next-line import/no-unresolved
 import { Base64 } from 'js-base64'
 
 export { compressStoreIntoJavascriptCode, uncompressStoreInPlaceFromDocument }
