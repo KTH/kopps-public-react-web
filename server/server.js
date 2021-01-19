@@ -83,6 +83,9 @@ const browserConfig = require('./configuration').browser
 const browserConfigHandler = require('kth-node-configuration').getHandler(browserConfig, getPaths())
 const express = require('express')
 
+// Removes the "X-Powered-By: Express header" that shows the underlying Express framework
+server.disable('x-powered-by')
+
 // helper
 function setCustomCacheControl(res, path2) {
   if (express.static.mime.lookup(path2) === 'text/html') {
