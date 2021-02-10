@@ -11,7 +11,7 @@ import createApplicationStore from './stores/createApplicationStore'
 
 import '../../css/node-web.scss'
 
-import Start from './pages/Start'
+import CourseSearch from './pages/CourseSearch'
 
 export default appFactory
 
@@ -39,7 +39,7 @@ function appFactory(applicationStore) {
   return (
     <MobxStoreProvider initCallback={() => applicationStore}>
       <Switch>
-        <Route exact path="/" component={Start} />
+        <Route exact path="/" component={CourseSearch} />
       </Switch>
     </MobxStoreProvider>
   )

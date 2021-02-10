@@ -83,9 +83,6 @@ const browserConfig = require('./configuration').browser
 const browserConfigHandler = require('kth-node-configuration').getHandler(browserConfig, getPaths())
 const express = require('express')
 
-// Removes the "X-Powered-By: Express header" that shows the underlying Express framework
-server.disable('x-powered-by')
-
 // helper
 function setCustomCacheControl(res, path2) {
   if (express.static.mime.lookup(path2) === 'text/html') {
@@ -222,7 +219,7 @@ server.use(
  * ******* APPLICATION ROUTES *******
  * **********************************
  */
-const { System, Sample } = require('./controllers')
+const { System, Public } = require('./controllers')
 const { requireRole } = require('./authentication')
 
 // System routes
@@ -235,14 +232,14 @@ server.use('/', systemRoute.getRouter())
 
 // App routes
 const appRoute = AppRouter()
-appRoute.get('system.index', config.proxyPrefixPath.uri + '/', serverLogin, Sample.getIndex)
-appRoute.get('system.index', config.proxyPrefixPath.uri + '/:page', serverLogin, Sample.getIndex)
+appRoute.get('system.index', config.proxyPrefixPath.uri + '/', Public.getIndex)
+appRoute.get('system.index', config.proxyPrefixPath.uri + '/:page', serverLogin, Public.getIndex)
 appRoute.get(
   'system.gateway',
   config.proxyPrefixPath.uri + '/gateway',
   getServerGatewayLogin('/'),
   requireRole('isAdmin'),
-  Sample.getIndex
+  Public.getIndex
 )
 server.use('/', appRoute.getRouter())
 
