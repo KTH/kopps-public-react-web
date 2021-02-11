@@ -1,5 +1,5 @@
 FROM kthse/kth-nodejs:12.0.0
-LABEL maintainer="KTH-Webb web-developers@kth.se"
+LABEL maintainer="KTH-studadm studadm.developers@kth.se"
 
 WORKDIR /application
 ENV NODE_PATH /application
