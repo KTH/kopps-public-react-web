@@ -1,0 +1,88 @@
+<form name="searchForm" id="searchForm" method="get" role="search" aria-describedby="search-button-fristaende">
+        <input type="hidden" name="l" value="sv">
+        <div>
+            <label for="type">Typ av kurs:</label>
+            <div>
+                <div>
+                    <select id="type" name="type">
+
+                        <option value="ALL" selected="">
+                            Alla
+                        </option>
+
+                        <option value="DISTANCE">
+                            Distanskurser
+                        </option>
+
+                        <option value="ITDISTANCE">
+                            IT-distans
+                        </option>
+
+                        <option value="ENGLISH">
+                            Kurser på engelska
+                        </option>
+
+                        <option value="EVENING">
+                            Kvällskurser
+                        </option>
+
+                        <option value="TEACHER">
+                            Lärarfortbildning
+                        </option>
+
+                        <option value="SUMMER">
+                            Sommarkurser
+                        </option>
+
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <label for="start">Starttermin:</label>
+            <div >
+                <div >
+                    <select id="start" name="start" >
+                        <option value="current">
+                            Kommande
+                        </option>
+
+                            <option value="20201">VT20
+                            </option>
+
+                            <option value="20202">HT20
+                            </option>
+
+                            <option value="20211">VT21
+                            </option>
+
+                            <option value="20212">HT21
+                            </option>
+
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <button id="search-button-fristaende" class="btn btn-primary">Sök kurs</button>
+        </div>
+
+    </form>
+<table>
+    <thead>
+        <tr>
+            <td>Kurskod</td>
+            <td>Kursnamn</td>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each fovCoursesResults}}
+        <tr>
+            <td>{{this.title.sv}}</td>
+            <td>{{this.code}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

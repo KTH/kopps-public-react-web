@@ -9,4 +9,5 @@ module.exports = {
   System: require('./systemCtrl'),
   Sample: require('./sampleCtrl'),
   Public: require('./publicSiteCtrl'),
+  EmbeddedPage: require('./embeddedPagesCtrl'),
 }

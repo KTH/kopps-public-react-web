@@ -219,7 +219,7 @@ server.use(
  * ******* APPLICATION ROUTES *******
  * **********************************
  */
-const { System, Public } = require('./controllers')
+const { System, Public, EmbeddedPage } = require('./controllers')
 const { requireRole } = require('./authentication')
 
 // System routes
@@ -229,6 +229,20 @@ systemRoute.get('system.about', config.proxyPrefixPath.uri + '/_about', System.a
 systemRoute.get('system.paths', config.proxyPrefixPath.uri + '/_paths', System.paths)
 systemRoute.get('system.robots', '/robots.txt', System.robotsTxt)
 server.use('/', systemRoute.getRouter())
+
+// Embedded page (html-based api) routes
+const embeddedPageRoute = AppRouter()
+embeddedPageRoute.get(
+  'EmbeddedPage.emptyFovSearch',
+  config.proxyPrefixPath.uri + '/embedded/fovsearch',
+  EmbeddedPage.emptyFovSearch
+)
+embeddedPageRoute.post(
+  'EmbeddedPage.fovSearch',
+  config.proxyPrefixPath.uri + '/embedded/fovsearch',
+  EmbeddedPage.fovSearch
+)
+server.use('/', embeddedPageRoute.getRouter())
 
 // App routes
 const appRoute = AppRouter()

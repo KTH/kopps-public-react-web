@@ -13,6 +13,7 @@ const {
   unpackLDAPConfig,
   unpackRedisConfig,
   unpackNodeApiConfig,
+  unpackKOPPSConfig,
 } = require('kth-node-configuration')
 const { typeConversion } = require('kth-node-configuration/lib/utils')
 
@@ -27,6 +28,7 @@ const devRedis = devDefaults('redis://localhost:6379/')
 const devLdap = undefined // Do not enter LDAP_URI or LDAP_PASSWORD here, use env_vars
 const devSsoBaseURL = devDefaults('https://login-r.referens.sys.kth.se')
 const devLdapBase = devDefaults('OU=UG,DC=ref,DC=ug,DC=kth,DC=se')
+const devKoppsApi = devDefaults('https://api-r.referens.sys.kth.se/api/kopps/v2/?defaultTimeout=60000')
 // END DEFAULT SETTINGS
 
 // These options are fixed for this application
@@ -64,6 +66,9 @@ module.exports = {
   apiKey: {
     nodeApi: getEnv('NODE_API_KEY', devDefaults('1234')),
   },
+
+  // Kopps
+  koppsApi: unpackKOPPSConfig('KOPPS_API_BASEURL', devKoppsApi),
 
   // Authentication
   auth: {
