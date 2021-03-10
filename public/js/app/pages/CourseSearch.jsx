@@ -1,18 +1,16 @@
 import React from 'react'
-
 import { observer } from 'mobx-react'
+import { Col, Row } from 'reactstrap'
+import { Collapse } from '@kth/kth-kip-style-react-components'
 import { useStore } from '../mobx'
-
 import i18n from '../../../../i18n'
 
 import { SearchInputField, SearchResultDisplay } from '../components/index'
-import { Collapse } from '@kth/kth-kip-style-react-components'
-import { Col, Row } from 'reactstrap'
 
 const Start = () => {
-  const { message, language: lang } = useStore()
+  const { language: lang } = useStore()
 
-  let helptexts = [
+  const helptexts = [
     'koppspublic_search_help_1',
     'koppspublic_search_help_2',
     'koppspublic_search_help_3',
@@ -29,17 +27,17 @@ const Start = () => {
         <Col>
           <h1>Sök kurs</h1>
           <p>{i18n.message('koppspublic_search_introduction', lang)}</p>
-          <Collapse isOpen={true} color="blue" buttonText={i18n.message('koppspublic_search_help_h', lang)}>
+          <Collapse isOpen color="blue" buttonText={i18n.message('koppspublic_search_help_h', lang)}>
             <ul>
-              {helptexts.map((value, index) => {
-                return <li>{value}</li>
-              })}
+              {helptexts.map(value => (
+                <li key={value}>{value}</li>
+              ))}
             </ul>
           </Collapse>
 
-          <SearchInputField caption={"Sök"}></SearchInputField>
+          <SearchInputField caption="Sök" />
 
-          <SearchResultDisplay></SearchResultDisplay>
+          <SearchResultDisplay />
         </Col>
       </Row>
     </main>
