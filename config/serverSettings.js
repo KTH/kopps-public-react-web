@@ -12,7 +12,7 @@ const {
   devDefaults,
   unpackLDAPConfig,
   unpackRedisConfig,
-  unpackNodeApiConfig,
+  // unpackNodeApiConfig,
   unpackKOPPSConfig,
 } = require('kth-node-configuration')
 const { typeConversion } = require('kth-node-configuration/lib/utils')
@@ -21,7 +21,7 @@ const { typeConversion } = require('kth-node-configuration/lib/utils')
 const devPort = devDefaults(3000)
 const devSsl = devDefaults(false)
 const devUrl = devDefaults('http://localhost:' + devPort)
-const devNodeApi = devDefaults('http://localhost:3001/api/node?defaultTimeout=10000') // required=true&
+// const devNodeApi = devDefaults('http://localhost:3001/api/node?defaultTimeout=10000') // required=true&
 const devSessionKey = devDefaults('node-web.sid')
 const devSessionUseRedis = devDefaults(true)
 const devRedis = devDefaults('redis://localhost:6379/')
@@ -81,7 +81,7 @@ module.exports = {
 
   // Service API's
   nodeApi: {
-    nodeApi: unpackNodeApiConfig('NODE_API_URI', devNodeApi),
+    // nodeApi: unpackNodeApiConfig('NODE_API_URI', devNodeApi),
   },
 
   // Cortina
