@@ -17,7 +17,7 @@ function Header() {
   return (
     <header role="presentation" id="articleHeader">
       <h1 id="page-heading" aria-labelledby="page-heading">
-        {pageName}
+        {`Page Two – ${pageName}`}
       </h1>
     </header>
   )

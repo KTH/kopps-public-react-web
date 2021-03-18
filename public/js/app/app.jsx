@@ -16,6 +16,7 @@ import CourseSearch from './pages/CourseSearch'
 import PageLayout from './pages/PageLayout'
 import ContentPageOne from './pages/ContentPageOne'
 import ContentPageTwo from './pages/ContentPageTwo'
+import ContentPageThree from './pages/ContentPageThree'
 
 export default appFactory
 
@@ -43,15 +44,15 @@ function appFactory(applicationStore) {
   return (
     <MobxStoreProvider initCallback={() => applicationStore}>
       <Switch>
-        <RouteWrapper exact path="/" component={CourseSearch} />
+        <Route exact path="/" component={CourseSearch} />
         <RouteWrapper exact path="/one/:page" component={ContentPageOne} layout={PageLayout} />
         <RouteWrapper exact path="/two/:page" component={ContentPageTwo} layout={PageLayout} />
+        <Route exact path="/three/:page" component={ContentPageThree} />
       </Switch>
     </MobxStoreProvider>
   )
 }
 
-// https://javascript.plainenglish.io/simple-guide-for-layouts-in-react-router-e32b26c12cee
 function RouteWrapper({ component: Component, layout: Layout, ...rest }) {
   return (
     <Route

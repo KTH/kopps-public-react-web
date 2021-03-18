@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { Col, Row } from 'reactstrap'
 
 import { useStore } from '../mobx'
+import withPageLayout from './withPageLayout'
 
 const DUMMY = {
   subHeader: text => `Bacon Ipsum in ${text}`,
@@ -17,7 +18,7 @@ function Header() {
   return (
     <header role="presentation" id="articleHeader">
       <h1 id="page-heading" aria-labelledby="page-heading">
-        {`Page One – ${pageName}`}
+        {`Page Three – ${pageName}`}
       </h1>
     </header>
   )
@@ -46,7 +47,7 @@ function Footer() {
   )
 }
 
-function ContentPageOne() {
+function ContentPageThree() {
   return (
     <>
       <Row>
@@ -68,4 +69,4 @@ function ContentPageOne() {
   )
 }
 
-export default ContentPageOne
+export default withPageLayout(ContentPageThree)
