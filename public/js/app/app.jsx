@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint no-use-before-define: ["error", "nofunc"] */
 
 // @ts-check
@@ -13,6 +14,8 @@ import '../../css/node-web.scss'
 
 import CourseSearch from './pages/CourseSearch'
 import PageLayout from './pages/PageLayout'
+import ContentPageOne from './pages/ContentPageOne'
+import ContentPageTwo from './pages/ContentPageTwo'
 
 export default appFactory
 
@@ -40,9 +43,24 @@ function appFactory(applicationStore) {
   return (
     <MobxStoreProvider initCallback={() => applicationStore}>
       <Switch>
-        <Route exact path="/" component={CourseSearch} />
-        <Route exact path="/:page" component={PageLayout} />
+        <RouteWrapper exact path="/" component={CourseSearch} />
+        <RouteWrapper exact path="/one/:page" component={ContentPageOne} layout={PageLayout} />
+        <RouteWrapper exact path="/two/:page" component={ContentPageTwo} layout={PageLayout} />
       </Switch>
     </MobxStoreProvider>
+  )
+}
+
+// https://javascript.plainenglish.io/simple-guide-for-layouts-in-react-router-e32b26c12cee
+function RouteWrapper({ component: Component, layout: Layout, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={props => (
+        <Layout {...props}>
+          <Component {...props} />
+        </Layout>
+      )}
+    />
   )
 }

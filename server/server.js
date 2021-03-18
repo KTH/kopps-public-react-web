@@ -247,7 +247,8 @@ server.use('/', embeddedPageRoute.getRouter())
 // App routes
 const appRoute = AppRouter()
 appRoute.get('system.index', config.proxyPrefixPath.uri + '/', Public.getIndex)
-appRoute.get('system.page', config.proxyPrefixPath.uri + '/:page', Public.getIndex)
+appRoute.get('system.page', config.proxyPrefixPath.uri + '/one/:page', Public.getIndex)
+appRoute.get('system.page', config.proxyPrefixPath.uri + '/two/:page', Public.getIndex)
 appRoute.get(
   'system.gateway',
   config.proxyPrefixPath.uri + '/gateway',
