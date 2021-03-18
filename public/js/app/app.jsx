@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 /* eslint no-use-before-define: ["error", "nofunc"] */
 
 // @ts-check
@@ -17,6 +16,7 @@ import PageLayout from './pages/PageLayout'
 import ContentPageOne from './pages/ContentPageOne'
 import ContentPageTwo from './pages/ContentPageTwo'
 import ContentPageThree from './pages/ContentPageThree'
+import RouteWrapper from './components/RouteWrapper'
 
 export default appFactory
 
@@ -47,21 +47,8 @@ function appFactory(applicationStore) {
         <Route exact path="/" component={CourseSearch} />
         <RouteWrapper exact path="/one/:page" component={ContentPageOne} layout={PageLayout} />
         <RouteWrapper exact path="/two/:page" component={ContentPageTwo} layout={PageLayout} />
-        <Route exact path="/three/:page" component={ContentPageThree} />
+        <RouteWrapper exact path="/three/:page" component={ContentPageThree} layout={PageLayout} />
       </Switch>
     </MobxStoreProvider>
-  )
-}
-
-function RouteWrapper({ component: Component, layout: Layout, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={props => (
-        <Layout {...props}>
-          <Component {...props} />
-        </Layout>
-      )}
-    />
   )
 }
