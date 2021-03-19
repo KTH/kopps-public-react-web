@@ -11,7 +11,7 @@ module.exports = {
     error_generic: 'Något gick fel på servern, var god försök igen senare',
 
     // Message keys
-    service_name: 'Node-applikationsnamn',
+    service_name: 'Kurs- och programkatalogen',
 
     example_message_key: 'Här är en svensk översättning på en label',
 
@@ -23,9 +23,9 @@ module.exports = {
     field_label_post_example: 'Min datamodell(Svar från api anrop POST): ',
 
     lang_block_id: '1.272446',
-    locale_text: 'Node.js på svenska',
+    locale_text: 'Kurs- och programkatalogen på svenska',
 
-    site_name: 'Node.js Mall',
+    site_name: 'Kurs- och programkatalogen',
     host_name: 'KTH',
 
     button_mobile_menu_label: 'Öppna/stäng mobilmenyn',

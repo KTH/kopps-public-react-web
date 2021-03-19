@@ -11,7 +11,7 @@ module.exports = {
     error_generic: 'Something went wrong on the server, please try again later.',
 
     // Message keys
-    service_name: 'Node application name',
+    service_name: 'Course and programme directory',
 
     example_message_key: 'This is an english translation of a label',
 
@@ -23,9 +23,9 @@ module.exports = {
     field_label_post_example: 'My modelData(Response from api call POST): ',
 
     lang_block_id: '1.77273',
-    locale_text: 'Node.js in English',
+    locale_text: 'Course and programme directory in English',
 
-    site_name: 'Node.js Template',
+    site_name: 'Course and programme directory',
     host_name: 'KTH',
 
     button_mobile_menu_label: 'Open/close the mobile menu',
