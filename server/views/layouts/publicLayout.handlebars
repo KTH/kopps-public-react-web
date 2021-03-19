@@ -10,7 +10,7 @@
   <link rel="shortcut icon" id="favicon" href="{{proxyPrefix}}/static/icon/favicon">
 
   {{#if canonicalUrl}}
-  <link href="{{canonicalUrl}}" rel="canonical">
+    <link href="{{canonicalUrl}}" rel="canonical">
   {{/if}}
 
   {{prefixStyle '/static/kth-style/css/kth-bootstrap.css' 'styles' 'screen'}}
@@ -24,11 +24,7 @@
   {{prefixScript '/static/kth-style/js/backtotop.js' 'head-scripts'}}
 
   {{#extend 'head-scripts'}}
-  <script src="//www.kth.se/social/toolbar/widget.js"></script>
-
-  <!-- analytics start -->
-  {{{blocks.analytics}}}
-  <!-- analytics end -->
+    <script src="//www.kth.se/social/toolbar/widget.js"></script>
   {{/extend}}
 
   {{{render 'head-scripts'}}}
