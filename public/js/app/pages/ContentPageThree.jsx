@@ -26,7 +26,7 @@ function Header() {
 function Content() {
   const { language } = useStore()
   return (
-    <article id="mainContent" className="article" role="main">
+    <article className="article">
       <h2>{DUMMY.subHeader(language)}</h2>
       <p>{DUMMY.firstParagraph}</p>
       <p>{DUMMY.secondParagraph}</p>

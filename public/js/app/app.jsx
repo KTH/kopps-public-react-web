@@ -12,7 +12,7 @@ import createApplicationStore from './stores/createApplicationStore'
 import '../../css/node-web.scss'
 
 import CourseSearch from './pages/CourseSearch'
-import PageLayout from './pages/PageLayout'
+import PageLayout from './layout/PageLayout'
 import ContentPageOne from './pages/ContentPageOne'
 import ContentPageTwo from './pages/ContentPageTwo'
 import ContentPageThree from './pages/ContentPageThree'

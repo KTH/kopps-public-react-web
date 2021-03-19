@@ -1,6 +1,7 @@
 import React from 'react'
 
 const DUMMY = {
+  ariaLabel: 'Sub menu',
   url: '#',
   parentLink: 'Parent Link',
   ancester: 'Ancester',
@@ -9,7 +10,7 @@ const DUMMY = {
 }
 
 const MainMenu = () => (
-  <nav id="mainMenu" aria-label="" className="col navbar navbar-expand-lg navbar-light">
+  <nav id="mainMenu" aria-label={DUMMY.ariaLabel} className="col navbar navbar-expand-lg navbar-light">
     <div className="collapse navbar-collapse" id="navbarNav">
       <ul className="nav">
         <li className="parentLink">
