@@ -9,7 +9,7 @@ const DUMMY = {
 }
 
 const MainMenu = () => (
-  <nav id="mainMenu" aria-label="" className="col navbar navbar-expand-lg navbar-light" style={{ paddingLeft: '15px' }}>
+  <nav id="mainMenu" aria-label="" className="col navbar navbar-expand-lg navbar-light">
     <div className="collapse navbar-collapse" id="navbarNav">
       <ul className="nav">
         <li className="parentLink">
@@ -26,9 +26,7 @@ const MainMenu = () => (
           </a>
         </li>
         <li className="nav-item leaf selected">
-          <span className="nav-link" style={{ padding: '7px 15px 7px 0' }}>
-            {DUMMY.leafSelected}
-          </span>
+          <span className="nav-link">{DUMMY.leafSelected}</span>
         </li>
       </ul>
     </div>

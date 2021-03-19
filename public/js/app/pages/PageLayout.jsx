@@ -2,8 +2,9 @@ import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { Col, Row } from 'reactstrap'
 import { Breadcrumbs } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
-import MainMenu from '../components/MainMenu'
+
 import { useStore } from '../mobx'
+import MainMenu from '../components/MainMenu'
 
 function renderBreadcrumbsIntoKthHeader(language) {
   const breadcrumbContainer = document.getElementById('breadcrumbs-header')
@@ -13,19 +14,23 @@ function renderBreadcrumbsIntoKthHeader(language) {
 }
 
 function MainContent({ children }) {
-  return <main id="mainContent">{children}</main>
+  return (
+    <Col>
+      <main id="mainContent">{children}</main>
+    </Col>
+  )
 }
 
 function PageLayout({ children }) {
   const { language } = useStore()
   useEffect(() => renderBreadcrumbsIntoKthHeader(language))
   return (
-    <Row style={{ padding: '30px 0' }}>
+    // Container in publicLayout.handlebars – begin
+    <Row>
       <MainMenu />
-      <Col>
-        <MainContent>{children}</MainContent>
-      </Col>
+      <MainContent>{children}</MainContent>
     </Row>
+    // Container – end
   )
 }
 
