@@ -5,6 +5,8 @@
 const log = require('kth-node-log')
 const language = require('kth-node-web-common/lib/language')
 
+const i18n = require('../../i18n')
+
 // eslint-disable-next-line no-unused-vars
 const api = require('../api')
 const serverConfig = require('../configuration').server
@@ -26,13 +28,13 @@ async function getIndex(req, res, next) {
 
     const { uri: proxyPrefix } = serverConfig.proxyPrefixPath
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const title = i18n.message('site_name', lang)
 
     res.render('sample/index', {
       html,
-      title: 'TODO',
+      title,
       compressedStoreCode,
-      description: 'TODO',
-      breadcrumbsPath: [],
+      description: title,
       lang,
       proxyPrefix,
     })

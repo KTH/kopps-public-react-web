@@ -33,12 +33,8 @@
 <body>
   <a class="skipToMainContent" href="#mainContent" tabindex="1">{{i18n 'skip_to_main_content' lang}}</a>
   {{> kthHeader }}
-  <div class="container main">
-    <div class="row">
-      <div class="col app">
-        {{{body}}}
-      </div>
-    </div>
+  <div class="container main standard withMainMenu">
+    {{{body}}}
   </div>
   {{> kthFooter }}
   {{{render 'scripts'}}}

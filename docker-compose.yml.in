@@ -18,7 +18,7 @@ services:
     environment:
       # Cellus Deployment
       SERVICE_TAGS : "app,kth,web,nodejs"
-      SERVICE_PUBLISH : "/node"
+      SERVICE_PUBLISH : "/kopps-public"
 
       # Server settings
       NODE_ENV: "development"

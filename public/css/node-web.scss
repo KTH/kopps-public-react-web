@@ -1,5 +1,9 @@
-// Scss code goes here!
+#app {
+  padding: 30px 0;
+}
 
-#kth-node {
-  background: pink;
+.nav-item.leaf.selected {
+  .nav-link {
+    padding: 7px 15px 7px 0;
+  }
 }
