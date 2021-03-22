@@ -95,5 +95,12 @@ module.exports = {
     koppspublic_search_options_departments_all: 'Samtliga skolor',
     koppspublic_search_options_departments_all_within: 'Alla inom',
     koppspublic_search_options_departments_label: 'Skola, avdelning, etc',
+
+    main_menu_aria_label: 'Undermeny',
+    main_menu_student: 'Student på KTH',
+    main_menu_directory: 'Kurs- och programkatalogen',
+    main_menu_page_one: 'Första sidan',
+    main_menu_page_two: 'Andra sidan',
+    main_menu_page_three: 'Tredje sidan',
   },
 }

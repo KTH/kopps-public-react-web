@@ -18,7 +18,7 @@ import ContentPageTwo from './pages/ContentPageTwo'
 import ContentPageThree from './pages/ContentPageThree'
 import RouteWrapper from './components/RouteWrapper'
 
-import menuData from './mocks/menuData'
+import getMenuData from './config/menuData'
 
 export default appFactory
 
@@ -43,6 +43,8 @@ function _renderOnClientSide() {
 }
 
 function appFactory(applicationStore) {
+  const { language } = applicationStore
+  const menuData = getMenuData(language)
   return (
     <MobxStoreProvider initCallback={() => applicationStore}>
       <Switch>
