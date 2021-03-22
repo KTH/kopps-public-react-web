@@ -21,13 +21,13 @@ function MainContent({ children }) {
   )
 }
 
-function PageLayout({ children }) {
+function PageLayout({ menuData, children }) {
   const { language } = useStore()
   useEffect(() => renderBreadcrumbsIntoKthHeader(language))
   return (
     // Container in publicLayout.handlebars – begin
     <Row>
-      <MainMenu />
+      <MainMenu menuData={menuData} />
       <MainContent>{children}</MainContent>
     </Row>
     // Container – end

@@ -18,6 +18,8 @@ import ContentPageTwo from './pages/ContentPageTwo'
 import ContentPageThree from './pages/ContentPageThree'
 import RouteWrapper from './components/RouteWrapper'
 
+import menuData from './mocks/menuData'
+
 export default appFactory
 
 _renderOnClientSide()
@@ -45,9 +47,9 @@ function appFactory(applicationStore) {
     <MobxStoreProvider initCallback={() => applicationStore}>
       <Switch>
         <Route exact path="/" component={CourseSearch} />
-        <RouteWrapper exact path="/one/:page" component={ContentPageOne} layout={PageLayout} />
-        <RouteWrapper exact path="/two/:page" component={ContentPageTwo} layout={PageLayout} />
-        <RouteWrapper exact path="/three/:page" component={ContentPageThree} layout={PageLayout} />
+        <RouteWrapper exact path="/one/:page" component={ContentPageOne} layout={PageLayout} menuData={menuData} />
+        <RouteWrapper exact path="/two/:page" component={ContentPageTwo} layout={PageLayout} menuData={menuData} />
+        <RouteWrapper exact path="/three/:page" component={ContentPageThree} layout={PageLayout} menuData={menuData} />
       </Switch>
     </MobxStoreProvider>
   )
