@@ -47,9 +47,27 @@ function appFactory(applicationStore) {
     <MobxStoreProvider initCallback={() => applicationStore}>
       <Switch>
         <Route exact path="/" component={CourseSearch} />
-        <RouteWrapper exact path="/one/:page" component={ContentPageOne} layout={PageLayout} menuData={menuData} />
-        <RouteWrapper exact path="/two/:page" component={ContentPageTwo} layout={PageLayout} menuData={menuData} />
-        <RouteWrapper exact path="/three/:page" component={ContentPageThree} layout={PageLayout} menuData={menuData} />
+        <RouteWrapper
+          exact
+          path="/one/:page"
+          component={ContentPageOne}
+          layout={PageLayout}
+          menuData={{ selectedId: 'pageOne', ...menuData }}
+        />
+        <RouteWrapper
+          exact
+          path="/two/:page"
+          component={ContentPageTwo}
+          layout={PageLayout}
+          menuData={{ selectedId: 'pageTwo', ...menuData }}
+        />
+        <RouteWrapper
+          exact
+          path="/three/:page"
+          component={ContentPageThree}
+          layout={PageLayout}
+          menuData={{ selectedId: 'pageThree', ...menuData }}
+        />
       </Switch>
     </MobxStoreProvider>
   )
