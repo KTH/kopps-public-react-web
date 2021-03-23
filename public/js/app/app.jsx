@@ -12,13 +12,11 @@ import createApplicationStore from './stores/createApplicationStore'
 import '../../css/node-web.scss'
 
 import CourseSearch from './pages/CourseSearch'
+import Example from './pages/Example'
 import PageLayout from './layout/PageLayout'
-import ContentPageOne from './pages/ContentPageOne'
-import ContentPageTwo from './pages/ContentPageTwo'
-import ContentPageThree from './pages/ContentPageThree'
 import RouteWrapper from './components/RouteWrapper'
 
-import getMenuData from './config/menuData'
+import getMenuData from './config/menuDataExample'
 
 export default appFactory
 
@@ -51,24 +49,11 @@ function appFactory(applicationStore) {
         <Route exact path="/" component={CourseSearch} />
         <RouteWrapper
           exact
-          path="/one/:page"
-          component={ContentPageOne}
+          path="/example"
+          component={Example}
           layout={PageLayout}
-          menuData={{ selectedId: 'pageOne', ...menuData }}
+          menuData={{ selectedId: 'example', ...menuData }}
         />
-        <RouteWrapper
-          exact
-          path="/two/:page"
-          component={ContentPageTwo}
-          layout={PageLayout}
-          menuData={{ selectedId: 'pageTwo', ...menuData }}
-        />
-        <RouteWrapper
-          exact
-          path="/three/:page"
-          component={ContentPageThree}
-          layout={PageLayout}
-          menuData={{ selectedId: 'pageThree', ...menuData }}
         />
       </Switch>
     </MobxStoreProvider>

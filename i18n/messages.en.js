@@ -42,8 +42,6 @@ module.exports = {
     main_menu_aria_label: 'Sub menu',
     main_menu_student: 'Student at KTH',
     main_menu_directory: 'Course and programme directory',
-    main_menu_page_one: 'Page One',
-    main_menu_page_two: 'Page Two',
-    main_menu_page_three: 'Page Three',
+    main_menu_page_example: 'Example',
   },
 }

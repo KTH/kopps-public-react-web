@@ -99,8 +99,6 @@ module.exports = {
     main_menu_aria_label: 'Undermeny',
     main_menu_student: 'Student på KTH',
     main_menu_directory: 'Kurs- och programkatalogen',
-    main_menu_page_one: 'Första sidan',
-    main_menu_page_two: 'Andra sidan',
-    main_menu_page_three: 'Tredje sidan',
+    main_menu_page_example: 'Exempel',
   },
 }

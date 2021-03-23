@@ -1,5 +1,4 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
 import { Col, Row } from 'reactstrap'
 
 import { useStore } from '../mobx'
@@ -13,11 +12,10 @@ const DUMMY = {
 }
 
 function Header() {
-  const { page: pageName } = useParams()
   return (
     <header role="presentation" id="articleHeader">
       <h1 id="page-heading" aria-labelledby="page-heading">
-        {`Page Two – ${pageName}`}
+        Example
       </h1>
     </header>
   )
@@ -46,7 +44,7 @@ function Footer() {
   )
 }
 
-function ContentPageTwo() {
+function Example() {
   return (
     <>
       <Row>
@@ -68,4 +66,4 @@ function ContentPageTwo() {
   )
 }
 
-export default ContentPageTwo
+export default Example

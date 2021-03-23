@@ -7,7 +7,7 @@ function parentLink(language) {
 }
 
 function pageLinks(pageId) {
-  return `/kopps-public/${pageId}/test`
+  return `/kopps-public/${pageId}`
 }
 
 function translate(language) {
@@ -33,22 +33,10 @@ function getMenuData(language) {
           text: t('main_menu_directory'),
         },
         {
-          id: 'pageOne',
+          id: 'example',
           type: 'leaf',
-          text: t('main_menu_page_one'),
-          url: pageLinks('one'),
-        },
-        {
-          id: 'pageTwo',
-          type: 'leaf',
-          text: t('main_menu_page_two'),
-          url: pageLinks('two'),
-        },
-        {
-          id: 'pageThree',
-          type: 'leaf',
-          text: t('main_menu_page_three'),
-          url: pageLinks('three'),
+          text: t('main_menu_page_example'),
+          url: pageLinks('example'),
         },
       ],
     },
