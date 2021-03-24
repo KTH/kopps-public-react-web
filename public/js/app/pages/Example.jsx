@@ -2,18 +2,11 @@ import React from 'react'
 import { Col, Row } from 'reactstrap'
 import { PageHeading, Heading } from '@kth/kth-reactstrap/dist/components/studinfo'
 
-import { useStore } from '../mobx'
+import Lead from '../components/Lead'
 
+import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 import translate from '../util/translate'
-
-function Lead({ text }) {
-  return (
-    <div className="lead">
-      <p>{text}</p>
-    </div>
-  )
-}
 
 function Article({ children }) {
   return <article className="article paragraphs">{children}</article>
