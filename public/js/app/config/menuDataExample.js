@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 const i18n = require('../../../../i18n')
+const translate = require('../util/translate')
 
 function parentLink(language) {
   const languageParam = language === 'en' ? '?l=en' : ''
@@ -10,14 +11,8 @@ function pageLinks(pageId) {
   return `/kopps-public/${pageId}`
 }
 
-function translate(language) {
-  return function t(key) {
-    return i18n.message(key, language)
-  }
-}
-
 function getMenuData(language) {
-  const t = translate(language)
+  const t = translate(i18n, language)
   return {
     ariaLabel: t('main_menu_aria_label'),
     parentLink: {

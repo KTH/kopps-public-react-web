@@ -100,5 +100,15 @@ module.exports = {
     main_menu_student: 'Student på KTH',
     main_menu_directory: 'Kurs- och programkatalogen',
     main_menu_page_example: 'Exempel',
+
+    main_page_header_example: 'Exempel',
+    main_page_article_lead_example: '”Stora miljoner dag, har.”',
+    main_page_article_header_example: 'Löksås ipsum',
+    main_page_article_first_paragraph_example:
+      'Löksås ipsum samma och hans redan lax annan smultron äng sista, inom del flera erfarenheter mot ännu hela sjö enligt, verkligen omfångsrik inom ska miljoner där ska samma del nu, mot sista som redan räv inom själv del. Inom åker sax vemod dock sin ännu sorgliga häst därmed år icke, inom och tiden ska jäst sin hans ordningens denna stora.',
+    main_page_article_second_paragraph_example:
+      'Nu äng lax fram olika åker sitt samtidigt dock bäckasiner annan dimma upprätthållande så, blivit händer nu tre gör annan händer precis sin sjö hela. Tidigare tre söka sällan mot hela miljoner tidigare, miljoner häst helt gör hwila göras, rot annan samma flera hela tre. Dimmhöljd dag kan tre vidsträckt kan brunsås sitt så dimma inom och, rännil omfångsrik det tid tiden hav tiden ordningens söka på, sitt vid dimma groda sitt ännu helt inom upprätthållande blivit.',
+    main_page_footer_example:
+      'Löksås ipsum är en generator för svensk exempeltext, av KJ Vogelius. Då den traditionella exempeltexten – Lorem ipsum – har ordlängder baserade på latin och inte innehåller svenska tecknen ger den inte ett korrekt intryck av text för svenska förhållanden. Inspirerad av Arne Heines exempeltext och baserad på PHP Lorem Ipsum av Mathew Tinsley är detta ett försök att erbjuda något bättre och kanske snäppet festligare, jag menar – vem gillar inte löksås?',
   },
 }

@@ -43,5 +43,16 @@ module.exports = {
     main_menu_student: 'Student at KTH',
     main_menu_directory: 'Course and programme directory',
     main_menu_page_example: 'Example',
+
+    main_page_header_example: 'Example',
+    main_page_article_lead_example:
+      '“Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...”',
+    main_page_article_header_example: 'Lorem Ipsum',
+    main_page_article_first_paragraph_example:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lacus metus, ultricies eget nibh a, dignissim mattis enim. Mauris vulputate arcu nulla, vitae cursus orci scelerisque sit amet. Proin suscipit congue orci non laoreet. Sed eu convallis quam, nec mattis nunc. Quisque vehicula erat ac facilisis gravida. Integer gravida tortor in massa iaculis, quis tristique leo sagittis. Vivamus risus tortor, gravida sit amet ex eget, porttitor mollis quam. Nam porttitor diam felis. Duis dignissim augue ac libero sagittis rhoncus. Mauris placerat, augue ac efficitur commodo, diam urna lobortis libero, sit amet mattis urna enim sit amet turpis.',
+    main_page_article_second_paragraph_example:
+      'Pellentesque hendrerit pellentesque blandit. Duis dictum metus quis sem egestas imperdiet. Proin a enim vitae mi dapibus vulputate id vel lectus. Nullam eu dolor vitae neque malesuada lacinia. Donec interdum ligula eget massa convallis, ac egestas eros sodales. In ac sem nibh. Pellentesque ut sodales elit.',
+    main_page_footer_example:
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
   },
 }
