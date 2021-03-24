@@ -3,14 +3,11 @@ import { Col, Row } from 'reactstrap'
 import { PageHeading, Heading } from '@kth/kth-reactstrap/dist/components/studinfo'
 
 import Lead from '../components/Lead'
+import Article from '../components/Article'
 
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 import translate from '../util/translate'
-
-function Article({ children }) {
-  return <article className="article paragraphs">{children}</article>
-}
 
 function Footer({ children }) {
   return (
