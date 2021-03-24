@@ -16,7 +16,9 @@ import Example from './pages/Example'
 import PageLayout from './layout/PageLayout'
 import RouteWrapper from './components/RouteWrapper'
 
-import getMenuData from './config/menuDataExample'
+import getMenuData from './config/menuData'
+import getMenuDataExample from './config/menuDataExample'
+import ProgrammesList from './pages/ProgrammesList'
 
 export default appFactory
 
@@ -43,6 +45,7 @@ function _renderOnClientSide() {
 function appFactory(applicationStore) {
   const { language } = applicationStore
   const menuData = getMenuData(language)
+  const menuDataExample = getMenuDataExample(language)
   return (
     <MobxStoreProvider initCallback={() => applicationStore}>
       <Switch>
@@ -52,8 +55,14 @@ function appFactory(applicationStore) {
           path="/example"
           component={Example}
           layout={PageLayout}
-          menuData={{ selectedId: 'example', ...menuData }}
+          menuData={{ selectedId: 'example', ...menuDataExample }}
         />
+        <RouteWrapper
+          exact
+          path="/kurser-inom-program"
+          component={ProgrammesList}
+          layout={PageLayout}
+          menuData={{ selectedId: 'example', ...menuData }}
         />
       </Switch>
     </MobxStoreProvider>

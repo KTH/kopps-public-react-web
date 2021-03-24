@@ -54,5 +54,18 @@ module.exports = {
       'Pellentesque hendrerit pellentesque blandit. Duis dictum metus quis sem egestas imperdiet. Proin a enim vitae mi dapibus vulputate id vel lectus. Nullam eu dolor vitae neque malesuada lacinia. Donec interdum ligula eget massa convallis, ac egestas eros sodales. In ac sem nibh. Pellentesque ut sodales elit.',
     main_page_footer_example:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+
+    main_menu_programmes_list: 'Courses Part of Programme',
+    programmes_list_header: 'Courses Part of Programme',
+    programmes_list_lead:
+      'Choose a programme below to get an overview of courses and study years forming the programme.',
+    programme_type_tarku: 'Master of Architecture',
+    programme_type_cing: 'Master of Science in Engineering',
+    programmes_list_footer: {
+      content_contact: 'Contact for questions regarding education at KTH',
+      central_study_counseling: 'Central study counseling',
+      application_contact: 'Contact regarding technical matters on this page',
+      kopps_email: 'kopps@kth.se',
+    },
   },
 }

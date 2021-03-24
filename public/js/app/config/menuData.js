@@ -1,17 +1,9 @@
 /* eslint-disable camelcase */
 const i18n = require('../../../../i18n')
 const translate = require('../util/translate')
+const { parentLink, pageLink } = require('../util/links')
 
-function parentLink(language) {
-  const languageParam = language === 'en' ? '?l=en' : ''
-  return `/student/kurser/kurser-inom-program${languageParam}`
-}
-
-function pageLinks(pageId) {
-  return `/kopps-public/${pageId}`
-}
-
-function getMenuDataExample(language) {
+function getMenuData(language) {
   const t = translate(i18n, language)
   return {
     ariaLabel: t('main_menu_aria_label'),
@@ -30,12 +22,12 @@ function getMenuDataExample(language) {
         {
           id: 'example',
           type: 'leaf',
-          text: t('main_menu_page_example'),
-          url: pageLinks('example'),
+          text: t('main_menu_programmes_list'),
+          url: pageLink('kurser-inom-program'),
         },
       ],
     },
   }
 }
 
-export default getMenuDataExample
+export default getMenuData

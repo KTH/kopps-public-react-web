@@ -248,6 +248,7 @@ server.use('/', embeddedPageRoute.getRouter())
 const appRoute = AppRouter()
 appRoute.get('system.index', config.proxyPrefixPath.uri + '/', Public.getIndex)
 appRoute.get('public.example', config.proxyPrefixPath.uri + '/example', Public.getIndex)
+appRoute.get('public.programmesList', config.proxyPrefixPath.uri + '/kurser-inom-program', Public.getIndex)
 appRoute.get(
   'system.gateway',
   config.proxyPrefixPath.uri + '/gateway',

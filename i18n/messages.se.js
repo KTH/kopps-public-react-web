@@ -110,5 +110,18 @@ module.exports = {
       'Nu äng lax fram olika åker sitt samtidigt dock bäckasiner annan dimma upprätthållande så, blivit händer nu tre gör annan händer precis sin sjö hela. Tidigare tre söka sällan mot hela miljoner tidigare, miljoner häst helt gör hwila göras, rot annan samma flera hela tre. Dimmhöljd dag kan tre vidsträckt kan brunsås sitt så dimma inom och, rännil omfångsrik det tid tiden hav tiden ordningens söka på, sitt vid dimma groda sitt ännu helt inom upprätthållande blivit.',
     main_page_footer_example:
       'Löksås ipsum är en generator för svensk exempeltext, av KJ Vogelius. Då den traditionella exempeltexten – Lorem ipsum – har ordlängder baserade på latin och inte innehåller svenska tecknen ger den inte ett korrekt intryck av text för svenska förhållanden. Inspirerad av Arne Heines exempeltext och baserad på PHP Lorem Ipsum av Mathew Tinsley är detta ett försök att erbjuda något bättre och kanske snäppet festligare, jag menar – vem gillar inte löksås?',
+
+    main_menu_programmes_list: 'Kurser inom program',
+    programmes_list_header: 'Kurser inom program',
+    programmes_list_lead:
+      'Välj program nedan för att få en översikt av de kurser och årskursindelning som utgör programmet.',
+    programme_type_tarku: 'Arkitektutbildning',
+    programme_type_cing: 'Civilingenjörsutbildning',
+    programmes_list_footer: {
+      content_contact: 'Kontakt för frågor om utbildning på KTH',
+      central_study_counseling: 'Central studievägledning',
+      application_contact: 'Teknisk kontakt om denna sida',
+      kopps_email: 'kopps@kth.se',
+    },
   },
 }
