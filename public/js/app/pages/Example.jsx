@@ -4,18 +4,11 @@ import { PageHeading, Heading } from '@kth/kth-reactstrap/dist/components/studin
 
 import Lead from '../components/Lead'
 import Article from '../components/Article'
+import Footer from '../components/Footer'
 
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 import translate from '../util/translate'
-
-function Footer({ children }) {
-  return (
-    <footer id="articleFooter" className="border-top mt-4 pt-1">
-      {children}
-    </footer>
-  )
-}
 
 function Example() {
   const { language } = useStore()
