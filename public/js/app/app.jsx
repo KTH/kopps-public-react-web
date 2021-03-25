@@ -19,6 +19,7 @@ import RouteWrapper from './components/RouteWrapper'
 import getMenuData from './config/menuData'
 import getMenuDataExample from './config/menuDataExample'
 import ProgrammesList from './pages/ProgrammesList'
+import DepartmentsList from './pages/DepartmentsList'
 
 export default appFactory
 
@@ -62,7 +63,14 @@ function appFactory(applicationStore) {
           path="/kurser-inom-program"
           component={ProgrammesList}
           layout={PageLayout}
-          menuData={{ selectedId: 'example', ...menuData }}
+          menuData={{ selectedId: 'programmesList', ...menuData }}
+        />
+        <RouteWrapper
+          exact
+          path="/org"
+          component={DepartmentsList}
+          layout={PageLayout}
+          menuData={{ selectedId: 'departmentsList', ...menuData }}
         />
       </Switch>
     </MobxStoreProvider>

@@ -20,10 +20,16 @@ function getMenuData(language) {
           text: t('main_menu_directory'),
         },
         {
-          id: 'example',
+          id: 'programmesList',
           type: 'leaf',
           text: t('main_menu_programmes_list'),
           url: pageLink('kurser-inom-program'),
+        },
+        {
+          id: 'departmentsList',
+          type: 'leaf',
+          text: t('main_menu_departments_list'),
+          url: pageLink('org'),
         },
       ],
     },
