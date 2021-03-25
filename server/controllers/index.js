@@ -10,4 +10,5 @@ module.exports = {
   Sample: require('./sampleCtrl'),
   Public: require('./publicSiteCtrl'),
   EmbeddedPage: require('./embeddedPagesCtrl'),
+  ProgrammesList: require('./programmesListCtrl'),
 }

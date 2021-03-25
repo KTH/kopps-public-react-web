@@ -5,6 +5,7 @@
 // eslint-disable-next-line no-unused-vars
 import { observable } from 'mobx'
 import axios from 'axios'
+
 const kopps = axios.create({ baseURL: 'http://localhost:8010/proxy/api/kopps/v2' })
 
 export default createApplicationStore
@@ -33,6 +34,16 @@ function createApplicationStore() {
 
     koppsCourseData: null,
     koppsCourseSearch,
+    /**
+     * @method
+     * @param {[]} programmes
+     */
+    setProgrammes,
+
+    /**
+     * @property {[]} programmes
+     */
+    programmes: [],
   }
 
   return store
@@ -45,7 +56,7 @@ async function koppsCourseSearch(textPattern) {
       educational_level: 'BASIC',
     },
   })
-  console.log(this.koppsCourseData)
+  // console.log(this.koppsCourseData)
 }
 
 function setLanguage(lang) {
@@ -54,4 +65,8 @@ function setLanguage(lang) {
 
 function setMessage(text = 'Happy coding!! :)') {
   this.message = text
+}
+
+function setProgrammes(programmes = []) {
+  this.programmes = programmes
 }

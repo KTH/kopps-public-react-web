@@ -1,8 +1,9 @@
 'use strict'
+
 const log = require('kth-node-log')
-const config = require('../configuration').server
 const redis = require('kth-node-redis')
 const connections = require('kth-node-api-call').Connections
+const config = require('../configuration').server
 
 // http client setup
 const koppsOpts = {
@@ -26,9 +27,10 @@ const koppsConfig = {
 const koppsApi = connections.setup(koppsConfig, koppsConfig, koppsOpts)
 
 function reduceToQueryParamString(params) {
-  const queryParam = Object.entries(params).reduce((currentQueryParam, [key, value]) => {
-    return currentQueryParam + `${key}=${value}&`
-  }, '?')
+  const queryParam = Object.entries(params).reduce(
+    (currentQueryParam, [key, value]) => currentQueryParam + `${key}=${value}&`,
+    '?'
+  )
   return queryParam.slice(0, -1) // Remove either '?' or '&'
 }
 
@@ -49,6 +51,22 @@ const searchFovCourses = async searchOptions => {
   }
 }
 
+const listProgrammes = async lang => {
+  const { client } = koppsApi.koppsApi
+  const koppsBase = config.koppsApi.basePath.endsWith('/')
+    ? config.koppsApi.basePath
+    : config.koppsApi.basePath.concat('/')
+  const uri = `${koppsBase}programmes/all${lang ? `?l=${lang}` : ''}`
+  try {
+    const response = await client.getAsync({ uri, useCache: false })
+    return response.body
+  } catch (error) {
+    log.error('Exception calling KOPPS API in koppsApi.listProgrammes', { error })
+    throw error
+  }
+}
+
 module.exports = {
   searchFovCourses,
+  listProgrammes,
 }
