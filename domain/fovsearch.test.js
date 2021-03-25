@@ -1,8 +1,15 @@
 const { convertUserOptionsToKoppsApiParams } = require('./fovsearch')
+const moment = require('moment')
 
-xdescribe('when derived using input from fovsearch form, resulting query parameters should ', () => {
+describe('when derived using input from fovsearch form, resulting query parameters should ', () => {
   describe('match with old kopps-public', () => {
-    jest.useFakeTimers('modern').setSystemTime(Date.parse('2021-03-23 16:00'))
+    beforeAll(() => {
+      jest.spyOn(Date, 'now').mockImplementation(() => new Date('2021-03-23 16:00'))
+    })
+
+    afterAll(() => {
+      jest.spyOn(Date, 'now').mockRestore()
+    })
 
     test('default search for regression', () => {
       //const queryParamString = 'l=sv&type=ALL&start=current&mainsubject=&studyPace='
@@ -19,14 +26,33 @@ xdescribe('when derived using input from fovsearch form, resulting query paramet
         category: 'VU',
         excludedTypes: 'SAP',
       }
-      expect(convertUserOptionsToKoppsApiParams(formInput)).toBe(oldKpQueryParamsToKopps)
+      //const normalizedIsoEquivalentStart = moment(oldKpQueryParamsToKopps.start, 'ddd MMM DD HH:mm:ss z YYYY')
+      //oldKpQueryParamsToKopps.start = normalizedIsoEquivalentStart
+      expect(convertUserOptionsToKoppsApiParams(formInput)).toStrictEqual(oldKpQueryParamsToKopps)
+    })
+
+    test('search with language set to English, for regression', () => {
+      const formInput = {
+        l: 'en',
+        type: 'ALL',
+        start: 'current',
+        mainsubject: '',
+        studypace: '',
+      }
+      const oldKpQueryParamsToKopps = {
+        start: 'Mon Mar 22 00:00:00 CET 2021',
+        l: 'en',
+        category: 'VU',
+        excludedTypes: 'SAP',
+      }
+      expect(convertUserOptionsToKoppsApiParams(formInput)).toStrictEqual(oldKpQueryParamsToKopps)
     })
 
     test('search with specific semester VT21, for regression', () => {
       //const queryParamString = '?l=sv&type=ALL&start=20211&mainsubject=&studyPace='
       const formInput = { l: 'sv', type: 'ALL', start: '20211', mainsubject: '', studyPace: '' }
-      const oldKpQueryParamsToKopps = { semester: '20202', l: 'sv-SE', category: VU, excludedTypes: 'SAP' }
-      expect(convertUserOptionsToKoppsApiParams(formInput)).toBe(oldKpQueryParamsToKopps)
+      const oldKpQueryParamsToKopps = { semester: '20211', l: 'sv-SE', category: 'VU', excludedTypes: 'SAP' }
+      expect(convertUserOptionsToKoppsApiParams(formInput)).toStrictEqual(oldKpQueryParamsToKopps)
     })
 
     test('search with all parameters set, for regression', () => {
@@ -41,9 +67,7 @@ xdescribe('when derived using input from fovsearch form, resulting query paramet
         maxStudyPace: '50',
         mainSubjectCodes: 'SZABD',
       }
-      expect(convertUserOptionsToKoppsApiParams(formInput)).toBe(oldKpQueryParamsToKopps)
+      expect(convertUserOptionsToKoppsApiParams(formInput)).toStrictEqual(oldKpQueryParamsToKopps)
     })
-
-    jest.useRealTimers()
   })
 })

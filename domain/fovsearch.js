@@ -1,13 +1,29 @@
-const _convertUserOptionsToKoppsApiParams = ({ type, start }) => {
-  const koppsApiParams = {
+const moment = require('moment-timezone')
+
+const _defaultSearchParams = () => {
+  return {
     category: 'VU',
     excludedTypes: 'SAP',
-    lang: 'sv', // TODO: use lang from user of embedded html api.
+    l: 'sv-SE',
   }
+}
+
+const _convertUserOptionsToKoppsApiParams = ({ l, type, start, mainsubject, studypace }) => {
+  const koppsApiParams = _defaultSearchParams()
+
+  if (l !== 'sv' && l !== 'sv-SE') {
+    koppsApiParams.l = 'en'
+  }
+
   if (!start || start === 'current') {
-    koppsApiParams.date = new Date().toISOString() // TODO: not accurate to current KP behaviour.
+    const daysPassedBeforeRemoving = 1
+    koppsApiParams.start = moment()
+      .tz('CET')
+      .subtract(daysPassedBeforeRemoving, 'days')
+      .startOf('day')
+      .format('ddd MMM DD HH:mm:ss z YYYY')
   } else {
-    koppsApiParams.term = parseInt(start)
+    koppsApiParams.semester = start
   }
   switch (type) {
     case 'ALL':
@@ -27,19 +43,23 @@ const _convertUserOptionsToKoppsApiParams = ({ type, start }) => {
       break
     case 'SUMMER':
       koppsApiParams.category = null
-      koppsApiParams.types = asList('SFV', 'SN\u00C4')
+      koppsApiParams.types = ['SFV', 'SN\u00C4']
       break
     case 'TEACHER':
       koppsApiParams.teachersFurtherEdu = true
       break
   }
 
+  if (mainsubject) {
+    koppsApiParams.mainSubjectCodes = mainsubject
+  }
+  if (studypace) {
+    koppsApiParams.minStudyPace = studypace
+    koppsApiParams.maxStudyPace = studypace
+  }
+
   return koppsApiParams
 }
-
-const _defaultFovsearchParam = () => {}
-
-const _fovsearchParams = () => {}
 
 module.exports = {
   convertUserOptionsToKoppsApiParams: _convertUserOptionsToKoppsApiParams,
