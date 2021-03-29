@@ -28,7 +28,7 @@ const koppsApi = connections.setup(koppsConfig, koppsConfig, koppsOpts)
 
 function reduceToQueryParamString(params) {
   const queryParam = Object.entries(params).reduce(
-    (currentQueryParam, [key, value]) => currentQueryParam + `${key}=${value}&`,
+    (currentQueryParam, [key, value]) => currentQueryParam + `${key}=${encodeURIComponent(value)}&`,
     '?'
   )
   return queryParam.slice(0, -1) // Remove either '?' or '&'

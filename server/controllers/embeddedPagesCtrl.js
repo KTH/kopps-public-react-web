@@ -10,14 +10,16 @@ const {
 
 async function _fovSearch(req, res, next) {
   const { COURSE_TYPES, STUDY_PACES } = constants
-  const fovCoursesResults = await searchFovCourses(convertUserOptionsToKoppsApiParams(req.query))
-  const mfosOptions = await listActiveMainFieldsOfStudy()
 
   const { query: queryParams } = req
+  queryParams.l = queryParams.l || 'sv-SE'
   queryParams.type = queryParams.type || 'ALL'
   queryParams.start = queryParams.start || ''
   queryParams.mainsubject = queryParams.mainsubject || ''
   queryParams.studypace = queryParams.studypace || ''
+
+  const fovCoursesResults = await searchFovCourses(convertUserOptionsToKoppsApiParams(queryParams))
+  const mfosOptions = await listActiveMainFieldsOfStudy()
 
   res.render('embedded/fovsearch', {
     layout: false, // No kth menu, no breadcrumbs, etc.
