@@ -1,59 +1,59 @@
 <form name="searchForm" id="searchForm" method="get" role="search" aria-describedby="search-button-fristaende">
         <input type="hidden" name="l" value="sv">
-        <div>
-            <label for="type">Typ av kurs:</label>
-            <div>
-                <div>
-                    <select id="type" name="type">
-                        {{#each courseTypes}}
-                            <option value="{{this.code}}" {{#if (eq ../queryParams.type this.code)}}selected{{/if}}>
-                                {{this.titleSv}}
-                            </option>
-                        {{/each}}
-                    </select>
-                </div>
-            </div>
-        </div>
 
-        <div>
-            <label for="start">Starttermin:</label>
-            <div >
-                <div >
-                    <select id="start" name="start" >
+         <div class="form-group">
+           <label class="form-control-label" for="type">Typ av kurs:</label>
+           <div class="form-select form-group">
+             <div class="select-wrapper">
+               <select class="form-control" id="type" name="type">
+               {{#each courseTypes}}
+               <option value="{{this.code}}" {{#if (eq ../queryParams.type this.code)}}selected{{/if}}>
+                   {{this.titleSv}}
+               </option>
+               {{/each}}
+               </select>
+             </div>
+           </div>
+         </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="start">Starttermin:</label>
+            <div class="form-select form-group">
+                <div class="select-wrapper">
+                    <select class="form-control" id="start" name="start">
                         {{#each termOptions}}
-                            <option value="{{this.code}}" {{#if (eq ../queryParams.start this.code)}}selected{{/if}}>
-                                {{this.titleSv}}
-                            </option>
-                        {{/each}}
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div>
-            <label for="mainsubject">Huvudområde</label>
-            <div>
-                <div>
-                    <select id="mainsubject" name="mainsubject" class="form-control">
-                        <option value="">
-                            -
+                        <option value="{{this.code}}" {{#if (eq ../queryParams.start this.code)}}selected{{/if}}>
+                            {{this.titleSv}}
                         </option>
-
-                        {{#each mfosOptions}}
-                            <option value="{{this.code}}"  {{#if (eq ../queryParams.mainsubject this.code)}}selected{{/if}}>
-                                {{this.titleSv}}
-                            </option>
                         {{/each}}
                     </select>
                 </div>
             </div>
         </div>
 
-        <div>
-            <label for="studyPace">Studietakt</label>
-            <div>
-                <div>
-                    <select id="studyPace" name="studyPace" class="form-control">
+        <div class="form-group">
+            <label class="form-control-label" for="mainsubject">Huvudområde:</label>
+            <div class="form-select form-group">
+                <div class="select-wrapper">
+                    <select class="form-control" id="mainsubject" name="mainsubject">
+                    <option value="">
+                        -
+                    </option>
+                    {{#each mfosOptions}}
+                        <option value="{{this.code}}"  {{#if (eq ../queryParams.mainsubject this.code)}}selected{{/if}}>
+                            {{this.titleSv}}
+                        </option>
+                    {{/each}}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="studypace">Studietakt:</label>
+            <div class="form-select form-group">
+                <div class="select-wrapper">
+                    <select class="form-control" id="studypace" name="studypace">
                         <option value="" selected="">
                         -
                         </option>
@@ -67,16 +67,17 @@
             </div>
         </div>
 
+
         <div>
             <button id="search-button-fristaende" class="btn btn-primary">Sök kurs</button>
         </div>
 
     </form>
-<table>
+<table class="table">
     <thead>
         <tr>
-            <td>Kurskod</td>
-            <td>Kursnamn</td>
+            <th scope="col">Kurskod</th>
+            <th scope="col">Kursnamn</th>
         </tr>
     </thead>
     <tbody>

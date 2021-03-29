@@ -14,7 +14,7 @@ const _constants = {
     These are the different study pace KTH have as of writing. We should
     probably fetch these from Kopps, new api is needed for that however.
    */
-  STUDY_PACES: ['10', '17', '25', '33', '55', '67', '100'].map(code => ({ code: code, titleSv: code })),
+  STUDY_PACES: ['10', '17', '25', '33', '55', '67', '100'].map(code => ({ code: code, titleSv: `${code}%` })),
 }
 
 const _defaultSearchParams = () => {
