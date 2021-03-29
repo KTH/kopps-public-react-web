@@ -1,4 +1,4 @@
-FROM kthse/kth-nodejs:12.0.0
+FROM kthse/kth-nodejs:14.0.0
 LABEL maintainer="KTH-studadm studadm.developers@kth.se"
 
 WORKDIR /application
