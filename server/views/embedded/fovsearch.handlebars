@@ -68,26 +68,28 @@
         </div>
 
 
-        <div>
+        <div style="padding-bottom:40px">
             <button id="search-button-fristaende" class="btn btn-primary">Sök kurs</button>
         </div>
 
     </form>
 {{#if fovCoursesResults}}
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Kurskod</th>
-            <th scope="col">Kursnamn</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each fovCoursesResults}}
-        <tr>
-            <td>{{this.title.sv}}</td>
-            <td>{{this.code}}</td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+<div class="table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Kurskod</th>
+                <th scope="col">Kursnamn</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each fovCoursesResults}}
+            <tr>
+                <td>{{this.title.sv}}</td>
+                <td>{{this.code}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
 {{/if}}
