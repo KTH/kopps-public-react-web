@@ -5,35 +5,11 @@
             <div>
                 <div>
                     <select id="type" name="type">
-
-                        <option value="ALL" selected="">
-                            Alla
-                        </option>
-
-                        <option value="DISTANCE">
-                            Distanskurser
-                        </option>
-
-                        <option value="ITDISTANCE">
-                            IT-distans
-                        </option>
-
-                        <option value="ENGLISH">
-                            Kurser på engelska
-                        </option>
-
-                        <option value="EVENING">
-                            Kvällskurser
-                        </option>
-
-                        <option value="TEACHER">
-                            Lärarfortbildning
-                        </option>
-
-                        <option value="SUMMER">
-                            Sommarkurser
-                        </option>
-
+                        {{#each courseTypes}}
+                            <option value="{{this.code}}" {{#if (eq ../queryParams.type this.code)}}selected{{/if}}>
+                                {{this.titleSv}}
+                            </option>
+                        {{/each}}
                     </select>
                 </div>
             </div>
@@ -44,22 +20,48 @@
             <div >
                 <div >
                     <select id="start" name="start" >
-                        <option value="current">
-                            Kommande
+                        {{#each termOptions}}
+                            <option value="{{this.code}}" {{#if (eq ../queryParams.start this.code)}}selected{{/if}}>
+                                {{this.titleSv}}
+                            </option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <label for="mainsubject">Huvudområde</label>
+            <div>
+                <div>
+                    <select id="mainsubject" name="mainsubject" class="form-control">
+                        <option value="">
+                            -
                         </option>
 
-                            <option value="20201">VT20
+                        {{#each mfosOptions}}
+                            <option value="{{this.code}}"  {{#if (eq ../queryParams.mainsubject this.code)}}selected{{/if}}>
+                                {{this.titleSv}}
                             </option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+        </div>
 
-                            <option value="20202">HT20
+        <div>
+            <label for="studyPace">Studietakt</label>
+            <div>
+                <div>
+                    <select id="studyPace" name="studyPace" class="form-control">
+                        <option value="" selected="">
+                        -
+                        </option>
+                        {{#each studyPaceOptions}}
+                            <option value="{{this.code}}"  {{#if (eq ../queryParams.studypace this.code)}}selected{{/if}}>
+                                {{this.titleSv}}
                             </option>
-
-                            <option value="20211">VT21
-                            </option>
-
-                            <option value="20212">HT21
-                            </option>
-
+                        {{/each}}
                     </select>
                 </div>
             </div>

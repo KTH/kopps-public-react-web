@@ -1,19 +1,34 @@
 'use strict'
 
-const { searchFovCourses } = require('../kopps/koppsApi')
-const language = require('kth-node-web-common/lib/language')
-const { convertUserOptionsToKoppsApiParams } = require('../../domain/fovsearch')
+const { searchFovCourses, listActiveMainFieldsOfStudy } = require('../kopps/koppsApi')
+const {
+  convertUserOptionsToKoppsApiParams,
+  constants,
+  searchOptionsTerms,
+  searchOptionStudyPaces,
+} = require('../../domain/fovsearch')
 
 async function _fovSearch(req, res, next) {
-  const lang = language.getLanguage(res)
+  const { COURSE_TYPES, STUDY_PACES } = constants
   const fovCoursesResults = await searchFovCourses(convertUserOptionsToKoppsApiParams(req.query))
+  const mfosOptions = await listActiveMainFieldsOfStudy()
+
+  const { query: queryParams } = req
+  queryParams.type = queryParams.type || 'ALL'
+  queryParams.start = queryParams.start || ''
+  queryParams.mainsubject = queryParams.mainsubject || ''
+  queryParams.studypace = queryParams.studypace || ''
+
   res.render('embedded/fovsearch', {
     layout: false, // No kth menu, no breadcrumbs, etc.
     title: 'fovsearch',
     description: '',
-    breadcrumbsPath: [],
-    lang,
     fovCoursesResults,
+    mfosOptions,
+    courseTypes: COURSE_TYPES,
+    termOptions: searchOptionsTerms(),
+    studyPaceOptions: STUDY_PACES,
+    queryParams,
   })
 }
 

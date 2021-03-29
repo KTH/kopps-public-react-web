@@ -1,5 +1,4 @@
 const { convertUserOptionsToKoppsApiParams } = require('./fovsearch')
-const moment = require('moment')
 
 describe('when derived using input from fovsearch form, resulting query parameters should ', () => {
   describe('match with old kopps-public', () => {
@@ -26,8 +25,6 @@ describe('when derived using input from fovsearch form, resulting query paramete
         category: 'VU',
         excludedTypes: 'SAP',
       }
-      //const normalizedIsoEquivalentStart = moment(oldKpQueryParamsToKopps.start, 'ddd MMM DD HH:mm:ss z YYYY')
-      //oldKpQueryParamsToKopps.start = normalizedIsoEquivalentStart
       expect(convertUserOptionsToKoppsApiParams(formInput)).toStrictEqual(oldKpQueryParamsToKopps)
     })
 

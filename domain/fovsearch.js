@@ -1,5 +1,22 @@
 const moment = require('moment-timezone')
 
+const _constants = {
+  COURSE_TYPES: [
+    { code: 'ALL', titleSv: 'Alla' },
+    { code: 'DISTANCE', titleSv: 'Distanskurser' },
+    { code: 'ITDISTANCE', titleSv: 'IT-distans' },
+    { code: 'ENGLISH', titleSv: 'Kurser på engelska' },
+    { code: 'EVENING', titleSv: 'Kvällskurser' },
+    { code: 'TEACHER', titleSv: 'Lärarfortbildning' },
+    { code: 'SUMMER', titleSv: 'Sommarkurser' },
+  ],
+  /*
+    These are the different study pace KTH have as of writing. We should
+    probably fetch these from Kopps, new api is needed for that however.
+   */
+  STUDY_PACES: ['10', '17', '25', '33', '55', '67', '100'].map(code => ({ code: code, titleSv: code })),
+}
+
 const _defaultSearchParams = () => {
   return {
     category: 'VU',
@@ -36,7 +53,7 @@ const _convertUserOptionsToKoppsApiParams = ({ l, type, start, mainsubject, stud
       koppsApiParams.inEnglish = true
       break
     case 'EVENING':
-      koppsApiParams.tutoringTime = 'KVÄ'
+      koppsApiParams.tutoringTime = 'KV\u00C4'
       break
     case 'ITDISTANCE':
       koppsApiParams.tutoringForm = 'ITD'
@@ -61,6 +78,34 @@ const _convertUserOptionsToKoppsApiParams = ({ l, type, start, mainsubject, stud
   return koppsApiParams
 }
 
+const _searchOptionTerms = () => {
+  // TODO: return upcoming semesters based on today's date.
+  return [
+    {
+      code: 'current',
+      titleSv: 'Kommande',
+    },
+    {
+      code: '20201',
+      titleSv: '20201',
+    },
+    {
+      code: '20202',
+      titleSv: '20202',
+    },
+    {
+      code: '20211',
+      titleSv: '20211',
+    },
+    {
+      code: '20212',
+      titleSv: '20212',
+    },
+  ]
+}
+
 module.exports = {
+  constants: _constants,
   convertUserOptionsToKoppsApiParams: _convertUserOptionsToKoppsApiParams,
+  searchOptionsTerms: _searchOptionTerms,
 }

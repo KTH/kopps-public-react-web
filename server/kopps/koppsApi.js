@@ -46,7 +46,22 @@ const searchFovCourses = async searchOptions => {
 
     return course.body
   } catch (error) {
-    log.error('Exception calling from koppsAPI in koppsApi.rawKoppsCourseData', { error })
+    log.error('Exception calling from koppsAPI in koppsApi.searchFovCourses', { error })
+    throw error
+  }
+}
+
+const listActiveMainFieldsOfStudy = async () => {
+  const { client } = koppsApi.koppsApi
+  const koppsBase = config.koppsApi.basePath
+  const slashEndedKoppsBase = koppsBase.endsWith('/') ? koppsBase : koppsBase.concat('/')
+  const uri = `${slashEndedKoppsBase}utils/mainsubjects/current`
+  try {
+    const data = await client.getAsync({ uri, useCache: false })
+    const res = data.body.filter(mfs => mfs.code !== ' _') // Leave out ' _' code, used for courses without mfs.
+    return res
+  } catch (error) {
+    log.error('Exception calling from koppsAPI in koppsApi.listActiveMainFieldsOfStudy', { error })
     throw error
   }
 }
@@ -68,5 +83,6 @@ const listProgrammes = async lang => {
 
 module.exports = {
   searchFovCourses,
+  listActiveMainFieldsOfStudy,
   listProgrammes,
 }
