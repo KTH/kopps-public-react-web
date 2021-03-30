@@ -80,14 +80,22 @@
             <tr>
                 <th scope="col">Kurskod</th>
                 <th scope="col">Kursnamn</th>
+                <th scope="col">Omfattning</th>
+                <th scope="col">Anm.kod</th>
+                <th scope="col">Startdatum</th>
             </tr>
         </thead>
         <tbody>
             {{#each fovCoursesResults}}
             <tr>
-                <td>{{this.title.sv}}</td>
-                <td>{{this.code}}</td>
-            </tr>
+                <td><a href="{{getCourseLink this}}">{{this.code}}</a></td>
+                <td>
+                    <a href="{{getCourseLink this}}">{{this.title.sv}}</a>
+                </td>
+                <td class="text-right">{{getSwedishFormattedCredits this}}</td>
+                <td class="text-center">{{getAnmalningsKod this}}</td>
+                <td>{{this.startDate}}</td>
+                </tr>
             {{/each}}
         </tbody>
     </table>

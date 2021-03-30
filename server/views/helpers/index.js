@@ -50,3 +50,13 @@ const handlebars = require('handlebars')
 handlebars.registerHelper('eq', (var1, var2) => {
   return var1 === var2
 })
+handlebars.registerHelper('getSwedishFormattedCredits', course => {
+  return course.credits.toFixed(1).toString().replace('.', ',') + ' hp'
+})
+handlebars.registerHelper('getAnmalningsKod', course => {
+  return course.applicationCodes[0]
+})
+handlebars.registerHelper('getCourseLink', course => {
+  // TODO: implement.
+  return 'https://www.kth.se/student/kurser/kurs/MG2013'
+})
