@@ -10,10 +10,15 @@ const serverConfig = require('../configuration').server
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
+function _sortProgrammes(programmes) {
+  return programmes
+}
+
 async function _fillApplicationStoreOnServerSide({ applicationStore, lang }) {
   applicationStore.setLanguage(lang)
   const programmes = await koppsApi.listProgrammes(lang)
-  applicationStore.setProgrammes(programmes)
+  const sortedProgrammes = _sortProgrammes(programmes)
+  applicationStore.setProgrammes(sortedProgrammes)
 }
 
 async function getProgrammesList(req, res, next) {
