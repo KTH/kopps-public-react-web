@@ -58,8 +58,11 @@ const listActiveMainFieldsOfStudy = async () => {
   const uri = `${slashEndedKoppsBase}utils/mainsubjects/current`
   try {
     const data = await client.getAsync({ uri, useCache: false })
-    const res = data.body.filter(mfs => mfs.code !== ' _') // Leave out ' _' code, used for courses without mfs.
-    return res
+    const noMainSubjectOption = data.body.find(mfs => mfs.code === ' _')
+    if (noMainSubjectOption) {
+      noMainSubjectOption.titleSv = 'Ej inom KTHs huvudområden'
+    }
+    return data
   } catch (error) {
     log.error('Exception calling from koppsAPI in koppsApi.listActiveMainFieldsOfStudy', { error })
     throw error
