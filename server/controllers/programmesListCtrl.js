@@ -10,20 +10,30 @@ const serverConfig = require('../configuration').server
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
-function _compare(propertyName) {
-  return function sortByPropertyName(a, b) {
-    if (a[propertyName] < b[propertyName]) {
-      return -1
-    }
-    if (a[propertyName] > b[propertyName]) {
-      return 1
-    }
-    return 0
+function _compareProgrammes(a, b) {
+  if (a.title < b.title) {
+    return -1
   }
+  if (a.title > b.title) {
+    return 1
+  }
+  if (a.firstAdmissionTerm < b.firstAdmissionTerm) {
+    return -1
+  }
+  if (a.firstAdmissionTerm > b.firstAdmissionTerm) {
+    return 1
+  }
+  if (a.programmeCode < b.programmeCode) {
+    return -1
+  }
+  if (a.programmeCode > b.programmeCode) {
+    return 1
+  }
+  return 0
 }
 
 function _sortProgrammes(programmes) {
-  programmes.sort(_compare('title'))
+  programmes.sort(_compareProgrammes)
   return programmes
 }
 
