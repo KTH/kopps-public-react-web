@@ -10,7 +10,20 @@ const serverConfig = require('../configuration').server
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
+function _compare(propertyName) {
+  return function sortByPropertyName(a, b) {
+    if (a[propertyName] < b[propertyName]) {
+      return -1
+    }
+    if (a[propertyName] > b[propertyName]) {
+      return 1
+    }
+    return 0
+  }
+}
+
 function _sortProgrammes(programmes) {
+  programmes.sort(_compare('title'))
   return programmes
 }
 
@@ -51,4 +64,5 @@ async function getProgrammesList(req, res, next) {
 
 module.exports = {
   getProgrammesList,
+  _sortProgrammes,
 }
