@@ -2,7 +2,7 @@ jest.mock('../configuration', () => ({ server: {} }))
 jest.mock('../kopps/koppsApi', () => {})
 jest.mock('../adldapClient', () => {})
 
-const { _sortProgrammes: sortProgrammes } = require('./programmesListCtrl')
+const { _categorizeProgrammes: categorizeProgrammes, _sortProgrammes: sortProgrammes } = require('./programmesListCtrl')
 
 const unsortedProgrammes = [
   { title: 'Q', firstAdmissionTerm: '20201' },
@@ -28,10 +28,68 @@ const expextedSortedProgrammes = [
   { title: 'R', firstAdmissionTerm: '20211', programmeCode: 'CCC' },
 ]
 
+const emptyProgramme = {}
+const tarkuDegreeCode = 'TARKU'
+const cingDegreeCode = 'CING'
+const tarkuDegreeProgrammeA = {
+  title: 'A',
+  degrees: [{ code: tarkuDegreeCode }],
+}
+const tarkuDegreeProgrammeB = {
+  title: 'B',
+  degrees: [{ code: tarkuDegreeCode }],
+}
+const tarkuDegreeProgrammeWithLastAdmissionTerm = {
+  title: 'B',
+  lastAdmissionTerm: '20201',
+  degrees: [{ code: tarkuDegreeCode }],
+}
+const cingDegreeProgrammeA = {
+  title: 'A',
+  degrees: [{ code: cingDegreeCode }],
+}
+const cingDegreeProgrammeB = {
+  title: 'B',
+  degrees: [{ code: cingDegreeCode }],
+}
+const cingDegreeProgrammeWithLastAdmissionTerm = {
+  title: 'B',
+  lastAdmissionTerm: '20201',
+  degrees: [{ code: cingDegreeCode }],
+}
+
+const uncategorizedProgrammes = [
+  emptyProgramme,
+  tarkuDegreeProgrammeB,
+  tarkuDegreeProgrammeA,
+  tarkuDegreeProgrammeWithLastAdmissionTerm,
+  cingDegreeProgrammeB,
+  cingDegreeProgrammeA,
+  cingDegreeProgrammeWithLastAdmissionTerm,
+]
+const expectedCategorizedProgrammes = {
+  [tarkuDegreeCode]: {
+    first: [tarkuDegreeProgrammeA, tarkuDegreeProgrammeB],
+    second: [tarkuDegreeProgrammeWithLastAdmissionTerm],
+  },
+  [cingDegreeCode]: {
+    first: [cingDegreeProgrammeA, cingDegreeProgrammeB],
+    second: [cingDegreeProgrammeWithLastAdmissionTerm],
+  },
+}
+
 describe('Sort programmes', () => {
-  test('by title and firstAdmissionTerm', done => {
+  test('by title, firstAdmissionTerm, and programmeCode', done => {
     const sortedProgrammes = sortProgrammes(unsortedProgrammes)
     expect(sortedProgrammes).toEqual(expextedSortedProgrammes)
+    done()
+  })
+})
+
+describe('Categorize programmes', () => {
+  test('by degree', done => {
+    const categorizedProgrammes = categorizeProgrammes(uncategorizedProgrammes)
+    expect(categorizedProgrammes).toEqual(expectedCategorizedProgrammes)
     done()
   })
 })

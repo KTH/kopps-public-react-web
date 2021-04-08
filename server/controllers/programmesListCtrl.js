@@ -9,6 +9,7 @@ const koppsApi = require('../kopps/koppsApi')
 const serverConfig = require('../configuration').server
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
+const { find: findProgrammeGroupHeading } = require('../utils/programmeGroupHeading')
 
 function _compareProgrammes(a, b) {
   if (a.title < b.title) {
@@ -37,11 +38,53 @@ function _sortProgrammes(programmes) {
   return programmes
 }
 
+function _validProgramme(programme) {
+  return programme && Object.keys(programme).length !== 0
+}
+
+function _addCategorizedProgramme(c, programme, degree) {
+  const categorized = c
+  const heading = findProgrammeGroupHeading(programme, degree)
+  if (!categorized[heading]) {
+    categorized[heading] = { first: [], second: [] }
+  }
+  if (programme.lastAdmissionTerm) {
+    categorized[heading].second.push(programme)
+  } else {
+    categorized[heading].first.push(programme)
+  }
+  return categorized
+}
+
+function _sortCategorizedProgrammes(categorized) {
+  Object.values(categorized).forEach(({ first, second }) => {
+    _sortProgrammes(first)
+    _sortProgrammes(second)
+  })
+}
+
+function _categorizeProgrammes(programmes) {
+  let categorized = {}
+  programmes.forEach(programme => {
+    if (!_validProgramme(programme)) return
+    const { degrees } = programme
+    if (Array.isArray(degrees)) {
+      degrees.forEach(degree => {
+        categorized = _addCategorizedProgramme(categorized, programme, degree)
+      })
+    } else {
+      categorized = _addCategorizedProgramme(categorized, programme)
+    }
+  })
+  _sortCategorizedProgrammes(categorized)
+  return categorized
+}
+
 async function _fillApplicationStoreOnServerSide({ applicationStore, lang }) {
   applicationStore.setLanguage(lang)
   const programmes = await koppsApi.listProgrammes(lang)
-  const sortedProgrammes = _sortProgrammes(programmes)
-  applicationStore.setProgrammes(sortedProgrammes)
+  const programmesByDegree = _categorizeProgrammes(programmes)
+  applicationStore.setProgrammes(programmesByDegree)
 }
 
 async function getProgrammesList(req, res, next) {
@@ -74,5 +117,6 @@ async function getProgrammesList(req, res, next) {
 
 module.exports = {
   getProgrammesList,
+  _categorizeProgrammes,
   _sortProgrammes,
 }
