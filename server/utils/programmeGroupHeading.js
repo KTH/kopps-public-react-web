@@ -1,4 +1,4 @@
-const _programmeGroupHeading = {
+const programmeGroupHeadings = {
   TARKU: 'TARKU',
   CING: 'CING',
   YHOGE: 'YHOGE',
@@ -8,23 +8,24 @@ const _programmeGroupHeading = {
   GMAGB: 'GMAGB',
   TBAS: 'TBAS',
   OVRIGA: 'OVRIGA',
-  default: 'OVRIGA',
 }
+const defaultProgrammeGroupHeading = 'OVRIGA'
 
 const preparatoryEducationalLevel = 'PREPARATORY'
 
-function _find(programme, degree = {}) {
+function find(programme, degree = {}) {
   if (degree.code) {
-    return _programmeGroupHeading[degree.code] ? _programmeGroupHeading[degree.code] : _programmeGroupHeading.default
+    return programmeGroupHeadings[degree.code] ? programmeGroupHeadings[degree.code] : defaultProgrammeGroupHeading
   }
   if (programme.educationalLevel === preparatoryEducationalLevel) {
-    return _programmeGroupHeading.TBAS
+    return programmeGroupHeadings.TBAS
   }
-  return _programmeGroupHeading.default
+  return defaultProgrammeGroupHeading
 }
 
 module.exports = {
+  programmeGroupHeadings,
+  defaultProgrammeGroupHeading,
   preparatoryEducationalLevel,
-  _programmeGroupHeading,
-  find: _find,
+  find,
 }
