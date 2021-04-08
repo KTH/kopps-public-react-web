@@ -36,12 +36,12 @@ function createApplicationStore() {
     koppsCourseSearch,
     /**
      * @method
-     * @param {[]} programmes
+     * @param {map<string, {}>} programmes
      */
     setProgrammes,
 
     /**
-     * @property {[]} programmes
+     * @property {map<string, {}>} programmes
      */
     programmes: [],
   }
@@ -67,6 +67,6 @@ function setMessage(text = 'Happy coding!! :)') {
   this.message = text
 }
 
-function setProgrammes(programmes = []) {
-  this.programmes = programmes
+function setProgrammes(programmes) {
+  this.programmes = [...programmes]
 }

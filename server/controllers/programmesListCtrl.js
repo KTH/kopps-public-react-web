@@ -9,7 +9,7 @@ const koppsApi = require('../kopps/koppsApi')
 const serverConfig = require('../configuration').server
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
-const { find: findProgrammeGroupHeading } = require('../utils/programmeGroupHeading')
+const { programmeGroupHeadings, find: findProgrammeGroupHeading } = require('../utils/programmeGroupHeading')
 
 function _compareProgrammes(a, b) {
   if (a.title < b.title) {
@@ -43,28 +43,34 @@ function _validProgramme(programme) {
 }
 
 function _addCategorizedProgramme(c, programme, degree) {
-  const categorized = c
+  const categorized = new Map(c)
   const heading = findProgrammeGroupHeading(programme, degree)
-  if (!categorized[heading]) {
-    categorized[heading] = { first: [], second: [] }
-  }
+  if (!categorized.has(heading)) return categorized
   if (programme.lastAdmissionTerm) {
-    categorized[heading].second.push(programme)
+    categorized.get(heading).second.push(programme)
   } else {
-    categorized[heading].first.push(programme)
+    categorized.get(heading).first.push(programme)
   }
   return categorized
 }
 
 function _sortCategorizedProgrammes(categorized) {
-  Object.values(categorized).forEach(({ first, second }) => {
+  for (const { first, second } of categorized.values()) {
     _sortProgrammes(first)
     _sortProgrammes(second)
+  }
+}
+
+function _initCategorized() {
+  const categorized = new Map()
+  programmeGroupHeadings.forEach(heading => {
+    categorized.set(heading, { first: [], second: [] })
   })
+  return categorized
 }
 
 function _categorizeProgrammes(programmes) {
-  let categorized = {}
+  let categorized = _initCategorized()
   programmes.forEach(programme => {
     if (!_validProgramme(programme)) return
     const { degrees } = programme

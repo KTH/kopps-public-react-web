@@ -1,24 +1,14 @@
-const programmeGroupHeadings = {
-  TARKU: 'TARKU',
-  CING: 'CING',
-  YHOGE: 'YHOGE',
-  GKAND: 'GKAND',
-  HOGSK: 'HOGSK',
-  TMAST: 'TMAST',
-  GMAGB: 'GMAGB',
-  TBAS: 'TBAS',
-  OVRIGA: 'OVRIGA',
-}
+const programmeGroupHeadings = ['TARKU', 'CING', 'YHOGE', 'GKAND', 'HOGSK', 'TMAST', 'GMAGB', 'TBAS', 'OVRIGA']
 const defaultProgrammeGroupHeading = 'OVRIGA'
-
 const preparatoryEducationalLevel = 'PREPARATORY'
+const preparatoryProgrammeGroupHeading = 'TBAS'
 
 function find(programme, degree = {}) {
   if (degree.code) {
-    return programmeGroupHeadings[degree.code] ? programmeGroupHeadings[degree.code] : defaultProgrammeGroupHeading
+    return programmeGroupHeadings.includes(degree.code) ? degree.code : defaultProgrammeGroupHeading
   }
   if (programme.educationalLevel === preparatoryEducationalLevel) {
-    return programmeGroupHeadings.TBAS
+    return preparatoryProgrammeGroupHeading
   }
   return defaultProgrammeGroupHeading
 }

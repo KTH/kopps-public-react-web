@@ -67,16 +67,36 @@ const uncategorizedProgrammes = [
   cingDegreeProgrammeA,
   cingDegreeProgrammeWithLastAdmissionTerm,
 ]
-const expectedCategorizedProgrammes = {
-  [tarkuDegreeCode]: {
-    first: [tarkuDegreeProgrammeA, tarkuDegreeProgrammeB],
-    second: [tarkuDegreeProgrammeWithLastAdmissionTerm],
-  },
-  [cingDegreeCode]: {
-    first: [cingDegreeProgrammeA, cingDegreeProgrammeB],
-    second: [cingDegreeProgrammeWithLastAdmissionTerm],
-  },
-}
+
+const expectedCategorizedProgrammes = new Map([
+  [
+    'TARKU',
+    {
+      first: [
+        { degrees: [{ code: 'TARKU' }], title: 'A' },
+        { degrees: [{ code: 'TARKU' }], title: 'B' },
+      ],
+      second: [{ degrees: [{ code: 'TARKU' }], lastAdmissionTerm: '20201', title: 'B' }],
+    },
+  ],
+  [
+    'CING',
+    {
+      first: [
+        { degrees: [{ code: 'CING' }], title: 'A' },
+        { degrees: [{ code: 'CING' }], title: 'B' },
+      ],
+      second: [{ degrees: [{ code: 'CING' }], lastAdmissionTerm: '20201', title: 'B' }],
+    },
+  ],
+  ['YHOGE', { first: [], second: [] }],
+  ['GKAND', { first: [], second: [] }],
+  ['HOGSK', { first: [], second: [] }],
+  ['TMAST', { first: [], second: [] }],
+  ['GMAGB', { first: [], second: [] }],
+  ['TBAS', { first: [], second: [] }],
+  ['OVRIGA', { first: [], second: [] }],
+])
 
 describe('Sort programmes', () => {
   test('by title, firstAdmissionTerm, and programmeCode', done => {

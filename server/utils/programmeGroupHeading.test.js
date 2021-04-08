@@ -1,13 +1,8 @@
-const {
-  programmeGroupHeadings,
-  defaultProgrammeGroupHeading,
-  preparatoryEducationalLevel,
-  find,
-} = require('./programmeGroupHeading')
+const { defaultProgrammeGroupHeading, preparatoryEducationalLevel, find } = require('./programmeGroupHeading')
 
-const tarkuDegree = { code: programmeGroupHeadings.TARKU }
-const expectedTarkuHeading = programmeGroupHeadings.TARKU
-const expectedTbasHeading = programmeGroupHeadings.TBAS
+const tarkuDegree = { code: 'TARKU' }
+const expectedTarkuHeading = 'TARKU'
+const expectedTbasHeading = 'TBAS'
 const expectedDefaultHeading = defaultProgrammeGroupHeading
 const nonExistantDegree = { code: 'TEST' }
 const emptyProgramme = {}
