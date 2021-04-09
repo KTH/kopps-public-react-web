@@ -247,7 +247,7 @@ server.use('/', embeddedPageRoute.getRouter())
 // App routes
 const appRoute = AppRouter()
 appRoute.get('system.index', config.proxyPrefixPath.uri + '/', Public.getIndex)
-appRoute.get('public.example', config.proxyPrefixPath.uri + '/example', Public.getIndex)
+appRoute.get('public.example', config.proxyPrefixPath.uri + '/utbildning/kurser/fovkurser', Public.getFovSearch)
 appRoute.get(
   'public.programmesList',
   config.proxyPrefixPath.uri + '/kurser-inom-program',

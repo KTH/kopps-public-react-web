@@ -14,6 +14,10 @@ const serverConfig = require('../configuration').server
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
 async function getIndex(req, res, next) {
+  return getFovSearch(req, res, next)
+}
+
+async function getFovSearch(req, res, next) {
   try {
     const lang = language.getLanguage(res)
 
@@ -51,4 +55,5 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, query }) {
 
 module.exports = {
   getIndex,
+  getFovSearch,
 }
