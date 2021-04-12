@@ -4,8 +4,8 @@ const preparatoryEducationalLevel = 'PREPARATORY'
 const preparatoryProgrammeGroupHeading = 'TBAS'
 
 function find(programme, degree = {}) {
-  if (degree.code) {
-    return programmeGroupHeadings.includes(degree.code) ? degree.code : defaultProgrammeGroupHeading
+  if (programmeGroupHeadings.includes(degree.code)) {
+    return degree.code
   }
   if (programme.educationalLevel === preparatoryEducationalLevel) {
     return preparatoryProgrammeGroupHeading

@@ -74,7 +74,7 @@ function _categorizeProgrammes(programmes) {
   programmes.forEach(programme => {
     if (!_validProgramme(programme)) return
     const { degrees } = programme
-    if (Array.isArray(degrees)) {
+    if (Array.isArray(degrees) && degrees.length) {
       degrees.forEach(degree => {
         categorized = _addCategorizedProgramme(categorized, programme, degree)
       })
