@@ -133,6 +133,7 @@ module.exports = {
     },
     programmes_admitted_until: 'antagna/kull t.o.m.',
     programmes_admitted_from: 'antagna/kull fr.o.m.',
+    programmes_older: 'Program utan nyantagning',
     programmes_list_footer: {
       content_contact: 'Kontakt för frågor om utbildning på KTH',
       central_study_counseling: 'Central studievägledning',

@@ -77,6 +77,7 @@ module.exports = {
     },
     programmes_admitted_until: 'admitted/batch until',
     programmes_admitted_from: 'admitted/batch from',
+    programmes_older: 'Programmes without new admission',
     programmes_list_footer: {
       content_contact: 'Contact for questions regarding education at KTH',
       central_study_counseling: 'Central study counseling',
