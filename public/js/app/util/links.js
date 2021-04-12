@@ -8,6 +8,10 @@ function pageLink(pageId) {
   return `/kopps-public/${pageId}`
 }
 
+function programmeLink(programmeCode) {
+  return `/student/kurser/program/${programmeCode}`
+}
+
 function centralStudyCounselingUrl() {
   return 'https://www.kth.se/studycounselling'
 }
@@ -19,6 +23,7 @@ function koppsEmail() {
 module.exports = {
   parentLink,
   pageLink,
+  programmeLink,
   centralStudyCounselingUrl,
   koppsEmail,
 }

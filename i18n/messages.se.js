@@ -96,6 +96,11 @@ module.exports = {
     koppspublic_search_options_departments_all_within: 'Alla inom',
     koppspublic_search_options_departments_label: 'Skola, avdelning, etc',
 
+    semester: {
+      1: 'VT',
+      2: 'HT',
+    },
+
     main_menu_aria_label: 'Undermeny',
     main_menu_student: 'Student på KTH',
     main_menu_directory: 'Kurs- och programkatalogen',
@@ -115,8 +120,19 @@ module.exports = {
     programmes_list_header: 'Kurser inom program',
     programmes_list_lead:
       'Välj program nedan för att få en översikt av de kurser och årskursindelning som utgör programmet.',
-    programme_type_tarku: 'Arkitektutbildning',
-    programme_type_cing: 'Civilingenjörsutbildning',
+    programme_type: {
+      TARKU: 'Arkitektutbildning',
+      CING: 'Civilingenjörsutbildning',
+      YHOGE: 'Högskoleingenjörsutbildning',
+      GKAND: 'Kandidatprogram',
+      HOGSK: 'Högskoleprogram (2 år)',
+      TMAST: 'Masterprogram',
+      GMAGB: 'Magisterprogram',
+      TBAS: 'Teknisk basutbildning',
+      OVRIGA: 'Övriga utbildningsprogram',
+    },
+    programmes_admitted_until: 'antagna/kull t.o.m.',
+    programmes_admitted_from: 'antagna/kull fr.o.m.',
     programmes_list_footer: {
       content_contact: 'Kontakt för frågor om utbildning på KTH',
       central_study_counseling: 'Central studievägledning',

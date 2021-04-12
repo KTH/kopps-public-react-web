@@ -39,6 +39,11 @@ module.exports = {
     template_try_me: 'Try me',
     template_button_works: 'Button works!',
 
+    semester: {
+      1: 'Spring',
+      2: 'Autumn',
+    },
+
     main_menu_aria_label: 'Sub menu',
     main_menu_student: 'Student at KTH',
     main_menu_directory: 'Course and programme directory',
@@ -59,8 +64,19 @@ module.exports = {
     programmes_list_header: 'Courses Part of Programme',
     programmes_list_lead:
       'Choose a programme below to get an overview of courses and study years forming the programme.',
-    programme_type_tarku: 'Master of Architecture',
-    programme_type_cing: 'Master of Science in Engineering',
+    programme_type: {
+      TARKU: 'Master of Architecture',
+      CING: 'Master of Science in Engineering',
+      YHOGE: 'Bachelor of Science in Engineering',
+      GKAND: 'Bachelor of Science',
+      HOGSK: 'University Diploma',
+      TMAST: 'Master of Science (Two Years)',
+      GMAGB: 'Master of Science (One Year)',
+      TBAS: 'Technical Preparatory Education',
+      OVRIGA: 'Other programmes',
+    },
+    programmes_admitted_until: 'admitted/batch until',
+    programmes_admitted_from: 'admitted/batch from',
     programmes_list_footer: {
       content_contact: 'Contact for questions regarding education at KTH',
       central_study_counseling: 'Central study counseling',
