@@ -75,6 +75,7 @@ module.exports = {
       TBAS: 'Technical Preparatory Education',
       OVRIGA: 'Other programmes',
     },
+    programmes_admitted: 'admitted/batch',
     programmes_admitted_until: 'admitted/batch until',
     programmes_admitted_from: 'admitted/batch from',
     programmes_older: 'Programmes without new admission',

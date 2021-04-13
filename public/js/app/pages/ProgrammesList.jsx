@@ -22,17 +22,36 @@ function Section({ programmeTypeName, children }) {
   )
 }
 
-function ProgrammeDescription({ programme, variant }) {
+function formatTerm(term) {
   // TODO: Is this really the most effective way to do this?
   // Or would prop drilling be better?
   const { language } = useStore()
   const t = translate(i18n, language)
-  const { credits, creditUnitAbbr, firstAdmissionTerm, lastAdmissionTerm } = programme
-  const [year, semester] =
-    variant === 'obsolete' ? lastAdmissionTerm.split(/([1|2])$/) : firstAdmissionTerm.split(/([1|2])$/)
+  const [year, semester] = term.split(/([1|2])$/)
   const shortYear = year.slice(-2)
-  const formattedTerm = `${t('semester')[semester]}${language === 'en' ? ' ' : ''}${shortYear}`
+  return `${t('semester')[semester]}${language === 'en' ? ' ' : ''}${shortYear}`
+}
+
+function CurrentProgrammeDescription({ programme }) {
+  const { language } = useStore()
+  const t = translate(i18n, language)
+  const { credits, creditUnitAbbr, firstAdmissionTerm } = programme
+  const formattedTerm = formatTerm(firstAdmissionTerm)
   return <>{`, ${credits} ${creditUnitAbbr}, ${t('programmes_admitted_from')} ${formattedTerm}`}</>
+}
+
+function ObsoleteProgrammeDescription({ programme }) {
+  const { language } = useStore()
+  const t = translate(i18n, language)
+  const { credits, creditUnitAbbr, firstAdmissionTerm, lastAdmissionTerm } = programme
+  const formattedLastTerm = formatTerm(lastAdmissionTerm)
+  if (firstAdmissionTerm) {
+    const formattedFirstTerm = formatTerm(firstAdmissionTerm)
+    return (
+      <>{`, ${credits} ${creditUnitAbbr}, ${t('programmes_admitted')} ${formattedFirstTerm}–${formattedLastTerm}`}</>
+    )
+  }
+  return <>{`, ${credits} ${creditUnitAbbr}, ${t('programmes_admitted_until')} ${formattedLastTerm}`}</>
 }
 
 function ProgrammesListItem({ programme, variant }) {
@@ -40,7 +59,11 @@ function ProgrammesListItem({ programme, variant }) {
   return (
     <>
       <Link href={programmeLink(programmeCode)}>{`${title} (${programmeCode})`}</Link>
-      <ProgrammeDescription programme={programme} variant={variant} />
+      {variant === 'obsolete' ? (
+        <ObsoleteProgrammeDescription programme={programme} />
+      ) : (
+        <CurrentProgrammeDescription programme={programme} />
+      )}
     </>
   )
 }
