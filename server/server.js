@@ -251,10 +251,10 @@ appRoute.get('public.example', config.proxyPrefixPath.uri + '/example', Public.g
 appRoute.get('public.fovkurser', config.proxyPrefixPath.uri + '/utbildning/kurser/fovkurser', Public.getFovSearch)
 appRoute.get(
   'public.programmesList',
-  config.proxyPrefixPath.uri + '/kurser-inom-program',
+  config.proxyPrefixPath.uri + '/student/kurser/kurser-inom-program',
   ProgrammesList.getProgrammesList
 )
-appRoute.get('public.departmentsList', config.proxyPrefixPath.uri + '/org', Public.getIndex)
+appRoute.get('public.departmentsList', config.proxyPrefixPath.uri + '/student/kurser/org', Public.getIndex)
 appRoute.get(
   'system.gateway',
   config.proxyPrefixPath.uri + '/gateway',

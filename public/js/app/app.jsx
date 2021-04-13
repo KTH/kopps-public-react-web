@@ -60,14 +60,14 @@ function appFactory(applicationStore) {
         />
         <RouteWrapper
           exact
-          path="/kurser-inom-program"
+          path="/student/kurser/kurser-inom-program"
           component={ProgrammesList}
           layout={PageLayout}
           menuData={{ selectedId: 'programmesList', ...menuData }}
         />
         <RouteWrapper
           exact
-          path="/org"
+          path="/student/kurser/org"
           component={DepartmentsList}
           layout={PageLayout}
           menuData={{ selectedId: 'departmentsList', ...menuData }}

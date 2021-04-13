@@ -1,6 +1,6 @@
 function parentLink(language) {
   const languageParam = language === 'en' ? '?l=en' : ''
-  return `/student/kurser/kurser-inom-program${languageParam}`
+  return `/student/${languageParam}`
 }
 
 function pageLink(pageId) {
