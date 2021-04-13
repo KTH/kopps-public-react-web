@@ -55,10 +55,11 @@ function ObsoleteProgrammeDescription({ programme }) {
 }
 
 function ProgrammesListItem({ programme, variant }) {
+  const { language } = useStore()
   const { programmeCode, title } = programme
   return (
     <>
-      <Link href={programmeLink(programmeCode)}>{`${title} (${programmeCode})`}</Link>
+      <Link href={programmeLink(programmeCode, language)}>{`${title} (${programmeCode})`}</Link>
       {variant === 'obsolete' ? (
         <ObsoleteProgrammeDescription programme={programme} />
       ) : (

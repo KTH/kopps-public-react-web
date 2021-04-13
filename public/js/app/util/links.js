@@ -8,8 +8,9 @@ function pageLink(pageId) {
   return `/kopps-public/${pageId}`
 }
 
-function programmeLink(programmeCode) {
-  return `/student/kurser/program/${programmeCode}`
+function programmeLink(programmeCode, language) {
+  const languageParam = language === 'en' ? '?l=en' : ''
+  return `/student/kurser/program/${programmeCode}${languageParam}`
 }
 
 function centralStudyCounselingUrl() {
