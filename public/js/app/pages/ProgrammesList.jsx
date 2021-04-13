@@ -12,9 +12,9 @@ import translate from '../util/translate'
 import { centralStudyCounselingUrl, koppsEmail, programmeLink } from '../util/links'
 import Article from '../components/Article'
 
-function Section({ programmeTypeName, children }) {
-  const id = `progGroup${programmeTypeName}`
-  const ariaLabelledBy = `heading-${programmeTypeName}`
+function Section({ programmeType, children }) {
+  const id = `progGroup${programmeType}`
+  const ariaLabelledBy = `heading-${programmeType}`
   return (
     <section id={id} aria-labelledby={ariaLabelledBy}>
       {children}
@@ -78,12 +78,13 @@ function CurrentProgrammesList({ programmes }) {
   )
 }
 
-function ObsololeteProgrammesList({ programmes = [] }) {
+function ObsololeteProgrammesList({ programmeType, programmes = [] }) {
   if (!programmes.length) return null
   const { language } = useStore()
   const t = translate(i18n, language)
+  const title = `${t('programmes_older')} (${t('programme_type')[programmeType]})`
   return (
-    <CollapseDetails title={t('programmes_older')}>
+    <CollapseDetails title={title}>
       <LinkList>
         {programmes.map(programme => (
           <ProgrammesListItem key={programme.title} variant="obsolete" programme={programme} />
@@ -132,11 +133,11 @@ function ProgrammesList() {
       <Row>
         <Col>
           <Article>
-            {programmes.map(programmeType => (
-              <Section key={programmeType[0]} programmeTypeName={programmeType[0]}>
-                <Heading size="h2" text={t('programme_type')[programmeType[0]]} />
-                <CurrentProgrammesList programmes={programmeType[1].first} />
-                <ObsololeteProgrammesList programmes={programmeType[1].second} />
+            {programmes.map(programme => (
+              <Section key={programme[0]} programmeType={programme[0]}>
+                <Heading size="h2" text={t('programme_type')[programme[0]]} />
+                <CurrentProgrammesList programmes={programme[1].first} />
+                <ObsololeteProgrammesList programmeType={programme[0]} programmes={programme[1].second} />
               </Section>
             ))}
           </Article>
