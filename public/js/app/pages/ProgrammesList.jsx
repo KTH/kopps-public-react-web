@@ -10,18 +10,7 @@ import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 import translate from '../util/translate'
 import { centralStudyCounselingUrl, koppsEmail, programmeLink } from '../util/links'
-
-function Anchor({ href, text }) {
-  return <a href={href}>{text}</a>
-}
-
-function MainArticle({ children }) {
-  return <article className="article">{children}</article>
-}
-
-function Paragraphs({ children }) {
-  return <div className="paragraphs">{children}</div>
-}
+import Article from '../components/Article'
 
 function Section({ programmeTypeName, children }) {
   const id = `progGroup${programmeTypeName}`
@@ -98,10 +87,10 @@ function FooterContent() {
   return (
     <address>
       {`${contentContact}: `}
-      <Anchor href={centralStudyCounselingAddress} text={centralStudyCounseling} />
+      <Link href={centralStudyCounselingAddress}>{centralStudyCounseling}</Link>
       <br />
       {`${applicationContact}: `}
-      <Anchor href={koppsEmailAddress} text={koppsEmailText} />
+      <Link href={koppsEmailAddress}>{koppsEmailText}</Link>
     </address>
   )
 }
@@ -114,22 +103,20 @@ function ProgrammesList() {
       <Row>
         <Col>
           <PageHeading>{t('programmes_list_header')}</PageHeading>
+          <Lead text={t('programmes_list_lead')} />
         </Col>
       </Row>
       <Row>
         <Col>
-          <MainArticle>
-            <Paragraphs>
-              <Lead text={t('programmes_list_lead')} />
-              {programmes.map(programmeType => (
-                <Section key={programmeType[0]} programmeTypeName={programmeType[0]}>
-                  <Heading size="h2" text={t('programme_type')[programmeType[0]]} />
-                  <CurrentProgrammesList programmes={programmeType[1].first} />
-                  <ObsololeteProgrammesList programmes={programmeType[1].second} />
-                </Section>
-              ))}
-            </Paragraphs>
-          </MainArticle>
+          <Article>
+            {programmes.map(programmeType => (
+              <Section key={programmeType[0]} programmeTypeName={programmeType[0]}>
+                <Heading size="h2" text={t('programme_type')[programmeType[0]]} />
+                <CurrentProgrammesList programmes={programmeType[1].first} />
+                <ObsololeteProgrammesList programmes={programmeType[1].second} />
+              </Section>
+            ))}
+          </Article>
         </Col>
       </Row>
       <Row>
