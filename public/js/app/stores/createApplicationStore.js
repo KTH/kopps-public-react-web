@@ -44,16 +44,28 @@ function createApplicationStore() {
      * @property {map<string, {}>} programmes
      */
     programmes: [],
-    /**
-     * @method
-     * @param {map<string, {}>} departments
-     */
-    setDepartments,
 
     /**
-     * @property {map<string, {}>} departments
+     * @method
+     * @param {[]} currentSchoolsWithDepartments
      */
-    departments: [],
+    setCurrentSchoolsWithDepartments,
+
+    /**
+     * @property {[]} currentSchoolsWithDepartments
+     */
+    currentSchoolsWithDepartments: [],
+
+    /**
+     * @method
+     * @param {[]} deprecatedSchoolsWithDepartments
+     */
+    setDeprecatedSchoolsWithDepartments,
+
+    /**
+     * @property {[]} deprecatedSchoolsWithDepartments
+     */
+    deprecatedSchoolsWithDepartments: [],
   }
 
   return store
@@ -81,6 +93,10 @@ function setProgrammes(programmes) {
   this.programmes = [...programmes]
 }
 
-function setDepartments(departments) {
-  this.departments = departments
+function setCurrentSchoolsWithDepartments(currentSchoolsWithDepartments) {
+  this.currentSchoolsWithDepartments = currentSchoolsWithDepartments
+}
+
+function setDeprecatedSchoolsWithDepartments(deprecatedSchoolsWithDepartments) {
+  this.deprecatedSchoolsWithDepartments = deprecatedSchoolsWithDepartments
 }
