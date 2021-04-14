@@ -10,7 +10,7 @@ const serverConfig = require('../configuration').server
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
-const deprecatedSchools = {
+const _deprecatedSchools = {
   sv: [
     'Datavetenskap och kommunikation',
     'Elektro- och systemteknik',
@@ -41,10 +41,10 @@ function _compareSchools(a, b) {
 
 function _filterOutDeprecatedSchools(schoolsWithDepartments, lang) {
   const deprecatedSchoolsWithDepartments = schoolsWithDepartments.filter(school =>
-    deprecatedSchools[lang].includes(school.name)
+    _deprecatedSchools[lang].includes(school.name)
   )
   const currentSchoolsWithDepartments = schoolsWithDepartments.filter(
-    school => !deprecatedSchools[lang].includes(school.name)
+    school => !_deprecatedSchools[lang].includes(school.name)
   )
   return {
     deprecatedSchoolsWithDepartments,
@@ -97,4 +97,6 @@ async function getSchoolsList(req, res, next) {
 
 module.exports = {
   getSchoolsList,
+  _filterOutDeprecatedSchools,
+  _deprecatedSchools,
 }
