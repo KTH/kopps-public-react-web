@@ -44,6 +44,16 @@ function createApplicationStore() {
      * @property {map<string, {}>} programmes
      */
     programmes: [],
+    /**
+     * @method
+     * @param {map<string, {}>} departments
+     */
+    setDepartments,
+
+    /**
+     * @property {map<string, {}>} departments
+     */
+    departments: [],
   }
 
   return store
@@ -69,4 +79,8 @@ function setMessage(text = 'Happy coding!! :)') {
 
 function setProgrammes(programmes) {
   this.programmes = [...programmes]
+}
+
+function setDepartments(departments) {
+  this.departments = departments
 }

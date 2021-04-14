@@ -11,4 +11,5 @@ module.exports = {
   Public: require('./publicSiteCtrl'),
   EmbeddedPage: require('./embeddedPagesCtrl'),
   ProgrammesList: require('./programmesListCtrl'),
+  SchoolsList: require('./schoolsListCtrl'),
 }

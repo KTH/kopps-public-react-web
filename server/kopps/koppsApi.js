@@ -84,8 +84,30 @@ const listProgrammes = async lang => {
   }
 }
 
+const DEPARTMENT_CRITERIA = {
+  HAS_COURSES: 'has_courses',
+  HAS_THIRD_CYCLE_COURSES: 'has_third_cycle_courses',
+}
+
+const listSchoolsWithDepartments = async ({ departmentCriteria, listForActiveCourses = false, lang = 'sv' }) => {
+  const { client } = koppsApi.koppsApi
+  const koppsBase = config.koppsApi.basePath.endsWith('/')
+    ? config.koppsApi.basePath
+    : config.koppsApi.basePath.concat('/')
+  const uri = `${koppsBase}schools/departments?department_criteria=${departmentCriteria}&listForActiveCourses=${listForActiveCourses}&l=${lang}`
+  try {
+    const response = await client.getAsync({ uri, useCache: false })
+    return response.body
+  } catch (error) {
+    log.error('Exception calling KOPPS API in koppsApi.listSchoolsWithDepartments', { error })
+    throw error
+  }
+}
+
 module.exports = {
   searchFovCourses,
   listActiveMainFieldsOfStudy,
   listProgrammes,
+  DEPARTMENT_CRITERIA,
+  listSchoolsWithDepartments,
 }
