@@ -154,4 +154,14 @@ module.exports = {
       kopps_email: 'kopps@kth.se',
     },
   },
+  shb: {
+    pageHeading: 'Studiehandboken 00/01 tom 07/08',
+    content: 'Fram till läsåret 2007/2008 fanns information om program och kurser i studiehandboken.',
+  },
+  footerContent: {
+    contentContact: 'Kontakt för frågor om utbildning på KTH',
+    applicationContact: 'Teknisk kontakt om denna sida',
+    centralStudyCounseling: 'Central studievägledning',
+    koppsEmailText: 'kopps@kth.se',
+  },
 }

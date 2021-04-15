@@ -91,11 +91,21 @@ module.exports = {
       'All active courses on all educational levels given at KTH, listed according to the organization of each school.',
     departments_abe: 'Architecture and the Built Environment',
     departments_other_universities: 'Cooperation with Other Universities',
+    departments_list_footer: {
+      content_contact: 'Contact for questions regarding education at KTH',
+      central_study_counseling: 'Central study counseling',
+      application_contact: 'Contact regarding technical matters on this page',
+      kopps_email: 'kopps@kth.se',
+    },
   },
-  departments_list_footer: {
-    content_contact: 'Contact for questions regarding education at KTH',
-    central_study_counseling: 'Central study counseling',
-    application_contact: 'Contact regarding technical matters on this page',
-    kopps_email: 'kopps@kth.se',
+  shb: {
+    pageHeading: 'Study Handbook 00/01 to 07/08',
+    content: 'Until the study year 2007/2008 the study handbook contained program and course information.',
+  },
+  footerContent: {
+    contentContact: 'Contact for questions regarding education at KTH',
+    applicationContact: 'Contact regarding technical matters on this page',
+    centralStudyCounseling: 'Central study counseling',
+    koppsEmailText: 'kopps@kth.se',
   },
 }

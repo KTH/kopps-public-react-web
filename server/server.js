@@ -219,7 +219,7 @@ server.use(
  * ******* APPLICATION ROUTES *******
  * **********************************
  */
-const { System, Public, EmbeddedPage, ProgrammesList, SchoolsList } = require('./controllers')
+const { Courses, System, Public, EmbeddedPage, ProgrammesList, SchoolsList } = require('./controllers')
 const { requireRole } = require('./authentication')
 
 // System routes
@@ -248,7 +248,9 @@ server.use('/', embeddedPageRoute.getRouter())
 const appRoute = AppRouter()
 appRoute.get('system.index', config.proxyPrefixPath.uri + '/', Public.getIndex)
 appRoute.get('public.example', config.proxyPrefixPath.uri + '/example', Public.getIndex)
+appRoute.get('public.studyhandbook', config.proxyPrefixPath.uri + '/student/program/shb', Courses.getStudyBook)
 appRoute.get('public.fovkurser', config.proxyPrefixPath.uri + '/utbildning/kurser/fovkurser', Public.getFovSearch)
+
 appRoute.get(
   'public.programmesList',
   config.proxyPrefixPath.uri + '/student/kurser/kurser-inom-program',

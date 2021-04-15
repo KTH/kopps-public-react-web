@@ -14,8 +14,10 @@ function createApplicationStore() {
   const store = {
     /**
      * @property {string} language
+     * @property {number} languageIndex
      */
     language: null,
+    languageIndex: 0,
     /**
      * @method
      * @param {string} lang
@@ -83,6 +85,7 @@ async function koppsCourseSearch(textPattern) {
 
 function setLanguage(lang) {
   this.language = lang
+  this.languageIndex = lang === 'en' ? 0 : 1
 }
 
 function setMessage(text = 'Happy coding!! :)') {
