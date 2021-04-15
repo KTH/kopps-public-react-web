@@ -18,6 +18,7 @@ import RouteWrapper from './components/RouteWrapper'
 
 import getMenuData from './config/menuData'
 import getMenuDataExample from './config/menuDataExample'
+import StudyHandbook from './pages/StudyHandbook'
 import ProgrammesList from './pages/ProgrammesList'
 import DepartmentsList from './pages/DepartmentsList'
 
@@ -55,6 +56,13 @@ function appFactory(applicationStore) {
           exact
           path="/example"
           component={Example}
+          layout={PageLayout}
+          menuData={{ selectedId: 'example', ...menuDataExample }}
+        />
+        <RouteWrapper
+          exact
+          path="/student/program/shb"
+          component={StudyHandbook}
           layout={PageLayout}
           menuData={{ selectedId: 'example', ...menuDataExample }}
         />
