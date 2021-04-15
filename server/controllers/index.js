@@ -6,6 +6,7 @@
  */
 
 module.exports = {
+  Courses: require('./coursesCtrl'),
   System: require('./systemCtrl'),
   Sample: require('./sampleCtrl'),
   Public: require('./publicSiteCtrl'),
