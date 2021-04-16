@@ -66,7 +66,7 @@ function appFactory(applicationStore) {
           component={StudyHandbook}
           breadcrumbs={{ include: 'directory' }}
           layout={PageLayout}
-          menuData={{ selectedId: 'example', ...menuData }}
+          menuData={{ selectedId: 'shb', ...menuData }}
         />
         <RouteWrapper
           exact
