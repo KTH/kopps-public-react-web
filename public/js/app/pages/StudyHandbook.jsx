@@ -1,8 +1,7 @@
 import React from 'react'
 import { Col, Row } from 'reactstrap'
-import { PageHeading, Heading } from '@kth/kth-reactstrap/dist/components/studinfo'
+import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 
-import Lead from '../components/Lead'
 import Article from '../components/Article'
 
 import FooterContent from '../components/FooterContent'
