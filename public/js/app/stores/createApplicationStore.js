@@ -13,6 +13,16 @@ export default createApplicationStore
 function createApplicationStore() {
   const store = {
     /**
+     * @property {array<map<string, string>>} breadcrumbsDynamicItems
+     */
+    /* Use only if breadcrumbs ending depends on f.e., api */
+    breadcrumbsDynamicItems: [],
+    /**
+     * @method
+     * @param {array<map<string, string>>} items
+     */
+    setBreadcrumbsDynamicItems,
+    /**
      * @property {string} language
      * @property {number} languageIndex
      */
@@ -83,6 +93,13 @@ async function koppsCourseSearch(textPattern) {
   // console.log(this.koppsCourseData)
 }
 
+function setBreadcrumbsDynamicItems(items) {
+  // [{
+  //   url: 'https://www.kth.se/student/kurser/program/A/20042/arskurs5',
+  //   label: 'Degree Programme in Architecture',
+  // }],
+  this.breadcrumbsDynamicItems = items
+}
 function setLanguage(lang) {
   this.language = lang
   this.languageIndex = lang === 'en' ? 0 : 1

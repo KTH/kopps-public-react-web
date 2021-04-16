@@ -56,6 +56,7 @@ function appFactory(applicationStore) {
           exact
           path="/example"
           component={Example}
+          breadcrumbs={{ include: 'directory' }}
           layout={PageLayout}
           menuData={{ selectedId: 'example', ...menuDataExample }}
         />
@@ -63,19 +64,22 @@ function appFactory(applicationStore) {
           exact
           path="/student/program/shb"
           component={StudyHandbook}
+          breadcrumbs={{ include: 'directory' }}
           layout={PageLayout}
-          menuData={{ selectedId: 'example', ...menuDataExample }}
+          menuData={{ selectedId: 'example', ...menuData }}
         />
         <RouteWrapper
           exact
           path="/student/kurser/kurser-inom-program"
           component={ProgrammesList}
+          breadcrumbs={{ include: 'directory' }}
           layout={PageLayout}
           menuData={{ selectedId: 'programmesList', ...menuData }}
         />
         <RouteWrapper
           exact
           path="/student/kurser/org"
+          breadcrumbs={{ include: 'directory' }}
           component={DepartmentsList}
           layout={PageLayout}
           menuData={{ selectedId: 'departmentsList', ...menuData }}
