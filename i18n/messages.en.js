@@ -97,6 +97,7 @@ module.exports = {
       application_contact: 'Contact regarding technical matters on this page',
       kopps_email: 'kopps@kth.se',
     },
+    main_menu_shb: 'Study Handbook 00/01 to 07/08',
   },
   shb: {
     pageHeading: 'Study Handbook 00/01 to 07/08',

@@ -153,6 +153,7 @@ module.exports = {
       application_contact: 'Teknisk kontakt om denna sida',
       kopps_email: 'kopps@kth.se',
     },
+    main_menu_shb: 'Studiehandboken 00/01 tom 07/08',
   },
   shb: {
     pageHeading: 'Studiehandboken 00/01 tom 07/08',
