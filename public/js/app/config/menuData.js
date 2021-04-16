@@ -31,6 +31,12 @@ function getMenuData(language) {
           text: t('main_menu_departments_list'),
           url: pageLink('student/kurser/org'),
         },
+        {
+          id: 'shb',
+          type: 'leaf',
+          text: t('main_menu_shb'),
+          url: pageLink('student/program/shb'),
+        },
       ],
     },
   }
