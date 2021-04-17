@@ -135,7 +135,7 @@ Section.propTypes = {
 
 CurrentProgrammeDescription.propTypes = {
   programme: PropTypes.shape({
-    credits: PropTypes.string.isRequired,
+    credits: PropTypes.number.isRequired,
     creditUnitAbbr: PropTypes.string.isRequired,
     firstAdmissionTerm: PropTypes.string.isRequired,
   }).isRequired,
@@ -143,9 +143,9 @@ CurrentProgrammeDescription.propTypes = {
 
 ObsoleteProgrammeDescription.propTypes = {
   programme: PropTypes.shape({
-    credits: PropTypes.string.isRequired,
+    credits: PropTypes.number.isRequired,
     creditUnitAbbr: PropTypes.string.isRequired,
-    firstAdmissionTerm: PropTypes.string.isRequired,
+    firstAdmissionTerm: PropTypes.string,
     lastAdmissionTerm: PropTypes.string.isRequired,
   }).isRequired,
 }
@@ -155,7 +155,11 @@ ProgrammesListItem.propTypes = {
     programmeCode: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   }).isRequired,
-  variant: PropTypes.string.isRequired,
+  variant: PropTypes.string,
+}
+
+ProgrammesListItem.defaultProps = {
+  variant: '',
 }
 
 CurrentProgrammesList.propTypes = {
