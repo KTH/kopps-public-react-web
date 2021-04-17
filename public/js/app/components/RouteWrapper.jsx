@@ -40,7 +40,7 @@ RouteWrapper.propTypes = {
     }),
     parentLink: PropTypes.shape({ text: PropTypes.string, url: PropTypes.string }),
     selectedId: PropTypes.string,
-  }),
+  }).isRequired,
 }
 
 RouteWrapper.defaultProps = {

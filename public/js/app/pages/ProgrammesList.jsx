@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Col, Row } from 'reactstrap'
 import { PageHeading, Heading, LinkList, Link } from '@kth/kth-reactstrap/dist/components/studinfo'
 import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
@@ -124,6 +125,60 @@ function ProgrammesList() {
       </Row>
     </>
   )
+}
+
+// TODO: Cleanup prop types: consolidate and rename
+Section.propTypes = {
+  programmeType: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+}
+
+CurrentProgrammeDescription.propTypes = {
+  programme: PropTypes.shape({
+    credits: PropTypes.string.isRequired,
+    creditUnitAbbr: PropTypes.string.isRequired,
+    firstAdmissionTerm: PropTypes.string.isRequired,
+  }).isRequired,
+}
+
+ObsoleteProgrammeDescription.propTypes = {
+  programme: PropTypes.shape({
+    credits: PropTypes.string.isRequired,
+    creditUnitAbbr: PropTypes.string.isRequired,
+    firstAdmissionTerm: PropTypes.string.isRequired,
+    lastAdmissionTerm: PropTypes.string.isRequired,
+  }).isRequired,
+}
+
+ProgrammesListItem.propTypes = {
+  programme: PropTypes.shape({
+    programmeCode: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+  variant: PropTypes.string.isRequired,
+}
+
+CurrentProgrammesList.propTypes = {
+  programmes: PropTypes.arrayOf(
+    PropTypes.shape({
+      programmeCode: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+}
+
+ObsololeteProgrammesList.propTypes = {
+  programmeType: PropTypes.string.isRequired,
+  programmes: PropTypes.arrayOf(
+    PropTypes.shape({
+      programmeCode: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ),
+}
+
+ObsololeteProgrammesList.defaultProps = {
+  programmes: [],
 }
 
 export default ProgrammesList

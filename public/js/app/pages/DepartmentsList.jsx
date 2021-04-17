@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
 import { Col, Row } from 'reactstrap'
 import { PageHeading, Heading, LinkList, Link } from '@kth/kth-reactstrap/dist/components/studinfo'
 import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
@@ -90,6 +91,15 @@ function DepartmentsList() {
       </Row>
     </>
   )
+}
+
+DepartmentsLinkList.propTypes = {
+  departments: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      code: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
 }
 
 export default DepartmentsList
