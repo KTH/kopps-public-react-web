@@ -5,7 +5,6 @@ import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildnings
 
 import Lead from '../components/Lead'
 import Article from '../components/Article'
-import Footer from '../components/Footer'
 import FooterContent from '../components/FooterContent'
 
 import { useStore } from '../mobx'
@@ -86,9 +85,7 @@ function DepartmentsList() {
       </Row>
       <Row>
         <Col>
-          <Footer>
-            <FooterContent />
-          </Footer>
+          <FooterContent />
         </Col>
       </Row>
     </>

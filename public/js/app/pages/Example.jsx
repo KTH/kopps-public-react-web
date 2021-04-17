@@ -4,7 +4,7 @@ import { PageHeading, Heading } from '@kth/kth-reactstrap/dist/components/studin
 
 import Lead from '../components/Lead'
 import Article from '../components/Article'
-import Footer from '../components/Footer'
+import FooterContent from '../components/FooterContent'
 
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
@@ -32,10 +32,8 @@ function Example() {
       </Row>
       <Row>
         <Col>
-          <Footer>
-            {/** Also see component ../components/FooterContent */}
-            <address>{t('main_page_footer_example')}</address>
-          </Footer>
+          {/** Use FooterContent, or roll your own with Footer component */}
+          <FooterContent />
         </Col>
       </Row>
     </>

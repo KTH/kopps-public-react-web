@@ -4,7 +4,6 @@ import { PageHeading, Heading, LinkList, Link } from '@kth/kth-reactstrap/dist/c
 import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
 
 import Lead from '../components/Lead'
-import Footer from '../components/Footer'
 import FooterContent from '../components/FooterContent'
 
 import { useStore } from '../mobx'
@@ -120,9 +119,7 @@ function ProgrammesList() {
       </Row>
       <Row>
         <Col>
-          <Footer>
-            <FooterContent />
-          </Footer>
+          <FooterContent />
         </Col>
       </Row>
     </>
