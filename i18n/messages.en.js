@@ -89,8 +89,8 @@ module.exports = {
     departments_list_header: 'Courses by school',
     departments_list_lead:
       'All active courses on all educational levels given at KTH, listed according to the organization of each school.',
-    departments_abe: 'Architecture and the Built Environment',
-    departments_other_universities: 'Cooperation with Other Universities',
+    departments_deprecated_schools: 'Older Schools',
+    departments_deprecated_schools_collapsible: 'Courses older schools',
     departments_list_footer: {
       content_contact: 'Contact for questions regarding education at KTH',
       central_study_counseling: 'Central study counseling',

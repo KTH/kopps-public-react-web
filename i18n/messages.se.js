@@ -145,8 +145,8 @@ module.exports = {
     departments_list_header: 'Kurser per skola',
     departments_list_lead:
       'Här listas alla KTH:s aktiva kurser på samtliga utbildningsnivåer, uppdelat enligt respektive skolas organisation.',
-    departments_abe: 'Arkitektur och samhällsbyggnad',
-    departments_other_universities: 'Samarbete med andra universitet',
+    departments_deprecated_schools: 'Äldre skolor',
+    departments_deprecated_schools_collapsible: 'Kurser äldre skolor',
     departments_list_footer: {
       content_contact: 'Kontakt för frågor om utbildning på KTH',
       central_study_counseling: 'Central studievägledning',
