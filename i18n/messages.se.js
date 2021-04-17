@@ -135,24 +135,12 @@ module.exports = {
     programmes_admitted_until: 'antagna/kull t.o.m.',
     programmes_admitted_from: 'antagna/kull fr.o.m.',
     programmes_older: 'Program utan nyantagning',
-    programmes_list_footer: {
-      content_contact: 'Kontakt för frågor om utbildning på KTH',
-      central_study_counseling: 'Central studievägledning',
-      application_contact: 'Teknisk kontakt om denna sida',
-      kopps_email: 'kopps@kth.se',
-    },
     main_menu_departments_list: 'Kurser per skola',
     departments_list_header: 'Kurser per skola',
     departments_list_lead:
       'Här listas alla KTH:s aktiva kurser på samtliga utbildningsnivåer, uppdelat enligt respektive skolas organisation.',
     departments_deprecated_schools: 'Äldre skolor',
     departments_deprecated_schools_collapsible: 'Kurser äldre skolor',
-    departments_list_footer: {
-      content_contact: 'Kontakt för frågor om utbildning på KTH',
-      central_study_counseling: 'Central studievägledning',
-      application_contact: 'Teknisk kontakt om denna sida',
-      kopps_email: 'kopps@kth.se',
-    },
     main_menu_shb: 'Studiehandboken 00/01 tom 07/08',
   },
   shb: {

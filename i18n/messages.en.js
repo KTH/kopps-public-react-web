@@ -79,24 +79,12 @@ module.exports = {
     programmes_admitted_until: 'admitted/batch until',
     programmes_admitted_from: 'admitted/batch from',
     programmes_older: 'Programmes without new admission',
-    programmes_list_footer: {
-      content_contact: 'Contact for questions regarding education at KTH',
-      central_study_counseling: 'Central study counseling',
-      application_contact: 'Contact regarding technical matters on this page',
-      kopps_email: 'kopps@kth.se',
-    },
     main_menu_departments_list: 'Courses by school',
     departments_list_header: 'Courses by school',
     departments_list_lead:
       'All active courses on all educational levels given at KTH, listed according to the organization of each school.',
     departments_deprecated_schools: 'Older Schools',
     departments_deprecated_schools_collapsible: 'Courses older schools',
-    departments_list_footer: {
-      content_contact: 'Contact for questions regarding education at KTH',
-      central_study_counseling: 'Central study counseling',
-      application_contact: 'Contact regarding technical matters on this page',
-      kopps_email: 'kopps@kth.se',
-    },
     main_menu_shb: 'Study Handbook 00/01 to 07/08',
   },
   shb: {

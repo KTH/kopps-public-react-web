@@ -1,7 +1,7 @@
 import React from 'react'
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
-import { centralStudyCounselingUrl, koppsEmail, programmeLink } from '../util/links'
+import { centralStudyCounselingUrl, koppsEmail } from '../util/links'
 import Footer from './Footer'
 
 function FooterContent() {

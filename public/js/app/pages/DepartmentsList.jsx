@@ -6,45 +6,17 @@ import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildnings
 import Lead from '../components/Lead'
 import Article from '../components/Article'
 import Footer from '../components/Footer'
+import FooterContent from '../components/FooterContent'
 
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 import translate from '../util/translate'
-import { departmentLink, centralStudyCounselingUrl, koppsEmail } from '../util/links'
+import { departmentLink } from '../util/links'
 
 function localeCompareDepartments(language) {
   return function compareDepartments(a, b) {
     return a.name.localeCompare(b.name, language)
   }
-}
-
-function Anchor({ href, text }) {
-  return <a href={href}>{text}</a>
-}
-
-function FooterContent() {
-  const { language } = useStore()
-  const t = translate(i18n, language)
-
-  const {
-    content_contact: contentContact,
-    central_study_counseling: centralStudyCounseling,
-    application_contact: applicationContact,
-    kopps_email: koppsEmailText,
-  } = t('departments_list_footer')
-
-  const centralStudyCounselingAddress = centralStudyCounselingUrl()
-  const koppsEmailAddress = koppsEmail()
-
-  return (
-    <address>
-      {`${contentContact}: `}
-      <Anchor href={centralStudyCounselingAddress} text={centralStudyCounseling} />
-      <br />
-      {`${applicationContact}: `}
-      <Anchor href={koppsEmailAddress} text={koppsEmailText} />
-    </address>
-  )
 }
 
 function DepartmentsLinkList({ departments }) {

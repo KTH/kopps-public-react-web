@@ -33,6 +33,7 @@ function Example() {
       <Row>
         <Col>
           <Footer>
+            {/** Also see component ../components/FooterContent */}
             <address>{t('main_page_footer_example')}</address>
           </Footer>
         </Col>
