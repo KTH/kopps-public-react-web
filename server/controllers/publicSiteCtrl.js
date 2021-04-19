@@ -5,11 +5,11 @@
 const log = require('kth-node-log')
 const language = require('kth-node-web-common/lib/language')
 
+const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 
 // eslint-disable-next-line no-unused-vars
 const api = require('../api')
-const serverConfig = require('../configuration').server
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
@@ -51,6 +51,7 @@ async function getFovSearch(req, res, next) {
 // eslint-disable-next-line no-unused-vars
 async function _fillApplicationStoreOnServerSide({ applicationStore, query }) {
   applicationStore.setMessage('Tjena!')
+  applicationStore.setBrowserConfig(browserConfig)
 }
 
 module.exports = {
