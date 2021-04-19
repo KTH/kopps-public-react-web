@@ -14,9 +14,9 @@
     "node": "12"
   },
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:notify": "jest --watch --notify",
+    "test": "NODE_ENV=test jest",
+    "test:watch": "NODE_ENV=test jest --watch",
+    "test:notify": "NODE_ENV=test jest --watch --notify",
     "build": "bash ./build.sh prod /kopps-public",
     "build-dev": "bash ./build.sh dev /kopps-public",
     "start": "bash -c 'NODE_ENV=production node app.js'",
