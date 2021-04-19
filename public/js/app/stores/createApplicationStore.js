@@ -78,6 +78,16 @@ function createApplicationStore() {
      * @property {[]} deprecatedSchoolsWithDepartments
      */
     deprecatedSchoolsWithDepartments: [],
+
+    /**
+     * @property {object} browserConfig
+     */
+    browserConfig: {},
+    /**
+     * @method
+     * @param {object} config
+     */
+    setBrowserConfig,
   }
 
   return store
@@ -119,4 +129,8 @@ function setCurrentSchoolsWithDepartments(currentSchoolsWithDepartments) {
 
 function setDeprecatedSchoolsWithDepartments(deprecatedSchoolsWithDepartments) {
   this.deprecatedSchoolsWithDepartments = deprecatedSchoolsWithDepartments
+}
+
+function setBrowserConfig(config) {
+  this.browserConfig = config
 }

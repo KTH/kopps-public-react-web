@@ -3,9 +3,8 @@
 const log = require('kth-node-log')
 const language = require('kth-node-web-common/lib/language')
 
+const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
-
-const serverConfig = require('../configuration').server
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
@@ -17,6 +16,7 @@ async function getStudyBook(req, res, next) {
 
     const applicationStore = createStore()
     applicationStore.setLanguage(lang)
+    applicationStore.setBrowserConfig(browserConfig)
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
     const { uri: proxyPrefix } = serverConfig.proxyPrefixPath

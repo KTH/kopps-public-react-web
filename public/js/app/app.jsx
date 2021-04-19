@@ -45,8 +45,8 @@ function _renderOnClientSide() {
 }
 
 function appFactory(applicationStore) {
-  const { language } = applicationStore
-  const menuData = getMenuData(language)
+  const { language, browserConfig } = applicationStore
+  const menuData = getMenuData(language, browserConfig.proxyPrefixPath.uri)
   const menuDataExample = getMenuDataExample(language)
   return (
     <MobxStoreProvider initCallback={() => applicationStore}>

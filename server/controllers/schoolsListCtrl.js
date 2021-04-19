@@ -3,10 +3,10 @@
 const log = require('kth-node-log')
 const language = require('kth-node-web-common/lib/language')
 
+const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 
 const koppsApi = require('../kopps/koppsApi')
-const serverConfig = require('../configuration').server
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
@@ -54,6 +54,7 @@ function _filterOutDeprecatedSchools(schoolsWithDepartments, lang) {
 
 async function _fillApplicationStoreOnServerSide({ applicationStore, lang }) {
   applicationStore.setLanguage(lang)
+  applicationStore.setBrowserConfig(browserConfig)
   const listForActiveCourses = true
   const params = { departmentCriteria: koppsApi.DEPARTMENT_CRITERIA.HAS_COURSES, listForActiveCourses, lang }
   const schoolsWithDepartments = await koppsApi.listSchoolsWithDepartments(params)

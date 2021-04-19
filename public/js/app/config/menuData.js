@@ -3,7 +3,7 @@ const i18n = require('../../../../i18n')
 const translate = require('../util/translate')
 const { parentLink, pageLink } = require('../util/links')
 
-function getMenuData(language) {
+function getMenuData(language, proxyPrefixPath) {
   const t = translate(i18n, language)
   return {
     ariaLabel: t('main_menu_aria_label'),
@@ -23,19 +23,19 @@ function getMenuData(language) {
           id: 'programmesList',
           type: 'leaf',
           text: t('main_menu_programmes_list'),
-          url: pageLink('student/kurser/kurser-inom-program'),
+          url: pageLink(proxyPrefixPath, 'student/kurser/kurser-inom-program'),
         },
         {
           id: 'departmentsList',
           type: 'leaf',
           text: t('main_menu_departments_list'),
-          url: pageLink('student/kurser/org'),
+          url: pageLink(proxyPrefixPath, 'student/kurser/org'),
         },
         {
           id: 'shb',
           type: 'leaf',
           text: t('main_menu_shb'),
-          url: pageLink('student/program/shb'),
+          url: pageLink(proxyPrefixPath, 'student/program/shb'),
         },
       ],
     },

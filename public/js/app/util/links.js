@@ -3,9 +3,8 @@ function parentLink(language) {
   return `/student/${languageParam}`
 }
 
-function pageLink(pageId) {
-  // TODO: Use proxyPrefixPath.uri, or similar, instead of 'kopps-public'
-  return `/kopps-public/${pageId}`
+function pageLink(proxyPrefixPath, pageId) {
+  return `${proxyPrefixPath}/${pageId}`
 }
 
 function programmeLink(programmeCode, language) {

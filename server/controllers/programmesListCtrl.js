@@ -3,10 +3,10 @@
 const log = require('kth-node-log')
 const language = require('kth-node-web-common/lib/language')
 
+const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 
 const koppsApi = require('../kopps/koppsApi')
-const serverConfig = require('../configuration').server
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { programmeGroupHeadings, find: findProgrammeGroupHeading } = require('../utils/programmeGroupHeading')
@@ -88,6 +88,7 @@ function _categorizeProgrammes(programmes) {
 
 async function _fillApplicationStoreOnServerSide({ applicationStore, lang }) {
   applicationStore.setLanguage(lang)
+  applicationStore.setBrowserConfig(browserConfig)
   const programmes = await koppsApi.listProgrammes(lang)
   const programmesByDegree = _categorizeProgrammes(programmes)
   applicationStore.setProgrammes(programmesByDegree)
