@@ -102,7 +102,7 @@ describe('Render component StudyHandbook within Layout', () => {
 })
 
 describe('Render component StudyHandbook and check its menu, content and links', () => {
-  test('check all links on the page', () => {
+  test('check all links on the page in English', () => {
     render(<StudyHandbookWithLayout lang="en" />)
     const links = screen.getAllByRole('link')
     expect(links.length).toBe(7)
@@ -128,7 +128,41 @@ describe('Render component StudyHandbook and check its menu, content and links',
     expect(links[6].href).toStrictEqual('mailto:kopps@kth.se')
   })
 
-  test('get page header in Swedish', () => {
+  test('check all links on the page in Swedish', () => {
+    render(<StudyHandbookWithLayout lang="sv" />)
+    const links = screen.getAllByRole('link')
+    expect(links.length).toBe(7)
+    expect(links[0]).toHaveTextContent('Student på KTH')
+    expect(links[0].href).toStrictEqual('http://localhost/student/')
+
+    expect(links[1]).toHaveTextContent('Kurser inom program')
+    expect(links[1].href).toStrictEqual('localhost://kopps-public/student/kurser/kurser-inom-program')
+
+    expect(links[2]).toHaveTextContent('Kurser per skola')
+    expect(links[2].href).toStrictEqual('localhost://kopps-public/student/kurser/org')
+
+    expect(links[3]).toHaveTextContent('Studiehandboken 00/01 tom 07/08') // menu link
+    expect(links[3].href).toStrictEqual('localhost://kopps-public/student/program/shb')
+
+    expect(links[4]).toHaveTextContent('Studiehandboken 00/01 tom 07/08') // content link
+    expect(links[4].href).toStrictEqual('https://intra.kth.se/utbildning/utbildningsadministr/kopps/shb')
+
+    expect(links[5]).toHaveTextContent('Central studievägledning')
+    expect(links[5].href).toStrictEqual('https://www.kth.se/studycounselling')
+
+    expect(links[6]).toHaveTextContent('kopps@kth.se')
+    expect(links[6].href).toStrictEqual('mailto:kopps@kth.se')
+  })
+
+  test('get page content in English', () => {
+    render(<StudyHandbookWithLayout lang="en" />)
+    const content = screen.getByText(
+      'Until the study year 2007/2008 the study handbook contained program and course information.'
+    )
+    expect(content).toBeInTheDocument()
+  })
+
+  test('get page content in Swedish', () => {
     render(<StudyHandbookWithLayout lang="sv" />)
     const content = screen.getByText(
       'Fram till läsåret 2007/2008 fanns information om program och kurser i studiehandboken.'
