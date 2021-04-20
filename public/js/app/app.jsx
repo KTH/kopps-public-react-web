@@ -18,9 +18,11 @@ import RouteWrapper from './components/RouteWrapper'
 
 import getMenuData from './config/menuData'
 import getMenuDataExample from './config/menuDataExample'
+import getDepartmentMenuData from './config/departmentMenuData'
 import StudyHandbook from './pages/StudyHandbook'
 import ProgrammesList from './pages/ProgrammesList'
 import DepartmentsList from './pages/DepartmentsList'
+import DepartmentCourses from './pages/DepartmentCourses'
 
 export default appFactory
 
@@ -45,8 +47,9 @@ function _renderOnClientSide() {
 }
 
 function appFactory(applicationStore) {
-  const { language, browserConfig } = applicationStore
+  const { language, browserConfig, departmentName } = applicationStore
   const menuData = getMenuData(language, browserConfig.proxyPrefixPath.uri)
+  const departmentMenuData = getDepartmentMenuData(language, browserConfig.proxyPrefixPath.uri, departmentName)
   const menuDataExample = getMenuDataExample(language)
   return (
     <MobxStoreProvider initCallback={() => applicationStore}>
@@ -83,6 +86,14 @@ function appFactory(applicationStore) {
           component={DepartmentsList}
           layout={PageLayout}
           menuData={{ selectedId: 'departmentsList', ...menuData }}
+        />
+        <RouteWrapper
+          exact
+          path="/student/kurser/org/:departmentCode"
+          breadcrumbs={{ include: 'directory' }}
+          component={DepartmentCourses}
+          layout={PageLayout}
+          menuData={{ selectedId: 'courses', ...departmentMenuData }}
         />
       </Switch>
     </MobxStoreProvider>

@@ -3,8 +3,9 @@ function parentLink(language) {
   return `/student/${languageParam}`
 }
 
-function pageLink(proxyPrefixPath, pageId) {
-  return `${proxyPrefixPath}/${pageId}`
+function pageLink(proxyPrefixPath, pageId, language) {
+  const languageParam = language === 'en' ? '?l=en' : ''
+  return `${proxyPrefixPath}/${pageId}${languageParam}`
 }
 
 function programmeLink(programmeCode, language) {

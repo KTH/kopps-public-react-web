@@ -88,6 +88,16 @@ function createApplicationStore() {
      * @param {object} config
      */
     setBrowserConfig,
+
+    /**
+     * @property {string} departmentName
+     */
+    departmentName: {},
+    /**
+     * @method
+     * @param {string} departmentName
+     */
+    setDepartmentName,
   }
 
   return store
@@ -133,4 +143,8 @@ function setDeprecatedSchoolsWithDepartments(deprecatedSchoolsWithDepartments) {
 
 function setBrowserConfig(config) {
   this.browserConfig = config
+}
+
+function setDepartmentName(departmentName) {
+  this.departmentName = departmentName
 }

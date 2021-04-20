@@ -10,11 +10,25 @@ const koppsApi = require('../kopps/koppsApi')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
+// TODO: There’s also links on the client side. Refactor?
+function departmentLink(proxyPrefixPath, departmentCode, lang) {
+  const languageParam = lang === 'en' ? '?l=en' : ''
+  return `${proxyPrefixPath}/student/kurser/org/${departmentCode}${languageParam}`
+}
+
 async function _fillApplicationStoreOnServerSide({ applicationStore, lang, departmentCode }) {
   applicationStore.setLanguage(lang)
   applicationStore.setBrowserConfig(browserConfig)
 
   const courses = await koppsApi.getCourses({ departmentCode, language })
+  const { department: departmentName } = courses
+  applicationStore.setDepartmentName(departmentName)
+
+  const departmentBreadCrumbItem = {
+    url: departmentLink(browserConfig.proxyPrefixPath.uri, departmentCode, lang),
+    label: departmentName,
+  }
+  applicationStore.setBreadcrumbsDynamicItems([departmentBreadCrumbItem])
 }
 
 async function getIndex(req, res, next) {
