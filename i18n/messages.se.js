@@ -10,6 +10,10 @@ module.exports = {
     error_not_found: 'Tyvärr kunde vi inte hitta sidan du söker',
     error_generic: 'Något gick fel på servern, var god försök igen senare',
 
+    // Ready for test
+    ready_paths: 'Klara för test',
+    redirect_paths: 'Omdirigeringar',
+
     // Message keys
     service_name: 'Kurs- och programkatalogen',
 

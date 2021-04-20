@@ -247,14 +247,19 @@ server.use('/', embeddedPageRoute.getRouter())
 // App routes
 const appRoute = AppRouter()
 appRoute.get('system.index', config.proxyPrefixPath.uri + '/', Public.getIndex)
-appRoute.get('public.example', config.proxyPrefixPath.uri + '/example', Public.getIndex)
+appRoute.get('system.ready', config.proxyPrefixPath.uri + '/_ready', Public.getReady)
+appRoute.get('example', config.proxyPrefixPath.uri + '/example', Public.getIndex)
 appRoute.get('public.studyhandbook', config.proxyPrefixPath.uri + '/student/program/shb', Courses.getStudyBook)
-appRoute.get('public.fovkurser', config.proxyPrefixPath.uri + '/utbildning/kurser/fovkurser', Public.getFovSearch)
-appRoute.get('public.redirect', config.proxyPrefixPath.uri + '/student/kurser/kurser-per-avdelning/', (req, res) => {
-  res.redirect(301, config.proxyPrefixPath.uri + '/student/kurser/org')
-})
+appRoute.get('dev.fovkurser', config.proxyPrefixPath.uri + '/utbildning/kurser/fovkurser', Public.getFovSearch)
 appRoute.get(
-  'public.redirect',
+  'redirect.kurser-per-avdelning',
+  config.proxyPrefixPath.uri + '/student/kurser/kurser-per-avdelning/',
+  (req, res) => {
+    res.redirect(301, config.proxyPrefixPath.uri + '/student/kurser/org')
+  }
+)
+appRoute.get(
+  'redirect.avdelning-kurser',
   config.proxyPrefixPath.uri + '/student/kurser/avdelning/:departmentCode/kurser/',
   (req, res) => {
     const { departmentCode } = req.params

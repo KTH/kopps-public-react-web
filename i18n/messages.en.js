@@ -10,6 +10,10 @@ module.exports = {
     error_not_found: "Sorry, we can't find your requested page",
     error_generic: 'Something went wrong on the server, please try again later.',
 
+    // Ready for test
+    ready_paths: 'Ready for Test',
+    redirect_paths: 'Redirect Paths',
+
     // Message keys
     service_name: 'Course and programme directory',
 
