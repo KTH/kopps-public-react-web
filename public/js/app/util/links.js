@@ -13,9 +13,9 @@ function programmeLink(programmeCode, language) {
   return `/student/kurser/program/${programmeCode}${languageParam}`
 }
 
-function departmentLink(departmentCode, language) {
+function departmentLink(proxyPrefixPath, departmentCode, language) {
   const languageParam = language === 'en' ? '?l=en' : ''
-  return `/student/kurser/org/${departmentCode}${languageParam}`
+  return `${proxyPrefixPath}/student/kurser/org/${departmentCode}${languageParam}`
 }
 
 function centralStudyCounselingUrl() {
