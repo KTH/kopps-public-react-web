@@ -79,7 +79,7 @@ function DepartmentsList() {
       </Row>
       <Row>
         <Col>
-          <Article>
+          <Article classNames={['paragraphs']}>
             <CurrentSchools />
             <DeprecatedSchools />
           </Article>

@@ -107,7 +107,7 @@ function ProgrammesList() {
       </Row>
       <Row>
         <Col>
-          <Article>
+          <Article classNames={['paragraphs']}>
             {programmes.map(programme => (
               <Section key={programme[0]} programmeType={programme[0]}>
                 <Heading size="h2" text={t('programme_type')[programme[0]]} />

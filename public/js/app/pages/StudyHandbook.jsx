@@ -23,7 +23,7 @@ function StudyHandbook() {
       </Row>
       <Row>
         <Col>
-          <Article>
+          <Article classNames={['paragraphs']}>
             <p>{content}</p>
             <p>
               <a href="https://intra.kth.se/utbildning/utbildningsadministr/kopps/shb">{pageHeading}</a>

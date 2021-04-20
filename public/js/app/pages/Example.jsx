@@ -23,7 +23,7 @@ function Example() {
       </Row>
       <Row>
         <Col>
-          <Article>
+          <Article classNames={['paragraphs']}>
             <Heading size="h2" text={t('main_page_article_header_example')} />
             <p>{t('main_page_article_first_paragraph_example')}</p>
             <p>{t('main_page_article_second_paragraph_example')}</p>
