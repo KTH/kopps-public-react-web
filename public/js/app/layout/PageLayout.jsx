@@ -40,6 +40,10 @@ function PageLayout({ breadcrumbs, menuData, children }) {
   )
 }
 
+MainContent.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+}
+
 PageLayout.propTypes = {
   breadcrumbs: PropTypes.shape({
     include: PropTypes.oneOf(['none', 'university', 'student', 'directory']),
@@ -53,7 +57,7 @@ PageLayout.propTypes = {
   menuData: PropTypes.shape({
     ariaLabel: PropTypes.string,
     navList: PropTypes.shape({
-      type: PropTypes.oneOf['expandable'],
+      type: PropTypes.oneOf(['expandable']),
       items: PropTypes.arrayOf(
         PropTypes.shape({
           id: PropTypes.string,
@@ -65,9 +69,11 @@ PageLayout.propTypes = {
     parentLink: PropTypes.shape({ text: PropTypes.string, url: PropTypes.string }),
     selectedId: PropTypes.string,
   }),
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 }
 
 PageLayout.defaultProps = {
   breadcrumbs: { include: 'student', items: [] },
+  menuData: {},
 }
 export default PageLayout
