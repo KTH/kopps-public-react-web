@@ -22,7 +22,7 @@ function getDepartmentMenuData(language, proxyPrefixPath, departmentName) {
         {
           id: 'courses',
           type: 'leaf',
-          text: t('koppspublic_courses'),
+          text: t('department_courses'),
         },
       ],
     },

@@ -142,6 +142,11 @@ module.exports = {
     departments_deprecated_schools: 'Äldre skolor',
     departments_deprecated_schools_collapsible: 'Kurser äldre skolor',
     main_menu_shb: 'Studiehandboken 00/01 tom 07/08',
+    department_courses: 'Kurser',
+    department_course_code: 'Kurskod',
+    department_course_name: 'Kursnamn',
+    department_course_credits: 'Omfattning',
+    department_course_educational_level: 'Utbildningsnivå',
   },
   shb: {
     pageHeading: 'Studiehandboken 00/01 tom 07/08',

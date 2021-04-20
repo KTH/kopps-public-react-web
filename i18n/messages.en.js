@@ -86,6 +86,11 @@ module.exports = {
     departments_deprecated_schools: 'Older Schools',
     departments_deprecated_schools_collapsible: 'Courses older schools',
     main_menu_shb: 'Study Handbook 00/01 to 07/08',
+    department_courses: 'Courses',
+    department_course_code: 'Course code',
+    department_course_name: 'Course name',
+    department_course_credits: 'Scope',
+    department_course_educational_level: 'Educational level',
   },
   shb: {
     pageHeading: 'Study Handbook 00/01 to 07/08',

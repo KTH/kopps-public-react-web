@@ -18,6 +18,11 @@ function departmentLink(proxyPrefixPath, departmentCode, language) {
   return `${proxyPrefixPath}/student/kurser/org/${departmentCode}${languageParam}`
 }
 
+function courseLink(courseCode, language) {
+  const languageParam = language === 'en' ? '?l=en' : ''
+  return `/student/kurser/kurs/${courseCode}${languageParam}`
+}
+
 function centralStudyCounselingUrl() {
   return 'https://www.kth.se/studycounselling'
 }
@@ -31,6 +36,7 @@ module.exports = {
   pageLink,
   programmeLink,
   departmentLink,
+  courseLink,
   centralStudyCounselingUrl,
   koppsEmail,
 }

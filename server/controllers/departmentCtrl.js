@@ -20,9 +20,10 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, depar
   applicationStore.setLanguage(lang)
   applicationStore.setBrowserConfig(browserConfig)
 
-  const courses = await koppsApi.getCourses({ departmentCode, language })
-  const { department: departmentName } = courses
+  const departmentCourses = await koppsApi.getCourses({ departmentCode, lang })
+  const { department: departmentName, courses } = departmentCourses
   applicationStore.setDepartmentName(departmentName)
+  applicationStore.setDepartmentCourses(courses)
 
   const departmentBreadCrumbItem = {
     url: departmentLink(browserConfig.proxyPrefixPath.uri, departmentCode, lang),

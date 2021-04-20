@@ -98,6 +98,16 @@ function createApplicationStore() {
      * @param {string} departmentName
      */
     setDepartmentName,
+
+    /**
+     * @property {[]} departmentCourses
+     */
+    departmentCourses: [],
+    /**
+     * @method
+     * @param {[]} departmentCourses
+     */
+    setDepartmentCourses,
   }
 
   return store
@@ -147,4 +157,8 @@ function setBrowserConfig(config) {
 
 function setDepartmentName(departmentName) {
   this.departmentName = departmentName
+}
+
+function setDepartmentCourses(departmentCourses) {
+  this.departmentCourses = departmentCourses
 }
