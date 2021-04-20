@@ -254,6 +254,14 @@ appRoute.get('public.redirect', config.proxyPrefixPath.uri + '/student/kurser/ku
   res.redirect(301, config.proxyPrefixPath.uri + '/student/kurser/org')
 })
 appRoute.get(
+  'public.redirect',
+  config.proxyPrefixPath.uri + '/student/kurser/avdelning/:departmentCode/kurser/',
+  (req, res) => {
+    const { departmentCode } = req.params
+    res.redirect(301, `${config.proxyPrefixPath.uri}/student/kurser/org/${departmentCode}`)
+  }
+)
+appRoute.get(
   'public.programmesList',
   config.proxyPrefixPath.uri + '/student/kurser/kurser-inom-program',
   ProgrammesList.getProgrammesList
