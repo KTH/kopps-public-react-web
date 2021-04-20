@@ -26,10 +26,12 @@ RouteWrapper.propTypes = {
       })
     ),
   }),
+  component: PropTypes.node.isRequired,
+  layout: PropTypes.node.isRequired,
   menuData: PropTypes.shape({
     ariaLabel: PropTypes.string,
     navList: PropTypes.shape({
-      type: PropTypes.oneOf['expandable'],
+      type: PropTypes.oneOf(['expandable']),
       items: PropTypes.arrayOf(
         PropTypes.shape({
           id: PropTypes.string,
