@@ -104,10 +104,26 @@ const listSchoolsWithDepartments = async ({ departmentCriteria, listForActiveCou
   }
 }
 
+const getCourses = async ({ departmentCode, lang = 'sv' }) => {
+  const { client } = koppsApi.koppsApi
+  const koppsBase = config.koppsApi.basePath.endsWith('/')
+    ? config.koppsApi.basePath
+    : config.koppsApi.basePath.concat('/')
+  const uri = `${koppsBase}courses/${departmentCode}.json?l=${lang}`
+  try {
+    const response = await client.getAsync({ uri, useCache: false })
+    return response.body
+  } catch (error) {
+    log.error('Exception calling KOPPS API in koppsApi.getCourses', { error })
+    throw error
+  }
+}
+
 module.exports = {
   searchFovCourses,
   listActiveMainFieldsOfStudy,
   listProgrammes,
   DEPARTMENT_CRITERIA,
   listSchoolsWithDepartments,
+  getCourses,
 }

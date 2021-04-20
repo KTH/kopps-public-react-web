@@ -219,7 +219,7 @@ server.use(
  * ******* APPLICATION ROUTES *******
  * **********************************
  */
-const { Courses, System, Public, EmbeddedPage, ProgrammesList, SchoolsList } = require('./controllers')
+const { Courses, System, Public, EmbeddedPage, ProgrammesList, SchoolsList, Department } = require('./controllers')
 const { requireRole } = require('./authentication')
 
 // System routes
@@ -259,6 +259,11 @@ appRoute.get(
   ProgrammesList.getProgrammesList
 )
 appRoute.get('public.departmentsList', config.proxyPrefixPath.uri + '/student/kurser/org', SchoolsList.getSchoolsList)
+appRoute.get(
+  'public.department',
+  config.proxyPrefixPath.uri + '/student/kurser/org/:departmentCode',
+  Department.getIndex
+)
 appRoute.get(
   'system.gateway',
   config.proxyPrefixPath.uri + '/gateway',
