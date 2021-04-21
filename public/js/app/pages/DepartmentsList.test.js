@@ -3,6 +3,7 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
+import { axe, toHaveNoViolations } from 'jest-axe'
 import { StaticRouter } from 'react-router'
 import { MobxStoreProvider } from '../mobx'
 
@@ -12,6 +13,8 @@ import PageLayout from '../layout/PageLayout'
 
 import createApplicationStore from '../stores/createApplicationStore'
 import getMenuData from '../config/menuData'
+
+expect.extend(toHaveNoViolations)
 
 const applicationStore = createApplicationStore()
 
@@ -87,6 +90,11 @@ describe('Render component DepartmentsList within RouterWrapper', () => {
 })
 
 describe('Render component DepartmentsList within Layout', () => {
+  test('verify that page is accessible', async () => {
+    const { container } = render(<DepartmentsListWithLayout lang="en" />)
+    expect(await axe(container)).toHaveNoViolations()
+  })
+
   test('get page header in English', () => {
     render(<DepartmentsListWithLayout lang="en" />)
     const h1Header = screen.getByRole('heading', { level: 1 })
