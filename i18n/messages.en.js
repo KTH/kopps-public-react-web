@@ -91,10 +91,14 @@ module.exports = {
     department_course_name: 'Course name',
     department_course_credits: 'Scope',
     department_course_educational_level: 'Educational level',
+    third_cycle_department_courses: 'Third-cycle courses by school',
   },
   shb: {
     pageHeading: 'Study Handbook 00/01 to 07/08',
     content: 'Until the study year 2007/2008 the study handbook contained program and course information.',
+  },
+  thirdCycleDepartments: {
+    searchHeading: 'Search third-cycle courses',
   },
   footerContent: {
     contentContact: 'Contact for questions regarding education at KTH',
