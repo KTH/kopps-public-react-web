@@ -5,6 +5,7 @@ const language = require('kth-node-web-common/lib/language')
 
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
+const koppsApi = require('../kopps/koppsApi')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 

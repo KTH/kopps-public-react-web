@@ -151,10 +151,14 @@ module.exports = {
     department_course_name: 'Kursnamn',
     department_course_credits: 'Omfattning',
     department_course_educational_level: 'Utbildningsnivå',
+    third_cycle_departments_list_header: 'Forskarkurser per skola',
   },
   shb: {
     pageHeading: 'Studiehandboken 00/01 tom 07/08',
     content: 'Fram till läsåret 2007/2008 fanns information om program och kurser i studiehandboken.',
+  },
+  thirdCycleDepartments: {
+    searchHeading: 'Sök forskarkurs',
   },
   footerContent: {
     contentContact: 'Kontakt för frågor om utbildning på KTH',

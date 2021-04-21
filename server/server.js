@@ -219,7 +219,16 @@ server.use(
  * ******* APPLICATION ROUTES *******
  * **********************************
  */
-const { Courses, System, Public, EmbeddedPage, ProgrammesList, SchoolsList, Department } = require('./controllers')
+const {
+  StudyHandBook,
+  System,
+  ThirdCycleCourses,
+  Public,
+  EmbeddedPage,
+  ProgrammesList,
+  SchoolsList,
+  Department,
+} = require('./controllers')
 const { requireRole } = require('./authentication')
 
 // System routes
@@ -249,8 +258,13 @@ const appRoute = AppRouter()
 appRoute.get('system.index', config.proxyPrefixPath.uri + '/', Public.getIndex)
 appRoute.get('system.ready', config.proxyPrefixPath.uri + '/_ready', Public.getReady)
 appRoute.get('example', config.proxyPrefixPath.uri + '/example', Public.getIndex)
-appRoute.get('public.studyhandbook', config.proxyPrefixPath.uri + '/student/program/shb', Courses.getStudyBook)
+appRoute.get('public.studyhandbook', config.proxyPrefixPath.uri + '/student/program/shb', StudyHandBook.getStudyBook)
 appRoute.get('dev.fovkurser', config.proxyPrefixPath.uri + '/utbildning/kurser/fovkurser', Public.getFovSearch)
+appRoute.get(
+  'DEV.allThirdCycleCourses',
+  config.proxyPrefixPath.uri + '/utbildning/forskarutbildning/kurser/avdelning',
+  ThirdCycleCourses.getAllSchoolsAndThirdCycleCourses
+)
 appRoute.get(
   'redirect.kurser-per-avdelning',
   config.proxyPrefixPath.uri + '/student/kurser/kurser-per-avdelning/',
