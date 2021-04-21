@@ -4,6 +4,7 @@
 
 const log = require('kth-node-log')
 const language = require('kth-node-web-common/lib/language')
+const { getPaths } = require('kth-node-express-routing')
 
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
@@ -48,6 +49,36 @@ async function getFovSearch(req, res, next) {
   }
 }
 
+async function getReady(req, res, next) {
+  try {
+    const lang = language.getLanguage(res)
+    const { uri: proxyPrefix } = serverConfig.proxyPrefixPath
+    const title = i18n.message('site_name', lang)
+    const pageHeader = i18n.message('ready_paths', lang)
+    const redirectHeader = i18n.message('redirect_paths', lang)
+
+    const { public: publicPaths, redirect: redirectPaths } = getPaths()
+    const publicPathsList = `${Object.keys(publicPaths)
+      .map(path => `<li><a href="${publicPaths[path].uri}">${publicPaths[path].uri}</a></li>`)
+      .join('')}`
+    const redirectPathsList = `${Object.keys(redirectPaths)
+      .map(path => `<li><a href="${redirectPaths[path].uri}">${redirectPaths[path].uri}</a></li>`)
+      .join('')}`
+    const html = `<h1>${pageHeader}</h1><ul>${publicPathsList}</ul><details><summary class="white">${redirectHeader}</summary><ul>${redirectPathsList}</ul></details>`
+
+    res.render('ready/index', {
+      html,
+      title,
+      description: title,
+      lang,
+      proxyPrefix,
+    })
+  } catch (err) {
+    log.error('Error in getIndex', { error: err })
+    next(err)
+  }
+}
+
 // eslint-disable-next-line no-unused-vars
 async function _fillApplicationStoreOnServerSide({ applicationStore, query }) {
   applicationStore.setMessage('Tjena!')
@@ -57,4 +88,5 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, query }) {
 module.exports = {
   getIndex,
   getFovSearch,
+  getReady,
 }
