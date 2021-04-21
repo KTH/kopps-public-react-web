@@ -23,6 +23,7 @@ import StudyHandbook from './pages/StudyHandbook'
 import ProgrammesList from './pages/ProgrammesList'
 import DepartmentsList from './pages/DepartmentsList'
 import DepartmentCourses from './pages/DepartmentCourses'
+import ThirdCycleDepartmentsList from './pages/ThirdCycleDepartmentsList'
 
 export default appFactory
 
@@ -94,6 +95,14 @@ function appFactory(applicationStore) {
           component={DepartmentCourses}
           layout={PageLayout}
           menuData={{ selectedId: 'courses', ...departmentMenuData }}
+        />
+        <RouteWrapper
+          exact
+          path="/utbildning/forskarutbildning/kurser/avdelning"
+          breadcrumbs={{ include: 'university' }}
+          component={ThirdCycleDepartmentsList}
+          layout={PageLayout}
+          menuData={{ selectedId: 'departmentsList', ...menuData }}
         />
       </Switch>
     </MobxStoreProvider>
