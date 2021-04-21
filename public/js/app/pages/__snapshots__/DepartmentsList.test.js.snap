@@ -1,0 +1,317 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render component DepartmentsList within Layout match to snapshot in English 1`] = `
+<DocumentFragment>
+  <div
+    class="row"
+  >
+    <nav
+      aria-label="Sub menu"
+      class="col navbar navbar-expand-lg navbar-light"
+      id="mainMenu"
+    >
+      <div
+        class="collapse navbar-collapse"
+        id="navbarNav"
+      >
+        <ul
+          class="nav"
+        >
+          <li
+            class="parentLink"
+          >
+            <a
+              href="/student/?l=en"
+            >
+              Student at KTH
+            </a>
+          </li>
+        </ul>
+        <ul
+          class="nav nav-list expandable"
+        >
+          <li
+            class="nav-item ancestor"
+          >
+            <div>
+              Course and programme directory
+            </div>
+          </li>
+          <li
+            class="nav-item leaf"
+          >
+            <a
+              class="nav-link"
+              href="localhost://kopps-public/student/kurser/kurser-inom-program"
+            >
+              Courses Part of Programme
+            </a>
+          </li>
+          <li
+            class="nav-item leaf selected"
+          >
+            <a
+              class="nav-link"
+              href="localhost://kopps-public/student/kurser/org"
+            >
+              Courses by school
+            </a>
+          </li>
+          <li
+            class="nav-item leaf"
+          >
+            <a
+              class="nav-link"
+              href="localhost://kopps-public/student/program/shb"
+            >
+              Study Handbook 00/01 to 07/08
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div
+      class="col"
+    >
+      <main
+        id="mainContent"
+      >
+        <div
+          class="row"
+        >
+          <div
+            class="col"
+          >
+            <header
+              role="presentation"
+            >
+              <h1>
+                Courses by school
+              </h1>
+            </header>
+            <div
+              class="lead"
+            >
+              <p>
+                All active courses on all educational levels given at KTH, listed according to the organization of each school.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="row"
+        >
+          <div
+            class="col"
+          >
+            <article
+              class="article paragraphs"
+            >
+              <h2>
+                School
+              </h2>
+              <ul
+                class="link-list"
+              >
+                <li>
+                  <a
+                    href="localhost://kopps-public/student/kurser/org/BB?l=en"
+                  >
+                    Department
+                  </a>
+                </li>
+              </ul>
+            </article>
+          </div>
+        </div>
+        <div
+          class="row"
+        >
+          <div
+            class="col"
+          >
+            <footer
+              class="border-top mt-4 pt-1"
+              id="articleFooter"
+            >
+              <address>
+                Contact for questions regarding education at KTH: 
+                <a
+                  href="https://www.kth.se/studycounselling"
+                >
+                  Central study counseling
+                </a>
+                <br />
+                Contact regarding technical matters on this page: 
+                <a
+                  href="mailto:kopps@kth.se"
+                >
+                  kopps@kth.se
+                </a>
+              </address>
+            </footer>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Render component DepartmentsList within Layout match to snapshot in Swedish 1`] = `
+<DocumentFragment>
+  <div
+    class="row"
+  >
+    <nav
+      aria-label="Undermeny"
+      class="col navbar navbar-expand-lg navbar-light"
+      id="mainMenu"
+    >
+      <div
+        class="collapse navbar-collapse"
+        id="navbarNav"
+      >
+        <ul
+          class="nav"
+        >
+          <li
+            class="parentLink"
+          >
+            <a
+              href="/student/"
+            >
+              Student på KTH
+            </a>
+          </li>
+        </ul>
+        <ul
+          class="nav nav-list expandable"
+        >
+          <li
+            class="nav-item ancestor"
+          >
+            <div>
+              Kurs- och programkatalogen
+            </div>
+          </li>
+          <li
+            class="nav-item leaf"
+          >
+            <a
+              class="nav-link"
+              href="localhost://kopps-public/student/kurser/kurser-inom-program"
+            >
+              Kurser inom program
+            </a>
+          </li>
+          <li
+            class="nav-item leaf selected"
+          >
+            <a
+              class="nav-link"
+              href="localhost://kopps-public/student/kurser/org"
+            >
+              Kurser per skola
+            </a>
+          </li>
+          <li
+            class="nav-item leaf"
+          >
+            <a
+              class="nav-link"
+              href="localhost://kopps-public/student/program/shb"
+            >
+              Studiehandboken 00/01 tom 07/08
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div
+      class="col"
+    >
+      <main
+        id="mainContent"
+      >
+        <div
+          class="row"
+        >
+          <div
+            class="col"
+          >
+            <header
+              role="presentation"
+            >
+              <h1>
+                Kurser per skola
+              </h1>
+            </header>
+            <div
+              class="lead"
+            >
+              <p>
+                Här listas alla KTH:s aktiva kurser på samtliga utbildningsnivåer, uppdelat enligt respektive skolas organisation.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="row"
+        >
+          <div
+            class="col"
+          >
+            <article
+              class="article paragraphs"
+            >
+              <h2>
+                Skola
+              </h2>
+              <ul
+                class="link-list"
+              >
+                <li>
+                  <a
+                    href="localhost://kopps-public/student/kurser/org/BB"
+                  >
+                    Avdelning
+                  </a>
+                </li>
+              </ul>
+            </article>
+          </div>
+        </div>
+        <div
+          class="row"
+        >
+          <div
+            class="col"
+          >
+            <footer
+              class="border-top mt-4 pt-1"
+              id="articleFooter"
+            >
+              <address>
+                Kontakt för frågor om utbildning på KTH: 
+                <a
+                  href="https://www.kth.se/studycounselling"
+                >
+                  Central studievägledning
+                </a>
+                <br />
+                Teknisk kontakt om denna sida: 
+                <a
+                  href="mailto:kopps@kth.se"
+                >
+                  kopps@kth.se
+                </a>
+              </address>
+            </footer>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</DocumentFragment>
+`;

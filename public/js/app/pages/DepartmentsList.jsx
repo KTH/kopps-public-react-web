@@ -51,7 +51,8 @@ function CurrentSchools() {
 function DeprecatedSchools() {
   const { language, deprecatedSchoolsWithDepartments } = useStore()
   const t = translate(i18n, language)
-  return (
+
+  return deprecatedSchoolsWithDepartments && deprecatedSchoolsWithDepartments.length ? (
     <>
       <h2>{t('departments_deprecated_schools')}</h2>
       <CollapseDetails title={t('departments_deprecated_schools_collapsible')}>
@@ -63,7 +64,7 @@ function DeprecatedSchools() {
         ))}
       </CollapseDetails>
     </>
-  )
+  ) : null
 }
 
 function DepartmentsList() {
