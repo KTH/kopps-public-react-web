@@ -6,9 +6,10 @@
  */
 
 module.exports = {
-  Courses: require('./coursesCtrl'),
+  StudyHandBook: require('./studyHandBookCtrl'),
   System: require('./systemCtrl'),
   Sample: require('./sampleCtrl'),
+  ThirdCycleCourses: require('./thirdCycleCoursesCtrl'),
   Public: require('./publicSiteCtrl'),
   EmbeddedPage: require('./embeddedPagesCtrl'),
   ProgrammesList: require('./programmesListCtrl'),
