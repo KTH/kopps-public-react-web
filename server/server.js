@@ -266,7 +266,7 @@ appRoute.get(
   ThirdCycleStudy.getAllSchoolsAndDepartments
 )
 appRoute.get(
-  'DEV.departmentThirdCycleStudy',
+  'public.departmentThirdCycleStudy',
   config.proxyPrefixPath.uri + '/utbildning/forskarutbildning/kurser/org/:departmentCode',
   ThirdCycleStudy.getCoursesPerDepartment
 )
