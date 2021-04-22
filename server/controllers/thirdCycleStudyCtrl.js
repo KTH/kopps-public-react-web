@@ -72,7 +72,7 @@ async function _fillCoursesApplicationStoreOnServerSide({ applicationStore, lang
   const departmentCourses = await koppsApi.getCourses({ departmentCode, lang })
   const { department: departmentName, courses } = departmentCourses
   applicationStore.setDepartmentName(departmentName)
-  applicationStore.setDepartmentCourses(courses)
+  applicationStore.setDepartmentCourses(courses.filter(course => course.level === 'Forskarnivå'))
 
   const departmentBreadCrumbItem = {
     url: departmentLink(browserConfig.proxyPrefixPath.uri, departmentCode, lang),
