@@ -10,7 +10,7 @@ const koppsApi = require('../kopps/koppsApi')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { compareSchools, filterOutDeprecatedSchools } = require('../utils/schools.js')
 
-async function getAllSchoolsAndThirdCycleCourses(req, res, next) {
+async function getAllSchoolsAndDepartments(req, res, next) {
   try {
     const lang = language.getLanguage(res)
 
@@ -34,7 +34,7 @@ async function getAllSchoolsAndThirdCycleCourses(req, res, next) {
       proxyPrefix,
     })
   } catch (err) {
-    log.error('Error in getThirdCycleDepartmentsCourses', { error: err })
+    log.error('Error in thirdCycleStudyCtrl -> getAllSchoolsAndDepartments', { error: err })
     next(err)
   }
 }
@@ -60,6 +60,58 @@ async function _fillApplicationStoreWithAllCourses({ applicationStore, lang }) {
   applicationStore.setCurrentSchoolsWithDepartments(schoolsWithDepartments)
 }
 
+function departmentLink(proxyPrefixPath, departmentCode, lang) {
+  const languageParam = lang === 'en' ? '?l=en' : ''
+  return `${proxyPrefixPath}/utbildning/forskarutbildning/kurser/org/${departmentCode}${languageParam}`
+}
+
+async function _fillCoursesApplicationStoreOnServerSide({ applicationStore, lang, departmentCode }) {
+  applicationStore.setLanguage(lang)
+  applicationStore.setBrowserConfig(browserConfig)
+
+  const departmentCourses = await koppsApi.getCourses({ departmentCode, lang })
+  const { department: departmentName, courses } = departmentCourses
+  applicationStore.setDepartmentName(departmentName)
+  applicationStore.setDepartmentCourses(courses)
+
+  const departmentBreadCrumbItem = {
+    url: departmentLink(browserConfig.proxyPrefixPath.uri, departmentCode, lang),
+    label: departmentName,
+  }
+  applicationStore.setBreadcrumbsDynamicItems([departmentBreadCrumbItem])
+}
+
+async function getCoursesPerDepartment(req, res, next) {
+  try {
+    const lang = language.getLanguage(res)
+    const { departmentCode } = req.params
+
+    const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
+
+    const applicationStore = createStore()
+    await _fillCoursesApplicationStoreOnServerSide({ applicationStore, lang, departmentCode })
+
+    const compressedStoreCode = getCompressedStoreCode(applicationStore)
+
+    const { uri: proxyPrefix } = serverConfig.proxyPrefixPath
+    const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const title = i18n.message('site_name', lang)
+
+    res.render('app/index', {
+      html,
+      title,
+      compressedStoreCode,
+      description: title,
+      lang,
+      proxyPrefix,
+    })
+  } catch (err) {
+    log.error('Error in thirdCycleStudyCtrl -> getAllSchoolsAndDepartments', { error: err })
+    next(err)
+  }
+}
+
 module.exports = {
-  getAllSchoolsAndThirdCycleCourses,
+  getAllSchoolsAndDepartments,
+  getCoursesPerDepartment,
 }
