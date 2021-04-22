@@ -73,7 +73,7 @@ function ThirdCycleDepartmentsList() {
   )
 }
 
-ThirdCycleDepartmentsList.propTypes = {
+DepartmentsLinkList.propTypes = {
   departments: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,

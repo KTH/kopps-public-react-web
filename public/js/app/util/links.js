@@ -7,6 +7,10 @@ function parentLink(language) {
   return `/student/${languageParam}`
 }
 
+function parentStudyLink(language) {
+  return `/utbildning/${getLanguageParam(language)}`
+}
+
 function parentThirdCycleStudyLink(language) {
   return `/utbildning/forskarutbildning/${getLanguageParam(language)}`
 }
@@ -47,5 +51,6 @@ module.exports = {
   courseLink,
   centralStudyCounselingUrl,
   koppsEmail,
+  parentStudyLink,
   parentThirdCycleStudyLink,
 }

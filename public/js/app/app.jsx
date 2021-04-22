@@ -20,6 +20,8 @@ import getMenuData from './config/menuData'
 import getMenuDataExample from './config/menuDataExample'
 import getDepartmentMenuData from './config/departmentMenuData'
 import getThirdCycleMenuData from './config/thirdCycleMenuData'
+import getThirdCycleBreadcrumbs from './config/thirdCycleBreadcrumbs'
+
 import StudyHandbook from './pages/StudyHandbook'
 import ProgrammesList from './pages/ProgrammesList'
 import DepartmentsList from './pages/DepartmentsList'
@@ -100,7 +102,10 @@ function appFactory(applicationStore) {
         <RouteWrapper
           exact
           path="/utbildning/forskarutbildning/kurser/avdelning"
-          breadcrumbs={{ include: 'university' }}
+          breadcrumbs={{
+            include: 'university',
+            items: getThirdCycleBreadcrumbs(language, browserConfig.proxyPrefixPath.uri),
+          }}
           component={ThirdCycleDepartmentsList}
           layout={PageLayout}
           menuData={{

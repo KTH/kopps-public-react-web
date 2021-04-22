@@ -107,6 +107,7 @@ module.exports = {
 
     main_menu_aria_label: 'Undermeny',
     main_menu_student: 'Student på KTH',
+    main_menu_study_at_kth: 'Utbildning',
     main_menu_directory: 'Kurs- och programkatalogen',
     main_menu_page_example: 'Exempel',
     main_menu_shb: 'Studiehandboken 00/01 tom 07/08',
