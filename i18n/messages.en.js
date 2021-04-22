@@ -50,8 +50,13 @@ module.exports = {
 
     main_menu_aria_label: 'Sub menu',
     main_menu_student: 'Student at KTH',
+    main_menu_study_at_kth: 'Study at KTH',
     main_menu_directory: 'Course and programme directory',
     main_menu_page_example: 'Example',
+    main_menu_shb: 'Study Handbook 00/01 to 07/08',
+    main_menu_third_cycle_studies: 'PhD studies',
+    main_menu_third_cycle_departments_list_header: 'Third-cycle courses by school',
+    main_menu_third_cycle_courses_search: 'Search third-cycle courses',
 
     main_page_header_example: 'Example',
     main_page_article_lead_example:
@@ -89,13 +94,11 @@ module.exports = {
       'All active courses on all educational levels given at KTH, listed according to the organization of each school.',
     departments_deprecated_schools: 'Older Schools',
     departments_deprecated_schools_collapsible: 'Courses older schools',
-    main_menu_shb: 'Study Handbook 00/01 to 07/08',
     department_courses: 'Courses',
     department_course_code: 'Course code',
     department_course_name: 'Course name',
     department_course_credits: 'Scope',
     department_course_educational_level: 'Educational level',
-    third_cycle_department_courses: 'Third-cycle courses by school',
   },
   shb: {
     pageHeading: 'Study Handbook 00/01 to 07/08',

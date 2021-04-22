@@ -4,7 +4,6 @@ import { Col, Row } from 'reactstrap'
 import { PageHeading, Heading, LinkList, Link } from '@kth/kth-reactstrap/dist/components/studinfo'
 import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
 
-import Lead from '../components/Lead'
 import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'
 
@@ -55,7 +54,7 @@ function ThirdCycleDepartmentsList() {
     <>
       <Row>
         <Col>
-          <PageHeading>{t('third_cycle_departments_list_header')}</PageHeading>
+          <PageHeading>{t('main_menu_third_cycle_departments_list_header')}</PageHeading>
         </Col>
       </Row>
       <Row>
@@ -74,7 +73,7 @@ function ThirdCycleDepartmentsList() {
   )
 }
 
-ThirdCycleDepartmentsList.propTypes = {
+DepartmentsLinkList.propTypes = {
   departments: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,

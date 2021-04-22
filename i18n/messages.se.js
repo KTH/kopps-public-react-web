@@ -107,8 +107,13 @@ module.exports = {
 
     main_menu_aria_label: 'Undermeny',
     main_menu_student: 'Student på KTH',
+    main_menu_study_at_kth: 'Utbildning',
     main_menu_directory: 'Kurs- och programkatalogen',
     main_menu_page_example: 'Exempel',
+    main_menu_shb: 'Studiehandboken 00/01 tom 07/08',
+    main_menu_third_cycle_studies: 'Forskarutbildning',
+    main_menu_third_cycle_departments_list_header: 'Forskarkurser per skola',
+    main_menu_third_cycle_courses_search: 'Sök forskarkurs',
 
     main_page_header_example: 'Exempel',
     main_page_article_lead_example: '”Stora miljoner dag, har.”',
@@ -145,13 +150,11 @@ module.exports = {
       'Här listas alla KTH:s aktiva kurser på samtliga utbildningsnivåer, uppdelat enligt respektive skolas organisation.',
     departments_deprecated_schools: 'Äldre skolor',
     departments_deprecated_schools_collapsible: 'Kurser äldre skolor',
-    main_menu_shb: 'Studiehandboken 00/01 tom 07/08',
     department_courses: 'Kurser',
     department_course_code: 'Kurskod',
     department_course_name: 'Kursnamn',
     department_course_credits: 'Omfattning',
     department_course_educational_level: 'Utbildningsnivå',
-    third_cycle_departments_list_header: 'Forskarkurser per skola',
   },
   shb: {
     pageHeading: 'Studiehandboken 00/01 tom 07/08',
