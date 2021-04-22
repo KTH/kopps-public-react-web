@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Col, Row } from 'reactstrap'
-import { PageHeading, Heading, LinkList, Link } from '@kth/kth-reactstrap/dist/components/studinfo'
+import { PageHeading, LinkList, Link } from '@kth/kth-reactstrap/dist/components/studinfo'
 import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
 
 import Lead from '../components/Lead'
@@ -12,6 +12,23 @@ import i18n from '../../../../i18n'
 import translate from '../util/translate'
 import { programmeLink } from '../util/links'
 import Article from '../components/Article'
+
+function Heading({ size, text, id }) {
+  switch (size) {
+    case 'h1':
+      return <h1 id={id}>{text}</h1>
+    case 'h2':
+      return <h2 id={id}>{text}</h2>
+    case 'h4':
+      return <h4 id={id}>{text}</h4>
+    case 'h5':
+      return <h5 id={id}>{text}</h5>
+    case 'h6':
+      return <h6 id={id}>{text}</h6>
+    default:
+      return <h3 id={id}>{text}</h3>
+  }
+}
 
 function Section({ programmeType, children }) {
   const id = `progGroup${programmeType}`
@@ -110,7 +127,7 @@ function ProgrammesList() {
           <Article classNames={['paragraphs']}>
             {programmes.map(programme => (
               <Section key={programme[0]} programmeType={programme[0]}>
-                <Heading size="h2" text={t('programme_type')[programme[0]]} />
+                <Heading id={`heading-${programme[0]}`} size="h2" text={t('programme_type')[programme[0]]} />
                 <CurrentProgrammesList programmes={programme[1].first} />
                 <ObsololeteProgrammesList programmeType={programme[0]} programmes={programme[1].second} />
               </Section>
@@ -128,6 +145,13 @@ function ProgrammesList() {
 }
 
 // TODO: Cleanup prop types: consolidate and rename
+
+Heading.propTypes = {
+  size: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']).isRequired,
+  text: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+}
+
 Section.propTypes = {
   programmeType: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
