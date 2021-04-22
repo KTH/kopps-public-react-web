@@ -49,9 +49,15 @@ async function _fillApplicationStoreWithAllCourses({ applicationStore, lang }) {
     lang,
   }
   const schoolsWithDepartments = await koppsApi.listSchoolsWithDepartments(params)
-  const { currentSchoolsWithDepartments } = filterOutDeprecatedSchools(schoolsWithDepartments, lang)
-  currentSchoolsWithDepartments.sort(compareSchools)
-  applicationStore.setCurrentSchoolsWithDepartments(currentSchoolsWithDepartments)
+  schoolsWithDepartments.sort(compareSchools)
+  // const { currentSchoolsWithDepartments, deprecatedSchoolsWithDepartments } = filterOutDeprecatedSchools(
+  //   schoolsWithDepartments,
+  //   lang
+  // )
+  // deprecatedSchoolsWithDepartments.sort(compareSchools)
+  // currentSchoolsWithDepartments.sort(compareSchools)
+  // applicationStore.setCurrentSchoolsWithDepartments(currentSchoolsWithDepartments)
+  applicationStore.setCurrentSchoolsWithDepartments(schoolsWithDepartments)
 }
 
 module.exports = {
