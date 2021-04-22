@@ -124,7 +124,7 @@ function appFactory(applicationStore) {
           layout={PageLayout}
           menuData={{
             selectedId: 'courses',
-            ...getThirdCycleDepartmentMenuData(language, browserConfig.proxyPrefixPath.uri),
+            ...getThirdCycleDepartmentMenuData(language, browserConfig.proxyPrefixPath.uri, departmentName),
           }}
         />
       </Switch>
