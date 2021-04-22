@@ -8,7 +8,7 @@ const i18n = require('../../i18n')
 const koppsApi = require('../kopps/koppsApi')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
-const { _compareSchools, _filterOutDeprecatedSchools } = require('../utils/schools.js')
+const { compareSchools, filterOutDeprecatedSchools } = require('../utils/schools.js')
 
 async function getAllSchoolsAndThirdCycleCourses(req, res, next) {
   try {
@@ -49,12 +49,12 @@ async function _fillApplicationStoreWithAllCourses({ applicationStore, lang }) {
     lang,
   }
   const schoolsWithDepartments = await koppsApi.listSchoolsWithDepartments(params)
-  const { currentSchoolsWithDepartments, deprecatedSchoolsWithDepartments } = _filterOutDeprecatedSchools(
+  const { currentSchoolsWithDepartments, deprecatedSchoolsWithDepartments } = filterOutDeprecatedSchools(
     schoolsWithDepartments,
     lang
   )
-  deprecatedSchoolsWithDepartments.sort(_compareSchools)
-  currentSchoolsWithDepartments.sort(_compareSchools)
+  deprecatedSchoolsWithDepartments.sort(compareSchools)
+  currentSchoolsWithDepartments.sort(compareSchools)
   applicationStore.setCurrentSchoolsWithDepartments(currentSchoolsWithDepartments)
   applicationStore.setDeprecatedSchoolsWithDepartments(deprecatedSchoolsWithDepartments)
 }

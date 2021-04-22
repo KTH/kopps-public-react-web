@@ -41,7 +41,7 @@ function _filterOutDeprecatedSchools(schoolsWithDepartments, lang) {
 }
 
 module.exports = {
-  _deprecatedSchools,
-  _compareSchools,
-  _filterOutDeprecatedSchools,
+  deprecatedSchools: _deprecatedSchools,
+  compareSchools: _compareSchools,
+  filterOutDeprecatedSchools: _filterOutDeprecatedSchools,
 }
