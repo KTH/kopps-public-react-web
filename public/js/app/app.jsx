@@ -21,7 +21,7 @@ import getMenuDataExample from './config/menuDataExample'
 import getDepartmentMenuData from './config/departmentMenuData'
 import getThirdCycleMenuData from './config/thirdCycleMenuData'
 import getThirdCycleBreadcrumbs from './config/thirdCycleBreadcrumbs'
-
+import getThirdCycleDepartmentMenuData from './config/thirdCycleDepartmentMenuData'
 import StudyHandbook from './pages/StudyHandbook'
 import ProgrammesList from './pages/ProgrammesList'
 import DepartmentsList from './pages/DepartmentsList'
@@ -111,6 +111,20 @@ function appFactory(applicationStore) {
           menuData={{
             selectedId: 'thirdCycleDepartmentsList',
             ...getThirdCycleMenuData(language, browserConfig.proxyPrefixPath.uri),
+          }}
+        />
+        <RouteWrapper
+          exact
+          path="/utbildning/forskarutbildning/kurser/org/:departmentCode"
+          breadcrumbs={{
+            include: 'university',
+            items: getThirdCycleBreadcrumbs(language, browserConfig.proxyPrefixPath.uri),
+          }}
+          component={DepartmentCourses}
+          layout={PageLayout}
+          menuData={{
+            selectedId: 'courses',
+            ...getThirdCycleDepartmentMenuData(language, browserConfig.proxyPrefixPath.uri, departmentName),
           }}
         />
       </Switch>

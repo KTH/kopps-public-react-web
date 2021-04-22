@@ -9,7 +9,7 @@ module.exports = {
   StudyHandBook: require('./studyHandBookCtrl'),
   System: require('./systemCtrl'),
   Sample: require('./sampleCtrl'),
-  ThirdCycleCourses: require('./thirdCycleCoursesCtrl'),
+  ThirdCycleStudy: require('./thirdCycleStudyCtrl'),
   Public: require('./publicSiteCtrl'),
   EmbeddedPage: require('./embeddedPagesCtrl'),
   ProgrammesList: require('./programmesListCtrl'),

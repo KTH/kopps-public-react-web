@@ -222,7 +222,7 @@ server.use(
 const {
   StudyHandBook,
   System,
-  ThirdCycleCourses,
+  ThirdCycleStudy,
   Public,
   EmbeddedPage,
   ProgrammesList,
@@ -261,9 +261,14 @@ appRoute.get('example', config.proxyPrefixPath.uri + '/example', Public.getIndex
 appRoute.get('public.studyhandbook', config.proxyPrefixPath.uri + '/student/program/shb', StudyHandBook.getStudyBook)
 appRoute.get('dev.fovkurser', config.proxyPrefixPath.uri + '/utbildning/kurser/fovkurser', Public.getFovSearch)
 appRoute.get(
-  'DEV.allThirdCycleCourses',
+  'public.departmentsListThirdCycleStudy',
   config.proxyPrefixPath.uri + '/utbildning/forskarutbildning/kurser/avdelning',
-  ThirdCycleCourses.getAllSchoolsAndThirdCycleCourses
+  ThirdCycleStudy.getAllSchoolsAndDepartments
+)
+appRoute.get(
+  'DEV.departmentThirdCycleStudy',
+  config.proxyPrefixPath.uri + '/utbildning/forskarutbildning/kurser/org/:departmentCode',
+  ThirdCycleStudy.getCoursesPerDepartment
 )
 appRoute.get(
   'redirect.kurser-per-avdelning',
