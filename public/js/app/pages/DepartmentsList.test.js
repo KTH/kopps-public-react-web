@@ -138,6 +138,7 @@ describe('Render component DepartmentsList and check its menu, content and links
     expect(links[2].href).toStrictEqual('localhost://kopps-public/student/kurser/org')
     expect(links[3]).toHaveTextContent('Study Handbook 00/01 to 07/08')
     expect(links[3].href).toStrictEqual('localhost://kopps-public/student/program/shb')
+    // Main content links
     expect(links[4]).toHaveTextContent('Department')
     expect(links[4].href).toStrictEqual('localhost://kopps-public/student/kurser/org/BB?l=en')
     // Footer links
@@ -164,6 +165,7 @@ describe('Render component DepartmentsList and check its menu, content and links
     expect(links[2].href).toStrictEqual('localhost://kopps-public/student/kurser/org')
     expect(links[3]).toHaveTextContent('Studiehandboken 00/01 tom 07/08')
     expect(links[3].href).toStrictEqual('localhost://kopps-public/student/program/shb')
+    // Main content links
     expect(links[4]).toHaveTextContent('Avdelning')
     expect(links[4].href).toStrictEqual('localhost://kopps-public/student/kurser/org/BB')
     // Footer links
