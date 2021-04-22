@@ -4,7 +4,6 @@ import { Col, Row } from 'reactstrap'
 import { PageHeading, Heading, LinkList, Link } from '@kth/kth-reactstrap/dist/components/studinfo'
 import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
 
-import Lead from '../components/Lead'
 import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'
 

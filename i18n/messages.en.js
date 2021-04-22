@@ -95,7 +95,7 @@ module.exports = {
     department_course_name: 'Course name',
     department_course_credits: 'Scope',
     department_course_educational_level: 'Educational level',
-    third_cycle_department_courses: 'Third-cycle courses by school',
+    third_cycle_departments_list_header: 'Third-cycle courses by school',
   },
   shb: {
     pageHeading: 'Study Handbook 00/01 to 07/08',
