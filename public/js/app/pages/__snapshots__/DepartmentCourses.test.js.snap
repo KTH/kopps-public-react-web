@@ -1,0 +1,441 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render component DepartmentCourses within Layout match to snapshot in English 1`] = `
+<DocumentFragment>
+  <div
+    class="row"
+  >
+    <nav
+      aria-label="Sub menu"
+      class="col navbar navbar-expand-lg navbar-light"
+      id="mainMenu"
+    >
+      <div
+        class="collapse navbar-collapse"
+        id="navbarNav"
+      >
+        <ul
+          class="nav"
+        >
+          <li
+            class="parentLink"
+          >
+            <a
+              href="/kopps-public/student/kurser/org?l=en"
+            >
+              Course and programme directory
+            </a>
+          </li>
+        </ul>
+        <ul
+          class="nav nav-list expandable"
+        >
+          <li
+            class="nav-item ancestor"
+          >
+            <div />
+          </li>
+          <li
+            class="nav-item leaf selected"
+          >
+            <a
+              class="nav-link"
+            >
+              Courses
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div
+      class="col"
+    >
+      <main
+        id="mainContent"
+      >
+        <div
+          class="row"
+        >
+          <div
+            class="col"
+          >
+            <header
+              role="presentation"
+            >
+              <h1
+                aria-labelledby="page-heading page-sub-heading"
+                id="page-heading"
+              >
+                Courses
+              </h1>
+              <p
+                aria-hidden="true"
+                class="page-sub-heading"
+                id="page-sub-heading"
+              >
+                ABE/Architecture
+              </p>
+            </header>
+          </div>
+        </div>
+        <div
+          class="row"
+        >
+          <div
+            class="col"
+          >
+            <article
+              class="article "
+            >
+              <table
+                class="table"
+              >
+                <thead>
+                  <tr>
+                    <th
+                      style="cursor: pointer; user-select: none;"
+                    >
+                      <div
+                        style="display: flex; flex-direction: row;"
+                      >
+                        <p>
+                          Course code
+                        </p>
+                        <p
+                          style="opacity: 0;"
+                        >
+                          ▲
+                        </p>
+                      </div>
+                    </th>
+                    <th
+                      style="cursor: pointer; user-select: none;"
+                    >
+                      <div
+                        style="display: flex; flex-direction: row;"
+                      >
+                        <p>
+                          Course name
+                        </p>
+                        <p
+                          style="opacity: 0;"
+                        >
+                          ▲
+                        </p>
+                      </div>
+                    </th>
+                    <th
+                      style="cursor: pointer; user-select: none;"
+                    >
+                      <div
+                        style="display: flex; flex-direction: row;"
+                      >
+                        <p>
+                          Scope
+                        </p>
+                        <p
+                          style="opacity: 0;"
+                        >
+                          ▲
+                        </p>
+                      </div>
+                    </th>
+                    <th
+                      style="cursor: pointer; user-select: none;"
+                    >
+                      <div
+                        style="display: flex; flex-direction: row;"
+                      >
+                        <p>
+                          Educational level
+                        </p>
+                        <p
+                          style="opacity: 0;"
+                        >
+                          ▲
+                        </p>
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <a
+                        href="/student/kurser/kurs/AD12DA?l=en"
+                      >
+                        AD12DA
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="/student/kurser/kurs/AD12DA?l=en"
+                      >
+                        2DAutoCAD Focus on the Drawing as a Communicative Tool
+                      </a>
+                    </td>
+                    <td>
+                      6.0 hp
+                    </td>
+                    <td>
+                      First cycle
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </article>
+          </div>
+        </div>
+        <div
+          class="row"
+        >
+          <div
+            class="col"
+          >
+            <footer
+              class="border-top mt-4 pt-1"
+              id="articleFooter"
+            >
+              <address>
+                Contact for questions regarding education at KTH: 
+                <a
+                  href="https://www.kth.se/studycounselling"
+                >
+                  Central study counseling
+                </a>
+                <br />
+                Contact regarding technical matters on this page: 
+                <a
+                  href="mailto:kopps@kth.se"
+                >
+                  kopps@kth.se
+                </a>
+              </address>
+            </footer>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Render component DepartmentCourses within Layout match to snapshot in Swedish 1`] = `
+<DocumentFragment>
+  <div
+    class="row"
+  >
+    <nav
+      aria-label="Undermeny"
+      class="col navbar navbar-expand-lg navbar-light"
+      id="mainMenu"
+    >
+      <div
+        class="collapse navbar-collapse"
+        id="navbarNav"
+      >
+        <ul
+          class="nav"
+        >
+          <li
+            class="parentLink"
+          >
+            <a
+              href="/kopps-public/student/kurser/org"
+            >
+              Kurs- och programkatalogen
+            </a>
+          </li>
+        </ul>
+        <ul
+          class="nav nav-list expandable"
+        >
+          <li
+            class="nav-item ancestor"
+          >
+            <div />
+          </li>
+          <li
+            class="nav-item leaf selected"
+          >
+            <a
+              class="nav-link"
+            >
+              Kurser
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div
+      class="col"
+    >
+      <main
+        id="mainContent"
+      >
+        <div
+          class="row"
+        >
+          <div
+            class="col"
+          >
+            <header
+              role="presentation"
+            >
+              <h1
+                aria-labelledby="page-heading page-sub-heading"
+                id="page-heading"
+              >
+                Kurser
+              </h1>
+              <p
+                aria-hidden="true"
+                class="page-sub-heading"
+                id="page-sub-heading"
+              >
+                ABE/Arkitektur, Fex övr utbildning
+              </p>
+            </header>
+          </div>
+        </div>
+        <div
+          class="row"
+        >
+          <div
+            class="col"
+          >
+            <article
+              class="article "
+            >
+              <table
+                class="table"
+              >
+                <thead>
+                  <tr>
+                    <th
+                      style="cursor: pointer; user-select: none;"
+                    >
+                      <div
+                        style="display: flex; flex-direction: row;"
+                      >
+                        <p>
+                          Kurskod
+                        </p>
+                        <p
+                          style="opacity: 0;"
+                        >
+                          ▲
+                        </p>
+                      </div>
+                    </th>
+                    <th
+                      style="cursor: pointer; user-select: none;"
+                    >
+                      <div
+                        style="display: flex; flex-direction: row;"
+                      >
+                        <p>
+                          Kursnamn
+                        </p>
+                        <p
+                          style="opacity: 0;"
+                        >
+                          ▲
+                        </p>
+                      </div>
+                    </th>
+                    <th
+                      style="cursor: pointer; user-select: none;"
+                    >
+                      <div
+                        style="display: flex; flex-direction: row;"
+                      >
+                        <p>
+                          Omfattning
+                        </p>
+                        <p
+                          style="opacity: 0;"
+                        >
+                          ▲
+                        </p>
+                      </div>
+                    </th>
+                    <th
+                      style="cursor: pointer; user-select: none;"
+                    >
+                      <div
+                        style="display: flex; flex-direction: row;"
+                      >
+                        <p>
+                          Utbildningsnivå
+                        </p>
+                        <p
+                          style="opacity: 0;"
+                        >
+                          ▲
+                        </p>
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <a
+                        href="/student/kurser/kurs/AD12DA"
+                      >
+                        AD12DA
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="/student/kurser/kurs/AD12DA"
+                      >
+                        2DAutoCAD Fokus på ritningen som kommunikationsredskap
+                      </a>
+                    </td>
+                    <td>
+                      6,0 hp
+                    </td>
+                    <td>
+                      Grundnivå
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </article>
+          </div>
+        </div>
+        <div
+          class="row"
+        >
+          <div
+            class="col"
+          >
+            <footer
+              class="border-top mt-4 pt-1"
+              id="articleFooter"
+            >
+              <address>
+                Kontakt för frågor om utbildning på KTH: 
+                <a
+                  href="https://www.kth.se/studycounselling"
+                >
+                  Central studievägledning
+                </a>
+                <br />
+                Teknisk kontakt om denna sida: 
+                <a
+                  href="mailto:kopps@kth.se"
+                >
+                  kopps@kth.se
+                </a>
+              </address>
+            </footer>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</DocumentFragment>
+`;
