@@ -1,25 +1,33 @@
+function getLanguageParam(language) {
+  return language === 'en' ? '?l=en' : ''
+}
+
 function parentLink(language) {
-  const languageParam = language === 'en' ? '?l=en' : ''
+  const languageParam = getLanguageParam(language)
   return `/student/${languageParam}`
 }
 
+function parentThirdCycleStudyLink(language) {
+  return `/utbildning/forskarutbildning/${getLanguageParam(language)}`
+}
+
 function pageLink(proxyPrefixPath, pageId, language) {
-  const languageParam = language === 'en' ? '?l=en' : ''
+  const languageParam = getLanguageParam(language)
   return `${proxyPrefixPath}/${pageId}${languageParam}`
 }
 
 function programmeLink(programmeCode, language) {
-  const languageParam = language === 'en' ? '?l=en' : ''
+  const languageParam = getLanguageParam(language)
   return `/student/kurser/program/${programmeCode}${languageParam}`
 }
 
 function departmentLink(proxyPrefixPath, departmentCode, language) {
-  const languageParam = language === 'en' ? '?l=en' : ''
+  const languageParam = getLanguageParam(language)
   return `${proxyPrefixPath}/student/kurser/org/${departmentCode}${languageParam}`
 }
 
 function courseLink(courseCode, language) {
-  const languageParam = language === 'en' ? '?l=en' : ''
+  const languageParam = getLanguageParam(language)
   return `/student/kurser/kurs/${courseCode}${languageParam}`
 }
 
@@ -39,4 +47,5 @@ module.exports = {
   courseLink,
   centralStudyCounselingUrl,
   koppsEmail,
+  parentThirdCycleStudyLink,
 }
