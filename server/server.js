@@ -266,6 +266,13 @@ appRoute.get(
   ThirdCycleStudy.getAllSchoolsAndDepartments
 )
 appRoute.get(
+  'public.departmentsListThirdCycleStudy',
+  config.proxyPrefixPath.uri + '/utbildning/forskarutbildning/kurser/',
+  (req, res) => {
+    res.redirect(301, config.proxyPrefixPath.uri + '/utbildning/forskarutbildning/kurser/avdelning')
+  }
+)
+appRoute.get(
   'public.departmentThirdCycleStudy',
   config.proxyPrefixPath.uri + '/utbildning/forskarutbildning/kurser/org/:departmentCode',
   ThirdCycleStudy.getCoursesPerDepartment

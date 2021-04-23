@@ -15,7 +15,7 @@ function getThirdCycleBreadcrumbs(language, proxyPrefixPath) {
       label: t('main_menu_third_cycle_studies'),
     },
     {
-      url: pageLink(proxyPrefixPath, 'kurser', language),
+      url: pageLink(proxyPrefixPath, 'utbildning/forskarutbildning/kurser', language),
       label: t('department_courses'),
     },
   ]
