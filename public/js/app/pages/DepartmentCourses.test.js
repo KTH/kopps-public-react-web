@@ -29,7 +29,6 @@ const testDepartmentCourses = {
     {
       code: 'AD12DA',
       title: '2DAutoCAD Fokus på ritningen som kommunikationsredskap',
-      href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/AD12DA',
       info:
         '<p>Kursens &#246;vergripande m&#229;l &#228;r att ge grundl&#228;ggande kunskap om Autocad som ritverktyg och om hur programmet fungerar som hj&#228;lpmedel f&#246;r att hantera olika slags arkitekturpojekt.</p><p>Efter genomf&#246;rd kurs skall studententen p&#229; egen hand kunna rita och utveckla arkitekturprojekt med hj&#228;lp av Autocad.</p>',
       credits: '6,0',
@@ -44,7 +43,6 @@ const testDepartmentCourses = {
     {
       code: 'AD12DA',
       title: '2DAutoCAD Focus on the Drawing as a Communicative Tool',
-      href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/AD12DA?l=en',
       info:
         '<p>The overall objective of the course is to give a basic knowledge of Autocad as a tool for drawing and of how the program can be used as a tool to handle different types of architecture projects.</p><p>On completing the course, the student shall be able to independently draw and develop architecture projects by using Autocad.</p>',
       credits: '6.0',

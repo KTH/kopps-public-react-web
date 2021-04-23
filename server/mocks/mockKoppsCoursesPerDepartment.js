@@ -4,7 +4,6 @@ function coursesFromKopps(lang) {
       {
         code: 'FAF3115',
         title: 'Betong och andra cementbaserade material',
-        href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/FAF3115',
         info: '',
         credits: '7,5',
         creditUnitLabel: 'Högskolepoäng',
@@ -15,7 +14,6 @@ function coursesFromKopps(lang) {
       {
         code: 'AF2101',
         title: 'Betongbyggnad',
-        href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/AF2101',
         info:
           '<p>Huvudsakligt inneh&#229;ll:</p><ul><li>Armerade betongbalkar och pelare</li><li>Plattor av betong</li><li>Sp&#228;nnbetong</li><li>P&#229;gjutningar</li><li>Laborationsprovning</li></ul>',
         credits: '7,5',
@@ -27,7 +25,6 @@ function coursesFromKopps(lang) {
       {
         code: 'AF2102',
         title: 'Betongbyggnad, fortsättningskurs',
-        href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/AF2102',
         info:
           '<p>Stomsystem av betong</p><p>Bruksgr&#228;nstillst&#229;nd och deformationer</p><p>Grova betongkonstruktioner</p><p>Betongmaterial</p><p>Fiberbetong</p><p>Sprutbetong</p><p>Finit elementmodellering av betongkonstruktioner</p>',
         credits: '7,5',
@@ -39,7 +36,6 @@ function coursesFromKopps(lang) {
       {
         code: 'AF1005',
         title: 'Byggkonstruktionslära, grundkurs',
-        href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/AF1005',
         info:
           '<p>Kursen ger en djup f&#246;rst&#229;else f&#246;r verkningss&#228;ttet hos olika typer av konstruktioner samt grunderna i dimensioneringsprocessen.</p>',
         credits: '7,5',
@@ -51,7 +47,6 @@ function coursesFromKopps(lang) {
       {
         code: 'F1C5031',
         title: 'Dimensioneringsmetoder för armerade betongkonstruktioner',
-        href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/F1C5031',
         info: '',
         credits: '7,5',
         creditUnitLabel: 'Högskolepoäng',
@@ -63,7 +58,6 @@ function coursesFromKopps(lang) {
       {
         code: 'AF213X',
         title: 'Examensarbete inom betongbyggnad, avancerad nivå',
-        href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/AF213X',
         info: '',
         credits: '30,0',
         creditUnitLabel: 'Högskolepoäng',
@@ -76,7 +70,6 @@ function coursesFromKopps(lang) {
       {
         code: 'FAF3115',
         title: 'Concrete and Other Cement Based Materials',
-        href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/FAF3115?l=en',
         info: '',
         credits: '7.5',
         creditUnitLabel: 'Credits',
@@ -87,7 +80,6 @@ function coursesFromKopps(lang) {
       {
         code: 'AF2101',
         title: 'Concrete Structures',
-        href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/AF2101?l=en',
         info:
           '<ul><li>Reinforced concrete beams and columns</li><li>Concrete slabs</li><li>Pre-stressed concrete</li><li>Bonded concrete overlays</li><li>Laboratory testing</li></ul>',
         credits: '7.5',
@@ -99,7 +91,6 @@ function coursesFromKopps(lang) {
       {
         code: 'AF2102',
         title: 'Concrete Structures, Advanced Course',
-        href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/AF2102?l=en',
         info:
           '<p>Concrete frame systems.</p><p>Serviceability state and deformations</p><p>Massive concrete structures</p><p>Concrete materials</p><p>Fiber reinforced concrete</p><p>Shotcrete (sprayed concrete)</p><p>Finite element modelling of concrete structures</p>',
         credits: '7.5',
@@ -111,7 +102,6 @@ function coursesFromKopps(lang) {
       {
         code: 'AF1005',
         title: 'Structural Engineering, Basic Course',
-        href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/AF1005?l=en',
         info:
           '<p>The course gives a deep understanding of the mode of action of different types of structures and basic knowledge about the process of structural design.</p>',
         credits: '7.5',
@@ -123,7 +113,6 @@ function coursesFromKopps(lang) {
       {
         code: 'F1C5031',
         title: 'Design Methods for Reinforced Concrete Structures',
-        href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/F1C5031?l=en',
         info: '',
         credits: '7.5',
         creditUnitLabel: 'Credits',
@@ -135,7 +124,6 @@ function coursesFromKopps(lang) {
       {
         code: 'AF212X',
         title: 'Degree Project in Concrete Structures, Second Cycle',
-        href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/AF212X?l=en',
         info: '',
         credits: '30.0',
         creditUnitLabel: 'Credits',
@@ -154,7 +142,6 @@ function expectedThirdCycleCourseList(lang) {
       {
         code: 'FAF3115',
         title: 'Betong och andra cementbaserade material',
-        href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/FAF3115',
         info: '',
         credits: '7,5',
         creditUnitLabel: 'Högskolepoäng',
@@ -165,7 +152,6 @@ function expectedThirdCycleCourseList(lang) {
       {
         code: 'F1C5031',
         title: 'Dimensioneringsmetoder för armerade betongkonstruktioner',
-        href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/F1C5031',
         info: '',
         credits: '7,5',
         creditUnitLabel: 'Högskolepoäng',
@@ -179,7 +165,6 @@ function expectedThirdCycleCourseList(lang) {
       {
         code: 'FAF3115',
         title: 'Concrete and Other Cement Based Materials',
-        href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/FAF3115?l=en',
         info: '',
         credits: '7.5',
         creditUnitLabel: 'Credits',
@@ -190,7 +175,6 @@ function expectedThirdCycleCourseList(lang) {
       {
         code: 'F1C5031',
         title: 'Design Methods for Reinforced Concrete Structures',
-        href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/F1C5031?l=en',
         info: '',
         credits: '7.5',
         creditUnitLabel: 'Credits',
