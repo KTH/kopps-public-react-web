@@ -40,6 +40,7 @@ function Section({ programmeType, children }) {
   )
 }
 
+// TODO: Move to util
 function formatTerm(term) {
   const { language } = useStore()
   const t = translate(i18n, language)

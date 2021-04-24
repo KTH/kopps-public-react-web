@@ -35,6 +35,11 @@ function courseLink(courseCode, language) {
   return `/student/kurser/kurs/${courseCode}${languageParam}`
 }
 
+function programTermLink(proxyPrefixPath, programmeCode, term, studyYear, language) {
+  const languageParam = language === 'en' ? '?l=en' : ''
+  return `${proxyPrefixPath}/student/kurser/program/${programmeCode}/${term}/${studyYear}${languageParam}`
+}
+
 function centralStudyCounselingUrl() {
   return 'https://www.kth.se/studycounselling'
 }
@@ -53,4 +58,5 @@ module.exports = {
   koppsEmail,
   parentStudyLink,
   parentThirdCycleStudyLink,
+  programTermLink,
 }

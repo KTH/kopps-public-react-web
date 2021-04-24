@@ -22,11 +22,13 @@ import getDepartmentMenuData from './config/departmentMenuData'
 import getThirdCycleMenuData from './config/thirdCycleMenuData'
 import getThirdCycleBreadcrumbs from './config/thirdCycleBreadcrumbs'
 import getThirdCycleDepartmentMenuData from './config/thirdCycleDepartmentMenuData'
+import getProgrammeMenuData from './config/programmeMenuData'
 import StudyHandbook from './pages/StudyHandbook'
 import ProgrammesList from './pages/ProgrammesList'
 import DepartmentsList from './pages/DepartmentsList'
 import DepartmentCourses from './pages/DepartmentCourses'
 import ThirdCycleDepartmentsList from './pages/ThirdCycleDepartmentsList'
+import Programme from './pages/Programme'
 
 export default appFactory
 
@@ -51,9 +53,10 @@ function _renderOnClientSide() {
 }
 
 function appFactory(applicationStore) {
-  const { language, browserConfig, departmentName } = applicationStore
+  const { language, browserConfig, departmentName, programmeName } = applicationStore
   const menuData = getMenuData(language, browserConfig.proxyPrefixPath.uri)
   const departmentMenuData = getDepartmentMenuData(language, browserConfig.proxyPrefixPath.uri, departmentName)
+  const programmeMenuData = getProgrammeMenuData(language, browserConfig.proxyPrefixPath.uri, programmeName)
   const menuDataExample = getMenuDataExample(language)
   return (
     <MobxStoreProvider initCallback={() => applicationStore}>
@@ -98,6 +101,14 @@ function appFactory(applicationStore) {
           component={DepartmentCourses}
           layout={PageLayout}
           menuData={{ selectedId: 'courses', ...departmentMenuData }}
+        />
+        <RouteWrapper
+          exact
+          path="/student/kurser/program/:programmeCode"
+          breadcrumbs={{ include: 'directory' }}
+          component={Programme}
+          layout={PageLayout}
+          menuData={{ selectedId: 'studyYears', ...programmeMenuData }}
         />
         <RouteWrapper
           exact

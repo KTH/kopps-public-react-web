@@ -119,6 +119,21 @@ const getCourses = async ({ departmentCode, lang = 'sv' }) => {
   }
 }
 
+const getProgramme = async (programmeCode, lang) => {
+  const { client } = koppsApi.koppsApi
+  const koppsBase = config.koppsApi.basePath.endsWith('/')
+    ? config.koppsApi.basePath
+    : config.koppsApi.basePath.concat('/')
+  const uri = `${koppsBase}programme/${programmeCode}?l=${lang}`
+  try {
+    const response = await client.getAsync({ uri, useCache: false })
+    return response.body
+  } catch (error) {
+    log.error('Exception calling KOPPS API in koppsApi.getProgramme', { error })
+    throw error
+  }
+}
+
 module.exports = {
   searchFovCourses,
   listActiveMainFieldsOfStudy,
@@ -126,4 +141,5 @@ module.exports = {
   DEPARTMENT_CRITERIA,
   listSchoolsWithDepartments,
   getCourses,
+  getProgramme,
 }

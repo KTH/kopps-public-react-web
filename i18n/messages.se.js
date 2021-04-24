@@ -155,6 +155,11 @@ module.exports = {
     department_course_name: 'Kursnamn',
     department_course_credits: 'Omfattning',
     department_course_educational_level: 'Utbildningsnivå',
+    third_cycle_departments_list_header: 'Forskarkurser per skola',
+    programme_study_years: 'Utbildningsplaner',
+    programme_study_years_explanation:
+      'Välj utbildningsplan. Oftast överensstämmer kull med den termin då studierna påbörjades vid programmet.',
+    programme_admitted_year: 'Utbildningsplan kull',
   },
   shb: {
     pageHeading: 'Studiehandboken 00/01 tom 07/08',

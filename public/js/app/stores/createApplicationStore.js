@@ -92,7 +92,7 @@ function createApplicationStore() {
     /**
      * @property {string} departmentName
      */
-    departmentName: {},
+    departmentName: '',
     /**
      * @method
      * @param {string} departmentName
@@ -108,6 +108,42 @@ function createApplicationStore() {
      * @param {[]} departmentCourses
      */
     setDepartmentCourses,
+    /**
+     * @property {string} programmeName
+     */
+    programmeName: '',
+    /**
+     * @method
+     * @param {string} programmeName
+     */
+    setProgrammeName,
+    /**
+     * @property {string} programmeCode
+     */
+    programmeCode: '',
+    /**
+     * @method
+     * @param {string} programmeCode
+     */
+    setProgrammeCode,
+    /**
+     * @property {[]} programmeTerms
+     */
+    programmeTerms: [],
+    /**
+     * @method
+     * @param {[]} programmeTerms
+     */
+    setProgrammeTerms,
+    /**
+     * @property {number} lengthInStudyYears
+     */
+    lengthInStudyYears: 0,
+    /**
+     * @method
+     * @param {number} lengthInStudyYears
+     */
+    setLengthInStudyYears,
   }
 
   return store
@@ -161,4 +197,20 @@ function setDepartmentName(departmentName) {
 
 function setDepartmentCourses(departmentCourses) {
   this.departmentCourses = departmentCourses
+}
+
+function setProgrammeName(programmeName) {
+  this.programmeName = programmeName
+}
+
+function setProgrammeCode(programmeCode) {
+  this.programmeCode = programmeCode
+}
+
+function setProgrammeTerms(programmeTerms) {
+  this.programmeTerms = programmeTerms
+}
+
+function setLengthInStudyYears(lengthInStudyYears) {
+  this.lengthInStudyYears = lengthInStudyYears
 }

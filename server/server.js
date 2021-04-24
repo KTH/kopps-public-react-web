@@ -228,6 +228,7 @@ const {
   ProgrammesList,
   SchoolsList,
   Department,
+  Programme,
 } = require('./controllers')
 const { requireRole } = require('./authentication')
 
@@ -302,6 +303,11 @@ appRoute.get(
   'public.department',
   config.proxyPrefixPath.uri + '/student/kurser/org/:departmentCode',
   Department.getIndex
+)
+appRoute.get(
+  'public.programme',
+  config.proxyPrefixPath.uri + '/student/kurser/program/:programmeCode',
+  Programme.getIndex
 )
 appRoute.get(
   'system.gateway',

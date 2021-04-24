@@ -15,4 +15,5 @@ module.exports = {
   ProgrammesList: require('./programmesListCtrl'),
   SchoolsList: require('./schoolsListCtrl'),
   Department: require('./departmentCtrl'),
+  Programme: require('./programmeCtrl'),
 }
