@@ -309,6 +309,12 @@ appRoute.get(
   config.proxyPrefixPath.uri + '/student/kurser/program/:programmeCode',
   Programme.getIndex
 )
+appRoute.get('redirect.kurser', config.proxyPrefixPath.uri + '/student/kurser', (req, res) => {
+  res.redirect(301, config.proxyPrefixPath.uri + '/student/kurser/kurser-inom-program')
+})
+appRoute.get('redirect.program', config.proxyPrefixPath.uri + '/student/kurser/program', (req, res) => {
+  res.redirect(301, config.proxyPrefixPath.uri + '/student/kurser/kurser-inom-program')
+})
 appRoute.get(
   'system.gateway',
   config.proxyPrefixPath.uri + '/gateway',
