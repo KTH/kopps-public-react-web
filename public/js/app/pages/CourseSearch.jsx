@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import { Col, Row } from 'reactstrap'
-import { Collapse } from '@kth/kth-kip-style-react-components'
+import { CollapseDetails } from '@kth/kth-kip-style-react-components'
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 
@@ -27,13 +27,13 @@ const Start = () => {
         <Col>
           <h1>Sök kurs</h1>
           <p>{i18n.message('koppspublic_search_introduction', lang)}</p>
-          <Collapse isOpen color="blue" buttonText={i18n.message('koppspublic_search_help_h', lang)}>
+          <CollapseDetails color="white" title={i18n.message('koppspublic_search_help_h', lang)}>
             <ul>
               {helptexts.map(value => (
                 <li key={value}>{value}</li>
               ))}
             </ul>
-          </Collapse>
+          </CollapseDetails>
 
           <SearchInputField caption="Sök" />
 
