@@ -26,7 +26,20 @@ function titleCell(code, title) {
   }
 }
 
-function parseCourses(courses) {
+function compareCoursesBy(key) {
+  return function compare(a, b) {
+    if (a[key] < b[key]) {
+      return -1
+    }
+    if (a[key] > b[key]) {
+      return 1
+    }
+    return 0
+  }
+}
+
+function sortAndParseCourses(courses) {
+  courses.sort(compareCoursesBy('code'))
   const parsedCourses = courses.map(({ code, title, credits, creditUnitAbbr, level }) => [
     codeCell(code),
     titleCell(code, title),
@@ -46,7 +59,7 @@ function DepartmentsList() {
     t('department_course_credits'),
     t('department_course_educational_level'),
   ]
-  const courses = parseCourses(departmentCourses)
+  const courses = sortAndParseCourses(departmentCourses)
 
   return (
     <>

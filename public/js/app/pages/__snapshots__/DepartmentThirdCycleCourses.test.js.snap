@@ -164,16 +164,16 @@ exports[`Render component DepartmentCourses within Layout for third cycle studie
                   <tr>
                     <td>
                       <a
-                        href="/student/kurser/kurs/FAF3115?l=en"
+                        href="/student/kurser/kurs/F1C5031?l=en"
                       >
-                        FAF3115
+                        F1C5031
                       </a>
                     </td>
                     <td>
                       <a
-                        href="/student/kurser/kurs/FAF3115?l=en"
+                        href="/student/kurser/kurs/F1C5031?l=en"
                       >
-                        Concrete and Other Cement Based Materials
+                        Design Methods for Reinforced Concrete Structures
                       </a>
                     </td>
                     <td>
@@ -186,16 +186,16 @@ exports[`Render component DepartmentCourses within Layout for third cycle studie
                   <tr>
                     <td>
                       <a
-                        href="/student/kurser/kurs/F1C5031?l=en"
+                        href="/student/kurser/kurs/FAF3115?l=en"
                       >
-                        F1C5031
+                        FAF3115
                       </a>
                     </td>
                     <td>
                       <a
-                        href="/student/kurser/kurs/F1C5031?l=en"
+                        href="/student/kurser/kurs/FAF3115?l=en"
                       >
-                        Design Methods for Reinforced Concrete Structures
+                        Concrete and Other Cement Based Materials
                       </a>
                     </td>
                     <td>
@@ -408,16 +408,16 @@ exports[`Render component DepartmentCourses within Layout for third cycle studie
                   <tr>
                     <td>
                       <a
-                        href="/student/kurser/kurs/FAF3115"
+                        href="/student/kurser/kurs/F1C5031"
                       >
-                        FAF3115
+                        F1C5031
                       </a>
                     </td>
                     <td>
                       <a
-                        href="/student/kurser/kurs/FAF3115"
+                        href="/student/kurser/kurs/F1C5031"
                       >
-                        Betong och andra cementbaserade material
+                        Dimensioneringsmetoder för armerade betongkonstruktioner
                       </a>
                     </td>
                     <td>
@@ -430,16 +430,16 @@ exports[`Render component DepartmentCourses within Layout for third cycle studie
                   <tr>
                     <td>
                       <a
-                        href="/student/kurser/kurs/F1C5031"
+                        href="/student/kurser/kurs/FAF3115"
                       >
-                        F1C5031
+                        FAF3115
                       </a>
                     </td>
                     <td>
                       <a
-                        href="/student/kurser/kurs/F1C5031"
+                        href="/student/kurser/kurs/FAF3115"
                       >
-                        Dimensioneringsmetoder för armerade betongkonstruktioner
+                        Betong och andra cementbaserade material
                       </a>
                     </td>
                     <td>
