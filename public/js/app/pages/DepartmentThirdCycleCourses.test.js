@@ -30,7 +30,6 @@ const testDepartmentCourses = {
     {
       code: 'FAF3115',
       title: 'Betong och andra cementbaserade material',
-      href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/FAF3115',
       info: '',
       credits: '7,5',
       creditUnitLabel: 'Högskolepoäng',
@@ -41,7 +40,6 @@ const testDepartmentCourses = {
     {
       code: 'F1C5031',
       title: 'Dimensioneringsmetoder för armerade betongkonstruktioner',
-      href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/F1C5031',
       info: '',
       credits: '7,5',
       creditUnitLabel: 'Högskolepoäng',
@@ -55,7 +53,6 @@ const testDepartmentCourses = {
     {
       code: 'FAF3115',
       title: 'Concrete and Other Cement Based Materials',
-      href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/FAF3115?l=en',
       info: '',
       credits: '7.5',
       creditUnitLabel: 'Credits',
@@ -66,7 +63,6 @@ const testDepartmentCourses = {
     {
       code: 'F1C5031',
       title: 'Design Methods for Reinforced Concrete Structures',
-      href: 'https://www-r.referens.sys.kth.se/student/kurser/kurs/F1C5031?l=en',
       info: '',
       credits: '7.5',
       creditUnitLabel: 'Credits',
