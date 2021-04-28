@@ -152,7 +152,7 @@ describe('Render component ThirdCycleDepartmentsList and check its menu, content
     expect(links[2].href).toStrictEqual('localhost://kopps-public/kurser/sok?l=en')
     // Main content links
     expect(links[3]).toHaveTextContent('Department')
-    expect(links[3].href).toStrictEqual('localhost://kopps-public/student/kurser/org/BB?l=en')
+    expect(links[3].href).toStrictEqual('localhost://kopps-public/utbildning/forskarutbildning/kurser/org/BB?l=en')
     // Footer links
     expect(links[4]).toHaveTextContent('Central study counseling')
     expect(links[4].href).toStrictEqual('https://www.kth.se/studycounselling')
@@ -177,7 +177,7 @@ describe('Render component ThirdCycleDepartmentsList and check its menu, content
     expect(links[2].href).toStrictEqual('localhost://kopps-public/kurser/sok')
     // Main content links
     expect(links[3]).toHaveTextContent('Avdelning')
-    expect(links[3].href).toStrictEqual('localhost://kopps-public/student/kurser/org/BB')
+    expect(links[3].href).toStrictEqual('localhost://kopps-public/utbildning/forskarutbildning/kurser/org/BB')
     // Footer links
     expect(links[4]).toHaveTextContent('Central studievägledning')
     expect(links[4].href).toStrictEqual('https://www.kth.se/studycounselling')

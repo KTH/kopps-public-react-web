@@ -10,7 +10,7 @@ import FooterContent from '../components/FooterContent'
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 import translate from '../util/translate'
-import { departmentLink } from '../util/links'
+import { thirdCycleDepartmentLink } from '../util/links'
 
 function localeCompareDepartments(language) {
   return function compareDepartments(a, b) {
@@ -18,14 +18,16 @@ function localeCompareDepartments(language) {
   }
 }
 
-function DepartmentsLinkList({ departments }) {
-  const { language } = useStore()
-  const { browserConfig } = useStore()
+function DepartmentsLinkListResearch({ departments }) {
+  const { language, browserConfig } = useStore()
   departments.sort(localeCompareDepartments(language))
   return (
     <LinkList>
       {departments.map(department => (
-        <Link key={department.name} href={departmentLink(browserConfig.proxyPrefixPath.uri, department.code, language)}>
+        <Link
+          key={department.name}
+          href={thirdCycleDepartmentLink(browserConfig.proxyPrefixPath.uri, department.code, language)}
+        >
           {department.name}
         </Link>
       ))}
@@ -40,7 +42,7 @@ function CurrentSchools() {
       {currentSchoolsWithDepartments.map(school => (
         <Fragment key={school.name}>
           <Heading size="h2" text={school.name} />
-          <DepartmentsLinkList departments={school.departments} />
+          <DepartmentsLinkListResearch departments={school.departments} />
         </Fragment>
       ))}
     </>
@@ -73,7 +75,7 @@ function ThirdCycleDepartmentsList() {
   )
 }
 
-DepartmentsLinkList.propTypes = {
+DepartmentsLinkListResearch.propTypes = {
   departments: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
