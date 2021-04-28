@@ -23,12 +23,14 @@ import getThirdCycleMenuData from './config/thirdCycleMenuData'
 import getThirdCycleBreadcrumbs from './config/thirdCycleBreadcrumbs'
 import getThirdCycleDepartmentMenuData from './config/thirdCycleDepartmentMenuData'
 import getProgrammeMenuData from './config/programmeMenuData'
+import getCurriculumMenuData from './config/curriculumMenuData'
 import StudyHandbook from './pages/StudyHandbook'
 import ProgrammesList from './pages/ProgrammesList'
 import DepartmentsList from './pages/DepartmentsList'
 import DepartmentCourses from './pages/DepartmentCourses'
 import ThirdCycleDepartmentsList from './pages/ThirdCycleDepartmentsList'
 import Programme from './pages/Programme'
+import Curriculum from './pages/Curriculum'
 
 export default appFactory
 
@@ -53,10 +55,18 @@ function _renderOnClientSide() {
 }
 
 function appFactory(applicationStore) {
-  const { language, browserConfig, departmentName, programmeName } = applicationStore
+  const { language, browserConfig, departmentName, programmeCode, programmeName, term, studyYear } = applicationStore
   const menuData = getMenuData(language, browserConfig.proxyPrefixPath.uri)
   const departmentMenuData = getDepartmentMenuData(language, browserConfig.proxyPrefixPath.uri, departmentName)
   const programmeMenuData = getProgrammeMenuData(language, browserConfig.proxyPrefixPath.uri, programmeName)
+  const curriculumMenuData = getCurriculumMenuData(
+    language,
+    browserConfig.proxyPrefixPath.uri,
+    programmeCode,
+    programmeName,
+    term,
+    studyYear
+  )
   const menuDataExample = getMenuDataExample(language)
   return (
     <MobxStoreProvider initCallback={() => applicationStore}>
@@ -151,6 +161,14 @@ function appFactory(applicationStore) {
             selectedId: 'searchThirdCycleCourses',
             ...getThirdCycleMenuData(language, browserConfig.proxyPrefixPath.uri),
           }}
+        />
+        <RouteWrapper
+          exact
+          path="/student/kurser/program/:programmeCode/:term/:studyYear"
+          breadcrumbs={{ include: 'directory' }}
+          component={Curriculum}
+          layout={PageLayout}
+          menuData={{ selectedId: studyYear, ...curriculumMenuData }}
         />
       </Switch>
     </MobxStoreProvider>
