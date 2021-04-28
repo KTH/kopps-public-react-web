@@ -48,7 +48,7 @@ function _nTermsAgo(fromTerm, overrideDate) {
 }
 
 function _studyYear(term, lengthInStudyYears, overrideDate) {
-  const t = typeof term === 'number' ? term : parseInt(term, 10)
+  const t = Math.abs(term)
   const termsAgo = _nTermsAgo(t, overrideDate)
   const studyYear = _limit(1 + termsAgo / 2, lengthInStudyYears)
   return parseInt(studyYear, 10)
