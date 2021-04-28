@@ -6,23 +6,44 @@ const language = require('kth-node-web-common/lib/language')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 
+const koppsApi = require('../kopps/koppsApi')
+
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
-async function _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode }) {
+// TODO: There’s also links on the client side. Refactor?
+function programmeLink(proxyPrefixPath, programmeCode, lang) {
+  const languageParam = lang === 'en' ? '?l=en' : ''
+  return `${proxyPrefixPath}/student/kurser/program/${programmeCode}${languageParam}`
+}
+
+async function _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode, term, studyYear }) {
   applicationStore.setLanguage(lang)
   applicationStore.setBrowserConfig(browserConfig)
   applicationStore.setProgrammeCode(programmeCode)
+  applicationStore.setTerm(term)
+  applicationStore.setStudyYear(studyYear)
+
+  const programme = await koppsApi.getProgramme(programmeCode, lang)
+  const { title: programmeName } = programme
+
+  applicationStore.setProgrammeName(programmeName)
+
+  const departmentBreadCrumbItem = {
+    url: programmeLink(browserConfig.proxyPrefixPath.uri, programmeCode, lang),
+    label: programmeName,
+  }
+  applicationStore.setBreadcrumbsDynamicItems([departmentBreadCrumbItem])
 }
 
 async function getIndex(req, res, next) {
   try {
     const lang = language.getLanguage(res)
-    const { programmeCode, term } = req.params
+    const { programmeCode, term, studyYear } = req.params
 
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
 
-    const applicationStore = createStore()
-    await _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode, term })
+    const applicationStore = createStore('curriculum')
+    await _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode, term, studyYear })
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
     const { uri: proxyPrefix } = serverConfig.proxyPrefixPath
