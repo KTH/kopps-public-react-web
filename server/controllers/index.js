@@ -4,7 +4,6 @@
  * Declares all of our different controllers and exposes them
  * with some sweet names.
  */
-
 module.exports = {
   Search: require('./searchCtrl'),
   StudyHandBook: require('./studyHandBookCtrl'),
@@ -17,4 +16,5 @@ module.exports = {
   SchoolsList: require('./schoolsListCtrl'),
   Department: require('./departmentCtrl'),
   Programme: require('./programmeCtrl'),
+  Curriculum: require('./curriculumCtrl'),
 }
