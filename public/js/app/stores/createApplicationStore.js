@@ -5,154 +5,134 @@
 // eslint-disable-next-line no-unused-vars
 import { observable } from 'mobx'
 import axios from 'axios'
+import curriculumStore from './curriculumStore'
+import commonStore from './commonStore'
 
 const kopps = axios.create({ baseURL: 'http://localhost:8010/proxy/api/kopps/v2' })
 
 export default createApplicationStore
 
-function createApplicationStore() {
-  const store = {
-    /**
-     * @property {array<map<string, string>>} breadcrumbsDynamicItems
-     */
-    /* Use only if breadcrumbs ending depends on f.e., api */
-    breadcrumbsDynamicItems: [],
-    /**
-     * @method
-     * @param {array<map<string, string>>} items
-     */
-    setBreadcrumbsDynamicItems,
-    /**
-     * @property {string} language
-     * @property {number} languageIndex
-     */
-    language: null,
-    languageIndex: 0,
-    /**
-     * @method
-     * @param {string} lang
-     */
-    setLanguage,
+const store = {
+  /**
+   * @property {string} message
+   */
+  message: 'Hallo',
+  /**
+   * @method
+   * @param {string} text
+   */
+  setMessage,
 
-    /**
-     * @property {string} message
-     */
-    message: 'Hallo',
-    /**
-     * @method
-     * @param {string} text
-     */
-    setMessage,
+  koppsCourseData: null,
+  koppsCourseSearch,
+  /**
+   * @method
+   * @param {map<string, {}>} programmes
+   */
+  setProgrammes,
 
-    koppsCourseData: null,
-    koppsCourseSearch,
-    /**
-     * @method
-     * @param {map<string, {}>} programmes
-     */
-    setProgrammes,
+  /**
+   * @property {map<string, {}>} programmes
+   */
+  programmes: [],
 
-    /**
-     * @property {map<string, {}>} programmes
-     */
-    programmes: [],
+  /**
+   * @method
+   * @param {[]} currentSchoolsWithDepartments
+   */
+  setCurrentSchoolsWithDepartments,
 
-    /**
-     * @method
-     * @param {[]} currentSchoolsWithDepartments
-     */
-    setCurrentSchoolsWithDepartments,
+  /**
+   * @property {[]} currentSchoolsWithDepartments
+   */
+  currentSchoolsWithDepartments: [],
 
-    /**
-     * @property {[]} currentSchoolsWithDepartments
-     */
-    currentSchoolsWithDepartments: [],
+  /**
+   * @method
+   * @param {[]} deprecatedSchoolsWithDepartments
+   */
+  setDeprecatedSchoolsWithDepartments,
 
-    /**
-     * @method
-     * @param {[]} deprecatedSchoolsWithDepartments
-     */
-    setDeprecatedSchoolsWithDepartments,
+  /**
+   * @property {[]} deprecatedSchoolsWithDepartments
+   */
+  deprecatedSchoolsWithDepartments: [],
+  /**
+   * @property {string} departmentName
+   */
+  departmentName: '',
+  /**
+   * @method
+   * @param {string} departmentName
+   */
+  setDepartmentName,
 
-    /**
-     * @property {[]} deprecatedSchoolsWithDepartments
-     */
-    deprecatedSchoolsWithDepartments: [],
-
-    /**
-     * @property {object} browserConfig
-     */
-    browserConfig: {},
-    /**
-     * @method
-     * @param {object} config
-     * @param {string} thisHostBaseUrl
-     */
-    setBrowserConfig,
-
-    /**
-     * @property {string} departmentName
-     */
-    departmentName: '',
-    /**
-     * @method
-     * @param {string} departmentName
-     */
-    setDepartmentName,
-
-    /**
-     * @property {[]} departmentCourses
-     */
-    departmentCourses: [],
-    /**
-     * @method
-     * @param {[]} departmentCourses
-     */
-    setDepartmentCourses,
-    /**
-     * @property {string} programmeName
-     */
-    programmeName: '',
-    /**
-     * @method
-     * @param {string} programmeName
-     */
-    setProgrammeName,
-    /**
-     * @property {string} programmeCode
-     */
-    programmeCode: '',
-    /**
-     * @method
-     * @param {string} programmeCode
-     */
-    setProgrammeCode,
-    /**
-     * @property {[]} programmeTerms
-     */
-    programmeTerms: [],
-    /**
-     * @method
-     * @param {[]} programmeTerms
-     */
-    setProgrammeTerms,
-    /**
-     * @property {number} lengthInStudyYears
-     */
-    lengthInStudyYears: 0,
-    /**
-     * @method
-     * @param {number} lengthInStudyYears
-     */
-    setLengthInStudyYears,
-    /**
-     * @property {string} thisHostBaseUrl
-     */
-    thisHostBaseUrl: null,
-  }
-
-  return store
+  /**
+   * @property {[]} departmentCourses
+   */
+  departmentCourses: [],
+  /**
+   * @method
+   * @param {[]} departmentCourses
+   */
+  setDepartmentCourses,
+  /**
+   * @property {string} programmeName
+   */
+  programmeName: '',
+  /**
+   * @method
+   * @param {string} programmeName
+   */
+  setProgrammeName,
+  /**
+   * @property {string} programmeCode
+   */
+  programmeCode: '',
+  /**
+   * @method
+   * @param {string} programmeCode
+   */
+  setProgrammeCode,
+  /**
+   * @property {[]} programmeTerms
+   */
+  programmeTerms: [],
+  /**
+   * @method
+   * @param {[]} programmeTerms
+   */
+  setProgrammeTerms,
+  /**
+   * @property {number} lengthInStudyYears
+   */
+  lengthInStudyYears: 0,
+  /**
+   * @method
+   * @param {number} lengthInStudyYears
+   */
+  setLengthInStudyYears,
+  /**
+   * @property {string} thisHostBaseUrl
+   */
+  thisHostBaseUrl: null,
 }
+
+function createApplicationStore(storeId) {
+  switch (storeId) {
+    case 'curriculum':
+      return {
+        ...commonStore,
+        ...curriculumStore,
+      }
+    default:
+      return {
+        ...commonStore,
+        ...store,
+      }
+  }
+}
+
 function _getThisHost(thisHostBaseUrl) {
   return thisHostBaseUrl.slice(-1) === '/' ? thisHostBaseUrl.slice(0, -1) : thisHostBaseUrl
 }
@@ -187,18 +167,6 @@ async function koppsCourseSearch(textPattern) {
   // console.log(this.koppsCourseData)
 }
 
-function setBreadcrumbsDynamicItems(items) {
-  // [{
-  //   url: 'https://www.kth.se/student/kurser/program/A/20042/arskurs5',
-  //   label: 'Degree Programme in Architecture',
-  // }],
-  this.breadcrumbsDynamicItems = items
-}
-function setLanguage(lang) {
-  this.language = lang
-  this.languageIndex = lang === 'en' ? 0 : 1
-}
-
 function setMessage(text = 'Happy coding!! :)') {
   this.message = text
 }
@@ -213,13 +181,6 @@ function setCurrentSchoolsWithDepartments(currentSchoolsWithDepartments) {
 
 function setDeprecatedSchoolsWithDepartments(deprecatedSchoolsWithDepartments) {
   this.deprecatedSchoolsWithDepartments = deprecatedSchoolsWithDepartments
-}
-
-function setBrowserConfig(config, thisHostBaseUrl = null) {
-  this.browserConfig = config
-  // this.paths = paths
-  // this.apiHost = apiHost
-  this.thisHostBaseUrl = thisHostBaseUrl
 }
 
 function setDepartmentName(departmentName) {

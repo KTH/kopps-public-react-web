@@ -16,8 +16,8 @@ export default _getServerSideFunctions()
 
 function _getServerSideFunctions() {
   return {
-    createStore() {
-      return createApplicationStore()
+    createStore(storeId) {
+      return createApplicationStore(storeId)
     },
 
     getCompressedStoreCode(store) {
