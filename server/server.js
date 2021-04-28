@@ -229,7 +229,7 @@ const {
   SchoolsList,
   Department,
   Programme,
-  Search,
+  Curriculum,
 } = require('./controllers')
 const { requireRole } = require('./authentication')
 
@@ -323,6 +323,11 @@ appRoute.get('redirect.kurser', config.proxyPrefixPath.uri + '/student/kurser', 
 appRoute.get('redirect.program', config.proxyPrefixPath.uri + '/student/kurser/program', (req, res) => {
   res.redirect(301, config.proxyPrefixPath.uri + '/student/kurser/kurser-inom-program')
 })
+appRoute.get(
+  'dev.curriculum',
+  config.proxyPrefixPath.uri + '/student/kurser/program/:programmeCode/:term/:studyYear',
+  Curriculum.getIndex
+)
 appRoute.get(
   'system.gateway',
   config.proxyPrefixPath.uri + '/gateway',
