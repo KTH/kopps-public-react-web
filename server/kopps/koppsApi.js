@@ -112,6 +112,13 @@ const getCourses = async ({ departmentCode, lang = 'sv' }) => {
   const uri = `${koppsBase}courses/${departmentCode}.json?l=${lang}`
   try {
     const response = await client.getAsync({ uri, useCache: false })
+    if (response.statusCode !== 200) {
+      const error = new Error(
+        `Response from KOPPS API calling /api/kopps/v2/courses/{departmentCode}.{format} with ${departmentCode}`
+      )
+      error.statusCode = response.statusCode
+      throw error
+    }
     return response.body
   } catch (error) {
     log.error('Exception calling KOPPS API in koppsApi.getCourses', { error })
