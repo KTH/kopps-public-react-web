@@ -26,6 +26,10 @@ const koppsConfig = {
 
 const koppsApi = connections.setup(koppsConfig, koppsConfig, koppsOpts)
 
+const slashEndedKoppsBase = config.koppsApi.basePath.endsWith('/')
+  ? config.koppsApi.basePath
+  : config.koppsApi.basePath.concat('/')
+
 function reduceToQueryParamString(params) {
   const queryParam = Object.entries(params).reduce(
     (currentQueryParam, [key, value]) => currentQueryParam + `${key}=${encodeURIComponent(value)}&`,
@@ -141,6 +145,19 @@ const getProgramme = async (programmeCode, lang) => {
   }
 }
 
+const getSearchResults = async (searchParams, lang) => {
+  const { client } = koppsApi.koppsApi
+
+  const uri = `${slashEndedKoppsBase}courses/search?${searchParams}&l=${lang}`
+  try {
+    const response = await client.getAsync({ uri, useCache: false })
+    return response.body
+  } catch (error) {
+    log.error('Exception calling KOPPS API in koppsApi.getSearchResults', { error })
+    throw error
+  }
+}
+
 module.exports = {
   searchFovCourses,
   listActiveMainFieldsOfStudy,
@@ -149,4 +166,5 @@ module.exports = {
   listSchoolsWithDepartments,
   getCourses,
   getProgramme,
+  getSearchResults,
 }

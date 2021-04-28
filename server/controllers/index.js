@@ -6,6 +6,7 @@
  */
 
 module.exports = {
+  Search: require('./searchCtrl'),
   StudyHandBook: require('./studyHandBookCtrl'),
   System: require('./systemCtrl'),
   Sample: require('./sampleCtrl'),

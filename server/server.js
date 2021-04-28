@@ -229,6 +229,7 @@ const {
   SchoolsList,
   Department,
   Programme,
+  Search,
 } = require('./controllers')
 const { requireRole } = require('./authentication')
 
@@ -267,16 +268,23 @@ appRoute.get(
   ThirdCycleStudy.getAllSchoolsAndDepartments
 )
 appRoute.get(
-  'public.departmentsListThirdCycleStudy',
+  'public.departmentThirdCycleStudy',
+  config.proxyPrefixPath.uri + '/utbildning/forskarutbildning/kurser/org/:departmentCode',
+  ThirdCycleStudy.getCoursesPerDepartment
+)
+appRoute.get(
+  'public.searchThirdCycleCourses',
+  config.proxyPrefixPath.uri + '/utbildning/forskarutbildning/kurser/sok',
+  Search.searchThirdCycleCourses
+)
+appRoute.get('api.searchCourses', config.proxyPrefixPath.uri + '/intern-api/sok/:lang', Search.performCourseSearch)
+
+appRoute.get(
+  'redirect.departmentsListThirdCycleStudy',
   config.proxyPrefixPath.uri + '/utbildning/forskarutbildning/kurser/',
   (req, res) => {
     res.redirect(301, config.proxyPrefixPath.uri + '/utbildning/forskarutbildning/kurser/avdelning')
   }
-)
-appRoute.get(
-  'public.departmentThirdCycleStudy',
-  config.proxyPrefixPath.uri + '/utbildning/forskarutbildning/kurser/org/:departmentCode',
-  ThirdCycleStudy.getCoursesPerDepartment
 )
 appRoute.get(
   'redirect.kurser-per-avdelning',

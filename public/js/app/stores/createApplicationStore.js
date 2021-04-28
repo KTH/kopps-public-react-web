@@ -86,6 +86,7 @@ function createApplicationStore() {
     /**
      * @method
      * @param {object} config
+     * @param {string} thisHostBaseUrl
      */
     setBrowserConfig,
 
@@ -144,18 +145,45 @@ function createApplicationStore() {
      * @param {number} lengthInStudyYears
      */
     setLengthInStudyYears,
+    /**
+     * @property {string} thisHostBaseUrl
+     */
+    thisHostBaseUrl: null,
   }
 
   return store
 }
-
+function _getThisHost(thisHostBaseUrl) {
+  return thisHostBaseUrl.slice(-1) === '/' ? thisHostBaseUrl.slice(0, -1) : thisHostBaseUrl
+}
 async function koppsCourseSearch(textPattern) {
-  this.koppsCourseData = await kopps.get('/courses/search', {
-    params: {
-      text_pattern: textPattern,
-      educational_level: 'BASIC',
-    },
-  })
+  try {
+    const thisHost = _getThisHost(this.thisHostBaseUrl)
+
+    const result = await axios.get(`${thisHost}/kopps-public/intern-api/sok/${this.language}?pattern=${textPattern}`)
+    if (result) {
+      if (result.status >= 400) {
+        return 'ERROR-createApplicationStore.js-koppsCourseSearch-' + result.status
+      }
+      const { searchHits } = result.data
+      console.log('data', JSON.stringify(searchHits))
+
+      return searchHits
+      // sort courses
+      // return await this._somesortfuntion( ??? )
+    }
+  } catch (error) {
+    if (error.response) {
+      throw new Error('createApplicationStore.js-koppsCourseSearch-' + error.message)
+    }
+    throw error
+  }
+  // this.koppsCourseData = await kopps.get('/courses/search', {
+  //   params: {
+  //     text_pattern: textPattern,
+  //     educational_level: 'BASIC',
+  //   },
+  // })
   // console.log(this.koppsCourseData)
 }
 
@@ -187,8 +215,11 @@ function setDeprecatedSchoolsWithDepartments(deprecatedSchoolsWithDepartments) {
   this.deprecatedSchoolsWithDepartments = deprecatedSchoolsWithDepartments
 }
 
-function setBrowserConfig(config) {
+function setBrowserConfig(config, thisHostBaseUrl = null) {
   this.browserConfig = config
+  // this.paths = paths
+  // this.apiHost = apiHost
+  this.thisHostBaseUrl = thisHostBaseUrl
 }
 
 function setDepartmentName(departmentName) {

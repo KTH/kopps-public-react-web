@@ -138,6 +138,20 @@ function appFactory(applicationStore) {
             ...getThirdCycleDepartmentMenuData(language, browserConfig.proxyPrefixPath.uri, departmentName),
           }}
         />
+        <RouteWrapper
+          exact
+          path="/utbildning/forskarutbildning/kurser/sok"
+          breadcrumbs={{
+            include: 'university',
+            items: getThirdCycleBreadcrumbs(language, browserConfig.proxyPrefixPath.uri),
+          }}
+          component={CourseSearch}
+          layout={PageLayout}
+          menuData={{
+            selectedId: 'searchThirdCycleCourses',
+            ...getThirdCycleMenuData(language, browserConfig.proxyPrefixPath.uri),
+          }}
+        />
       </Switch>
     </MobxStoreProvider>
   )
