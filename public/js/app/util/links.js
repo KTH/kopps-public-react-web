@@ -30,6 +30,11 @@ function departmentLink(proxyPrefixPath, departmentCode, language) {
   return `${proxyPrefixPath}/student/kurser/org/${departmentCode}${languageParam}`
 }
 
+function thirdCycleDepartmentLink(proxyPrefixPath, departmentCode, language) {
+  const languageParam = getLanguageParam(language)
+  return `${proxyPrefixPath}/utbildning/forskarutbildning/kurser/org/${departmentCode}${languageParam}`
+}
+
 function courseLink(courseCode, language) {
   const languageParam = getLanguageParam(language)
   return `/student/kurser/kurs/${courseCode}${languageParam}`
@@ -59,4 +64,5 @@ module.exports = {
   parentStudyLink,
   parentThirdCycleStudyLink,
   programTermLink,
+  thirdCycleDepartmentLink,
 }
