@@ -26,7 +26,7 @@ RouteWrapper.propTypes = {
       })
     ),
   }),
-  component: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
+  component: PropTypes.oneOfType([PropTypes.node, PropTypes.func, PropTypes.elementType]).isRequired,
   layout: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
   menuData: PropTypes.shape({
     ariaLabel: PropTypes.string,
