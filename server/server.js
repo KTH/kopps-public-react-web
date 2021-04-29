@@ -229,6 +229,7 @@ const {
   SchoolsList,
   Department,
   Programme,
+  Search,
   Curriculum,
 } = require('./controllers')
 const { requireRole } = require('./authentication')
