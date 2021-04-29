@@ -38,11 +38,8 @@ function reduceToQueryParamString(params) {
   return queryParam.slice(0, -1) // Remove either '?' or '&'
 }
 
-// Resolve kopps basepath only here since it's fixed, and export only the subset of kopps api we need.
 const searchFovCourses = async searchOptions => {
   const { client } = koppsApi.koppsApi
-  const koppsBase = config.koppsApi.basePath
-  const slashEndedKoppsBase = koppsBase.endsWith('/') ? koppsBase : koppsBase.concat('/')
   const queryParams = reduceToQueryParamString(searchOptions)
   const uri = `${slashEndedKoppsBase}courses/courserounds${queryParams}`
   try {
@@ -57,8 +54,6 @@ const searchFovCourses = async searchOptions => {
 
 const listActiveMainFieldsOfStudy = async () => {
   const { client } = koppsApi.koppsApi
-  const koppsBase = config.koppsApi.basePath
-  const slashEndedKoppsBase = koppsBase.endsWith('/') ? koppsBase : koppsBase.concat('/')
   const uri = `${slashEndedKoppsBase}utils/mainsubjects/current`
   try {
     const data = await client.getAsync({ uri, useCache: false })
@@ -75,10 +70,7 @@ const listActiveMainFieldsOfStudy = async () => {
 
 const listProgrammes = async lang => {
   const { client } = koppsApi.koppsApi
-  const koppsBase = config.koppsApi.basePath.endsWith('/')
-    ? config.koppsApi.basePath
-    : config.koppsApi.basePath.concat('/')
-  const uri = `${koppsBase}programmes/all${lang ? `?l=${lang}` : ''}`
+  const uri = `${slashEndedKoppsBase}programmes/all${lang ? `?l=${lang}` : ''}`
   try {
     const response = await client.getAsync({ uri, useCache: false })
     return response.body
@@ -95,10 +87,7 @@ const DEPARTMENT_CRITERIA = {
 
 const listSchoolsWithDepartments = async ({ departmentCriteria, listForActiveCourses = false, lang = 'sv' }) => {
   const { client } = koppsApi.koppsApi
-  const koppsBase = config.koppsApi.basePath.endsWith('/')
-    ? config.koppsApi.basePath
-    : config.koppsApi.basePath.concat('/')
-  const uri = `${koppsBase}schools/departments?department_criteria=${departmentCriteria}&listForActiveCourses=${listForActiveCourses}&l=${lang}`
+  const uri = `${slashEndedKoppsBase}schools/departments?department_criteria=${departmentCriteria}&listForActiveCourses=${listForActiveCourses}&l=${lang}`
   try {
     const response = await client.getAsync({ uri, useCache: false })
     return response.body
@@ -110,10 +99,7 @@ const listSchoolsWithDepartments = async ({ departmentCriteria, listForActiveCou
 
 const getCourses = async ({ departmentCode, lang = 'sv' }) => {
   const { client } = koppsApi.koppsApi
-  const koppsBase = config.koppsApi.basePath.endsWith('/')
-    ? config.koppsApi.basePath
-    : config.koppsApi.basePath.concat('/')
-  const uri = `${koppsBase}courses/${departmentCode}.json?l=${lang}`
+  const uri = `${slashEndedKoppsBase}courses/${departmentCode}.json?l=${lang}`
   try {
     const response = await client.getAsync({ uri, useCache: false })
     if (response.statusCode !== 200) {
@@ -132,10 +118,7 @@ const getCourses = async ({ departmentCode, lang = 'sv' }) => {
 
 const getProgramme = async (programmeCode, lang) => {
   const { client } = koppsApi.koppsApi
-  const koppsBase = config.koppsApi.basePath.endsWith('/')
-    ? config.koppsApi.basePath
-    : config.koppsApi.basePath.concat('/')
-  const uri = `${koppsBase}programme/${programmeCode}?l=${lang}`
+  const uri = `${slashEndedKoppsBase}programme/${programmeCode}?l=${lang}`
   try {
     const response = await client.getAsync({ uri, useCache: false })
     return response.body
