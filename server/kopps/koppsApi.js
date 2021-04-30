@@ -165,6 +165,26 @@ const listCurriculums = async (studyProgrammeVersionId, lang) => {
   }
 }
 
+const listCourseRoundsInYearPlan = async ({
+  programmeCode,
+  specializationCode,
+  academicYearStartTerm,
+  studyYearNumber,
+  lang,
+}) => {
+  const { client } = koppsApi.koppsApi
+  const uri = `${slashEndedKoppsBase}academicyearplan/${programmeCode}/${
+    specializationCode ? `${specializationCode}/` : ''
+  }${academicYearStartTerm}/${studyYearNumber}?l=${lang}`
+  try {
+    const response = await client.getAsync({ uri, useCache: false })
+    return response.body
+  } catch (error) {
+    log.error('Exception calling KOPPS API in koppsApi.listCourseRoundsInYearPlan', { error })
+    throw error
+  }
+}
+
 module.exports = {
   searchFovCourses,
   listActiveMainFieldsOfStudy,
@@ -176,4 +196,5 @@ module.exports = {
   getSearchResults,
   getStudyProgrammeVersion,
   listCurriculums,
+  listCourseRoundsInYearPlan,
 }
