@@ -326,7 +326,7 @@ appRoute.get('redirect.program', config.proxyPrefixPath.uri + '/student/kurser/p
 })
 appRoute.get(
   'dev.curriculum',
-  config.proxyPrefixPath.uri + '/student/kurser/program/:programmeCode/:term/:studyYear',
+  config.proxyPrefixPath.uri + '/student/kurser/program/:programmeCode/:term/arskurs:studyYear([1-5])',
   Curriculum.getIndex
 )
 appRoute.get(

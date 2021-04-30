@@ -26,8 +26,7 @@ async function _getCourseRounds(curriculums, programmeCode, term, studyYear, lan
         programmeCode,
         specializationCode,
         academicYearStartTerm: term,
-        // TODO: Better resolve of studyYearNumber
-        studyYearNumber: studyYear.slice(-1),
+        studyYearNumber: studyYear,
         lang,
       })
     })
