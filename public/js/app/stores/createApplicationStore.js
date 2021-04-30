@@ -145,13 +145,10 @@ async function koppsCourseSearch(textPattern) {
       if (result.status >= 400) {
         return 'ERROR-createApplicationStore.js-koppsCourseSearch-' + result.status
       }
-      const { searchHits } = result.data
-      console.log('data', JSON.stringify(searchHits))
-
-      return searchHits
-      // sort courses
-      // return await this._somesortfuntion( ??? )
+      const { data } = result
+      return data
     }
+    return
   } catch (error) {
     if (error.response) {
       throw new Error('createApplicationStore.js-koppsCourseSearch-' + error.message)
