@@ -1,56 +1,45 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { observer } from 'mobx-react'
 import { useStore } from '../mobx'
 
 import i18n from '../../../../i18n'
 
-function SearchInputField({ caption = 'N/A' }) {
+function SearchInputField({ caption = 'N/A', pattern: externalPattern, eduLevels = [3], onSubmit }) {
   const { language: lang, koppsCourseSearch } = useStore()
+  const [pattern, setPattern] = useState(externalPattern || '')
+  // const [eduLevels, setEduLevels] = useState(externalEduLevel || [3]) // 3 -> Forskarnivå
 
-  const [buttonClicked, setButtonClicked] = useState(false)
+  useEffect(() => {
+    if (typeof externalPattern === 'string') setPattern(externalPattern)
+  }, [externalPattern])
+
+  function handleChange(e) {
+    setPattern(e.target.value)
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    onSubmit(pattern)
+  }
 
   return (
-    <>
-      <button type="button" onClick={() => koppsCourseSearch('Algebra')}>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="pattern">
+          Ange del av kursnamn eller kurskod:
+          <span id="searchfield-help-text" style={{ fontWeight: 'normal', display: 'block' }}>
+            Exempel på kurskod: SF1624
+          </span>
+        </label>
+        {/* type="text" size="50" maxLength="80" value="" name="pattern"  */}
+        <input id="pattern" onChange={handleChange} />
+      </div>
+      <button className="btn btn-primary" type="submit">
         {/* TODO: handle  koppsCourseSearch('sf') when too much search-error-overflow*/}
         {caption}
       </button>
-      {buttonClicked ? <p>{i18n.message('template_button_works', lang)}</p> : null}
-    </>
-  )
-}
-
-//const SyllabusTable = ({ translation, courseCode, language, syllabusPeriods = {} }) => {
-const SyllabusTable = () => {
-  const { language: translation } = useStore()
-  const startDates = Object.keys(syllabusPeriods) || []
-  startDates.sort().reverse()
-  return (
-    <>
-      <h2>{translation.label_syllabuses}</h2>
-      {startDates.length ? (
-        <table className="table archive-table">
-          <thead>
-            <tr>
-              <th scope="col">{translation.label_semesters}</th>
-              <th scope="col" className="course-syllabus-header">
-                {translation.label_syllabus}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {startDates.map(startDate => {
-              const { endDate: ed } = syllabusPeriods[startDate]
-              const endDate = ed.toString()
-              return row(translation, courseCode, language, startDate, endDate)
-            })}
-          </tbody>
-        </table>
-      ) : (
-        <p className="inline-information">{translation.no_syllabuses}</p>
-      )}
-    </>
+    </form>
   )
 }
 
