@@ -16,6 +16,24 @@ function programmeLink(proxyPrefixPath, programmeCode, lang) {
   return `${proxyPrefixPath}/student/kurser/program/${programmeCode}${languageParam}`
 }
 
+async function _getCourseRounds(curriculums, programmeCode, term, studyYear, lang) {
+  return Promise.all(
+    curriculums.map(async curriculum => {
+      const specializationCode = curriculum.programmeSpecialization
+        ? curriculum.programmeSpecialization.programmeSpecializationCode
+        : null
+      return koppsApi.listCourseRoundsInYearPlan({
+        programmeCode,
+        specializationCode,
+        academicYearStartTerm: term,
+        // TODO: Better resolve of studyYearNumber
+        studyYearNumber: studyYear.slice(-1),
+        lang,
+      })
+    })
+  )
+}
+
 async function _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode, term, studyYear }) {
   applicationStore.setLanguage(lang)
   applicationStore.setBrowserConfig(browserConfig)
@@ -27,6 +45,14 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, progr
   const { title: programmeName } = programme
 
   applicationStore.setProgrammeName(programmeName)
+
+  const studyProgramme = await koppsApi.getStudyProgrammeVersion(programmeCode, term, lang)
+  const { id: studyProgrammeId } = studyProgramme
+
+  const curriculums = await koppsApi.listCurriculums(studyProgrammeId, lang)
+  applicationStore.setCurriculums(curriculums)
+  const courseRounds = await _getCourseRounds(curriculums, programmeCode, term, studyYear, lang)
+  applicationStore.setCourseRounds(courseRounds)
 
   const departmentBreadCrumbItem = {
     url: programmeLink(browserConfig.proxyPrefixPath.uri, programmeCode, lang),

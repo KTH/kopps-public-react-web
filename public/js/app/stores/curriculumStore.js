@@ -14,6 +14,14 @@ function setStudyYear(studyYear) {
   this.studyYear = studyYear
 }
 
+function setCurriculums(curriculums) {
+  this.curriculums = curriculums
+}
+
+function setCourseRounds(courseRounds) {
+  this.courseRounds = courseRounds
+}
+
 const curriculumStore = {
   /**
    * @property {string} programmeCode
@@ -55,6 +63,24 @@ const curriculumStore = {
    * @param {string} studyYear
    */
   setStudyYear,
+  /**
+   * @property {[]} curriculums
+   */
+  curriculums: [],
+  /**
+   * @method
+   * @param {[]} curriculums
+   */
+  setCurriculums,
+  /**
+   * @property {[]} courseRounds
+   */
+  courseRounds: [],
+  /**
+   * @method
+   * @param {[]} courseRounds
+   */
+  setCourseRounds,
 }
 
 export default curriculumStore
