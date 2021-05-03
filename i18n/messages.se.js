@@ -160,6 +160,7 @@ module.exports = {
     programme_study_years_explanation:
       'Välj utbildningsplan. Oftast överensstämmer kull med den termin då studierna påbörjades vid programmet.',
     programme_admitted_year: 'Utbildningsplan kull',
+    curriculums_admitted_year_long: 'Årskurs',
   },
   shb: {
     pageHeading: 'Studiehandboken 00/01 tom 07/08',

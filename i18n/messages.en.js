@@ -104,6 +104,7 @@ module.exports = {
     programme_study_years_explanation:
       'Choose programme syllabus. Batch most often equals first registration term at programme.',
     programme_admitted_year: 'Programme syllabus for studies starting in',
+    curriculums_admitted_year_long: 'Study year',
   },
   shb: {
     pageHeading: 'Study Handbook 00/01 to 07/08',
