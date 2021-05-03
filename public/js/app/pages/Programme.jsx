@@ -8,7 +8,7 @@ import FooterContent from '../components/FooterContent'
 
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
-import translate from '../util/translate'
+import translate from '../../../../domain/translate'
 import { programTermLink } from '../util/links'
 import { formatShortTerm, studyYear as calculateStudyYear } from '../util/terms'
 

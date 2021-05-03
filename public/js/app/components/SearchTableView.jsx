@@ -8,7 +8,7 @@ import Article from '../components/Article'
 import { useStore } from '../mobx'
 
 import i18n from '../../../../i18n'
-import translate from '../util/translate'
+import translate from '../../../../domain/translate'
 // import { ErrorBoundary } from 'react-error-boundary'
 
 import { courseLink } from '../util/links'

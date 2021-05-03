@@ -42,7 +42,7 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
           >
             <a
               class="nav-link"
-              href="localhost://kopps-public/kurser/avdelning?l=en"
+              href="localhost://kopps-public/utbildning/forskarutbildning/kurser/avdelning?l=en"
             >
               Third-cycle courses by school
             </a>
@@ -52,7 +52,7 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
           >
             <a
               class="nav-link"
-              href="localhost://kopps-public/kurser/sok?l=en"
+              href="localhost://kopps-public/utbildning/forskarutbildning/kurser/sok?l=en"
             >
               Search third-cycle courses
             </a>
@@ -183,7 +183,7 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
           >
             <a
               class="nav-link"
-              href="localhost://kopps-public/kurser/avdelning"
+              href="localhost://kopps-public/utbildning/forskarutbildning/kurser/avdelning"
             >
               Forskarkurser per skola
             </a>
@@ -193,7 +193,7 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
           >
             <a
               class="nav-link"
-              href="localhost://kopps-public/kurser/sok"
+              href="localhost://kopps-public/utbildning/forskarutbildning/kurser/sok"
             >
               Sök forskarkurs
             </a>

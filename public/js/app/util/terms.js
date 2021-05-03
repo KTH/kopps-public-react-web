@@ -1,5 +1,5 @@
 const i18n = require('../../../../i18n')
-const translate = require('./translate')
+const translate = require('../../../../domain/translate')
 
 function _limit(value, max) {
   if (value > max) {

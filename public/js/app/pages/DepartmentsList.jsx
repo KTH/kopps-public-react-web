@@ -10,7 +10,7 @@ import FooterContent from '../components/FooterContent'
 
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
-import translate from '../util/translate'
+import translate from '../../../../domain/translate'
 import { departmentLink } from '../util/links'
 
 function localeCompareDepartments(language) {

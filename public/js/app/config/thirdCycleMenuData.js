@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 const i18n = require('../../../../i18n')
-const translate = require('../util/translate')
+const translate = require('../../../../domain/translate')
 const { parentThirdCycleStudyLink, pageLink } = require('../util/links')
 
 function getThirdCycleMenuData(language, proxyPrefixPath) {
