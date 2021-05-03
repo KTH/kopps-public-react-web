@@ -7,7 +7,6 @@ import { Link, PageHeading, SortableTable } from '@kth/kth-reactstrap/dist/compo
 import Article from '../components/Article'
 import { useStore } from '../mobx'
 
-import i18n from '../../../../i18n'
 import translate from '../../../../domain/translate'
 // import { ErrorBoundary } from 'react-error-boundary'
 
@@ -55,7 +54,7 @@ function sortAndParseByCourseCode(courses) {
 const SearchTableView = ({ unsortedSearchResults }) => {
   const { language } = useStore()
 
-  const t = translate(i18n, language)
+  const t = translate(language)
 
   const headers = [
     t('department_course_code'),

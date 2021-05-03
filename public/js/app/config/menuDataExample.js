@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-const i18n = require('../../../../i18n')
 const translate = require('../../../../domain/translate')
 
 function parentLink(language) {
@@ -12,7 +11,7 @@ function pageLinks(pageId) {
 }
 
 function getMenuDataExample(language) {
-  const t = translate(i18n, language)
+  const t = translate(language)
   return {
     ariaLabel: t('main_menu_aria_label'),
     parentLink: {

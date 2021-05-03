@@ -6,7 +6,6 @@ import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'
 
 import { useStore } from '../mobx'
-import i18n from '../../../../i18n'
 import translate from '../../../../domain/translate'
 import { courseLink } from '../util/links'
 
@@ -51,7 +50,7 @@ function sortAndParseCourses(courses) {
 
 function DepartmentsList() {
   const { language, departmentName, departmentCourses } = useStore()
-  const t = translate(i18n, language)
+  const t = translate(language)
 
   const headers = [
     t('department_course_code'),

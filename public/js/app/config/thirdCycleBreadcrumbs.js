@@ -1,10 +1,9 @@
 /* eslint-disable camelcase */
-const i18n = require('../../../../i18n')
 const translate = require('../../../../domain/translate')
 const { parentThirdCycleStudyLink, pageLink, parentStudyLink } = require('../util/links')
 
 function getThirdCycleBreadcrumbs(language, proxyPrefixPath) {
-  const t = translate(i18n, language)
+  const t = translate(language)
   return [
     {
       url: parentStudyLink(language),

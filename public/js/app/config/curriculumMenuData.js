@@ -1,10 +1,9 @@
 /* eslint-disable camelcase */
-const i18n = require('../../../../i18n')
 const translate = require('../../../../domain/translate')
 const { pageLink } = require('../util/links')
 
 function getCurriculumMenuData(language, proxyPrefixPath, programmeCode, programmeName, term, studyYear) {
-  const t = translate(i18n, language)
+  const t = translate(language)
   return {
     ariaLabel: t('main_menu_aria_label'),
     parentLink: {

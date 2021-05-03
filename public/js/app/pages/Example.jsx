@@ -7,12 +7,11 @@ import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'
 
 import { useStore } from '../mobx'
-import i18n from '../../../../i18n'
 import translate from '../../../../domain/translate'
 
 function Example() {
   const { language } = useStore()
-  const t = translate(i18n, language)
+  const t = translate(language)
   return (
     <>
       <Row>

@@ -14,7 +14,7 @@ import { formatShortTerm, studyYear as calculateStudyYear } from '../util/terms'
 
 function programmeTermLinkText(term) {
   const { language } = useStore()
-  const t = translate(i18n, language)
+  const t = translate(language)
   return `${t('programme_admitted_year')} ${formatShortTerm(term, language)}`
 }
 
@@ -43,7 +43,7 @@ function ProgrammeTermsLinkList() {
 
 function Programme() {
   const { language, programmeCode, programmeName } = useStore()
-  const t = translate(i18n, language)
+  const t = translate(language)
   return (
     <>
       <Row>

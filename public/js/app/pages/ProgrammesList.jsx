@@ -43,7 +43,7 @@ function Section({ programmeType, children }) {
 
 function CurrentProgrammeDescription({ programme }) {
   const { language } = useStore()
-  const t = translate(i18n, language)
+  const t = translate(language)
   const { credits, creditUnitAbbr, firstAdmissionTerm } = programme
   const formattedTerm = formatShortTerm(firstAdmissionTerm, language)
   return <>{`, ${credits} ${creditUnitAbbr}, ${t('programmes_admitted_from')} ${formattedTerm}`}</>
@@ -51,7 +51,7 @@ function CurrentProgrammeDescription({ programme }) {
 
 function ObsoleteProgrammeDescription({ programme }) {
   const { language } = useStore()
-  const t = translate(i18n, language)
+  const t = translate(language)
   const { credits, creditUnitAbbr, firstAdmissionTerm, lastAdmissionTerm } = programme
   const formattedLastTerm = formatShortTerm(lastAdmissionTerm, language)
   if (firstAdmissionTerm) {
@@ -91,7 +91,7 @@ function CurrentProgrammesList({ programmes }) {
 function ObsololeteProgrammesList({ programmeType, programmes = [] }) {
   if (!programmes.length) return null
   const { language } = useStore()
-  const t = translate(i18n, language)
+  const t = translate(language)
   const title = `${t('programmes_older')} (${t('programme_type')[programmeType]})`
   return (
     <CollapseDetails title={title}>
@@ -106,7 +106,7 @@ function ObsololeteProgrammesList({ programmeType, programmes = [] }) {
 
 function ProgrammesList() {
   const { language, programmes } = useStore()
-  const t = translate(i18n, language)
+  const t = translate(language)
   return (
     <>
       <Row>

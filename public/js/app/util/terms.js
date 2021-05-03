@@ -1,4 +1,3 @@
-const i18n = require('../../../../i18n')
 const translate = require('../../../../domain/translate')
 
 function _limit(value, max) {
@@ -58,14 +57,14 @@ function _studyYear(term, lengthInStudyYears, overrideDate) {
 }
 
 function formatShortTerm(term, language) {
-  const t = translate(i18n, language)
+  const t = translate(language)
   const [year, semester] = term.split(/([1|2])$/)
   const shortYear = year.slice(-2)
   return `${t('semester')[semester]}${language === 'en' ? ' ' : ''}${shortYear}`
 }
 
 function formatLongTerm(term, language) {
-  const t = translate(i18n, language)
+  const t = translate(language)
   const [year, semester] = term.split(/([1|2])$/)
   return `${t('semester')[semester]}${language === 'en' ? ' ' : ''}${year}`
 }
