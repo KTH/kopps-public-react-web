@@ -22,9 +22,6 @@ const store = {
    * @param {string} text
    */
   setMessage,
-
-  koppsCourseData: null,
-  koppsCourseSearch,
   /**
    * @method
    * @param {map<string, {}>} programmes
@@ -131,37 +128,6 @@ function createApplicationStore(storeId) {
         ...store,
       }
   }
-}
-
-function _getThisHost(thisHostBaseUrl) {
-  return thisHostBaseUrl.slice(-1) === '/' ? thisHostBaseUrl.slice(0, -1) : thisHostBaseUrl
-}
-async function koppsCourseSearch(textPattern) {
-  try {
-    const thisHost = _getThisHost(this.thisHostBaseUrl)
-
-    const result = await axios.get(`${thisHost}/kopps-public/intern-api/sok/${this.language}?pattern=${textPattern}`)
-    if (result) {
-      if (result.status >= 400) {
-        return 'ERROR-createApplicationStore.js-koppsCourseSearch-' + result.status
-      }
-      const { data } = result
-      return data
-    }
-    return
-  } catch (error) {
-    if (error.response) {
-      throw new Error('createApplicationStore.js-koppsCourseSearch-' + error.message)
-    }
-    throw error
-  }
-  // this.koppsCourseData = await kopps.get('/courses/search', {
-  //   params: {
-  //     text_pattern: textPattern,
-  //     educational_level: 'BASIC',
-  //   },
-  // })
-  // console.log(this.koppsCourseData)
 }
 
 function setMessage(text = 'Happy coding!! :)') {

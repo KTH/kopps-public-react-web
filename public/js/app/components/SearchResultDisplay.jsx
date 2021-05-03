@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
+import axios from 'axios'
 import { observer } from 'mobx-react'
 import { useStore } from '../mobx'
 import { Link, PageHeading, SortableTable } from '@kth/kth-reactstrap/dist/components/studinfo'
@@ -8,6 +9,35 @@ import SearchTableView from './SearchTableView'
 
 import i18n from '../../../../i18n'
 import { courseLink } from '../util/links'
+
+function _getThisHost(thisHostBaseUrl) {
+  return thisHostBaseUrl.slice(-1) === '/' ? thisHostBaseUrl.slice(0, -1) : thisHostBaseUrl
+}
+async function koppsCourseSearch(language, proxyUrl, textPattern) {
+  try {
+    const result = await axios.get(`${proxyUrl}/intern-api/sok/${language}?pattern=${textPattern}`)
+    if (result) {
+      if (result.status >= 400) {
+        return 'ERROR-koppsCourseSearch-' + result.status
+      }
+      const { data } = result
+      return data
+    }
+    return
+  } catch (error) {
+    if (error.response) {
+      throw new Error('Unexpected error from koppsCourseSearch-' + error.message)
+    }
+    throw error
+  }
+  // this.koppsCourseData = await kopps.get('/courses/search', {
+  //   params: {
+  //     text_pattern: textPattern,
+  //     educational_level: 'BASIC',
+  //   },
+  // })
+  // console.log(this.koppsCourseData)
+}
 
 function asyncReducer(state, action) {
   switch (action.type) {
@@ -62,10 +92,13 @@ function useAsync(asyncCallback, initialState) {
 // errorMessage: "search-error-overflow"
 
 function SearchResultDisplay({ caption = 'N/A', pattern }) {
-  const { language: lang, koppsCourseSearch } = useStore()
+  const { browserConfig, language } = useStore()
+
+  const proxyUrl = _getThisHost(browserConfig.proxyPrefixPath.uri)
+
   const asyncCallback = React.useCallback(() => {
     if (!pattern) return
-    return koppsCourseSearch(pattern)
+    return koppsCourseSearch(language, proxyUrl, pattern)
   }, [pattern])
 
   const state = useAsync(asyncCallback, { status: pattern ? 'pending' : 'idle' })
