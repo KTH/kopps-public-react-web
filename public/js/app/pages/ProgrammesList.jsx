@@ -11,7 +11,7 @@ import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 import translate from '../../../../domain/translate'
 import { programmeLink } from '../util/links'
-import { formatShortTerm } from '../util/terms'
+import { formatShortTerm } from '../../../../domain/term'
 import Article from '../components/Article'
 
 function Heading({ size, text, id }) {

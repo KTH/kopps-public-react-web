@@ -7,7 +7,7 @@ const {
   studyYear,
   formatShortTerm,
   formatLongTerm,
-} = require('./terms')
+} = require('./term')
 
 const overrideSpringDate = new Date()
 overrideSpringDate.setFullYear(2021, 5) // June, 2021
