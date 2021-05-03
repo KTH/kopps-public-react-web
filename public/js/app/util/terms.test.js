@@ -5,6 +5,8 @@ const {
   _getNextTerm: getNextTerm,
   _nTermsAgo: nTermsAgo,
   studyYear,
+  formatShortTerm,
+  formatLongTerm,
 } = require('./terms')
 
 const overrideSpringDate = new Date()
@@ -96,5 +98,24 @@ describe('Calculate study year', () => {
   test('from autumn term, for one-year degree', () => {
     const year = studyYear(testStringAutumnTerm, 1, overrideAutumnDate)
     expect(year).toBe(1)
+  })
+})
+
+describe('Format term', () => {
+  test('short in English', () => {
+    const formattedTerm = formatShortTerm(testStringSpringTerm, 'en')
+    expect(formattedTerm).toMatch('Spring 19')
+  })
+  test('short in Swedish', () => {
+    const formattedTerm = formatShortTerm(testStringSpringTerm, 'sv')
+    expect(formattedTerm).toMatch('VT19')
+  })
+  test('long in English', () => {
+    const formattedTerm = formatLongTerm(testStringSpringTerm, 'en')
+    expect(formattedTerm).toMatch('Spring 2019')
+  })
+  test('long in Swedish', () => {
+    const formattedTerm = formatLongTerm(testStringSpringTerm, 'sv')
+    expect(formattedTerm).toMatch('VT2019')
   })
 })

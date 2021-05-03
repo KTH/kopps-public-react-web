@@ -10,21 +10,12 @@ import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 import translate from '../util/translate'
 import { programTermLink } from '../util/links'
-import { studyYear as calculateStudyYear } from '../util/terms'
-
-// TODO: Move to util
-function formatTerm(term) {
-  const { language } = useStore()
-  const t = translate(i18n, language)
-  const [year, semester] = term.split(/([1|2])$/)
-  const shortYear = year.slice(-2)
-  return `${t('semester')[semester]}${language === 'en' ? ' ' : ''}${shortYear}`
-}
+import { formatShortTerm, studyYear as calculateStudyYear } from '../util/terms'
 
 function programmeTermLinkText(term) {
   const { language } = useStore()
   const t = translate(i18n, language)
-  return `${t('programme_admitted_year')} ${formatTerm(term)}`
+  return `${t('programme_admitted_year')} ${formatShortTerm(term, language)}`
 }
 
 function ProgrammeTermsLinkListItem({ term }) {

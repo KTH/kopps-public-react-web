@@ -11,6 +11,7 @@ import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 import translate from '../util/translate'
 import { programmeLink } from '../util/links'
+import { formatShortTerm } from '../util/terms'
 import Article from '../components/Article'
 
 function Heading({ size, text, id }) {
@@ -40,20 +41,11 @@ function Section({ programmeType, children }) {
   )
 }
 
-// TODO: Move to util
-function formatTerm(term) {
-  const { language } = useStore()
-  const t = translate(i18n, language)
-  const [year, semester] = term.split(/([1|2])$/)
-  const shortYear = year.slice(-2)
-  return `${t('semester')[semester]}${language === 'en' ? ' ' : ''}${shortYear}`
-}
-
 function CurrentProgrammeDescription({ programme }) {
   const { language } = useStore()
   const t = translate(i18n, language)
   const { credits, creditUnitAbbr, firstAdmissionTerm } = programme
-  const formattedTerm = formatTerm(firstAdmissionTerm)
+  const formattedTerm = formatShortTerm(firstAdmissionTerm, language)
   return <>{`, ${credits} ${creditUnitAbbr}, ${t('programmes_admitted_from')} ${formattedTerm}`}</>
 }
 
@@ -61,9 +53,9 @@ function ObsoleteProgrammeDescription({ programme }) {
   const { language } = useStore()
   const t = translate(i18n, language)
   const { credits, creditUnitAbbr, firstAdmissionTerm, lastAdmissionTerm } = programme
-  const formattedLastTerm = formatTerm(lastAdmissionTerm)
+  const formattedLastTerm = formatShortTerm(lastAdmissionTerm, language)
   if (firstAdmissionTerm) {
-    const formattedFirstTerm = formatTerm(firstAdmissionTerm)
+    const formattedFirstTerm = formatShortTerm(firstAdmissionTerm, language)
     return (
       <>{`, ${credits} ${creditUnitAbbr}, ${t('programmes_admitted')} ${formattedFirstTerm}–${formattedLastTerm}`}</>
     )

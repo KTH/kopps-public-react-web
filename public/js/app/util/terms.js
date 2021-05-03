@@ -1,3 +1,6 @@
+const i18n = require('../../../../i18n')
+const translate = require('./translate')
+
 function _limit(value, max) {
   if (value > max) {
     return max
@@ -54,6 +57,19 @@ function _studyYear(term, lengthInStudyYears, overrideDate) {
   return parseInt(studyYear, 10)
 }
 
+function formatShortTerm(term, language) {
+  const t = translate(i18n, language)
+  const [year, semester] = term.split(/([1|2])$/)
+  const shortYear = year.slice(-2)
+  return `${t('semester')[semester]}${language === 'en' ? ' ' : ''}${shortYear}`
+}
+
+function formatLongTerm(term, language) {
+  const t = translate(i18n, language)
+  const [year, semester] = term.split(/([1|2])$/)
+  return `${t('semester')[semester]}${language === 'en' ? ' ' : ''}${year}`
+}
+
 module.exports = {
   _getCurrentTerm,
   _isSpringTerm,
@@ -61,4 +77,6 @@ module.exports = {
   _getNextTerm,
   _nTermsAgo,
   studyYear: _studyYear,
+  formatShortTerm,
+  formatLongTerm,
 }
