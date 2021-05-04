@@ -88,7 +88,8 @@ function useAsync(asyncCallback, initialState) {
 // errorMessage: "search-error-overflow"
 
 function SearchResultDisplay({ caption = 'N/A', searchParameters }) {
-  const { browserConfig, language } = useStore()
+  const { browserConfig, language, languageIndex } = useStore()
+  const { searchLoading, errorEmpty, errorUnknown, errorOverflow } = i18n.messages[languageIndex].generalSearch
 
   const proxyUrl = _getThisHost(browserConfig.proxyPrefixPath.uri)
 
@@ -100,11 +101,29 @@ function SearchResultDisplay({ caption = 'N/A', searchParameters }) {
   const state = useAsync(asyncCallback, { status: searchParameters ? 'pending' : 'idle' })
 
   const { data: searchResults, status, error } = state
+
   if (status === 'idle' || !searchParameters) return null
-  else if (status === 'pending') return <p>Loading...</p>
-  else if (status === 'rejected') return <p>{error}</p>
-  //throw error
+  else if (status === 'pending') return <p>{searchLoading}</p>
+  else if (status === 'noHits')
+    return (
+      <p>
+        <i>{errorEmpty}</i>
+      </p>
+    )
+  else if (status === 'overflow')
+    return (
+      <p>
+        <i>{errorOverflow}</i>
+      </p>
+    )
   else if (status === 'resolved') return <SearchTableView unsortedSearchResults={searchResults} />
+  else if (status === 'rejected')
+    //  //throw error with error boundaries
+    return (
+      <p>
+        <i>{errorUnknown}</i>
+      </p>
+    )
 
   return null
 }
