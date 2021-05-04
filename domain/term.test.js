@@ -2,11 +2,12 @@ const {
   _getCurrentTerm: getCurrentTerm,
   _isSpringTerm: isSpringTerm,
   _isFallTerm: isAutumnTerm,
-  _getNextTerm: getNextTerm,
+  getNextTerm,
   _nTermsAgo: nTermsAgo,
   studyYear,
   formatShortTerm,
   formatLongTerm,
+  splitTerm,
 } = require('./term')
 
 const overrideSpringDate = new Date()
@@ -117,5 +118,24 @@ describe('Format term', () => {
   test('long in Swedish', () => {
     const formattedTerm = formatLongTerm(testStringSpringTerm, 'sv')
     expect(formattedTerm).toMatch('VT2019')
+  })
+})
+
+describe('Split term', () => {
+  test('with spring term', () => {
+    const [stringYear, stringSemester] = splitTerm(testStringSpringTerm)
+    expect(stringYear).toEqual('2019')
+    expect(stringSemester).toEqual('1')
+    const [numberYear, numberSemester] = splitTerm(testNumberSpringTerm)
+    expect(numberYear).toEqual(2019)
+    expect(numberSemester).toEqual(1)
+  })
+  test('with autumn term', () => {
+    const [stringYear, stringSemester] = splitTerm(testStringAutumnTerm)
+    expect(stringYear).toEqual('2019')
+    expect(stringSemester).toEqual('2')
+    const [numberYear, numberSemester] = splitTerm(testNumberAutumnTerm)
+    expect(numberYear).toEqual(2019)
+    expect(numberSemester).toEqual(2)
   })
 })

@@ -44,10 +44,11 @@ function _isFallTerm(term) {
 }
 
 function _getNextTerm(term) {
-  if (_isSpringTerm(term)) {
-    return term + 1
+  const t = Math.abs(term)
+  if (_isSpringTerm(t)) {
+    return t + 1
   }
-  return term + 10 - 1
+  return t + 10 - 1
 }
 
 function _nTermsAgo(fromTerm, overrideDate) {
@@ -67,16 +68,24 @@ function _studyYear(term, lengthInStudyYears, overrideDate) {
   return parseInt(studyYear, 10)
 }
 
+function _splitTerm(term) {
+  if (typeof term === 'number') {
+    // TODO Verify that semester is 1 or 2?
+    return [Math.floor(term / 10), term % 10]
+  }
+  return term.split(/([1|2])$/)
+}
+
 function formatShortTerm(term, language) {
   const t = translate(language)
-  const [year, semester] = term.split(/([1|2])$/)
+  const [year, semester] = _splitTerm(term)
   const shortYear = year.slice(-2)
   return `${t('semester')[semester]}${language === 'en' ? ' ' : ''}${shortYear}`
 }
 
 function formatLongTerm(term, language) {
   const t = translate(language)
-  const [year, semester] = term.split(/([1|2])$/)
+  const [year, semester] = _splitTerm(term)
   return `${t('semester')[semester]}${language === 'en' ? ' ' : ''}${year}`
 }
 
@@ -84,9 +93,10 @@ module.exports = {
   _getCurrentTerm,
   _isSpringTerm,
   _isFallTerm,
-  _getNextTerm,
+  getNextTerm: _getNextTerm,
   _nTermsAgo,
   studyYear: _studyYear,
   formatShortTerm,
   formatLongTerm,
+  splitTerm: _splitTerm,
 }
