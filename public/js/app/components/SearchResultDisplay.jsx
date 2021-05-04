@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 
 import axios from 'axios'
 import { observer } from 'mobx-react'
+import ReactDOM from 'react-dom'
+import { useHistory } from 'react-router-dom'
+
 import { useStore } from '../mobx'
 import { Link, PageHeading, SortableTable } from '@kth/kth-reactstrap/dist/components/studinfo'
 import Article from './Article'
@@ -9,7 +12,8 @@ import SearchTableView from './SearchTableView'
 
 import i18n from '../../../../i18n'
 import { courseLink } from '../util/links'
-import { transformSearchParams } from '../../../../domain/searchParams'
+import { stringifyUrlParams } from '../../../../domain/searchParams'
+import { SearchAlert } from '../components/index'
 
 function _getThisHost(thisHostBaseUrl) {
   return thisHostBaseUrl.slice(-1) === '/' ? thisHostBaseUrl.slice(0, -1) : thisHostBaseUrl
@@ -45,14 +49,14 @@ function asyncReducer(state, action) {
       return { status: 'resolved', data: action.data, error: null }
     }
     case 'overflow': {
-      return { status: 'overflow', data: null, error: null }
+      return { status: 'overflow', data: null, error: 'errorOverflow' }
     }
     case 'noHits': {
-      return { status: 'noHits', data: null, error: null }
+      return { status: 'noHits', data: null, error: 'errorEmpty' }
     }
     case 'rejected': {
       // TODO: specify error unknown
-      return { status: 'rejected', data: null, error: action.error }
+      return { status: 'rejected', data: null, error: 'errorUnknown' } //action.error
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`)
@@ -84,23 +88,47 @@ function useAsync(asyncCallback, initialState) {
 
   return state
 }
-// errorCode: "search-error-overflow",
-// errorMessage: "search-error-overflow"
+
+function renderAlertToTop(errorType, languageIndex) {
+  const alertContainer = document.getElementById('alert-placeholder')
+  if (alertContainer) {
+    ReactDOM.render(<SearchAlert alertType={errorType} languageIndex={languageIndex} />, alertContainer)
+  }
+}
+function dismountTopAlert(errorType, languageIndex) {
+  const alertContainer = document.getElementById('alert-placeholder')
+  if (alertContainer) ReactDOM.unmountComponentAtNode(alertContainer)
+}
 
 function SearchResultDisplay({ caption = 'N/A', searchParameters }) {
   const { browserConfig, language, languageIndex } = useStore()
-  const { searchLoading, errorEmpty, errorUnknown, errorOverflow } = i18n.messages[languageIndex].generalSearch
+  const history = useHistory()
 
-  const proxyUrl = _getThisHost(browserConfig.proxyPrefixPath.uri)
+  const { searchLoading, errorEmpty, errorUnknown, errorOverflow } = i18n.messages[languageIndex].generalSearch
 
   const asyncCallback = React.useCallback(() => {
     if (!searchParameters) return
+    const proxyUrl = _getThisHost(browserConfig.proxyPrefixPath.uri)
+
     return koppsCourseSearch(language, proxyUrl, searchParameters)
   }, [searchParameters])
 
   const state = useAsync(asyncCallback, { status: searchParameters ? 'pending' : 'idle' })
 
   const { data: searchResults, status, error } = state
+
+  useEffect(() => {
+    if (error && error !== null) {
+      renderAlertToTop(error, languageIndex)
+    } else dismountTopAlert()
+  }, [status])
+
+  useEffect(() => {
+    if (status === 'pending') {
+      const search = stringifyUrlParams(searchParameters)
+      history.push({ search })
+    }
+  }, [status])
 
   if (status === 'idle' || !searchParameters) return null
   else if (status === 'pending') return <p>{searchLoading}</p>
