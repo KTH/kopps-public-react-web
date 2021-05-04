@@ -13,6 +13,7 @@ const CourseSearchResearch = props => {
   const { thirdCycleSearch, searchInstructions } = i18n.messages[languageIndex]
   const { searchHeading, leadIntro, linkToUsualSearch, resultsHeading } = thirdCycleSearch
   const { search_help_collapse_header: collapseHeader } = searchInstructions
+
   const [pattern, setPattern] = useState(initialPattern)
 
   const helptexts = [
@@ -24,20 +25,10 @@ const CourseSearchResearch = props => {
     'search_help_7',
     'search_help_8',
     'search_help_9',
+    'search_help_10',
   ].map(s => searchInstructions[s])
 
-  // useEffect(() => {
-  //   const { history } = props
-  //   console.log('history', history)
-  //   // if (history) {
-  //   //   history.push({
-  //   //     search: '',
-  //   //   })
-  //   // }
-  // }, [pattern])
-
   function handleSubmit(pattern) {
-    //Todo: mimic as in old kopps-public after submit changes url
     setPattern(pattern)
   }
 
@@ -58,12 +49,19 @@ const CourseSearchResearch = props => {
       </Row>
       <Row>
         <Col>
+          <div id="alert-placeholder" />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
           <SearchInputField caption={searchHeading} pattern={pattern} onSubmit={handleSubmit} />
         </Col>
       </Row>
       <Row>
         <Col>
-          <a href="/student/kurser/sokkurs">{linkToUsualSearch}</a>
+          <p style={{ marginTop: '50px' }}>
+            <a href={`/student/kurser/sokkurs?l=${lang}`}>{linkToUsualSearch}</a>
+          </p>
         </Col>
       </Row>
       <Row>
