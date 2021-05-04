@@ -122,20 +122,22 @@ module.exports = {
     search_help_collapse_header: 'Instructions for searching',
     search_help_1:
       'You can search using part of the course name or code. Searching for "data" will return "Data Storage Paradigms" as well as "Database Techniques" and "Algorithms, Data Structures and Complexity".',
-    search_help_2: 'Skriver du flera ord i fältet hittas kurser som innehåller samtliga ord.',
-    search_help_3: 'Du kan även söka på kursens engelska namn.',
-    search_help_4: 'Sökningen visar max 250 träffar. Får du för många träffar, försök att förfina sökvillkoren.',
-    search_help_5: 'Sökningen gör ingen skillnad på versaler och gemener (stora och små bokstäver).',
+    search_help_2:
+      'Searching for more than one word will return courses containing all of the words. Searching for "part 1" will return courses with both part and 1 in course name or code, for example "SI2610 Many Particle Physics" and "DD1343 Computer Science and Numerical Methods, part 1".',
+    search_help_3:
+      'Both the English and the Swedish course names are searched. Searching for "metod" will return the course "Computer Science Methods" with the Swedish name "Datalogisk metod".',
+    search_help_4: 'At most 250 hits will be displayed. If you get too many hits, try to narrow the search conditions.',
+    search_help_5: 'The search does not distinguish between upper and lower case characters.',
     search_help_6:
-      'Det går inte att använda specialtecken (t.ex. citationstecken). Dessa tas bort innan sökningen utförs.',
+      'It is not possible to use special characters, like quotes, in the search. These characters will be removed before the search is performed.',
     search_help_7:
-      'Du kan avgränsa sökningen till att endast visa kurser som startar en specifik termin. Standardinställningen är att hitta kurser oavsett när de går.',
+      'Your search may be restricted to courses starting in a specific term. By default, course are found without regard for when the course is offered.',
     search_help_8:
-      'Du kan avgränsa sökningen till att endast visa kurser med engelska som undervisningsspråk. Standardinställningen är att hitta kurser oavsett undervisningsspråk.',
+      'Your search may be restricted to courses taught in English. By default, courses are found without regard for tutoring language.',
     search_help_9:
-      'Du kan välja att även visa kurser som ej längre ges på KTH. Standardinställning är att dessa inte visas.',
+      'You may select to show courses that are no longer offered or dormant at KTH (terminated courses). By default, these are not shown.',
     search_help_10:
-      'Om du har synpunkter eller frågor gällande kurssökningen, kontakta <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
+      'If you have questions or feedback on the course search, please contact <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
   },
   searchAlarms: {
     errorUnknown: { text: 'An unknown error occurred - failed to retrieve course data' },
