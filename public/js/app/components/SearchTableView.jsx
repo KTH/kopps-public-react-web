@@ -65,11 +65,20 @@ const SearchTableView = ({ unsortedSearchResults }) => {
   const { searchHits } = unsortedSearchResults
   const flattCoursesArr = searchHits.map(({ course }) => course)
   const courses = sortAndParseByCourseCode(flattCoursesArr)
-
+  const hitsNumber = courses.length
   return (
     <Row>
       <Col>
         <Article>
+          {language === 'en' ? (
+            <p>
+              Your search returned <b>{hitsNumber}</b> result(s).
+            </p>
+          ) : (
+            <p>
+              Din sökning gav <b>{hitsNumber}</b> resultat.
+            </p>
+          )}
           <SortableTable headers={headers} data={courses} />
         </Article>
       </Col>
