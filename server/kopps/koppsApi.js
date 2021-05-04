@@ -128,10 +128,11 @@ const getProgramme = async (programmeCode, lang) => {
   }
 }
 
-const getSearchResults = async (searchParams, lang) => {
+const getSearchResults = async (searchParamsStr, lang) => {
   const { client } = koppsApi.koppsApi
+  // const uri = `${slashEndedKoppsBase}courses/search?${searchParams}&l=${lang}`
+  const uri = `${slashEndedKoppsBase}courses/search?${searchParamsStr}&l=${lang}`
 
-  const uri = `${slashEndedKoppsBase}courses/search?${searchParams}&l=${lang}`
   try {
     const response = await client.getAsync({ uri, useCache: false })
     return response.body
