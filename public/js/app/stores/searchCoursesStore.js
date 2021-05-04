@@ -4,7 +4,7 @@ function setPattern(textPattern) {
 }
 
 function setEduLevels(eduLevels) {
-  this.eduLevels = eduLevels
+  this.eduLevel = eduLevels
 }
 
 const searchCoursesStore = {
@@ -21,9 +21,9 @@ const searchCoursesStore = {
    * @property {string} programmeName
    */
   /**
-   * @property {[]} eduLevels
+   * @property {[]} eduLevel
    */
-  eduLevels: [],
+  eduLevel: [],
   /**
    * @method
    * @param {[]} eduLevels

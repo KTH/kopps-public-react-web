@@ -67,7 +67,7 @@ const CourseSearchResearch = props => {
       <Row>
         <Col>
           <h2 id="results-heading">{resultsHeading}</h2>
-          <SearchResultDisplay searchParameters={{ pattern, eduLevels: ['3'] }} />
+          <SearchResultDisplay searchParameters={{ pattern, eduLevel: ['3'] }} />
         </Col>
       </Row>
     </main>

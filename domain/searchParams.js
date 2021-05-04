@@ -84,10 +84,10 @@ function checkOptions(options) {
 // private boolean constructedFromOldStyleQueryParams;
 
 function _transformSearchParams(params) {
-  const { eduLevels = [], pattern = '' } = params
+  const { eduLevel = [], pattern = '' } = params
   const koppsFormatParams = {
     text_pattern: pattern,
-    educational_level: eduLevels.map(level => educationalLevel(level)), //['RESEARCH', 'ADVANCED'],
+    educational_level: eduLevel.map(level => educationalLevel(level)), //['RESEARCH', 'ADVANCED'],
     // only_mhu:
     // in_english_only:
     // include_non_active
