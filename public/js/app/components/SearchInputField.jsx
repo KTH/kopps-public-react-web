@@ -5,8 +5,11 @@ import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 
 function SearchInputField({ caption = 'N/A', pattern: externalPattern, onSubmit }) {
-  const { language: lang } = useStore()
+  const { language: lang, languageIndex } = useStore()
   const [pattern, setPattern] = useState(externalPattern || '')
+
+  const { generalSearch } = i18n.messages[languageIndex]
+  const { searchLabel, searchText } = generalSearch
 
   useEffect(() => {
     if (typeof externalPattern === 'string') setPattern(externalPattern)
@@ -24,7 +27,7 @@ function SearchInputField({ caption = 'N/A', pattern: externalPattern, onSubmit 
   return (
     <form
       onSubmit={handleSubmit}
-      aria-label={'Sök forskarkurs'}
+      aria-label={caption}
       name="searchForm"
       role="search"
       style={{
@@ -33,9 +36,9 @@ function SearchInputField({ caption = 'N/A', pattern: externalPattern, onSubmit 
     >
       <div className="form-group">
         <label htmlFor="pattern">
-          Ange del av kursnamn eller kurskod:
+          {searchLabel}
           <span id="searchfield-help-text" style={{ fontWeight: 'normal', display: 'block' }}>
-            Exempel på kurskod: SF1624
+            {searchText}
           </span>
         </label>
         <input

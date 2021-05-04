@@ -110,8 +110,74 @@ module.exports = {
     pageHeading: 'Study Handbook 00/01 to 07/08',
     content: 'Until the study year 2007/2008 the study handbook contained program and course information.',
   },
-  thirdCycleDepartments: {
+  thirdCycleSearch: {
     searchHeading: 'Search third-cycle courses',
+    leadIntro:
+      'This is the official information about postgraduate courses at KTH. The courses may be searched by course name, part of name or course code.',
+    linkToUsualSearch:
+      'På sidan Sök kurs kan du med hjälp av sökkriterier söka bland KTHs samtliga kurser inklusive forskarkurser.',
+    resultsHeading: 'Resultat från sökningen',
+  },
+  searchInstructions: {
+    search_help_collapse_header: 'Få hjälp med sökningen',
+    search_help_1:
+      'Du kan söka på del av kursnamn eller kurskod. En sökning efter "data" hittar exempelvis såväl "Databasteknik", "Datalogi" som "Algoritmer, datastrukturer och komplexitet".',
+    search_help_2: 'Skriver du flera ord i fältet hittas kurser som innehåller samtliga ord.',
+    search_help_3: 'Du kan även söka på kursens engelska namn.',
+    search_help_4: 'Sökningen visar max 250 träffar. Får du för många träffar, försök att förfina sökvillkoren.',
+    search_help_5: 'Sökningen gör ingen skillnad på versaler och gemener (stora och små bokstäver).',
+    search_help_6:
+      'Det går inte att använda specialtecken (t.ex. citationstecken). Dessa tas bort innan sökningen utförs.',
+    search_help_7:
+      'Du kan avgränsa sökningen till att endast visa kurser som startar en specifik termin. Standardinställningen är att hitta kurser oavsett när de går.',
+    search_help_8:
+      'Du kan avgränsa sökningen till att endast visa kurser med engelska som undervisningsspråk. Standardinställningen är att hitta kurser oavsett undervisningsspråk.',
+    search_help_9:
+      'Du kan välja att även visa kurser som ej längre ges på KTH. Standardinställning är att dessa inte visas.',
+  },
+  generalSearch: {
+    searchLabel: 'Search by writing in a course code or course name:',
+    searchText: 'Example of course code: SF1624',
+    searchLoading: 'Searching ...',
+    errorUnknown: 'An unknown error occurred - failed to retrieve course data.',
+    errorEmpty: 'Your search returned no results.',
+    errorOverflow: 'There were too many results.',
+    SEPARATOR: '////////////////SEPERATOR',
+    search_error_overflow:
+      '<p><b>Sökningen gav för många träffar</b></p><p>Det finns för många kurser som matchar det du sökt på. Ange fler bokstäver/siffror i kursnamn eller kurskod (exempel på kurskod: SF1624).</p><p>Mer hjälp hittar du i länken nedan: Få hjälp med sökningen</p>',
+    search_error_emptysearch:
+      '<p><b>Din sökning gav inga träffar.</b></p><p>Mer hjälp hittar du i länken nedan: Få hjälp med sökningen</p>',
+    search_search_start_prefix: 'Kursstart',
+    search_search_label: 'Ange del av kursnamn eller kurskod:',
+    search_search_text: 'Exempel på kurskod: SF1624',
+    search_options_h: 'Sökalternativ',
+    search_options_hb: 'Välj bland andra sökkriterier',
+    search_options_termperiodfilter: 'Visa bara kurser som <b>startar</b> under följande perioder:',
+    search_options_summer: 'sommar',
+    search_options_label: 'Övrigt:',
+    search_options_onlyEnglish: 'Ges på engelska',
+    search_options_onlyMHU: 'Behandlar miljö, miljöteknik eller hållbar utveckling',
+    search_options_showCancelled: 'Nedlagd kurs',
+    search_options_edulevel_label: 'Utbildningsnivå:',
+    search_options_edulevel_0: 'Förberedande nivå',
+    search_options_edulevel_1: 'Grundnivå',
+    search_options_edulevel_2: 'Avancerad nivå',
+    search_options_edulevel_3: 'Forskarnivå',
+    search_options_edulevel_all: 'Alla',
+    search_submit: 'Sök kurs',
+    search_results_heading: 'Resultat från sökningen',
+    search_results_numberofhits: 'Din sökning gav <b>{0}</b> resultat.',
+    search_results_coursename: 'Kursnamn',
+    search_results_hp: 'Omfattning',
+    search_results_coursecode: 'Kurskod',
+    search_results_edulevel: 'Utbildningsnivå',
+    search_results_application_code: 'Anm.kod',
+    search_results_start_date: 'Startdatum',
+    search_note_iscancelled: 'OBS! Kursen är inställd.',
+    search_note_isfull: 'OBS! Kursen är fullsatt.',
+    search_options_departments_all: 'Samtliga skolor',
+    search_options_departments_all_within: 'Alla inom',
+    search_options_departments_label: 'Skola, avdelning, etc',
   },
   footerContent: {
     contentContact: 'Contact for questions regarding education at KTH',

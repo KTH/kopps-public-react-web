@@ -9,18 +9,22 @@ import Lead from '../components/Lead'
 import { SearchInputField, SearchResultDisplay } from '../components/index'
 
 const CourseSearchResearch = props => {
-  const { language: lang, textPattern: initialPattern } = useStore()
+  const { language: lang, languageIndex, textPattern: initialPattern } = useStore()
+  const { thirdCycleSearch, searchInstructions } = i18n.messages[languageIndex]
+  const { searchHeading, leadIntro, linkToUsualSearch, resultsHeading } = thirdCycleSearch
+  const { search_help_collapse_header: collapseHeader } = searchInstructions
   const [pattern, setPattern] = useState(initialPattern)
+
   const helptexts = [
-    'koppspublic_search_help_1',
-    'koppspublic_search_help_2',
-    'koppspublic_search_help_3',
-    'koppspublic_search_help_4',
-    'koppspublic_search_help_5',
-    'koppspublic_search_help_7',
-    'koppspublic_search_help_8',
-    'koppspublic_search_help_9',
-  ].map(s => i18n.message(s, lang))
+    'search_help_1',
+    'search_help_2',
+    'search_help_3',
+    'search_help_4',
+    'search_help_5',
+    'search_help_7',
+    'search_help_8',
+    'search_help_9',
+  ].map(s => searchInstructions[s])
 
   // useEffect(() => {
   //   const { history } = props
@@ -41,10 +45,9 @@ const CourseSearchResearch = props => {
     <main id="mainContent">
       <Row>
         <Col>
-          <PageHeading>Sök forskarkurs</PageHeading>
-          <Lead text="Här kan du söka bland KTHs forskarutbildningskurser." />
-          {/* <p>{i18n.message('koppspublic_search_introduction', lang)}</p> */}
-          <CollapseDetails color="white" title={i18n.message('koppspublic_search_help_h', lang)}>
+          <PageHeading>{searchHeading}</PageHeading>
+          <Lead text={leadIntro} />
+          <CollapseDetails color="white" title={collapseHeader}>
             <ul>
               {helptexts.map(value => (
                 <li key={value}>{value}</li>
@@ -55,18 +58,17 @@ const CourseSearchResearch = props => {
       </Row>
       <Row>
         <Col>
-          <SearchInputField caption="Sök" pattern={pattern} onSubmit={handleSubmit} />
+          <SearchInputField caption={searchHeading} pattern={pattern} onSubmit={handleSubmit} />
         </Col>
       </Row>
       <Row>
         <Col>
-          <a href="/student/kurser/sokkurs">
-            På sidan Sök kurs kan du med hjälp av sökkriterier söka bland KTHs samtliga kurser inklusive forskarkurser.
-          </a>
+          <a href="/student/kurser/sokkurs">{linkToUsualSearch}</a>
         </Col>
       </Row>
       <Row>
         <Col>
+          <h2 id="results-heading">{resultsHeading}</h2>
           <SearchResultDisplay searchParameters={{ pattern, eduLevels: ['3'] }} />
         </Col>
       </Row>
