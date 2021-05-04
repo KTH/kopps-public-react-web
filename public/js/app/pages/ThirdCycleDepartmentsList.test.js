@@ -147,9 +147,9 @@ describe('Render component ThirdCycleDepartmentsList and check its menu, content
     expect(links[0]).toHaveTextContent('PhD studies')
     expect(links[0].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/?l=en')
     expect(links[1]).toHaveTextContent('Third-cycle courses by school')
-    expect(links[1].href).toStrictEqual('localhost://kopps-public/kurser/avdelning?l=en')
+    expect(links[1].href).toStrictEqual('localhost://kopps-public/utbildning/forskarutbildning/kurser/avdelning?l=en')
     expect(links[2]).toHaveTextContent('Search third-cycle courses')
-    expect(links[2].href).toStrictEqual('localhost://kopps-public/kurser/sok?l=en')
+    expect(links[2].href).toStrictEqual('localhost://kopps-public/utbildning/forskarutbildning/kurser/sok?l=en')
     // Main content links
     expect(links[3]).toHaveTextContent('Department')
     expect(links[3].href).toStrictEqual('localhost://kopps-public/utbildning/forskarutbildning/kurser/org/BB?l=en')
@@ -172,9 +172,9 @@ describe('Render component ThirdCycleDepartmentsList and check its menu, content
     expect(links[0]).toHaveTextContent('Forskarutbildning')
     expect(links[0].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/')
     expect(links[1]).toHaveTextContent('Forskarkurser per skola')
-    expect(links[1].href).toStrictEqual('localhost://kopps-public/kurser/avdelning')
+    expect(links[1].href).toStrictEqual('localhost://kopps-public/utbildning/forskarutbildning/kurser/avdelning')
     expect(links[2]).toHaveTextContent('Sök forskarkurs')
-    expect(links[2].href).toStrictEqual('localhost://kopps-public/kurser/sok')
+    expect(links[2].href).toStrictEqual('localhost://kopps-public/utbildning/forskarutbildning/kurser/sok')
     // Main content links
     expect(links[3]).toHaveTextContent('Avdelning')
     expect(links[3].href).toStrictEqual('localhost://kopps-public/utbildning/forskarutbildning/kurser/org/BB')
