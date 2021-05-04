@@ -25,7 +25,6 @@ const CourseSearchResearch = props => {
     'search_help_7',
     'search_help_8',
     'search_help_9',
-    'search_help_10',
   ].map(s => searchInstructions[s])
 
   function handleSubmit(pattern) {
@@ -43,6 +42,7 @@ const CourseSearchResearch = props => {
               {helptexts.map(value => (
                 <li key={value}>{value}</li>
               ))}
+              <li dangerouslySetInnerHTML={{ __html: searchInstructions.search_help_10 }} />
             </ul>
           </CollapseDetails>
         </Col>
