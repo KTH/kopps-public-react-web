@@ -98,11 +98,14 @@ function _transformSearchParams(params) {
   return koppsFormatParams
 }
 
+function stringifyUrlParams(params) {
+  return querystring.stringify(params)
+}
+
 function stringifyKoppsSearchParams(params) {
   const koppsFormatParams = _transformSearchParams(params)
-  const paramsStr = querystring.stringify(koppsFormatParams)
-  console.log('paramsStr', paramsStr)
+  const paramsStr = stringifyUrlParams(koppsFormatParams)
   return paramsStr
 }
 
-module.exports = { educationalLevel, stringifyKoppsSearchParams }
+module.exports = { educationalLevel, stringifyKoppsSearchParams, stringifyUrlParams }
