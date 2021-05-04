@@ -50,7 +50,7 @@ module.exports = {
     koppspublic_search_help_h: 'Få hjälp med sökningen',
     koppspublic_search_help_1:
       'Du kan söka på del av kursnamn eller kurskod. En sökning efter "data" hittar exempelvis såväl "Databasteknik", "Datalogi" som "Algoritmer, datastrukturer och komplexitet".',
-    koppspublic_search_help_2: 'Skriver du flera ord i fältet hittas kurser som innehåller samtliga ord_',
+    koppspublic_search_help_2: 'Skriver du flera ord i fältet hittas kurser som innehåller samtliga ord.',
     koppspublic_search_help_3: 'Du kan även söka på kursens engelska namn.',
     koppspublic_search_help_4:
       'Sökningen visar max {0} träffar. Får du för många träffar, försök att förfina sökvillkoren.',

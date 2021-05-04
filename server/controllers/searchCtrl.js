@@ -9,16 +9,20 @@ const i18n = require('../../i18n')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
 const { getSearchResults } = require('../kopps/koppsApi')
+const { stringifyKoppsSearchParams } = require('../../domain/searchParams')
 
 async function searchThirdCycleCourses(req, res, next) {
   try {
     const lang = language.getLanguage(res)
-
+    const { pattern } = req.query
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
 
-    const applicationStore = createStore()
+    const applicationStore = createStore('searchCourses')
     applicationStore.setLanguage(lang)
     applicationStore.setBrowserConfig(browserConfig, serverConfig.hostUrl)
+
+    applicationStore.setPattern(pattern)
+
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
     const { uri: proxyPrefix } = serverConfig.proxyPrefixPath
@@ -43,13 +47,14 @@ async function searchThirdCycleCourses(req, res, next) {
 async function performCourseSearch(req, res, next) {
   const { lang } = req.params
 
-  const { pattern } = req.query
-  const searchParams = `text_pattern=${pattern}`
+  const { query } = req
+  //Example: `text_pattern=${pattern}`
+  const searchParamsStr = stringifyKoppsSearchParams(query)
 
   try {
     log.debug('trying to perform search courses with parameters: ')
 
-    const apiResponse = await getSearchResults(searchParams, lang)
+    const apiResponse = await getSearchResults(searchParamsStr, lang)
     log.debug('performCourseSearch response: ', apiResponse)
     return res.json(apiResponse)
   } catch (error) {

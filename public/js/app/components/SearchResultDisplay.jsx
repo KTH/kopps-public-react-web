@@ -9,13 +9,17 @@ import SearchTableView from './SearchTableView'
 
 import i18n from '../../../../i18n'
 import { courseLink } from '../util/links'
+import { transformSearchParams } from '../../../../domain/searchParams'
 
 function _getThisHost(thisHostBaseUrl) {
   return thisHostBaseUrl.slice(-1) === '/' ? thisHostBaseUrl.slice(0, -1) : thisHostBaseUrl
 }
-async function koppsCourseSearch(language, proxyUrl, textPattern) {
+
+async function koppsCourseSearch(language, proxyUrl, params) {
   try {
-    const result = await axios.get(`${proxyUrl}/intern-api/sok/${language}?pattern=${textPattern}`)
+    const result = await axios.get(`${proxyUrl}/intern-api/sok/${language}`, {
+      params,
+    })
     if (result) {
       if (result.status >= 400) {
         return 'ERROR-koppsCourseSearch-' + result.status
@@ -30,13 +34,6 @@ async function koppsCourseSearch(language, proxyUrl, textPattern) {
     }
     throw error
   }
-  // this.koppsCourseData = await kopps.get('/courses/search', {
-  //   params: {
-  //     text_pattern: textPattern,
-  //     educational_level: 'BASIC',
-  //   },
-  // })
-  // console.log(this.koppsCourseData)
 }
 
 function asyncReducer(state, action) {
@@ -76,7 +73,6 @@ function useAsync(asyncCallback, initialState) {
     dispatch({ type: 'pending' })
     promise.then(
       data => {
-        console.log('data', data)
         const { searchHits, errorCode } = data
         if (errorCode && errorCode === 'search-error-overflow') dispatch({ type: 'overflow' })
         else if (searchHits && searchHits.length === 0) dispatch({ type: 'noHits' })
@@ -91,20 +87,20 @@ function useAsync(asyncCallback, initialState) {
 // errorCode: "search-error-overflow",
 // errorMessage: "search-error-overflow"
 
-function SearchResultDisplay({ caption = 'N/A', pattern }) {
+function SearchResultDisplay({ caption = 'N/A', searchParameters }) {
   const { browserConfig, language } = useStore()
 
   const proxyUrl = _getThisHost(browserConfig.proxyPrefixPath.uri)
 
   const asyncCallback = React.useCallback(() => {
-    if (!pattern) return
-    return koppsCourseSearch(language, proxyUrl, pattern)
-  }, [pattern])
+    if (!searchParameters) return
+    return koppsCourseSearch(language, proxyUrl, searchParameters)
+  }, [searchParameters])
 
-  const state = useAsync(asyncCallback, { status: pattern ? 'pending' : 'idle' })
+  const state = useAsync(asyncCallback, { status: searchParameters ? 'pending' : 'idle' })
 
   const { data: searchResults, status, error } = state
-  if (status === 'idle' || !pattern) return null
+  if (status === 'idle' || !searchParameters) return null
   else if (status === 'pending') return <p>Loading...</p>
   else if (status === 'rejected') return <p>{error}</p>
   //throw error

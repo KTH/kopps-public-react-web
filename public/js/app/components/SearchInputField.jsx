@@ -2,13 +2,11 @@ import React, { useEffect, useState } from 'react'
 
 import { observer } from 'mobx-react'
 import { useStore } from '../mobx'
-
 import i18n from '../../../../i18n'
 
-function SearchInputField({ caption = 'N/A', pattern: externalPattern, eduLevels = [3], onSubmit }) {
-  const { language: lang, koppsCourseSearch } = useStore()
+function SearchInputField({ caption = 'N/A', pattern: externalPattern, onSubmit }) {
+  const { language: lang } = useStore()
   const [pattern, setPattern] = useState(externalPattern || '')
-  // const [eduLevels, setEduLevels] = useState(externalEduLevel || [3]) // 3 -> Forskarnivå
 
   useEffect(() => {
     if (typeof externalPattern === 'string') setPattern(externalPattern)
@@ -24,19 +22,33 @@ function SearchInputField({ caption = 'N/A', pattern: externalPattern, eduLevels
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form
+      onSubmit={handleSubmit}
+      aria-label={'Sök forskarkurs'}
+      name="searchForm"
+      role="search"
+      style={{
+        display: 'block',
+      }}
+    >
+      <div className="form-group">
         <label htmlFor="pattern">
           Ange del av kursnamn eller kurskod:
           <span id="searchfield-help-text" style={{ fontWeight: 'normal', display: 'block' }}>
             Exempel på kurskod: SF1624
           </span>
         </label>
-        {/* type="text" size="50" maxLength="80" value="" name="pattern"  */}
-        <input id="pattern" onChange={handleChange} />
+        <input
+          id="pattern"
+          type="text"
+          onChange={handleChange}
+          maxLength={80}
+          size={50}
+          value={pattern}
+          name="pattern"
+        />
       </div>
-      <button className="btn btn-primary" type="submit">
-        {/* TODO: handle  koppsCourseSearch('sf') when too much search-error-overflow*/}
+      <button className="btn btn-primary" type="submit" style={{ float: 'right' }}>
         {caption}
       </button>
     </form>

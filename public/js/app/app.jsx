@@ -12,6 +12,7 @@ import createApplicationStore from './stores/createApplicationStore'
 import '../../css/node-web.scss'
 
 import CourseSearch from './pages/CourseSearch'
+import CourseSearchResearch from './pages/CourseSearchResearch'
 import Example from './pages/Example'
 import PageLayout from './layout/PageLayout'
 import RouteWrapper from './components/RouteWrapper'
@@ -155,7 +156,7 @@ function appFactory(applicationStore) {
             include: 'university',
             items: getThirdCycleBreadcrumbs(language, browserConfig.proxyPrefixPath.uri),
           }}
-          component={CourseSearch}
+          component={CourseSearchResearch}
           layout={PageLayout}
           menuData={{
             selectedId: 'searchThirdCycleCourses',
