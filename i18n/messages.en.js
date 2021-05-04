@@ -115,13 +115,13 @@ module.exports = {
     leadIntro:
       'This is the official information about postgraduate courses at KTH. The courses may be searched by course name, part of name or course code.',
     linkToUsualSearch:
-      'På sidan Sök kurs kan du med hjälp av sökkriterier söka bland KTHs samtliga kurser inklusive forskarkurser.',
-    resultsHeading: 'Resultat från sökningen',
+      'At the Search course page you can search for all courses at KTH, including third cycle courses, by using search criteria.',
+    resultsHeading: 'Search results',
   },
   searchInstructions: {
-    search_help_collapse_header: 'Få hjälp med sökningen',
+    search_help_collapse_header: 'Instructions for searching',
     search_help_1:
-      'Du kan söka på del av kursnamn eller kurskod. En sökning efter "data" hittar exempelvis såväl "Databasteknik", "Datalogi" som "Algoritmer, datastrukturer och komplexitet".',
+      'You can search using part of the course name or code. Searching for "data" will return "Data Storage Paradigms" as well as "Database Techniques" and "Algorithms, Data Structures and Complexity".',
     search_help_2: 'Skriver du flera ord i fältet hittas kurser som innehåller samtliga ord.',
     search_help_3: 'Du kan även söka på kursens engelska namn.',
     search_help_4: 'Sökningen visar max 250 träffar. Får du för många träffar, försök att förfina sökvillkoren.',
@@ -134,6 +134,21 @@ module.exports = {
       'Du kan avgränsa sökningen till att endast visa kurser med engelska som undervisningsspråk. Standardinställningen är att hitta kurser oavsett undervisningsspråk.',
     search_help_9:
       'Du kan välja att även visa kurser som ej längre ges på KTH. Standardinställning är att dessa inte visas.',
+    search_help_10:
+      'Om du har synpunkter eller frågor gällande kurssökningen, kontakta <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
+  },
+  searchAlarms: {
+    errorUnknown: { text: 'An unknown error occurred - failed to retrieve course data' },
+    errorEmpty: {
+      header: 'Your search returned no results',
+      help: 'For help, see the link below: Instructions for searching',
+    },
+    errorOverflow: {
+      header: 'There were too many results',
+      text:
+        'There are too many courses that match your search critera. Please specify more characters/digits in the course name or course code (example of course code: SF1624).',
+      help: 'For help, see the link below: Instructions for searching',
+    },
   },
   generalSearch: {
     searchLabel: 'Search by writing in a course code or course name:',
@@ -143,10 +158,6 @@ module.exports = {
     errorEmpty: 'Your search returned no results.',
     errorOverflow: 'There were too many results.',
     SEPARATOR: '////////////////SEPERATOR',
-    search_error_overflow:
-      '<p><b>Sökningen gav för många träffar</b></p><p>Det finns för många kurser som matchar det du sökt på. Ange fler bokstäver/siffror i kursnamn eller kurskod (exempel på kurskod: SF1624).</p><p>Mer hjälp hittar du i länken nedan: Få hjälp med sökningen</p>',
-    search_error_emptysearch:
-      '<p><b>Din sökning gav inga träffar.</b></p><p>Mer hjälp hittar du i länken nedan: Få hjälp med sökningen</p>',
     search_search_start_prefix: 'Kursstart',
     search_search_label: 'Ange del av kursnamn eller kurskod:',
     search_search_text: 'Exempel på kurskod: SF1624',

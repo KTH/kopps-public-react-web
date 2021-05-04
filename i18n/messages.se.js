@@ -130,6 +130,22 @@ module.exports = {
       'Du kan avgränsa sökningen till att endast visa kurser med engelska som undervisningsspråk. Standardinställningen är att hitta kurser oavsett undervisningsspråk.',
     search_help_9:
       'Du kan välja att även visa kurser som ej längre ges på KTH. Standardinställning är att dessa inte visas.',
+    search_help_10:
+      'Om du har synpunkter eller frågor gällande kurssökningen, kontakta <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
+  },
+  searchAlarms: {
+    errorUnknown: { text: 'Ett okänt fel inträffade - misslyckad hämtning av kursdata' },
+    errorEmpty: {
+      header: 'Din sökning gav inga träffar.',
+      text: '',
+      help: 'Mer hjälp hittar du i länken nedan: Få hjälp med sökningen',
+    },
+    errorOverflow: {
+      header: 'Sökningen gav för många träffar',
+      text:
+        'Det finns för många kurser som matchar det du sökt på. Ange fler bokstäver/siffror i kursnamn eller kurskod (exempel på kurskod: SF1624).',
+      help: 'Mer hjälp hittar du i länken nedan: Få hjälp med sökningen',
+    },
   },
   generalSearch: {
     searchLabel: 'Ange del av kursnamn eller kurskod:',
@@ -139,11 +155,6 @@ module.exports = {
     errorEmpty: 'Din sökning gav inga träffar.',
     errorOverflow: 'Sökningen gav för många träffar.',
     '////////////////SEPARATOR': '////////////////SEPERATOR',
-    search_error_unknown: '<p><b>Ett okänt fel inträffade - misslyckad hämtning av kursdata</b></p>',
-    search_error_overflow:
-      '<p><b>Sökningen gav för många träffar</b></p><p>Det finns för många kurser som matchar det du sökt på. Ange fler bokstäver/siffror i kursnamn eller kurskod (exempel på kurskod: SF1624).</p><p>Mer hjälp hittar du i länken nedan: Få hjälp med sökningen</p>',
-    search_error_emptysearch:
-      '<p><b>Din sökning gav inga träffar.</b></p><p>Mer hjälp hittar du i länken nedan: Få hjälp med sökningen</p>',
     search_search_start_prefix: 'Kursstart',
     search_options_h: 'Sökalternativ',
     search_options_hb: 'Välj bland andra sökkriterier',
