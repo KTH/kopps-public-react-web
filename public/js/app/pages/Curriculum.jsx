@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import React, { Fragment } from 'react'
 import { Col, Row } from 'reactstrap'
 import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
@@ -9,6 +10,7 @@ import { useStore } from '../mobx'
 
 import translate from '../../../../domain/translate'
 import { formatLongTerm } from '../../../../domain/term'
+import { format as formatAcademicYear } from '../../../../domain/academicYear'
 
 function Curriculum() {
   const { programmeCode, programmeName, term, studyYear, language } = useStore()
@@ -18,6 +20,7 @@ function Curriculum() {
     term,
     language
   )}, ${programmeName} (${programmeCode})`
+  const formattedAcademicYear = formatAcademicYear(term)
 
   return (
     <>
@@ -29,7 +32,8 @@ function Curriculum() {
       <Row>
         <Col>
           <Article>
-            <div />
+            <p>{t('curriculums_studyyear_explanation_1')(studyYear)}</p>
+            <p dangerouslySetInnerHTML={{ __html: t('curriculums_studyyear_explanation_2')(formattedAcademicYear) }} />
           </Article>
         </Col>
         <Col xs="12" xl="3">

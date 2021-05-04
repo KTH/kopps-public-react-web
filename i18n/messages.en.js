@@ -1,4 +1,4 @@
-module.exports = {
+const messages = {
   shortNames: ['en'],
   longNameSe: 'Engelska',
   longNameEn: 'English',
@@ -47,7 +47,18 @@ module.exports = {
       1: 'Spring',
       2: 'Autumn',
     },
-
+    general_number_as_word: {
+      0: 'zero',
+      1: 'one',
+      2: 'two',
+      3: 'three',
+      4: 'four',
+      5: 'five',
+      6: 'six',
+      7: 'seven',
+      8: 'eight',
+      9: 'nine',
+    },
     main_menu_aria_label: 'Sub menu',
     main_menu_student: 'Student at KTH',
     main_menu_study_at_kth: 'Study at KTH',
@@ -106,6 +117,10 @@ module.exports = {
       'Choose programme syllabus. Batch most often equals first registration term at programme.',
     programme_admitted_year: 'Programme syllabus for studies starting in',
     curriculums_admitted_year_long: 'Study year',
+    curriculums_studyyear_explanation_1: studyYear =>
+      `The following courses are part of study year ${messages.messages.general_number_as_word[studyYear]}.`,
+    curriculums_studyyear_explanation_2: year =>
+      `Observera att de eventuella anmälningskoder och perioder som anges är baserade på läsåret <strong>${year}</strong>. Läses denna årskurs vid ett senare tillfälle kan andra anmälningskoder och perioder komma att gälla.`,
   },
   shb: {
     pageHeading: 'Study Handbook 00/01 to 07/08',
@@ -198,3 +213,5 @@ module.exports = {
     koppsEmailText: 'kopps@kth.se',
   },
 }
+
+module.exports = messages
