@@ -147,7 +147,7 @@ const getStudyProgrammeVersion = async (programmeCode, validFromTerm, lang) => {
   const uri = `${slashEndedKoppsBase}programmes/${programmeCode}/studyprogramme/version/${validFromTerm}?l=${lang}`
   try {
     const response = await client.getAsync({ uri, useCache: false })
-    return response.body
+    return response
   } catch (error) {
     log.error('Exception calling KOPPS API in koppsApi.getStudyProgrammeVersion', { error })
     throw error

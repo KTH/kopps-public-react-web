@@ -22,6 +22,14 @@ function setCourseRounds(courseRounds) {
   this.courseRounds = courseRounds
 }
 
+function setMissingAdmission() {
+  this.error = this.errorType.MISSING_ADMISSION
+}
+
+function isMissingAdmission() {
+  return this.error === this.errorType.MISSING_ADMISSION
+}
+
 const curriculumStore = {
   /**
    * @property {string} programmeCode
@@ -81,6 +89,24 @@ const curriculumStore = {
    * @param {[]} courseRounds
    */
   setCourseRounds,
+  /**
+   * @property {{}} errorType
+   */
+  errorType: {
+    MISSING_ADMISSION: 'missing_admission',
+  },
+  /**
+   * @property {string} error
+   */
+  error: null,
+  /**
+   * @method
+   */
+  setMissingAdmission,
+  /**
+   * @method
+   */
+  isMissingAdmission,
 }
 
 export default curriculumStore
