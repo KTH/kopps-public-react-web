@@ -1,4 +1,10 @@
 const querystring = require('querystring')
+const i18n = require('../i18n')
+
+const PREPARATORY_EDU_LEVEL = 'PREPARATORY'
+const BASIC_EDU_LEVEL = 'BASIC'
+const ADVANCED_EDU_LEVEL = 'ADVANCED'
+const RESEARCH_EDU_LEVEL = 'RESEARCH'
 
 function educationalLevel(levelNumberAsStr) {
   switch (levelNumberAsStr) {
@@ -6,22 +12,22 @@ function educationalLevel(levelNumberAsStr) {
      * Education preparing for university studies.
      */
     case '0':
-      return 'PREPARATORY'
+      return PREPARATORY_EDU_LEVEL
     /**
      * Studies at university.
      */
     case '1':
-      return 'BASIC'
+      return BASIC_EDU_LEVEL
     /**
      * Doctoral studies.
      */
     case '2':
-      return 'ADVANCED'
+      return ADVANCED_EDU_LEVEL
     /**
      * Post-doc studies.
      */
     case '3':
-      return 'RESEARCH'
+      return RESEARCH_EDU_LEVEL
     default: {
       if (typeof levelNumberAsStr !== 'string')
         throw new Error(`Check the type of level: ${levelNumberAsStr} has the type ${typeof $levelNumberAsStr}`)
@@ -94,7 +100,6 @@ function _transformSearchParams(params) {
     // term_period
     // department_prefix
   }
-  console.log('koppsFormatParams', koppsFormatParams)
   return koppsFormatParams
 }
 
@@ -108,4 +113,29 @@ function stringifyKoppsSearchParams(params) {
   return paramsStr
 }
 
-module.exports = { educationalLevel, stringifyKoppsSearchParams, stringifyUrlParams }
+function getHelpText(langIndex) {
+  const { searchInstructions } = i18n.messages[langIndex]
+
+  return [
+    'search_help_1',
+    'search_help_2',
+    'search_help_3',
+    'search_help_4',
+    'search_help_5',
+    'search_help_7',
+    'search_help_8',
+    'search_help_9',
+  ].map(s => searchInstructions[s])
+}
+
+function transformQueryToObject(query) {
+  return querystring.parse(query)
+}
+
+module.exports = {
+  educationalLevel,
+  getHelpText,
+  transformQueryToObject,
+  stringifyKoppsSearchParams,
+  stringifyUrlParams,
+}

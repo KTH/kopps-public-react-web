@@ -7,25 +7,17 @@ import i18n from '../../../../i18n'
 import { PageHeading, Heading } from '@kth/kth-reactstrap/dist/components/studinfo'
 import Lead from '../components/Lead'
 import { SearchInputField, SearchResultDisplay } from '../components/index'
+import { getHelpText } from '../../../../domain/searchParams'
 
-const CourseSearchResearch = props => {
+const CourseSearchResearch = () => {
   const { language: lang, languageIndex, textPattern: initialPattern } = useStore()
   const { thirdCycleSearch, searchInstructions } = i18n.messages[languageIndex]
-  const { searchHeading, leadIntro, linkToUsualSearch, resultsHeading } = thirdCycleSearch
-  const { search_help_collapse_header: collapseHeader } = searchInstructions
+  const { searchHeading, leadIntro, linkToUsualSearch } = thirdCycleSearch
+  const { search_help_collapse_header: collapseHeader, search_help_10: lastInstruction } = searchInstructions
 
   const [pattern, setPattern] = useState(initialPattern)
 
-  const helptexts = [
-    'search_help_1',
-    'search_help_2',
-    'search_help_3',
-    'search_help_4',
-    'search_help_5',
-    'search_help_7',
-    'search_help_8',
-    'search_help_9',
-  ].map(s => searchInstructions[s])
+  const helptexts = getHelpText(languageIndex)
 
   function handleSubmit(pattern) {
     setPattern(pattern)
@@ -42,7 +34,7 @@ const CourseSearchResearch = props => {
               {helptexts.map(value => (
                 <li key={value}>{value}</li>
               ))}
-              <li dangerouslySetInnerHTML={{ __html: searchInstructions.search_help_10 }} />
+              <li key="lastInstruction" dangerouslySetInnerHTML={{ __html: lastInstruction }} />
             </ul>
           </CollapseDetails>
         </Col>
@@ -66,8 +58,7 @@ const CourseSearchResearch = props => {
       </Row>
       <Row>
         <Col>
-          <h2 id="results-heading">{resultsHeading}</h2>
-          <SearchResultDisplay searchParameters={{ pattern, eduLevel: ['3'] }} />
+          <SearchResultDisplay searchParameters={{ pattern, eduLevel: ['3'] }} onlyPattern />
         </Col>
       </Row>
     </main>
