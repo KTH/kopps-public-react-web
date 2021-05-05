@@ -9,7 +9,7 @@ const i18n = require('../../i18n')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
 const { getSearchResults } = require('../kopps/koppsApi')
-const { stringifyKoppsSearchParams } = require('../../domain/searchParams')
+const { stringifyKoppsSearchParams, transformQueryToObject } = require('../../domain/searchParams')
 
 async function searchThirdCycleCourses(req, res, next) {
   try {
@@ -22,6 +22,40 @@ async function searchThirdCycleCourses(req, res, next) {
     applicationStore.setBrowserConfig(browserConfig, serverConfig.hostUrl)
 
     applicationStore.setPattern(pattern)
+
+    const compressedStoreCode = getCompressedStoreCode(applicationStore)
+
+    const { uri: proxyPrefix } = serverConfig.proxyPrefixPath
+    const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const title = i18n.message('site_name', lang)
+
+    res.render('app/index', {
+      html,
+      title,
+      compressedStoreCode,
+      description: title,
+      lang,
+      proxyPrefix,
+    })
+  } catch (err) {
+    log.error('Error in searchThirdCycleCourses', { error: err })
+    next(err)
+  }
+}
+
+async function searchAllCourses(req, res, next) {
+  try {
+    const lang = language.getLanguage(res)
+    const { pattern, eduLevel } = transformQueryToObject(req.query)
+    console.log('eduLevel', eduLevel)
+    const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
+
+    const applicationStore = createStore('searchCourses')
+    applicationStore.setLanguage(lang)
+    applicationStore.setBrowserConfig(browserConfig, serverConfig.hostUrl)
+
+    applicationStore.setPattern(pattern || '')
+    applicationStore.setEduLevels(eduLevel || [])
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
@@ -65,5 +99,6 @@ async function performCourseSearch(req, res, next) {
 
 module.exports = {
   performCourseSearch,
+  searchAllCourses,
   searchThirdCycleCourses,
 }

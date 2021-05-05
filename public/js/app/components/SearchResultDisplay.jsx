@@ -100,37 +100,9 @@ function dismountTopAlert(errorType, languageIndex) {
   if (alertContainer) ReactDOM.unmountComponentAtNode(alertContainer)
 }
 
-function SearchResultDisplay({ caption = 'N/A', searchParameters }) {
-  const { browserConfig, language, languageIndex } = useStore()
-  const history = useHistory()
-
+function DisplayResult({ languageIndex, status, searchResults }) {
   const { searchLoading, errorEmpty, errorUnknown, errorOverflow } = i18n.messages[languageIndex].generalSearch
-
-  const asyncCallback = React.useCallback(() => {
-    if (!searchParameters) return
-    const proxyUrl = _getThisHost(browserConfig.proxyPrefixPath.uri)
-
-    return koppsCourseSearch(language, proxyUrl, searchParameters)
-  }, [searchParameters])
-
-  const state = useAsync(asyncCallback, { status: searchParameters ? 'pending' : 'idle' })
-
-  const { data: searchResults, status, error } = state
-
-  useEffect(() => {
-    if (error && error !== null) {
-      renderAlertToTop(error, languageIndex)
-    } else dismountTopAlert()
-  }, [status])
-
-  useEffect(() => {
-    if (status === 'pending') {
-      const search = stringifyUrlParams(searchParameters)
-      history.push({ search })
-    }
-  }, [status])
-
-  if (status === 'idle' || !searchParameters) return null
+  if (status === 'idle') return null
   else if (status === 'pending') return <p>{searchLoading}</p>
   else if (status === 'noHits')
     return (
@@ -154,6 +126,53 @@ function SearchResultDisplay({ caption = 'N/A', searchParameters }) {
     )
 
   return null
+}
+
+function SearchResultDisplay({ caption = 'N/A', searchParameters, onlyPattern = false }) {
+  const { browserConfig, language, languageIndex } = useStore()
+  const history = useHistory()
+
+  const { pattern } = searchParameters
+
+  const { resultsHeading } = i18n.messages[languageIndex].generalSearch
+
+  const asyncCallback = React.useCallback(() => {
+    if (onlyPattern && !pattern) return
+    if (!searchParameters) return
+
+    const proxyUrl = _getThisHost(browserConfig.proxyPrefixPath.uri)
+    return koppsCourseSearch(language, proxyUrl, searchParameters)
+  }, [searchParameters])
+
+  const initialStatus = onlyPattern
+    ? { status: pattern ? 'pending' : 'idle' }
+    : { status: searchParameters ? 'pending' : 'idle' }
+
+  const state = useAsync(asyncCallback, initialStatus)
+
+  const { data: searchResults, status, error } = state
+
+  useEffect(() => {
+    if (error && error !== null) {
+      renderAlertToTop(error, languageIndex)
+    } else dismountTopAlert()
+  }, [status])
+
+  useEffect(() => {
+    if ((onlyPattern && pattern) || !onlyPattern) {
+      if (status === 'pending') {
+        const search = stringifyUrlParams(searchParameters)
+        history.push({ search })
+      }
+    }
+  }, [status])
+
+  return (
+    <>
+      {status !== 'idle' && <h2 id="results-heading">{resultsHeading}</h2>}
+      <DisplayResult status={status} languageIndex={languageIndex} searchResults={searchResults} />
+    </>
+  )
 }
 
 export default observer(SearchResultDisplay)

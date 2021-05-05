@@ -54,6 +54,7 @@ module.exports = {
     main_menu_directory: 'Kurs- och programkatalogen',
     main_menu_page_example: 'Exempel',
     main_menu_shb: 'Studiehandboken 00/01 tom 07/08',
+    main_menu_search_all: 'Sök kurs',
     main_menu_third_cycle_studies: 'Forskarutbildning',
     main_menu_third_cycle_departments_list_header: 'Forskarkurser per skola',
     main_menu_third_cycle_courses_search: 'Sök forskarkurs',
@@ -112,7 +113,6 @@ module.exports = {
   thirdCycleSearch: {
     searchHeading: 'Sök forskarkurs',
     leadIntro: 'Här kan du söka bland KTHs forskarutbildningskurser.',
-    resultsHeading: 'Resultat från sökningen',
   },
   searchInstructions: {
     search_help_collapse_header: 'Få hjälp med sökningen',
@@ -137,7 +137,6 @@ module.exports = {
     errorUnknown: { text: 'Ett okänt fel inträffade - misslyckad hämtning av kursdata' },
     errorEmpty: {
       header: 'Din sökning gav inga träffar.',
-      text: '',
       help: 'Mer hjälp hittar du i länken nedan: Få hjälp med sökningen',
     },
     errorOverflow: {
@@ -148,6 +147,7 @@ module.exports = {
     },
   },
   generalSearch: {
+    resultsHeading: 'Resultat från sökningen',
     searchLabel: 'Ange del av kursnamn eller kurskod:',
     searchText: 'Exempel på kurskod: SF1624',
     searchLoading: 'Söker ...',

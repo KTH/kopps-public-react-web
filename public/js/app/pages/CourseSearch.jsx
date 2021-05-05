@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { observer } from 'mobx-react'
 import { Col, Row } from 'reactstrap'
 import { CollapseDetails } from '@kth/kth-kip-style-react-components'
@@ -6,25 +6,20 @@ import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 import { PageHeading, Heading } from '@kth/kth-reactstrap/dist/components/studinfo'
 import Lead from '../components/Lead'
-import { SearchInputField, SearchResultDisplay } from '../components/index'
+import { SearchFormFields, SearchResultDisplay } from '../components/index'
+import { getHelpText } from '../../../../domain/searchParams'
 
-const Start = () => {
-  const { language: lang } = useStore()
-  const [pattern, setPattern] = useState('')
-  const helptexts = [
-    'koppspublic_search_help_1',
-    'koppspublic_search_help_2',
-    'koppspublic_search_help_3',
-    'koppspublic_search_help_4',
-    'koppspublic_search_help_5',
-    'koppspublic_search_help_7',
-    'koppspublic_search_help_8',
-    'koppspublic_search_help_9',
-  ].map(s => i18n.message(s, lang))
+const CourseSearch = () => {
+  const { language: lang, languageIndex, textPattern: initialPattern } = useStore()
+  const { thirdCycleSearch, searchInstructions } = i18n.messages[languageIndex]
+  const { searchHeading, leadIntro, linkToUsualSearch, resultsHeading } = thirdCycleSearch
+  const { search_help_collapse_header: collapseHeader, search_help_10: lastInstruction } = searchInstructions
+
+  const [pattern, setPattern] = useState(initialPattern)
+
+  const helptexts = getHelpText(languageIndex)
 
   function handleSubmit(pattern) {
-    // todo: useContext instead of props drilling
-    // or useStore for reloadiing page with urls props
     setPattern(pattern)
   }
 
@@ -32,29 +27,43 @@ const Start = () => {
     <main id="mainContent">
       <Row>
         <Col>
-          {/* <h1>Sök kurs</h1> */}
-          <PageHeading>Sök forskarkurs</PageHeading>
-          <Lead text="Här kan du söka bland KTHs forskarutbildningskurser." />
-          {/* <p>{i18n.message('koppspublic_search_introduction', lang)}</p> */}
-          <CollapseDetails color="white" title={i18n.message('koppspublic_search_help_h', lang)}>
+          <PageHeading>{searchHeading}</PageHeading>
+          <Lead text={leadIntro} />
+          <CollapseDetails color="white" title={collapseHeader}>
             <ul>
               {helptexts.map(value => (
                 <li key={value}>{value}</li>
               ))}
+              <li key="lastInstruction" dangerouslySetInnerHTML={{ __html: lastInstruction }} />
             </ul>
           </CollapseDetails>
-
-          <SearchInputField caption="Sök" pattern={pattern} onSubmit={handleSubmit} />
-          {/* research only link */}
-          <a href="/student/kurser/sokkurs">
-            På sidan Sök kurs kan du med hjälp av sökkriterier söka bland KTHs samtliga kurser inklusive forskarkurser.
-          </a>
-
-          <SearchResultDisplay pattern={pattern} />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <div id="alert-placeholder" />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <SearchFormFields caption={searchHeading} pattern={pattern} onSubmit={handleSubmit} />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <p style={{ marginTop: '50px' }}>
+            <a href={`/student/kurser/sokkurs?l=${lang}`}>{linkToUsualSearch}</a>
+          </p>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <h2 id="results-heading">{resultsHeading}</h2>
+          <SearchResultDisplay searchParameters={{ pattern, eduLevel: ['3'] }} />
         </Col>
       </Row>
     </main>
   )
 }
 
-export default observer(Start)
+export default observer(CourseSearch)

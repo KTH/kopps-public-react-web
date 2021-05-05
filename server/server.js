@@ -278,6 +278,7 @@ appRoute.get(
   config.proxyPrefixPath.uri + '/utbildning/forskarutbildning/kurser/sok',
   Search.searchThirdCycleCourses
 )
+appRoute.get('public.searchAllCourses', config.proxyPrefixPath.uri + '/student/kurser/sokkurs', Search.searchAllCourses)
 appRoute.get('api.searchCourses', config.proxyPrefixPath.uri + '/intern-api/sok/:lang', Search.performCourseSearch)
 
 appRoute.get(

@@ -54,6 +54,7 @@ module.exports = {
     main_menu_directory: 'Course and programme directory',
     main_menu_page_example: 'Example',
     main_menu_shb: 'Study Handbook 00/01 to 07/08',
+    main_menu_search_all: 'Search course',
     main_menu_third_cycle_studies: 'PhD studies',
     main_menu_third_cycle_departments_list_header: 'Third-cycle courses by school',
     main_menu_third_cycle_courses_search: 'Search third-cycle courses',
@@ -116,7 +117,6 @@ module.exports = {
       'This is the official information about postgraduate courses at KTH. The courses may be searched by course name, part of name or course code.',
     linkToUsualSearch:
       'At the Search course page you can search for all courses at KTH, including third cycle courses, by using search criteria.',
-    resultsHeading: 'Search results',
   },
   searchInstructions: {
     search_help_collapse_header: 'Instructions for searching',
@@ -153,6 +153,7 @@ module.exports = {
     },
   },
   generalSearch: {
+    resultsHeading: 'Search results',
     searchLabel: 'Search by writing in a course code or course name:',
     searchText: 'Example of course code: SF1624',
     searchLoading: 'Searching ...',
@@ -161,8 +162,6 @@ module.exports = {
     errorOverflow: 'There were too many results.',
     SEPARATOR: '////////////////SEPERATOR',
     search_search_start_prefix: 'Kursstart',
-    search_search_label: 'Ange del av kursnamn eller kurskod:',
-    search_search_text: 'Exempel på kurskod: SF1624',
     search_options_h: 'Sökalternativ',
     search_options_hb: 'Välj bland andra sökkriterier',
     search_options_termperiodfilter: 'Visa bara kurser som <b>startar</b> under följande perioder:',

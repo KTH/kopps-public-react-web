@@ -72,7 +72,6 @@ function appFactory(applicationStore) {
   return (
     <MobxStoreProvider initCallback={() => applicationStore}>
       <Switch>
-        <Route exact path="/" component={CourseSearch} />
         <RouteWrapper
           exact
           path="/example"
@@ -96,6 +95,14 @@ function appFactory(applicationStore) {
           breadcrumbs={{ include: 'directory' }}
           layout={PageLayout}
           menuData={{ selectedId: 'programmesList', ...menuData }}
+        />
+        <RouteWrapper
+          exact
+          path="/student/kurser/sokkurs"
+          breadcrumbs={{ include: 'directory' }}
+          component={CourseSearch}
+          layout={PageLayout}
+          menuData={{ selectedId: 'searchAllCourses', ...menuData }}
         />
         <RouteWrapper
           exact

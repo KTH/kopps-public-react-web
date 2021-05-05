@@ -25,6 +25,12 @@ function getMenuData(language, proxyPrefixPath) {
           url: pageLink(proxyPrefixPath, 'student/kurser/kurser-inom-program'),
         },
         {
+          id: 'searchAllCourses',
+          type: 'leaf',
+          text: t('main_menu_search_all'),
+          url: pageLink(proxyPrefixPath, 'student/kurser/sokkurs'),
+        },
+        {
           id: 'departmentsList',
           type: 'leaf',
           text: t('main_menu_departments_list'),
