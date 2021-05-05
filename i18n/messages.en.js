@@ -121,6 +121,7 @@ const messages = {
       `The following courses are part of study year ${messages.messages.general_number_as_word[studyYear]}.`,
     curriculums_studyyear_explanation_2: year =>
       `Observera att de eventuella anmälningskoder och perioder som anges är baserade på läsåret <strong>${year}</strong>. Läses denna årskurs vid ett senare tillfälle kan andra anmälningskoder och perioder komma att gälla.`,
+    curriculums_common_courses: 'General Courses',
   },
   shb: {
     pageHeading: 'Study Handbook 00/01 to 07/08',

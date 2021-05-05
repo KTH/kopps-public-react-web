@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import React, { Fragment } from 'react'
 import { Col, Row } from 'reactstrap'
-import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
+import { Heading, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 
 import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'
@@ -34,6 +34,7 @@ function Curriculum() {
           <Article>
             <p>{t('curriculums_studyyear_explanation_1')(studyYear)}</p>
             <p dangerouslySetInnerHTML={{ __html: t('curriculums_studyyear_explanation_2')(formattedAcademicYear) }} />
+            <Heading size="h2" text={t('curriculums_common_courses')} />
           </Article>
         </Col>
         <Col xs="12" xl="3">
