@@ -1,27 +1,40 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useReducer } from 'react'
 
 import { observer } from 'mobx-react'
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 
-function SearchFormFields({ caption = 'N/A', pattern: externalPattern, onSubmit }) {
-  const { language: lang, languageIndex } = useStore()
-  const [pattern, setPattern] = useState(externalPattern || '')
+import { SearchOptions } from '../components/index'
+
+const paramsReducer = (state, action) => ({ ...state, ...action })
+
+function SearchFormFields({ caption = 'N/A', onSubmit }) {
+  const { language: lang, languageIndex, textPattern: initialPattern = '' } = useStore()
+  // const [pattern, setPattern] = useState(initialPattern || '')
 
   const { generalSearch } = i18n.messages[languageIndex]
   const { searchLabel, searchText } = generalSearch
+  const [state, setState] = useReducer(paramsReducer, { pattern: initialPattern })
 
-  useEffect(() => {
-    if (typeof externalPattern === 'string') setPattern(externalPattern)
-  }, [externalPattern])
+  const { pattern, eduLevel, showOptions } = state
+  console.log('-----top state', state)
 
-  function handleChange(e) {
-    setPattern(e.target.value)
+  // useEffect(() => {
+  //   setPattern(externalPattern)
+  // }, [externalPattern])
+
+  function handlePatternChange(e) {
+    setState({ pattern: e.target.value })
   }
 
   function handleSubmit(e) {
     e.preventDefault()
-    onSubmit(pattern)
+    onSubmit(state)
+  }
+
+  function handleParamChange(params) {
+    console.log('update params', params)
+    setState(params)
   }
 
   return (
@@ -44,13 +57,15 @@ function SearchFormFields({ caption = 'N/A', pattern: externalPattern, onSubmit 
         <input
           id="pattern"
           type="text"
-          onChange={handleChange}
+          onChange={handlePatternChange}
           maxLength={80}
           size={50}
           value={pattern}
           name="pattern"
         />
       </div>
+      <SearchOptions paramName="eduLevel" onChange={handleParamChange} />
+      <SearchOptions paramName="showOptions" onChange={handleParamChange} />
       <button className="btn btn-primary" type="submit" style={{ float: 'right' }}>
         {caption}
       </button>
