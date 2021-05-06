@@ -113,6 +113,23 @@ module.exports = {
   thirdCycleSearch: {
     searchHeading: 'Sök forskarkurs',
     leadIntro: 'Här kan du söka bland KTHs forskarutbildningskurser.',
+    linkToUsualSearch:
+      'På sidan Sök kurs kan du med hjälp av sökkriterier söka bland KTHs samtliga kurser inklusive forskarkurser.',
+  },
+  bigSearch: {
+    searchHeading: 'Sök kurs',
+    leadIntro: `Här hittar du KTHs officiella kursinformation. 
+    Du kan söka bland alla kurser som ges vid KTH genom att ange hela eller delar av kursnamnet eller kurskoden. 
+    Information om vilka kurser som ingår i ett program nås via menyn till vänster.`,
+    eduLevel: 'Utbildningsnivå:',
+    PREPARATORY: 'Förberedande nivå',
+    BASIC: 'Grundnivå',
+    ADVANCED: 'Avancerad nivå',
+    RESEARCH: 'Forskarnivå',
+    showOptions: 'Övrigt:',
+    onlyEnglish: 'Ges på engelska',
+    onlyMHU: 'Behandlar miljö, miljöteknik eller hållbar utveckling',
+    showCancelled: 'Nedlagd kurs',
   },
   searchInstructions: {
     search_help_collapse_header: 'Få hjälp med sökningen',

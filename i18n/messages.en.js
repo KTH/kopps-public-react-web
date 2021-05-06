@@ -118,6 +118,21 @@ module.exports = {
     linkToUsualSearch:
       'At the Search course page you can search for all courses at KTH, including third cycle courses, by using search criteria.',
   },
+  bigSearch: {
+    searchHeading: 'Search course',
+    leadIntro: `This is the official course information at KTH. 
+    The courses may be searched by course name, part of name or course code. 
+    Courses included in your programme are available using the menu on the left.`,
+    eduLevel: 'Educational level:',
+    PREPARATORY: 'Pre-university level',
+    BASIC: 'First cycle',
+    ADVANCED: 'Second cycle',
+    RESEARCH: 'Third cycle',
+    showOptions: 'Other options:',
+    onlyEnglish: 'Courses taught in English',
+    onlyMHU: 'Courses that deal with environment, environmental technology or sustainable development',
+    showCancelled: 'Dormant/Terminated course',
+  },
   searchInstructions: {
     search_help_collapse_header: 'Instructions for searching',
     search_help_1:
