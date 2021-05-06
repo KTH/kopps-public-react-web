@@ -9,7 +9,7 @@ const i18n = require('../../i18n')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
 const { getSearchResults } = require('../kopps/koppsApi')
-const { stringifyKoppsSearchParams, transformQueryToObject } = require('../../domain/searchParams')
+const { stringifyKoppsSearchParams } = require('../../domain/searchParams')
 
 async function searchThirdCycleCourses(req, res, next) {
   try {
@@ -46,16 +46,17 @@ async function searchThirdCycleCourses(req, res, next) {
 async function searchAllCourses(req, res, next) {
   try {
     const lang = language.getLanguage(res)
-    const { pattern, eduLevel } = transformQueryToObject(req.query)
-    console.log('eduLevel', eduLevel)
+
+    const { pattern, eduLevel, showOptions } = req.query
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
 
     const applicationStore = createStore('searchCourses')
     applicationStore.setLanguage(lang)
     applicationStore.setBrowserConfig(browserConfig, serverConfig.hostUrl)
 
-    applicationStore.setPattern(pattern || '')
-    applicationStore.setEduLevels(eduLevel || [])
+    applicationStore.setPattern(pattern)
+    applicationStore.setEduLevels(eduLevel)
+    applicationStore.setShowOptions(showOptions)
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
