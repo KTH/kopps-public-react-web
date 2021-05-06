@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 const translate = require('../../../../domain/translate')
 
 function parentLink(language) {
@@ -10,7 +9,8 @@ function pageLinks(pageId) {
   return `/kopps-public/${pageId}`
 }
 
-function getMenuDataExample(language) {
+function getMenuDataExample(applicationStore) {
+  const { language } = applicationStore
   const t = translate(language)
   return {
     ariaLabel: t('main_menu_aria_label'),

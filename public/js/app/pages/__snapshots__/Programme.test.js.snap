@@ -33,7 +33,9 @@ exports[`Render component Programme within Layout match to snapshot in English 1
           <li
             class="nav-item ancestor"
           >
-            <div />
+            <div>
+              Degree Programme in Architecture
+            </div>
           </li>
           <li
             class="nav-item leaf selected"
@@ -178,7 +180,9 @@ exports[`Render component Programme within Layout match to snapshot in Swedish 1
           <li
             class="nav-item ancestor"
           >
-            <div />
+            <div>
+              Arkitektutbildning
+            </div>
           </li>
           <li
             class="nav-item leaf selected"

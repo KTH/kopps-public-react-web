@@ -1,8 +1,9 @@
-/* eslint-disable camelcase */
 const translate = require('../../../../domain/translate')
 const { parentThirdCycleStudyLink, pageLink } = require('../util/links')
 
-function getThirdCycleMenuData(language, proxyPrefixPath) {
+function getThirdCycleMenuData(applicationStore) {
+  const { language, browserConfig } = applicationStore
+  const proxyPrefixPath = browserConfig.proxyPrefixPath.uri
   const t = translate(language)
   return {
     ariaLabel: t('main_menu_aria_label'),

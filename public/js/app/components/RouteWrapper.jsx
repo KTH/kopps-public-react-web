@@ -2,51 +2,43 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { MobxStoreProvider } from '../mobx'
 
-function RouteWrapper({ breadcrumbs, component: Component, layout: Layout, menuData, ...rest }) {
+function RouteWrapper({
+  createBreadCrumbs,
+  component: Component,
+  layout: Layout,
+  applicationStore,
+  createMenuData,
+  ...rest
+}) {
+  const menuData = createMenuData(applicationStore)
+  const breadcrumbs = createBreadCrumbs(applicationStore)
   return (
-    <Route
-      {...rest}
-      render={() => (
-        <Layout breadcrumbs={breadcrumbs} menuData={menuData}>
-          <Component />
-        </Layout>
-      )}
-    />
+    <MobxStoreProvider initCallback={() => applicationStore}>
+      <Route
+        {...rest}
+        render={() => (
+          <Layout breadcrumbs={breadcrumbs} menuData={menuData}>
+            <Component />
+          </Layout>
+        )}
+      />
+    </MobxStoreProvider>
   )
 }
 
 RouteWrapper.propTypes = {
-  breadcrumbs: PropTypes.shape({
-    include: PropTypes.oneOf(['none', 'university', 'student', 'directory']),
-    items: PropTypes.arrayOf(
-      PropTypes.shape({
-        url: PropTypes.string,
-        label: PropTypes.string,
-      })
-    ),
-  }),
+  createBreadCrumbs: PropTypes.func,
   component: PropTypes.oneOfType([PropTypes.node, PropTypes.func, PropTypes.elementType]).isRequired,
   layout: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
-  menuData: PropTypes.shape({
-    ariaLabel: PropTypes.string,
-    navList: PropTypes.shape({
-      type: PropTypes.oneOf(['expandable']),
-      items: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: PropTypes.string,
-          type: PropTypes.oneOf[('ancestor', 'leaf')],
-          text: PropTypes.string,
-        })
-      ),
-    }),
-    parentLink: PropTypes.shape({ text: PropTypes.string, url: PropTypes.string }),
-    selectedId: PropTypes.string,
-  }).isRequired,
+  createMenuData: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  applicationStore: PropTypes.object.isRequired,
 }
 
 RouteWrapper.defaultProps = {
-  breadcrumbs: { include: 'student', items: [] },
+  createBreadCrumbs: () => ({ include: 'student', items: [] }),
 }
 
 export default RouteWrapper
