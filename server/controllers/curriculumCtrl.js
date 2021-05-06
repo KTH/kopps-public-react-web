@@ -33,6 +33,16 @@ async function _getCourseRounds(curriculums, programmeCode, term, studyYear, lan
   )
 }
 
+function _setError(applicationStore, statusCode) {
+  if (statusCode === 404) {
+    applicationStore.setMissingAdmission()
+  } else {
+    const error = new Error('Exception calling KOPPS API in koppsApi.getStudyProgrammeVersion')
+    error.statusCode = statusCode
+    throw error
+  }
+}
+
 async function _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode, term, studyYear }) {
   applicationStore.setLanguage(lang)
   applicationStore.setBrowserConfig(browserConfig)
@@ -45,7 +55,12 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, progr
 
   applicationStore.setProgrammeName(programmeName)
 
-  const studyProgramme = await koppsApi.getStudyProgrammeVersion(programmeCode, term, lang)
+  const response = await koppsApi.getStudyProgrammeVersion(programmeCode, term, lang)
+  if (response.statusCode !== 200) {
+    _setError(applicationStore, response.statusCode)
+    return
+  }
+  const studyProgramme = response.body
   const { id: studyProgrammeId } = studyProgramme
 
   const curriculums = await koppsApi.listCurriculums(studyProgrammeId, lang)

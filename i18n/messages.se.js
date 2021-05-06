@@ -1,4 +1,4 @@
-module.exports = {
+const messages = {
   shortNames: ['sv', 'se'],
   longNameSe: 'Svenska',
   longNameEn: 'Swedish',
@@ -46,6 +46,18 @@ module.exports = {
     semester: {
       1: 'VT',
       2: 'HT',
+    },
+    general_number_as_word: {
+      0: 'noll',
+      1: 'ett',
+      2: 'två',
+      3: 'tre',
+      4: 'fyra',
+      5: 'fem',
+      6: 'sex',
+      7: 'sju',
+      8: 'åtta',
+      9: 'nio',
     },
 
     main_menu_aria_label: 'Undermeny',
@@ -105,6 +117,11 @@ module.exports = {
       'Välj utbildningsplan. Oftast överensstämmer kull med den termin då studierna påbörjades vid programmet.',
     programme_admitted_year: 'Utbildningsplan kull',
     curriculums_admitted_year_long: 'Årskurs',
+    curriculums_studyyear_explanation_1: studyYear =>
+      `Enligt utbildningsplanen för programmet ingår dessa kurser i årskurs ${messages.messages.general_number_as_word[studyYear]}.`,
+    curriculums_studyyear_explanation_2: year =>
+      `Observera att de eventuella anmälningskoder och perioder som anges är baserade på läsåret <strong>${year}</strong>. Läses denna årskurs vid ett senare tillfälle kan andra anmälningskoder och perioder komma att gälla.`,
+    curriculums_common_courses: 'Gemensamma kurser',
   },
   shb: {
     pageHeading: 'Studiehandboken 00/01 tom 07/08',
@@ -209,3 +226,5 @@ module.exports = {
     koppsEmailText: 'kopps@kth.se',
   },
 }
+
+module.exports = messages
