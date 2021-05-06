@@ -5,6 +5,9 @@ const PREPARATORY_EDU_LEVEL = 'PREPARATORY'
 const BASIC_EDU_LEVEL = 'BASIC'
 const ADVANCED_EDU_LEVEL = 'ADVANCED'
 const RESEARCH_EDU_LEVEL = 'RESEARCH'
+const IN_ENGLISH_ONLY = 'onlyEnglish'
+const ONLY_MHU = 'onlyMHU'
+const SHOW_CANCELLED = 'showCancelled'
 
 function educationalLevel(levelNumberAsStr) {
   switch (levelNumberAsStr) {
@@ -30,47 +33,46 @@ function educationalLevel(levelNumberAsStr) {
       return RESEARCH_EDU_LEVEL
     default: {
       if (typeof levelNumberAsStr !== 'string')
-        throw new Error(`Check the type of level: ${levelNumberAsStr} has the type ${typeof $levelNumberAsStr}`)
+        throw new Error(`Check the type of level: ${levelNumberAsStr} has the type ${typeof levelNumberAsStr}`)
 
-      throw new Error(`Unknown education level number: ${levelNumberAsStr}`)
+      throw new Error(`Unknown education level number: ${levelNumberAsStr}. Allowed types: '0'-'3'`)
     }
   }
 }
 
-function checkOptions(options) {
+function getShowOptions(option) {
   // showOptions.map(opt => opt ? {})
-  // switch (option) {
-  //   /**
-  //    * Education preparing for university studies.
-  //    */
-  //   case 'onlyEnglish':
-  //     return params
-  //   /**
-  //    * Studies at university.
-  //    */
-  //   case '1':
-  //     return 'BASIC'
-  //   /**
-  //    * Doctoral studies.
-  //    */
-  //   case '2':
-  //     return 'ADVANCED'
-  //   /**
-  //    * Post-doc studies.
-  //    */
-  //   case '3':
-  //     return 'RESEARCH'
-  //   default: {
-  //     if (typeof levelNumberAsStr !== 'string')
-  //       throw new Error(`Check the type of level: ${levelNumberAsStr} has the type ${typeof $levelNumberAsStr}`)
-  //     throw new Error(`Unknown education level number: ${levelNumberAsStr}`)
-  //   }
-  // }
+  switch (option) {
+    /**
+     * Courses only in English
+     */
+    case IN_ENGLISH_ONLY:
+      return 'in_english_only'
+    /**
+     * Behandlar miljö, miljöteknik eller hållbar utveckling
+     */
+    case ONLY_MHU:
+      return 'only_mhu'
+    /**
+     * Nedlagd kurs
+     */
+    case SHOW_CANCELLED:
+      return 'include_non_active'
+    default: {
+      if (typeof option !== 'string')
+        throw new Error(`Check the type of option: ${option} has the type ${typeof option}`)
+      throw new Error(
+        `Unknown show options: ${option}. Allowed options: ${IN_ENGLISH_ONLY}, ${ONLY_MHU}, ${SHOW_CANCELLED}`
+      )
+    }
+  }
 }
+function separateOptions(optionsArr) {
+  const optionsObject = {}
+  optionsArr.forEach(opt => (optionsObject[getShowOptions(opt)] = true))
 
-// static final String IN_ENGLISH_ONLY = "onlyEnglish";
-// static final String ONLY_MHU = "onlyMHU";
-// static final String SHOW_CANCELLED = "showCancelled";
+  return optionsObject
+}
 
 // private static final Set<String> ALLOWED_SHOW_OPTIONS = new HashSet<>(Arrays.asList(IN_ENGLISH_ONLY, ONLY_MHU, SHOW_CANCELLED));
 // private static final Pattern TERM_PERIOD_PATTERN = Pattern.compile("\\d{5}:(\\d|summer)");
@@ -90,16 +92,16 @@ function checkOptions(options) {
 // private boolean constructedFromOldStyleQueryParams;
 
 function _transformSearchParams(params) {
-  const { eduLevel = [], pattern = '' } = params
+  const { eduLevel = [], pattern = '', showOptions = [] } = params
+  const separatedOptions = separateOptions(showOptions)
   const koppsFormatParams = {
     text_pattern: pattern,
     educational_level: eduLevel.map(level => educationalLevel(level)), //['RESEARCH', 'ADVANCED'],
-    // only_mhu:
-    // in_english_only:
-    // include_non_active
+    ...separatedOptions, // Example: {only_mhu: true}, {in_english_only: true}, {include_non_active: true}
     // term_period
     // department_prefix
   }
+  console.log('transformed Kopps_ ', koppsFormatParams)
   return koppsFormatParams
 }
 
@@ -128,14 +130,45 @@ function getHelpText(langIndex) {
   ].map(s => searchInstructions[s])
 }
 
-function transformQueryToObject(query) {
-  return querystring.parse(query)
+const eduLevelConfig = langIndex => {
+  const { bigSearch } = i18n.messages[langIndex]
+
+  return ['0', '1', '2', '3'].map(level => {
+    const id = educationalLevel(level)
+    const label = bigSearch[id]
+    return { label, id, value: level }
+  })
+}
+
+const showOptionsConfig = langIndex => {
+  const { bigSearch } = i18n.messages[langIndex]
+
+  return [IN_ENGLISH_ONLY, ONLY_MHU, SHOW_CANCELLED].map(option => {
+    const label = bigSearch[option]
+    console.log('showOptionsConfig', { label, id: option, value: option })
+
+    return { label, id: option, value: option }
+  })
+}
+
+function getParamConfig(paramName, langIndex) {
+  switch (paramName) {
+    case 'eduLevel':
+      return eduLevelConfig(langIndex)
+    case 'showOptions':
+      return showOptionsConfig(langIndex)
+    default: {
+      if (typeof paramName !== 'string')
+        throw new Error(`Check the type of parameter name: ${paramName} has the type ${typeof paramName}`)
+      throw new Error(`Unknown show options: ${paramName}. Allowed options: eduLevel, showOptions`)
+    }
+  }
 }
 
 module.exports = {
   educationalLevel,
+  getParamConfig,
   getHelpText,
-  transformQueryToObject,
   stringifyKoppsSearchParams,
   stringifyUrlParams,
 }
