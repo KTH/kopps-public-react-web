@@ -131,14 +131,19 @@ function DisplayResult({ languageIndex, status, searchResults }) {
 function SearchResultDisplay({ caption = 'N/A', searchParameters, onlyPattern = false }) {
   const { browserConfig, language, languageIndex } = useStore()
   const history = useHistory()
-
+  console.log('result searchParameters', searchParameters)
   const { pattern } = searchParameters
+  const searchStr = stringifyUrlParams(searchParameters)
+  console.log('showOptions in results', searchParameters.showOptions)
 
   const { resultsHeading } = i18n.messages[languageIndex].generalSearch
 
   const asyncCallback = React.useCallback(() => {
     if (onlyPattern && !pattern) return
-    if (!searchParameters) return
+    if (!searchStr) {
+      console.log('NON PARAMETEROR')
+      return
+    }
 
     const proxyUrl = _getThisHost(browserConfig.proxyPrefixPath.uri)
     return koppsCourseSearch(language, proxyUrl, searchParameters)
@@ -146,7 +151,7 @@ function SearchResultDisplay({ caption = 'N/A', searchParameters, onlyPattern = 
 
   const initialStatus = onlyPattern
     ? { status: pattern ? 'pending' : 'idle' }
-    : { status: searchParameters ? 'pending' : 'idle' }
+    : { status: searchStr ? 'pending' : 'idle' }
 
   const state = useAsync(asyncCallback, initialStatus)
 
@@ -161,8 +166,7 @@ function SearchResultDisplay({ caption = 'N/A', searchParameters, onlyPattern = 
   useEffect(() => {
     if ((onlyPattern && pattern) || !onlyPattern) {
       if (status === 'pending') {
-        const search = stringifyUrlParams(searchParameters)
-        history.push({ search })
+        history.push({ search: searchStr })
       }
     }
   }, [status])
