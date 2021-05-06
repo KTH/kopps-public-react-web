@@ -10,17 +10,18 @@ import { SearchFormFields, SearchResultDisplay } from '../components/index'
 import { getHelpText } from '../../../../domain/searchParams'
 
 const CourseSearch = () => {
-  const { language: lang, languageIndex, textPattern: initialPattern } = useStore()
-  const { thirdCycleSearch, searchInstructions } = i18n.messages[languageIndex]
-  const { searchHeading, leadIntro, linkToUsualSearch, resultsHeading } = thirdCycleSearch
+  const { language: lang, languageIndex } = useStore()
+  const { bigSearch, searchInstructions } = i18n.messages[languageIndex]
+  const { searchHeading, leadIntro } = bigSearch
   const { search_help_collapse_header: collapseHeader, search_help_10: lastInstruction } = searchInstructions
 
-  const [pattern, setPattern] = useState(initialPattern)
-
+  const [params, setParams] = useState({})
+  console.log('top params', params)
   const helptexts = getHelpText(languageIndex)
 
-  function handleSubmit(pattern) {
-    setPattern(pattern)
+  function handleSubmit(params) {
+    // clean params
+    setParams(params)
   }
 
   return (
@@ -46,20 +47,12 @@ const CourseSearch = () => {
       </Row>
       <Row>
         <Col>
-          <SearchFormFields caption={searchHeading} pattern={pattern} onSubmit={handleSubmit} />
+          <SearchFormFields caption={searchHeading} onSubmit={handleSubmit} />
         </Col>
       </Row>
       <Row>
         <Col>
-          <p style={{ marginTop: '50px' }}>
-            <a href={`/student/kurser/sokkurs?l=${lang}`}>{linkToUsualSearch}</a>
-          </p>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <h2 id="results-heading">{resultsHeading}</h2>
-          <SearchResultDisplay searchParameters={{ pattern, eduLevel: ['3'] }} />
+          <SearchResultDisplay searchParameters={params} />
         </Col>
       </Row>
     </main>
