@@ -35,9 +35,9 @@ function thirdCycleDepartmentLink(proxyPrefixPath, departmentCode, language) {
   return `${proxyPrefixPath}/utbildning/forskarutbildning/kurser/org/${departmentCode}${languageParam}`
 }
 
-function courseLink(courseCode, language) {
+function courseLink(proxyPrefixPath, courseCode, language) {
   const languageParam = getLanguageParam(language)
-  return `/student/kurser/kurs/${courseCode}${languageParam}`
+  return `${proxyPrefixPath}/student/kurser/kurs/${courseCode}${languageParam}`
 }
 
 function programTermLink(proxyPrefixPath, programmeCode, term, studyYear, language) {
