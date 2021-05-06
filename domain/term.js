@@ -22,10 +22,13 @@ function _limit(value, max) {
 }
 
 function _getCurrentTerm(overrideDate) {
+  const JULY = 7
+  const SPRING = 1
+  const FALL = 2
   const currentDate = overrideDate || new Date()
   const currentYear = currentDate.getFullYear()
   const currentMonth = currentDate.getMonth()
-  const currentSemester = currentMonth < 6 ? 1 : 2
+  const currentSemester = currentMonth < JULY ? SPRING : FALL
   return `${currentYear * 10 + currentSemester}`
 }
 
