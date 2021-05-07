@@ -23,6 +23,10 @@ function setShowOptions(otherOptions) {
   this.showOptions = _transformByInputType(otherOptions)
 }
 
+function setPeriods(periods) {
+  this.period = _transformByInputType(periods)
+}
+
 const searchCoursesStore = {
   /**
    * @property {string} textPattern
@@ -54,6 +58,15 @@ const searchCoursesStore = {
    * @param {[]} otherOptions
    */
   setShowOptions,
+  /**
+   * @property {[]} period
+   */
+  period: [],
+  /**
+   * @method
+   * @param {[]} periods
+   */
+  setPeriods,
 }
 
 export default searchCoursesStore

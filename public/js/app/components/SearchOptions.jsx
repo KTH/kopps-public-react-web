@@ -27,16 +27,20 @@ const optionsReducer = (state, action) => {
   }
 }
 
-function SearchOptions({ paramName, onChange }) {
+function SearchOptions({ overrideSearchHead = '', paramAliasName = '', paramName, onChange }) {
   //caption = 'N/A',
   const store = useStore()
   const { languageIndex } = store
   const initialParamValue = store[paramName]
-  const [{ options }, setOptions] = React.useReducer(optionsReducer, { options: initialParamValue })
+  const [{ options }, setOptions] = React.useReducer(optionsReducer, { options: initialParamValue || [] })
   const { bigSearch } = i18n.messages[languageIndex]
-  const searchHeadLevel = bigSearch[paramName]
+  const searchHeadLevel = overrideSearchHead || bigSearch[paramName]
 
-  const values = getParamConfig(paramName, languageIndex)
+  const values = React.useMemo(() => getParamConfig(paramAliasName || paramName, languageIndex), [
+    paramAliasName,
+    paramName,
+    languageIndex,
+  ])
   // [
   //   { label: 'Pre-university level', id: 'PREPARATORY', value: '0' },
   //...
@@ -45,45 +49,43 @@ function SearchOptions({ paramName, onChange }) {
   useEffect(() => {
     // if (options && options.length > 0) no we still need update full value with empty
     onChange({ [paramName]: options })
-  }, [options])
+  }, [options.length])
 
   function handleChange(e) {
     const { value, checked } = e.target
-    console.log('value', value)
     setOptions({ value, type: checked ? 'ADD_ITEM' : 'REMOVE_ITEM' })
   }
-  console.log('zzzzzzz options', options)
 
   return (
     <div key={paramName} className="form-group">
-      <label className="form-control-label" htmlFor="exampleFormControlCheckboxes">
-        {searchHeadLevel}
-      </label>
-      {values.map(({ label, id, value }) => (
-        <div key={id} className="form-check form-group">
-          <input
-            id={id}
-            name={paramName}
-            value={value}
-            type="checkbox"
-            className="form-check-input"
-            onChange={handleChange}
-            checked={!!(options && options.includes(value))}
-          />
-          <label htmlFor={id} className="form-control-label">
-            {label}
-          </label>
-        </div>
-      ))}
-      {/* <Checkbox
+      <fieldset>
+        <legend className="form-control-label">{searchHeadLevel}</legend>
+        {values.map(({ label, id, value }) => (
+          <div key={id} className="form-check form-group">
+            <input
+              id={id}
+              name={paramAliasName || paramName}
+              value={value}
+              type="checkbox"
+              className="form-check-input"
+              onChange={handleChange}
+              checked={!!(options && options.includes(value))}
+            />
+            <label htmlFor={id} className="form-control-label">
+              {label}
+            </label>
+          </div>
+        ))}
+        {/* <Checkbox
                 id={id}
                 // checked={unchecked}
                 text={label}
                 onChange={handleChange}
                 value={value}
               /> */}
+      </fieldset>
     </div>
   )
 }
 
-export default observer(SearchOptions)
+export default SearchOptions

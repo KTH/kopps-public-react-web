@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useReducer } from 'react'
+import { Col, Row } from 'reactstrap'
 
 import { observer } from 'mobx-react'
 import { useStore } from '../mobx'
@@ -6,22 +7,28 @@ import i18n from '../../../../i18n'
 
 import { SearchOptions } from '../components/index'
 
-const paramsReducer = (state, action) => ({ ...state, ...action })
+const paramsReducer = (state, action) => {
+  if (action.period && state.period) {
+    const mergedBothYearPeriods = { period: [...state.period, ...action.period] }
+    return { ...state, ...mergedBothYearPeriods }
+  }
+  return { ...state, ...action }
+}
 
-function SearchFormFields({ caption = 'N/A', onSubmit }) {
+function SearchFormFields({ caption = 'N/A', onSubmit, isTest = false }) {
   const { language: lang, languageIndex, textPattern: initialPattern = '' } = useStore()
   // const [pattern, setPattern] = useState(initialPattern || '')
 
   const { generalSearch } = i18n.messages[languageIndex]
-  const { searchLabel, searchText } = generalSearch
+  const { searchLabel, searchStartPeriodPrefix, searchText } = generalSearch
   const [state, setState] = useReducer(paramsReducer, { pattern: initialPattern })
 
-  const { pattern, eduLevel, showOptions } = state
+  const { pattern } = state
   console.log('-----top state', state)
 
-  // useEffect(() => {
-  //   setPattern(externalPattern)
-  // }, [externalPattern])
+  const currentYear = isTest ? new Date().setFullYear(2021) : new Date().getFullYear()
+  const currentYearLabel = `${searchStartPeriodPrefix} ${currentYear}`
+  const nextYearLabel = `${searchStartPeriodPrefix} ${Number(currentYear) + 1}`
 
   function handlePatternChange(e) {
     setState({ pattern: e.target.value })
@@ -32,8 +39,11 @@ function SearchFormFields({ caption = 'N/A', onSubmit }) {
     onSubmit(state)
   }
 
+  function handlePeriodChange(periods) {
+    setState(periods)
+  }
+
   function handleParamChange(params) {
-    console.log('update params', params)
     setState(params)
   }
 
@@ -64,8 +74,36 @@ function SearchFormFields({ caption = 'N/A', onSubmit }) {
           name="pattern"
         />
       </div>
-      <SearchOptions paramName="eduLevel" onChange={handleParamChange} />
-      <SearchOptions paramName="showOptions" onChange={handleParamChange} />
+      <Row>
+        <Col>
+          <SearchOptions
+            overrideSearchHead={currentYearLabel}
+            paramAliasName="currentYear"
+            paramName="period"
+            onChange={handlePeriodChange}
+          />
+        </Col>
+        <Col>
+          <SearchOptions
+            overrideSearchHead={nextYearLabel}
+            paramAliasName="nextYear"
+            paramName="period"
+            onChange={handlePeriodChange}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <SearchOptions paramName="eduLevel" onChange={handleParamChange} />
+        </Col>
+        <Col>
+          <SearchOptions paramName="showOptions" onChange={handleParamChange} />
+        </Col>
+      </Row>
+      <Row>
+        <Col></Col>
+      </Row>
+
       <button className="btn btn-primary" type="submit" style={{ float: 'right' }}>
         {caption}
       </button>

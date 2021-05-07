@@ -47,7 +47,7 @@ async function searchAllCourses(req, res, next) {
   try {
     const lang = language.getLanguage(res)
 
-    const { pattern, eduLevel, showOptions } = req.query
+    const { pattern, eduLevel, showOptions, period } = req.query
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
 
     const applicationStore = createStore('searchCourses')
@@ -57,6 +57,7 @@ async function searchAllCourses(req, res, next) {
     applicationStore.setPattern(pattern)
     applicationStore.setEduLevels(eduLevel)
     applicationStore.setShowOptions(showOptions)
+    applicationStore.setPeriods(period)
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
