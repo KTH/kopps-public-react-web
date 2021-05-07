@@ -92,11 +92,29 @@ function formatLongTerm(term, language) {
   return `${t('semester')[semester]}${language === 'en' ? ' ' : ''}${year}`
 }
 
+function _getNextTerms(fromTerm, numberOfTerms) {
+  // this term + numberOfTerms
+  let nTerms = 0
+  const terms = [fromTerm]
+  while (nTerms < numberOfTerms) {
+    terms.push(_getNextTerm(terms[nTerms]))
+    nTerms++
+  }
+  return terms
+}
+function getRelevantTerms(numberOfTerms, overrideDate = null) {
+  const currentTerm = _getCurrentTerm(overrideDate)
+  const relevantTerms = _getNextTerms(currentTerm, numberOfTerms)
+  return relevantTerms
+}
+
 module.exports = {
+  termConstants: _constants,
   _getCurrentTerm,
   _isSpringTerm,
   _isFallTerm,
   getNextTerm: _getNextTerm,
+  getRelevantTerms,
   _nTermsAgo,
   studyYear: _studyYear,
   formatShortTerm,
