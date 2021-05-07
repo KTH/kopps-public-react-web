@@ -147,6 +147,7 @@ const messages = {
     onlyEnglish: 'Ges på engelska',
     onlyMHU: 'Behandlar miljö, miljöteknik eller hållbar utveckling',
     showCancelled: 'Nedlagd kurs',
+    summer: 'sommar',
   },
   searchInstructions: {
     search_help_collapse_header: 'Få hjälp med sökningen',
@@ -181,6 +182,7 @@ const messages = {
     },
   },
   generalSearch: {
+    searchStartPeriodPrefix: 'Kursstart',
     resultsHeading: 'Resultat från sökningen',
     searchLabel: 'Ange del av kursnamn eller kurskod:',
     searchText: 'Exempel på kurskod: SF1624',

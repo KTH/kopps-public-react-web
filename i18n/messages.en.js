@@ -148,6 +148,7 @@ const messages = {
     onlyEnglish: 'Courses taught in English',
     onlyMHU: 'Courses that deal with environment, environmental technology or sustainable development',
     showCancelled: 'Dormant/Terminated course',
+    summer: 'summer',
   },
   searchInstructions: {
     search_help_collapse_header: 'Instructions for searching',
@@ -184,6 +185,7 @@ const messages = {
     },
   },
   generalSearch: {
+    searchStartPeriodPrefix: 'Course Start',
     resultsHeading: 'Search results',
     searchLabel: 'Search by writing in a course code or course name:',
     searchText: 'Example of course code: SF1624',
