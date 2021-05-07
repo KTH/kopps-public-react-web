@@ -51,9 +51,10 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, progr
   applicationStore.setStudyYear(studyYear)
 
   const programme = await koppsApi.getProgramme(programmeCode, lang)
-  const { title: programmeName } = programme
+  const { title: programmeName, owningSchoolCode } = programme
 
   applicationStore.setProgrammeName(programmeName)
+  applicationStore.setOwningSchoolCode(owningSchoolCode)
 
   const response = await koppsApi.getStudyProgrammeVersion(programmeCode, term, lang)
   if (response.statusCode !== 200) {

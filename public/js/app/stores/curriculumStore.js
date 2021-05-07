@@ -6,6 +6,10 @@ function setProgrammeName(programmeName) {
   this.programmeName = programmeName
 }
 
+function setOwningSchoolCode(owningSchoolCode) {
+  this.owningSchoolCode = owningSchoolCode
+}
+
 function setTerm(term) {
   this.term = term
 }
@@ -53,6 +57,15 @@ const curriculumStore = {
    */
   // TODO: Refactor. Duplicate in createApplicationStore
   setProgrammeName,
+  /**
+   * @property {string} owningSchoolCode
+   */
+  owningSchoolCode: '',
+  /**
+   * @method
+   * @param {string} owningSchoolCode
+   */
+  setOwningSchoolCode,
   /**
    * @property {string} term
    */

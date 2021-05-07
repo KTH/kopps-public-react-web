@@ -3,11 +3,21 @@ const translate = require('../../../../domain/translate')
 const { pageLink } = require('../util/links')
 
 function getCurriculumMenuData(applicationStore) {
-  const { language, browserConfig, programmeCode, programmeName, term, studyYear } = applicationStore
+  const {
+    language,
+    browserConfig,
+    programmeCode,
+    programmeName,
+    term,
+    studyYear,
+    isMissingAdmission,
+  } = applicationStore
   const proxyPrefixPath = browserConfig.proxyPrefixPath.uri
   const t = translate(language)
   const directoryText = `${t('programme_admitted_year')} ${formatShortTerm(term, language)}`
-  const leafText = `${t('curriculums_admitted_year_long')} ${studyYear}`
+  const leafText = isMissingAdmission
+    ? `${t('curriculums_missing_admission')}`
+    : `${t('curriculums_admitted_year_long')} ${studyYear}`
   return {
     ariaLabel: t('main_menu_aria_label'),
     parentLink: {

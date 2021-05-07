@@ -116,6 +116,9 @@ const messages = {
     programme_study_years_explanation:
       'Choose programme syllabus. Batch most often equals first registration term at programme.',
     programme_admitted_year: 'Programme syllabus for studies starting in',
+    curriculums_missing_admission: 'Programme syllabus missing',
+    curriculums_missing_admission_text: school =>
+      `The chosen programme syllabus could not be found. For further assistance, please contact the student office at the ${school} school.`,
     curriculums_admitted_year_long: 'Study year',
     curriculums_studyyear_explanation_1: studyYear =>
       `The following courses are part of study year ${messages.messages.general_number_as_word[studyYear]}.`,

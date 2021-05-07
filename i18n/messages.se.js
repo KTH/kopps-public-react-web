@@ -116,6 +116,9 @@ const messages = {
     programme_study_years_explanation:
       'Välj utbildningsplan. Oftast överensstämmer kull med den termin då studierna påbörjades vid programmet.',
     programme_admitted_year: 'Utbildningsplan kull',
+    curriculums_missing_admission: 'Utbildningsplan saknas',
+    curriculums_missing_admission_text: school =>
+      `Den sökta utbildningsplanen kan inte hittas. För hjälp, kontakta utbildningskansliet för ${school}-skolan.`,
     curriculums_admitted_year_long: 'Årskurs',
     curriculums_studyyear_explanation_1: studyYear =>
       `Enligt utbildningsplanen för programmet ingår dessa kurser i årskurs ${messages.messages.general_number_as_word[studyYear]}.`,
