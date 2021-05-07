@@ -39,24 +39,22 @@ const testCurrentSchoolsWithDepartments = {
 
 const WrapperDepartmentsList = ({ lang }) => {
   applicationStore.setLanguage(lang)
-  // TODO: Move to mocks
-  const menuData = getMenuData(lang, testProxyPath)
+  applicationStore.setBrowserConfig({ proxyPrefixPath })
 
   const updatedApplicationStore = {
     ...applicationStore,
   }
   return (
     <StaticRouter>
-      <MobxStoreProvider initCallback={() => updatedApplicationStore}>
-        <RouteWrapper
-          exact
-          path="/student/kurser/org"
-          breadcrumbs={{ include: 'directory' }}
-          component={DepartmentsList}
-          layout={PageLayout}
-          menuData={{ selectedId: 'departmentsList', ...menuData }}
-        />
-      </MobxStoreProvider>
+      <RouteWrapper
+        exact
+        path="/student/kurser/org"
+        createBreadcrumbs={() => ({ include: 'directory' })}
+        component={DepartmentsList}
+        layout={PageLayout}
+        applicationStore={updatedApplicationStore}
+        createMenuData={store => ({ selectedId: 'departmentsList', ...getMenuData(store) })}
+      />
     </StaticRouter>
   )
 }
@@ -66,7 +64,7 @@ const DepartmentsListWithLayout = ({ lang }) => {
   applicationStore.setBrowserConfig({ proxyPrefixPath })
   applicationStore.setCurrentSchoolsWithDepartments(testCurrentSchoolsWithDepartments[lang])
   // TODO: Move to mocks
-  const menuData = getMenuData(lang, testProxyPath)
+  const menuData = getMenuData(applicationStore)
 
   const updatedApplicationStore = {
     ...applicationStore,
@@ -128,24 +126,26 @@ describe('Render component DepartmentsList and check its menu, content and links
     expect(h2Header).toHaveTextContent('School')
 
     const links = screen.getAllByRole('link')
-    expect(links.length).toBe(7)
+    expect(links.length).toBe(8)
     // Menu links
     expect(links[0]).toHaveTextContent('Student at KTH')
     expect(links[0].href).toStrictEqual('http://localhost/student/?l=en')
     expect(links[1]).toHaveTextContent('Courses Part of Programme')
     expect(links[1].href).toStrictEqual('localhost://kopps-public/student/kurser/kurser-inom-program')
-    expect(links[2]).toHaveTextContent('Courses by school')
-    expect(links[2].href).toStrictEqual('localhost://kopps-public/student/kurser/org')
-    expect(links[3]).toHaveTextContent('Study Handbook 00/01 to 07/08')
-    expect(links[3].href).toStrictEqual('localhost://kopps-public/student/program/shb')
+    expect(links[2]).toHaveTextContent('Search course')
+    expect(links[2].href).toStrictEqual('localhost://kopps-public/student/kurser/sokkurs')
+    expect(links[3]).toHaveTextContent('Courses by school')
+    expect(links[3].href).toStrictEqual('localhost://kopps-public/student/kurser/org')
+    expect(links[4]).toHaveTextContent('Study Handbook 00/01 to 07/08')
+    expect(links[4].href).toStrictEqual('localhost://kopps-public/student/program/shb')
     // Main content links
-    expect(links[4]).toHaveTextContent('Department')
-    expect(links[4].href).toStrictEqual('localhost://kopps-public/student/kurser/org/BB?l=en')
+    expect(links[5]).toHaveTextContent('Department')
+    expect(links[5].href).toStrictEqual('localhost://kopps-public/student/kurser/org/BB?l=en')
     // Footer links
-    expect(links[5]).toHaveTextContent('Central study counseling')
-    expect(links[5].href).toStrictEqual('https://www.kth.se/studycounselling')
-    expect(links[6]).toHaveTextContent('kopps@kth.se')
-    expect(links[6].href).toStrictEqual('mailto:kopps@kth.se')
+    expect(links[6]).toHaveTextContent('Central study counseling')
+    expect(links[6].href).toStrictEqual('https://www.kth.se/studycounselling')
+    expect(links[7]).toHaveTextContent('kopps@kth.se')
+    expect(links[7].href).toStrictEqual('mailto:kopps@kth.se')
   })
 
   test('check all links on the page in Swedish', () => {
@@ -155,24 +155,26 @@ describe('Render component DepartmentsList and check its menu, content and links
     expect(h2Header).toHaveTextContent('Skola')
 
     const links = screen.getAllByRole('link')
-    expect(links.length).toBe(7)
+    expect(links.length).toBe(8)
     // Menu links
     expect(links[0]).toHaveTextContent('Student på KTH')
     expect(links[0].href).toStrictEqual('http://localhost/student/')
     expect(links[1]).toHaveTextContent('Kurser inom program')
     expect(links[1].href).toStrictEqual('localhost://kopps-public/student/kurser/kurser-inom-program')
-    expect(links[2]).toHaveTextContent('Kurser per skola')
-    expect(links[2].href).toStrictEqual('localhost://kopps-public/student/kurser/org')
-    expect(links[3]).toHaveTextContent('Studiehandboken 00/01 tom 07/08')
-    expect(links[3].href).toStrictEqual('localhost://kopps-public/student/program/shb')
+    expect(links[2]).toHaveTextContent('Sök kurs')
+    expect(links[2].href).toStrictEqual('localhost://kopps-public/student/kurser/sokkurs')
+    expect(links[3]).toHaveTextContent('Kurser per skola')
+    expect(links[3].href).toStrictEqual('localhost://kopps-public/student/kurser/org')
+    expect(links[4]).toHaveTextContent('Studiehandboken 00/01 tom 07/08')
+    expect(links[4].href).toStrictEqual('localhost://kopps-public/student/program/shb')
     // Main content links
-    expect(links[4]).toHaveTextContent('Avdelning')
-    expect(links[4].href).toStrictEqual('localhost://kopps-public/student/kurser/org/BB')
+    expect(links[5]).toHaveTextContent('Avdelning')
+    expect(links[5].href).toStrictEqual('localhost://kopps-public/student/kurser/org/BB')
     // Footer links
-    expect(links[5]).toHaveTextContent('Central studievägledning')
-    expect(links[5].href).toStrictEqual('https://www.kth.se/studycounselling')
-    expect(links[6]).toHaveTextContent('kopps@kth.se')
-    expect(links[6].href).toStrictEqual('mailto:kopps@kth.se')
+    expect(links[6]).toHaveTextContent('Central studievägledning')
+    expect(links[6].href).toStrictEqual('https://www.kth.se/studycounselling')
+    expect(links[7]).toHaveTextContent('kopps@kth.se')
+    expect(links[7].href).toStrictEqual('mailto:kopps@kth.se')
   })
 
   test('get page content in English', () => {

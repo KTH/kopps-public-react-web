@@ -57,23 +57,22 @@ const testDepartmentCourses = {
 
 const WrapperDepartmentCourses = ({ lang }) => {
   applicationStore.setLanguage(lang)
-  const departmentMenuData = getMenuDepartmentData(lang, testProxyPath)
+  applicationStore.setBrowserConfig({ proxyPrefixPath })
 
   const updatedApplicationStore = {
     ...applicationStore,
   }
   return (
     <StaticRouter>
-      <MobxStoreProvider initCallback={() => updatedApplicationStore}>
-        <RouteWrapper
-          exact
-          path="/student/kurser/org/ADD"
-          breadcrumbs={{ include: 'directory' }}
-          component={DepartmentCourses}
-          layout={PageLayout}
-          menuData={{ selectedId: 'courses', ...departmentMenuData }}
-        />
-      </MobxStoreProvider>
+      <RouteWrapper
+        exact
+        path="/student/kurser/org/ADD"
+        createBreadcrumbs={() => ({ include: 'directory' })}
+        component={DepartmentCourses}
+        layout={PageLayout}
+        applicationStore={updatedApplicationStore}
+        createMenuData={store => ({ selectedId: 'courses', ...getMenuDepartmentData(store) })}
+      />
     </StaticRouter>
   )
 }
@@ -83,7 +82,7 @@ const DepartmentCoursesWithLayout = ({ lang }) => {
   applicationStore.setBrowserConfig({ proxyPrefixPath })
   applicationStore.setDepartmentName(testDepartmentName[lang])
   applicationStore.setDepartmentCourses(testDepartmentCourses[lang])
-  const departmentMenuData = getMenuDepartmentData(lang, testProxyPath)
+  const departmentMenuData = getMenuDepartmentData(applicationStore)
 
   const updatedApplicationStore = {
     ...applicationStore,

@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 function mockGetMenuData(language) {
   const mockMenuData = {
     en: {
@@ -20,6 +19,12 @@ function mockGetMenuData(language) {
             type: 'leaf',
             text: 'Courses Part of Programme',
             url: 'localhost://kopps-public/student/kurser/kurser-inom-program',
+          },
+          {
+            id: 'searchAllCourses',
+            text: 'Search course',
+            type: 'leaf',
+            url: 'localhost://kopps-public/student/kurser/sokkurs',
           },
           {
             id: 'departmentsList',
@@ -55,6 +60,12 @@ function mockGetMenuData(language) {
             type: 'leaf',
             text: 'Kurser inom program',
             url: 'localhost://kopps-public/student/kurser/kurser-inom-program',
+          },
+          {
+            id: 'searchAllCourses',
+            text: 'Sök kurs',
+            type: 'leaf',
+            url: 'localhost://kopps-public/student/kurser/sokkurs',
           },
           {
             id: 'departmentsList',

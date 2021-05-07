@@ -52,6 +52,16 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Engl
           >
             <a
               class="nav-link"
+              href="/kopps-public/student/kurser/sokkurs"
+            >
+              Search course
+            </a>
+          </li>
+          <li
+            class="nav-item leaf"
+          >
+            <a
+              class="nav-link"
               href="/kopps-public/student/kurser/org"
             >
               Courses by school
@@ -235,6 +245,16 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Swed
               href="/kopps-public/student/kurser/kurser-inom-program"
             >
               Kurser inom program
+            </a>
+          </li>
+          <li
+            class="nav-item leaf"
+          >
+            <a
+              class="nav-link"
+              href="/kopps-public/student/kurser/sokkurs"
+            >
+              Sök kurs
             </a>
           </li>
           <li

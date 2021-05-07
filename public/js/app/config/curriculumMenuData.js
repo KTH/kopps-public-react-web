@@ -1,9 +1,10 @@
-/* eslint-disable camelcase */
 const { formatShortTerm } = require('../../../../domain/term')
 const translate = require('../../../../domain/translate')
 const { pageLink } = require('../util/links')
 
-function getCurriculumMenuData(language, proxyPrefixPath, programmeCode, programmeName, term, studyYear) {
+function getCurriculumMenuData(applicationStore) {
+  const { language, browserConfig, programmeCode, programmeName, term, studyYear } = applicationStore
+  const proxyPrefixPath = browserConfig.proxyPrefixPath.uri
   const t = translate(language)
   const directoryText = `${t('programme_admitted_year')} ${formatShortTerm(term, language)}`
   const leafText = `${t('curriculums_admitted_year_long')} ${studyYear}`

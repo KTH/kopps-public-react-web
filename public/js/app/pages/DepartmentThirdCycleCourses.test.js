@@ -76,29 +76,28 @@ const testDepartmentCourses = {
 
 const WrapperDepartmentCourses = ({ lang }) => {
   applicationStore.setLanguage(lang)
-  const departmentMenuData = getThirdCycleDepartmentMenuData(lang, testProxyPath, testDepartmentName[lang])
-  const breadcrumbsItems = getThirdCycleBreadcrumbs(lang, testProxyPath)
+  applicationStore.setBrowserConfig({ proxyPrefixPath })
+  applicationStore.setDepartmentName(testDepartmentName[lang])
   const updatedApplicationStore = {
     ...applicationStore,
   }
   return (
     <StaticRouter>
-      <MobxStoreProvider initCallback={() => updatedApplicationStore}>
-        <RouteWrapper
-          exact
-          path="/utbildning/forskarutbildning/kurser/org/AFF"
-          breadcrumbs={{
-            include: 'university',
-            items: breadcrumbsItems,
-          }}
-          component={DepartmentCourses}
-          layout={PageLayout}
-          menuData={{
-            selectedId: 'courses',
-            ...departmentMenuData,
-          }}
-        />
-      </MobxStoreProvider>
+      <RouteWrapper
+        exact
+        path="/utbildning/forskarutbildning/kurser/org/AFF"
+        createBreadCrumbs={store => ({
+          include: 'university',
+          items: getThirdCycleBreadcrumbs(store),
+        })}
+        applicationStore={updatedApplicationStore}
+        component={DepartmentCourses}
+        layout={PageLayout}
+        createMenuData={store => ({
+          selectedId: 'courses',
+          ...getThirdCycleDepartmentMenuData(store),
+        })}
+      />
     </StaticRouter>
   )
 }
@@ -108,8 +107,8 @@ const DepartmentCoursesWithLayout = ({ lang }) => {
   applicationStore.setBrowserConfig({ proxyPrefixPath })
   applicationStore.setDepartmentName(testDepartmentName[lang])
   applicationStore.setDepartmentCourses(testDepartmentCourses[lang])
-  const departmentMenuData = getThirdCycleDepartmentMenuData(lang, testProxyPath, testDepartmentName[lang])
-  const breadcrumbsItems = getThirdCycleBreadcrumbs(lang, testProxyPath)
+  const departmentMenuData = getThirdCycleDepartmentMenuData(applicationStore)
+  const breadcrumbsItems = getThirdCycleBreadcrumbs(applicationStore)
 
   const updatedApplicationStore = {
     ...applicationStore,

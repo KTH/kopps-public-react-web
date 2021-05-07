@@ -40,30 +40,27 @@ const testCurrentSchoolsWithDepartments = {
 
 const WrapperThirdCycleDepartmentsList = ({ lang }) => {
   applicationStore.setLanguage(lang)
-  // TODO: Move to mocks
-  const menuData = getThirdCycleMenuData(lang, testProxyPath)
-  const breadcrumbs = getThirdCycleBreadcrumbs(lang, testProxyPath)
+  applicationStore.setBrowserConfig({ proxyPrefixPath })
   const updatedApplicationStore = {
     ...applicationStore,
   }
   return (
     <StaticRouter>
-      <MobxStoreProvider initCallback={() => updatedApplicationStore}>
-        <RouteWrapper
-          exact
-          path="/utbildning/forskarutbildning/kurser/avdelning"
-          breadcrumbs={{
-            include: 'university',
-            items: breadcrumbs,
-          }}
-          component={ThirdCycleDepartmentsList}
-          layout={PageLayout}
-          menuData={{
-            selectedId: 'thirdCycleDepartmentsList',
-            ...menuData,
-          }}
-        />
-      </MobxStoreProvider>
+      <RouteWrapper
+        exact
+        path="/utbildning/forskarutbildning/kurser/avdelning"
+        component={ThirdCycleDepartmentsList}
+        layout={PageLayout}
+        applicationStore={updatedApplicationStore}
+        createBreadCrumbs={store => ({
+          include: 'university',
+          items: getThirdCycleBreadcrumbs(store),
+        })}
+        createMenuData={store => ({
+          selectedId: 'thirdCycleDepartmentsList',
+          ...getThirdCycleMenuData(store),
+        })}
+      />
     </StaticRouter>
   )
 }
@@ -73,8 +70,8 @@ const ThirdCycleDepartmentsListWithLayout = ({ lang }) => {
   applicationStore.setBrowserConfig({ proxyPrefixPath })
   applicationStore.setCurrentSchoolsWithDepartments(testCurrentSchoolsWithDepartments[lang])
   // TODO: Move to mocks
-  const menuData = getThirdCycleMenuData(lang, testProxyPath)
-  const breadcrumbs = getThirdCycleBreadcrumbs(lang, testProxyPath)
+  const menuData = getThirdCycleMenuData(applicationStore)
+  const breadcrumbs = getThirdCycleBreadcrumbs(applicationStore)
 
   const updatedApplicationStore = {
     ...applicationStore,

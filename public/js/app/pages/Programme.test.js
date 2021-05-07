@@ -30,23 +30,21 @@ const testProgrammeTerms = ['20192', '20211']
 
 const WrapperProgramme = ({ lang }) => {
   applicationStore.setLanguage(lang)
-  const programmeMenuData = getProgrammeMenuData(lang, testProxyPath)
-
+  applicationStore.setBrowserConfig({ proxyPrefixPath })
   const updatedApplicationStore = {
     ...applicationStore,
   }
   return (
     <StaticRouter>
-      <MobxStoreProvider initCallback={() => updatedApplicationStore}>
-        <RouteWrapper
-          exact
-          path="/student/kurser/program/CLGYM"
-          breadcrumbs={{ include: 'directory' }}
-          component={Programme}
-          layout={PageLayout}
-          menuData={{ selectedId: 'studyYears', ...programmeMenuData }}
-        />
-      </MobxStoreProvider>
+      <RouteWrapper
+        exact
+        path="/student/kurser/program/CLGYM"
+        createBreadcrumbs={() => ({ include: 'directory' })}
+        component={Programme}
+        layout={PageLayout}
+        applicationStore={updatedApplicationStore}
+        createMenuData={store => ({ selectedId: 'studyYears', ...getProgrammeMenuData(store) })}
+      />
     </StaticRouter>
   )
 }
@@ -58,7 +56,7 @@ const ProgrammeWithLayout = ({ lang }) => {
   applicationStore.setProgrammeName(testProgrammeName[lang])
   applicationStore.setLengthInStudyYears(testLengthInStudyYears)
   applicationStore.setProgrammeTerms(testProgrammeTerms)
-  const programmeMenuData = getProgrammeMenuData(lang, testProxyPath)
+  const programmeMenuData = getProgrammeMenuData(applicationStore)
 
   const updatedApplicationStore = {
     ...applicationStore,

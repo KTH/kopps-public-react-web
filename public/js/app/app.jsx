@@ -4,9 +4,9 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Switch } from 'react-router-dom'
 
-import { MobxStoreProvider, uncompressStoreInPlaceFromDocument } from './mobx'
+import { uncompressStoreInPlaceFromDocument } from './mobx'
 import createApplicationStore from './stores/createApplicationStore'
 
 import '../../css/node-web.scss'
@@ -37,6 +37,16 @@ export default appFactory
 
 _renderOnClientSide()
 
+function _initStore({ storeId, applicationStore }) {
+  // Server side application store, most likely created in controller
+  if (applicationStore) return applicationStore
+
+  // Client side application store
+  const clientSideApplicationStore = createApplicationStore(storeId)
+  uncompressStoreInPlaceFromDocument(clientSideApplicationStore)
+  return clientSideApplicationStore
+}
+
 function _renderOnClientSide() {
   const isClientSide = typeof window !== 'undefined'
   if (!isClientSide) {
@@ -46,139 +56,144 @@ function _renderOnClientSide() {
   // @ts-ignore
   const basename = window.config.proxyPrefixPath.uri
 
-  const applicationStore = createApplicationStore()
-  uncompressStoreInPlaceFromDocument(applicationStore)
-
-  const app = <BrowserRouter basename={basename}>{appFactory(applicationStore)}</BrowserRouter>
+  const app = <BrowserRouter basename={basename}>{appFactory()}</BrowserRouter>
 
   const domElement = document.getElementById('app')
   ReactDOM.hydrate(app, domElement)
 }
 
-function appFactory(applicationStore) {
-  const { language, browserConfig, departmentName, programmeCode, programmeName, term, studyYear } = applicationStore
-  const menuData = getMenuData(language, browserConfig.proxyPrefixPath.uri)
-  const departmentMenuData = getDepartmentMenuData(language, browserConfig.proxyPrefixPath.uri, departmentName)
-  const programmeMenuData = getProgrammeMenuData(language, browserConfig.proxyPrefixPath.uri, programmeName)
-  const curriculumMenuData = getCurriculumMenuData(
-    language,
-    browserConfig.proxyPrefixPath.uri,
-    programmeCode,
-    programmeName,
-    term,
-    studyYear
-  )
-  const menuDataExample = getMenuDataExample(language)
+function appFactory(ssrApplicationStore) {
   return (
-    <MobxStoreProvider initCallback={() => applicationStore}>
-      <Switch>
-        <RouteWrapper
-          exact
-          path="/example"
-          component={Example}
-          breadcrumbs={{ include: 'directory' }}
-          layout={PageLayout}
-          menuData={{ selectedId: 'example', ...menuDataExample }}
-        />
-        <RouteWrapper
-          exact
-          path="/student/program/shb"
-          component={StudyHandbook}
-          breadcrumbs={{ include: 'directory' }}
-          layout={PageLayout}
-          menuData={{ selectedId: 'shb', ...menuData }}
-        />
-        <RouteWrapper
-          exact
-          path="/student/kurser/kurser-inom-program"
-          component={ProgrammesList}
-          breadcrumbs={{ include: 'directory' }}
-          layout={PageLayout}
-          menuData={{ selectedId: 'programmesList', ...menuData }}
-        />
-        <RouteWrapper
-          exact
-          path="/student/kurser/sokkurs"
-          breadcrumbs={{ include: 'directory' }}
-          component={CourseSearch}
-          layout={PageLayout}
-          menuData={{ selectedId: 'searchAllCourses', ...menuData }}
-        />
-        <RouteWrapper
-          exact
-          path="/student/kurser/org"
-          breadcrumbs={{ include: 'directory' }}
-          component={DepartmentsList}
-          layout={PageLayout}
-          menuData={{ selectedId: 'departmentsList', ...menuData }}
-        />
-        <RouteWrapper
-          exact
-          path="/student/kurser/org/:departmentCode"
-          breadcrumbs={{ include: 'directory' }}
-          component={DepartmentCourses}
-          layout={PageLayout}
-          menuData={{ selectedId: 'courses', ...departmentMenuData }}
-        />
-        <RouteWrapper
-          exact
-          path="/student/kurser/program/:programmeCode"
-          breadcrumbs={{ include: 'directory' }}
-          component={Programme}
-          layout={PageLayout}
-          menuData={{ selectedId: 'studyYears', ...programmeMenuData }}
-        />
-        <RouteWrapper
-          exact
-          path="/utbildning/forskarutbildning/kurser/avdelning"
-          breadcrumbs={{
-            include: 'university',
-            items: getThirdCycleBreadcrumbs(language, browserConfig.proxyPrefixPath.uri),
-          }}
-          component={ThirdCycleDepartmentsList}
-          layout={PageLayout}
-          menuData={{
-            selectedId: 'thirdCycleDepartmentsList',
-            ...getThirdCycleMenuData(language, browserConfig.proxyPrefixPath.uri),
-          }}
-        />
-        <RouteWrapper
-          exact
-          path="/utbildning/forskarutbildning/kurser/org/:departmentCode"
-          breadcrumbs={{
-            include: 'university',
-            items: getThirdCycleBreadcrumbs(language, browserConfig.proxyPrefixPath.uri),
-          }}
-          component={DepartmentCourses}
-          layout={PageLayout}
-          menuData={{
-            selectedId: 'courses',
-            ...getThirdCycleDepartmentMenuData(language, browserConfig.proxyPrefixPath.uri, departmentName),
-          }}
-        />
-        <RouteWrapper
-          exact
-          path="/utbildning/forskarutbildning/kurser/sok"
-          breadcrumbs={{
-            include: 'university',
-            items: getThirdCycleBreadcrumbs(language, browserConfig.proxyPrefixPath.uri),
-          }}
-          component={CourseSearchResearch}
-          layout={PageLayout}
-          menuData={{
-            selectedId: 'searchThirdCycleCourses',
-            ...getThirdCycleMenuData(language, browserConfig.proxyPrefixPath.uri),
-          }}
-        />
-        <RouteWrapper
-          exact
-          path="/student/kurser/program/:programmeCode/:term/:studyYear"
-          breadcrumbs={{ include: 'directory' }}
-          component={Curriculum}
-          layout={PageLayout}
-          menuData={{ selectedId: studyYear, ...curriculumMenuData }}
-        />
-      </Switch>
-    </MobxStoreProvider>
+    <Switch>
+      <RouteWrapper
+        exact
+        path="/example"
+        component={Example}
+        createBreadcrumbs={() => ({ include: 'directory' })}
+        layout={PageLayout}
+        applicationStore={_initStore({ storeId: '', applicationStore: ssrApplicationStore })}
+        createMenuData={applicationStore => ({ selectedId: 'example', ...getMenuDataExample(applicationStore) })}
+      />
+      <RouteWrapper
+        exact
+        path="/student/program/shb"
+        component={StudyHandbook}
+        createBreadcrumbs={() => ({ include: 'directory' })}
+        layout={PageLayout}
+        applicationStore={_initStore({ storeId: '', applicationStore: ssrApplicationStore })}
+        createMenuData={applicationStore => ({ selectedId: 'shb', ...getMenuData(applicationStore) })}
+      />
+      <RouteWrapper
+        exact
+        path="/student/kurser/kurser-inom-program"
+        component={ProgrammesList}
+        createBreadcrumbs={() => ({ include: 'directory' })}
+        layout={PageLayout}
+        applicationStore={_initStore({ storeId: '', applicationStore: ssrApplicationStore })}
+        createMenuData={applicationStore => ({ selectedId: 'programmesList', ...getMenuData(applicationStore) })}
+      />
+      <RouteWrapper
+        exact
+        path="/student/kurser/sokkurs"
+        createBreadcrumbs={() => ({ include: 'directory' })}
+        component={CourseSearch}
+        layout={PageLayout}
+        applicationStore={_initStore({
+          storeId: 'searchCourses',
+          applicationStore: ssrApplicationStore,
+        })}
+        createMenuData={applicationStore => ({ selectedId: 'searchAllCourses', ...getMenuData(applicationStore) })}
+      />
+      <RouteWrapper
+        exact
+        path="/student/kurser/org"
+        createBreadcrumbs={() => ({ include: 'directory' })}
+        component={DepartmentsList}
+        layout={PageLayout}
+        applicationStore={_initStore({ storeId: '', applicationStore: ssrApplicationStore })}
+        createMenuData={applicationStore => ({ selectedId: 'departmentsList', ...getMenuData(applicationStore) })}
+      />
+      <RouteWrapper
+        exact
+        path="/student/kurser/org/:departmentCode"
+        createBreadcrumbs={() => ({ include: 'directory' })}
+        component={DepartmentCourses}
+        layout={PageLayout}
+        applicationStore={_initStore({ storeId: '', applicationStore: ssrApplicationStore })}
+        createMenuData={applicationStore => ({ selectedId: 'courses', ...getDepartmentMenuData(applicationStore) })}
+      />
+      <RouteWrapper
+        exact
+        path="/student/kurser/program/:programmeCode"
+        createBreadcrumbs={() => ({ include: 'directory' })}
+        component={Programme}
+        layout={PageLayout}
+        applicationStore={_initStore({ storeId: '', applicationStore: ssrApplicationStore })}
+        createMenuData={applicationStore => ({ selectedId: 'studyYears', ...getProgrammeMenuData(applicationStore) })}
+      />
+      <RouteWrapper
+        exact
+        path="/utbildning/forskarutbildning/kurser/avdelning"
+        createBreadcrumbs={applicationStore => ({
+          include: 'university',
+          items: getThirdCycleBreadcrumbs(applicationStore),
+        })}
+        component={ThirdCycleDepartmentsList}
+        layout={PageLayout}
+        applicationStore={_initStore({ storeId: '', applicationStore: ssrApplicationStore })}
+        createMenuData={applicationStore => ({
+          selectedId: 'thirdCycleDepartmentsList',
+          ...getThirdCycleMenuData(applicationStore),
+        })}
+      />
+      <RouteWrapper
+        exact
+        path="/utbildning/forskarutbildning/kurser/org/:departmentCode"
+        createBreadcrumbs={applicationStore => ({
+          include: 'university',
+          items: getThirdCycleBreadcrumbs(applicationStore),
+        })}
+        component={DepartmentCourses}
+        layout={PageLayout}
+        applicationStore={_initStore({ storeId: '', applicationStore: ssrApplicationStore })}
+        createMenuData={applicationStore => ({
+          selectedId: 'courses',
+          ...getThirdCycleDepartmentMenuData(applicationStore),
+        })}
+      />
+      <RouteWrapper
+        exact
+        path="/utbildning/forskarutbildning/kurser/sok"
+        createBreadcrumbs={applicationStore => ({
+          include: 'university',
+          items: getThirdCycleBreadcrumbs(applicationStore),
+        })}
+        component={CourseSearchResearch}
+        layout={PageLayout}
+        applicationStore={_initStore({
+          storeId: 'searchCourses',
+          applicationStore: ssrApplicationStore,
+        })}
+        createMenuData={applicationStore => ({
+          selectedId: 'searchThirdCycleCourses',
+          ...getThirdCycleMenuData(applicationStore),
+        })}
+      />
+      <RouteWrapper
+        exact
+        path="/student/kurser/program/:programmeCode/:term/:studyYear"
+        createBreadcrumbs={() => ({ include: 'directory' })}
+        component={Curriculum}
+        layout={PageLayout}
+        applicationStore={_initStore({
+          storeId: 'curriculum',
+          applicationStore: ssrApplicationStore,
+        })}
+        createMenuData={applicationStore => ({
+          selectedId: applicationStore.studyYear,
+          ...getCurriculumMenuData(applicationStore),
+        })}
+      />
+    </Switch>
   )
 }

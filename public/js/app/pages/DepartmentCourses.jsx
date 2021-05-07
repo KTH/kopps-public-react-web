@@ -10,17 +10,17 @@ import translate from '../../../../domain/translate'
 import { courseLink } from '../util/links'
 
 function codeCell(code) {
-  const { language } = useStore()
+  const { language, browserConfig } = useStore()
   return {
-    content: <Link href={courseLink(code, language)}>{code}</Link>,
+    content: <Link href={courseLink(browserConfig.proxyPrefixPath.uri, code, language)}>{code}</Link>,
     sortKey: code,
   }
 }
 
 function titleCell(code, title) {
-  const { language } = useStore()
+  const { language, browserConfig } = useStore()
   return {
-    content: <Link href={courseLink(code, language)}>{title}</Link>,
+    content: <Link href={courseLink(browserConfig.proxyPrefixPath.uri, code, language)}>{title}</Link>,
     sortKey: title,
   }
 }

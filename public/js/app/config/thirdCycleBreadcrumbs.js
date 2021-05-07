@@ -1,8 +1,9 @@
-/* eslint-disable camelcase */
 const translate = require('../../../../domain/translate')
 const { parentThirdCycleStudyLink, pageLink, parentStudyLink } = require('../util/links')
 
-function getThirdCycleBreadcrumbs(language, proxyPrefixPath) {
+function getThirdCycleBreadcrumbs(applicationStore) {
+  const { language, browserConfig } = applicationStore
+  const proxyPrefixPath = browserConfig.proxyPrefixPath.uri
   const t = translate(language)
   return [
     {

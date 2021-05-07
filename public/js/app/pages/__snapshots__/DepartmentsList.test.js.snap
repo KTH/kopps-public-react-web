@@ -48,6 +48,16 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Eng
             </a>
           </li>
           <li
+            class="nav-item leaf"
+          >
+            <a
+              class="nav-link"
+              href="localhost://kopps-public/student/kurser/sokkurs"
+            >
+              Search course
+            </a>
+          </li>
+          <li
             class="nav-item leaf selected"
           >
             <a
@@ -203,6 +213,16 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Swe
               href="localhost://kopps-public/student/kurser/kurser-inom-program"
             >
               Kurser inom program
+            </a>
+          </li>
+          <li
+            class="nav-item leaf"
+          >
+            <a
+              class="nav-link"
+              href="localhost://kopps-public/student/kurser/sokkurs"
+            >
+              Sök kurs
             </a>
           </li>
           <li
