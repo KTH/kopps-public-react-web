@@ -151,6 +151,9 @@ const messages = {
     onlyMHU: 'Behandlar miljö, miljöteknik eller hållbar utveckling',
     showCancelled: 'Nedlagd kurs',
     summer: 'sommar',
+    department: 'Skola, avdelning, etc',
+    departmentsAll: 'Samtliga skolor',
+    departmentsWithin: 'All within',
   },
   searchInstructions: {
     search_help_collapse_header: 'Få hjälp med sökningen',
@@ -171,19 +174,6 @@ const messages = {
     search_help_10:
       'Om du har synpunkter eller frågor gällande kurssökningen, kontakta <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
   },
-  searchAlarms: {
-    errorUnknown: { text: 'Ett okänt fel inträffade - misslyckad hämtning av kursdata' },
-    errorEmpty: {
-      header: 'Din sökning gav inga träffar.',
-      help: 'Mer hjälp hittar du i länken nedan: Få hjälp med sökningen',
-    },
-    errorOverflow: {
-      header: 'Sökningen gav för många träffar',
-      text:
-        'Det finns för många kurser som matchar det du sökt på. Ange fler bokstäver/siffror i kursnamn eller kurskod (exempel på kurskod: SF1624).',
-      help: 'Mer hjälp hittar du i länken nedan: Få hjälp med sökningen',
-    },
-  },
   generalSearch: {
     searchStartPeriodPrefix: 'Kursstart',
     resultsHeading: 'Resultat från sökningen',
@@ -193,7 +183,8 @@ const messages = {
     errorUnknown: 'Ett okänt fel inträffade - misslyckad hämtning av kursdata.',
     errorEmpty: 'Din sökning gav inga träffar.',
     errorOverflow: 'Sökningen gav för många träffar.',
-    '////////////////SEPARATOR': '////////////////SEPERATOR',
+    noQueryProvided: 'Ingen frågebegränsning angavs',
+    SEPARATOR: '////////////////SEPERATOR',
     search_search_start_prefix: 'Kursstart',
     search_options_h: 'Sökalternativ',
     search_options_hb: 'Välj bland andra sökkriterier',
@@ -223,6 +214,22 @@ const messages = {
     search_options_departments_all: 'Samtliga skolor',
     search_options_departments_all_within: 'Alla inom',
     search_options_departments_label: 'Skola, avdelning, etc',
+  },
+  searchAlarms: {
+    errorUnknown: { text: 'Ett okänt fel inträffade - misslyckad hämtning av kursdata' },
+    errorEmpty: {
+      header: 'Din sökning gav inga träffar.',
+      help: 'Mer hjälp hittar du i länken nedan: Få hjälp med sökningen',
+    },
+    errorOverflow: {
+      header: 'Sökningen gav för många träffar',
+      text:
+        'Det finns för många kurser som matchar det du sökt på. Ange fler bokstäver/siffror i kursnamn eller kurskod (exempel på kurskod: SF1624).',
+      help: 'Mer hjälp hittar du i länken nedan: Få hjälp med sökningen',
+    },
+    noQueryProvided: {
+      text: `Ingen frågebegränsning angavs`,
+    },
   },
   footerContent: {
     contentContact: 'Kontakt för frågor om utbildning på KTH',

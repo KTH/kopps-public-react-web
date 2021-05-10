@@ -152,6 +152,9 @@ const messages = {
     onlyMHU: 'Courses that deal with environment, environmental technology or sustainable development',
     showCancelled: 'Dormant/Terminated course',
     summer: 'summer',
+    department: 'School, department, etc',
+    departmentsAll: 'All schools',
+    departmentsWithin: 'All within',
   },
   searchInstructions: {
     search_help_collapse_header: 'Instructions for searching',
@@ -174,19 +177,6 @@ const messages = {
     search_help_10:
       'If you have questions or feedback on the course search, please contact <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
   },
-  searchAlarms: {
-    errorUnknown: { text: 'An unknown error occurred - failed to retrieve course data' },
-    errorEmpty: {
-      header: 'Your search returned no results',
-      help: 'For help, see the link below: Instructions for searching',
-    },
-    errorOverflow: {
-      header: 'There were too many results',
-      text:
-        'There are too many courses that match your search critera. Please specify more characters/digits in the course name or course code (example of course code: SF1624).',
-      help: 'For help, see the link below: Instructions for searching',
-    },
-  },
   generalSearch: {
     searchStartPeriodPrefix: 'Course Start',
     resultsHeading: 'Search results',
@@ -196,6 +186,7 @@ const messages = {
     errorUnknown: 'An unknown error occurred - failed to retrieve course data.',
     errorEmpty: 'Your search returned no results.',
     errorOverflow: 'There were too many results.',
+    noQueryProvided: 'No query restriction was specified',
     SEPARATOR: '////////////////SEPERATOR',
     search_search_start_prefix: 'Kursstart',
     search_options_h: 'Sökalternativ',
@@ -226,6 +217,22 @@ const messages = {
     search_options_departments_all: 'Samtliga skolor',
     search_options_departments_all_within: 'Alla inom',
     search_options_departments_label: 'Skola, avdelning, etc',
+  },
+  searchAlarms: {
+    errorUnknown: { text: 'An unknown error occurred - failed to retrieve course data' },
+    errorEmpty: {
+      header: 'Your search returned no results',
+      help: 'For help, see the link below: Instructions for searching',
+    },
+    errorOverflow: {
+      header: 'There were too many results',
+      text:
+        'There are too many courses that match your search critera. Please specify more characters/digits in the course name or course code (example of course code: SF1624).',
+      help: 'For help, see the link below: Instructions for searching',
+    },
+    noQueryProvided: {
+      text: 'No query restriction was specified',
+    },
   },
   footerContent: {
     contentContact: 'Contact for questions regarding education at KTH',
