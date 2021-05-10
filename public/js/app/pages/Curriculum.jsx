@@ -15,7 +15,7 @@ import { format as formatAcademicYear } from '../../../../domain/academicYear'
 function getArticleContent({ language, owningSchoolCode, isMissingAdmission, studyYear, term }) {
   const t = translate(language)
   const formattedAcademicYear = formatAcademicYear(term)
-  return isMissingAdmission ? (
+  return isMissingAdmission() ? (
     <>
       <p>{t('curriculums_missing_admission_text')(owningSchoolCode)}</p>
     </>
