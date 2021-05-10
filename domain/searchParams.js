@@ -108,14 +108,14 @@ function _transformIfSummerOrEmptyPeriods(initialPeriods) {
 }
 
 function _transformSearchParams(params) {
-  const { eduLevel = [], pattern = '', showOptions = [], period = [] } = params
+  const { eduLevel = [], pattern = '', showOptions = [], period = [], department = '' } = params
   const separatedOptions = separateOptions(showOptions)
   const koppsFormatParams = {
     text_pattern: pattern,
     educational_level: eduLevel.map(level => educationalLevel(level)), //['RESEARCH', 'ADVANCED'],
     ...separatedOptions, // Example: {only_mhu: true}, {in_english_only: true}, {include_non_active: true}
     term_period: _transformIfSummerOrEmptyPeriods(period), // ['2018:2']
-    // department_prefix
+    department_prefix: department,
   }
   console.log('transformed Kopps_ ', koppsFormatParams)
   return koppsFormatParams
@@ -262,7 +262,9 @@ function _periodConfigForOneYear({ year, terms }, langIndex) {
   const resultPeriodsConfig = []
   terms.forEach(term => {
     if (hasOnlyOneTerm)
-      periodsForThisTerm = _isSpringTerm(term) ? [...springPeriods, summerGroup] : [summerGroup, ...autumnPeriods]
+      periodsForThisTerm = _isSpringTerm(term)
+        ? [...springPeriods, [summerGroup[0]]]
+        : [[summerGroup[1]], ...autumnPeriods]
     else periodsForThisTerm = _isSpringTerm(term) ? [...springPeriods, summerGroup] : [...autumnPeriods]
 
     periodsForThisTerm.forEach(periodNum => {
