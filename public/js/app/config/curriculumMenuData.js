@@ -15,7 +15,7 @@ function getCurriculumMenuData(applicationStore) {
   const proxyPrefixPath = browserConfig.proxyPrefixPath.uri
   const t = translate(language)
   const directoryText = `${t('programme_admitted_year')} ${formatShortTerm(term, language)}`
-  const leafText = isMissingAdmission
+  const leafText = isMissingAdmission()
     ? `${t('curriculums_missing_admission')}`
     : `${t('curriculums_admitted_year_long')} ${studyYear}`
   return {
