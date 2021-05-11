@@ -8,8 +8,9 @@ const i18n = require('../../i18n')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
-const { getSearchResults } = require('../kopps/koppsApi')
+const koppsApi = require('../kopps/koppsApi')
 const { stringifyKoppsSearchParams } = require('../../domain/searchParams')
+const { compareSchools } = require('../utils/schools')
 
 async function searchThirdCycleCourses(req, res, next) {
   try {
@@ -43,21 +44,36 @@ async function searchThirdCycleCourses(req, res, next) {
   }
 }
 
+async function _fillApplicationStoreWithAllSchools({ applicationStore, lang }) {
+  applicationStore.setLanguage(lang)
+  applicationStore.setBrowserConfig(browserConfig, serverConfig.hostUrl)
+
+  const listForActiveCourses = true
+  const params = {
+    departmentCriteria: koppsApi.DEPARTMENT_CRITERIA.HAS_COURSES,
+    listForActiveCourses,
+    lang,
+  }
+  const schoolsWithDepartments = await koppsApi.listSchoolsWithDepartments(params)
+  schoolsWithDepartments.sort(compareSchools)
+  applicationStore.setSchoolsWithDepartments(schoolsWithDepartments)
+}
+
 async function searchAllCourses(req, res, next) {
   try {
     const lang = language.getLanguage(res)
 
-    const { pattern, eduLevel, showOptions, period } = req.query
+    const { department, pattern, eduLevel, showOptions, period } = req.query
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
 
     const applicationStore = createStore('searchCourses')
-    applicationStore.setLanguage(lang)
-    applicationStore.setBrowserConfig(browserConfig, serverConfig.hostUrl)
+    await _fillApplicationStoreWithAllSchools({ applicationStore, lang })
 
     applicationStore.setPattern(pattern)
     applicationStore.setEduLevels(eduLevel)
     applicationStore.setShowOptions(showOptions)
     applicationStore.setPeriods(period)
+    applicationStore.setDepartmentCodeOrPrefix(department)
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
@@ -74,7 +90,7 @@ async function searchAllCourses(req, res, next) {
       proxyPrefix,
     })
   } catch (err) {
-    log.error('Error in searchThirdCycleCourses', { error: err })
+    log.error('Error in searchAllCourses', { error: err })
     next(err)
   }
 }
@@ -90,7 +106,7 @@ async function performCourseSearch(req, res, next) {
   try {
     log.debug('trying to perform search courses with parameters: ')
 
-    const apiResponse = await getSearchResults(searchParamsStr, lang)
+    const apiResponse = await koppsApi.getSearchResults(searchParamsStr, lang)
     log.debug('performCourseSearch response: ', apiResponse)
     return res.json(apiResponse)
   } catch (error) {
