@@ -5,7 +5,7 @@ import { observer } from 'mobx-react'
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 
-import { SearchOptions } from '../components/index'
+import { SearchDepartments, SearchOptions } from '../components/index'
 
 const paramsReducer = (state, action) => {
   if (action.period && state.period) {
@@ -23,7 +23,7 @@ function SearchFormFields({ caption = 'N/A', onSubmit, isTest = false }) {
   const { searchLabel, searchStartPeriodPrefix, searchText } = generalSearch
   const [state, setState] = useReducer(paramsReducer, { pattern: initialPattern })
 
-  const { pattern } = state
+  const { pattern, department } = state
   console.log('-----top state', state)
 
   const currentYear = isTest ? new Date().setFullYear(2021) : new Date().getFullYear()
@@ -40,10 +40,12 @@ function SearchFormFields({ caption = 'N/A', onSubmit, isTest = false }) {
   }
 
   function handlePeriodChange(periods) {
+    //todo: replace it with handleParamChange
     setState(periods)
   }
 
   function handleParamChange(params) {
+    console.log('********** params', params)
     setState(params)
   }
 
@@ -101,7 +103,9 @@ function SearchFormFields({ caption = 'N/A', onSubmit, isTest = false }) {
         </Col>
       </Row>
       <Row>
-        <Col></Col>
+        <Col>
+          <SearchDepartments onChange={handleParamChange} />
+        </Col>
       </Row>
 
       <button className="btn btn-primary" type="submit" style={{ float: 'right' }}>
