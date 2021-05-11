@@ -51,6 +51,9 @@ function asyncReducer(state, action) {
     case 'overflow': {
       return { status: 'overflow', data: null, error: 'errorOverflow' }
     }
+    case 'noQueryProvided': {
+      return { status: 'noQueryProvided', data: null, error: 'noQueryProvided' }
+    }
     case 'noHits': {
       return { status: 'noHits', data: null, error: 'errorEmpty' }
     }
@@ -80,6 +83,7 @@ function useAsync(asyncCallback, initialState) {
         const { searchHits, errorCode } = data
         if (errorCode && errorCode === 'search-error-overflow') dispatch({ type: 'overflow' })
         else if (searchHits && searchHits.length === 0) dispatch({ type: 'noHits' })
+        else if (!searchHits && data === 'No query restriction was specified') dispatch({ type: 'noQueryProvided' })
         else dispatch({ type: 'resolved', data })
       },
       error => dispatch({ type: 'rejected', error }) //'search-error-unknown'
@@ -116,8 +120,9 @@ function DisplayResult({ languageIndex, status, searchResults }) {
         <i>{errorOverflow}</i>
       </p>
     )
-  else if (status === 'resolved') return <SearchTableView unsortedSearchResults={searchResults} />
-  else if (status === 'rejected')
+  else if (status === 'resolved') {
+    return <SearchTableView unsortedSearchResults={searchResults} />
+  } else if (status === 'rejected')
     //  //throw error with error boundaries
     return (
       <p>
@@ -173,7 +178,7 @@ function SearchResultDisplay({ caption = 'N/A', searchParameters, onlyPattern = 
 
   return (
     <>
-      {status !== 'idle' && <h2 id="results-heading">{resultsHeading}</h2>}
+      {status !== 'idle' && status !== 'noQueryProvided' && <h2 id="results-heading">{resultsHeading}</h2>}
       <DisplayResult status={status} languageIndex={languageIndex} searchResults={searchResults} />
     </>
   )
