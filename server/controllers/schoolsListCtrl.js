@@ -50,7 +50,7 @@ async function getSchoolsList(req, res, next) {
       proxyPrefix,
     })
   } catch (err) {
-    log.error('Error in getIndex', { error: err })
+    log.error('Error in getSchoolsList', { error: err })
     next(err)
   }
 }
