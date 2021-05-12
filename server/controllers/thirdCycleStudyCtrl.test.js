@@ -1,6 +1,5 @@
 jest.mock('../configuration', () => ({ server: {} }))
 jest.mock('../kopps/koppsApi', () => {})
-jest.mock('../adldapClient', () => {})
 
 const { coursesFromKopps, expectedThirdCycleCourseList } = require('../mocks/mockKoppsCoursesPerDepartment')
 const { getOnlyThirdCycleCourses } = require('./thirdCycleStudyCtrl')

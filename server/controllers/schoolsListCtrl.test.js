@@ -1,6 +1,5 @@
 jest.mock('../configuration', () => ({ server: {} }))
 jest.mock('../kopps/koppsApi', () => {})
-jest.mock('../adldapClient', () => {})
 
 const { filterOutDeprecatedSchools, deprecatedSchools } = require('../utils/schools')
 

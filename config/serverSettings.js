@@ -10,12 +10,10 @@
 const {
   getEnv,
   devDefaults,
-  unpackLDAPConfig,
   unpackRedisConfig,
   // unpackNodeApiConfig,
   unpackKOPPSConfig,
 } = require('kth-node-configuration')
-const { typeConversion } = require('kth-node-configuration/lib/utils')
 
 // DEFAULT SETTINGS used for dev, if you want to override these for you local environment, use env-vars in .env
 const devPort = devDefaults(3000)
@@ -25,32 +23,8 @@ const devUrl = devDefaults('http://localhost:' + devPort)
 const devSessionKey = devDefaults('node-web.sid')
 const devSessionUseRedis = devDefaults(true)
 const devRedis = devDefaults('redis://localhost:6379/')
-const devLdap = undefined // Do not enter LDAP_URI or LDAP_PASSWORD here, use env_vars
-const devSsoBaseURL = devDefaults('https://login-r.referens.sys.kth.se')
-const devLdapBase = devDefaults('OU=UG,DC=ref,DC=ug,DC=kth,DC=se')
 const devKoppsApi = devDefaults('https://api-r.referens.sys.kth.se/api/kopps/v2/?defaultTimeout=60000')
 // END DEFAULT SETTINGS
-
-// These options are fixed for this application
-const ldapOptions = {
-  base: getEnv('LDAP_BASE', devLdapBase),
-  filter: '(ugKthid=KTHID)',
-  filterReplaceHolder: 'KTHID',
-  userattrs: ['displayName', 'mail', 'ugUsername', 'memberOf', 'ugKthid'],
-  groupattrs: ['cn', 'objectCategory'],
-  testSearch: true, // TODO: Should this be an ENV setting?
-  timeout: typeConversion(getEnv('LDAP_TIMEOUT', null)),
-  reconnectTime: typeConversion(getEnv('LDAP_IDLE_RECONNECT_INTERVAL', null)),
-  reconnectOnIdle: getEnv('LDAP_IDLE_RECONNECT_INTERVAL', null) !== null,
-  connecttimeout: typeConversion(getEnv('LDAP_CONNECT_TIMEOUT', null)),
-  searchtimeout: typeConversion(getEnv('LDAP_SEARCH_TIMEOUT', null)),
-}
-
-Object.keys(ldapOptions).forEach(key => {
-  if (ldapOptions[key] === null) {
-    delete ldapOptions[key]
-  }
-})
 
 module.exports = {
   hostUrl: getEnv('SERVER_HOST_URL', devUrl),
@@ -69,15 +43,6 @@ module.exports = {
 
   // Kopps
   koppsApi: unpackKOPPSConfig('KOPPS_API_BASEURL', devKoppsApi),
-
-  // Authentication
-  auth: {
-    adminGroup: 'app.node.admin',
-  },
-  cas: {
-    ssoBaseURL: getEnv('CAS_SSO_URI', devSsoBaseURL),
-  },
-  ldap: unpackLDAPConfig('LDAP_URI', getEnv('LDAP_PASSWORD'), devLdap, ldapOptions),
 
   // Service API's
   nodeApi: {
