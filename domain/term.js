@@ -22,7 +22,7 @@ function _limit(value, max) {
 }
 
 function _getCurrentTerm(overrideDate) {
-  const JULY = 7
+  const JULY = 6
   const SPRING = 1
   const FALL = 2
   const currentDate = overrideDate || new Date()
