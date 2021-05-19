@@ -6,6 +6,8 @@ import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 import { PageHeading, Heading } from '@kth/kth-reactstrap/dist/components/studinfo'
 import Lead from '../components/Lead'
+import FooterContent from '../components/FooterContent'
+
 import { SearchInputField, SearchResultDisplay } from '../components/index'
 import { getHelpText } from '../../../../domain/searchParams'
 
@@ -59,6 +61,11 @@ const CourseSearchResearch = () => {
       <Row>
         <Col>
           <SearchResultDisplay searchParameters={{ pattern, eduLevel: ['3'] }} onlyPattern />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <FooterContent />
         </Col>
       </Row>
     </main>
