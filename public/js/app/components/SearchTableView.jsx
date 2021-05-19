@@ -9,6 +9,7 @@ import { useStore } from '../mobx'
 
 import translate from '../../../../domain/translate'
 // import { ErrorBoundary } from 'react-error-boundary'
+import i18n from '../../../../i18n'
 
 import { courseLink } from '../util/links'
 import { formatShortTerm } from '../../../../domain/term'
@@ -41,24 +42,23 @@ function compareCoursesBy(key) {
   }
 }
 
-function sortAndParseByCourseCode(courses) {
+function sortAndParseByCourseCode(courses, languageIndex) {
+  const { bigSearch } = i18n.messages[languageIndex]
   courses.sort(compareCoursesBy('courseCode'))
   const parsedCourses = courses.map(
     ({ courseCode: code, title, credits, creditUnitAbbr, educationalLevel: level, startPeriod, startTerm }) => [
       codeCell(code),
       titleCell(code, title),
       `${credits} ${creditUnitAbbr}`,
-      level,
-      `P${startPeriod} ${formatShortTerm(startTerm)}`,
-      //P5 VT22
-      // P5 spring 21
+      bigSearch[level],
+      startPeriod && startTerm ? `P${startPeriod} ${formatShortTerm(startTerm)}` : '', //P5 VT21, P5 spring 21
     ]
   )
   return parsedCourses
 }
 
 const SearchTableView = ({ unsortedSearchResults }) => {
-  const { language } = useStore()
+  const { language, languageIndex } = useStore()
 
   const t = translate(language)
 
@@ -70,8 +70,11 @@ const SearchTableView = ({ unsortedSearchResults }) => {
     t('department_period_abbr'),
   ]
   const { searchHits } = unsortedSearchResults
-  const flattCoursesArr = searchHits.map(({ course, searchHitInterval }) => ({ ...course, ...searchHitInterval }))
-  const courses = sortAndParseByCourseCode(flattCoursesArr)
+  const flattCoursesArr = searchHits.map(({ course, searchHitInterval }) => ({
+    ...course,
+    ...searchHitInterval,
+  }))
+  const courses = sortAndParseByCourseCode(flattCoursesArr, languageIndex)
   const hitsNumber = courses.length
   return (
     <Row>
