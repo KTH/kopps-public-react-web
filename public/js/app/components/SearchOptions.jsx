@@ -47,7 +47,6 @@ function SearchOptions({ overrideSearchHead = '', paramAliasName = '', paramName
   // ]
 
   useEffect(() => {
-    // if (options && options.length > 0) no we still need update full value with empty
     onChange({ [paramName]: options })
   }, [options.length])
 
@@ -57,7 +56,7 @@ function SearchOptions({ overrideSearchHead = '', paramAliasName = '', paramName
   }
 
   return (
-    <div key={paramName} className="form-group">
+    <div key={paramAliasName || paramName} className="form-group">
       <fieldset>
         <legend className="form-control-label">{searchHeadLevel}</legend>
         {values.map(({ label, id, value }) => (
@@ -76,13 +75,6 @@ function SearchOptions({ overrideSearchHead = '', paramAliasName = '', paramName
             </label>
           </div>
         ))}
-        {/* <Checkbox
-                id={id}
-                // checked={unchecked}
-                text={label}
-                onChange={handleChange}
-                value={value}
-              /> */}
       </fieldset>
     </div>
   )

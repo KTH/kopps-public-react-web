@@ -9,7 +9,7 @@ import { SearchDepartments, SearchOptions } from '../components/index'
 
 const paramsReducer = (state, action) => {
   if (action.period && state.period) {
-    const mergedBothYearPeriods = { period: [...state.period, ...action.period] }
+    const mergedBothYearPeriods = { period: Array.from(new Set([...state.period, ...action.period])) }
     return { ...state, ...mergedBothYearPeriods }
   }
   return { ...state, ...action }
@@ -17,13 +17,12 @@ const paramsReducer = (state, action) => {
 
 function SearchFormFields({ caption = 'N/A', onSubmit, isTest = false }) {
   const { language: lang, languageIndex, textPattern: initialPattern = '' } = useStore()
-  // const [pattern, setPattern] = useState(initialPattern || '')
 
   const { generalSearch } = i18n.messages[languageIndex]
   const { searchLabel, searchStartPeriodPrefix, searchText } = generalSearch
   const [state, setState] = useReducer(paramsReducer, { pattern: initialPattern })
 
-  const { pattern, department } = state
+  const { pattern } = state
   console.log('-----top state', state)
 
   const currentYear = isTest ? new Date().setFullYear(2021) : new Date().getFullYear()
@@ -39,13 +38,7 @@ function SearchFormFields({ caption = 'N/A', onSubmit, isTest = false }) {
     onSubmit(state)
   }
 
-  function handlePeriodChange(periods) {
-    //todo: replace it with handleParamChange
-    setState(periods)
-  }
-
   function handleParamChange(params) {
-    console.log('********** params', params)
     setState(params)
   }
 
@@ -82,7 +75,7 @@ function SearchFormFields({ caption = 'N/A', onSubmit, isTest = false }) {
             overrideSearchHead={currentYearLabel}
             paramAliasName="currentYear"
             paramName="period"
-            onChange={handlePeriodChange}
+            onChange={handleParamChange}
           />
         </Col>
         <Col>
@@ -90,7 +83,7 @@ function SearchFormFields({ caption = 'N/A', onSubmit, isTest = false }) {
             overrideSearchHead={nextYearLabel}
             paramAliasName="nextYear"
             paramName="period"
-            onChange={handlePeriodChange}
+            onChange={handleParamChange}
           />
         </Col>
       </Row>
