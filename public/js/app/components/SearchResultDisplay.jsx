@@ -136,10 +136,8 @@ function DisplayResult({ languageIndex, status, searchResults }) {
 function SearchResultDisplay({ caption = 'N/A', searchParameters, onlyPattern = false }) {
   const { browserConfig, language, languageIndex } = useStore()
   const history = useHistory()
-  console.log('result searchParameters', searchParameters)
   const { pattern } = searchParameters
   const searchStr = stringifyUrlParams(searchParameters)
-  console.log('showOptions in results', searchParameters.showOptions)
 
   const { resultsHeading } = i18n.messages[languageIndex].generalSearch
 

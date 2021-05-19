@@ -111,6 +111,7 @@ const messages = {
     department_course_name: 'Kursnamn',
     department_course_credits: 'Omfattning',
     department_course_educational_level: 'Utbildningsnivå',
+    department_period_abbr: 'Perioder',
     third_cycle_departments_list_header: 'Forskarkurser per skola',
     programme_study_years: 'Utbildningsplaner',
     programme_study_years_explanation:

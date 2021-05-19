@@ -111,6 +111,7 @@ const messages = {
     department_course_name: 'Course name',
     department_course_credits: 'Scope',
     department_course_educational_level: 'Educational level',
+    department_period_abbr: 'Periods',
     third_cycle_department_courses: 'Third-cycle courses by school',
     programme_study_years: 'Programme Syllabuses',
     programme_study_years_explanation:
