@@ -42,13 +42,11 @@ function SearchDepartments({ onChange }) {
               <option
                 key={`all-within-department-${departmentPrefix}`}
                 value={departmentPrefix}
-                // selected={initialDepartmentCode === departmentPrefix}
               >{`${departmentsWithin} ${schoolName}`}</option>
               {departments
                 .sort(localeCompareDepartments(language))
                 .map(({ code: departmentCode, name: departmentName }) => (
                   <option key={departmentCode} value={departmentCode}>
-                    {/* selected={initialDepartmentCode === departmentName} */}
                     {departmentName}
                   </option>
                 ))}

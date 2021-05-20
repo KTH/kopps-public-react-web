@@ -7,11 +7,13 @@ import i18n from '../../../../i18n'
 
 import { SearchDepartments, SearchOptions } from '../components/index'
 
+function hasValue(param) {
+  if (!param || param === null) return false
+  if (typeof param === 'object' && param.length === 0) return false
+  else return true
+}
+
 const paramsReducer = (state, action) => {
-  if (action.period && state.period) {
-    const mergedBothYearPeriods = { period: Array.from(new Set([...state.period, ...action.period])) }
-    return { ...state, ...mergedBothYearPeriods }
-  }
   return { ...state, ...action }
 }
 
@@ -21,13 +23,12 @@ function SearchFormFields({ caption = 'N/A', onSubmit, isTest = false }) {
   const { generalSearch } = i18n.messages[languageIndex]
   const { searchLabel, searchStartPeriodPrefix, searchText } = generalSearch
   const [state, setState] = useReducer(paramsReducer, { pattern: initialPattern })
-
-  const { pattern } = state
+  const { eduLevel, pattern, showOptions, period } = state
   console.log('-----top state', state)
 
-  const currentYear = isTest ? new Date().setFullYear(2021) : new Date().getFullYear()
-  const currentYearLabel = `${searchStartPeriodPrefix} ${currentYear}`
-  const nextYearLabel = `${searchStartPeriodPrefix} ${Number(currentYear) + 1}`
+  const currentYearDate = isTest ? new Date().setFullYear(2021) : new Date().getFullYear()
+  const currentYearLabel = `${searchStartPeriodPrefix} ${currentYearDate}`
+  const nextYearLabel = `${searchStartPeriodPrefix} ${Number(currentYearDate) + 1}`
 
   function handlePatternChange(e) {
     setState({ pattern: e.target.value })
@@ -35,7 +36,15 @@ function SearchFormFields({ caption = 'N/A', onSubmit, isTest = false }) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    onSubmit(state)
+    const finalSearchParams = {}
+
+    if (hasValue(eduLevel)) finalSearchParams.eduLevel = eduLevel
+    if (hasValue(pattern)) finalSearchParams.pattern = pattern
+    if (hasValue(showOptions)) finalSearchParams.showOptions = showOptions
+    if (hasValue(period)) finalSearchParams.period = period
+    console.log('-----finalSearchParams', finalSearchParams)
+
+    onSubmit(finalSearchParams)
   }
 
   function handleParamChange(params) {
