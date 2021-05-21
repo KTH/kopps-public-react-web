@@ -25,19 +25,55 @@ function getHelpText(langIndex) {
   ].map(s => searchInstructions[s])
 }
 
+function hasValue(param) {
+  if (!param || param === null) return false
+  if (typeof param === 'object' && param.length === 0) return false
+  else return true
+}
+
+function _checkAndGetResultValues({ department, eduLevel, pattern, period, showOptions }) {
+  // clean params
+
+  const resultValues = {}
+
+  if (hasValue(eduLevel)) resultValues.eduLevel = eduLevel
+  if (hasValue(pattern)) resultValues.pattern = pattern
+  if (hasValue(showOptions)) resultValues.showOptions = showOptions
+  if (hasValue(period)) resultValues.period = period
+  if (hasValue(department)) resultValues.department = department
+
+  return resultValues
+}
+
 const CourseSearch = () => {
-  const { language: lang, languageIndex } = useStore()
+  const {
+    languageIndex,
+    textPattern: storePattern,
+    departmentCodeOrPrefix: storeDepartment,
+    eduLevel: storeEduLevel,
+    period: storePeriod,
+    showOptions: storeShowOptions,
+  } = useStore()
   const { bigSearch, searchInstructions } = i18n.messages[languageIndex]
   const { searchHeading, leadIntro } = bigSearch
   const { search_help_collapse_header: collapseHeader, search_help_10: lastInstruction } = searchInstructions
 
-  const [params, setParams] = useState({})
-  console.log('top params', params)
+  const [params, setParams] = useState(
+    _checkAndGetResultValues({
+      department: storeDepartment,
+      eduLevel: storeEduLevel,
+      pattern: storePattern,
+      period: storePeriod,
+      showOptions: storeShowOptions,
+    })
+  )
+
   const helptexts = getHelpText(languageIndex)
 
   function handleSubmit(params) {
-    // clean params
-    setParams(params)
+    const finalSearchParams = _checkAndGetResultValues(params)
+
+    setParams(finalSearchParams)
   }
 
   return (

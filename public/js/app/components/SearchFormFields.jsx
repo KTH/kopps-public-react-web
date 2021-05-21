@@ -7,12 +7,6 @@ import i18n from '../../../../i18n'
 
 import { SearchDepartments, SearchOptions } from '../components/index'
 
-function hasValue(param) {
-  if (!param || param === null) return false
-  if (typeof param === 'object' && param.length === 0) return false
-  else return true
-}
-
 const paramsReducer = (state, action) => {
   return { ...state, ...action }
 }
@@ -24,7 +18,6 @@ function SearchFormFields({ caption = 'N/A', onSubmit, isTest = false }) {
   const { searchLabel, searchStartPeriodPrefix, searchText } = generalSearch
   const [state, setState] = useReducer(paramsReducer, { pattern: initialPattern })
   const { eduLevel, pattern, showOptions, period } = state
-  console.log('-----top state', state)
 
   const currentYearDate = isTest ? new Date().setFullYear(2021) : new Date().getFullYear()
   const currentYearLabel = `${searchStartPeriodPrefix} ${currentYearDate}`
@@ -36,15 +29,8 @@ function SearchFormFields({ caption = 'N/A', onSubmit, isTest = false }) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    const finalSearchParams = {}
 
-    if (hasValue(eduLevel)) finalSearchParams.eduLevel = eduLevel
-    if (hasValue(pattern)) finalSearchParams.pattern = pattern
-    if (hasValue(showOptions)) finalSearchParams.showOptions = showOptions
-    if (hasValue(period)) finalSearchParams.period = period
-    console.log('-----finalSearchParams', finalSearchParams)
-
-    onSubmit(finalSearchParams)
+    onSubmit(state)
   }
 
   function handleParamChange(params) {
