@@ -104,49 +104,36 @@ function dismountTopAlert(errorType, languageIndex) {
   if (alertContainer) ReactDOM.unmountComponentAtNode(alertContainer)
 }
 
-function DisplayResult({ languageIndex, status, searchResults }) {
-  const { searchLoading, errorEmpty, errorUnknown, errorOverflow, noQueryProvided } = i18n.messages[
-    languageIndex
-  ].generalSearch
-  if (status === 'idle') return null
-  else if (status === 'pending') return <p>{searchLoading}</p>
-  else if (status === 'noHits')
-    return (
-      <p>
-        <i>{errorEmpty}</i>
-      </p>
-    )
-  else if (status === 'overflow')
-    return (
-      <p>
-        <i>{errorOverflow}</i>
-      </p>
-    )
-  else if (status === 'resolved') {
+const errorItalicParagraph = (errorType, languageIndex) => {
+  const errorText = i18n.messages[languageIndex].generalSearch[errorType]
+  if (!errorText) throw new Error(`Missing translations for errorType: ${errorType}`)
+
+  return (
+    <p>
+      <i>{errorText}</i>
+    </p>
+  )
+}
+
+function DisplayResult({ languageIndex, status, errorType, searchResults }) {
+  const { searchLoading } = i18n.messages[languageIndex].generalSearch
+
+  if (status === 'resolved') {
     return <SearchTableView unsortedSearchResults={searchResults} />
-  } else if (status === 'rejected')
-    //  //throw error with error boundaries
-    return (
-      <p>
-        <i>{errorUnknown}</i>
-      </p>
-    )
-  else if (status === 'noQueryProvided')
-    //  //throw error with error boundaries
-    return (
-      <p>
-        <i>{noQueryProvided}</i>
-      </p>
-    )
+  }
+
+  if (status === 'idle') return null
+  if (status === 'pending') return <p>{searchLoading}</p>
+  else if (errorType) return errorItalicParagraph(errorType, languageIndex)
 
   return null
 }
 
-function SearchResultDisplay({ caption = 'N/A', searchParameters, onlyPattern = false }) {
+function SearchResultDisplay({ searchParameters, onlyPattern = false }) {
   const { browserConfig, language, languageIndex } = useStore()
   const history = useHistory()
   const { pattern } = searchParameters
-  const searchStr = stringifyUrlParams(searchParameters) //TODO: EMPTIYING SEARCH STRING
+  const searchStr = stringifyUrlParams(searchParameters)
   const [loadStatus, setLoadStatus] = useState('firstLoad')
 
   const { resultsHeading } = i18n.messages[languageIndex].generalSearch
@@ -167,11 +154,11 @@ function SearchResultDisplay({ caption = 'N/A', searchParameters, onlyPattern = 
 
   const state = useAsync(asyncCallback, initialStatus)
 
-  const { data: searchResults, status, error } = state
+  const { data: searchResults, status, error: errorType } = state
 
   useEffect(() => {
-    if (error && error !== null) {
-      renderAlertToTop(error, languageIndex)
+    if (errorType && errorType !== null) {
+      renderAlertToTop(errorType, languageIndex)
     } else dismountTopAlert()
   }, [status])
 
@@ -186,7 +173,12 @@ function SearchResultDisplay({ caption = 'N/A', searchParameters, onlyPattern = 
   return (
     <>
       {status !== 'idle' && <h2 id="results-heading">{resultsHeading}</h2>}
-      <DisplayResult status={status} languageIndex={languageIndex} searchResults={searchResults} />
+      <DisplayResult
+        status={status}
+        errorType={errorType}
+        languageIndex={languageIndex}
+        searchResults={searchResults}
+      />
     </>
   )
 }
