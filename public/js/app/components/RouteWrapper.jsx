@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { MobxStoreProvider } from '../mobx'
 
 function RouteWrapper({
-  createBreadCrumbs,
+  createBreadcrumbs,
   component: Component,
   layout: Layout,
   applicationStore,
@@ -13,7 +13,7 @@ function RouteWrapper({
   ...rest
 }) {
   const menuData = createMenuData(applicationStore)
-  const breadcrumbs = createBreadCrumbs(applicationStore)
+  const breadcrumbs = createBreadcrumbs(applicationStore)
   return (
     <MobxStoreProvider initCallback={() => applicationStore}>
       <Route
@@ -29,7 +29,7 @@ function RouteWrapper({
 }
 
 RouteWrapper.propTypes = {
-  createBreadCrumbs: PropTypes.func,
+  createBreadcrumbs: PropTypes.func,
   component: PropTypes.oneOfType([PropTypes.node, PropTypes.func, PropTypes.elementType]).isRequired,
   layout: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
   createMenuData: PropTypes.func.isRequired,
@@ -38,7 +38,7 @@ RouteWrapper.propTypes = {
 }
 
 RouteWrapper.defaultProps = {
-  createBreadCrumbs: () => ({ include: 'student', items: [] }),
+  createBreadcrumbs: () => ({ include: 'student', items: [] }),
 }
 
 export default RouteWrapper

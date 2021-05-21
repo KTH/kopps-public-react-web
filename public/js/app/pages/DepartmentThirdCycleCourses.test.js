@@ -86,7 +86,7 @@ const WrapperDepartmentCourses = ({ lang }) => {
       <RouteWrapper
         exact
         path="/utbildning/forskarutbildning/kurser/org/AFF"
-        createBreadCrumbs={store => ({
+        createBreadcrumbs={store => ({
           include: 'university',
           items: getThirdCycleBreadcrumbs(store),
         })}

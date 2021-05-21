@@ -52,7 +52,7 @@ const WrapperThirdCycleDepartmentsList = ({ lang }) => {
         component={ThirdCycleDepartmentsList}
         layout={PageLayout}
         applicationStore={updatedApplicationStore}
-        createBreadCrumbs={store => ({
+        createBreadcrumbs={store => ({
           include: 'university',
           items: getThirdCycleBreadcrumbs(store),
         })}
