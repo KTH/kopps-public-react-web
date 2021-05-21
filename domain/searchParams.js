@@ -131,21 +131,6 @@ function stringifyKoppsSearchParams(params) {
   return paramsStr
 }
 
-function getHelpText(langIndex) {
-  const { searchInstructions } = i18n.messages[langIndex]
-
-  return [
-    'search_help_1',
-    'search_help_2',
-    'search_help_3',
-    'search_help_4',
-    'search_help_5',
-    'search_help_7',
-    'search_help_8',
-    'search_help_9',
-  ].map(s => searchInstructions[s])
-}
-
 const eduLevelConfig = langIndex => {
   const { bigSearch } = i18n.messages[langIndex]
 
@@ -325,7 +310,6 @@ module.exports = {
   educationalLevel,
   getParamConfig,
   getSummerPeriodsList,
-  getHelpText,
   stringifyKoppsSearchParams,
   stringifyUrlParams,
 }

@@ -175,6 +175,21 @@ const messages = {
     search_help_10:
       'Om du har synpunkter eller frågor gällande kurssökningen, kontakta <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
   },
+  thirdCycleSearchInstructions: {
+    search_help_collapse_header: 'Få hjälp med sökningen',
+    search_research_help_1:
+      'Du kan söka på del av kursnamn eller kurskod. En sökning efter "data" hittar exempelvis såväl "Databasteknik", "Datalogi" som "Algoritmer, datastrukturer och komplexitet".',
+    search_research_help_2: 'Skriver du flera ord i fältet hittas kurser som innehåller samtliga ord.',
+    search_research_help_3: 'Du kan även söka på kursens engelska namn.',
+    search_research_help_4:
+      'Sökningen visar max 250 träffar. Får du för många träffar, försök att förfina sökvillkoren.',
+    search_research_help_5: 'Sökningen gör ingen skillnad på versaler och gemener (stora och små bokstäver).',
+    search_research_help_6:
+      'Det går inte att använda specialtecken (t.ex. citationstecken). Dessa tas bort innan sökningen utförs.',
+    search_research_help_7: 'Forskarkurser som ej längre ges på KTH visas inte.',
+    search_research_help_9:
+      'Om du har synpunkter eller frågor gällande kurssökningen, kontakta <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
+  },
   generalSearch: {
     searchStartPeriodPrefix: 'Kursstart',
     resultsHeading: 'Resultat från sökningen',

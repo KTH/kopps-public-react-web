@@ -178,6 +178,24 @@ const messages = {
     search_help_10:
       'If you have questions or feedback on the course search, please contact <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
   },
+  thirdCycleSearchInstructions: {
+    search_help_collapse_header: 'Instructions for searching',
+    search_research_help_1:
+      'You can search using part of the course name or code. Searching for "data" will return "Data Storage Paradigms" as well as "Database Techniques" and "Algorithms, Data Structures and Complexity".',
+    search_research_help_2:
+      'Searching for "part 1" will return courses with both part and 1 in course name or code, for example "SI2610 Many Particle Physics" and "DD1343 Computer Science and Numerical Methods, part 1".',
+    search_research_help_3: 'Searching for more than one word will return courses containing all of the words.',
+    search_research_help_4:
+      'Both the English and the Swedish course names are searched. Searching for "metod" will return the course "Computer Science Methods" with the Swedish name "Datalogisk metod".',
+    search_research_help_5:
+      'At most 250 hits will be displayed. If you get too many hits, try to narrow the search conditions.',
+    search_research_help_6: 'The search does not distinguish between upper and lower case characters.',
+    search_research_help_7:
+      'It is not possible to use special characters, like quotes, in the search. These characters will be removed before the search is performed.',
+    search_research_help_8: 'Courses that are no longer offered or dormant at KTH are not shown.',
+    search_research_help_9:
+      'If you have questions or feedback on the course search, please contact <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
+  },
   generalSearch: {
     searchStartPeriodPrefix: 'Course Start',
     resultsHeading: 'Search results',

@@ -9,17 +9,35 @@ import Lead from '../components/Lead'
 import FooterContent from '../components/FooterContent'
 
 import { SearchInputField, SearchResultDisplay } from '../components/index'
-import { getHelpText } from '../../../../domain/searchParams'
+
+function getHelpText(langAbbr, langIndex) {
+  const { thirdCycleSearchInstructions } = i18n.messages[langIndex]
+  const instructionsTexts = [
+    'search_research_help_1',
+    'search_research_help_2',
+    'search_research_help_3',
+    'search_research_help_4',
+    'search_research_help_5',
+    'search_research_help_7',
+  ].map(s => thirdCycleSearchInstructions[s])
+
+  if (langAbbr === 'en') instructionsTexts.push(thirdCycleSearchInstructions.search_research_help_8)
+
+  return instructionsTexts
+}
 
 const CourseSearchResearch = () => {
   const { language: lang, languageIndex, textPattern: initialPattern } = useStore()
-  const { thirdCycleSearch, searchInstructions } = i18n.messages[languageIndex]
+  const { thirdCycleSearch, thirdCycleSearchInstructions } = i18n.messages[languageIndex]
   const { searchHeading, leadIntro, linkToUsualSearch } = thirdCycleSearch
-  const { search_help_collapse_header: collapseHeader, search_help_10: lastInstruction } = searchInstructions
+  const {
+    search_help_collapse_header: collapseHeader,
+    search_research_help_9: lastInstruction,
+  } = thirdCycleSearchInstructions
 
   const [pattern, setPattern] = useState(initialPattern)
 
-  const helptexts = getHelpText(languageIndex)
+  const helptexts = getHelpText(lang, languageIndex)
 
   function handleSubmit(pattern) {
     setPattern(pattern)
