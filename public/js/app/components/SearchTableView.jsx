@@ -51,7 +51,7 @@ function periodsStr(startPeriod, startTerm, endPeriod, endTerm) {
   else return `P${startPeriod} ${formatShortTerm(startTerm)} - P${endPeriod} ${formatShortTerm(endTerm)}`
 }
 
-function sortAndParseByCourseCode(courses, languageIndex) {
+function sortAndParseByCourseCode(courses, languageIndex, sliceUntilNum) {
   const { bigSearch } = i18n.messages[languageIndex]
   courses.sort(compareCoursesBy('courseCode'))
   const parsedCourses = courses.map(
@@ -65,13 +65,14 @@ function sortAndParseByCourseCode(courses, languageIndex) {
       startTerm,
       endPeriod,
       endTerm,
-    }) => [
-      codeCell(code),
-      titleCell(code, title),
-      `${credits} ${creditUnitAbbr}`,
-      bigSearch[level],
-      periodsStr(startPeriod, startTerm, endPeriod, endTerm),
-    ]
+    }) =>
+      [
+        codeCell(code),
+        titleCell(code, title),
+        `${credits} ${creditUnitAbbr}`,
+        bigSearch[level],
+        periodsStr(startPeriod, startTerm, endPeriod, endTerm),
+      ].slice(0, sliceUntilNum)
   )
   return parsedCourses
 }
@@ -81,19 +82,26 @@ const SearchTableView = ({ unsortedSearchResults }) => {
 
   const t = translate(language)
 
+  const { searchHits } = unsortedSearchResults
+  let hasSearchHitInterval = false
+
+  const flattCoursesArr = searchHits.map(({ course, searchHitInterval }) => {
+    if (searchHitInterval) hasSearchHitInterval = true
+    return {
+      ...course,
+      ...searchHitInterval,
+    }
+  })
+  const sliceUntilNum = hasSearchHitInterval ? 5 : 4
   const headers = [
     t('department_course_code'),
     t('department_course_name'),
     t('department_course_credits'),
     t('department_course_educational_level'),
     t('department_period_abbr'),
-  ]
-  const { searchHits } = unsortedSearchResults
-  const flattCoursesArr = searchHits.map(({ course, searchHitInterval }) => ({
-    ...course,
-    ...searchHitInterval,
-  }))
-  const courses = sortAndParseByCourseCode(flattCoursesArr, languageIndex)
+  ].slice(0, sliceUntilNum)
+
+  const courses = sortAndParseByCourseCode(flattCoursesArr, languageIndex, sliceUntilNum)
   const hitsNumber = courses.length
   return (
     <Row>
