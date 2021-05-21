@@ -32,6 +32,15 @@ const CourseSearch = () => {
         <Col>
           <PageHeading>{searchHeading}</PageHeading>
           <Lead text={leadIntro} />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <div id="alert-placeholder" />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
           <CollapseDetails color="white" title={collapseHeader}>
             <ul>
               {helptexts.map(value => (
@@ -40,11 +49,6 @@ const CourseSearch = () => {
               <li key="lastInstruction" dangerouslySetInnerHTML={{ __html: lastInstruction }} />
             </ul>
           </CollapseDetails>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <div id="alert-placeholder" />
         </Col>
       </Row>
       <Row>
