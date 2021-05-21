@@ -42,16 +42,35 @@ function compareCoursesBy(key) {
   }
 }
 
+function periodsStr(startPeriod, startTerm, endPeriod, endTerm) {
+  // P5 VT21
+  // P5 spring 21 - P0 autumn 21
+  if (!startTerm || !startPeriod.toString()) return ''
+  if (!endTerm || !startPeriod.toString()) return `P${startPeriod} ${formatShortTerm(startTerm)}`
+  if (startPeriod === endPeriod && startTerm === endTerm) return `P${startPeriod} ${formatShortTerm(startTerm)}`
+  else return `P${startPeriod} ${formatShortTerm(startTerm)} - P${endPeriod} ${formatShortTerm(endTerm)}`
+}
+
 function sortAndParseByCourseCode(courses, languageIndex) {
   const { bigSearch } = i18n.messages[languageIndex]
   courses.sort(compareCoursesBy('courseCode'))
   const parsedCourses = courses.map(
-    ({ courseCode: code, title, credits, creditUnitAbbr, educationalLevel: level, startPeriod, startTerm }) => [
+    ({
+      courseCode: code,
+      title,
+      credits,
+      creditUnitAbbr,
+      educationalLevel: level,
+      startPeriod,
+      startTerm,
+      endPeriod,
+      endTerm,
+    }) => [
       codeCell(code),
       titleCell(code, title),
       `${credits} ${creditUnitAbbr}`,
       bigSearch[level],
-      startPeriod && startTerm ? `P${startPeriod} ${formatShortTerm(startTerm)}` : '', //P5 VT21, P5 spring 21
+      periodsStr(startPeriod, startTerm, endPeriod, endTerm),
     ]
   )
   return parsedCourses
