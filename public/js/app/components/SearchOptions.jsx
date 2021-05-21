@@ -20,7 +20,7 @@ const optionsReducer = (state, action) => {
     case 'REMOVE_ITEM': {
       const removeIndex = options.indexOf(value)
       if (removeIndex >= 0) {
-        options.splice(removeIndex, 1) // delete options[removeIndex]
+        options.splice(removeIndex, 1)
       }
       return { options }
     }
@@ -28,7 +28,6 @@ const optionsReducer = (state, action) => {
 }
 
 function SearchOptions({ overrideSearchHead = '', paramAliasName = '', paramName, onChange }) {
-  //caption = 'N/A',
   const store = useStore()
   const { languageIndex } = store
   const initialParamValue = store[paramName]
@@ -41,10 +40,7 @@ function SearchOptions({ overrideSearchHead = '', paramAliasName = '', paramName
     paramName,
     languageIndex,
   ])
-  // [
-  //   { label: 'Pre-university level', id: 'PREPARATORY', value: '0' },
-  //...
-  // ]
+  // [{ label, id, value}, ...]
 
   useEffect(() => {
     onChange({ [paramName]: options })

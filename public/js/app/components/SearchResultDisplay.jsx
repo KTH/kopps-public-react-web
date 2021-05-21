@@ -105,7 +105,9 @@ function dismountTopAlert(errorType, languageIndex) {
 }
 
 function DisplayResult({ languageIndex, status, searchResults }) {
-  const { searchLoading, errorEmpty, errorUnknown, errorOverflow } = i18n.messages[languageIndex].generalSearch
+  const { searchLoading, errorEmpty, errorUnknown, errorOverflow, noQueryProvided } = i18n.messages[
+    languageIndex
+  ].generalSearch
   if (status === 'idle') return null
   else if (status === 'pending') return <p>{searchLoading}</p>
   else if (status === 'noHits')
@@ -129,6 +131,13 @@ function DisplayResult({ languageIndex, status, searchResults }) {
         <i>{errorUnknown}</i>
       </p>
     )
+  else if (status === 'noQueryProvided')
+    //  //throw error with error boundaries
+    return (
+      <p>
+        <i>{noQueryProvided}</i>
+      </p>
+    )
 
   return null
 }
@@ -137,17 +146,17 @@ function SearchResultDisplay({ caption = 'N/A', searchParameters, onlyPattern = 
   const { browserConfig, language, languageIndex } = useStore()
   const history = useHistory()
   const { pattern } = searchParameters
-  const searchStr = stringifyUrlParams(searchParameters)
+  const searchStr = stringifyUrlParams(searchParameters) //TODO: EMPTIYING SEARCH STRING
+  const [loadStatus, setLoadStatus] = useState('firstLoad')
 
   const { resultsHeading } = i18n.messages[languageIndex].generalSearch
 
   const asyncCallback = React.useCallback(() => {
     if (onlyPattern && !pattern) return
-    if (!searchStr) {
-      console.log('NON PARAMETEROR')
+    if (!searchStr && loadStatus === 'firstLoad') {
+      setLoadStatus('afterLoad')
       return
     }
-
     const proxyUrl = _getThisHost(browserConfig.proxyPrefixPath.uri)
     return koppsCourseSearch(language, proxyUrl, searchParameters)
   }, [searchParameters])
@@ -176,7 +185,7 @@ function SearchResultDisplay({ caption = 'N/A', searchParameters, onlyPattern = 
 
   return (
     <>
-      {status !== 'idle' && status !== 'noQueryProvided' && <h2 id="results-heading">{resultsHeading}</h2>}
+      {status !== 'idle' && <h2 id="results-heading">{resultsHeading}</h2>}
       <DisplayResult status={status} languageIndex={languageIndex} searchResults={searchResults} />
     </>
   )
