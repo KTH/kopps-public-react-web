@@ -68,12 +68,6 @@ function getShowOptions(option) {
     }
   }
 }
-function separateOptions(optionsArr) {
-  const optionsObject = {}
-  optionsArr.forEach(opt => (optionsObject[getShowOptions(opt)] = true))
-
-  return optionsObject
-}
 
 // private static final Set<String> ALLOWED_SHOW_OPTIONS = new HashSet<>(Arrays.asList(IN_ENGLISH_ONLY, ONLY_MHU, SHOW_CANCELLED));
 // private static final Pattern TERM_PERIOD_PATTERN =attern.compile("\\d{5}:(\\d|summer)");
@@ -103,17 +97,15 @@ function _transformIfSummerOrEmptyPeriods(initialPeriods) {
       summerPeriodsList.forEach(summerPeriod => transformedPeriods.push(summerPeriod))
     } else transformedPeriods.push(p)
   })
-  console.log('e>e> transformedPeriods', transformedPeriods)
   return transformedPeriods
 }
 
 function _transformSearchParams(params) {
   const { eduLevel = [], pattern = '', showOptions = [], period = [], department = '' } = params
-  const separatedOptions = separateOptions(showOptions)
   const koppsFormatParams = {
     text_pattern: pattern,
-    educational_level: eduLevel.map(level => educationalLevel(level)), //['RESEARCH', 'ADVANCED'],
-    ...separatedOptions, // Example: {only_mhu: true}, {in_english_only: true}, {include_non_active: true}
+    educational_level: eduLevel.map(level => educationalLevel(level)), // ['RESEARCH', 'ADVANCED'],
+    flag: showOptions.map(opt => getShowOptions(opt)), // Example: flag: [only_mhu, in_english_only, include_non_active]
     term_period: _transformIfSummerOrEmptyPeriods(period), // ['2018:2']
     department_prefix: department,
   }
