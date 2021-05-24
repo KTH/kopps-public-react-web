@@ -9,6 +9,7 @@ const RESEARCH_EDU_LEVEL = 'RESEARCH'
 const IN_ENGLISH_ONLY = 'onlyEnglish'
 const ONLY_MHU = 'onlyMHU'
 const SHOW_CANCELLED = 'showCancelled'
+const CLIENT_SHOW_OPTIONS = [SHOW_CANCELLED, ONLY_MHU, IN_ENGLISH_ONLY]
 
 function educationalLevel(levelNumberAsStr) {
   switch (levelNumberAsStr) {
@@ -69,22 +70,16 @@ function getShowOptions(option) {
   }
 }
 
-// private static final Set<String> ALLOWED_SHOW_OPTIONS = new HashSet<>(Arrays.asList(IN_ENGLISH_ONLY, ONLY_MHU, SHOW_CANCELLED));
-// private static final Pattern TERM_PERIOD_PATTERN =attern.compile("\\d{5}:(\\d|summer)");
-// private static final Pattern EDU_LEVEL_PATTERN =attern.compile("\\d");
-// private static final Pattern DEPARTMENT_CODE_PATTERN =attern.compile("[A-Za-zÅÄÖåäö]{1,4}");
-// public static final String PERIOD_PARAM = "period";
-// public static final String EDU_LEVEL_PARAM = "eduLevel";
-// public static final String DEPARTMENT_PARAM = "department";
-// public static final String PATTERN_PARAM = "pattern";
-// public static final String SHOW_OPTIONS_PARAM = "showOptions";
+function _summerTermsAndPeriods(year) {
+  const summerSpring = `${year}${termConstants.SPRING_TERM_NUMBER}:${SUMMER_PERIOD_SPRING}`
+  const summerAutumn = `${year}${termConstants.AUTUMN_TERM_NUMBER}:${SUMMER_PERIOD_AUTUMN}`
+  return [summerSpring, summerAutumn]
+}
 
-// private String pattern;
-// private Set<String> termPeriods = new HashSet<>();
-// private Set<String> showOptions = new HashSet<>();
-// private Set<String> eduLevel = new HashSet<>();
-// private String departmentCode;
-// private boolean constructedFromOldStyleQueryParams;
+function _getSummerPeriodsList(termString = '1900:summer') {
+  const year = termString.substring(0, 4)
+  return _summerTermsAndPeriods(year)
+}
 
 function _transformIfSummerOrEmptyPeriods(initialPeriods) {
   const transformedPeriods = []
@@ -93,7 +88,7 @@ function _transformIfSummerOrEmptyPeriods(initialPeriods) {
     if (!p) return
 
     if (p.includes(':summer')) {
-      const summerPeriodsList = getSummerPeriodsList(p)
+      const summerPeriodsList = _getSummerPeriodsList(p)
       summerPeriodsList.forEach(summerPeriod => transformedPeriods.push(summerPeriod))
     } else transformedPeriods.push(p)
   })
@@ -122,11 +117,12 @@ function stringifyKoppsSearchParams(params) {
   const paramsStr = stringifyUrlParams(koppsFormatParams)
   return paramsStr
 }
+const CLIENT_EDU_LEVELS = ['0', '1', '2', '3']
 
 const eduLevelConfig = langIndex => {
   const { bigSearch } = i18n.messages[langIndex]
 
-  return ['0', '1', '2', '3'].map(level => {
+  return CLIENT_EDU_LEVELS.map(level => {
     const id = educationalLevel(level)
     const label = bigSearch[id]
     return { label, id, value: level }
@@ -184,17 +180,6 @@ const groupedPeriodsInCorrectOrder = {
   autumn: [AUTUMN_FIRST_PERIOD, AUTUMN_SECOND_PERIOD],
 }
 
-function _summerTermsAndPeriods(year) {
-  const summerSpring = `${year}${termConstants.SPRING_TERM_NUMBER}:${SUMMER_PERIOD_SPRING}`
-  const summerAutumn = `${year}${termConstants.AUTUMN_TERM_NUMBER}:${SUMMER_PERIOD_AUTUMN}`
-  return [summerSpring, summerAutumn]
-}
-
-function getSummerPeriodsList(termString = '1900:summer') {
-  const year = termString.substring(0, 4)
-  return _summerTermsAndPeriods(year)
-}
-
 function _separateYearAndPeriod(relevantTerms) {
   return relevantTerms.map(term => ({
     year: term.toString().substring(0, 4),
@@ -212,7 +197,7 @@ function _combineTermsByYear(arrWithYearsAndPeriod) {
 
   arrWithYearsAndPeriod.forEach(({ year, termNumber }, index) => {
     if (index === 0) {
-      groupedTerms.current = { year, terms: [termNumber] } //fullTerms: [fullTerm]
+      groupedTerms.current = { year, terms: [termNumber] } // fullTerms: [fullTerm]
     } else if (year === groupedTerms.current.year) {
       groupedTerms.current.terms.push(termNumber)
     } else if (!groupedTerms.next.year) groupedTerms.next = { year, terms: [termNumber] }
@@ -246,7 +231,7 @@ function _periodConfigForOneYear({ year, terms }, langIndex) {
 
     periodsForThisTerm.forEach(periodNum => {
       if (typeof periodNum === 'object') {
-        //summer has two periods, but in search it shown as summer with merged results for both
+        // summer has two periods, but in search it shown as summer with merged results for both
         const value = `${year}:summer`
         const label = `${year} ${summerLabel}`
         return resultPeriodsConfig.push({
@@ -301,7 +286,8 @@ function getParamConfig(paramName, langIndex) {
 module.exports = {
   educationalLevel,
   getParamConfig,
-  getSummerPeriodsList,
   stringifyKoppsSearchParams,
   stringifyUrlParams,
+  CLIENT_EDU_LEVELS,
+  CLIENT_SHOW_OPTIONS,
 }
