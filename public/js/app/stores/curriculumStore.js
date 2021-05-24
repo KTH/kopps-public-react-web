@@ -34,6 +34,10 @@ function isMissingAdmission() {
   return this.error === this.errorType.MISSING_ADMISSION
 }
 
+function setCurriculumInfos(curriculumInfos) {
+  this.curriculumInfos = curriculumInfos
+}
+
 const curriculumStore = {
   /**
    * @property {string} programmeCode
@@ -120,6 +124,15 @@ const curriculumStore = {
    * @method
    */
   isMissingAdmission,
+  /**
+   * @property {[]} curriculumInfos
+   */
+  curriculumInfos: null,
+  /**
+   * @method
+   * @param {[]} curriculumInfos
+   */
+  setCurriculumInfos,
 }
 
 export default curriculumStore

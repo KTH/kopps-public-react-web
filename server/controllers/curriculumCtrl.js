@@ -7,6 +7,7 @@ const { browser: browserConfig, server: serverConfig } = require('../configurati
 const i18n = require('../../i18n')
 
 const koppsApi = require('../kopps/koppsApi')
+const { curriculumInfo, setFirstSpec } = require('../../domain/curriculum')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
@@ -68,6 +69,11 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, progr
   applicationStore.setCurriculums(curriculums)
   const courseRounds = await _getCourseRounds(curriculums, programmeCode, term, studyYear, lang)
   applicationStore.setCourseRounds(courseRounds)
+  const curriculumInfos = curriculums
+    .map(curriculum => curriculumInfo({ programmeTermYear: { studyYear }, curriculum, courseRounds }))
+    .filter(ci => ci.hasInfo)
+  setFirstSpec(curriculumInfos)
+  applicationStore.setCurriculumInfos(curriculumInfos)
 
   const departmentBreadCrumbItem = {
     url: programmeLink(browserConfig.proxyPrefixPath.uri, programmeCode, lang),
