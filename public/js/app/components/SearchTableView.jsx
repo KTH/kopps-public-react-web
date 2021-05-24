@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-import { observer } from 'mobx-react'
 import { Col, Row } from 'reactstrap'
+import PropTypes from 'prop-types'
 
-import { Link, PageHeading, SortableTable } from '@kth/kth-reactstrap/dist/components/studinfo'
-import Article from '../components/Article'
+import { Link, SortableTable } from '@kth/kth-reactstrap/dist/components/studinfo'
+import Article from './Article'
 import { useStore } from '../mobx'
 
 import translate from '../../../../domain/translate'
-// import { ErrorBoundary } from 'react-error-boundary'
 import i18n from '../../../../i18n'
 
 import { courseLink } from '../util/links'
@@ -48,7 +47,7 @@ function periodsStr(startPeriod, startTerm, endPeriod, endTerm) {
   if (!startTerm || !startPeriod.toString()) return ''
   if (!endTerm || !startPeriod.toString()) return `P${startPeriod} ${formatShortTerm(startTerm)}`
   if (startPeriod === endPeriod && startTerm === endTerm) return `P${startPeriod} ${formatShortTerm(startTerm)}`
-  else return `P${startPeriod} ${formatShortTerm(startTerm)} - P${endPeriod} ${formatShortTerm(endTerm)}`
+  return `P${startPeriod} ${formatShortTerm(startTerm)} - P${endPeriod} ${formatShortTerm(endTerm)}`
 }
 
 function sortAndParseByCourseCode(courses, languageIndex, sliceUntilNum) {
@@ -109,11 +108,15 @@ const SearchTableView = ({ unsortedSearchResults }) => {
         <Article>
           {language === 'en' ? (
             <p>
-              Your search returned <b>{hitsNumber}</b> result(s).
+              {'Your search returned '}
+              <b>{hitsNumber}</b>
+              {' result(s).'}
             </p>
           ) : (
             <p>
-              Din sökning gav <b>{hitsNumber}</b> resultat.
+              {`Din sökning gav `}
+              <b>{hitsNumber}</b>
+              {' resultat.'}
             </p>
           )}
           <SortableTable headers={headers} data={courses} />
@@ -121,5 +124,32 @@ const SearchTableView = ({ unsortedSearchResults }) => {
       </Col>
     </Row>
   )
+}
+
+export const searchHitsPropsShape = {
+  searchHits: PropTypes.arrayOf(
+    PropTypes.shape({
+      course: PropTypes.shape({
+        courseCode: PropTypes.string,
+        creditUnitAbbr: PropTypes.string,
+        credits: PropTypes.number,
+        educationalLevel: PropTypes.string,
+        title: PropTypes.string,
+      }).isRequired,
+      searchHitInterval: PropTypes.shape({
+        endPeriod: PropTypes.number,
+        endTerm: PropTypes.string,
+        startPeriod: PropTypes.number,
+        startTerm: PropTypes.string,
+      }),
+    })
+  ),
+}
+SearchTableView.propTypes = {
+  unsortedSearchResults: PropTypes.shape(searchHitsPropsShape),
+}
+
+SearchTableView.defaultProps = {
+  unsortedSearchResults: {},
 }
 export default SearchTableView

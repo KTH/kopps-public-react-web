@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import { useStore } from '../mobx'
-import SearchTableView from './SearchTableView'
+import SearchTableView, { searchHitsPropsShape } from './SearchTableView'
 
 import i18n from '../../../../i18n'
 import { stringifyUrlParams, CLIENT_EDU_LEVELS, CLIENT_SHOW_OPTIONS } from '../../../../domain/searchParams'
@@ -150,25 +150,7 @@ DisplayResult.propTypes = {
   languageIndex: PropTypes.oneOf([0, 1]),
   status: PropTypes.oneOf(Object.values(STATUS)).isRequired,
   errorType: PropTypes.oneOf([...Object.values(ERROR_ASYNC), '']),
-  searchResults: PropTypes.shape({
-    searchHits: PropTypes.arrayOf(
-      PropTypes.shape({
-        course: PropTypes.shape({
-          courseCode: PropTypes.string,
-          creditUnitAbbr: PropTypes.string,
-          credits: PropTypes.number,
-          educationalLevel: PropTypes.string,
-          title: PropTypes.string,
-        }).isRequired,
-        searchHitInterval: PropTypes.shape({
-          endPeriod: PropTypes.number,
-          endTerm: PropTypes.string,
-          startPeriod: PropTypes.number,
-          startTerm: PropTypes.string,
-        }),
-      })
-    ),
-  }),
+  searchResults: PropTypes.shape(searchHitsPropsShape),
 }
 
 DisplayResult.defaultProps = {
