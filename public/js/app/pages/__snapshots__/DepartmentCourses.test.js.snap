@@ -164,14 +164,14 @@ exports[`Render component DepartmentCourses within Layout match to snapshot in E
                   <tr>
                     <td>
                       <a
-                        href="/kopps-public/student/kurser/kurs/AD12DA?l=en"
+                        href="/student/kurser/kurs/AD12DA?l=en"
                       >
                         AD12DA
                       </a>
                     </td>
                     <td>
                       <a
-                        href="/kopps-public/student/kurser/kurs/AD12DA?l=en"
+                        href="/student/kurser/kurs/AD12DA?l=en"
                       >
                         2DAutoCAD Focus on the Drawing as a Communicative Tool
                       </a>
@@ -386,14 +386,14 @@ exports[`Render component DepartmentCourses within Layout match to snapshot in S
                   <tr>
                     <td>
                       <a
-                        href="/kopps-public/student/kurser/kurs/AD12DA"
+                        href="/student/kurser/kurs/AD12DA"
                       >
                         AD12DA
                       </a>
                     </td>
                     <td>
                       <a
-                        href="/kopps-public/student/kurser/kurs/AD12DA"
+                        href="/student/kurser/kurs/AD12DA"
                       >
                         2DAutoCAD Fokus på ritningen som kommunikationsredskap
                       </a>

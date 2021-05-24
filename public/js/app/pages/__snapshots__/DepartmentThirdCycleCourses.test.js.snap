@@ -164,14 +164,14 @@ exports[`Render component DepartmentCourses within Layout for third cycle studie
                   <tr>
                     <td>
                       <a
-                        href="/kopps-public/student/kurser/kurs/F1C5031?l=en"
+                        href="/student/kurser/kurs/F1C5031?l=en"
                       >
                         F1C5031
                       </a>
                     </td>
                     <td>
                       <a
-                        href="/kopps-public/student/kurser/kurs/F1C5031?l=en"
+                        href="/student/kurser/kurs/F1C5031?l=en"
                       >
                         Design Methods for Reinforced Concrete Structures
                       </a>
@@ -186,14 +186,14 @@ exports[`Render component DepartmentCourses within Layout for third cycle studie
                   <tr>
                     <td>
                       <a
-                        href="/kopps-public/student/kurser/kurs/FAF3115?l=en"
+                        href="/student/kurser/kurs/FAF3115?l=en"
                       >
                         FAF3115
                       </a>
                     </td>
                     <td>
                       <a
-                        href="/kopps-public/student/kurser/kurs/FAF3115?l=en"
+                        href="/student/kurser/kurs/FAF3115?l=en"
                       >
                         Concrete and Other Cement Based Materials
                       </a>
@@ -408,14 +408,14 @@ exports[`Render component DepartmentCourses within Layout for third cycle studie
                   <tr>
                     <td>
                       <a
-                        href="/kopps-public/student/kurser/kurs/F1C5031"
+                        href="/student/kurser/kurs/F1C5031"
                       >
                         F1C5031
                       </a>
                     </td>
                     <td>
                       <a
-                        href="/kopps-public/student/kurser/kurs/F1C5031"
+                        href="/student/kurser/kurs/F1C5031"
                       >
                         Dimensioneringsmetoder för armerade betongkonstruktioner
                       </a>
@@ -430,14 +430,14 @@ exports[`Render component DepartmentCourses within Layout for third cycle studie
                   <tr>
                     <td>
                       <a
-                        href="/kopps-public/student/kurser/kurs/FAF3115"
+                        href="/student/kurser/kurs/FAF3115"
                       >
                         FAF3115
                       </a>
                     </td>
                     <td>
                       <a
-                        href="/kopps-public/student/kurser/kurs/FAF3115"
+                        href="/student/kurser/kurs/FAF3115"
                       >
                         Betong och andra cementbaserade material
                       </a>

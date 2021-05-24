@@ -178,14 +178,14 @@ describe('Render component DepartmentCourses and check its menu, content and lin
     expect(links[0].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser?l=en')
     // Main content links
     expect(links[1]).toHaveTextContent('F1C5031')
-    expect(links[1].href).toStrictEqual('http://localhost/kopps-public/student/kurser/kurs/F1C5031?l=en')
+    expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurs/F1C5031?l=en')
     expect(links[2]).toHaveTextContent('Design Methods for Reinforced Concrete Structures')
-    expect(links[2].href).toStrictEqual('http://localhost/kopps-public/student/kurser/kurs/F1C5031?l=en')
+    expect(links[2].href).toStrictEqual('http://localhost/student/kurser/kurs/F1C5031?l=en')
 
     expect(links[3]).toHaveTextContent('FAF3115')
-    expect(links[3].href).toStrictEqual('http://localhost/kopps-public/student/kurser/kurs/FAF3115?l=en')
+    expect(links[3].href).toStrictEqual('http://localhost/student/kurser/kurs/FAF3115?l=en')
     expect(links[4]).toHaveTextContent('Concrete and Other Cement Based Materials')
-    expect(links[4].href).toStrictEqual('http://localhost/kopps-public/student/kurser/kurs/FAF3115?l=en')
+    expect(links[4].href).toStrictEqual('http://localhost/student/kurser/kurs/FAF3115?l=en')
     // Footer links
     expect(links[5]).toHaveTextContent('Central study counseling')
     expect(links[5].href).toStrictEqual('https://www.kth.se/studycounselling')
@@ -201,14 +201,14 @@ describe('Render component DepartmentCourses and check its menu, content and lin
     expect(links[0].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser')
     // Main content links
     expect(links[1]).toHaveTextContent('F1C5031')
-    expect(links[1].href).toStrictEqual('http://localhost/kopps-public/student/kurser/kurs/F1C5031')
+    expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurs/F1C5031')
     expect(links[2]).toHaveTextContent('Dimensioneringsmetoder för armerade betongkonstruktioner')
-    expect(links[2].href).toStrictEqual('http://localhost/kopps-public/student/kurser/kurs/F1C5031')
+    expect(links[2].href).toStrictEqual('http://localhost/student/kurser/kurs/F1C5031')
 
     expect(links[3]).toHaveTextContent('FAF3115')
-    expect(links[3].href).toStrictEqual('http://localhost/kopps-public/student/kurser/kurs/FAF3115')
+    expect(links[3].href).toStrictEqual('http://localhost/student/kurser/kurs/FAF3115')
     expect(links[4]).toHaveTextContent('Betong och andra cementbaserade material')
-    expect(links[4].href).toStrictEqual('http://localhost/kopps-public/student/kurser/kurs/FAF3115')
+    expect(links[4].href).toStrictEqual('http://localhost/student/kurser/kurs/FAF3115')
     // Footer links
     expect(links[5]).toHaveTextContent('Central studievägledning')
     expect(links[5].href).toStrictEqual('https://www.kth.se/studycounselling')
