@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 
-import { observer } from 'mobx-react'
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 
@@ -39,10 +39,9 @@ function SearchDepartments({ onChange }) {
           </option>
           {schoolsWithDepartments.map(({ departmentPrefix, name: schoolName, departments }) => (
             <optgroup label={schoolName} key={schoolName}>
-              <option
-                key={`all-within-department-${departmentPrefix}`}
-                value={departmentPrefix}
-              >{`${departmentsWithin} ${schoolName}`}</option>
+              <option key={`all-within-department-${departmentPrefix}`} value={departmentPrefix}>
+                {`${departmentsWithin} ${schoolName}`}
+              </option>
               {departments
                 .sort(localeCompareDepartments(language))
                 .map(({ code: departmentCode, name: departmentName }) => (
@@ -56,6 +55,9 @@ function SearchDepartments({ onChange }) {
       </fieldset>
     </div>
   )
+}
+SearchDepartments.propTypes = {
+  onChange: PropTypes.func.isRequired,
 }
 
 export default SearchDepartments

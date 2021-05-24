@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
 
-import { observer } from 'mobx-react'
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
-import { Checkbox } from '@kth/kth-reactstrap/dist/components/studinfo'
 import { getParamConfig } from '../../../../domain/searchParams'
 
 const optionsReducer = (state, action) => {
@@ -23,6 +22,11 @@ const optionsReducer = (state, action) => {
         options.splice(removeIndex, 1)
       }
       return { options }
+    }
+    default: {
+      throw new Error(
+        `Cannot change the state in reducer. Unknown type of action: ${type}. Allowed options: ADD_ITEM, REMOVE_ITEM`
+      )
     }
   }
 }
@@ -74,6 +78,18 @@ function SearchOptions({ overrideSearchHead = '', paramAliasName = '', paramName
       </fieldset>
     </div>
   )
+}
+
+SearchOptions.propTypes = {
+  overrideSearchHead: PropTypes.string,
+  paramAliasName: PropTypes.oneOf(['currentYear', 'nextYear', '']),
+  paramName: PropTypes.oneOf(['eduLevel', 'period', 'showOptions']).isRequired,
+  onChange: PropTypes.func.isRequired,
+}
+
+SearchOptions.defaultProps = {
+  overrideSearchHead: '',
+  paramAliasName: '',
 }
 
 export default SearchOptions

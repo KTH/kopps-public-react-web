@@ -1,23 +1,23 @@
-import React, { useEffect, useState, useReducer } from 'react'
+import React, { useReducer } from 'react'
 import { Col, Row } from 'reactstrap'
+import PropTypes from 'prop-types'
 
 import { observer } from 'mobx-react'
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 
-import { SearchDepartments, SearchOptions } from '../components/index'
+// eslint-disable-next-line import/no-cycle
+import { SearchDepartments, SearchOptions } from './index'
 
-const paramsReducer = (state, action) => {
-  return { ...state, ...action }
-}
+const paramsReducer = (state, action) => ({ ...state, ...action })
 
-function SearchFormFields({ caption = 'N/A', onSubmit, isTest = false }) {
-  const { language: lang, languageIndex, textPattern: initialPattern = '' } = useStore()
+function SearchFormFields({ caption, onSubmit, isTest = false }) {
+  const { languageIndex, textPattern: initialPattern = '' } = useStore()
 
   const { generalSearch } = i18n.messages[languageIndex]
   const { searchLabel, searchStartPeriodPrefix, searchText } = generalSearch
   const [state, setState] = useReducer(paramsReducer, { pattern: initialPattern })
-  const { eduLevel, pattern, showOptions, period } = state
+  const { pattern } = state
 
   const currentYearDate = isTest ? new Date().setFullYear(2021) : new Date().getFullYear()
   const currentYearLabel = `${searchStartPeriodPrefix} ${currentYearDate}`
@@ -101,6 +101,16 @@ function SearchFormFields({ caption = 'N/A', onSubmit, isTest = false }) {
       </button>
     </form>
   )
+}
+
+SearchFormFields.propTypes = {
+  caption: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  isTest: PropTypes.bool,
+}
+
+SearchFormFields.defaultProps = {
+  isTest: false,
 }
 
 export default observer(SearchFormFields)

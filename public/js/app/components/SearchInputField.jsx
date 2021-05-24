@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 
 import { observer } from 'mobx-react'
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 
 function SearchInputField({ caption = 'N/A', pattern: externalPattern, onSubmit }) {
-  const { language: lang, languageIndex } = useStore()
+  const { languageIndex } = useStore()
   const [pattern, setPattern] = useState(externalPattern || '')
 
   const { generalSearch } = i18n.messages[languageIndex]
@@ -56,6 +57,16 @@ function SearchInputField({ caption = 'N/A', pattern: externalPattern, onSubmit 
       </button>
     </form>
   )
+}
+
+SearchInputField.propTypes = {
+  caption: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  pattern: PropTypes.string,
+}
+
+SearchInputField.defaultProps = {
+  pattern: '',
 }
 
 export default observer(SearchInputField)
