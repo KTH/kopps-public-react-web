@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
-import { observer } from 'mobx-react'
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 
@@ -69,4 +68,4 @@ SearchInputField.defaultProps = {
   pattern: '',
 }
 
-export default observer(SearchInputField)
+export default SearchInputField

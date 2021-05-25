@@ -2,7 +2,6 @@ import React, { useReducer } from 'react'
 import { Col, Row } from 'reactstrap'
 import PropTypes from 'prop-types'
 
-import { observer } from 'mobx-react'
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 
@@ -113,4 +112,4 @@ SearchFormFields.defaultProps = {
   isTest: false,
 }
 
-export default observer(SearchFormFields)
+export default SearchFormFields

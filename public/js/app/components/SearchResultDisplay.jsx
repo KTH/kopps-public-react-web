@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
 import axios from 'axios'
-import { observer } from 'mobx-react'
 import ReactDOM from 'react-dom'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
@@ -177,4 +176,4 @@ SearchResultDisplay.defaultProps = {
   searchParameters: {},
 }
 
-export default observer(SearchResultDisplay)
+export default SearchResultDisplay

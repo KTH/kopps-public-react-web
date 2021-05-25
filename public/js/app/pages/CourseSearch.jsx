@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { observer } from 'mobx-react'
+import React, { useState } from 'react'
 import { Col, Row } from 'reactstrap'
 import { CollapseDetails } from '@kth/kth-kip-style-react-components'
+import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
+
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
-import { PageHeading, Heading } from '@kth/kth-reactstrap/dist/components/studinfo'
 import Lead from '../components/Lead'
 import FooterContent from '../components/FooterContent'
 
@@ -28,7 +28,7 @@ function getHelpText(langIndex) {
 function hasValue(param) {
   if (!param || param === null) return false
   if (typeof param === 'object' && param.length === 0) return false
-  else return true
+  return true
 }
 
 function _checkAndGetResultValues({ department, eduLevel, pattern, period, showOptions }) {
@@ -70,8 +70,8 @@ const CourseSearch = () => {
 
   const helptexts = getHelpText(languageIndex)
 
-  function handleSubmit(params) {
-    const finalSearchParams = _checkAndGetResultValues(params)
+  function handleSubmit(props) {
+    const finalSearchParams = _checkAndGetResultValues(props)
 
     setParams(finalSearchParams)
   }
@@ -120,4 +120,4 @@ const CourseSearch = () => {
   )
 }
 
-export default observer(CourseSearch)
+export default CourseSearch
