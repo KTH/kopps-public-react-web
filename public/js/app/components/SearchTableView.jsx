@@ -45,7 +45,7 @@ function periodsStr(startPeriod, startTerm, endPeriod, endTerm) {
   // P5 VT21
   // P5 spring 21 - P0 autumn 21
   if (!startTerm || !startPeriod.toString()) return ''
-  if (!endTerm || !startPeriod.toString()) return `P${startPeriod} ${formatShortTerm(startTerm)}`
+  if (!endTerm || !endPeriod.toString()) return `P${startPeriod} ${formatShortTerm(startTerm)}`
   if (startPeriod === endPeriod && startTerm === endTerm) return `P${startPeriod} ${formatShortTerm(startTerm)}`
   return `P${startPeriod} ${formatShortTerm(startTerm)} - P${endPeriod} ${formatShortTerm(endTerm)}`
 }
@@ -69,8 +69,8 @@ function sortAndParseByCourseCode(courses, languageIndex, sliceUntilNum) {
         codeCell(code),
         titleCell(code, title),
         `${credits} ${creditUnitAbbr}`,
-        bigSearch[level],
-        periodsStr(startPeriod, startTerm, endPeriod, endTerm),
+        bigSearch[level] || '',
+        periodsStr(startPeriod, startTerm, endPeriod, endTerm) || '',
       ].slice(0, sliceUntilNum)
   )
   return parsedCourses
@@ -91,6 +91,7 @@ const SearchTableView = ({ unsortedSearchResults }) => {
       ...searchHitInterval,
     }
   })
+
   const sliceUntilNum = hasSearchHitInterval ? 5 : 4
   const headers = [
     t('department_course_code'),
@@ -101,6 +102,7 @@ const SearchTableView = ({ unsortedSearchResults }) => {
   ].slice(0, sliceUntilNum)
 
   const courses = sortAndParseByCourseCode(flattCoursesArr, languageIndex, sliceUntilNum)
+
   const hitsNumber = courses.length
   return (
     <Row>
