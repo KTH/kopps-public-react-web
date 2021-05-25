@@ -19,6 +19,7 @@ function getHelpText(langIndex) {
     'search_help_3',
     'search_help_4',
     'search_help_5',
+    'search_help_6',
     'search_help_7',
     'search_help_8',
     'search_help_9',

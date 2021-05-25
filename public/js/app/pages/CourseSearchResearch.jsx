@@ -18,6 +18,7 @@ function getHelpText(langAbbr, langIndex) {
     'search_research_help_3',
     'search_research_help_4',
     'search_research_help_5',
+    'search_research_help_6',
     'search_research_help_7',
   ].map(s => thirdCycleSearchInstructions[s])
 

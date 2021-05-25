@@ -154,7 +154,7 @@ const messages = {
     summer: 'sommar',
     department: 'Skola, avdelning, etc',
     departmentsAll: 'Samtliga skolor',
-    departmentsWithin: 'All within',
+    departmentsWithin: 'Alla inom',
   },
   searchInstructions: {
     search_help_collapse_header: 'Få hjälp med sökningen',
