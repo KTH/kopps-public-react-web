@@ -1,5 +1,8 @@
 function setPattern(textPattern) {
-  if (typeof textPattern === 'string') this.textPattern = textPattern || ''
+  if (typeof textPattern === 'string') {
+    const cleanTextPattern = textPattern.replace(/['"<>$]+/g, '').trim()
+    this.textPattern = cleanTextPattern || ''
+  }
   // else throw new Error
 }
 
@@ -12,6 +15,8 @@ function _transformByInputType(parameters) {
       return Object.values(parameters)
     case 'array':
       return parameters
+    default:
+      return []
   }
 }
 
@@ -29,14 +34,12 @@ function setPeriods(periods) {
 
 function setSchoolsWithDepartments(schoolsWithDepartments) {
   this.schoolsWithDepartments = schoolsWithDepartments
-  console.log('schoolsWithDepartments first department', schoolsWithDepartments[0].departments[0])
   //  const departments_example= [
   //   {
   //     departmentPrefix: 'J',
   //     name: 'Elektroteknik och datavetenskap',
   //     departments: [
   //       { code: 'AAB', name: 'Utbildningskansli AAB' }
-  //, [Object], [Object],
   //     ]
   //   },
   //   {

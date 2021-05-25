@@ -23,7 +23,9 @@ function SearchFormFields({ caption, onSubmit, isTest = false }) {
   const nextYearLabel = `${searchStartPeriodPrefix} ${Number(currentYearDate) + 1}`
 
   function handlePatternChange(e) {
-    setState({ pattern: e.target.value })
+    const { value } = e.target
+    const cleanTextPattern = value ? value.replace(/['"<>$]+/g, '').trim() : ''
+    setState({ pattern: cleanTextPattern })
   }
 
   function handleSubmit(e) {
