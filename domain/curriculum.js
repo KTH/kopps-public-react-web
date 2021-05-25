@@ -5,7 +5,7 @@ function curriculumInfo({ programmeTermYear, curriculum, courseRounds }) {
 
   let supplementaryInformation
   let conditionallyELectiveCoursesInformation
-  const participations = []
+  const participations = {}
   const isFirstSpec = false
 
   const { programmeSpecialization, studyYears } = curriculum
@@ -22,14 +22,15 @@ function curriculumInfo({ programmeTermYear, curriculum, courseRounds }) {
     conditionallyELectiveCoursesInformation = curriculumStudyYear.conditionallyElectiveCoursesInfo
 
     for (const course of curriculumStudyYear.courses) {
-      participations.push({
+      if (!participations[course.electiveCondition]) participations[course.electiveCondition] = []
+      participations[course.electiveCondition].push({
         course,
         round: courseRounds.find(courseRound => courseRound.courseCoode === course.courseCode),
       })
     }
   }
 
-  const hasInfo = participations.length !== 0 || !!supplementaryInformation
+  const hasInfo = Object.keys(participations).length !== 0 || !!supplementaryInformation
 
   return {
     code,
@@ -53,7 +54,10 @@ function setFirstSpec(cis) {
   }
 }
 
+const ELECTIVE_CONDITIONS = ['ALL', 'O', 'VV', 'R', 'V']
+
 module.exports = {
   curriculumInfo,
   setFirstSpec,
+  ELECTIVE_CONDITIONS,
 }
