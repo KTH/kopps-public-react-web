@@ -11,8 +11,8 @@ function localeCompareDepartments(language) {
 }
 function SearchDepartments({ onChange }) {
   const store = useStore()
-  const { schoolsWithDepartments, departmentCodeOrPrefix: initialDepartmentCode, language, languageIndex } = store
-  const [department, setDepartment] = useState(initialDepartmentCode || '')
+  const { schoolsWithDepartments, departmentCodeOrPrefix: initialDepartmentCode = '', language, languageIndex } = store
+  const [department, setDepartment] = useState(initialDepartmentCode)
   const { department: departmentLabel, departmentsAll, departmentsWithin } = i18n.messages[languageIndex].bigSearch
 
   useEffect(() => {

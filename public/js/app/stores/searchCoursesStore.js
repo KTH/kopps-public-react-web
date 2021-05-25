@@ -50,7 +50,7 @@ function setSchoolsWithDepartments(schoolsWithDepartments) {
 }
 
 function setDepartmentCodeOrPrefix(departmentCodeOrPrefix) {
-  this.departmentCodeOrPrefix = departmentCodeOrPrefix
+  this.departmentCodeOrPrefix = departmentCodeOrPrefix || ''
 }
 
 const searchCoursesStore = {

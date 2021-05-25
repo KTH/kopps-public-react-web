@@ -8,7 +8,8 @@ import i18n from '../../../../i18n'
 import Lead from '../components/Lead'
 import FooterContent from '../components/FooterContent'
 
-import { SearchFormFields, SearchResultDisplay } from '../components/index'
+import SearchResultDisplay from '../components/SearchResultDisplay'
+import SearchFormFields from '../components/SearchFormFields'
 
 function getHelpText(langIndex) {
   const { searchInstructions } = i18n.messages[langIndex]
@@ -27,21 +28,31 @@ function getHelpText(langIndex) {
 }
 
 function hasValue(param) {
-  if (!param || param === null) return false
+  if (!param || param === null || param === '') return false
   if (typeof param === 'object' && param.length === 0) return false
+  if (typeof param === 'string' && param.trim().length === 0) return false
   return true
+}
+
+function _checkAndGetOtherOptions({ department, eduLevel, period, showOptions }) {
+  // clean params
+
+  const optionsValues = {}
+
+  if (hasValue(eduLevel)) optionsValues.eduLevel = eduLevel
+  if (hasValue(showOptions)) optionsValues.showOptions = showOptions
+  if (hasValue(period)) optionsValues.period = period
+  if (hasValue(department)) optionsValues.department = department
+
+  return optionsValues
 }
 
 function _checkAndGetResultValues({ department, eduLevel, pattern, period, showOptions }) {
   // clean params
+  const optionsInCollapse = _checkAndGetOtherOptions({ department, eduLevel, period, showOptions })
 
-  const resultValues = {}
-
-  if (hasValue(eduLevel)) resultValues.eduLevel = eduLevel
+  const resultValues = optionsInCollapse
   if (hasValue(pattern)) resultValues.pattern = pattern
-  if (hasValue(showOptions)) resultValues.showOptions = showOptions
-  if (hasValue(period)) resultValues.period = period
-  if (hasValue(department)) resultValues.department = department
 
   return resultValues
 }
@@ -58,7 +69,7 @@ const CourseSearch = () => {
   const { bigSearch, searchInstructions } = i18n.messages[languageIndex]
   const { searchHeading, leadIntro } = bigSearch
   const { search_help_collapse_header: collapseHeader, search_help_10: lastInstruction } = searchInstructions
-
+  // const [loadStatus, setLoadStatus] = useState('firstLoad')
   const [params, setParams] = useState(
     _checkAndGetResultValues({
       department: storeDepartment,
@@ -75,6 +86,12 @@ const CourseSearch = () => {
     const finalSearchParams = _checkAndGetResultValues(props)
 
     setParams(finalSearchParams)
+  }
+
+  function _openOptionsInCollapse() {
+    const hasChosenOptions = _checkAndGetOtherOptions(params)
+    if (Object.values(hasChosenOptions).length === 0) return false
+    return true
   }
 
   return (
@@ -104,7 +121,7 @@ const CourseSearch = () => {
       </Row>
       <Row>
         <Col>
-          <SearchFormFields caption={searchHeading} onSubmit={handleSubmit} />
+          <SearchFormFields openOptions={_openOptionsInCollapse()} caption={searchHeading} onSubmit={handleSubmit} />
         </Col>
       </Row>
       <Row>

@@ -81,7 +81,7 @@ function DisplayResult({ languageIndex, status, errorType, searchResults }) {
 
 DisplayResult.propTypes = {
   languageIndex: PropTypes.oneOf([0, 1]),
-  status: PropTypes.oneOf(Object.values(STATUS)).isRequired,
+  status: PropTypes.oneOf([...Object.values(STATUS), null]),
   errorType: PropTypes.oneOf([...Object.values(ERROR_ASYNC), '']),
   searchResults: PropTypes.shape(searchHitsPropsShape),
 }
@@ -90,6 +90,7 @@ DisplayResult.defaultProps = {
   languageIndex: 0,
   errorType: '',
   searchResults: {},
+  status: null,
 }
 
 function SearchResultDisplay({ searchParameters, onlyPattern = false }) {

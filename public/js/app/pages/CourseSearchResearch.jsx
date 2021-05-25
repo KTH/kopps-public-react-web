@@ -8,7 +8,8 @@ import i18n from '../../../../i18n'
 import Lead from '../components/Lead'
 import FooterContent from '../components/FooterContent'
 
-import { SearchInputField, SearchResultDisplay } from '../components/index'
+import { SearchInputField } from '../components/index'
+import SearchResultDisplay from '../components/SearchResultDisplay'
 
 function getHelpText(langAbbr, langIndex) {
   const { thirdCycleSearchInstructions } = i18n.messages[langIndex]

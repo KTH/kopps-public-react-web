@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react'
 import { Col, Row } from 'reactstrap'
 import PropTypes from 'prop-types'
+import { CollapseDetails } from '@kth/kth-kip-style-react-components'
 
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
@@ -10,11 +11,11 @@ import { SearchDepartments, SearchOptions } from './index'
 
 const paramsReducer = (state, action) => ({ ...state, ...action })
 
-function SearchFormFields({ caption, onSubmit, isTest = false }) {
+function SearchFormFields({ caption, openOptions, onSubmit, isTest = false }) {
   const { languageIndex, textPattern: initialPattern = '' } = useStore()
 
   const { generalSearch } = i18n.messages[languageIndex]
-  const { searchLabel, searchStartPeriodPrefix, searchText } = generalSearch
+  const { searchLabel, searchStartPeriodPrefix, searchText, collapseHeaderOtherSearchOptions } = generalSearch
   const [state, setState] = useReducer(paramsReducer, { pattern: initialPattern })
   const { pattern } = state
 
@@ -65,41 +66,46 @@ function SearchFormFields({ caption, onSubmit, isTest = false }) {
           name="pattern"
         />
       </div>
+      <CollapseDetails color="white" open={openOptions} title={collapseHeaderOtherSearchOptions}>
+        <Row>
+          <Col>
+            <SearchOptions
+              overrideSearchHead={currentYearLabel}
+              paramAliasName="currentYear"
+              paramName="period"
+              onChange={handleParamChange}
+            />
+          </Col>
+          <Col>
+            <SearchOptions
+              overrideSearchHead={nextYearLabel}
+              paramAliasName="nextYear"
+              paramName="period"
+              onChange={handleParamChange}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <SearchOptions paramName="eduLevel" onChange={handleParamChange} />
+          </Col>
+          <Col>
+            <SearchOptions paramName="showOptions" onChange={handleParamChange} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <SearchDepartments onChange={handleParamChange} />
+          </Col>
+        </Row>
+      </CollapseDetails>
       <Row>
         <Col>
-          <SearchOptions
-            overrideSearchHead={currentYearLabel}
-            paramAliasName="currentYear"
-            paramName="period"
-            onChange={handleParamChange}
-          />
-        </Col>
-        <Col>
-          <SearchOptions
-            overrideSearchHead={nextYearLabel}
-            paramAliasName="nextYear"
-            paramName="period"
-            onChange={handleParamChange}
-          />
+          <button className="btn btn-primary" type="submit" style={{ float: 'right' }}>
+            {caption}
+          </button>
         </Col>
       </Row>
-      <Row>
-        <Col>
-          <SearchOptions paramName="eduLevel" onChange={handleParamChange} />
-        </Col>
-        <Col>
-          <SearchOptions paramName="showOptions" onChange={handleParamChange} />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <SearchDepartments onChange={handleParamChange} />
-        </Col>
-      </Row>
-
-      <button className="btn btn-primary" type="submit" style={{ float: 'right' }}>
-        {caption}
-      </button>
     </form>
   )
 }
@@ -107,6 +113,7 @@ function SearchFormFields({ caption, onSubmit, isTest = false }) {
 SearchFormFields.propTypes = {
   caption: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  openOptions: PropTypes.bool.isRequired,
   isTest: PropTypes.bool,
 }
 
