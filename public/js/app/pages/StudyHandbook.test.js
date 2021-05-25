@@ -12,9 +12,8 @@ import PageLayout from '../layout/PageLayout'
 
 import createApplicationStore from '../stores/createApplicationStore'
 import getMenuData from '../config/menuData'
-const applicationStore = createApplicationStore()
 
-const { getAllByRole, getAllByTestId, getAllByText, getByTestId, getByText } = screen
+const applicationStore = createApplicationStore()
 
 const testProxyPath = 'localhost://kopps-public'
 const proxyPrefixPath = { uri: testProxyPath }
