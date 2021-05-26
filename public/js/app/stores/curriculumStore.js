@@ -22,10 +22,6 @@ function setCurriculums(curriculums) {
   this.curriculums = curriculums
 }
 
-function setCourseRounds(courseRounds) {
-  this.courseRounds = courseRounds
-}
-
 function setMissingAdmission() {
   this.error = this.errorType.MISSING_ADMISSION
 }
@@ -97,15 +93,6 @@ const curriculumStore = {
    * @param {[]} curriculums
    */
   setCurriculums,
-  /**
-   * @property {[]} courseRounds
-   */
-  courseRounds: [],
-  /**
-   * @method
-   * @param {[]} courseRounds
-   */
-  setCourseRounds,
   /**
    * @property {{}} errorType
    */

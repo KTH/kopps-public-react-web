@@ -47,29 +47,30 @@ const curriculumWithProgrammeSpecialization = {
     title: 'A Special Programme',
   },
   studyYears: [firstYearCourses],
+  courseRounds: [],
 }
 
 const curriculumWithSupplementaryInformation = {
   studyYears: [thirdYearCoursesWithSupplementaryInformation],
+  courseRounds: [],
 }
 
 const curriculumWithConditionallyElectiveCoursesInformation = {
   studyYears: [thirdYearCoursesWithConditionallyElectiveCoursesInformation],
+  courseRounds: [],
 }
 
-const curriculum = { studyYears: [firstYearCourses] }
+const curriculum = { studyYears: [firstYearCourses], courseRounds: [] }
 
 describe('Create curriculum info', () => {
   test('with non-existing study year', () => {
     const programmeTermYear = { studyYear: secondYear }
-    const courseRounds = []
-    const info = curriculumInfo({ programmeTermYear, curriculum, courseRounds })
+    const info = curriculumInfo({ programmeTermYear, curriculum })
     expect(info.hasInfo).toBeFalse()
   })
   test('with programme specialization', () => {
     const programmeTermYear = { studyYear: firstYear }
-    const courseRounds = []
-    const info = curriculumInfo({ programmeTermYear, curriculum: curriculumWithProgrammeSpecialization, courseRounds })
+    const info = curriculumInfo({ programmeTermYear, curriculum: curriculumWithProgrammeSpecialization })
     expect(info.code).toBeString()
     expect(info.specializationName).toBeString()
     expect(info.isCommon).toBeFalse()
@@ -77,41 +78,35 @@ describe('Create curriculum info', () => {
   })
   test('without programme specialization', () => {
     const programmeTermYear = { studyYear: firstYear }
-    const courseRounds = []
-    const info = curriculumInfo({ programmeTermYear, curriculum, courseRounds })
+    const info = curriculumInfo({ programmeTermYear, curriculum })
     expect(info.code).toBeNull()
     expect(info.specializationName).toBeNull()
     expect(info.hasInfo).toBeTrue()
   })
   test('with supplementary information', () => {
     const programmeTermYear = { studyYear: thirdYear }
-    const courseRounds = []
-    const info = curriculumInfo({ programmeTermYear, curriculum: curriculumWithSupplementaryInformation, courseRounds })
+    const info = curriculumInfo({ programmeTermYear, curriculum: curriculumWithSupplementaryInformation })
     expect(info.supplementaryInformation).toBeString()
     expect(info.hasInfo).toBeTrue()
   })
   test('without supplementary information', () => {
     const programmeTermYear = { studyYear: thirdYear }
-    const courseRounds = []
-    const info = curriculumInfo({ programmeTermYear, curriculum, courseRounds })
+    const info = curriculumInfo({ programmeTermYear, curriculum })
     expect(info.supplementaryInformation).toBeFalsy()
     expect(info.hasInfo).toBeFalse()
   })
   test('with conditionally elective courses information', () => {
     const programmeTermYear = { studyYear: thirdYear }
-    const courseRounds = []
     const info = curriculumInfo({
       programmeTermYear,
       curriculum: curriculumWithConditionallyElectiveCoursesInformation,
-      courseRounds,
     })
     expect(info.conditionallyELectiveCoursesInformation).toBeString()
     expect(info.hasInfo).toBeTrue()
   })
   test('without conditionally elective courses information', () => {
     const programmeTermYear = { studyYear: firstYear }
-    const courseRounds = []
-    const info = curriculumInfo({ programmeTermYear, curriculum, courseRounds })
+    const info = curriculumInfo({ programmeTermYear, curriculum })
     expect(info.conditionallyELectiveCoursesInformation).toBeFalsy()
     expect(info.hasInfo).toBeTrue()
   })

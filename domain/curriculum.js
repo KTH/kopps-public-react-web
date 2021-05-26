@@ -1,4 +1,4 @@
-function curriculumInfo({ programmeTermYear, curriculum, courseRounds }) {
+function curriculumInfo({ programmeTermYear, curriculum }) {
   let code = null
   let specializationName = null
   let isCommon = true
@@ -25,7 +25,7 @@ function curriculumInfo({ programmeTermYear, curriculum, courseRounds }) {
       if (!participations[course.electiveCondition]) participations[course.electiveCondition] = []
       participations[course.electiveCondition].push({
         course,
-        round: courseRounds.find(courseRound => courseRound.courseCoode === course.courseCode),
+        round: curriculum.courseRounds.find(courseRound => courseRound.courseCode === course.courseCode),
       })
     }
   }

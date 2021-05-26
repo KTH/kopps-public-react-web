@@ -17,21 +17,30 @@ function programmeLink(proxyPrefixPath, programmeCode, lang) {
   return `${proxyPrefixPath}/student/kurser/program/${programmeCode}${languageParam}`
 }
 
-async function _getCourseRounds(curriculums, programmeCode, term, studyYear, lang) {
-  return Promise.all(
+async function _getCourseRounds(curriculum, programmeCode, term, studyYear, lang) {
+  const specializationCode = curriculum.programmeSpecialization
+    ? curriculum.programmeSpecialization.programmeSpecializationCode
+    : null
+  return koppsApi.listCourseRoundsInYearPlan({
+    programmeCode,
+    specializationCode,
+    academicYearStartTerm: term,
+    studyYearNumber: studyYear,
+    lang,
+  })
+}
+
+async function _addCourseRounds(curriculums, programmeCode, term, studyYear, lang) {
+  const curriculumsWithCourseRounds = []
+  await Promise.all(
     curriculums.map(async curriculum => {
-      const specializationCode = curriculum.programmeSpecialization
-        ? curriculum.programmeSpecialization.programmeSpecializationCode
-        : null
-      return koppsApi.listCourseRoundsInYearPlan({
-        programmeCode,
-        specializationCode,
-        academicYearStartTerm: term,
-        studyYearNumber: studyYear,
-        lang,
-      })
+      const courseRounds = await _getCourseRounds(curriculum, programmeCode, term, studyYear, lang)
+      const curriculumWithCourseRounds = curriculum
+      curriculumWithCourseRounds.courseRounds = courseRounds
+      curriculumsWithCourseRounds.push(curriculumWithCourseRounds)
     })
   )
+  return curriculumsWithCourseRounds
 }
 
 function _setError(applicationStore, statusCode) {
@@ -66,11 +75,10 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, progr
   const { id: studyProgrammeId } = studyProgramme
 
   const curriculums = await koppsApi.listCurriculums(studyProgrammeId, lang)
-  applicationStore.setCurriculums(curriculums)
-  const courseRounds = await _getCourseRounds(curriculums, programmeCode, term, studyYear, lang)
-  applicationStore.setCourseRounds(courseRounds)
-  const curriculumInfos = curriculums
-    .map(curriculum => curriculumInfo({ programmeTermYear: { studyYear }, curriculum, courseRounds }))
+  const curriculumsWithCourseRounds = await _addCourseRounds(curriculums, programmeCode, term, studyYear, lang)
+  applicationStore.setCurriculums(curriculumsWithCourseRounds)
+  const curriculumInfos = curriculumsWithCourseRounds
+    .map(curriculum => curriculumInfo({ programmeTermYear: { studyYear }, curriculum }))
     .filter(ci => ci.hasInfo)
   setFirstSpec(curriculumInfos)
   applicationStore.setCurriculumInfos(curriculumInfos)
