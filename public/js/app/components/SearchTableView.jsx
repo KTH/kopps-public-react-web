@@ -42,12 +42,14 @@ function compareCoursesBy(key) {
 }
 
 function periodsStr(startPeriod, startTerm, endPeriod, endTerm) {
+  const { language } = useStore()
   // P5 VT21
   // P5 spring 21 - P0 autumn 21
   if (!startTerm || !startPeriod.toString()) return ''
-  if (!endTerm || !endPeriod.toString()) return `P${startPeriod} ${formatShortTerm(startTerm)}`
-  if (startPeriod === endPeriod && startTerm === endTerm) return `P${startPeriod} ${formatShortTerm(startTerm)}`
-  return `P${startPeriod} ${formatShortTerm(startTerm)} - P${endPeriod} ${formatShortTerm(endTerm)}`
+  if (!endTerm || !endPeriod.toString()) return `P${startPeriod} ${formatShortTerm(startTerm, language)}`
+  if (startPeriod === endPeriod && startTerm === endTerm)
+    return `P${startPeriod} ${formatShortTerm(startTerm, language)}`
+  return `P${startPeriod} ${formatShortTerm(startTerm, language)} - P${endPeriod} ${formatShortTerm(endTerm, language)}`
 }
 
 function sortAndParseByCourseCode(courses, languageIndex, sliceUntilNum) {
@@ -109,13 +111,13 @@ const SearchTableView = ({ unsortedSearchResults }) => {
       <Col>
         <Article>
           {language === 'en' ? (
-            <p>
+            <p data-testid="number-of-results">
               {'Your search returned '}
               <b>{hitsNumber}</b>
               {' result(s).'}
             </p>
           ) : (
-            <p>
+            <p data-testid="number-of-results">
               {`Din sökning gav `}
               <b>{hitsNumber}</b>
               {' resultat.'}
