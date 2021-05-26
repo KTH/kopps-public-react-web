@@ -21,7 +21,7 @@ async function getAllSchoolsAndDepartments(req, res, next) {
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
-    const { uri: proxyPrefix } = serverConfig.proxyPrefixPath
+    const proxyPrefix = serverConfig.proxyPrefixPath.thirdCycleSchoolsAndDepartments
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('site_name', lang)
 
@@ -101,7 +101,7 @@ async function getCoursesPerDepartment(req, res, next) {
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
-    const { uri: proxyPrefix } = serverConfig.proxyPrefixPath
+    const proxyPrefix = serverConfig.proxyPrefixPath.thirdCycleCoursesPerDepartment
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('site_name', lang)
 

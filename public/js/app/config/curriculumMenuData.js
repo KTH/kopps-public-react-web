@@ -4,7 +4,7 @@ const { pageLink } = require('../util/links')
 
 function getCurriculumMenuData(applicationStore) {
   const { language, browserConfig, programmeCode, programmeName, term, studyYear } = applicationStore
-  const proxyPrefixPath = browserConfig.proxyPrefixPath.uri
+  const pageRoot = browserConfig.proxyPrefixPath.schoolsList
   const t = translate(language)
   const directoryText = `${t('programme_admitted_year')} ${formatShortTerm(term, language)}`
   const leafText = applicationStore.isMissingAdmission()
@@ -14,7 +14,7 @@ function getCurriculumMenuData(applicationStore) {
     ariaLabel: t('main_menu_aria_label'),
     parentLink: {
       text: programmeName,
-      url: pageLink(proxyPrefixPath, `student/kurser/program/${programmeCode}`, language),
+      url: pageLink(`${pageRoot}/student/kurser/program/${programmeCode}`, language),
     },
     navList: {
       type: 'expandable',
@@ -28,7 +28,7 @@ function getCurriculumMenuData(applicationStore) {
           id: studyYear,
           type: 'leaf',
           text: leafText,
-          url: pageLink(proxyPrefixPath, `student/kurser/program/${programmeCode}/${term}/${studyYear}`, language),
+          url: pageLink(`${pageRoot}/student/kurser/program/${programmeCode}/${term}/${studyYear}`, language),
         },
       ],
     },

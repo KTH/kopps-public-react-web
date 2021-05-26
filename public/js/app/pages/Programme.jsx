@@ -18,11 +18,11 @@ function programmeTermLinkText(term) {
 }
 
 function ProgrammeTermsLinkListItem({ term }) {
-  const { language, browserConfig, programmeCode, lengthInStudyYears } = useStore()
+  const { language, programmeCode, lengthInStudyYears } = useStore()
   const studyYear = calculateStudyYear(term, lengthInStudyYears)
   return (
     <Link
-      href={programTermLink(browserConfig.proxyPrefixPath.uri, programmeCode, term, `arskurs${studyYear}`, language)}
+      href={programTermLink(programmeCode, term, `arskurs${studyYear}`, language)}
     >
       {programmeTermLinkText(term)}
     </Link>

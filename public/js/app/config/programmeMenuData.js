@@ -3,13 +3,12 @@ const { pageLink } = require('../util/links')
 
 function getProgrammeMenuData(applicationStore) {
   const { language, browserConfig, programmeName } = applicationStore
-  const proxyPrefixPath = browserConfig.proxyPrefixPath.uri
   const t = translate(language)
   return {
     ariaLabel: t('main_menu_aria_label'),
     parentLink: {
       text: t('main_menu_directory'),
-      url: pageLink(proxyPrefixPath, 'student/kurser/org', language),
+      url: pageLink(browserConfig.proxyPrefixPath.department, language),
     },
     navList: {
       type: 'expandable',

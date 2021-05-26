@@ -3,7 +3,7 @@ const { parentThirdCycleStudyLink, pageLink } = require('../util/links')
 
 function getThirdCycleMenuData(applicationStore) {
   const { language, browserConfig } = applicationStore
-  const proxyPrefixPath = browserConfig.proxyPrefixPath.uri
+  const { thirdCycleSchoolsAndDepartments, thirdCycleCourseSearch } = browserConfig.proxyPrefixPath
   const t = translate(language)
   return {
     ariaLabel: t('main_menu_aria_label'),
@@ -23,13 +23,13 @@ function getThirdCycleMenuData(applicationStore) {
           id: 'thirdCycleDepartmentsList',
           type: 'leaf',
           text: t('main_menu_third_cycle_departments_list_header'),
-          url: pageLink(proxyPrefixPath, 'utbildning/forskarutbildning/kurser/avdelning', language),
+          url: pageLink(thirdCycleSchoolsAndDepartments, language),
         },
         {
           id: 'searchThirdCycleCourses',
           type: 'leaf',
           text: t('main_menu_third_cycle_courses_search'),
-          url: pageLink(proxyPrefixPath, 'utbildning/forskarutbildning/kurser/sok', language),
+          url: pageLink(thirdCycleCourseSearch, language),
         },
       ],
     },

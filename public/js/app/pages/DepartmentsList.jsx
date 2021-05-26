@@ -20,12 +20,11 @@ function localeCompareDepartments(language) {
 
 function DepartmentsLinkList({ departments }) {
   const { language } = useStore()
-  const { browserConfig } = useStore()
   departments.sort(localeCompareDepartments(language))
   return (
     <LinkList>
       {departments.map(department => (
-        <Link key={department.name} href={departmentLink(browserConfig.proxyPrefixPath.uri, department.code, language)}>
+        <Link key={department.name} href={departmentLink(department.code, language)}>
           {department.name}
         </Link>
       ))}

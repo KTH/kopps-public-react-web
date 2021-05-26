@@ -26,7 +26,7 @@ async function searchThirdCycleCourses(req, res, next) {
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
-    const { uri: proxyPrefix } = serverConfig.proxyPrefixPath
+    const proxyPrefix = serverConfig.proxyPrefixPath.thirdCycleCourseSearch
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('site_name', lang)
 
@@ -77,7 +77,7 @@ async function searchAllCourses(req, res, next) {
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
-    const { uri: proxyPrefix } = serverConfig.proxyPrefixPath
+    const { uri: proxyPrefix } = serverConfig.proxyPrefixPath.courseSearch
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('site_name', lang)
 

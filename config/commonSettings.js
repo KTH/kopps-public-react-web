@@ -9,11 +9,20 @@
  */
 const { getEnv, devDefaults } = require('kth-node-configuration')
 
-const devPrefixPath = devDefaults('/kopps-public')
-
 module.exports = {
   // The proxy prefix path if the application is proxied. E.g /places
   proxyPrefixPath: {
-    uri: getEnv('SERVICE_PUBLISH', devPrefixPath),
+    uri: '/student/kurser',
+    department: '/student/kurser/org',
+    programme: '/student/kurser/program',
+    programmesList: '/student/kurser/kurser-inom-program',
+    schoolsList: '/student/kurser/program',
+    courseSearch: '/student/kurser/sokkurs',
+    studyHandbook: '/student/program/shb',
+    studentRoot: '/student/kurser',
+    thirdCycleCourseSearch: '/utbildning/forskarutbildning/kurser/sok',
+    thirdCycleSchoolsAndDepartments: '/utbildning/forskarutbildning/kurser/avdelning',
+    thirdCycleCoursesPerDepartment: '/utbildning/forskarutbildning/kurser/org',
+    thirdCycleRoot: '/utbildning/forskarutbildning/kurser', // Don't contain any content, is just immedately redirected.
   },
 }

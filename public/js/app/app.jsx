@@ -52,11 +52,7 @@ function _renderOnClientSide() {
   if (!isClientSide) {
     return
   }
-
-  // @ts-ignore
-  const basename = window.config.proxyPrefixPath.uri
-
-  const app = <BrowserRouter basename={basename}>{appFactory()}</BrowserRouter>
+  const app = <BrowserRouter>{appFactory()}</BrowserRouter>
 
   const domElement = document.getElementById('app')
   ReactDOM.hydrate(app, domElement)

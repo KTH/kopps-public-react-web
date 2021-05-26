@@ -3,7 +3,7 @@ const { parentLink, pageLink } = require('../util/links')
 
 function getMenuData(applicationStore) {
   const { language, browserConfig } = applicationStore
-  const proxyPrefixPath = browserConfig.proxyPrefixPath.uri
+  const {programmesList, courseSearch, department, studyHandbook} = browserConfig.proxyPrefixPath
   const t = translate(language)
   return {
     ariaLabel: t('main_menu_aria_label'),
@@ -23,25 +23,25 @@ function getMenuData(applicationStore) {
           id: 'programmesList',
           type: 'leaf',
           text: t('main_menu_programmes_list'),
-          url: pageLink(proxyPrefixPath, 'student/kurser/kurser-inom-program'),
+          url: pageLink(programmesList),
         },
         {
           id: 'searchAllCourses',
           type: 'leaf',
           text: t('main_menu_search_all'),
-          url: pageLink(proxyPrefixPath, 'student/kurser/sokkurs'),
+          url: pageLink(courseSearch),
         },
         {
           id: 'departmentsList',
           type: 'leaf',
           text: t('main_menu_departments_list'),
-          url: pageLink(proxyPrefixPath, 'student/kurser/org'),
+          url: pageLink(department),
         },
         {
           id: 'shb',
           type: 'leaf',
           text: t('main_menu_shb'),
-          url: pageLink(proxyPrefixPath, 'student/program/shb'),
+          url: pageLink(studyHandbook),
         },
       ],
     },

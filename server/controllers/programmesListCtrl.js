@@ -104,7 +104,7 @@ async function getProgrammesList(req, res, next) {
     await _fillApplicationStoreOnServerSide({ applicationStore, lang })
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
-    const { uri: proxyPrefix } = serverConfig.proxyPrefixPath
+    const proxyPrefix = serverConfig.proxyPrefixPath.programmesList
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('site_name', lang)
 

@@ -1,3 +1,5 @@
+// TODO: should we use constants from commonSettings here?
+
 function getLanguageParam(language) {
   return language === 'en' ? '?l=en' : ''
 }
@@ -15,9 +17,9 @@ function parentThirdCycleStudyLink(language) {
   return `/utbildning/forskarutbildning/${getLanguageParam(language)}`
 }
 
-function pageLink(proxyPrefixPath, pageId, language) {
+function pageLink(pageId, language) {
   const languageParam = getLanguageParam(language)
-  return `${proxyPrefixPath}/${pageId}${languageParam}`
+  return `${pageId}${languageParam}`
 }
 
 function programmeLink(programmeCode, language) {
@@ -25,14 +27,14 @@ function programmeLink(programmeCode, language) {
   return `/student/kurser/program/${programmeCode}${languageParam}`
 }
 
-function departmentLink(proxyPrefixPath, departmentCode, language) {
+function departmentLink(departmentCode, language) {
   const languageParam = getLanguageParam(language)
-  return `${proxyPrefixPath}/student/kurser/org/${departmentCode}${languageParam}`
+  return `/student/kurser/org/${departmentCode}${languageParam}`
 }
 
-function thirdCycleDepartmentLink(proxyPrefixPath, departmentCode, language) {
+function thirdCycleDepartmentLink(departmentCode, language) {
   const languageParam = getLanguageParam(language)
-  return `${proxyPrefixPath}/utbildning/forskarutbildning/kurser/org/${departmentCode}${languageParam}`
+  return `/utbildning/forskarutbildning/kurser/org/${departmentCode}${languageParam}`
 }
 
 function courseLink(courseCode, language) {
@@ -40,9 +42,9 @@ function courseLink(courseCode, language) {
   return `/student/kurser/kurs/${courseCode}${languageParam}` // outside link
 }
 
-function programTermLink(proxyPrefixPath, programmeCode, term, studyYear, language) {
+function programTermLink(programmeCode, term, studyYear, language) {
   const languageParam = language === 'en' ? '?l=en' : ''
-  return `${proxyPrefixPath}/student/kurser/program/${programmeCode}/${term}/${studyYear}${languageParam}`
+  return `/student/kurser/program/${programmeCode}/${term}/${studyYear}${languageParam}`
 }
 
 function centralStudyCounselingUrl() {

@@ -1,7 +1,6 @@
 #!/bin/bash
 
 ENV=$1
-PROXY_PREFIX_PATH=$2
 
 function echoYellow() {
   MSG=$1
@@ -42,13 +41,13 @@ cp -R ./node_modules/kth-node-web-common/lib/handlebars/pages/layouts/. server/v
 # Run parcel build on the vendor.js file and put the optimized file into the /dist folder.
 echo
 echoYellow "  2. Bundling vendor.js into the /dist folder\n"
-parcel build ./public/js/vendor.js --public-url $PROXY_PREFIX_PATH/static
+parcel build ./public/js/vendor.js
 
 if [ "$ENV" == "prod" ]; then
   # Run parcel build on the files in /public/js/app and put the optimized files into the /dist folder.
   echo
   echoYellow "  3. Bundling the client app into the /dist folder\n"
-  parcel build './public/js/app/{*.js,*.jsx}' --public-url $PROXY_PREFIX_PATH/static
+  parcel build './public/js/app/{*.js,*.jsx}'
 
   echo
   echoYellow "  Done.\n"
@@ -59,10 +58,10 @@ if [ "$ENV" == "dev" ]; then
   # Run parcel build on the files in /public/js/app and put the optimized files into the /dist folder.
   echo
   echoYellow "  3. Bundling the client app into the /dist folder to list results\n"
-  parcel build --no-minify './public/js/app/{*.js,*.jsx}' --public-url http://localhost:3000$PROXY_PREFIX_PATH/static
+  parcel build --no-minify './public/js/app/{*.js,*.jsx}'
 
   # Run parcel watch on the files in /public/js/app and put the optimized files into the /dist folder.
   echo
   echoYellow "  4. Running watch on client app. Check /dist for changes\n"
-  parcel watch './public/js/app/{*.js,*.jsx}' --public-url http://localhost:3000$PROXY_PREFIX_PATH/static
+  parcel watch './public/js/app/{*.js,*.jsx}'
 fi

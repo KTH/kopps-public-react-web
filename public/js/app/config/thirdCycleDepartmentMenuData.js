@@ -3,13 +3,12 @@ const { pageLink } = require('../util/links')
 
 function getThirdCycleDepartmentMenuData(applicationStore) {
   const { language, browserConfig, departmentName } = applicationStore
-  const proxyPrefixPath = browserConfig.proxyPrefixPath.uri
   const t = translate(language)
   return {
     ariaLabel: t('main_menu_aria_label'),
     parentLink: {
       text: t('department_courses'),
-      url: pageLink(proxyPrefixPath, 'utbildning/forskarutbildning/kurser', language),
+      url: pageLink(browserConfig.proxyPrefixPath.thirdCycleRoot, language),
     },
     navList: {
       type: 'expandable',

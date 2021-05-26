@@ -18,8 +18,8 @@
     "test:watch": "NODE_ENV=test jest --watch",
     "test:notify": "NODE_ENV=test jest --watch --notify",
     "test:components": "NODE_ENV=test jest ./public/js/app/components/SearchTableView.test.js --watch --notify",
-    "build": "bash ./build.sh prod /kopps-public",
-    "build-dev": "bash ./build.sh dev /kopps-public",
+    "build": "bash ./build.sh prod",
+    "build-dev": "bash ./build.sh dev",
     "start": "bash -c 'NODE_ENV=production node app.js'",
     "start-dev": "bash -c 'NODE_ENV=development concurrently --kill-others -n build,app \"npm run build-dev\" \"nodemon app.js\"'",
     "lint": "eslint \"public/**/*.{js,jsx}\" --quiet"

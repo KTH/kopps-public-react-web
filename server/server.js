@@ -145,14 +145,16 @@ server.use(session(options))
  */
 const { languageHandler } = require('kth-node-web-common/lib/language')
 
-server.use(config.proxyPrefixPath.uri, languageHandler)
+for (const pageRoot in config.proxyPrefixPath) {
+  server.use(config.proxyPrefixPath[pageRoot], languageHandler)
+}
 
 /* ******************************
  * ******* CORTINA BLOCKS *******
  * ******************************
  */
 server.use(
-  config.proxyPrefixPath.uri,
+  '/',
   require('kth-node-web-common/lib/web/cortina')({
     blockUrl: config.blockApi.blockUrl,
     proxyPrefixPath: config.proxyPrefixPath.uri,
@@ -219,21 +221,21 @@ const appRoute = AppRouter()
 appRoute.get('system.index', config.proxyPrefixPath.uri + '/', Public.getIndex)
 appRoute.get('system.ready', config.proxyPrefixPath.uri + '/_ready', Public.getReady)
 appRoute.get('example', config.proxyPrefixPath.uri + '/example', Public.getIndex)
-appRoute.get('public.studyhandbook', config.proxyPrefixPath.uri + '/student/program/shb', StudyHandBook.getStudyBook)
+appRoute.get('public.studyhandbook', config.proxyPrefixPath.studyHandbook, StudyHandBook.getStudyBook)
 appRoute.get('dev.fovkurser', config.proxyPrefixPath.uri + '/utbildning/kurser/fovkurser', Public.getFovSearch)
 appRoute.get(
   'public.departmentsListThirdCycleStudy',
-  config.proxyPrefixPath.uri + '/utbildning/forskarutbildning/kurser/avdelning',
+  config.proxyPrefixPath.thirdCycleSchoolsAndDepartments,
   ThirdCycleStudy.getAllSchoolsAndDepartments
 )
 appRoute.get(
   'public.departmentThirdCycleStudy',
-  config.proxyPrefixPath.uri + '/utbildning/forskarutbildning/kurser/org/:departmentCode',
+  config.proxyPrefixPath.thirdCycleCoursesPerDepartment + '/:departmentCode',
   ThirdCycleStudy.getCoursesPerDepartment
 )
 appRoute.get(
   'public.searchThirdCycleCourses',
-  config.proxyPrefixPath.uri + '/utbildning/forskarutbildning/kurser/sok',
+  config.proxyPrefixPath.thirdCycleCourseSearch,
   Search.searchThirdCycleCourses
 )
 appRoute.get('public.searchAllCourses', config.proxyPrefixPath.uri + '/student/kurser/sokkurs', Search.searchAllCourses)
@@ -263,29 +265,29 @@ appRoute.get(
 )
 appRoute.get(
   'public.programmesList',
-  config.proxyPrefixPath.uri + '/student/kurser/kurser-inom-program',
+  config.proxyPrefixPath.programmesList,
   ProgrammesList.getProgrammesList
 )
-appRoute.get('public.departmentsList', config.proxyPrefixPath.uri + '/student/kurser/org', SchoolsList.getSchoolsList)
+appRoute.get('public.departmentsList', config.proxyPrefixPath.department, SchoolsList.getSchoolsList)
 appRoute.get(
   'public.department',
-  config.proxyPrefixPath.uri + '/student/kurser/org/:departmentCode',
+  config.proxyPrefixPath.department + '/:departmentCode',
   Department.getIndex
 )
 appRoute.get(
   'public.programme',
-  config.proxyPrefixPath.uri + '/student/kurser/program/:programmeCode',
+  config.proxyPrefixPath.programme + '/:programmeCode',
   Programme.getIndex
 )
-appRoute.get('redirect.kurser', config.proxyPrefixPath.uri + '/student/kurser', (req, res) => {
-  res.redirect(301, config.proxyPrefixPath.uri + '/student/kurser/kurser-inom-program')
+appRoute.get('redirect.kurser', config.proxyPrefixPath.studentRoot, (req, res) => {
+  res.redirect(301, config.proxyPrefixPath.programmesList)
 })
-appRoute.get('redirect.program', config.proxyPrefixPath.uri + '/student/kurser/program', (req, res) => {
-  res.redirect(301, config.proxyPrefixPath.uri + '/student/kurser/kurser-inom-program')
+appRoute.get('redirect.program', config.proxyPrefixPath.programme , (req, res) => {
+  res.redirect(301, config.proxyPrefixPath.programmesList)
 })
 appRoute.get(
   'dev.curriculum',
-  config.proxyPrefixPath.uri + '/student/kurser/program/:programmeCode/:term/arskurs:studyYear([1-5])',
+  config.proxyPrefixPath.programme + '/:programmeCode/:term/arskurs:studyYear([1-5])',
   Curriculum.getIndex
 )
 server.use('/', appRoute.getRouter())
