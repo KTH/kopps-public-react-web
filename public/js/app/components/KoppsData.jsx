@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { useStore } from '../mobx'
 
 function KoppsData({ html }) {
+  if (!html) return null
   const { browserConfig } = useStore()
   const { markHtmlFromKopps } = browserConfig
   return markHtmlFromKopps ? (
@@ -15,7 +16,11 @@ function KoppsData({ html }) {
 }
 
 KoppsData.propTypes = {
-  html: PropTypes.string.isRequired,
+  html: PropTypes.string,
+}
+
+KoppsData.defaultProps = {
+  html: null,
 }
 
 export default KoppsData
