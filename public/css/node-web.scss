@@ -1,3 +1,8 @@
+%long-text-font-style {
+  font-family: Georgia, 'garamond pro', garamond, 'times new roman', times, serif;
+  word-break: break-word;
+}
+
 #app {
   padding: 30px 0;
 }
@@ -6,4 +11,8 @@
   .nav-link {
     padding: 7px 15px 7px 0;
   }
+}
+
+.search-instructions {
+  @extend %long-text-font-style;
 }
