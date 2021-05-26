@@ -53,6 +53,18 @@ function _setError(applicationStore, statusCode) {
   }
 }
 
+function _compareCurriculum(a, b) {
+  if (!a) return 1
+  if (!b) return -1
+  if (a.code < b.code) {
+    return -1
+  }
+  if (a.code > b.code) {
+    return 1
+  }
+  return 0
+}
+
 async function _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode, term, studyYear }) {
   applicationStore.setLanguage(lang)
   applicationStore.setBrowserConfig(browserConfig)
@@ -80,6 +92,7 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, progr
   const curriculumInfos = curriculumsWithCourseRounds
     .map(curriculum => curriculumInfo({ programmeTermYear: { studyYear }, curriculum }))
     .filter(ci => ci.hasInfo)
+  curriculumInfos.sort(_compareCurriculum)
   setFirstSpec(curriculumInfos)
   applicationStore.setCurriculumInfos(curriculumInfos)
 
