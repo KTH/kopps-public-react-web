@@ -21,7 +21,7 @@ exports[`Render component DepartmentCourses within Layout match to snapshot in E
             class="parentLink"
           >
             <a
-              href="/kopps-public/student/kurser/org?l=en"
+              href="/student/kurser/org?l=en"
             >
               Course and programme directory
             </a>
@@ -243,7 +243,7 @@ exports[`Render component DepartmentCourses within Layout match to snapshot in S
             class="parentLink"
           >
             <a
-              href="/kopps-public/student/kurser/org"
+              href="/student/kurser/org"
             >
               Kurs- och programkatalogen
             </a>

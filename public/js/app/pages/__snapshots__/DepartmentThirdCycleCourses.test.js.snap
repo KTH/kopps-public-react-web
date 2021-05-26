@@ -21,7 +21,7 @@ exports[`Render component DepartmentCourses within Layout for third cycle studie
             class="parentLink"
           >
             <a
-              href="/kopps-public/utbildning/forskarutbildning/kurser?l=en"
+              href="/utbildning/forskarutbildning/kurser?l=en"
             >
               Courses
             </a>
@@ -265,7 +265,7 @@ exports[`Render component DepartmentCourses within Layout for third cycle studie
             class="parentLink"
           >
             <a
-              href="/kopps-public/utbildning/forskarutbildning/kurser"
+              href="/utbildning/forskarutbildning/kurser"
             >
               Kurser
             </a>

@@ -15,12 +15,13 @@ import createApplicationStore from '../stores/createApplicationStore'
 import getThirdCycleBreadcrumbs from '../config/thirdCycleBreadcrumbs'
 import getThirdCycleDepartmentMenuData from '../config/thirdCycleDepartmentMenuData'
 
+import commonSettings from '../config/mocks/mockCommonSettings'
+
 expect.extend(toHaveNoViolations)
 
 const applicationStore = createApplicationStore()
 
-const testProxyPath = '/kopps-public'
-const proxyPrefixPath = { uri: testProxyPath }
+const proxyPrefixPath = commonSettings.proxyPrefixPath
 const testDepartmentName = {
   sv: 'ABE/Betongbyggnad',
   en: 'ABE/Concrete Structures',
@@ -174,7 +175,7 @@ describe('Render component DepartmentCourses and check its menu, content and lin
     expect(links.length).toBe(7)
     // Menu links
     expect(links[0]).toHaveTextContent('Courses')
-    expect(links[0].href).toStrictEqual('http://localhost/kopps-public/utbildning/forskarutbildning/kurser?l=en')
+    expect(links[0].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser?l=en')
     // Main content links
     expect(links[1]).toHaveTextContent('F1C5031')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurs/F1C5031?l=en')
@@ -197,7 +198,7 @@ describe('Render component DepartmentCourses and check its menu, content and lin
     expect(links.length).toBe(7)
     // Menu links
     expect(links[0]).toHaveTextContent('Kurser')
-    expect(links[0].href).toStrictEqual('http://localhost/kopps-public/utbildning/forskarutbildning/kurser')
+    expect(links[0].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser')
     // Main content links
     expect(links[1]).toHaveTextContent('F1C5031')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurs/F1C5031')

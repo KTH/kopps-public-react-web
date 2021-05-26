@@ -21,7 +21,7 @@ exports[`Render component Programme within Layout match to snapshot in English 1
             class="parentLink"
           >
             <a
-              href="/kopps-public/student/kurser/org?l=en"
+              href="/student/kurser/org?l=en"
             >
               Course and programme directory
             </a>
@@ -97,14 +97,14 @@ exports[`Render component Programme within Layout match to snapshot in English 1
               >
                 <li>
                   <a
-                    href="/kopps-public/student/kurser/program/ARKIT/20192/arskurs2?l=en"
+                    href="/student/kurser/program/ARKIT/20192/arskurs2?l=en"
                   >
                     Programme syllabus for studies starting in Autumn 19
                   </a>
                 </li>
                 <li>
                   <a
-                    href="/kopps-public/student/kurser/program/ARKIT/20211/arskurs1?l=en"
+                    href="/student/kurser/program/ARKIT/20211/arskurs1?l=en"
                   >
                     Programme syllabus for studies starting in Spring 21
                   </a>
@@ -168,7 +168,7 @@ exports[`Render component Programme within Layout match to snapshot in Swedish 1
             class="parentLink"
           >
             <a
-              href="/kopps-public/student/kurser/org"
+              href="/student/kurser/org"
             >
               Kurs- och programkatalogen
             </a>
@@ -244,14 +244,14 @@ exports[`Render component Programme within Layout match to snapshot in Swedish 1
               >
                 <li>
                   <a
-                    href="/kopps-public/student/kurser/program/ARKIT/20192/arskurs2"
+                    href="/student/kurser/program/ARKIT/20192/arskurs2"
                   >
                     Utbildningsplan kull HT19
                   </a>
                 </li>
                 <li>
                   <a
-                    href="/kopps-public/student/kurser/program/ARKIT/20211/arskurs1"
+                    href="/student/kurser/program/ARKIT/20211/arskurs1"
                   >
                     Utbildningsplan kull VT21
                   </a>

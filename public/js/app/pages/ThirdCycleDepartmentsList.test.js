@@ -15,12 +15,13 @@ import getThirdCycleBreadcrumbs from '../config/thirdCycleBreadcrumbs'
 
 import createApplicationStore from '../stores/createApplicationStore'
 
+import commonSettings from '../config/mocks/mockCommonSettings'
+
 expect.extend(toHaveNoViolations)
 
 const applicationStore = createApplicationStore()
 
-const testProxyPath = 'localhost://kopps-public'
-const proxyPrefixPath = { uri: testProxyPath }
+const proxyPrefixPath = commonSettings.proxyPrefixPath
 const testCurrentSchoolsWithDepartments = {
   sv: [
     {
@@ -144,12 +145,12 @@ describe('Render component ThirdCycleDepartmentsList and check its menu, content
     expect(links[0]).toHaveTextContent('PhD studies')
     expect(links[0].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/?l=en')
     expect(links[1]).toHaveTextContent('Third-cycle courses by school')
-    expect(links[1].href).toStrictEqual('localhost://kopps-public/utbildning/forskarutbildning/kurser/avdelning?l=en')
+    expect(links[1].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser/avdelning?l=en')
     expect(links[2]).toHaveTextContent('Search third-cycle courses')
-    expect(links[2].href).toStrictEqual('localhost://kopps-public/utbildning/forskarutbildning/kurser/sok?l=en')
+    expect(links[2].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser/sok?l=en')
     // Main content links
     expect(links[3]).toHaveTextContent('Department')
-    expect(links[3].href).toStrictEqual('localhost://kopps-public/utbildning/forskarutbildning/kurser/org/BB?l=en')
+    expect(links[3].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser/org/BB?l=en')
     // Footer links
     expect(links[4]).toHaveTextContent('Central study counseling')
     expect(links[4].href).toStrictEqual('https://www.kth.se/studycounselling')
@@ -169,12 +170,12 @@ describe('Render component ThirdCycleDepartmentsList and check its menu, content
     expect(links[0]).toHaveTextContent('Forskarutbildning')
     expect(links[0].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/')
     expect(links[1]).toHaveTextContent('Forskarkurser per skola')
-    expect(links[1].href).toStrictEqual('localhost://kopps-public/utbildning/forskarutbildning/kurser/avdelning')
+    expect(links[1].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser/avdelning')
     expect(links[2]).toHaveTextContent('Sök forskarkurs')
-    expect(links[2].href).toStrictEqual('localhost://kopps-public/utbildning/forskarutbildning/kurser/sok')
+    expect(links[2].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser/sok')
     // Main content links
     expect(links[3]).toHaveTextContent('Avdelning')
-    expect(links[3].href).toStrictEqual('localhost://kopps-public/utbildning/forskarutbildning/kurser/org/BB')
+    expect(links[3].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser/org/BB')
     // Footer links
     expect(links[4]).toHaveTextContent('Central studievägledning')
     expect(links[4].href).toStrictEqual('https://www.kth.se/studycounselling')

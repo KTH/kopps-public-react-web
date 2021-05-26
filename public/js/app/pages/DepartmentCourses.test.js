@@ -14,12 +14,14 @@ import PageLayout from '../layout/PageLayout'
 import createApplicationStore from '../stores/createApplicationStore'
 import getMenuDepartmentData from '../config/departmentMenuData'
 
+import commonSettings from '../config/mocks/mockCommonSettings'
+
 expect.extend(toHaveNoViolations)
 
 const applicationStore = createApplicationStore()
 
 const testProxyPath = '/kopps-public'
-const proxyPrefixPath = { uri: testProxyPath }
+const proxyPrefixPath = commonSettings.proxyPrefixPath
 const testDepartmentName = {
   sv: 'ABE/Arkitektur, Fex övr utbildning',
   en: 'ABE/Architecture',
@@ -139,7 +141,7 @@ describe('Render component DepartmentCourses and check its menu, content and lin
     expect(links.length).toBe(5)
     // Menu links
     expect(links[0]).toHaveTextContent('Course and programme directory')
-    expect(links[0].href).toStrictEqual('http://localhost/kopps-public/student/kurser/org?l=en')
+    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/org?l=en')
     // Main content links
     expect(links[1]).toHaveTextContent('AD12DA')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurs/AD12DA?l=en')
@@ -157,7 +159,7 @@ describe('Render component DepartmentCourses and check its menu, content and lin
     expect(links.length).toBe(5)
     // Menu links
     expect(links[0]).toHaveTextContent('Kurs- och programkatalogen')
-    expect(links[0].href).toStrictEqual('http://localhost/kopps-public/student/kurser/org')
+    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/org')
     // Main content links
     expect(links[1]).toHaveTextContent('AD12DA')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurs/AD12DA')

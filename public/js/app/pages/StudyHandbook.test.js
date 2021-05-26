@@ -13,10 +13,11 @@ import PageLayout from '../layout/PageLayout'
 import createApplicationStore from '../stores/createApplicationStore'
 import getMenuData from '../config/menuData'
 
+import commonSettings from '../config/mocks/mockCommonSettings'
+
 const applicationStore = createApplicationStore()
 
-const testProxyPath = 'localhost://kopps-public'
-const proxyPrefixPath = { uri: testProxyPath }
+const proxyPrefixPath = commonSettings.proxyPrefixPath
 
 const WrapperStudyHandbook = ({ lang, ...rest }) => {
   applicationStore.setLanguage(lang)
@@ -111,16 +112,16 @@ describe('Render component StudyHandbook and check its menu, content and links',
     expect(links[0].href).toStrictEqual('http://localhost/student/?l=en')
 
     expect(links[1]).toHaveTextContent('Courses Part of Programme')
-    expect(links[1].href).toStrictEqual('localhost://kopps-public/student/kurser/kurser-inom-program')
+    expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurser-inom-program')
 
     expect(links[2]).toHaveTextContent('Search course')
-    expect(links[2].href).toStrictEqual('localhost://kopps-public/student/kurser/sokkurs')
+    expect(links[2].href).toStrictEqual('http://localhost/student/kurser/sokkurs')
 
     expect(links[3]).toHaveTextContent('Courses by school')
-    expect(links[3].href).toStrictEqual('localhost://kopps-public/student/kurser/org')
+    expect(links[3].href).toStrictEqual('http://localhost/student/kurser/org')
 
     expect(links[4]).toHaveTextContent('Study Handbook 00/01 to 07/08') // menu link
-    expect(links[4].href).toStrictEqual('localhost://kopps-public/student/program/shb')
+    expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
 
     expect(links[5]).toHaveTextContent('Study Handbook 00/01 to 07/08') // content link
     expect(links[5].href).toStrictEqual('https://intra.kth.se/utbildning/utbildningsadministr/kopps/shb')
@@ -140,16 +141,16 @@ describe('Render component StudyHandbook and check its menu, content and links',
     expect(links[0].href).toStrictEqual('http://localhost/student/')
 
     expect(links[1]).toHaveTextContent('Kurser inom program')
-    expect(links[1].href).toStrictEqual('localhost://kopps-public/student/kurser/kurser-inom-program')
+    expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurser-inom-program')
 
     expect(links[2]).toHaveTextContent('Sök kurs')
-    expect(links[2].href).toStrictEqual('localhost://kopps-public/student/kurser/sokkurs')
+    expect(links[2].href).toStrictEqual('http://localhost/student/kurser/sokkurs')
 
     expect(links[3]).toHaveTextContent('Kurser per skola')
-    expect(links[3].href).toStrictEqual('localhost://kopps-public/student/kurser/org')
+    expect(links[3].href).toStrictEqual('http://localhost/student/kurser/org')
 
     expect(links[4]).toHaveTextContent('Studiehandboken 00/01 tom 07/08') // menu link
-    expect(links[4].href).toStrictEqual('localhost://kopps-public/student/program/shb')
+    expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
 
     expect(links[5]).toHaveTextContent('Studiehandboken 00/01 tom 07/08') // content link
     expect(links[5].href).toStrictEqual('https://intra.kth.se/utbildning/utbildningsadministr/kopps/shb')

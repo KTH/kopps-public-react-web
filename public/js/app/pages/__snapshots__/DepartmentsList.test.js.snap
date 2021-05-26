@@ -42,7 +42,7 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Eng
           >
             <a
               class="nav-link"
-              href="localhost://kopps-public/student/kurser/kurser-inom-program"
+              href="/student/kurser/kurser-inom-program"
             >
               Courses Part of Programme
             </a>
@@ -52,7 +52,7 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Eng
           >
             <a
               class="nav-link"
-              href="localhost://kopps-public/student/kurser/sokkurs"
+              href="/student/kurser/sokkurs"
             >
               Search course
             </a>
@@ -62,7 +62,7 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Eng
           >
             <a
               class="nav-link"
-              href="localhost://kopps-public/student/kurser/org"
+              href="/student/kurser/org"
             >
               Courses by school
             </a>
@@ -72,7 +72,7 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Eng
           >
             <a
               class="nav-link"
-              href="localhost://kopps-public/student/program/shb"
+              href="/student/program/shb"
             >
               Study Handbook 00/01 to 07/08
             </a>
@@ -125,7 +125,7 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Eng
               >
                 <li>
                   <a
-                    href="localhost://kopps-public/student/kurser/org/BB?l=en"
+                    href="/student/kurser/org/BB?l=en"
                   >
                     Department
                   </a>
@@ -210,7 +210,7 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Swe
           >
             <a
               class="nav-link"
-              href="localhost://kopps-public/student/kurser/kurser-inom-program"
+              href="/student/kurser/kurser-inom-program"
             >
               Kurser inom program
             </a>
@@ -220,7 +220,7 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Swe
           >
             <a
               class="nav-link"
-              href="localhost://kopps-public/student/kurser/sokkurs"
+              href="/student/kurser/sokkurs"
             >
               Sök kurs
             </a>
@@ -230,7 +230,7 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Swe
           >
             <a
               class="nav-link"
-              href="localhost://kopps-public/student/kurser/org"
+              href="/student/kurser/org"
             >
               Kurser per skola
             </a>
@@ -240,7 +240,7 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Swe
           >
             <a
               class="nav-link"
-              href="localhost://kopps-public/student/program/shb"
+              href="/student/program/shb"
             >
               Studiehandboken 00/01 tom 07/08
             </a>
@@ -293,7 +293,7 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Swe
               >
                 <li>
                   <a
-                    href="localhost://kopps-public/student/kurser/org/BB"
+                    href="/student/kurser/org/BB"
                   >
                     Avdelning
                   </a>

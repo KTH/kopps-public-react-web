@@ -14,12 +14,13 @@ import PageLayout from '../layout/PageLayout'
 import createApplicationStore from '../stores/createApplicationStore'
 import getProgrammeMenuData from '../config/programmeMenuData'
 
+import commonSettings from '../config/mocks/mockCommonSettings'
+
 expect.extend(toHaveNoViolations)
 
 const applicationStore = createApplicationStore()
 
-const testProxyPath = '/kopps-public'
-const proxyPrefixPath = { uri: testProxyPath }
+const proxyPrefixPath = commonSettings.proxyPrefixPath
 const testProgrammeCode = 'ARKIT'
 const testProgrammeName = {
   sv: 'Arkitektutbildning',
@@ -116,15 +117,15 @@ describe('Render component Programme and check its menu, content and links', () 
     expect(links.length).toBe(5)
     // Menu links
     expect(links[0]).toHaveTextContent('Course and programme directory')
-    expect(links[0].href).toStrictEqual('http://localhost/kopps-public/student/kurser/org?l=en')
+    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/org?l=en')
     // Main content links
     expect(links[1]).toHaveTextContent('Programme syllabus for studies starting in Autumn 19')
     expect(links[1].href).toStrictEqual(
-      'http://localhost/kopps-public/student/kurser/program/ARKIT/20192/arskurs2?l=en'
+      'http://localhost/student/kurser/program/ARKIT/20192/arskurs2?l=en'
     )
     expect(links[2]).toHaveTextContent('Programme syllabus for studies starting in Spring 21')
     expect(links[2].href).toStrictEqual(
-      'http://localhost/kopps-public/student/kurser/program/ARKIT/20211/arskurs1?l=en'
+      'http://localhost/student/kurser/program/ARKIT/20211/arskurs1?l=en'
     )
     // Footer links
     expect(links[3]).toHaveTextContent('Central study counseling')
@@ -138,12 +139,12 @@ describe('Render component Programme and check its menu, content and links', () 
     expect(links.length).toBe(5)
     // Menu links
     expect(links[0]).toHaveTextContent('Kurs- och programkatalogen')
-    expect(links[0].href).toStrictEqual('http://localhost/kopps-public/student/kurser/org')
+    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/org')
     // Main content links
     expect(links[1]).toHaveTextContent('Utbildningsplan kull HT19')
-    expect(links[1].href).toStrictEqual('http://localhost/kopps-public/student/kurser/program/ARKIT/20192/arskurs2')
+    expect(links[1].href).toStrictEqual('http://localhost/student/kurser/program/ARKIT/20192/arskurs2')
     expect(links[2]).toHaveTextContent('Utbildningsplan kull VT21')
-    expect(links[2].href).toStrictEqual('http://localhost/kopps-public/student/kurser/program/ARKIT/20211/arskurs1')
+    expect(links[2].href).toStrictEqual('http://localhost/student/kurser/program/ARKIT/20211/arskurs1')
     // Footer links
     expect(links[3]).toHaveTextContent('Central studievägledning')
     expect(links[3].href).toStrictEqual('https://www.kth.se/studycounselling')
