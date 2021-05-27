@@ -115,7 +115,7 @@ async function getIndex(req, res, next) {
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
     const proxyPrefix = serverConfig.proxyPrefixPath.programme
-    const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const html = renderStaticPage({ applicationStore, location: req.url })
     const title = i18n.message('site_name', lang)
 
     res.render('app/index', {
