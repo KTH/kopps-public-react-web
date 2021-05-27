@@ -238,7 +238,7 @@ appRoute.get(
   config.proxyPrefixPath.thirdCycleCourseSearch,
   Search.searchThirdCycleCourses
 )
-appRoute.get('public.searchAllCourses', config.proxyPrefixPath.uri + '/student/kurser/sokkurs', Search.searchAllCourses)
+appRoute.get('public.searchAllCourses', config.proxyPrefixPath.courseSearch, Search.searchAllCourses)
 appRoute.get('api.searchCourses', config.proxyPrefixPath.uri + '/intern-api/sok/:lang', Search.performCourseSearch)
 
 appRoute.get(
@@ -263,26 +263,14 @@ appRoute.get(
     res.redirect(301, `${config.proxyPrefixPath.uri}/student/kurser/org/${departmentCode}`)
   }
 )
-appRoute.get(
-  'public.programmesList',
-  config.proxyPrefixPath.programmesList,
-  ProgrammesList.getProgrammesList
-)
+appRoute.get('public.programmesList', config.proxyPrefixPath.programmesList, ProgrammesList.getProgrammesList)
 appRoute.get('public.departmentsList', config.proxyPrefixPath.department, SchoolsList.getSchoolsList)
-appRoute.get(
-  'public.department',
-  config.proxyPrefixPath.department + '/:departmentCode',
-  Department.getIndex
-)
-appRoute.get(
-  'public.programme',
-  config.proxyPrefixPath.programme + '/:programmeCode',
-  Programme.getIndex
-)
+appRoute.get('public.department', config.proxyPrefixPath.department + '/:departmentCode', Department.getIndex)
+appRoute.get('public.programme', config.proxyPrefixPath.programme + '/:programmeCode', Programme.getIndex)
 appRoute.get('redirect.kurser', config.proxyPrefixPath.studentRoot, (req, res) => {
   res.redirect(301, config.proxyPrefixPath.programmesList)
 })
-appRoute.get('redirect.program', config.proxyPrefixPath.programme , (req, res) => {
+appRoute.get('redirect.program', config.proxyPrefixPath.programme, (req, res) => {
   res.redirect(301, config.proxyPrefixPath.programmesList)
 })
 appRoute.get(
