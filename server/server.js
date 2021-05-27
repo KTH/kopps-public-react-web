@@ -241,28 +241,16 @@ appRoute.get(
 appRoute.get('public.searchAllCourses', config.proxyPrefixPath.courseSearch, Search.searchAllCourses)
 appRoute.get('api.searchCourses', config.proxyPrefixPath.uri + '/intern-api/sok/:lang', Search.performCourseSearch)
 
-appRoute.get(
-  'redirect.departmentsListThirdCycleStudy',
-  config.proxyPrefixPath.uri + '/utbildning/forskarutbildning/kurser/',
-  (req, res) => {
-    res.redirect(301, config.proxyPrefixPath.uri + '/utbildning/forskarutbildning/kurser/avdelning')
-  }
-)
-appRoute.get(
-  'redirect.kurser-per-avdelning',
-  config.proxyPrefixPath.uri + '/student/kurser/kurser-per-avdelning/',
-  (req, res) => {
-    res.redirect(301, config.proxyPrefixPath.uri + '/student/kurser/org')
-  }
-)
-appRoute.get(
-  'redirect.avdelning-kurser',
-  config.proxyPrefixPath.uri + '/student/kurser/avdelning/:departmentCode/kurser/',
-  (req, res) => {
-    const { departmentCode } = req.params
-    res.redirect(301, `${config.proxyPrefixPath.uri}/student/kurser/org/${departmentCode}`)
-  }
-)
+appRoute.get('redirect.departmentsListThirdCycleStudy', '/utbildning/forskarutbildning/kurser/', (req, res) => {
+  res.redirect(301, config.proxyPrefixPath.thirdCycleSchoolsAndDepartments)
+})
+appRoute.get('redirect.kurser-per-avdelning', '/student/kurser/kurser-per-avdelning/', (req, res) => {
+  res.redirect(301, config.proxyPrefixPath.department)
+})
+appRoute.get('redirect.avdelning-kurser', '/student/kurser/avdelning/:departmentCode/kurser/', (req, res) => {
+  const { departmentCode } = req.params
+  res.redirect(301, `${config.proxyPrefixPath.department}/${departmentCode}`)
+})
 appRoute.get('public.programmesList', config.proxyPrefixPath.programmesList, ProgrammesList.getProgrammesList)
 appRoute.get('public.departmentsList', config.proxyPrefixPath.department, SchoolsList.getSchoolsList)
 appRoute.get('public.department', config.proxyPrefixPath.department + '/:departmentCode', Department.getIndex)
