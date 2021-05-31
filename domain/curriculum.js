@@ -1,3 +1,43 @@
+function _compareParticipations(a, b) {
+  let aFirstIndex = 0
+  for (let index = 0; index < a.creditsPerPeriod.length; index++) {
+    const credit = a.creditsPerPeriod[index]
+    if (credit > 0) {
+      aFirstIndex = index
+      break
+    }
+  }
+  let bFirstIndex = 0
+  for (let index = 0; index < b.creditsPerPeriod.length; index++) {
+    const credit = b.creditsPerPeriod[index]
+    if (credit > 0) {
+      bFirstIndex = index
+      break
+    }
+  }
+  if (aFirstIndex < bFirstIndex) return -1
+  if (aFirstIndex > bFirstIndex) return 1
+
+  const aLastIndex = a.creditsPerPeriod.reduce((lastIndex, credit, index) => (credit > 0 ? index : lastIndex), 0)
+  const bLastIndex = b.creditsPerPeriod.reduce((lastIndex, credit, index) => (credit > 0 ? index : lastIndex), 0)
+  if (aLastIndex < bLastIndex) return -1
+  if (aLastIndex > bLastIndex) return 1
+  return 0
+}
+
+function _creditsPerPeriod(courseRoundTerms) {
+  const mergedCreditsPerPeriod = []
+  courseRoundTerms.forEach(courseRoundTerm => {
+    const { creditsPerPeriod } = courseRoundTerm
+    creditsPerPeriod.forEach((credits, index) => {
+      if (!mergedCreditsPerPeriod[index]) {
+        mergedCreditsPerPeriod[index] = credits
+      }
+    })
+  })
+  return mergedCreditsPerPeriod
+}
+
 function curriculumInfo({ programmeTermYear, curriculum }) {
   let code = null
   let specializationName = null
@@ -23,10 +63,14 @@ function curriculumInfo({ programmeTermYear, curriculum }) {
 
     for (const course of curriculumStudyYear.courses) {
       if (!participations[course.electiveCondition]) participations[course.electiveCondition] = []
+      const round = curriculum.courseRounds.find(courseRound => courseRound.courseCode === course.courseCode) || {}
+      const { applicationCodes = [], courseRoundTerms = [] } = round
       participations[course.electiveCondition].push({
         course,
-        round: curriculum.courseRounds.find(courseRound => courseRound.courseCode === course.courseCode),
+        applicationCodes,
+        creditsPerPeriod: _creditsPerPeriod(courseRoundTerms),
       })
+      participations[course.electiveCondition].sort(_compareParticipations)
     }
   }
 
