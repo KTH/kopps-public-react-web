@@ -1,44 +1,223 @@
 /* eslint-disable react/no-danger */
 import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
 import { Col, Row } from 'reactstrap'
+import { CollapseDetails } from '@kth/kth-kip-style-react-components'
 import { Heading, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 
 import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'
+import KoppsData from '../components/KoppsData'
 
 import { useStore } from '../mobx'
 
 import translate from '../../../../domain/translate'
 import { formatLongTerm } from '../../../../domain/term'
 import { format as formatAcademicYear } from '../../../../domain/academicYear'
+import { ELECTIVE_CONDITIONS } from '../../../../domain/curriculum'
+import { ORDINARY_PERIODS } from '../../../../domain/periods'
 
-function getArticleContent({ language, owningSchoolCode, isMissingAdmission, studyYear, term }) {
+function formatCredits(language, credits) {
+  const creditsStr = typeof credits === 'number' ? credits.toString() : credits
+  if (language === 'sv') {
+    return creditsStr.includes('.') ? creditsStr.replace('.', ',') : `${creditsStr},0`
+  }
+  return creditsStr.includes('.') ? creditsStr : `${creditsStr}.0`
+}
+
+function CourseTablePeriodCols({ language, creditsPerPeriod, courseCode }) {
+  return ORDINARY_PERIODS.map(period => {
+    const creditsThisPeriod = creditsPerPeriod.length ? creditsPerPeriod[period] : []
+    return Math.abs(creditsThisPeriod) ? (
+      <td key={`${courseCode}-${period}`} className="text-right active-period">
+        {formatCredits(language, creditsThisPeriod)}
+      </td>
+    ) : (
+      <td key={`${courseCode}-${period}`} />
+    )
+  })
+}
+
+function CourseTableRow({ courseCode, courseLinkData, applicationCodes, credits, creditUnitAbbr, creditsPerPeriod }) {
+  const { language } = useStore()
+  return (
+    <tr>
+      <td>{courseLinkData}</td>
+      <td className="text-center">{applicationCodes.join(', ')}</td>
+      <td className="text-right credits">{`${formatCredits(language, credits)} ${creditUnitAbbr}`}</td>
+      <CourseTablePeriodCols language={language} creditsPerPeriod={creditsPerPeriod} courseCode={courseCode} />
+    </tr>
+  )
+}
+
+function CourseTableRows({ participations }) {
+  return participations.map(participation => {
+    const { course, applicationCodes, creditsPerPeriod } = participation
+    const { courseCode, title, credits, creditUnitAbbr } = course
+    const courseLinkData = (
+      <a href={`https://www.kth.se/student/kurser/kurs/${courseCode}`}>{`${courseCode} ${title}`}</a>
+    )
+    return (
+      <CourseTableRow
+        key={courseCode}
+        courseCode={courseCode}
+        courseLinkData={courseLinkData}
+        applicationCodes={applicationCodes}
+        credits={credits}
+        creditUnitAbbr={creditUnitAbbr}
+        creditsPerPeriod={creditsPerPeriod}
+      />
+    )
+  })
+}
+
+function CourseTable({ curriculumInfo, participations, electiveCondition }) {
+  const { language } = useStore()
   const t = translate(language)
-  const formattedAcademicYear = formatAcademicYear(term)
-  return isMissingAdmission() ? (
+  const { code } = curriculumInfo
+  return (
+    <table
+      className="table programme-syllabus-year"
+      aria-labelledby={`heading-${code || 'common'}-${electiveCondition}`}
+    >
+      <thead>
+        <tr>
+          <th scope="col">{t('coursesbyprogramme_labels_course')}</th>
+          <th scope="col">
+            <abbr title={t('coursesbyprogramme_labels_code')}>{t('coursesbyprogramme_labels_code_abbr')}</abbr>
+          </th>
+          <th scope="col">
+            <abbr title={t('coursesbyprogramme_labels_scope')}>{t('coursesbyprogramme_labels_scope_abbr')}</abbr>
+          </th>
+          {ORDINARY_PERIODS.map(period => (
+            <th scope="col" key={`P${period}`}>
+              <abbr title={t('coursesbyprogramme_labels_period')(period)}>
+                {t('coursesbyprogramme_labels_period_abbr')(period)}
+              </abbr>
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        <CourseTableRows participations={participations} />
+      </tbody>
+    </table>
+  )
+}
+
+function Courses({ curriculumInfo }) {
+  const { language } = useStore()
+  const t = translate(language)
+  const { code, participations: allParticipations } = curriculumInfo
+  return (
     <>
-      <p>{t('curriculums_missing_admission_text')(owningSchoolCode)}</p>
-    </>
-  ) : (
-    <>
-      <p>{t('curriculums_studyyear_explanation_1')(studyYear)}</p>
-      <p dangerouslySetInnerHTML={{ __html: t('curriculums_studyyear_explanation_2')(formattedAcademicYear) }} />
-      <Heading size="h2" text={t('curriculums_common_courses')} />
+      <KoppsData html={curriculumInfo.supplementaryInformation} />
+      {ELECTIVE_CONDITIONS.map(electiveCondition => {
+        const participations = allParticipations[electiveCondition] || []
+        return (
+          participations.length !== 0 && (
+            <Fragment key={electiveCondition}>
+              {/* Information about conditionally elective courses for this study year, only if there are such courses to display */}
+              {electiveCondition === 'VV' && (
+                <div className="conditionallyElectiveInfo">
+                  <KoppsData html={curriculumInfo.conditionallyELectiveCoursesInformation} />
+                </div>
+              )}
+              {code ? (
+                <h4 id={`heading-${code}-${electiveCondition}`}>
+                  {`${t('elective_condition')[electiveCondition]} ${t('curriculums_courses')}`}
+                </h4>
+              ) : (
+                <h3 id={`heading-common-${electiveCondition}`}>
+                  {`${t('elective_condition')[electiveCondition]} ${t('curriculums_courses')}`}
+                </h3>
+              )}
+              <CourseTable
+                curriculumInfo={curriculumInfo}
+                participations={participations}
+                electiveCondition={electiveCondition}
+              />
+            </Fragment>
+          )
+        )
+      })}
     </>
   )
 }
 
-function Curriculum() {
-  const { programmeCode, programmeName, term, studyYear, language, isMissingAdmission, owningSchoolCode } = useStore()
+function SpecializationCourses({ curriculumInfo }) {
+  const { language } = useStore()
   const t = translate(language)
-  const pageHeading = isMissingAdmission
+  const { code, specializationName } = curriculumInfo
+  return (
+    <>
+      <h3 id={`heading-${code}`}>{`${specializationName} (${code})`}</h3>
+      <CollapseDetails color="white" title={t('programme_courses')(code)}>
+        <Courses curriculumInfo={curriculumInfo} />
+      </CollapseDetails>
+    </>
+  )
+}
+
+function CurriculumInfo() {
+  const { language, owningSchoolCode, curriculumInfos = [] } = useStore()
+  const t = translate(language)
+  return curriculumInfos ? (
+    <>
+      {curriculumInfos.map(
+        info =>
+          info.isCommon && (
+            <Fragment key="common">
+              <h2 id="heading-common">{t('curriculums_common_courses')}</h2>
+              <Courses curriculumInfo={info} />
+            </Fragment>
+          )
+      )}
+      {curriculumInfos.map(
+        info =>
+          !info.isCommon && (
+            <Fragment key={info.code}>
+              <h2 id="heading-specialisations">{t('coursesbyprogramme_specialisations')}</h2>
+              <SpecializationCourses curriculumInfo={info} />
+            </Fragment>
+          )
+      )}
+    </>
+  ) : (
+    <div className="alert alert-info" role="alert" aria-live="polite">
+      <Heading size="h3" text={t('coursesbyprogramme_studyyear_noinfofound_header')} />
+      <p>{t('coursesbyprogramme_studyyear_noinfofound')(owningSchoolCode)}</p>
+    </div>
+  )
+}
+
+function ArticleContent() {
+  const { language, owningSchoolCode, isMissingAdmission, studyYear, term } = useStore()
+  const t = translate(language)
+  const formattedAcademicYear = formatAcademicYear(term)
+  return isMissingAdmission() ? (
+    <Article>
+      <p>{t('curriculums_missing_admission_text')(owningSchoolCode)}</p>
+    </Article>
+  ) : (
+    <Article classNames={['paragraphs']}>
+      <p>{t('curriculums_studyyear_explanation_1')(studyYear)}</p>
+      <p dangerouslySetInnerHTML={{ __html: t('curriculums_studyyear_explanation_2')(formattedAcademicYear) }} />
+      <CurriculumInfo />
+    </Article>
+  )
+}
+
+function Curriculum() {
+  const { programmeCode, programmeName, term, studyYear, language, isMissingAdmission } = useStore()
+  const t = translate(language)
+  const pageHeading = isMissingAdmission()
     ? `${t('curriculums_missing_admission')}`
     : `${t('curriculums_admitted_year_long')} ${studyYear}`
   const subHeading = `${t('programme_admitted_year')} ${formatLongTerm(
     term,
     language
   )}, ${programmeName} (${programmeCode})`
-  const articleContent = getArticleContent({ language, owningSchoolCode, isMissingAdmission, studyYear, term })
 
   return (
     <>
@@ -49,7 +228,7 @@ function Curriculum() {
       </Row>
       <Row>
         <Col>
-          <Article>{articleContent}</Article>
+          <ArticleContent />
         </Col>
         <Col xs="12" xl="3">
           <aside>
@@ -67,6 +246,42 @@ function Curriculum() {
       </Row>
     </>
   )
+}
+
+const curriculumInfo = PropTypes.shape({
+  code: PropTypes.string,
+  specializationName: PropTypes.string,
+  isCommon: PropTypes.bool,
+  supplementaryInformation: PropTypes.string,
+  conditionallyELectiveCoursesInformation: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  participations: PropTypes.object,
+  isFirstSpec: PropTypes.bool,
+  hasInfo: PropTypes.bool,
+})
+
+Courses.propTypes = {
+  curriculumInfo: curriculumInfo.isRequired,
+}
+
+SpecializationCourses.propTypes = {
+  curriculumInfo: curriculumInfo.isRequired,
+}
+
+CourseTableRow.propTypes = {
+  courseCode: PropTypes.string.isRequired,
+  courseLinkData: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+  applicationCodes: PropTypes.arrayOf(PropTypes.string).isRequired,
+  credits: PropTypes.number.isRequired,
+  creditUnitAbbr: PropTypes.string.isRequired,
+  creditsPerPeriod: PropTypes.arrayOf(PropTypes.number).isRequired,
+}
+
+CourseTable.propTypes = {
+  curriculumInfo: curriculumInfo.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  participations: PropTypes.arrayOf(PropTypes.object).isRequired,
+  electiveCondition: PropTypes.string.isRequired,
 }
 
 export default Curriculum

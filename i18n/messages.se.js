@@ -126,6 +126,25 @@ const messages = {
     curriculums_studyyear_explanation_2: year =>
       `Observera att de eventuella anmälningskoder och perioder som anges är baserade på läsåret <strong>${year}</strong>. Läses denna årskurs vid ett senare tillfälle kan andra anmälningskoder och perioder komma att gälla.`,
     curriculums_common_courses: 'Gemensamma kurser',
+    coursesbyprogramme_specialisations: 'Inriktningar',
+    coursesbyprogramme_studyyear_noinfofound_header: 'Information saknas',
+    coursesbyprogramme_studyyear_noinfofound: school => `Information om årskursen saknas. Kontakta ${school}-skolan.`,
+    programme_courses: code => `Kurser (${code})`,
+    elective_condition: {
+      ALL: 'Alla',
+      O: 'Obligatoriska',
+      VV: 'Villkorligt valfria',
+      R: 'Rekommenderade',
+      V: 'Valfria',
+    },
+    curriculums_courses: 'kurser',
+    coursesbyprogramme_labels_course: 'Kursens kod och namn',
+    coursesbyprogramme_labels_code: 'Anmälningskod',
+    coursesbyprogramme_labels_code_abbr: 'Anm.\u00A0kod',
+    coursesbyprogramme_labels_scope: 'Omfattning',
+    coursesbyprogramme_labels_scope_abbr: 'Omf.',
+    coursesbyprogramme_labels_period: period => `Läsperiod ${period}`,
+    coursesbyprogramme_labels_period_abbr: period => `P${period}`,
   },
   shb: {
     pageHeading: 'Studiehandboken 00/01 tom 07/08',
@@ -210,8 +229,7 @@ const messages = {
     },
     errorOverflow: {
       header: 'Sökningen gav för många träffar',
-      text:
-        'Det finns för många kurser som matchar det du sökt på. Ange fler bokstäver/siffror i kursnamn eller kurskod (exempel på kurskod: SF1624).',
+      text: 'Det finns för många kurser som matchar det du sökt på. Ange fler bokstäver/siffror i kursnamn eller kurskod (exempel på kurskod: SF1624).',
       help: 'Mer hjälp hittar du i länken nedan: Få hjälp med sökningen',
     },
     noQueryProvided: {

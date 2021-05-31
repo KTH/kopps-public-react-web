@@ -33,3 +33,13 @@
   font-size: smaller;
   font-weight: 600;
 }
+
+.table .active-period {
+  background-color: #e6ecf5; /*cortina: @ligthBlueGray */
+  color: #333333; /* slightly darker than default, compensating for background color. */
+  text-align: center;
+}
+
+.table td.credits {
+  white-space: nowrap;
+}
