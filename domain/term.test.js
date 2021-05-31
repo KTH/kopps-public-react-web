@@ -11,7 +11,7 @@ const {
 } = require('./term')
 
 const overrideSpringDate = new Date()
-overrideSpringDate.setFullYear(2021, 5) // June, 2021
+overrideSpringDate.setFullYear(2021, 4) // May, 2021
 const overrideAutumnDate = new Date()
 overrideAutumnDate.setFullYear(2021, 6) // July, 2021
 const expectedSpringTerm = '20211'
