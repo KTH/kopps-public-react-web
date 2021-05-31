@@ -145,6 +145,13 @@ const messages = {
     coursesbyprogramme_labels_scope_abbr: 'Omf.',
     coursesbyprogramme_labels_period: period => `Läsperiod ${period}`,
     coursesbyprogramme_labels_period_abbr: period => `P${period}`,
+    programme_plan_pdf_header: 'Ut\u00ADbild\u00ADnings\u00ADplan som pdf',
+    programme_plan_pdf_text:
+      'Pdf:en är inte helt till\u00ADgäng\u00ADlig\u00ADhets\u00ADan\u00ADpas\u00ADsad, men allt inne\u00ADhåll finns också på dessa webb\u00ADsidor.',
+    programme_plan_pdf: (programmeCode, term) => `Ut\u00ADbild\u00ADnings\u00ADplan ${programmeCode} ${term}`,
+    programme_programwebb_heading: programmeCode => `Student på ${programmeCode}`,
+    programme_programwebb_text: `Befintliga studenter hittar information och kommunicerar om sitt program på`,
+    programme_programwebb_linktext: programmeCode => `Programwebb ${programmeCode}`,
   },
   shb: {
     pageHeading: 'Studiehandboken 00/01 tom 07/08',

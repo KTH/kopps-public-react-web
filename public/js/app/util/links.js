@@ -47,6 +47,16 @@ function programTermLink(programmeCode, term, studyYear, language) {
   return `/student/kurser/program/${programmeCode}/${term}/${studyYear}${languageParam}`
 }
 
+function programSyllabusLink(programmeCode, term, language) {
+  const languageParam = language === 'en' ? '?l=en' : ''
+  return `/student/kurser/program/${programmeCode}-${term}.pdf${languageParam}`
+}
+
+function programmeWebLink(programmeCode, language) {
+  const languageParam = language === 'en' ? '?l=en' : ''
+  return `/social/program/${programmeCode}${languageParam}`
+}
+
 function centralStudyCounselingUrl() {
   return 'https://www.kth.se/studycounselling'
 }
@@ -66,5 +76,7 @@ module.exports = {
   parentStudyLink,
   parentThirdCycleStudyLink,
   programTermLink,
+  programSyllabusLink,
+  programmeWebLink,
   thirdCycleDepartmentLink,
 }

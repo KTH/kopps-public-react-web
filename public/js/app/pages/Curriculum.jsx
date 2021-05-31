@@ -3,7 +3,7 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Col, Row } from 'reactstrap'
 import { CollapseDetails } from '@kth/kth-kip-style-react-components'
-import { Heading, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
+import { Heading, Link, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 
 import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'
@@ -16,6 +16,7 @@ import { formatLongTerm } from '../../../../domain/term'
 import { format as formatAcademicYear } from '../../../../domain/academicYear'
 import { ELECTIVE_CONDITIONS } from '../../../../domain/curriculum'
 import { ORDINARY_PERIODS } from '../../../../domain/periods'
+import { programSyllabusLink, programmeWebLink } from '../util/links'
 
 function formatCredits(language, credits) {
   const creditsStr = typeof credits === 'number' ? credits.toString() : credits
@@ -208,6 +209,37 @@ function ArticleContent() {
   )
 }
 
+function Sidebar() {
+  const { language, programmeCode, term } = useStore()
+  const t = translate(language)
+  const syllabusLink = programSyllabusLink(programmeCode, term, language)
+  const webLink = programmeWebLink(programmeCode, language)
+
+  return (
+    <div id="sidebarContainer">
+      <aside id="pdfSidebar" className="sidebar" aria-labelledby="pdf-sidebar-heading">
+        <h2 id="pdf-sidebar-heading" className="sidebar-heading mb-2 mt-0">
+          {t('programme_plan_pdf_header')}
+        </h2>
+        <p>{t('programme_plan_pdf_text')}</p>
+        <Link href={syllabusLink} type="pdf-post-link">
+          {t('programme_plan_pdf')(programmeCode, formatLongTerm(term, language))}
+        </Link>
+      </aside>
+      <aside id="programwebbSidebar" className="sidebar" aria-labelledby="programwebb-sidebar-heading">
+        <h1 id="programwebb-sidebar-heading" className="sidebar-heading">
+          {t('programme_programwebb_heading')(programmeCode)}
+        </h1>
+        <p>
+          {t('programme_programwebb_text')}
+          <br />
+          <a href={webLink}>{t('programme_programwebb_linktext')(programmeCode)}</a>
+        </p>
+      </aside>
+    </div>
+  )
+}
+
 function Curriculum() {
   const { programmeCode, programmeName, term, studyYear, language, isMissingAdmission } = useStore()
   const t = translate(language)
@@ -231,12 +263,7 @@ function Curriculum() {
           <ArticleContent />
         </Col>
         <Col xs="12" xl="3">
-          <aside>
-            <div />
-          </aside>
-          <aside>
-            <div />
-          </aside>
+          <Sidebar />
         </Col>
       </Row>
       <Row>

@@ -43,3 +43,23 @@
 .table td.credits {
   white-space: nowrap;
 }
+
+.sidebar {
+  background-color: #f6f6f6;
+  padding: 20px;
+  margin-bottom: 15px;
+}
+
+.sidebar p {
+  font-family: 'Open Sans', Arial, 'Helvetica Neue', helvetica, sans-serif;
+  font-size: 1rem;
+}
+
+.sidebar :last-child {
+  margin-bottom: 0;
+}
+
+.sidebar-heading {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}

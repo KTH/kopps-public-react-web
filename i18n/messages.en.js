@@ -146,6 +146,14 @@ const messages = {
     coursesbyprogramme_labels_scope_abbr: 'Scope',
     coursesbyprogramme_labels_period: period => `Study period ${period}`,
     coursesbyprogramme_labels_period_abbr: period => `P${period}`,
+    programme_plan_pdf_header: 'Pro\u00ADgram\u00ADme syl\u00ADla\u00ADbus as pdf',
+    programme_plan_pdf_text:
+      'The pdf is not fully adap\u00ADted for ac\u00ADces\u00ADsi\u00ADbil\u00ADi\u00ADty, but all con\u00ADtent is also avai\u00ADlable on these web pages.',
+    programme_plan_pdf: (programmeCode, term) =>
+      `Pro\u00ADgram\u00ADme syl\u00ADla\u00ADbus ${programmeCode} for studies starting in ${term}`,
+    programme_programwebb_heading: programmeCode => `Student at ${programmeCode}`,
+    programme_programwebb_text: `Admitted students can find information and communicate about their programme on`,
+    programme_programwebb_linktext: programmeCode => `Programme web ${programmeCode}`,
   },
   shb: {
     pageHeading: 'Study Handbook 00/01 to 07/08',
