@@ -95,7 +95,7 @@ const CourseSearch = () => {
   }
 
   return (
-    <main id="mainContent">
+    <>
       <Row>
         <Col>
           <PageHeading>{searchHeading}</PageHeading>
@@ -114,6 +114,7 @@ const CourseSearch = () => {
               {helptexts.map(value => (
                 <li key={value}>{value}</li>
               ))}
+              {/* eslint-disable-next-line react/no-danger */}
               <li key="lastInstruction" dangerouslySetInnerHTML={{ __html: lastInstruction }} />
             </ul>
           </CollapseDetails>
@@ -134,7 +135,7 @@ const CourseSearch = () => {
           <FooterContent />
         </Col>
       </Row>
-    </main>
+    </>
   )
 }
 

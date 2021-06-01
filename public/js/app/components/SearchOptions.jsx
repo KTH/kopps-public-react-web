@@ -39,11 +39,10 @@ function SearchOptions({ overrideSearchHead = '', paramAliasName = '', paramName
   const { bigSearch } = i18n.messages[languageIndex]
   const searchHeadLevel = overrideSearchHead || bigSearch[paramName]
 
-  const values = React.useMemo(() => getParamConfig(paramAliasName || paramName, languageIndex), [
-    paramAliasName,
-    paramName,
-    languageIndex,
-  ])
+  const values = React.useMemo(
+    () => getParamConfig(paramAliasName || paramName, languageIndex),
+    [paramAliasName, paramName, languageIndex]
+  )
   // [{ label, id, value}, ...]
 
   useEffect(() => {

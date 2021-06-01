@@ -33,6 +33,7 @@ function SearchDepartments({ onChange }) {
           name="department"
           className="form-control"
           onChange={handleChange}
+          aria-label={departmentLabel}
         >
           <option value="" key="all-schools">
             {departmentsAll}

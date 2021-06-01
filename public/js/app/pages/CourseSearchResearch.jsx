@@ -32,10 +32,8 @@ const CourseSearchResearch = () => {
   const { language: lang, languageIndex, textPattern: initialPattern } = useStore()
   const { thirdCycleSearch, thirdCycleSearchInstructions } = i18n.messages[languageIndex]
   const { searchHeading, leadIntro, linkToUsualSearch } = thirdCycleSearch
-  const {
-    search_help_collapse_header: collapseHeader,
-    search_research_help_9: lastInstruction,
-  } = thirdCycleSearchInstructions
+  const { search_help_collapse_header: collapseHeader, search_research_help_9: lastInstruction } =
+    thirdCycleSearchInstructions
 
   const [pattern, setPattern] = useState(initialPattern)
 
@@ -46,7 +44,7 @@ const CourseSearchResearch = () => {
   }
 
   return (
-    <main id="mainContent">
+    <>
       <Row>
         <Col>
           <PageHeading>{searchHeading}</PageHeading>
@@ -65,6 +63,7 @@ const CourseSearchResearch = () => {
               {helptexts.map(value => (
                 <li key={value}>{value}</li>
               ))}
+              {/* eslint-disable-next-line react/no-danger */}
               <li key="lastInstruction" dangerouslySetInnerHTML={{ __html: lastInstruction }} />
             </ul>
           </CollapseDetails>
@@ -92,7 +91,7 @@ const CourseSearchResearch = () => {
           <FooterContent />
         </Col>
       </Row>
-    </main>
+    </>
   )
 }
 
