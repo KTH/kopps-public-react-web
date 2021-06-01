@@ -1,42 +1,19 @@
 import React, { useEffect, useState } from 'react'
 
-import axios from 'axios'
 import ReactDOM from 'react-dom'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
-
+import koppsCourseSearch from '../util/internApi'
 import { useStore } from '../mobx'
 import SearchTableView, { searchHitsPropsShape } from './SearchTableView'
 
 import i18n from '../../../../i18n'
 import { stringifyUrlParams, CLIENT_EDU_LEVELS, CLIENT_SHOW_OPTIONS } from '../../../../domain/searchParams'
-// eslint-disable-next-line import/no-cycle
 import { SearchAlert } from './index'
 import { STATUS, ERROR_ASYNC, useAsync } from '../hooks/searchUseAsync'
 
 function _getThisHost(thisHostBaseUrl) {
   return thisHostBaseUrl.slice(-1) === '/' ? thisHostBaseUrl.slice(0, -1) : thisHostBaseUrl
-}
-
-// eslint-disable-next-line consistent-return
-async function koppsCourseSearch(language, proxyUrl, params) {
-  try {
-    const result = await axios.get(`${proxyUrl}/intern-api/sok/${language}`, {
-      params,
-    })
-    if (result) {
-      if (result.status >= 400) {
-        return 'ERROR-koppsCourseSearch-' + result.status
-      }
-      const { data } = result
-      return data
-    }
-  } catch (error) {
-    if (error.response) {
-      throw new Error('Unexpected error from koppsCourseSearch-' + error.message)
-    }
-    throw error
-  }
 }
 
 function renderAlertToTop(errorType, languageIndex) {
@@ -103,10 +80,12 @@ function SearchResultDisplay({ searchParameters, onlyPattern = false }) {
 
   const asyncCallback = React.useCallback(() => {
     if (onlyPattern && !pattern) return
-    if (!searchStr && loadStatus === 'firstLoad') {
+    if (loadStatus === 'firstLoad') {
       setLoadStatus('afterLoad')
-      return
+
+      if (!searchStr) return
     }
+
     const proxyUrl = _getThisHost(browserConfig.proxyPrefixPath.uri)
     // eslint-disable-next-line consistent-return
     return koppsCourseSearch(language, proxyUrl, searchParameters)
@@ -127,6 +106,7 @@ function SearchResultDisplay({ searchParameters, onlyPattern = false }) {
   }, [status])
 
   useEffect(() => {
+    if (!history) return
     if ((onlyPattern && pattern) || !onlyPattern) {
       if (status === STATUS.pending) {
         history.push({ search: searchStr })

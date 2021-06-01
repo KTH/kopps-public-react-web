@@ -1,0 +1,560 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component <SearchResultDisplay> and its warning messages double search: by a text pattern and rerender it again with the empty parameter to get a warning message noQueryProvided. English. 2A 1`] = `
+<DocumentFragment>
+  <h2
+    id="results-heading"
+  >
+    Search results
+  </h2>
+  <p>
+    <i>
+      No query restriction was specified
+    </i>
+  </p>
+</DocumentFragment>
+`;
+
+exports[`Component <SearchResultDisplay> and its warning messages double search: show an overflow warning message and then show a message about empty results "noHits". English. 3A 1`] = `
+<DocumentFragment>
+  <h2
+    id="results-heading"
+  >
+    Search results
+  </h2>
+  <p>
+    <i>
+      Your search returned no results.
+    </i>
+  </p>
+</DocumentFragment>
+`;
+
+exports[`Component <SearchResultDisplay> and its warning messages double search: show empty results message "noHits" and then show a rejected message of unknown error. English. 4A 1`] = `
+<DocumentFragment>
+  <h2
+    id="results-heading"
+  >
+    Search results
+  </h2>
+  <p>
+    <i>
+      Your search returned no results.
+    </i>
+  </p>
+</DocumentFragment>
+`;
+
+exports[`Component <SearchResultDisplay> and its warning messages double search: show empty results message "noHits" and then show a rejected message of unknown error. English. 4A 2`] = `
+<DocumentFragment>
+  <h2
+    id="results-heading"
+  >
+    Search results
+  </h2>
+  <p>
+    <i>
+      An unknown error occurred - failed to retrieve course data.
+    </i>
+  </p>
+</DocumentFragment>
+`;
+
+exports[`Component <SearchResultDisplay> and its warning messages double search: twice render empty parameters, first time without asking kopps, second time show a warning message. English. 1A 1`] = `<DocumentFragment />`;
+
+exports[`Component <SearchResultDisplay> and its warning messages double search: twice render empty parameters, first time without asking kopps, second time show a warning message. English. 1A 2`] = `
+<DocumentFragment>
+  <h2
+    id="results-heading"
+  >
+    Search results
+  </h2>
+  <p>
+    <i>
+      No query restriction was specified
+    </i>
+  </p>
+</DocumentFragment>
+`;
+
+exports[`Component <SearchResultDisplay> and its warning messages search:show a rejected message of unknown error. English. 5A 1`] = `
+<DocumentFragment>
+  <h2
+    id="results-heading"
+  >
+    Search results
+  </h2>
+  <p>
+    <i>
+      An unknown error occurred - failed to retrieve course data.
+    </i>
+  </p>
+</DocumentFragment>
+`;
+
+exports[`Component <SearchResultDisplay> and resolved cases double search: by deparment&pattern and then by education level. English. 2B 1`] = `
+<DocumentFragment>
+  <h2
+    id="results-heading"
+  >
+    Search results
+  </h2>
+  <div
+    class="row"
+  >
+    <div
+      class="col"
+    >
+      <article
+        class="article "
+      >
+        <p
+          data-testid="number-of-results"
+        >
+          Your search returned 
+          <b>
+            2
+          </b>
+           result(s).
+        </p>
+        <table
+          class="table"
+        >
+          <thead>
+            <tr>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                <div
+                  style="display: flex; flex-direction: row;"
+                >
+                  <p>
+                    Course code
+                  </p>
+                  <p
+                    style="opacity: 0;"
+                  >
+                    ▲
+                  </p>
+                </div>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                <div
+                  style="display: flex; flex-direction: row;"
+                >
+                  <p>
+                    Course name
+                  </p>
+                  <p
+                    style="opacity: 0;"
+                  >
+                    ▲
+                  </p>
+                </div>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                <div
+                  style="display: flex; flex-direction: row;"
+                >
+                  <p>
+                    Scope
+                  </p>
+                  <p
+                    style="opacity: 0;"
+                  >
+                    ▲
+                  </p>
+                </div>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                <div
+                  style="display: flex; flex-direction: row;"
+                >
+                  <p>
+                    Educational level
+                  </p>
+                  <p
+                    style="opacity: 0;"
+                  >
+                    ▲
+                  </p>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/IX1303?l=en"
+                >
+                  IX1303
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/IX1303?l=en"
+                >
+                  Algebra och geometri
+                </a>
+              </td>
+              <td>
+                7.5 hp
+              </td>
+              <td>
+                First cycle
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/SF1624?l=en"
+                >
+                  SF1624
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/SF1624?l=en"
+                >
+                  Algebra och geometri
+                </a>
+              </td>
+              <td>
+                7.5 hp
+              </td>
+              <td>
+                First cycle
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Component <SearchResultDisplay> and resolved cases double search: by deparment&pattern and then by education level. English. 2B 2`] = `
+<DocumentFragment>
+  <h2
+    id="results-heading"
+  >
+    Search results
+  </h2>
+  <div
+    class="row"
+  >
+    <div
+      class="col"
+    >
+      <article
+        class="article "
+      >
+        <p
+          data-testid="number-of-results"
+        >
+          Your search returned 
+          <b>
+            2
+          </b>
+           result(s).
+        </p>
+        <table
+          class="table"
+        >
+          <thead>
+            <tr>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                <div
+                  style="display: flex; flex-direction: row;"
+                >
+                  <p>
+                    Course code
+                  </p>
+                  <p
+                    style="opacity: 0;"
+                  >
+                    ▲
+                  </p>
+                </div>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                <div
+                  style="display: flex; flex-direction: row;"
+                >
+                  <p>
+                    Course name
+                  </p>
+                  <p
+                    style="opacity: 0;"
+                  >
+                    ▲
+                  </p>
+                </div>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                <div
+                  style="display: flex; flex-direction: row;"
+                >
+                  <p>
+                    Scope
+                  </p>
+                  <p
+                    style="opacity: 0;"
+                  >
+                    ▲
+                  </p>
+                </div>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                <div
+                  style="display: flex; flex-direction: row;"
+                >
+                  <p>
+                    Educational level
+                  </p>
+                  <p
+                    style="opacity: 0;"
+                  >
+                    ▲
+                  </p>
+                </div>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                <div
+                  style="display: flex; flex-direction: row;"
+                >
+                  <p>
+                    Periods
+                  </p>
+                  <p
+                    style="opacity: 0;"
+                  >
+                    ▲
+                  </p>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/AF2402?l=en"
+                >
+                  AF2402
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/AF2402?l=en"
+                >
+                  Acoustics and Fire
+                </a>
+              </td>
+              <td>
+                7.5 hp
+              </td>
+              <td>
+                First cycle
+              </td>
+              <td>
+                P1 Autumn 21 - P3 Spring 22
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/AH2905?l=en"
+                >
+                  AH2905
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/AH2905?l=en"
+                >
+                  Advanced Pavement Engineering Analysis and Design
+                </a>
+              </td>
+              <td>
+                7.5 hp
+              </td>
+              <td />
+              <td>
+                P1 Autumn 21
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Component <SearchResultDisplay> and resolved cases search by a text pattern to display at first a pending status message then the result of this search. English. 1B 1`] = `
+<DocumentFragment>
+  <h2
+    id="results-heading"
+  >
+    Search results
+  </h2>
+  <div
+    class="row"
+  >
+    <div
+      class="col"
+    >
+      <article
+        class="article "
+      >
+        <p
+          data-testid="number-of-results"
+        >
+          Your search returned 
+          <b>
+            2
+          </b>
+           result(s).
+        </p>
+        <table
+          class="table"
+        >
+          <thead>
+            <tr>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                <div
+                  style="display: flex; flex-direction: row;"
+                >
+                  <p>
+                    Course code
+                  </p>
+                  <p
+                    style="opacity: 0;"
+                  >
+                    ▲
+                  </p>
+                </div>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                <div
+                  style="display: flex; flex-direction: row;"
+                >
+                  <p>
+                    Course name
+                  </p>
+                  <p
+                    style="opacity: 0;"
+                  >
+                    ▲
+                  </p>
+                </div>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                <div
+                  style="display: flex; flex-direction: row;"
+                >
+                  <p>
+                    Scope
+                  </p>
+                  <p
+                    style="opacity: 0;"
+                  >
+                    ▲
+                  </p>
+                </div>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                <div
+                  style="display: flex; flex-direction: row;"
+                >
+                  <p>
+                    Educational level
+                  </p>
+                  <p
+                    style="opacity: 0;"
+                  >
+                    ▲
+                  </p>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/IX1303?l=en"
+                >
+                  IX1303
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/IX1303?l=en"
+                >
+                  Algebra och geometri
+                </a>
+              </td>
+              <td>
+                7.5 hp
+              </td>
+              <td>
+                First cycle
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/SF1624?l=en"
+                >
+                  SF1624
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/SF1624?l=en"
+                >
+                  Algebra och geometri
+                </a>
+              </td>
+              <td>
+                7.5 hp
+              </td>
+              <td>
+                First cycle
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+    </div>
+  </div>
+</DocumentFragment>
+`;

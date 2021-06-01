@@ -41,6 +41,10 @@ function asyncReducer(state, action) {
   }
 }
 
+const overflowDispatch = dispatch => dispatch({ type: STATUS.overflow })
+const noHitsDispatch = dispatch => dispatch({ type: STATUS.noHits })
+const noQueryProvidedDispatch = dispatch => dispatch({ type: STATUS.noQueryProvided })
+
 function useAsync(asyncCallback, initialState) {
   const [state, dispatch] = React.useReducer(asyncReducer, {
     status: STATUS.idle,
@@ -55,10 +59,9 @@ function useAsync(asyncCallback, initialState) {
     promise.then(
       data => {
         const { searchHits, errorCode } = data
-        if (errorCode && errorCode === 'search-error-overflow') dispatch({ type: STATUS.overflow })
-        else if (searchHits && searchHits.length === 0) dispatch({ type: STATUS.noHits })
-        else if (!searchHits && data === 'No query restriction was specified')
-          dispatch({ type: STATUS.noQueryProvided })
+        if (errorCode && errorCode === 'search-error-overflow') overflowDispatch(dispatch)
+        else if (searchHits && searchHits.length === 0) noHitsDispatch(dispatch)
+        else if (!searchHits && data === 'No query restriction was specified') noQueryProvidedDispatch(dispatch)
         else dispatch({ type: STATUS.resolved, data })
       },
       error => dispatch({ type: STATUS.rejected, error }) // 'search-error-unknown'

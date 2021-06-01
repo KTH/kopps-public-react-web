@@ -11,6 +11,7 @@ const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const koppsApi = require('../kopps/koppsApi')
 const { stringifyKoppsSearchParams } = require('../../domain/searchParams')
 const { compareSchools } = require('../utils/schools')
+const { getMockedSearchResults } = require('../mocks/mockKoppsApi')
 
 async function searchThirdCycleCourses(req, res, next) {
   try {
@@ -100,9 +101,11 @@ async function performCourseSearch(req, res, next) {
   const { lang } = req.params
 
   const { query } = req
-  //Example: `text_pattern=${pattern}`
+  // Example: `text_pattern=${pattern}`
   const searchParamsStr = stringifyKoppsSearchParams(query)
-
+  if (process.env.NODE_ENV === 'test') {
+    return getMockedSearchResults(searchParamsStr)
+  }
   try {
     log.debug('trying to perform search courses with parameters: ')
 
