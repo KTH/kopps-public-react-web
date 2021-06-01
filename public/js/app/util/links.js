@@ -57,8 +57,10 @@ function programmeWebLink(programmeCode, language) {
   return `/social/program/${programmeCode}${languageParam}`
 }
 
-function centralStudyCounselingUrl() {
-  return 'https://www.kth.se/studycounselling'
+function centralStudyCounselingUrl(language) {
+  return language === 'en'
+    ? 'https://www.kth.se/en/studies/master/general-study-counselling-1.621634'
+    : 'https://www.kth.se/utbildning/traffakth/studievagledning'
 }
 
 function koppsEmail() {
