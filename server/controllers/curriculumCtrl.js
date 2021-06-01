@@ -96,6 +96,18 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, progr
   setFirstSpec(curriculumInfos)
   applicationStore.setCurriculumInfos(curriculumInfos)
 
+  let lastStudyYearWithCourses = 0
+  curriculumsWithCourseRounds.forEach(curriculum => {
+    const { studyYears } = curriculum
+    studyYears.forEach(year => {
+      const { yearNumber, courses } = year
+      if (Array.isArray(courses) && courses.length && yearNumber > lastStudyYearWithCourses) {
+        lastStudyYearWithCourses = yearNumber
+      }
+    })
+  })
+  applicationStore.setLastStudyYear(lastStudyYearWithCourses)
+
   const departmentBreadCrumbItem = {
     url: programmeLink(browserConfig.proxyPrefixPath.uri, programmeCode, lang),
     label: programmeName,

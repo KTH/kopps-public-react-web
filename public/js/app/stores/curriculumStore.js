@@ -34,6 +34,10 @@ function setCurriculumInfos(curriculumInfos) {
   this.curriculumInfos = curriculumInfos
 }
 
+function setLastStudyYear(lastStudyYear) {
+  this.lastStudyYear = lastStudyYear
+}
+
 const curriculumStore = {
   /**
    * @property {string} programmeCode
@@ -120,6 +124,15 @@ const curriculumStore = {
    * @param {[]} curriculumInfos
    */
   setCurriculumInfos,
+  /**
+   * @property {number} lastStudyYear
+   */
+  lastStudyYear: 0,
+  /**
+   * @method
+   * @param {number} lastStudyYear
+   */
+  setLastStudyYear,
 }
 
 export default curriculumStore
