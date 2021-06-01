@@ -174,8 +174,15 @@ function CurriculumInfo() {
             </Fragment>
           )
       )}
-      <h2 id="heading-specialisations">{t('coursesbyprogramme_specialisations')}</h2>
-      {curriculumInfos.map(info => !info.isCommon && <SpecializationCourses key={info.code} curriculumInfo={info} />)}
+      {curriculumInfos.map(
+        info =>
+          !info.isCommon && (
+            <Fragment key={info.code}>
+              {info.isFirstSpec && <h2 id="heading-specialisations">{t('coursesbyprogramme_specialisations')}</h2>}
+              <SpecializationCourses curriculumInfo={info} />
+            </Fragment>
+          )
+      )}
     </>
   ) : (
     <div className="alert alert-info" role="alert" aria-live="polite">
