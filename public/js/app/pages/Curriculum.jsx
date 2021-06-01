@@ -174,15 +174,8 @@ function CurriculumInfo() {
             </Fragment>
           )
       )}
-      {curriculumInfos.map(
-        info =>
-          !info.isCommon && (
-            <Fragment key={info.code}>
-              <h2 id="heading-specialisations">{t('coursesbyprogramme_specialisations')}</h2>
-              <SpecializationCourses curriculumInfo={info} />
-            </Fragment>
-          )
-      )}
+      <h2 id="heading-specialisations">{t('coursesbyprogramme_specialisations')}</h2>
+      {curriculumInfos.map(info => !info.isCommon && <SpecializationCourses key={info.code} curriculumInfo={info} />)}
     </>
   ) : (
     <div className="alert alert-info" role="alert" aria-live="polite">
