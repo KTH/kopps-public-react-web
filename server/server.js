@@ -218,7 +218,6 @@ server.use('/', embeddedPageRoute.getRouter())
 
 // App routes
 const appRoute = AppRouter()
-appRoute.get('system.index', config.proxyPrefixPath.uri + '/', Public.getIndex)
 appRoute.get('system.ready', config.proxyPrefixPath.uri + '/_ready', Public.getReady)
 appRoute.get('example', config.proxyPrefixPath.uri + '/example', Public.getIndex)
 appRoute.get('public.studyhandbook', config.proxyPrefixPath.studyHandbook, StudyHandBook.getStudyBook)
