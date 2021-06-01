@@ -7,6 +7,7 @@ const { browser: browserConfig, server: serverConfig } = require('../configurati
 const i18n = require('../../i18n')
 
 const koppsApi = require('../kopps/koppsApi')
+const { curriculumInfo, setFirstSpec } = require('../../domain/curriculum')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
@@ -16,21 +17,30 @@ function programmeLink(proxyPrefixPath, programmeCode, lang) {
   return `${proxyPrefixPath}/student/kurser/program/${programmeCode}${languageParam}`
 }
 
-async function _getCourseRounds(curriculums, programmeCode, term, studyYear, lang) {
-  return Promise.all(
+async function _getCourseRounds(curriculum, programmeCode, term, studyYear, lang) {
+  const specializationCode = curriculum.programmeSpecialization
+    ? curriculum.programmeSpecialization.programmeSpecializationCode
+    : null
+  return koppsApi.listCourseRoundsInYearPlan({
+    programmeCode,
+    specializationCode,
+    academicYearStartTerm: term,
+    studyYearNumber: studyYear,
+    lang,
+  })
+}
+
+async function _addCourseRounds(curriculums, programmeCode, term, studyYear, lang) {
+  const curriculumsWithCourseRounds = []
+  await Promise.all(
     curriculums.map(async curriculum => {
-      const specializationCode = curriculum.programmeSpecialization
-        ? curriculum.programmeSpecialization.programmeSpecializationCode
-        : null
-      return koppsApi.listCourseRoundsInYearPlan({
-        programmeCode,
-        specializationCode,
-        academicYearStartTerm: term,
-        studyYearNumber: studyYear,
-        lang,
-      })
+      const courseRounds = await _getCourseRounds(curriculum, programmeCode, term, studyYear, lang)
+      const curriculumWithCourseRounds = curriculum
+      curriculumWithCourseRounds.courseRounds = courseRounds
+      curriculumsWithCourseRounds.push(curriculumWithCourseRounds)
     })
   )
+  return curriculumsWithCourseRounds
 }
 
 function _setError(applicationStore, statusCode) {
@@ -41,6 +51,18 @@ function _setError(applicationStore, statusCode) {
     error.statusCode = statusCode
     throw error
   }
+}
+
+function _compareCurriculum(a, b) {
+  if (!a) return 1
+  if (!b) return -1
+  if (a.code < b.code) {
+    return -1
+  }
+  if (a.code > b.code) {
+    return 1
+  }
+  return 0
 }
 
 async function _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode, term, studyYear }) {
@@ -65,9 +87,26 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, progr
   const { id: studyProgrammeId } = studyProgramme
 
   const curriculums = await koppsApi.listCurriculums(studyProgrammeId, lang)
-  applicationStore.setCurriculums(curriculums)
-  const courseRounds = await _getCourseRounds(curriculums, programmeCode, term, studyYear, lang)
-  applicationStore.setCourseRounds(courseRounds)
+  const curriculumsWithCourseRounds = await _addCourseRounds(curriculums, programmeCode, term, studyYear, lang)
+  applicationStore.setCurriculums(curriculumsWithCourseRounds)
+  const curriculumInfos = curriculumsWithCourseRounds
+    .map(curriculum => curriculumInfo({ programmeTermYear: { studyYear }, curriculum }))
+    .filter(ci => ci.hasInfo)
+  curriculumInfos.sort(_compareCurriculum)
+  setFirstSpec(curriculumInfos)
+  applicationStore.setCurriculumInfos(curriculumInfos)
+
+  let lastStudyYearWithCourses = 0
+  curriculumsWithCourseRounds.forEach(curriculum => {
+    const { studyYears } = curriculum
+    studyYears.forEach(year => {
+      const { yearNumber, courses } = year
+      if (Array.isArray(courses) && courses.length && yearNumber > lastStudyYearWithCourses) {
+        lastStudyYearWithCourses = yearNumber
+      }
+    })
+  })
+  applicationStore.setLastStudyYear(lastStudyYearWithCourses)
 
   const departmentBreadCrumbItem = {
     url: programmeLink(browserConfig.proxyPrefixPath.uri, programmeCode, lang),
@@ -88,7 +127,7 @@ async function getIndex(req, res, next) {
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
     const proxyPrefix = serverConfig.proxyPrefixPath.programme
-    const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const html = renderStaticPage({ applicationStore, location: req.url })
     const title = i18n.message('site_name', lang)
 
     res.render('app/index', {

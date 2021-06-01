@@ -5,12 +5,11 @@ import { centralStudyCounselingUrl, koppsEmail } from '../util/links'
 import Footer from './Footer'
 
 function FooterContent() {
-  const { languageIndex } = useStore()
-  const { contentContact, centralStudyCounseling, applicationContact, koppsEmailText } = i18n.messages[
-    languageIndex
-  ].footerContent
+  const { language, languageIndex } = useStore()
+  const { contentContact, centralStudyCounseling, applicationContact, koppsEmailText } =
+    i18n.messages[languageIndex].footerContent
 
-  const centralStudyCounselingAddress = centralStudyCounselingUrl()
+  const centralStudyCounselingAddress = centralStudyCounselingUrl(language)
   const koppsEmailAddress = koppsEmail()
 
   return (

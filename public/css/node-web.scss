@@ -16,3 +16,50 @@
 .search-instructions {
   @extend %long-text-font-style;
 }
+
+*[data-from-kopps]:hover {
+  background-color: #fcf8e3;
+}
+
+*[data-from-kopps]:hover:before {
+  content: 'KOPPS';
+  float: right;
+  margin-top: -1.5em;
+  padding: 0 0.75em;
+  background-color: #fab919;
+  color: white;
+  border-radius: 0.75em 0.75em 0 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: smaller;
+  font-weight: 600;
+}
+
+.table .active-period {
+  background-color: #e6ecf5; /*cortina: @ligthBlueGray */
+  color: #333333; /* slightly darker than default, compensating for background color. */
+  text-align: center;
+}
+
+.table td.credits {
+  white-space: nowrap;
+}
+
+.sidebar {
+  background-color: #f6f6f6;
+  padding: 20px;
+  margin-bottom: 15px;
+}
+
+.sidebar p {
+  font-family: 'Open Sans', Arial, 'Helvetica Neue', helvetica, sans-serif;
+  font-size: 1rem;
+}
+
+.sidebar :last-child {
+  margin-bottom: 0;
+}
+
+.sidebar-heading {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}

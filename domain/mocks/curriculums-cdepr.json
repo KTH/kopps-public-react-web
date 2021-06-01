@@ -1,0 +1,2147 @@
+[
+  {
+    "studyYears": [
+      {
+        "yearNumber": 1,
+        "courses": [
+          {
+            "courseCode": "MF1061",
+            "title": "Introduktion till design och produktframtagning",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1062",
+            "title": "Design och produktframtagning",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "SF1522",
+            "title": "Numeriska beräkningar",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "SF1523",
+            "title": "Analytiska och numeriska metoder för differentialekvationer",
+            "credits": 7.5,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "SF1624",
+            "title": "Algebra och geometri",
+            "credits": 7.5,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "SF1625",
+            "title": "Envariabelanalys",
+            "credits": 7.5,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "SF1626",
+            "title": "Flervariabelanalys",
+            "credits": 7.5,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "SG1130",
+            "title": "Mekanik I",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          }
+        ]
+      },
+      {
+        "yearNumber": 2,
+        "courses": [
+          {
+            "courseCode": "MF1018",
+            "title": "Industriell design Prop",
+            "credits": 3.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "R",
+            "comment": "Endast för/obligatorisk för studenter antagna från COPEN"
+          },
+          {
+            "courseCode": "MF1039",
+            "title": "Design och produktframtagning, komponenter",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1063",
+            "title": "Material i design och produktframtagning",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1064",
+            "title": "Modellering och simulering i design och produktframtagning",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MG1016",
+            "title": "Tillverkningsteknik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MG1028",
+            "title": "Grundläggande 3D-CAD",
+            "credits": 1.5,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "R",
+            "comment": "Endast för/obligatorisk för studenter antagna från COPEN"
+          },
+          {
+            "courseCode": "MJ1112",
+            "title": "Tillämpad termodynamik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "SD1116",
+            "title": "Konstruktion av tysta och vibrationsfria maskiner",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "SE1020",
+            "title": "Hållfasthetslära, grundkurs",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "SG1140",
+            "title": "Mekanik II",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          }
+        ]
+      },
+      {
+        "yearNumber": 3,
+        "supplementaryInfo": "\u003cp\u003eExamensarbete, grundl\u0026#228;ggande niv\u0026#229;, 15hp, \u0026#228;r en obligatorisk kurs under v\u0026#229;rterminen. Ett kandidatexamensarbete ska g\u0026#246;ras under \u0026#229;rskurs 3 (se listan \u0026#246;ver villkorligt valfria kurser)\u003c/p\u003e\u003cp\u003eUnder \u0026#229;r 3 l\u0026#228;ses \u0026#228;ven 3 st beh\u0026#246;righetsgivande och vilkorligt valfria kurser f\u0026#246;r beh\u0026#246;righet till masterprogram.\u003c/p\u003e\u003cp\u003e\u003cem\u003eStudierna p\u0026#229; avancerad niv\u0026#229;, \u0026#229;rskurs 4 och 5, inom civilingenj\u0026#246;rsutbildningen Design och produktframtagning, 300 hp, sker inom ramen f\u0026#246;r ett masterprogram\u003c/em\u003e\u003c/p\u003e\u003cp\u003eValbara masterprogram som leder till civilingenj\u0026#246;rsexamen i Design och Produktframtagning \u0026#228;r:\u003c/p\u003e\u003cul\u003e\u003cli\u003eIntegrerad produktdesign\u003cbr /\u003e\u003cem\u003eSp\u0026#229;r, Innovationsledning och produktutveckling\u003cbr /\u003eSp\u0026#229;r, teknisk design\u003c/em\u003e\u003c/li\u003e\u003cli\u003eIndustriell produktion\u003c/li\u003e\u003cli\u003eIndustriell produktutveckling\u003c/li\u003e\u003cli\u003e\u003cem\u003e\u003cem\u003eSp\u0026#229;r, Maskinkonstruktion\u003cbr /\u003e\u003c/em\u003e\u003c/em\u003e\u003cem\u003e\u003cem\u003e\u003cem\u003e\u003cem\u003e\u003cem\u003e\u003cem\u003eSp\u0026#229;r, Mekatronik\u003c/em\u003e\u003c/em\u003e\u003c/em\u003e\u003c/em\u003e\u003c/em\u003e\u003c/em\u003e\u003c/li\u003e\u003cli\u003eFlyg och rymdteknik\u003c/li\u003e\u003cli\u003eFordonsteknik\u003c/li\u003e\u003cli\u003eH\u0026#229;llbar energiteknik\u003c/li\u003e\u003cli\u003eIndustriell ekonomi\u003c/li\u003e\u003cli\u003eMarina system\u003c/li\u003e\u003cli\u003eTeknisk mekanik\u003cbr /\u003e\u003cem\u003eSp\u0026#229;r, Str\u0026#246;mningsmekanik\u003cbr /\u003e\u003c/em\u003e\u003cem\u003eSp\u0026#229;r, H\u0026#229;llfasthetsteknik\u003c/em\u003e\u003cbr /\u003e\u003cem\u003eSp\u0026#229;r, Ljud och vibrationer\u003c/em\u003e\u003c/li\u003e\u003c/ul\u003e",
+        "conditionallyElectiveCoursesInfo": "\u003cp\u003eEtt kandidatexamensarbete ska l\u0026#228;sas under \u0026#229;rskurs 3, oberoende av vilket masterprogram som ska l\u0026#228;sas.\u003c/p\u003e\u003cp\u003e\u003cstrong\u003eEtt\u0026#160;av f\u0026#246;ljande\u0026#160;kandidatexamensarbeten ska l\u0026#228;sas oberoende av masterval:\u003c/strong\u003e\u003c/p\u003e\u003cul\u003e\u003cli\u003eMF130X\u0026#160; Examensarbete inom maskinkonstruktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF131X\u0026#160; Examensarbete inom integrerad produktutveckling, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF132X\u0026#160; Examensarbete inom teknisk design, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF133X\u0026#160; Examensarbete inom mekatronik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMJ146X\u0026#160; Examensarbete inom h\u0026#229;llbar energiteknik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMG110X Examensarbete inom industriell produktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eSA118X\u0026#160; Examensarbete inom maskinteknik, grundniv\u0026#229;\u003c/li\u003e\u003c/ul\u003e\u003cp\u003e\u003cstrong\u003eOBS! Finns inte l\u0026#228;ngre n\u0026#229;got \u0026#246;verlapp mellan kurs MF1025 och kandidatexamensarbete MF130X. Nu kan allts\u0026#229; b\u0026#229;da l\u0026#228;sas oberoende av varandra.\u003c/strong\u003e\u003c/p\u003e",
+        "courses": [
+          {
+            "courseCode": "ME1003",
+            "title": "Industriell ekonomi, grundkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1016",
+            "title": "Elektroteknik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1040",
+            "title": "Design och produktframtagning, metodik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF130X",
+            "title": "Examensarbete inom maskinkonstruktion, grundnivå",
+            "credits": 15.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MF131X",
+            "title": "Examensarbete inom integrerad produktutveckling, grundnivå",
+            "credits": 15.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MF132X",
+            "title": "Examensarbete inom teknisk design, grundnivå",
+            "credits": 15.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MF133X",
+            "title": "Examensarbete inom mekatronik, grundnivå",
+            "credits": 15.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MG110X",
+            "title": "Examensarbete inom industriell produktion, grundnivå",
+            "credits": 15.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MJ146X",
+            "title": "Examensarbete inom hållbar energiteknik, grundnivå",
+            "credits": 15.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SA118X",
+            "title": "Examensarbete inom maskinteknik, grundnivå",
+            "credits": 15.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          }
+        ]
+      },
+      {
+        "yearNumber": 4,
+        "supplementaryInfo": "\u003cp\u003e\u003cem\u003eStudierna p\u0026#229; avancerad niv\u0026#229;, \u0026#229;rskurs 4 och 5, inom civilingenj\u0026#246;rsutbildningen Design och produktframtagning, 300 hp, sker inom ramen f\u0026#246;r ett masterprogram\u003c/em\u003e\u003c/p\u003e\u003cp\u003eInformation om vilka masterprogram som kan l\u0026#228;sas framg\u0026#229;r av utbildningsplanen, med reservation f\u0026#246;r \u0026#228;ndringar.\u003cem\u003e\u003cbr /\u003e\u003c/em\u003e\u003cbr /\u003eF\u0026#246;r studerande som v\u0026#228;ljer att l\u0026#228;sa f\u0026#246;ljande masteprogram:\u003cbr /\u003e\u003cstrong\u003eIndustriell ekonomi (TINEM),\u0026#160;\u003c/strong\u003e\u003cbr /\u003ekr\u0026#228;vs att en kompletterande teknikprofil l\u0026#228;ses f\u0026#246;r att civilingenj\u0026#246;rsexamen ska erh\u0026#229;llas.\u003c/p\u003e\u003cp\u003eEn av f\u0026#246;ljande teknikprofiler kan l\u0026#228;sas under \u0026#229;rskurs 4-5 (dvs under \u0026#229;rskurs 1-2 p\u0026#229;\u0026#160; masterprogrammet):\u003c/p\u003e\u003cul\u003e\u003cli\u003eKonstruktion\u003c/li\u003e\u003cli\u003eEnergi\u003c/li\u003e\u003cli\u003eProduktion\u0026#160;\u003c/li\u003e\u003cli\u003eH\u0026#229;llfasthetsl\u0026#228;ra\u003c/li\u003e\u003c/ul\u003e",
+        "courses": []
+      },
+      {
+        "yearNumber": 5,
+        "supplementaryInfo": "\u003cp\u003e\u003cem\u003eStudierna p\u0026#229; avancerad niv\u0026#229;, \u0026#229;rskurs 4 och 5, inom civilingenj\u0026#246;rsutbildningen Design och produktframtagning, 300 hp, sker inom ramen f\u0026#246;r ett masterprogram\u003c/em\u003e\u003c/p\u003e\u003cp\u003eInformation om vilka masterprogram som kan l\u0026#228;sas framg\u0026#229;r av utbildningsplanen, med reservation f\u0026#246;r \u0026#228;ndringar.\u003cem\u003e\u003cbr /\u003e\u003c/em\u003e\u003cbr /\u003eF\u0026#246;r studerande som v\u0026#228;ljer att l\u0026#228;sa f\u0026#246;ljande masteprogram:\u003cbr /\u003e\u003cstrong\u003eIndustriell ekonomi (TINEM),\u0026#160;\u003c/strong\u003e\u003cbr /\u003ekr\u0026#228;vs att en kompletterande teknikprofil l\u0026#228;ses f\u0026#246;r att civilingenj\u0026#246;rsexamen ska erh\u0026#229;llas.\u003c/p\u003e\u003cp\u003eEn av f\u0026#246;ljande teknikprofiler kan l\u0026#228;sas under \u0026#229;rskurs 4-5 (dvs under \u0026#229;rskurs 1-2 p\u0026#229;\u0026#160; masterprogrammet):\u003c/p\u003e\u003cul\u003e\u003cli\u003eKonstruktion\u003c/li\u003e\u003cli\u003eEnergi\u003c/li\u003e\u003cli\u003eProduktion\u0026#160;\u003c/li\u003e\u003cli\u003eH\u0026#229;llfasthetsl\u0026#228;ra\u003c/li\u003e\u003c/ul\u003e",
+        "courses": []
+      }
+    ]
+  },
+  {
+    "programmeSpecialization": {
+      "programmeSpecializationCode": "AEE",
+      "title": "Master, flyg- och rymdteknik"
+    },
+    "studyYears": [
+      { "yearNumber": 1, "courses": [] },
+      { "yearNumber": 2, "courses": [] },
+      {
+        "yearNumber": 3,
+        "supplementaryInfo": "\u003cp\u003eEn av kurserna SG1217 och SG1220 ska l\u0026#228;sas.\u003c/p\u003e\u003cp\u003e\u003cstrong\u003eEtt\u0026#160;av f\u0026#246;ljande\u0026#160;kandidatexamensarbeten ska l\u0026#228;sas oberoende av masterval:\u003c/strong\u003e\u003c/p\u003e\u003cul\u003e\u003cli\u003eMF130X\u0026#160; Examensarbete inom maskinkonstruktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF131X\u0026#160; Examensarbete inom integrerad produktutveckling, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF132X Examensarbete inom teknisk design, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF133X\u0026#160; Examensarbete inom mekatronik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMJ146X\u0026#160; Examensarbete inom h\u0026#229;llbar energiteknik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMG110X Examensarbete inom industriell produktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eSA118X\u0026#160; Examensarbete inom maskinteknik, grundniv\u0026#229;\u003c/li\u003e\u003c/ul\u003e",
+        "courses": [
+          {
+            "courseCode": "EL1010",
+            "title": "Reglerteknik, allmän kurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "ME1003",
+            "title": "Industriell ekonomi, grundkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1016",
+            "title": "Elektroteknik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1040",
+            "title": "Design och produktframtagning, metodik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "SE1025",
+            "title": "FEM för ingenjörstillämpningar",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "R"
+          },
+          {
+            "courseCode": "SF1916",
+            "title": "Sannolikhetsteori och statistik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "SG1217",
+            "title": "Strömningsmekanik, grundkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O",
+            "comment": "Kan bytas ut mot SG1220 som ges i period 1 "
+          }
+        ]
+      },
+      { "yearNumber": 4, "courses": [] },
+      { "yearNumber": 5, "courses": [] }
+    ]
+  },
+  {
+    "programmeSpecialization": {
+      "programmeSpecializationCode": "FOR",
+      "title": "Master, fordonsteknik"
+    },
+    "studyYears": [
+      { "yearNumber": 1, "courses": [] },
+      { "yearNumber": 2, "courses": [] },
+      {
+        "yearNumber": 3,
+        "supplementaryInfo": "\u003cp\u003e\u003cstrong\u003eEtt\u0026#160;av f\u0026#246;ljande\u0026#160;kandidatexamensarbeten ska l\u0026#228;sas oberoende av masterval:\u003c/strong\u003e\u003c/p\u003e\u003cul\u003e\u003cli\u003eMF130X\u0026#160; Examensarbete inom maskinkonstruktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF131X\u0026#160; Examensarbete inom integrerad produktutveckling, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF132X Examensarbete inom teknisk design, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF133X\u0026#160; Examensarbete inom mekatronik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMJ146X\u0026#160; Examensarbete inom h\u0026#229;llbar energiteknik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMG110X Examensarbete inom industriell produktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eSA118X\u0026#160; Examensarbete inom maskinteknik, grundniv\u0026#229;\u003c/li\u003e\u003c/ul\u003e",
+        "conditionallyElectiveCoursesInfo": "\u003cp\u003e\u003cstrong\u003eMinst en\u003c/strong\u003e villkorligt valfri kurs\u0026#160;fr\u0026#229;n listan nedan\u0026#160;ska l\u0026#228;sas i \u0026#229;rskurs 3.\u003c/p\u003e",
+        "courses": [
+          {
+            "courseCode": "DD1321",
+            "title": "Tillämpad programmering och datalogi",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "EL1010",
+            "title": "Reglerteknik, allmän kurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "HM1025",
+            "title": "Ergonomi i produktutvecklingen",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "ME1003",
+            "title": "Industriell ekonomi, grundkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1016",
+            "title": "Elektroteknik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1025",
+            "title": "Modellbaserad produktutveckling II",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MF1040",
+            "title": "Design och produktframtagning, metodik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MG1002",
+            "title": "Automatiseringsteknik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MG1024",
+            "title": "Produktion",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MJ1401",
+            "title": "Värmeöverföring",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SE1025",
+            "title": "FEM för ingenjörstillämpningar",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SF1916",
+            "title": "Sannolikhetsteori och statistik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SG1217",
+            "title": "Strömningsmekanik, grundkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "R",
+            "comment": "SG1220 kan läsas istället för SG1217"
+          },
+          {
+            "courseCode": "SG1220",
+            "title": "Teknisk strömningsmekanik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV",
+            "comment": " SG1217 kan läsas istället för SG1220. "
+          },
+          {
+            "courseCode": "SK2371",
+            "title": "Synintryckens fysik, större kurs",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV"
+          }
+        ]
+      },
+      { "yearNumber": 4, "courses": [] },
+      { "yearNumber": 5, "courses": [] }
+    ]
+  },
+  {
+    "programmeSpecialization": {
+      "programmeSpecializationCode": "INE",
+      "title": "Master, industriell ekonomi"
+    },
+    "studyYears": [
+      { "yearNumber": 1, "courses": [] },
+      { "yearNumber": 2, "courses": [] },
+      {
+        "yearNumber": 3,
+        "supplementaryInfo": "\u003cp\u003eEtt kandidatexamensarbete\u0026#160; ska l\u0026#228;sas i \u0026#229;rskurs 3, oberoende av masterval.\u003c/p\u003e\u003cp\u003eFr o m kull-18, NY KURS: Kurs ME2163 Ledarskap och organisering i olika milj\u0026#246;er 6 hp \u0026#228;r en NY KURS och den ers\u0026#228;tter ME2063 Team ledarskap och Human Resource Management 6,0\u0026#160;hp fr o m l\u0026#228;s\u0026#229;ret 20/21.\u003c/p\u003e\u003cp\u003e\u003cstrong\u003eTeknik profil f\u0026#246;r CDEPR-studenter som l\u0026#228;ser Industriell ekonomi (TINEM)\u003cbr /\u003e\u003c/strong\u003e\u003cem\u003eEn av f\u0026#246;ljande teknik profiler specificerad i l\u0026#228;s\u0026#229;rsplanen f\u0026#246;r civilingenj\u0026#246;rsutbildningen ska v\u0026#228;ljas och l\u0026#228;sas under \u0026#229;rskurs 4-5 (\u0026#229;rskurs 1-2 p\u0026#229; masterprogrammet):\u003c/em\u003e\u003c/p\u003e\u003cp\u003e\u003cstrong\u003eTeknikprofiler, \u0026#229;rskurs 4\u003cbr /\u003e\u003c/strong\u003e(l\u0026#228;ses i \u0026#229;rskurs 4-5)\u003c/p\u003e\u003cul\u003e\u003cli\u003e\u003cstrong\u003eTeknikprofil Konstruktion\u003c/strong\u003e\u003cbr /\u003e\u003cem\u003eKurser motsvarande minst 18 hp, p\u0026#229; listan nedan, skall l\u0026#228;sas i \u0026#229;k 4-5:\u003cbr /\u003e\u003c/em\u003eMF2101 Maskinkonstruktion\u0026#160; 6 hp\u003cbr /\u003eMF2102 Maskinkonstruktion projekt 6 hp\u003cbr /\u003eMF2010 Komponentkonstruktion 6 hp\u003cbr /\u003eMF2011 Systemkonstruktion 9 hp\u003cbr /\u003eMF2019 CAD 3D-modellering och\u0026#160; Visualisering 6 hp *\u003cbr /\u003eMF2024 Robust konstruktion 6 hp\u003cbr /\u003e\u003cem\u003e* Ges i period 2 och 4\u003c/em\u003e\u003c/li\u003e\u003c/ul\u003e\u003cul\u003e\u003cli\u003e\u003cstrong\u003eTeknikprofil Energi\u003c/strong\u003e\u003cbr /\u003eMJ2413 Energi och milj\u0026#246; 6 hp\u003cbr /\u003eMJ2411 F\u0026#246;rnybar energi 6 hp *\u003cbr /\u003eMJ2380 Introduktion till energisystemanalys och till\u0026#228;mpning 9 hp\u003cbr /\u003e\u003cem\u003e*kan \u0026#228;ven l\u0026#228;sas i \u0026#229;k 5\u003c/em\u003e\u003c/li\u003e\u003c/ul\u003e\u003cul\u003e\u003cli\u003e\u003cstrong\u003eT\u003c/strong\u003e\u003cstrong\u003eeknikprofil Produktion\u003cbr /\u003e\u003c/strong\u003eMG2029 Industriell produktion - planering och styrning 6 hp\u003cbr /\u003e\u003cem\u003e(MG1024 Produktion l\u0026#228;ses i \u0026#229;k 3, d\u0026#229; den \u0026#228;r beh\u0026#246;righetsgivande kurs f\u0026#246;r MG2029)\u003c/em\u003e\u003cbr /\u003e\u003cem\u003e\u003cbr /\u003eEn av f\u0026#246;ljande tv\u0026#229; kurser skall v\u0026#228;ljas:\u003c/em\u003e\u003cbr /\u003eMG2028 Inte bara CAD - IT-verktyg i industriell produktframtagning 6 hp\u003cbr /\u003eMG2130 Industriell produktion - simulering 9 hp\u003cbr /\u003e\u003cem\u003e\u003cbr /\u003eSamt en av f\u0026#246;ljande kurser skall v\u0026#228;ljas, kan l\u0026#228;sas i \u0026#229;k 4 eller \u0026#229;k 5\u003c/em\u003e\u003cbr /\u003eMG2009 Avancerad tillverkningsteknik 6 hp\u003cbr /\u003eMG2109 Avancerad tillverkningsteknik, st\u0026#246;rre kurs 9 hp\u003cbr /\u003eMG2110 Avancerad m\u0026#228;tteknik 9 hp\u003cbr /\u003eMG2022 Avancerad CAD- och FFF-modellering 6 hp *\u003cbr /\u003eMG2135 PLM - Product Lifecycle Management - Informationshantering i produktframtagning 9 hp\u003cbr /\u003eMG2036 Datorst\u0026#246;dd tillverkning - CAM 6 hp\u003cbr /\u003eMG2038 Digitala fabriker 6 hp **\u003cbr /\u003eMG2010 Modern industriell m\u0026#228;tteknik 6 hp\u003cbr /\u003e\u003cem\u003e* MG2028 \u0026#228;r f\u0026#246;rkunskapskrav\u003c/em\u003e\u003cbr /\u003e\u003cem\u003e** MG2130 \u0026#228;r f\u0026#246;rkunskapskrav\u003c/em\u003e\u003c/li\u003e\u003c/ul\u003e\u003cul\u003e\u003cli\u003e\u003cstrong\u003eTeknikprofil H\u0026#229;llfasthetsl\u0026#228;ra\u0026#160;\u003c/strong\u003e\u003cbr /\u003eSE1025 FEM f\u0026#246;r ingenj\u0026#246;rstill\u0026#228;mpningar 6 hp *\u003cbr /\u003e\u003cem\u003e\u003cbr /\u003eEn av f\u0026#246;ljande tv\u0026#229; kurser skall v\u0026#228;ljas:\u003c/em\u003e\u003cbr /\u003eSE2126 Materialmekanik 9 hp\u003cbr /\u003eSE2132 Till\u0026#228;mpad elasticitet med FEM 9 hp\u003cbr /\u003e\u003cem\u003e\u003cbr /\u003eSamt en av f\u0026#246;ljande kurser skall v\u0026#228;ljas\u003c/em\u003e\u003cbr /\u003eSE2860 Modellering i FEM 8 hp\u003cbr /\u003eSE2137 Utmattning 6 hp\u003cbr /\u003eSE2139 Brottmekanik 6 hp\u003cbr /\u003eSE2134 Dynamik inom h\u0026#229;llfasthetsl\u0026#228;ran 7,5 hp\u003cbr /\u003eSE2121 Biomekanik 9 hp\u003cbr /\u003e\u003cem\u003e* L\u0026#228;ses med f\u0026#246;rdel i \u0026#229;k 3. Ges ocks\u0026#229; i period 1 p\u0026#229; engelska.\u003c/em\u003e\u003c/li\u003e\u003c/ul\u003e",
+        "conditionallyElectiveCoursesInfo": "\u003cp\u003e\u003cstrong\u003eMinst 9 hp \u003c/strong\u003eav de villkorligt valfria kurserna\u0026#160;i listan\u0026#160;nedan\u0026#160;ska l\u0026#228;sas i \u0026#229;rskurs 3.\u003c/p\u003e\u003cp\u003e\u003cstrong\u003eObservera:\u003c/strong\u003e\u0026#160;Kursen\u0026#160;\u003cem\u003eMG1024 Produktion\u003c/em\u003e\u0026#160;\u0026#228;r beh\u0026#246;righetsgivande kurs, f\u0026#246;r kursen\u003cem\u003e\u0026#160;MG2029 Industriell produktion - planering och styrning,\u0026#160;\u003c/em\u003esom \u0026#228;r en obligatorisk kurs f\u0026#246;r de som l\u0026#228;ser masterprogrammet Industriell ekonomi (TINEM), teknikprofilen: Produktion.\u003c/p\u003e\u003cp\u003e\u003cstrong\u003eEtt\u0026#160;av f\u0026#246;ljande\u0026#160;kandidatexamensarbeten ska l\u0026#228;sas oberoende av masterval:\u003c/strong\u003e\u003c/p\u003e\u003cul\u003e\u003cli\u003eMF130X\u0026#160; Examensarbete inom maskinkonstruktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF131X\u0026#160; Examensarbete inom integrerad produktutveckling, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF132X Examensarbete inom teknisk design, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF133X\u0026#160; Examensarbete inom mekatronik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMJ146X\u0026#160; Examensarbete inom h\u0026#229;llbar energiteknik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMG110X Examensarbete inom industriell produktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eSA118X\u0026#160; Examensarbete inom maskinteknik, grundniv\u0026#229;\u003c/li\u003e\u003c/ul\u003e",
+        "courses": [
+          {
+            "courseCode": "DD1321",
+            "title": "Tillämpad programmering och datalogi",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "EL1010",
+            "title": "Reglerteknik, allmän kurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "HM1025",
+            "title": "Ergonomi i produktutvecklingen",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "ME1003",
+            "title": "Industriell ekonomi, grundkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "ME2015",
+            "title": "Projektledning: Ledning och styrning av projekt",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "ME2163",
+            "title": "Ledarskap och organisering i olika miljöer",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "O",
+            "comment": "Ersätter ME2063"
+          },
+          {
+            "courseCode": "MF1016",
+            "title": "Elektroteknik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1025",
+            "title": "Modellbaserad produktutveckling II",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MF1040",
+            "title": "Design och produktframtagning, metodik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MG1024",
+            "title": "Produktion",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MJ1401",
+            "title": "Värmeöverföring",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SE1025",
+            "title": "FEM för ingenjörstillämpningar",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SF1916",
+            "title": "Sannolikhetsteori och statistik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SG1217",
+            "title": "Strömningsmekanik, grundkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV",
+            "comment": "SG1220 kan läsas istället för SG1217."
+          },
+          {
+            "courseCode": "SG1220",
+            "title": "Teknisk strömningsmekanik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV",
+            "comment": " SG1217 kan läsas istället för SG1220. "
+          }
+        ]
+      },
+      {
+        "yearNumber": 4,
+        "supplementaryInfo": "\u003cp\u003e\u003cstrong\u003eTeknik profil f\u0026#246;r CDEPR-studenter som l\u0026#228;ser masterprogrammet Industriell ekonomi (TINEM)\u003cbr /\u003e\u003c/strong\u003eEn av f\u0026#246;ljande teknik profiler specificerad i l\u0026#228;s\u0026#229;rsplanen f\u0026#246;r civilingenj\u0026#246;rsutbildningen ska v\u0026#228;ljas och l\u0026#228;sas under \u0026#229;rskurs 4-5 (dvs under \u0026#229;rskurs 1-2 p\u0026#229; masterprogrammet)\u003c/p\u003e\u003cp\u003e\u003cstrong\u003eTeknikprofiler, \u0026#229;rskurs 4-5\u003cbr /\u003e\u003c/strong\u003e(\u0026#229;rskurs 1-2 p\u0026#229; masterprogrammet)\u003c/p\u003e\u003cul\u003e\u003cli\u003e\u003cstrong\u003eTeknikprofil Konstruktion\u003c/strong\u003e\u003cbr /\u003eVillkorligt valfria kurser inom teknikprofilen motsvarande\u0026#160;\u003cstrong\u003eminst 18 hp\u003c/strong\u003e\u0026#160;skall l\u0026#228;sas i \u0026#229;k 4-5.\u003cbr /\u003e\u003cem\u003e* Kurs MF2019 ges i period 2 och 4\u003c/em\u003e\u003c/li\u003e\u003c/ul\u003e\u003cul\u003e\u003cli\u003e\u003cstrong\u003eTeknikprofil Energi\u003c/strong\u003e\u003cem\u003e\u003cstrong\u003e\u003cbr /\u003e\u003c/strong\u003e\u003c/em\u003eSamtliga villkorligt valfria kurser inom teknikprofilen skall l\u0026#228;sas i \u0026#229;k 4-5.\u003c/li\u003e\u003c/ul\u003e\u003cul\u003e\u003cli\u003e\u003cstrong\u003eT\u003c/strong\u003e\u003cstrong\u003eeknikprofil Produktion\u003c/strong\u003e\u003cbr /\u003eInom teknikprofilen ska kursen\u0026#160;\u003cem\u003eMG2029\u003c/em\u003e\u0026#160;\u003cem\u003eIndustriell produktion - planering och styrning\u0026#160;\u003c/em\u003el\u0026#228;sas, samt\u0026#160;\u003cstrong\u003een\u003c/strong\u003e\u0026#160;av kurserna\u0026#160;\u003cem\u003eMG2028 Inte bara CAD - IT-verktyg i industriell produktframtagning\u003c/em\u003e\u0026#160;eller\u0026#160;\u003cem\u003eMG2130\u0026#160;Modellering och simulering av industriella processer\u0026#160;\u003c/em\u003e\u003cbr /\u003eUt\u0026#246;ver dessa kurser ska\u0026#160;\u003cstrong\u003een\u003c/strong\u003e\u0026#160;av \u0026#246;vrigt villkorligt valfria kurser inom teknikprofilen l\u0026#228;sas i \u0026#229;k 4-5.\u003c/li\u003e\u003c/ul\u003e\u003cul\u003e\u003cli\u003e\u003cstrong\u003eTeknikprofil H\u0026#229;llfasthetsl\u0026#228;ra\u003c/strong\u003e\u003cem\u003e\u003cstrong\u003e\u003cstrong\u003e\u003cbr /\u003e\u003c/strong\u003e\u003c/strong\u003e\u003c/em\u003eInom teknikprofilen ska kursen\u0026#160;\u003cem\u003eSE1025 FEM f\u0026#246;r ingenj\u0026#246;rstill\u0026#228;mpningar\u003c/em\u003e\u0026#160;l\u0026#228;sas, samt\u0026#160;\u003cstrong\u003een\u003c/strong\u003e\u0026#160;av kurserna\u0026#160;\u003cem\u003eSE2126 Materialmekanik\u0026#160;\u003c/em\u003eeller\u0026#160;\u003cem\u003eSE2132 Till\u0026#228;mpad elasticitet med FEM\u003c/em\u003e.\u003cbr /\u003eUt\u0026#246;ver dessa kurser ska\u0026#160;\u003cstrong\u003een\u003c/strong\u003e\u0026#160;av \u0026#246;vrigt villkorligt valfria kurser inom teknikprofilen l\u0026#228;sas i \u0026#229;k 4-5.\u003cbr /\u003e\u003cem\u003e* SE1025 -\u0026#160;\u003cem\u003eL\u0026#228;ses med f\u0026#246;rdel i \u0026#229;k 3. Ges ocks\u0026#229; i period 1 p\u0026#229; engelska.\u003c/em\u003e\u003cbr /\u003e\u003c/em\u003e\u003c/li\u003e\u003c/ul\u003e",
+        "courses": [
+          {
+            "courseCode": "MF2010",
+            "title": "Komponentkonstruktion",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Konstruktion"
+          },
+          {
+            "courseCode": "MF2011",
+            "title": "Systemkonstruktion",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Konstruktion"
+          },
+          {
+            "courseCode": "MF2019",
+            "title": "CAD 3D-modellering och visualisering",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Konstruktion"
+          },
+          {
+            "courseCode": "MF2024",
+            "title": "Robust konstruktion",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Konstruktion"
+          },
+          {
+            "courseCode": "MF2101",
+            "title": "Maskinkonstruktion",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Konstruktion"
+          },
+          {
+            "courseCode": "MF2102",
+            "title": "Maskinkonstruktion projektkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Konstruktion"
+          },
+          {
+            "courseCode": "MG2009",
+            "title": "Avancerad tillverkningsteknik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Produktion"
+          },
+          {
+            "courseCode": "MG2010",
+            "title": "Modern industriell mätteknik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Produktion"
+          },
+          {
+            "courseCode": "MG2022",
+            "title": "Avancerad CAD- och FFF-modellering, projektkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Produktion"
+          },
+          {
+            "courseCode": "MG2028",
+            "title": "Inte bara CAD - IT-verktyg i industriell produktframtagning",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Produktion"
+          },
+          {
+            "courseCode": "MG2029",
+            "title": "Industriell produktion - planering och styrning",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Produktion"
+          },
+          {
+            "courseCode": "MG2036",
+            "title": "Datorstödd tillverkning - CAM",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Produktion"
+          },
+          {
+            "courseCode": "MG2038",
+            "title": "Digitala fabriker",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Produktion"
+          },
+          {
+            "courseCode": "MG2109",
+            "title": "Avancerad tillverkningsteknik, större kurs",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Produktion"
+          },
+          {
+            "courseCode": "MG2110",
+            "title": "Avancerad mätteknik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Produktion"
+          },
+          {
+            "courseCode": "MG2130",
+            "title": "Modellering och simulering av industriella processer",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Produktion"
+          },
+          {
+            "courseCode": "MG2135",
+            "title": "PLM, Product Lifecycle Management - Informationshantering i produktframtagning",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Produktion"
+          },
+          {
+            "courseCode": "MJ2380",
+            "title": "Introduktion till Energisystemanalys och tillämpning",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Energi"
+          },
+          {
+            "courseCode": "MJ2411",
+            "title": "Förnybar energi",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Energi"
+          },
+          {
+            "courseCode": "MJ2413",
+            "title": "Energi och miljö",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Energi"
+          },
+          {
+            "courseCode": "SE1025",
+            "title": "FEM för ingenjörstillämpningar",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Hållfasthetslära"
+          },
+          {
+            "courseCode": "SE2121",
+            "title": "Biomekanik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Hållfasthetslära"
+          },
+          {
+            "courseCode": "SE2126",
+            "title": "Materialmekanik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Hållfasthetslära"
+          },
+          {
+            "courseCode": "SE2132",
+            "title": "Tillämpad elasticitet med FEM",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Hållfasthetslära"
+          },
+          {
+            "courseCode": "SE2134",
+            "title": "Dynamik inom hållfasthetsläran",
+            "credits": 7.5,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Hållfasthetslära"
+          },
+          {
+            "courseCode": "SE2137",
+            "title": "Utmattning",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Hållfasthetslära"
+          },
+          {
+            "courseCode": "SE2139",
+            "title": "Brottmekanik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Hållfasthetslära"
+          },
+          {
+            "courseCode": "SE2860",
+            "title": "Modellering i FEM",
+            "credits": 8.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV",
+            "comment": "Teknikprofil - Hållfasthetslära"
+          }
+        ]
+      },
+      {
+        "yearNumber": 5,
+        "supplementaryInfo": "\u003cp\u003e\u003cstrong\u003eTeknik profil f\u0026#246;r CDEPR-studenter som l\u0026#228;ser masterprogrammet Industriell ekonomi (TINEM)\u003cbr /\u003e\u003c/strong\u003eEn av f\u0026#246;ljande teknik profiler specificerad i l\u0026#228;s\u0026#229;rsplanen f\u0026#246;r civilingenj\u0026#246;rsutbildningen ska v\u0026#228;ljas och l\u0026#228;sas under \u0026#229;rskurs 4-5 (dvs under \u0026#229;rskurs 1-2 p\u0026#229; masterprogrammet)\u003c/p\u003e\u003cp\u003e\u003cstrong\u003eTeknikprofiler, \u0026#229;rskurs 4-5\u003cbr /\u003e\u003c/strong\u003e(\u0026#229;rskurs 1-2 p\u0026#229; masterprogrammet)\u003c/p\u003e\u003cul\u003e\u003cli\u003e\u003cstrong\u003eTeknikprofil Konstruktion\u003c/strong\u003e\u003cbr /\u003eVillkorligt valfria kurser inom teknikprofilen motsvarande\u0026#160;\u003cstrong\u003eminst 18 hp\u003c/strong\u003e\u0026#160;skall l\u0026#228;sas i \u0026#229;k 4-5.\u003c/li\u003e\u003c/ul\u003e\u003cul\u003e\u003cli\u003e\u003cstrong\u003eTeknikprofil Energi\u003c/strong\u003e\u003cem\u003e\u003cstrong\u003e\u003cbr /\u003e\u003c/strong\u003e\u003c/em\u003eSamtliga villkorligt valfria kurser inom teknikprofilen skall l\u0026#228;sas i \u0026#229;k 4-5.\u003c/li\u003e\u003c/ul\u003e\u003cul\u003e\u003cli\u003e\u003cstrong\u003eT\u003c/strong\u003e\u003cstrong\u003eeknikprofil Produktion\u003c/strong\u003e\u003cbr /\u003eInom teknikprofilen ska kursen\u0026#160;\u003cem\u003eMG2029\u003c/em\u003e\u0026#160;\u003cem\u003eIndustriell produktion - planering och styrning\u0026#160;\u003c/em\u003el\u0026#228;sas, samt\u0026#160;\u003cstrong\u003een\u003c/strong\u003e\u0026#160;av kurserna\u0026#160;\u003cem\u003eMG2028 Inte bara CAD - IT-verktyg i industriell produktframtagning\u003c/em\u003e\u0026#160;eller\u0026#160;\u003cem\u003eMG2130\u0026#160;Modellering och simulering av industriella processer\u0026#160;\u003c/em\u003e\u003cbr /\u003eUt\u0026#246;ver dessa kurser ska\u0026#160;\u003cstrong\u003een\u003c/strong\u003e\u0026#160;av \u0026#246;vrigt villkorligt valfria kurser inom teknikprofilen l\u0026#228;sas i \u0026#229;k 4-5.\u003c/li\u003e\u003c/ul\u003e\u003cul\u003e\u003cli\u003e\u003cstrong\u003eTeknikprofil H\u0026#229;llfasthetsl\u0026#228;ra\u003c/strong\u003e\u003cem\u003e\u003cstrong\u003e\u003cstrong\u003e\u003cbr /\u003e\u003c/strong\u003e\u003c/strong\u003e\u003c/em\u003eInom teknikprofilen ska kursen\u0026#160;\u003cem\u003eSE1025 FEM f\u0026#246;r ingenj\u0026#246;rstill\u0026#228;mpningar\u003c/em\u003e\u0026#160;l\u0026#228;sas, samt\u0026#160;\u003cstrong\u003een\u003c/strong\u003e\u0026#160;av kurserna\u0026#160;\u003cem\u003eSE2126 Materialmekanik\u0026#160;\u003c/em\u003eeller\u0026#160;\u003cem\u003eSE2132 Till\u0026#228;mpad elasticitet med FEM\u003c/em\u003e.\u003cbr /\u003eUt\u0026#246;ver dessa kurser ska\u0026#160;\u003cstrong\u003een\u003c/strong\u003e\u0026#160;av \u0026#246;vrigt villkorligt valfria kurser inom teknikprofilen l\u0026#228;sas i \u0026#229;k 4-5.\u003c/li\u003e\u003c/ul\u003e",
+        "courses": []
+      }
+    ]
+  },
+  {
+    "programmeSpecialization": {
+      "programmeSpecializationCode": "IPDC",
+      "title": "Spår, teknisk design"
+    },
+    "studyYears": [
+      { "yearNumber": 1, "courses": [] },
+      { "yearNumber": 2, "courses": [] },
+      {
+        "yearNumber": 3,
+        "supplementaryInfo": "\u003cp\u003e\u003cstrong\u003eEtt\u0026#160;av f\u0026#246;ljande\u0026#160;kandidatexamensarbete ska l\u0026#228;sas oberoende av masterval:\u003c/strong\u003e\u003c/p\u003e\u003cul\u003e\u003cli\u003eMF130X\u0026#160; Examensarbete inom maskinkonstruktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF131X\u0026#160; Examensarbete inom integrerad produktutveckling, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF132X Examensarbete inom teknisk design, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF133X\u0026#160; Examensarbete inom mekatronik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMJ146X\u0026#160; Examensarbete inom h\u0026#229;llbar energiteknik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMG110X Examensarbete inom industriell produktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eSA118X\u0026#160; Examensarbete inom maskinteknik, grundniv\u0026#229;\u003c/li\u003e\u003c/ul\u003e\u003cp\u003e\u003cstrong\u003eOBS! Finns inte l\u0026#228;ngre n\u0026#229;got \u0026#246;verlapp mellan kurs MF1025 och kandidatexamensarbete MF130X.\u003cbr /\u003eMF1025 \u0026#228;r s\u0026#228;rskild beh\u0026#246;righet f\u0026#246;r att antas till Teknisk Design.\u003cbr /\u003e\u003c/strong\u003e\u003c/p\u003e",
+        "courses": [
+          {
+            "courseCode": "HM1025",
+            "title": "Ergonomi i produktutvecklingen",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "ME1003",
+            "title": "Industriell ekonomi, grundkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1016",
+            "title": "Elektroteknik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1025",
+            "title": "Modellbaserad produktutveckling II",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O",
+            "comment": "Angående MF130X och MF1025: Enbart en av kurserna kan läsas"
+          },
+          {
+            "courseCode": "MF1040",
+            "title": "Design och produktframtagning, metodik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          }
+        ]
+      },
+      { "yearNumber": 4, "courses": [] },
+      { "yearNumber": 5, "courses": [] }
+    ]
+  },
+  {
+    "programmeSpecialization": {
+      "programmeSpecializationCode": "IPDE",
+      "title": "Spår, innovationsledning och produktutveckling"
+    },
+    "studyYears": [
+      { "yearNumber": 1, "courses": [] },
+      { "yearNumber": 2, "courses": [] },
+      {
+        "yearNumber": 3,
+        "supplementaryInfo": "\u003cp\u003e\u003cstrong\u003eEtt\u0026#160;av f\u0026#246;ljande\u0026#160;kandidatexamensarbete ska l\u0026#228;sas oberoende av masterval:\u003c/strong\u003e\u003c/p\u003e\u003cul\u003e\u003cli\u003eMF130X\u0026#160; Examensarbete inom maskinkonstruktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF131X\u0026#160; Examensarbete inom integrerad produktutveckling, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF132X Examensarbete inom teknisk design, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF133X\u0026#160; Examensarbete inom mekatronik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMJ146X\u0026#160; Examensarbete inom h\u0026#229;llbar energiteknik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMG110X Examensarbete inom industriell produktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eSA118X\u0026#160; Examensarbete inom maskinteknik, grundniv\u0026#229;\u003c/li\u003e\u003c/ul\u003e\u003cp\u003eAng\u0026#229;ende MF130X och MF1025: Enbart en av kurserna kan l\u0026#228;sas\u003c/p\u003e",
+        "conditionallyElectiveCoursesInfo": "\u003cp\u003e\u003cstrong\u003eMinst 12 hp \u003c/strong\u003eav de villkorligt valfria kurserna i listan nedan ska l\u0026#228;sas i \u0026#229;rskurs 3.\u003c/p\u003e",
+        "courses": [
+          {
+            "courseCode": "DD1321",
+            "title": "Tillämpad programmering och datalogi",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "EL1010",
+            "title": "Reglerteknik, allmän kurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "HM1025",
+            "title": "Ergonomi i produktutvecklingen",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "ME1003",
+            "title": "Industriell ekonomi, grundkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1016",
+            "title": "Elektroteknik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1025",
+            "title": "Modellbaserad produktutveckling II",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV",
+            "comment": "Kan ej läsas vid val av KEX MF130X pga överlapp "
+          },
+          {
+            "courseCode": "MF1040",
+            "title": "Design och produktframtagning, metodik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MG1002",
+            "title": "Automatiseringsteknik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MG1024",
+            "title": "Produktion",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MJ1401",
+            "title": "Värmeöverföring",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SE1025",
+            "title": "FEM för ingenjörstillämpningar",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SF1916",
+            "title": "Sannolikhetsteori och statistik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SG1217",
+            "title": "Strömningsmekanik, grundkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV",
+            "comment": "SG1217 kan läsas istället för SG1220. "
+          },
+          {
+            "courseCode": "SG1220",
+            "title": "Teknisk strömningsmekanik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV",
+            "comment": "SG1217 kan läsas istället för SG1220. "
+          },
+          {
+            "courseCode": "SK2371",
+            "title": "Synintryckens fysik, större kurs",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV"
+          }
+        ]
+      },
+      { "yearNumber": 4, "courses": [] },
+      { "yearNumber": 5, "courses": [] }
+    ]
+  },
+  {
+    "programmeSpecialization": {
+      "programmeSpecializationCode": "IPUB",
+      "title": "Spår, maskinkonstruktion"
+    },
+    "studyYears": [
+      { "yearNumber": 1, "courses": [] },
+      { "yearNumber": 2, "courses": [] },
+      {
+        "yearNumber": 3,
+        "supplementaryInfo": "\u003cp\u003e\u003cstrong\u003eEtt\u0026#160;av f\u0026#246;ljande\u0026#160;kandidatexamensarbeten ska l\u0026#228;sas oberoende av masterval:\u003c/strong\u003e\u003c/p\u003e\u003cul\u003e\u003cli\u003eMF130X\u0026#160; Examensarbete inom maskinkonstruktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF131X\u0026#160; Examensarbete inom integrerad produktutveckling, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF132X Examensarbete inom teknisk design, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF133X\u0026#160; Examensarbete inom mekatronik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMJ146X\u0026#160; Examensarbete inom h\u0026#229;llbar energiteknik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMG110X Examensarbete inom industriell produktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eSA118X\u0026#160; Examensarbete inom maskinteknik, grundniv\u0026#229;\u003c/li\u003e\u003c/ul\u003e",
+        "conditionallyElectiveCoursesInfo": "\u003cp\u003e\u003cstrong\u003eMinst 12 hp \u003c/strong\u003evillkorligt valfri kurs\u0026#160;fr\u0026#229;n listan nedan\u0026#160;ska l\u0026#228;sas i \u0026#229;rskurs 3.\u003c/p\u003e",
+        "courses": [
+          {
+            "courseCode": "DD1321",
+            "title": "Tillämpad programmering och datalogi",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "EL1010",
+            "title": "Reglerteknik, allmän kurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "HM1025",
+            "title": "Ergonomi i produktutvecklingen",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "ME1003",
+            "title": "Industriell ekonomi, grundkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1016",
+            "title": "Elektroteknik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1025",
+            "title": "Modellbaserad produktutveckling II",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV",
+            "comment": "Kan ej läsas vid val av KEX MF130X pg överlapp"
+          },
+          {
+            "courseCode": "MF1040",
+            "title": "Design och produktframtagning, metodik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MG1002",
+            "title": "Automatiseringsteknik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MG1024",
+            "title": "Produktion",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MJ1401",
+            "title": "Värmeöverföring",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SE1025",
+            "title": "FEM för ingenjörstillämpningar",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SF1916",
+            "title": "Sannolikhetsteori och statistik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SG1217",
+            "title": "Strömningsmekanik, grundkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV",
+            "comment": " SG1220 kan läsas istället för SG1217 "
+          },
+          {
+            "courseCode": "SG1220",
+            "title": "Teknisk strömningsmekanik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV",
+            "comment": "SG1217 kan läsas istället för SG1220. "
+          },
+          {
+            "courseCode": "SK2371",
+            "title": "Synintryckens fysik, större kurs",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV"
+          }
+        ]
+      },
+      { "yearNumber": 4, "courses": [] },
+      { "yearNumber": 5, "courses": [] }
+    ]
+  },
+  {
+    "programmeSpecialization": {
+      "programmeSpecializationCode": "IPUC",
+      "title": "Spår, mekatronik"
+    },
+    "studyYears": [
+      { "yearNumber": 1, "courses": [] },
+      { "yearNumber": 2, "courses": [] },
+      {
+        "yearNumber": 3,
+        "supplementaryInfo": "\u003cp\u003e\u003cstrong\u003eEtt\u0026#160;av f\u0026#246;ljande\u0026#160;kandidatexamensarbeten ska l\u0026#228;sas oberoende av masterval:\u003c/strong\u003e\u003c/p\u003e\u003cul\u003e\u003cli\u003eMF130X\u0026#160; Examensarbete inom maskinkonstruktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF131X\u0026#160; Examensarbete inom integrerad produktutveckling, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF132X Examensarbete inom teknisk design, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF133X\u0026#160; Examensarbete inom mekatronik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMJ146X\u0026#160; Examensarbete inom h\u0026#229;llbar energiteknik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMG110X Examensarbete inom industriell produktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eSA118X\u0026#160; Examensarbete inom maskinteknik, grundniv\u0026#229;\u003c/li\u003e\u003c/ul\u003e",
+        "courses": [
+          {
+            "courseCode": "DD1321",
+            "title": "Tillämpad programmering och datalogi",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "EL1010",
+            "title": "Reglerteknik, allmän kurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "ME1003",
+            "title": "Industriell ekonomi, grundkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1016",
+            "title": "Elektroteknik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1040",
+            "title": "Design och produktframtagning, metodik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          }
+        ]
+      },
+      { "yearNumber": 4, "courses": [] },
+      { "yearNumber": 5, "courses": [] }
+    ]
+  },
+  {
+    "programmeSpecialization": {
+      "programmeSpecializationCode": "MRS",
+      "title": "Master, marina system"
+    },
+    "studyYears": [
+      { "yearNumber": 1, "courses": [] },
+      { "yearNumber": 2, "courses": [] },
+      {
+        "yearNumber": 3,
+        "supplementaryInfo": "\u003cp\u003e\u003cstrong\u003eEtt\u0026#160;av f\u0026#246;ljande\u0026#160;kandidatexamensarbeten ska l\u0026#228;sas oberoende av masterval:\u003c/strong\u003e\u003c/p\u003e\u003cul\u003e\u003cli\u003eMF130X\u0026#160; Examensarbete inom maskinkonstruktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF131X\u0026#160; Examensarbete inom integrerad produktutveckling, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF132X Examensarbete inom teknisk design, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF133X\u0026#160; Examensarbete inom mekatronik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMJ146X\u0026#160; Examensarbete inom h\u0026#229;llbar energiteknik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMG110X Examensarbete inom industriell produktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eSA118X\u0026#160; Examensarbete inom maskinteknik, grundniv\u0026#229;\u003c/li\u003e\u003c/ul\u003e",
+        "conditionallyElectiveCoursesInfo": "\u003cp\u003e\u003cstrong\u003eMinst 6 hp \u003c/strong\u003eav de villkorligt valfria kurserna ska l\u0026#228;sas i \u0026#229;rskurs 3.\u003c/p\u003e",
+        "courses": [
+          {
+            "courseCode": "DD1321",
+            "title": "Tillämpad programmering och datalogi",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "EL1010",
+            "title": "Reglerteknik, allmän kurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "HM1025",
+            "title": "Ergonomi i produktutvecklingen",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "ME1003",
+            "title": "Industriell ekonomi, grundkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1016",
+            "title": "Elektroteknik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1025",
+            "title": "Modellbaserad produktutveckling II",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV",
+            "comment": "Kan ej läsas vid val av KEX MF130X pga överlapp "
+          },
+          {
+            "courseCode": "MF1040",
+            "title": "Design och produktframtagning, metodik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MG1002",
+            "title": "Automatiseringsteknik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MG1024",
+            "title": "Produktion",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MJ1401",
+            "title": "Värmeöverföring",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SE1025",
+            "title": "FEM för ingenjörstillämpningar",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SF1916",
+            "title": "Sannolikhetsteori och statistik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SG1220",
+            "title": "Teknisk strömningsmekanik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O",
+            "comment": "SG1217 kan läsas istället för SG1220. "
+          },
+          {
+            "courseCode": "SK2371",
+            "title": "Synintryckens fysik, större kurs",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV"
+          }
+        ]
+      },
+      { "yearNumber": 4, "courses": [] },
+      { "yearNumber": 5, "courses": [] }
+    ]
+  },
+  {
+    "programmeSpecialization": {
+      "programmeSpecializationCode": "PRM",
+      "title": "Master, industriell produktion"
+    },
+    "studyYears": [
+      { "yearNumber": 1, "courses": [] },
+      { "yearNumber": 2, "courses": [] },
+      {
+        "yearNumber": 3,
+        "supplementaryInfo": "\u003cp\u003e\u003cstrong\u003eEtt\u0026#160;av f\u0026#246;ljande\u0026#160;kandidatexamensarbeten ska l\u0026#228;sas oberoende av masterval:\u003c/strong\u003e\u003c/p\u003e\u003cul\u003e\u003cli\u003eMF130X\u0026#160; Examensarbete inom maskinkonstruktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF131X\u0026#160; Examensarbete inom integrerad produktutveckling, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF132X Examensarbete inom teknisk design, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF133X\u0026#160; Examensarbete inom mekatronik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMJ146X\u0026#160; Examensarbete inom h\u0026#229;llbar energiteknik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMG110X Examensarbete inom industriell produktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eSA118X\u0026#160; Examensarbete inom maskinteknik, grundniv\u0026#229;\u003c/li\u003e\u003c/ul\u003e",
+        "courses": [
+          {
+            "courseCode": "ME1003",
+            "title": "Industriell ekonomi, grundkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1016",
+            "title": "Elektroteknik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1040",
+            "title": "Design och produktframtagning, metodik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MG1002",
+            "title": "Automatiseringsteknik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MG1024",
+            "title": "Produktion",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          }
+        ]
+      },
+      { "yearNumber": 4, "courses": [] },
+      { "yearNumber": 5, "courses": [] }
+    ]
+  },
+  {
+    "programmeSpecialization": {
+      "programmeSpecializationCode": "SUE",
+      "title": "Master, hållbar energiteknik"
+    },
+    "studyYears": [
+      { "yearNumber": 1, "courses": [] },
+      { "yearNumber": 2, "courses": [] },
+      {
+        "yearNumber": 3,
+        "supplementaryInfo": "\u003cp\u003e\u003cstrong\u003eEtt\u0026#160;av f\u0026#246;ljande\u0026#160;kandidatexamensarbeten ska l\u0026#228;sas oberoende av masterval:\u003c/strong\u003e\u003c/p\u003e\u003cul\u003e\u003cli\u003eMF130X\u0026#160; Examensarbete inom maskinkonstruktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF131X\u0026#160; Examensarbete inom integrerad produktutveckling, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF132X Examensarbete inom teknisk design, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF133X\u0026#160; Examensarbete inom mekatronik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMJ146X\u0026#160; Examensarbete inom h\u0026#229;llbar energiteknik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMG110X Examensarbete inom industriell produktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eSA118X\u0026#160; Examensarbete inom maskinteknik, grundniv\u0026#229;\u003c/li\u003e\u003c/ul\u003e",
+        "courses": [
+          {
+            "courseCode": "ME1003",
+            "title": "Industriell ekonomi, grundkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1016",
+            "title": "Elektroteknik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1040",
+            "title": "Design och produktframtagning, metodik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MJ1401",
+            "title": "Värmeöverföring",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "SG1220",
+            "title": "Teknisk strömningsmekanik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O",
+            "comment": "SG1217 kan läsas istället för SG1220. "
+          }
+        ]
+      },
+      { "yearNumber": 4, "courses": [] },
+      { "yearNumber": 5, "courses": [] }
+    ]
+  },
+  {
+    "programmeSpecialization": {
+      "programmeSpecializationCode": "TEMA",
+      "title": "Spår, Fluidmekanik"
+    },
+    "studyYears": [
+      { "yearNumber": 1, "courses": [] },
+      { "yearNumber": 2, "courses": [] },
+      {
+        "yearNumber": 3,
+        "supplementaryInfo": "\u003cp\u003e\u003cstrong\u003eEtt\u0026#160;av f\u0026#246;ljande\u0026#160;kandidatexamensarbeten ska l\u0026#228;sas oberoende av masterval:\u003c/strong\u003e\u003c/p\u003e\u003cul\u003e\u003cli\u003eMF130X\u0026#160; Examensarbete inom maskinkonstruktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF131X\u0026#160; Examensarbete inom integrerad produktutveckling, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF132X Examensarbete inom teknisk design, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF133X\u0026#160; Examensarbete inom mekatronik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMJ146X\u0026#160; Examensarbete inom h\u0026#229;llbar energiteknik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMG110X Examensarbete inom industriell produktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eSA118X\u0026#160; Examensarbete inom maskinteknik, grundniv\u0026#229;\u003c/li\u003e\u003c/ul\u003e",
+        "conditionallyElectiveCoursesInfo": "\u003cp\u003e\u003cstrong\u003eMinst 6 hp \u003c/strong\u003eav de villkorligt valfria kurserna ska l\u0026#228;sas i \u0026#229;rskurs 3.\u003c/p\u003e",
+        "courses": [
+          {
+            "courseCode": "DD1321",
+            "title": "Tillämpad programmering och datalogi",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "EL1010",
+            "title": "Reglerteknik, allmän kurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "HM1025",
+            "title": "Ergonomi i produktutvecklingen",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "ME1003",
+            "title": "Industriell ekonomi, grundkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1016",
+            "title": "Elektroteknik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1025",
+            "title": "Modellbaserad produktutveckling II",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV",
+            "comment": "Kan ej läsas vid val av KEX MF130X pga överlapp "
+          },
+          {
+            "courseCode": "MF1040",
+            "title": "Design och produktframtagning, metodik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MG1002",
+            "title": "Automatiseringsteknik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MG1024",
+            "title": "Produktion",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MJ1401",
+            "title": "Värmeöverföring",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SE1025",
+            "title": "FEM för ingenjörstillämpningar",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SF1916",
+            "title": "Sannolikhetsteori och statistik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SG1220",
+            "title": "Teknisk strömningsmekanik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O",
+            "comment": "SG1217 kan läsas istället för SG1220. "
+          },
+          {
+            "courseCode": "SK2371",
+            "title": "Synintryckens fysik, större kurs",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV"
+          }
+        ]
+      },
+      { "yearNumber": 4, "courses": [] },
+      { "yearNumber": 5, "courses": [] }
+    ]
+  },
+  {
+    "programmeSpecialization": {
+      "programmeSpecializationCode": "TEMB",
+      "title": "Spår, Hållfasthetsteknik"
+    },
+    "studyYears": [
+      { "yearNumber": 1, "courses": [] },
+      { "yearNumber": 2, "courses": [] },
+      {
+        "yearNumber": 3,
+        "supplementaryInfo": "\u003cp\u003e\u003cstrong\u003eEtt\u0026#160;av f\u0026#246;ljande\u0026#160;kandidatexamensarbeten ska l\u0026#228;sas oberoende av masterval:\u003c/strong\u003e\u003c/p\u003e\u003cul\u003e\u003cli\u003eMF130X\u0026#160; Examensarbete inom maskinkonstruktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF131X\u0026#160; Examensarbete inom integrerad produktutveckling, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF132X Examensarbete inom teknisk design, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF133X\u0026#160; Examensarbete inom mekatronik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMJ146X\u0026#160; Examensarbete inom h\u0026#229;llbar energiteknik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMG110X Examensarbete inom industriell produktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eSA118X\u0026#160; Examensarbete inom maskinteknik, grundniv\u0026#229;\u003c/li\u003e\u003c/ul\u003e",
+        "conditionallyElectiveCoursesInfo": "\u003cp\u003e\u003cstrong\u003eMinst 6 hp \u003c/strong\u003eav de villkorligt valfria kurserna ska l\u0026#228;sas i \u0026#229;rskurs 3.\u003c/p\u003e",
+        "courses": [
+          {
+            "courseCode": "DD1321",
+            "title": "Tillämpad programmering och datalogi",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "EL1010",
+            "title": "Reglerteknik, allmän kurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "HM1025",
+            "title": "Ergonomi i produktutvecklingen",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "ME1003",
+            "title": "Industriell ekonomi, grundkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1016",
+            "title": "Elektroteknik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1025",
+            "title": "Modellbaserad produktutveckling II",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV",
+            "comment": "Kan ej läsas vid val av KEX MF130X pga överlapp "
+          },
+          {
+            "courseCode": "MF1040",
+            "title": "Design och produktframtagning, metodik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MG1002",
+            "title": "Automatiseringsteknik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MG1024",
+            "title": "Produktion",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MJ1401",
+            "title": "Värmeöverföring",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SE1025",
+            "title": "FEM för ingenjörstillämpningar",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "SF1916",
+            "title": "Sannolikhetsteori och statistik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SG1217",
+            "title": "Strömningsmekanik, grundkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV",
+            "comment": "SG1220 kan läsas istället för SG1217"
+          },
+          {
+            "courseCode": "SG1220",
+            "title": "Teknisk strömningsmekanik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV",
+            "comment": "SG1217 kan läsas istället för SG1220. "
+          },
+          {
+            "courseCode": "SK2371",
+            "title": "Synintryckens fysik, större kurs",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV"
+          }
+        ]
+      },
+      { "yearNumber": 4, "courses": [] },
+      { "yearNumber": 5, "courses": [] }
+    ]
+  },
+  {
+    "programmeSpecialization": {
+      "programmeSpecializationCode": "TEMC",
+      "title": "Spår, Ljud och vibrationer"
+    },
+    "studyYears": [
+      { "yearNumber": 1, "courses": [] },
+      { "yearNumber": 2, "courses": [] },
+      {
+        "yearNumber": 3,
+        "supplementaryInfo": "\u003cp\u003e\u003cstrong\u003eEtt\u0026#160;av f\u0026#246;ljande\u0026#160;kandidatexamensarbeten ska l\u0026#228;sas oberoende av masterval:\u003c/strong\u003e\u003c/p\u003e\u003cul\u003e\u003cli\u003eMF130X\u0026#160; Examensarbete inom maskinkonstruktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF131X\u0026#160; Examensarbete inom integrerad produktutveckling, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF132X Examensarbete inom teknisk design, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMF133X\u0026#160; Examensarbete inom mekatronik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMJ146X\u0026#160; Examensarbete inom h\u0026#229;llbar energiteknik, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eMG110X Examensarbete inom industriell produktion, grundniv\u0026#229;\u003c/li\u003e\u003cli\u003eSA118X\u0026#160; Examensarbete inom maskinteknik, grundniv\u0026#229;\u003c/li\u003e\u003c/ul\u003e",
+        "conditionallyElectiveCoursesInfo": "\u003cp\u003e\u003cstrong\u003eMinst 12 hp \u003c/strong\u003eav de villkorligt valfria kurserna ska l\u0026#228;sas i \u0026#229;rskurs 3.\u003c/p\u003e",
+        "courses": [
+          {
+            "courseCode": "DD1321",
+            "title": "Tillämpad programmering och datalogi",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "EL1010",
+            "title": "Reglerteknik, allmän kurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "HM1025",
+            "title": "Ergonomi i produktutvecklingen",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "ME1003",
+            "title": "Industriell ekonomi, grundkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1016",
+            "title": "Elektroteknik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MF1025",
+            "title": "Modellbaserad produktutveckling II",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV",
+            "comment": "Kan ej läsas vid val av KEX MF130X pga överlapp"
+          },
+          {
+            "courseCode": "MF1040",
+            "title": "Design och produktframtagning, metodik",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "O"
+          },
+          {
+            "courseCode": "MG1002",
+            "title": "Automatiseringsteknik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MG1024",
+            "title": "Produktion",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "MJ1401",
+            "title": "Värmeöverföring",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SE1025",
+            "title": "FEM för ingenjörstillämpningar",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SF1916",
+            "title": "Sannolikhetsteori och statistik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV"
+          },
+          {
+            "courseCode": "SG1217",
+            "title": "Strömningsmekanik, grundkurs",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV",
+            "comment": "SG1220 kan läsas istället för SG1217"
+          },
+          {
+            "courseCode": "SG1220",
+            "title": "Teknisk strömningsmekanik",
+            "credits": 6.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "BASIC",
+            "electiveCondition": "VV",
+            "comment": "SG1217 kan läsas istället för SG1220. "
+          },
+          {
+            "courseCode": "SK2371",
+            "title": "Synintryckens fysik, större kurs",
+            "credits": 9.0,
+            "creditUnitLabel": "Högskolepoäng",
+            "creditUnitAbbr": "hp",
+            "educationalLevel": "ADVANCED",
+            "electiveCondition": "VV"
+          }
+        ]
+      },
+      { "yearNumber": 4, "courses": [] },
+      { "yearNumber": 5, "courses": [] }
+    ]
+  }
+]

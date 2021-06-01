@@ -22,16 +22,20 @@ function setCurriculums(curriculums) {
   this.curriculums = curriculums
 }
 
-function setCourseRounds(courseRounds) {
-  this.courseRounds = courseRounds
-}
-
 function setMissingAdmission() {
   this.error = this.errorType.MISSING_ADMISSION
 }
 
 function isMissingAdmission() {
   return this.error === this.errorType.MISSING_ADMISSION
+}
+
+function setCurriculumInfos(curriculumInfos) {
+  this.curriculumInfos = curriculumInfos
+}
+
+function setLastStudyYear(lastStudyYear) {
+  this.lastStudyYear = lastStudyYear
 }
 
 const curriculumStore = {
@@ -94,15 +98,6 @@ const curriculumStore = {
    */
   setCurriculums,
   /**
-   * @property {[]} courseRounds
-   */
-  courseRounds: [],
-  /**
-   * @method
-   * @param {[]} courseRounds
-   */
-  setCourseRounds,
-  /**
    * @property {{}} errorType
    */
   errorType: {
@@ -120,6 +115,24 @@ const curriculumStore = {
    * @method
    */
   isMissingAdmission,
+  /**
+   * @property {[]} curriculumInfos
+   */
+  curriculumInfos: null,
+  /**
+   * @method
+   * @param {[]} curriculumInfos
+   */
+  setCurriculumInfos,
+  /**
+   * @property {number} lastStudyYear
+   */
+  lastStudyYear: 0,
+  /**
+   * @method
+   * @param {number} lastStudyYear
+   */
+  setLastStudyYear,
 }
 
 export default curriculumStore

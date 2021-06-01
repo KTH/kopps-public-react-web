@@ -124,8 +124,36 @@ const messages = {
     curriculums_studyyear_explanation_1: studyYear =>
       `The following courses are part of study year ${messages.messages.general_number_as_word[studyYear]}.`,
     curriculums_studyyear_explanation_2: year =>
-      `Observera att de eventuella anmälningskoder och perioder som anges är baserade på läsåret <strong>${year}</strong>. Läses denna årskurs vid ett senare tillfälle kan andra anmälningskoder och perioder komma att gälla.`,
+      `The course application codes and study periods are valid for the academic year <strong>${year}</strong>. For other academic years, different application codes and study periods may apply`,
     curriculums_common_courses: 'General Courses',
+    coursesbyprogramme_specialisations: 'Specialisations',
+    coursesbyprogramme_studyyear_noinfofound_header: 'Information missing',
+    coursesbyprogramme_studyyear_noinfofound: school =>
+      `Information about the study year is missing. Please contact the ${school} School.`,
+    programme_courses: code => `Courses (${code})`,
+    elective_condition: {
+      ALL: 'All',
+      O: 'Mandatory',
+      VV: 'Conditionally elective',
+      R: 'Recommended',
+      V: 'Optional',
+    },
+    curriculums_courses: 'courses',
+    coursesbyprogramme_labels_course: 'Course code and name',
+    coursesbyprogramme_labels_code: 'Application code',
+    coursesbyprogramme_labels_code_abbr: 'Appl.code',
+    coursesbyprogramme_labels_scope: 'Scope',
+    coursesbyprogramme_labels_scope_abbr: 'Scope',
+    coursesbyprogramme_labels_period: period => `Study period ${period}`,
+    coursesbyprogramme_labels_period_abbr: period => `P${period}`,
+    programme_plan_pdf_header: 'Pro\u00ADgram\u00ADme syl\u00ADla\u00ADbus as pdf',
+    programme_plan_pdf_text:
+      'The pdf is not fully adap\u00ADted for ac\u00ADces\u00ADsi\u00ADbil\u00ADi\u00ADty, but all con\u00ADtent is also avai\u00ADlable on these web pages.',
+    programme_plan_pdf: (programmeCode, term) =>
+      `Pro\u00ADgram\u00ADme syl\u00ADla\u00ADbus ${programmeCode} for studies starting in ${term}`,
+    programme_programwebb_heading: programmeCode => `Student at ${programmeCode}`,
+    programme_programwebb_text: `Admitted students can find information and communicate about their programme on`,
+    programme_programwebb_linktext: programmeCode => `Programme web ${programmeCode}`,
   },
   shb: {
     pageHeading: 'Study Handbook 00/01 to 07/08',
@@ -216,8 +244,7 @@ const messages = {
     },
     errorOverflow: {
       header: 'There were too many results',
-      text:
-        'There are too many courses that match your search critera. Please specify more characters/digits in the course name or course code (example of course code: SF1624).',
+      text: 'There are too many courses that match your search critera. Please specify more characters/digits in the course name or course code (example of course code: SF1624).',
       help: 'For help, see the link below: Instructions for searching',
     },
     noQueryProvided: {

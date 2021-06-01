@@ -7,5 +7,8 @@
  * **************************************************
  *
  */
+const { getEnv, devDefaults } = require('kth-node-configuration')
 
-module.exports = {}
+const markHtmlFromKopps = Boolean(getEnv('MARK_HTML_FROM_KOPPS', devDefaults(true)))
+
+module.exports = { markHtmlFromKopps }

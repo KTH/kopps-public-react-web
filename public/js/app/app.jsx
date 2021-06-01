@@ -186,7 +186,7 @@ function appFactory(ssrApplicationStore) {
           applicationStore: ssrApplicationStore,
         })}
         createMenuData={applicationStore => ({
-          selectedId: applicationStore.studyYear,
+          selectedId: `year-${applicationStore.studyYear}`,
           ...getCurriculumMenuData(applicationStore),
         })}
       />
