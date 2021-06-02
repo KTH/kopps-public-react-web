@@ -223,7 +223,7 @@ exports[`Render component DepartmentCourses within Layout for third cycle studie
               <address>
                 Contact for questions regarding education at KTH: 
                 <a
-                  href="https://www.kth.se/studycounselling"
+                  href="https://www.kth.se/en/studies/master/general-study-counselling-1.621634"
                 >
                   Central study counseling
                 </a>
@@ -467,7 +467,7 @@ exports[`Render component DepartmentCourses within Layout for third cycle studie
               <address>
                 Kontakt för frågor om utbildning på KTH: 
                 <a
-                  href="https://www.kth.se/studycounselling"
+                  href="https://www.kth.se/utbildning/traffakth/studievagledning"
                 >
                   Central studievägledning
                 </a>

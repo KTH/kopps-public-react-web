@@ -127,7 +127,7 @@ describe('Render component StudyHandbook and check its menu, content and links',
     expect(links[5].href).toStrictEqual('https://intra.kth.se/utbildning/utbildningsadministr/kopps/shb')
 
     expect(links[6]).toHaveTextContent('Central study counseling')
-    expect(links[6].href).toStrictEqual('https://www.kth.se/studycounselling')
+    expect(links[6].href).toStrictEqual('https://www.kth.se/en/studies/master/general-study-counselling-1.621634')
 
     expect(links[7]).toHaveTextContent('kopps@kth.se')
     expect(links[7].href).toStrictEqual('mailto:kopps@kth.se')
@@ -156,7 +156,7 @@ describe('Render component StudyHandbook and check its menu, content and links',
     expect(links[5].href).toStrictEqual('https://intra.kth.se/utbildning/utbildningsadministr/kopps/shb')
 
     expect(links[6]).toHaveTextContent('Central studievägledning')
-    expect(links[6].href).toStrictEqual('https://www.kth.se/studycounselling')
+    expect(links[6].href).toStrictEqual('https://www.kth.se/utbildning/traffakth/studievagledning')
 
     expect(links[7]).toHaveTextContent('kopps@kth.se')
     expect(links[7].href).toStrictEqual('mailto:kopps@kth.se')

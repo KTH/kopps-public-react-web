@@ -120,16 +120,12 @@ describe('Render component Programme and check its menu, content and links', () 
     expect(links[0].href).toStrictEqual('http://localhost/student/kurser/org?l=en')
     // Main content links
     expect(links[1]).toHaveTextContent('Programme syllabus for studies starting in Autumn 19')
-    expect(links[1].href).toStrictEqual(
-      'http://localhost/student/kurser/program/ARKIT/20192/arskurs2?l=en'
-    )
+    expect(links[1].href).toStrictEqual('http://localhost/student/kurser/program/ARKIT/20192/arskurs2?l=en')
     expect(links[2]).toHaveTextContent('Programme syllabus for studies starting in Spring 21')
-    expect(links[2].href).toStrictEqual(
-      'http://localhost/student/kurser/program/ARKIT/20211/arskurs1?l=en'
-    )
+    expect(links[2].href).toStrictEqual('http://localhost/student/kurser/program/ARKIT/20211/arskurs1?l=en')
     // Footer links
     expect(links[3]).toHaveTextContent('Central study counseling')
-    expect(links[3].href).toStrictEqual('https://www.kth.se/studycounselling')
+    expect(links[3].href).toStrictEqual('https://www.kth.se/en/studies/master/general-study-counselling-1.621634')
     expect(links[4]).toHaveTextContent('kopps@kth.se')
     expect(links[4].href).toStrictEqual('mailto:kopps@kth.se')
   })
@@ -147,7 +143,7 @@ describe('Render component Programme and check its menu, content and links', () 
     expect(links[2].href).toStrictEqual('http://localhost/student/kurser/program/ARKIT/20211/arskurs1')
     // Footer links
     expect(links[3]).toHaveTextContent('Central studievägledning')
-    expect(links[3].href).toStrictEqual('https://www.kth.se/studycounselling')
+    expect(links[3].href).toStrictEqual('https://www.kth.se/utbildning/traffakth/studievagledning')
     expect(links[4]).toHaveTextContent('kopps@kth.se')
     expect(links[4].href).toStrictEqual('mailto:kopps@kth.se')
   })

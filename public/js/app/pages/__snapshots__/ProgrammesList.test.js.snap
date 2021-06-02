@@ -179,7 +179,7 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Engl
               <address>
                 Contact for questions regarding education at KTH: 
                 <a
-                  href="https://www.kth.se/studycounselling"
+                  href="https://www.kth.se/en/studies/master/general-study-counselling-1.621634"
                 >
                   Central study counseling
                 </a>
@@ -379,7 +379,7 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Swed
               <address>
                 Kontakt för frågor om utbildning på KTH: 
                 <a
-                  href="https://www.kth.se/studycounselling"
+                  href="https://www.kth.se/utbildning/traffakth/studievagledning"
                 >
                   Central studievägledning
                 </a>
