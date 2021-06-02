@@ -25,6 +25,13 @@ function _compareParticipations(a, b) {
   return 0
 }
 
+function _term(courseRoundTerms) {
+  if (Array.isArray(courseRoundTerms) && courseRoundTerms.length) {
+    return courseRoundTerms[0].term
+  }
+  return ''
+}
+
 function _creditsPerPeriod(courseRoundTerms) {
   const mergedCreditsPerPeriod = []
   courseRoundTerms.forEach(courseRoundTerm => {
@@ -68,6 +75,7 @@ function curriculumInfo({ programmeTermYear, curriculum }) {
       participations[course.electiveCondition].push({
         course,
         applicationCodes,
+        term: _term(courseRoundTerms),
         creditsPerPeriod: _creditsPerPeriod(courseRoundTerms),
       })
       participations[course.electiveCondition].sort(_compareParticipations)
