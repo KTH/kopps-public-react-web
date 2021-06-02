@@ -224,7 +224,7 @@ const getMockedSearchResults = searchString => {
   }
 }
 
-export {
+module.exports = {
   getMockedSearchResults,
   TEST_API_ANSWER_EMPTY_PARAMS,
   TEST_API_ANSWER_UNKNOWN_ERROR,
