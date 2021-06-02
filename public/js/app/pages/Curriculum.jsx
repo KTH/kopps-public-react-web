@@ -12,7 +12,7 @@ import KoppsData from '../components/KoppsData'
 import { useStore } from '../mobx'
 
 import translate from '../../../../domain/translate'
-import { formatLongTerm } from '../../../../domain/term'
+import { formatLongTerm, getCurrentTerm } from '../../../../domain/term'
 import { format as formatAcademicYear, calculate as calculateStartTerm } from '../../../../domain/academicYear'
 import { ELECTIVE_CONDITIONS } from '../../../../domain/curriculum'
 import { ORDINARY_PERIODS } from '../../../../domain/periods'
@@ -42,7 +42,7 @@ function CourseTablePeriodCols({ language, creditsPerPeriod, courseCode }) {
 function CourseTableRow({
   courseCode,
   courseNameCellData,
-  applicationCodes,
+  applicationCodeCellData,
   credits,
   creditUnitAbbr,
   creditsPerPeriod,
@@ -51,29 +51,32 @@ function CourseTableRow({
   return (
     <tr>
       <td>{courseNameCellData}</td>
-      <td className="text-center">{applicationCodes.join(', ')}</td>
+      <td className="text-center">{applicationCodeCellData}</td>
       <td className="text-right credits">{`${formatCredits(language, credits)} ${creditUnitAbbr}`}</td>
       <CourseTablePeriodCols language={language} creditsPerPeriod={creditsPerPeriod} courseCode={courseCode} />
     </tr>
   )
 }
 
-function CourseTableRows({ participations }) {
+function CourseTableRows({ studyYear, participations }) {
   return participations.map(participation => {
-    const { course, applicationCodes, creditsPerPeriod } = participation
+    const { course, applicationCodes, term, creditsPerPeriod } = participation
     const { courseCode, title, credits, creditUnitAbbr, comment } = course
+    const currentTerm = getCurrentTerm()
+    const calculatedTerm = calculateStartTerm(term, studyYear)
     const courseNameCellData = (
       <>
         <a href={`https://www.kth.se/student/kurser/kurs/${courseCode}`}>{`${courseCode} ${title}`}</a>
         {comment && <b className="course-comment">{comment}</b>}
       </>
     )
+    const applicationCodeCellData = currentTerm <= calculatedTerm ? applicationCodes.join(', ') : ''
     return (
       <CourseTableRow
         key={courseCode}
         courseCode={courseCode}
         courseNameCellData={courseNameCellData}
-        applicationCodes={applicationCodes}
+        applicationCodeCellData={applicationCodeCellData}
         credits={credits}
         creditUnitAbbr={creditUnitAbbr}
         creditsPerPeriod={creditsPerPeriod}
@@ -83,7 +86,7 @@ function CourseTableRows({ participations }) {
 }
 
 function CourseTable({ curriculumInfo, participations, electiveCondition }) {
-  const { language } = useStore()
+  const { language, studyYear } = useStore()
   const t = translate(language)
   const { code } = curriculumInfo
   return (
@@ -110,7 +113,7 @@ function CourseTable({ curriculumInfo, participations, electiveCondition }) {
         </tr>
       </thead>
       <tbody>
-        <CourseTableRows participations={participations} />
+        <CourseTableRows studyYear={studyYear} participations={participations} />
       </tbody>
     </table>
   )
@@ -309,7 +312,7 @@ SpecializationCourses.propTypes = {
 CourseTableRow.propTypes = {
   courseCode: PropTypes.string.isRequired,
   courseNameCellData: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-  applicationCodes: PropTypes.arrayOf(PropTypes.string).isRequired,
+  applicationCodeCellData: PropTypes.string.isRequired,
   credits: PropTypes.number.isRequired,
   creditUnitAbbr: PropTypes.string.isRequired,
   creditsPerPeriod: PropTypes.arrayOf(PropTypes.number).isRequired,

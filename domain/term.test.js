@@ -1,5 +1,5 @@
 const {
-  _getCurrentTerm: getCurrentTerm,
+  getCurrentTerm,
   _isSpringTerm: isSpringTerm,
   _isFallTerm: isAutumnTerm,
   getNextTerm,

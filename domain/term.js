@@ -21,7 +21,7 @@ function _limit(value, max) {
   return value
 }
 
-function _getCurrentTerm(overrideDate) {
+function getCurrentTerm(overrideDate) {
   const JULY = 6
   const SPRING = 1
   const FALL = 2
@@ -57,7 +57,7 @@ function _getNextTerm(term) {
 function _nTermsAgo(fromTerm, overrideDate) {
   let nTerms = 0
   let term = fromTerm
-  while (term < _getCurrentTerm(overrideDate)) {
+  while (term < getCurrentTerm(overrideDate)) {
     nTerms++
     term = _getNextTerm(term)
   }
@@ -104,7 +104,7 @@ function _getNextTerms(fromTerm, numberOfTerms) {
 }
 
 function getRelevantTerms(numberOfTerms, overrideDate = null) {
-  const currentTerm = _getCurrentTerm(overrideDate)
+  const currentTerm = getCurrentTerm(overrideDate)
   const relevantTerms = _getNextTerms(currentTerm, numberOfTerms)
   return relevantTerms
 }
@@ -115,7 +115,7 @@ function add(fromTerm, years) {
 
 module.exports = {
   termConstants: _constants,
-  _getCurrentTerm,
+  getCurrentTerm,
   _isSpringTerm,
   _isFallTerm,
   getNextTerm: _getNextTerm,
