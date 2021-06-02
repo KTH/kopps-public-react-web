@@ -1,4 +1,8 @@
-const { getNextTerm, splitTerm } = require('./term')
+const { getNextTerm, splitTerm, add } = require('./term')
+
+function calculate(startTerm, studyYear) {
+  return add(startTerm, studyYear - 1)
+}
 
 function format(startTerm) {
   const [startYear] = splitTerm(startTerm)
@@ -8,5 +12,6 @@ function format(startTerm) {
 }
 
 module.exports = {
+  calculate,
   format,
 }

@@ -102,10 +102,15 @@ function _getNextTerms(fromTerm, numberOfTerms) {
   }
   return terms
 }
+
 function getRelevantTerms(numberOfTerms, overrideDate = null) {
   const currentTerm = _getCurrentTerm(overrideDate)
   const relevantTerms = _getNextTerms(currentTerm, numberOfTerms)
   return relevantTerms
+}
+
+function add(fromTerm, years) {
+  return Math.abs(fromTerm) + Math.abs(years) * 10
 }
 
 module.exports = {
@@ -120,4 +125,5 @@ module.exports = {
   formatShortTerm,
   formatLongTerm,
   splitTerm: _splitTerm,
+  add,
 }

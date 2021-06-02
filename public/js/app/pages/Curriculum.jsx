@@ -13,7 +13,7 @@ import { useStore } from '../mobx'
 
 import translate from '../../../../domain/translate'
 import { formatLongTerm } from '../../../../domain/term'
-import { format as formatAcademicYear } from '../../../../domain/academicYear'
+import { format as formatAcademicYear, calculate as calculateStartTerm } from '../../../../domain/academicYear'
 import { ELECTIVE_CONDITIONS } from '../../../../domain/curriculum'
 import { ORDINARY_PERIODS } from '../../../../domain/periods'
 import { programSyllabusLink, programmeWebLink } from '../util/links'
@@ -195,7 +195,8 @@ function CurriculumInfo() {
 function ArticleContent() {
   const { language, owningSchoolCode, isMissingAdmission, studyYear, term } = useStore()
   const t = translate(language)
-  const formattedAcademicYear = formatAcademicYear(term)
+  const calculatedStartTerm = calculateStartTerm(term, studyYear)
+  const formattedAcademicYear = formatAcademicYear(calculatedStartTerm)
   return isMissingAdmission() ? (
     <Article>
       <p>{t('curriculums_missing_admission_text')(owningSchoolCode)}</p>
