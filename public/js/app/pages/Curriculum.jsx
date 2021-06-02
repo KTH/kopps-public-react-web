@@ -39,11 +39,18 @@ function CourseTablePeriodCols({ language, creditsPerPeriod, courseCode }) {
   })
 }
 
-function CourseTableRow({ courseCode, courseLinkData, applicationCodes, credits, creditUnitAbbr, creditsPerPeriod }) {
+function CourseTableRow({
+  courseCode,
+  courseNameCellData,
+  applicationCodes,
+  credits,
+  creditUnitAbbr,
+  creditsPerPeriod,
+}) {
   const { language } = useStore()
   return (
     <tr>
-      <td>{courseLinkData}</td>
+      <td>{courseNameCellData}</td>
       <td className="text-center">{applicationCodes.join(', ')}</td>
       <td className="text-right credits">{`${formatCredits(language, credits)} ${creditUnitAbbr}`}</td>
       <CourseTablePeriodCols language={language} creditsPerPeriod={creditsPerPeriod} courseCode={courseCode} />
@@ -54,15 +61,18 @@ function CourseTableRow({ courseCode, courseLinkData, applicationCodes, credits,
 function CourseTableRows({ participations }) {
   return participations.map(participation => {
     const { course, applicationCodes, creditsPerPeriod } = participation
-    const { courseCode, title, credits, creditUnitAbbr } = course
-    const courseLinkData = (
-      <a href={`https://www.kth.se/student/kurser/kurs/${courseCode}`}>{`${courseCode} ${title}`}</a>
+    const { courseCode, title, credits, creditUnitAbbr, comment } = course
+    const courseNameCellData = (
+      <>
+        <a href={`https://www.kth.se/student/kurser/kurs/${courseCode}`}>{`${courseCode} ${title}`}</a>
+        {comment && <b className="course-comment">{comment}</b>}
+      </>
     )
     return (
       <CourseTableRow
         key={courseCode}
         courseCode={courseCode}
-        courseLinkData={courseLinkData}
+        courseNameCellData={courseNameCellData}
         applicationCodes={applicationCodes}
         credits={credits}
         creditUnitAbbr={creditUnitAbbr}
@@ -298,7 +308,7 @@ SpecializationCourses.propTypes = {
 
 CourseTableRow.propTypes = {
   courseCode: PropTypes.string.isRequired,
-  courseLinkData: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+  courseNameCellData: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   applicationCodes: PropTypes.arrayOf(PropTypes.string).isRequired,
   credits: PropTypes.number.isRequired,
   creditUnitAbbr: PropTypes.string.isRequired,
