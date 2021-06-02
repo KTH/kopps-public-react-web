@@ -220,7 +220,7 @@ const getMockedSearchResults = searchString => {
     case '':
       return { data: TEST_API_ANSWER_EMPTY_PARAMS }
     default:
-      throw new Error(`🚨  ${chalk.red(`Smth wrong with search string with search parameters ${searchString}`)}\n\n `)
+      throw new Error(`🚨  ${chalk.red(`Smth wrong in a search string with search parameters ${searchString}`)}\n\n `)
   }
 }
 
@@ -231,4 +231,5 @@ module.exports = {
   TEST_API_ANSWER_OVERFLOW,
   TEST_API_ANSWER_NO_HITS,
   TEST_API_ANSWER_RESOLVED,
+  TEST_API_ANSWER_ALGEBRA,
 }

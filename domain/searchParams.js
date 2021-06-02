@@ -98,13 +98,13 @@ function _transformIfSummerOrEmptyPeriods(initialPeriods) {
 function _transformSearchParams(params) {
   const { eduLevel = [], pattern = '', showOptions = [], period = [], department = '' } = params
   const koppsFormatParams = {
-    text_pattern: pattern,
     educational_level: eduLevel.map(level => educationalLevel(level)), // ['RESEARCH', 'ADVANCED'],
     flag: showOptions.map(opt => getShowOptions(opt)), // Example: flag: [only_mhu, in_english_only, include_non_active]
     term_period: _transformIfSummerOrEmptyPeriods(period), // ['2018:2']
-    department_prefix: department,
   }
-  console.log('transformed Kopps_ ', koppsFormatParams)
+  if (pattern) koppsFormatParams.text_pattern = pattern
+  if (department) koppsFormatParams.department_prefix = department
+
   return koppsFormatParams
 }
 

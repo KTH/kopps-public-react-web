@@ -11,7 +11,6 @@ async function koppsCourseSearch(language, proxyUrl, params) {
         return 'ERROR-koppsCourseSearch-' + result.status
       }
       const { data } = result
-      console.log('datadddd', data)
       return data
     }
   } catch (error) {

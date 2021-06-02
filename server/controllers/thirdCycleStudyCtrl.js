@@ -8,7 +8,21 @@ const i18n = require('../../i18n')
 const koppsApi = require('../kopps/koppsApi')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
-const { compareSchools, filterOutDeprecatedSchools } = require('../utils/schools.js')
+const { compareSchools } = require('../utils/schools.js')
+
+async function _fillApplicationStoreWithAllCourses({ applicationStore, lang }) {
+  applicationStore.setLanguage(lang)
+  applicationStore.setBrowserConfig(browserConfig)
+  const listForActiveCourses = true
+  const params = {
+    departmentCriteria: koppsApi.DEPARTMENT_CRITERIA.HAS_THIRD_CYCLE_COURSES,
+    listForActiveCourses,
+    lang,
+  }
+  const schoolsWithDepartments = await koppsApi.listSchoolsWithDepartments(params)
+  schoolsWithDepartments.sort(compareSchools)
+  applicationStore.setCurrentSchoolsWithDepartments(schoolsWithDepartments)
+}
 
 async function getAllSchoolsAndDepartments(req, res, next) {
   try {
@@ -37,27 +51,6 @@ async function getAllSchoolsAndDepartments(req, res, next) {
     log.error('Error in thirdCycleStudyCtrl -> getAllSchoolsAndDepartments', { error: err })
     next(err)
   }
-}
-
-async function _fillApplicationStoreWithAllCourses({ applicationStore, lang }) {
-  applicationStore.setLanguage(lang)
-  applicationStore.setBrowserConfig(browserConfig)
-  const listForActiveCourses = true
-  const params = {
-    departmentCriteria: koppsApi.DEPARTMENT_CRITERIA.HAS_THIRD_CYCLE_COURSES,
-    listForActiveCourses,
-    lang,
-  }
-  const schoolsWithDepartments = await koppsApi.listSchoolsWithDepartments(params)
-  schoolsWithDepartments.sort(compareSchools)
-  // const { currentSchoolsWithDepartments, deprecatedSchoolsWithDepartments } = filterOutDeprecatedSchools(
-  //   schoolsWithDepartments,
-  //   lang
-  // )
-  // deprecatedSchoolsWithDepartments.sort(compareSchools)
-  // currentSchoolsWithDepartments.sort(compareSchools)
-  // applicationStore.setCurrentSchoolsWithDepartments(currentSchoolsWithDepartments)
-  applicationStore.setCurrentSchoolsWithDepartments(schoolsWithDepartments)
 }
 
 function departmentLink(proxyPrefixPath, departmentCode, lang) {

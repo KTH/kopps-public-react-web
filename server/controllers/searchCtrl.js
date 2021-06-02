@@ -11,7 +11,6 @@ const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const koppsApi = require('../kopps/koppsApi')
 const { stringifyKoppsSearchParams } = require('../../domain/searchParams')
 const { compareSchools } = require('../utils/schools')
-const { getMockedSearchResults } = require('../mocks/mockKoppsApi')
 
 async function searchThirdCycleCourses(req, res, next) {
   try {
@@ -103,17 +102,15 @@ async function performCourseSearch(req, res, next) {
   const { query } = req
   // Example: `text_pattern=${pattern}`
   const searchParamsStr = stringifyKoppsSearchParams(query)
-  if (process.env.NODE_ENV === 'test') {
-    return getMockedSearchResults(searchParamsStr)
-  }
+
   try {
-    log.debug('trying to perform search courses with parameters: ')
+    log.debug(` trying to perform a search of courses with ${searchParamsStr} transformed from parameters: `, { query })
 
     const apiResponse = await koppsApi.getSearchResults(searchParamsStr, lang)
-    log.debug('performCourseSearch response: ', apiResponse)
+    log.debug(` performCourseSearch with ${searchParamsStr} response: `, apiResponse)
     return res.json(apiResponse)
   } catch (error) {
-    log.error('Exception from performCourseSearch ', { error })
+    log.error(` Exception from performCourseSearch with ${searchParamsStr}`, { error })
     next(error)
   }
 }
