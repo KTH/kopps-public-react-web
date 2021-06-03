@@ -58,7 +58,7 @@ function CourseTableRow({
   )
 }
 
-function CourseTableRows({ studyYear, participations }) {
+function CourseTableRows({ participations }) {
   return participations.map(participation => {
     const { course, applicationCodes, term, creditsPerPeriod } = participation
     const { courseCode, title, credits, creditUnitAbbr, comment } = course
@@ -85,7 +85,7 @@ function CourseTableRows({ studyYear, participations }) {
 }
 
 function CourseTable({ curriculumInfo, participations, electiveCondition }) {
-  const { language, studyYear } = useStore()
+  const { language } = useStore()
   const t = translate(language)
   const { code } = curriculumInfo
   return (
@@ -112,7 +112,7 @@ function CourseTable({ curriculumInfo, participations, electiveCondition }) {
         </tr>
       </thead>
       <tbody>
-        <CourseTableRows studyYear={studyYear} participations={participations} />
+        <CourseTableRows participations={participations} />
       </tbody>
     </table>
   )
