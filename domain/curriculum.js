@@ -32,15 +32,17 @@ function _term(courseRoundTerms) {
   return ''
 }
 
-function _creditsPerPeriod(courseRoundTerms) {
+function _creditsPerPeriod(courseRoundTerms, currentTerm) {
   const mergedCreditsPerPeriod = []
   courseRoundTerms.forEach(courseRoundTerm => {
-    const { creditsPerPeriod } = courseRoundTerm
-    creditsPerPeriod.forEach((credits, index) => {
-      if (!mergedCreditsPerPeriod[index]) {
-        mergedCreditsPerPeriod[index] = credits
-      }
-    })
+    const { term, creditsPerPeriod } = courseRoundTerm
+    if (term === currentTerm) {
+      creditsPerPeriod.forEach((credits, index) => {
+        if (!mergedCreditsPerPeriod[index]) {
+          mergedCreditsPerPeriod[index] = credits
+        }
+      })
+    }
   })
   return mergedCreditsPerPeriod
 }
@@ -72,11 +74,12 @@ function curriculumInfo({ programmeTermYear, curriculum }) {
       if (!participations[course.electiveCondition]) participations[course.electiveCondition] = []
       const round = curriculum.courseRounds.find(courseRound => courseRound.courseCode === course.courseCode) || {}
       const { applicationCodes = [], courseRoundTerms = [] } = round
+      const term = _term(courseRoundTerms)
       participations[course.electiveCondition].push({
         course,
         applicationCodes,
-        term: _term(courseRoundTerms),
-        creditsPerPeriod: _creditsPerPeriod(courseRoundTerms),
+        term,
+        creditsPerPeriod: _creditsPerPeriod(courseRoundTerms, term, course.courseCode),
       })
       participations[course.electiveCondition].sort(_compareParticipations)
     }

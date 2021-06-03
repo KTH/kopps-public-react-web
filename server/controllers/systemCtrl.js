@@ -147,12 +147,15 @@ function _monitor(req, res) {
   const apiConfig = config.nodeApi
 
   // Check APIs
+  /*
   const subSystems = Object.keys(api).map(apiKey => {
     const apiHealthUtil = registry.getUtility(IHealthCheck, 'kth-node-api')
     return apiHealthUtil.status(api[apiKey], {
       required: apiConfig[apiKey].required,
     })
   })
+   */
+  const subSystems = [] // TODO: check kopps api status.
 
   // If we need local system checks, such as memory or disk, we would add it here.
   // Make sure it returns a promise which resolves with an object containing:
