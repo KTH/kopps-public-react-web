@@ -63,14 +63,13 @@ function CourseTableRows({ studyYear, participations }) {
     const { course, applicationCodes, term, creditsPerPeriod } = participation
     const { courseCode, title, credits, creditUnitAbbr, comment } = course
     const currentTerm = getCurrentTerm()
-    const calculatedTerm = calculateStartTerm(term, studyYear)
     const courseNameCellData = (
       <>
         <a href={`https://www.kth.se/student/kurser/kurs/${courseCode}`}>{`${courseCode} ${title}`}</a>
         {comment && <b className="course-comment">{comment}</b>}
       </>
     )
-    const applicationCodeCellData = currentTerm <= calculatedTerm ? applicationCodes.join(', ') : ''
+    const applicationCodeCellData = currentTerm <= term ? applicationCodes.join(', ') : ''
     return (
       <CourseTableRow
         key={courseCode}
