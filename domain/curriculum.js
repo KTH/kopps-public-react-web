@@ -1,3 +1,5 @@
+const { getNextTerm } = require('./term')
+
 function _compareParticipations(a, b) {
   let aFirstIndex = 0
   for (let index = 0; index < a.creditsPerPeriod.length; index++) {
@@ -33,10 +35,13 @@ function _term(courseRoundTerms) {
 }
 
 function _creditsPerPeriod(courseRoundTerms, currentTerm) {
+  // TODO: Decide on string or number, le sigh.
+  const nextTerm = getNextTerm(currentTerm).toString()
   const mergedCreditsPerPeriod = []
   courseRoundTerms.forEach(courseRoundTerm => {
     const { term, creditsPerPeriod } = courseRoundTerm
-    if (term === currentTerm) {
+    // TODO: Really is an academic year, and should probably be managed as one
+    if (term === currentTerm || term === nextTerm) {
       creditsPerPeriod.forEach((credits, index) => {
         if (!mergedCreditsPerPeriod[index]) {
           mergedCreditsPerPeriod[index] = credits
