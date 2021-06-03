@@ -8,6 +8,7 @@ const i18n = require('../../i18n')
 
 const koppsApi = require('../kopps/koppsApi')
 const { curriculumInfo, setFirstSpec } = require('../../domain/curriculum')
+const { calculate: calculateStartTerm } = require('../../domain/academicYear')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
@@ -21,10 +22,11 @@ async function _getCourseRounds(curriculum, programmeCode, term, studyYear, lang
   const specializationCode = curriculum.programmeSpecialization
     ? curriculum.programmeSpecialization.programmeSpecializationCode
     : null
+  const academicYearStartTerm = calculateStartTerm(term, studyYear)
   return koppsApi.listCourseRoundsInYearPlan({
     programmeCode,
     specializationCode,
-    academicYearStartTerm: term,
+    academicYearStartTerm,
     studyYearNumber: studyYear,
     lang,
   })
