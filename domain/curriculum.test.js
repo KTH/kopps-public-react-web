@@ -79,7 +79,7 @@ describe('Create curriculum info', () => {
   test('without programme specialization', () => {
     const programmeTermYear = { studyYear: firstYear }
     const info = curriculumInfo({ programmeTermYear, curriculum })
-    expect(info.code).toBeNull()
+    expect(info.code).toBeFalsy()
     expect(info.specializationName).toBeNull()
     expect(info.hasInfo).toBeTrue()
   })
