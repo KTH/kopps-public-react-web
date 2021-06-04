@@ -196,9 +196,11 @@ const {
 
 // System routes
 const systemRoute = AppRouter()
-systemRoute.get('system.monitor', config.proxyPrefixPath.uri + '/_monitor', System.monitor)
-systemRoute.get('system.about', config.proxyPrefixPath.uri + '/_about', System.about)
-systemRoute.get('system.paths', config.proxyPrefixPath.uri + '/_paths', System.paths)
+// TODO: change systemroutes back to same place as static resources, after kp migration is done.
+const pathToSystemRoutes = 'kopps-public-react-web/system'
+systemRoute.get('system.monitor', pathToSystemRoutes + '/_monitor', System.monitor)
+systemRoute.get('system.about', pathToSystemRoutes + '/_about', System.about)
+systemRoute.get('system.paths', pathToSystemRoutes + '/_paths', System.paths)
 systemRoute.get('system.robots', '/robots.txt', System.robotsTxt)
 server.use('/', systemRoute.getRouter())
 
