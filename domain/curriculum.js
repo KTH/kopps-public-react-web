@@ -53,7 +53,7 @@ function _creditsPerPeriod(courseRoundTerms, currentTerm) {
 }
 
 function curriculumInfo({ programmeTermYear, curriculum }) {
-  let code = null
+  let code = ''
   let specializationName = null
   let isCommon = true
 

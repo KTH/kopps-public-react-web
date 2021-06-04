@@ -56,8 +56,6 @@ function _setError(applicationStore, statusCode) {
 }
 
 function _compareCurriculum(a, b) {
-  if (!a) return -1
-  if (!b) return 1
   if (a.code < b.code) {
     return -1
   }
