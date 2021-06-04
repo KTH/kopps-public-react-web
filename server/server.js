@@ -197,7 +197,7 @@ const {
 // System routes
 const systemRoute = AppRouter()
 // TODO: change systemroutes back to same place as static resources, after kp migration is done.
-const pathToSystemRoutes = 'kopps-public-react-web/system'
+const pathToSystemRoutes = '/kopps-public-react-web/system'
 systemRoute.get('system.monitor', pathToSystemRoutes + '/_monitor', System.monitor)
 systemRoute.get('system.about', pathToSystemRoutes + '/_about', System.about)
 systemRoute.get('system.paths', pathToSystemRoutes + '/_paths', System.paths)
