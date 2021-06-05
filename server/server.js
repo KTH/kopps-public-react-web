@@ -193,6 +193,7 @@ const {
   Search,
   Curriculum,
 } = require('./controllers')
+const { parseTerm } = require('../domain/term')
 
 // System routes
 const systemRoute = AppRouter()
@@ -263,8 +264,46 @@ appRoute.get('redirect.program', config.proxyPrefixPath.programme, (req, res) =>
   res.redirect(301, config.proxyPrefixPath.programmesList)
 })
 appRoute.get(
-  'dev.curriculum',
-  config.proxyPrefixPath.programme + '/:programmeCode/:term/arskurs:studyYear([1-5])',
+  'redirect.curriculumRoot_five_digit',
+  config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])',
+  (req, res) => {
+    const { programmeCode, term } = req.params
+    const studyYear = 'arskurs1'
+    res.redirect(301, `${config.proxyPrefixPath.programme}/${programmeCode}/${term}/${studyYear}`)
+  }
+)
+appRoute.get(
+  'redirect.curriculumRoot_Ht_Vt',
+  config.proxyPrefixPath.programme + '/:programmeCode/:term([VvHh][Tt][0-9]{2})',
+  (req, res) => {
+    const { programmeCode, term } = req.params
+    const parsedTerm = parseTerm(term)
+    if (!parsedTerm) {
+      const error = new Error('Malformed term')
+      error.statusCode = 404
+      throw error
+    }
+    const studyYear = 'arskurs1'
+    res.redirect(301, `${config.proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/${studyYear}`)
+  }
+)
+appRoute.get(
+  'redirect.curriculum_Ht_Vt',
+  config.proxyPrefixPath.programme + '/:programmeCode/:term([VvHh][Tt][0-9]{2})/arskurs:studyYear([1-5])',
+  (req, res) => {
+    const { programmeCode, term, studyYear } = req.params
+    const parsedTerm = parseTerm(term)
+    if (!parsedTerm) {
+      const error = new Error('Malformed term')
+      error.statusCode = 404
+      throw error
+    }
+    res.redirect(301, `${config.proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/arskurs${studyYear}`)
+  }
+)
+appRoute.get(
+  'public.curriculumRoot_five_digit',
+  config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/arskurs:studyYear([1-5])',
   Curriculum.getIndex
 )
 server.use('/', appRoute.getRouter())

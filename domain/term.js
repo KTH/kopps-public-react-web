@@ -113,6 +113,19 @@ function add(fromTerm, years) {
   return Math.abs(fromTerm) + Math.abs(years) * 10
 }
 
+function parseTerm(formattedTerm) {
+  const termRegex = /(?<term>[VvHh][Tt])(?<year>[0-9]{4}|[0-9]{2})/i
+  const match = formattedTerm.match(termRegex)
+  // TODO: Throw error instead?
+  if (!match) return null
+
+  const { term, year } = match.groups
+  if (term === _constants.SPRING_TERM_NAME_SV || term.toUpperCase() === _constants.SPRING_TERM_NAME_SV) {
+    return `${year.length === 2 ? '20' + year : year}1`
+  }
+  return `${year.length === 2 ? '20' + year : year}2`
+}
+
 module.exports = {
   termConstants: _constants,
   getCurrentTerm,
@@ -126,4 +139,5 @@ module.exports = {
   formatLongTerm,
   splitTerm: _splitTerm,
   add,
+  parseTerm,
 }

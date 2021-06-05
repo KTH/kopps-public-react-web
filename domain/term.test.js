@@ -8,6 +8,7 @@ const {
   formatShortTerm,
   formatLongTerm,
   splitTerm,
+  parseTerm,
 } = require('./term')
 
 const overrideSpringDate = new Date()
@@ -22,6 +23,12 @@ const testStringAutumnTerm = '20192'
 const testNumberSpringTerm = 20191
 const testNumberAutumnTerm = 20192
 const testNumberNextSpringTerm = 20201
+
+const formattedLongSpringTerm = 'VT2021'
+const formattedLongAutumnTerm = 'HT2021'
+const formattedShortSpringTerm = 'VT21'
+const formattedShortAutumnTerm = 'HT21'
+const malformedTerms = ['XT2021', 'YT2021', 'XT21', 'YT21', '2021', '202', '21']
 
 describe('Get current term', () => {
   test('with override spring date', () => {
@@ -137,5 +144,26 @@ describe('Split term', () => {
     const [numberYear, numberSemester] = splitTerm(testNumberAutumnTerm)
     expect(numberYear).toEqual(2019)
     expect(numberSemester).toEqual(2)
+  })
+})
+
+describe('Parse term', () => {
+  test('with spring term', () => {
+    let parsedTerm = parseTerm(formattedLongSpringTerm)
+    expect(parsedTerm).toEqual(expectedSpringTerm)
+    parsedTerm = parseTerm(formattedShortSpringTerm)
+    expect(parsedTerm).toEqual(expectedSpringTerm)
+  })
+  test('with autumn term', () => {
+    let parsedTerm = parseTerm(formattedLongAutumnTerm)
+    expect(parsedTerm).toEqual(expectedAutumnTerm)
+    parsedTerm = parseTerm(formattedShortAutumnTerm)
+    expect(parsedTerm).toEqual(expectedAutumnTerm)
+  })
+  test('with malformed terms', () => {
+    malformedTerms.forEach(malformedTerm => {
+      const parsedTerm = parseTerm(malformedTerm)
+      expect(parsedTerm).toBeNull()
+    })
   })
 })
