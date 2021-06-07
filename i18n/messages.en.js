@@ -154,6 +154,7 @@ const messages = {
     programme_programwebb_heading: programmeCode => `Student at ${programmeCode}`,
     programme_programwebb_text: `Admitted students can find information and communicate about their programme on`,
     programme_programwebb_linktext: programmeCode => `Programme web ${programmeCode}`,
+    programme_objectives: 'Programme objectives',
   },
   shb: {
     pageHeading: 'Study Handbook 00/01 to 07/08',

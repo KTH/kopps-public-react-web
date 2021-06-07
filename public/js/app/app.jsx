@@ -25,6 +25,7 @@ import getThirdCycleBreadcrumbs from './config/thirdCycleBreadcrumbs'
 import getThirdCycleDepartmentMenuData from './config/thirdCycleDepartmentMenuData'
 import getProgrammeMenuData from './config/programmeMenuData'
 import getCurriculumMenuData from './config/curriculumMenuData'
+import getObjectivesMenuData from './config/objectivesMenuData'
 import StudyHandbook from './pages/StudyHandbook'
 import ProgrammesList from './pages/ProgrammesList'
 import DepartmentsList from './pages/DepartmentsList'
@@ -32,6 +33,7 @@ import DepartmentCourses from './pages/DepartmentCourses'
 import ThirdCycleDepartmentsList from './pages/ThirdCycleDepartmentsList'
 import Programme from './pages/Programme'
 import Curriculum from './pages/Curriculum'
+import Objectives from './pages/Objectives'
 
 export default appFactory
 
@@ -173,6 +175,21 @@ function appFactory(ssrApplicationStore) {
         createMenuData={applicationStore => ({
           selectedId: 'searchThirdCycleCourses',
           ...getThirdCycleMenuData(applicationStore),
+        })}
+      />
+      <RouteWrapper
+        exact
+        path="/student/kurser/program/:programmeCode/:term/mal"
+        createBreadcrumbs={() => ({ include: 'directory' })}
+        component={Objectives}
+        layout={PageLayout}
+        applicationStore={_initStore({
+          storeId: 'objective',
+          applicationStore: ssrApplicationStore,
+        })}
+        createMenuData={applicationStore => ({
+          selectedId: 'objectives',
+          ...getObjectivesMenuData(applicationStore),
         })}
       />
       <RouteWrapper

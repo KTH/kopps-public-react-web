@@ -152,6 +152,7 @@ const messages = {
     programme_programwebb_heading: programmeCode => `Student på ${programmeCode}`,
     programme_programwebb_text: `Befintliga studenter hittar information och kommunicerar om sitt program på`,
     programme_programwebb_linktext: programmeCode => `Programwebb ${programmeCode}`,
+    programme_objectives: 'Utbildningens mål',
   },
   shb: {
     pageHeading: 'Studiehandboken 00/01 tom 07/08',
