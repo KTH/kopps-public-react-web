@@ -288,7 +288,7 @@ appRoute.get(
   Objectives.getIndex
 )
 appRoute.get(
-  'dev.extent_Ht_Vt',
+  'redirect.extent_Ht_Vt',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([VvHh][Tt][0-9]{2})/omfattning',
   (req, res) => {
     const { programmeCode, term } = req.params
@@ -302,7 +302,7 @@ appRoute.get(
   }
 )
 appRoute.get(
-  'dev.extent_five_digit',
+  'public.extent_five_digit',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/omfattning',
   Extent.getIndex
 )
