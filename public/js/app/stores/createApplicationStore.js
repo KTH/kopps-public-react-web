@@ -130,6 +130,7 @@ function createApplicationStore(storeId) {
       }
     case 'objectives':
     case 'extent':
+    case 'eligibility':
       return {
         ...commonStore,
         ...studyProgrammeStore,

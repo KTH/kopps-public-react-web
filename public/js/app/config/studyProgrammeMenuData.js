@@ -42,6 +42,12 @@ function getStudyProgrammeMenuData(applicationStore) {
       text: t('programme_extent_and_content'),
       url: pageLink(`${pageRoot}/${programmeCode}/${term}/omfattning`, language),
     },
+    {
+      id: 'eligibility',
+      type: 'leaf',
+      text: t('programme_eligibility_and_selection'),
+      url: pageLink(`${pageRoot}/${programmeCode}/${term}/behorighet`, language),
+    },
   ]
   return {
     ariaLabel: t('main_menu_aria_label'),

@@ -19,4 +19,5 @@ module.exports = {
   Curriculum: require('./curriculumCtrl'),
   Objectives: require('./objectivesCtrl'),
   Extent: require('./extentCtrl'),
+  Eligibility: require('./eligibilityCtrl'),
 }

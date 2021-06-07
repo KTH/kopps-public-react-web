@@ -195,9 +195,9 @@ const {
   Curriculum,
   Objectives,
   Extent,
+  Eligibility,
 } = require('./controllers')
 const { parseTerm } = require('../domain/term')
-
 
 const appEndpointsPrefix = '/kp-react'
 
@@ -217,11 +217,7 @@ embeddedPageRoute.get(
   appEndpointsPrefix + '/embedded/fovsearch',
   EmbeddedPage.emptyFovSearch
 )
-embeddedPageRoute.post(
-  'EmbeddedPage.fovSearch',
-  appEndpointsPrefix + '/embedded/fovsearch',
-  EmbeddedPage.fovSearch
-)
+embeddedPageRoute.post('EmbeddedPage.fovSearch', appEndpointsPrefix + '/embedded/fovsearch', EmbeddedPage.fovSearch)
 server.use('/', embeddedPageRoute.getRouter())
 
 // App routes
@@ -305,6 +301,25 @@ appRoute.get(
   'public.extent_five_digit',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/omfattning',
   Extent.getIndex
+)
+appRoute.get(
+  'dev.eligibility_Ht_Vt',
+  config.proxyPrefixPath.programme + '/:programmeCode/:term([VvHh][Tt][0-9]{2})/behorighet',
+  (req, res) => {
+    const { programmeCode, term } = req.params
+    const parsedTerm = parseTerm(term)
+    if (!parsedTerm) {
+      const error = new Error('Malformed term')
+      error.statusCode = 404
+      throw error
+    }
+    res.redirect(301, `${config.proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/behorighet`)
+  }
+)
+appRoute.get(
+  'dev.eligibility_five_digit',
+  config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/behorighet',
+  Eligibility.getIndex
 )
 appRoute.get(
   'redirect.curriculumRoot_five_digit',
