@@ -158,6 +158,7 @@ const messages = {
     programme_objectives_knowledge_and_understanding: 'Kunskap och förståelse',
     programme_objectives_skills_and_abilities: 'Färdigheter och förmågor',
     programme_objectives_ability_to_judgements: 'Värderingsförmåga och förhållningssätt',
+    programme_extent_and_content: 'Utbildningens omfattning och innehåll',
   },
   shb: {
     pageHeading: 'Studiehandboken 00/01 tom 07/08',

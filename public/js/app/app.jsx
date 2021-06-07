@@ -25,7 +25,7 @@ import getThirdCycleBreadcrumbs from './config/thirdCycleBreadcrumbs'
 import getThirdCycleDepartmentMenuData from './config/thirdCycleDepartmentMenuData'
 import getProgrammeMenuData from './config/programmeMenuData'
 import getCurriculumMenuData from './config/curriculumMenuData'
-import getObjectivesMenuData from './config/objectivesMenuData'
+import getStudyProgrammeMenuData from './config/studyProgrammeMenuData'
 import StudyHandbook from './pages/StudyHandbook'
 import ProgrammesList from './pages/ProgrammesList'
 import DepartmentsList from './pages/DepartmentsList'
@@ -34,6 +34,7 @@ import ThirdCycleDepartmentsList from './pages/ThirdCycleDepartmentsList'
 import Programme from './pages/Programme'
 import Curriculum from './pages/Curriculum'
 import Objectives from './pages/Objectives'
+import Extent from './pages/Extent'
 
 export default appFactory
 
@@ -189,7 +190,22 @@ function appFactory(ssrApplicationStore) {
         })}
         createMenuData={applicationStore => ({
           selectedId: 'objectives',
-          ...getObjectivesMenuData(applicationStore),
+          ...getStudyProgrammeMenuData(applicationStore),
+        })}
+      />
+      <RouteWrapper
+        exact
+        path="/student/kurser/program/:programmeCode/:term/omfattning"
+        createBreadcrumbs={() => ({ include: 'directory' })}
+        component={Extent}
+        layout={PageLayout}
+        applicationStore={_initStore({
+          storeId: 'extent',
+          applicationStore: ssrApplicationStore,
+        })}
+        createMenuData={applicationStore => ({
+          selectedId: 'extent',
+          ...getStudyProgrammeMenuData(applicationStore),
         })}
       />
       <RouteWrapper
