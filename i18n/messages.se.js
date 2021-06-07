@@ -153,6 +153,8 @@ const messages = {
     programme_programwebb_text: `Befintliga studenter hittar information och kommunicerar om sitt program på`,
     programme_programwebb_linktext: programmeCode => `Programwebb ${programmeCode}`,
     programme_objectives: 'Utbildningens mål',
+    programme_objectives_changed: 'Senast ändrad',
+    programme_objectives_approved: 'Godkänd',
   },
   shb: {
     pageHeading: 'Studiehandboken 00/01 tom 07/08',

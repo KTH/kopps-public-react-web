@@ -10,10 +10,29 @@ import { useStore } from '../mobx'
 
 import translate from '../../../../domain/translate'
 import { formatLongTerm } from '../../../../domain/term'
+import { formatISODate } from '../../../../domain/date'
 import { programSyllabusLink } from '../util/links'
 
+function ObjectivesDates() {
+  const { language, studyProgramme } = useStore()
+  const t = translate(language)
+  const { approvedAt, changedAt } = studyProgramme
+  return (
+    <p>
+      {`${t('programme_objectives_changed')}: ${formatISODate(changedAt, language)}`}
+      <br />
+      {`${t('programme_objectives_approved')}: ${formatISODate(approvedAt, language)}`}
+      <br />
+    </p>
+  )
+}
+
 function ArticleContent() {
-  return <Article classNames={['paragraphs']} />
+  return (
+    <Article classNames={['paragraphs']}>
+      <ObjectivesDates />
+    </Article>
+  )
 }
 
 function Sidebar() {
