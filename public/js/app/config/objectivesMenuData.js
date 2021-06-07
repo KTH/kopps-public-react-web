@@ -34,6 +34,7 @@ function getObjectivesMenuData(applicationStore) {
       id: 'objectives',
       type: 'leaf',
       text: t('programme_objectives'),
+      url: pageLink(`${pageRoot}/${programmeCode}/${term}/mal`, language),
     },
   ]
   return {

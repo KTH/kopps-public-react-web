@@ -266,7 +266,7 @@ appRoute.get('redirect.program', config.proxyPrefixPath.programme, (req, res) =>
   res.redirect(301, config.proxyPrefixPath.programmesList)
 })
 appRoute.get(
-  'dev.objectives_Ht_Vt',
+  'redirect.objectives_Ht_Vt',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([VvHh][Tt][0-9]{2})/mal',
   (req, res) => {
     const { programmeCode, term } = req.params
@@ -280,7 +280,7 @@ appRoute.get(
   }
 )
 appRoute.get(
-  'dev.objectives_five_digit',
+  'public.objectives_five_digit',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/mal',
   Objectives.getIndex
 )

@@ -33,12 +33,20 @@ function getCurriculumMenuData(applicationStore) {
   const pageRoot = browserConfig.proxyPrefixPath.schoolsList
   const t = translate(language)
   const directoryText = `${t('programme_admitted_year')} ${formatShortTerm(term, language)}`
-  const navListItems = []
-  navListItems.push({
-    id: 'directory',
-    type: 'ancestor',
-    text: directoryText,
-  })
+  const navListItems = [
+    {
+      id: 'directory',
+      type: 'ancestor',
+      text: directoryText,
+    },
+    ..._studyYearItems(applicationStore),
+    {
+      id: 'objectives',
+      type: 'leaf',
+      text: t('programme_objectives'),
+      url: pageLink(`${pageRoot}/${programmeCode}/${term}/mal`, language),
+    },
+  ]
   return {
     ariaLabel: t('main_menu_aria_label'),
     parentLink: {
@@ -47,7 +55,7 @@ function getCurriculumMenuData(applicationStore) {
     },
     navList: {
       type: 'expandable',
-      items: navListItems.concat(_studyYearItems(applicationStore)),
+      items: navListItems,
     },
   }
 }
