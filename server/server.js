@@ -145,6 +145,7 @@ server.use(session(options))
  */
 const { languageHandler } = require('kth-node-web-common/lib/language')
 
+// eslint-disable-next-line guard-for-in
 for (const pageRoot in config.proxyPrefixPath) {
   server.use(config.proxyPrefixPath[pageRoot], languageHandler)
 }
@@ -192,6 +193,7 @@ const {
   Programme,
   Search,
   Curriculum,
+  Objectives,
 } = require('./controllers')
 const { parseTerm } = require('../domain/term')
 
@@ -263,6 +265,25 @@ appRoute.get('redirect.kurser', config.proxyPrefixPath.studentRoot, (req, res) =
 appRoute.get('redirect.program', config.proxyPrefixPath.programme, (req, res) => {
   res.redirect(301, config.proxyPrefixPath.programmesList)
 })
+appRoute.get(
+  'dev.objectives_Ht_Vt',
+  config.proxyPrefixPath.programme + '/:programmeCode/:term([VvHh][Tt][0-9]{2})/mal',
+  (req, res) => {
+    const { programmeCode, term } = req.params
+    const parsedTerm = parseTerm(term)
+    if (!parsedTerm) {
+      const error = new Error('Malformed term')
+      error.statusCode = 404
+      throw error
+    }
+    res.redirect(301, `${config.proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/mal`)
+  }
+)
+appRoute.get(
+  'dev.objectives_five_digit',
+  config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/mal',
+  Objectives.getIndex
+)
 appRoute.get(
   'redirect.curriculumRoot_five_digit',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])',

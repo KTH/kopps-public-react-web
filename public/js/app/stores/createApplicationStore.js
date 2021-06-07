@@ -4,8 +4,9 @@
 
 // eslint-disable-next-line no-unused-vars
 import { observable } from 'mobx'
-import curriculumStore from './curriculumStore'
 import commonStore from './commonStore'
+import curriculumStore from './curriculumStore'
+import objectivesStore from './objectivesStore'
 import searchCoursesStore from './searchCoursesStore'
 
 // const kopps = axios.create({ baseURL: 'http://localhost:8010/proxy/api/kopps/v2' })
@@ -126,6 +127,11 @@ function createApplicationStore(storeId) {
       return {
         ...commonStore,
         ...searchCoursesStore,
+      }
+    case 'objectives':
+      return {
+        ...commonStore,
+        ...objectivesStore,
       }
     default:
       return {
