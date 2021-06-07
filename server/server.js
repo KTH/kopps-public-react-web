@@ -197,13 +197,15 @@ const {
 } = require('./controllers')
 const { parseTerm } = require('../domain/term')
 
+
+const appEndpointsPrefix = '/kp-react'
+
 // System routes
 const systemRoute = AppRouter()
 // TODO: change systemroutes back to same place as static resources, after kp migration is done.
-const pathToSystemRoutes = '/kopps-public-react-web/system'
-systemRoute.get('system.monitor', pathToSystemRoutes + '/_monitor', System.monitor)
-systemRoute.get('system.about', pathToSystemRoutes + '/_about', System.about)
-systemRoute.get('system.paths', pathToSystemRoutes + '/_paths', System.paths)
+systemRoute.get('system.monitor', appEndpointsPrefix + '/_monitor', System.monitor)
+systemRoute.get('system.about', appEndpointsPrefix + '/_about', System.about)
+systemRoute.get('system.paths', appEndpointsPrefix + '/_paths', System.paths)
 systemRoute.get('system.robots', '/robots.txt', System.robotsTxt)
 server.use('/', systemRoute.getRouter())
 
@@ -211,12 +213,12 @@ server.use('/', systemRoute.getRouter())
 const embeddedPageRoute = AppRouter()
 embeddedPageRoute.get(
   'EmbeddedPage.emptyFovSearch',
-  config.proxyPrefixPath.uri + '/embedded/fovsearch',
+  appEndpointsPrefix + '/embedded/fovsearch',
   EmbeddedPage.emptyFovSearch
 )
 embeddedPageRoute.post(
   'EmbeddedPage.fovSearch',
-  config.proxyPrefixPath.uri + '/embedded/fovsearch',
+  appEndpointsPrefix + '/embedded/fovsearch',
   EmbeddedPage.fovSearch
 )
 server.use('/', embeddedPageRoute.getRouter())
