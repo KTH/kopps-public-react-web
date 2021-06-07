@@ -14,7 +14,7 @@ import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'
 import KoppsData from '../components/KoppsData'
 
-function ExtentDates() {
+function EligibilityDates() {
   const { language, studyProgramme } = useStore()
   const t = translate(language)
   const { approvedAt, changedAt } = studyProgramme
@@ -28,17 +28,17 @@ function ExtentDates() {
   )
 }
 
-function ExtentContent() {
+function EligibilityContent() {
   const { studyProgramme } = useStore()
-  const { extent } = studyProgramme
-  return <KoppsData html={extent} />
+  const { eligibility } = studyProgramme
+  return <KoppsData html={eligibility} />
 }
 
 function ArticleContent() {
   return (
     <Article classNames={['paragraphs']}>
-      <ExtentDates />
-      <ExtentContent />
+      <EligibilityDates />
+      <EligibilityContent />
     </Article>
   )
 }
@@ -63,10 +63,10 @@ function Sidebar() {
   )
 }
 
-function Extent() {
+function Eligibility() {
   const { language, programmeName, programmeCode, term } = useStore()
   const t = translate(language)
-  const pageHeading = t('programme_extent_and_content')
+  const pageHeading = t('programme_eligibility_and_selection')
   const subHeading = `${t('programme_admitted_year')} ${formatLongTerm(
     term,
     language
@@ -96,4 +96,4 @@ function Extent() {
   )
 }
 
-export default Extent
+export default Eligibility

@@ -35,6 +35,7 @@ import Programme from './pages/Programme'
 import Curriculum from './pages/Curriculum'
 import Objectives from './pages/Objectives'
 import Extent from './pages/Extent'
+import Eligibility from './pages/Eligibility'
 
 export default appFactory
 
@@ -205,6 +206,21 @@ function appFactory(ssrApplicationStore) {
         })}
         createMenuData={applicationStore => ({
           selectedId: 'extent',
+          ...getStudyProgrammeMenuData(applicationStore),
+        })}
+      />
+      <RouteWrapper
+        exact
+        path="/student/kurser/program/:programmeCode/:term/behorighet"
+        createBreadcrumbs={() => ({ include: 'directory' })}
+        component={Eligibility}
+        layout={PageLayout}
+        applicationStore={_initStore({
+          storeId: 'eligibility',
+          applicationStore: ssrApplicationStore,
+        })}
+        createMenuData={applicationStore => ({
+          selectedId: 'eligibility',
           ...getStudyProgrammeMenuData(applicationStore),
         })}
       />

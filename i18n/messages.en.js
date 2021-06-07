@@ -161,6 +161,7 @@ const messages = {
     programme_objectives_skills_and_abilities: 'Skills and abilities',
     programme_objectives_ability_to_judgements: 'Ability to make judgments and adopt a standpoint',
     programme_extent_and_content: 'Extent and content of the programme',
+    programme_eligibility_and_selection: 'Eligibility and selection',
   },
   shb: {
     pageHeading: 'Study Handbook 00/01 to 07/08',
