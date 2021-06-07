@@ -303,7 +303,7 @@ appRoute.get(
   Extent.getIndex
 )
 appRoute.get(
-  'dev.eligibility_Ht_Vt',
+  'redirect.eligibility_Ht_Vt',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([VvHh][Tt][0-9]{2})/behorighet',
   (req, res) => {
     const { programmeCode, term } = req.params
@@ -317,7 +317,7 @@ appRoute.get(
   }
 )
 appRoute.get(
-  'dev.eligibility_five_digit',
+  'public.eligibility_five_digit',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/behorighet',
   Eligibility.getIndex
 )
