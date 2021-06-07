@@ -6,7 +6,7 @@
 import { observable } from 'mobx'
 import commonStore from './commonStore'
 import curriculumStore from './curriculumStore'
-import objectivesStore from './objectivesStore'
+import studyProgrammeStore from './studyProgrammeStore'
 import searchCoursesStore from './searchCoursesStore'
 
 // const kopps = axios.create({ baseURL: 'http://localhost:8010/proxy/api/kopps/v2' })
@@ -129,9 +129,10 @@ function createApplicationStore(storeId) {
         ...searchCoursesStore,
       }
     case 'objectives':
+    case 'extent':
       return {
         ...commonStore,
-        ...objectivesStore,
+        ...studyProgrammeStore,
       }
     default:
       return {

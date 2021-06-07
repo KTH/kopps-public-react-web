@@ -194,6 +194,7 @@ const {
   Search,
   Curriculum,
   Objectives,
+  Extent,
 } = require('./controllers')
 const { parseTerm } = require('../domain/term')
 
@@ -285,6 +286,25 @@ appRoute.get(
   'public.objectives_five_digit',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/mal',
   Objectives.getIndex
+)
+appRoute.get(
+  'dev.extent_Ht_Vt',
+  config.proxyPrefixPath.programme + '/:programmeCode/:term([VvHh][Tt][0-9]{2})/omfattning',
+  (req, res) => {
+    const { programmeCode, term } = req.params
+    const parsedTerm = parseTerm(term)
+    if (!parsedTerm) {
+      const error = new Error('Malformed term')
+      error.statusCode = 404
+      throw error
+    }
+    res.redirect(301, `${config.proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/omfattning`)
+  }
+)
+appRoute.get(
+  'dev.extent_five_digit',
+  config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/omfattning',
+  Extent.getIndex
 )
 appRoute.get(
   'redirect.curriculumRoot_five_digit',

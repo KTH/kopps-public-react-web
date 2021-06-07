@@ -18,7 +18,7 @@ function setLengthInStudyYears(lengthInStudyYears) {
   this.lengthInStudyYears = lengthInStudyYears
 }
 
-const objectivesStore = {
+const studyProgrammeStore = {
   /**
    * @property {string} studyProgramme
    */
@@ -72,4 +72,4 @@ const objectivesStore = {
   setLengthInStudyYears,
 }
 
-export default objectivesStore
+export default studyProgrammeStore
