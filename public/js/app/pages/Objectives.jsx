@@ -1,10 +1,7 @@
 /* eslint-disable react/no-danger */
 import React, { Fragment } from 'react'
 import { Col, Row } from 'reactstrap'
-import { Link, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
-
-import Article from '../components/Article'
-import FooterContent from '../components/FooterContent'
+import { Heading, Link, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 
 import { useStore } from '../mobx'
 
@@ -12,6 +9,10 @@ import translate from '../../../../domain/translate'
 import { formatLongTerm } from '../../../../domain/term'
 import { formatISODate } from '../../../../domain/date'
 import { programSyllabusLink } from '../util/links'
+
+import Article from '../components/Article'
+import FooterContent from '../components/FooterContent'
+import KoppsData from '../components/KoppsData'
 
 function ObjectivesDates() {
   const { language, studyProgramme } = useStore()
@@ -27,10 +28,56 @@ function ObjectivesDates() {
   )
 }
 
+function ProgrammeObjectives() {
+  const { studyProgramme } = useStore()
+  const { programmeObjectives } = studyProgramme
+  return <KoppsData html={programmeObjectives} />
+}
+
+function KnowledgeObjectives() {
+  const { language, studyProgramme } = useStore()
+  const t = translate(language)
+  const { knowledgeObjectives } = studyProgramme
+  return (
+    <>
+      <Heading size="h2" text={t('programme_objectives_knowledge_and_understanding')} />
+      <KoppsData html={knowledgeObjectives} />
+    </>
+  )
+}
+
+function SkillsObjectives() {
+  const { language, studyProgramme } = useStore()
+  const t = translate(language)
+  const { skillsObjectives } = studyProgramme
+  return (
+    <>
+      <Heading size="h2" text={t('programme_objectives_skills_and_abilities')} />
+      <KoppsData html={skillsObjectives} />
+    </>
+  )
+}
+
+function AbilityObjectives() {
+  const { language, studyProgramme } = useStore()
+  const t = translate(language)
+  const { abilityObjectives } = studyProgramme
+  return (
+    <>
+      <Heading size="h2" text={t('programme_objectives_ability_to_judgements')} />
+      <KoppsData html={abilityObjectives} />
+    </>
+  )
+}
+
 function ArticleContent() {
   return (
     <Article classNames={['paragraphs']}>
       <ObjectivesDates />
+      <ProgrammeObjectives />
+      <KnowledgeObjectives />
+      <SkillsObjectives />
+      <AbilityObjectives />
     </Article>
   )
 }

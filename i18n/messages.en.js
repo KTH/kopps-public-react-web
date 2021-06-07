@@ -157,6 +157,9 @@ const messages = {
     programme_objectives: 'Programme objectives',
     programme_objectives_changed: 'Last edit',
     programme_objectives_approved: 'Approved',
+    programme_objectives_knowledge_and_understanding: 'Knowledge and understanding',
+    programme_objectives_skills_and_abilities: 'Skills and abilities',
+    programme_objectives_ability_to_judgements: 'Ability to make judgments and adopt a standpoint',
   },
   shb: {
     pageHeading: 'Study Handbook 00/01 to 07/08',

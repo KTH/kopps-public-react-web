@@ -155,6 +155,9 @@ const messages = {
     programme_objectives: 'Utbildningens mål',
     programme_objectives_changed: 'Senast ändrad',
     programme_objectives_approved: 'Godkänd',
+    programme_objectives_knowledge_and_understanding: 'Kunskap och förståelse',
+    programme_objectives_skills_and_abilities: 'Färdigheter och förmågor',
+    programme_objectives_ability_to_judgements: 'Värderingsförmåga och förhållningssätt',
   },
   shb: {
     pageHeading: 'Studiehandboken 00/01 tom 07/08',
