@@ -173,9 +173,9 @@ function SpecializationCourses({ curriculumInfo }) {
 }
 
 function CurriculumInfo() {
-  const { language, owningSchoolCode, curriculumInfos = [] } = useStore()
+  const { language, owningSchoolCode, curriculumInfos } = useStore()
   const t = translate(language)
-  return curriculumInfos ? (
+  return Array.isArray(curriculumInfos) && curriculumInfos.length ? (
     <>
       {curriculumInfos.map(
         info =>
