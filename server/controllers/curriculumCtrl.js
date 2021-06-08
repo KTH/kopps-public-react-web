@@ -73,10 +73,11 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, progr
   applicationStore.setStudyYear(studyYear)
 
   const programme = await koppsApi.getProgramme(programmeCode, lang)
-  const { title: programmeName, owningSchoolCode } = programme
+  const { title: programmeName, owningSchoolCode, lengthInStudyYears } = programme
 
   applicationStore.setProgrammeName(programmeName)
   applicationStore.setOwningSchoolCode(owningSchoolCode)
+  applicationStore.setLengthInStudyYears(lengthInStudyYears)
 
   const response = await koppsApi.getStudyProgrammeVersion(programmeCode, term, lang)
   if (response.statusCode !== 200) {
@@ -95,18 +96,6 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, progr
   curriculumInfos.sort(_compareCurriculum)
   setFirstSpec(curriculumInfos)
   applicationStore.setCurriculumInfos(curriculumInfos)
-
-  let lastStudyYearWithCourses = 0
-  curriculumsWithCourseRounds.forEach(curriculum => {
-    const { studyYears } = curriculum
-    studyYears.forEach(year => {
-      const { yearNumber, courses } = year
-      if (Array.isArray(courses) && courses.length && yearNumber > lastStudyYearWithCourses) {
-        lastStudyYearWithCourses = yearNumber
-      }
-    })
-  })
-  applicationStore.setLastStudyYear(lastStudyYearWithCourses)
 
   const departmentBreadCrumbItem = {
     url: programmeLink(browserConfig.proxyPrefixPath.uri, programmeCode, lang),

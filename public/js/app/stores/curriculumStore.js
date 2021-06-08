@@ -34,8 +34,8 @@ function setCurriculumInfos(curriculumInfos) {
   this.curriculumInfos = curriculumInfos
 }
 
-function setLastStudyYear(lastStudyYear) {
-  this.lastStudyYear = lastStudyYear
+function setLengthInStudyYears(lengthInStudyYears) {
+  this.lengthInStudyYears = lengthInStudyYears
 }
 
 const curriculumStore = {
@@ -125,14 +125,14 @@ const curriculumStore = {
    */
   setCurriculumInfos,
   /**
-   * @property {number} lastStudyYear
+   * @property {number} lengthInStudyYears
    */
-  lastStudyYear: 0,
+  lengthInStudyYears: 0,
   /**
    * @method
-   * @param {number} lastStudyYear
+   * @param {number} lengthInStudyYears
    */
-  setLastStudyYear,
+  setLengthInStudyYears,
 }
 
 export default curriculumStore

@@ -3,7 +3,7 @@ const translate = require('../../../../domain/translate')
 const { pageLink } = require('../util/links')
 
 function _studyYearItems(applicationStore) {
-  const { language, browserConfig, programmeCode, term, studyYear, lastStudyYear } = applicationStore
+  const { language, browserConfig, programmeCode, term, studyYear, lengthInStudyYears } = applicationStore
   const pageRoot = browserConfig.proxyPrefixPath.schoolsList
   const t = translate(language)
   if (applicationStore.isMissingAdmission()) {
@@ -17,7 +17,7 @@ function _studyYearItems(applicationStore) {
     ]
   }
   const studyYears = []
-  for (let year = 1; year <= lastStudyYear; year++) {
+  for (let year = 1; year <= lengthInStudyYears; year++) {
     studyYears.push({
       id: `year-${year}`,
       type: 'leaf',
