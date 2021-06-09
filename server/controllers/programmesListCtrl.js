@@ -12,10 +12,10 @@ const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { programmeGroupHeadings, find: findProgrammeGroupHeading } = require('../utils/programmeGroupHeading')
 
 function _compareProgrammes(a, b) {
-  if (a.title < b.title) {
+  if (a.title.toLowerCase() < b.title.toLowerCase()) {
     return -1
   }
-  if (a.title > b.title) {
+  if (a.title.toLowerCase() > b.title.toLowerCase()) {
     return 1
   }
   if (a.firstAdmissionTerm < b.firstAdmissionTerm) {
