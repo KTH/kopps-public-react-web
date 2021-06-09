@@ -1,7 +1,7 @@
 const { getNextTerm } = require('./term')
 
 function _compareParticipations(a, b) {
-  let aFirstIndex = 0
+  let aFirstIndex = Number.MAX_SAFE_INTEGER
   for (let index = 0; index < a.creditsPerPeriod.length; index++) {
     const credit = a.creditsPerPeriod[index]
     if (credit > 0) {
@@ -9,7 +9,7 @@ function _compareParticipations(a, b) {
       break
     }
   }
-  let bFirstIndex = 0
+  let bFirstIndex = Number.MAX_SAFE_INTEGER
   for (let index = 0; index < b.creditsPerPeriod.length; index++) {
     const credit = b.creditsPerPeriod[index]
     if (credit > 0) {
