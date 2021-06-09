@@ -161,6 +161,7 @@ server.use(
     proxyPrefixPath: config.proxyPrefixPath.uri,
     hostUrl: config.hostUrl,
     redisConfig: config.cache.cortinaBlock.redis,
+    globalLink: config.blockApi.globalLink,
   })
 )
 

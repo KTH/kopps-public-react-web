@@ -7,6 +7,7 @@ import { Breadcrumbs } from '@kth/kth-reactstrap/dist/components/utbildningsinfo
 
 import { useStore } from '../mobx'
 import MainMenu from '../components/MainMenu'
+import LanguageControl from '../components/LanguageControl'
 
 function renderBreadcrumbsIntoKthHeader(breadcrumbs, language) {
   const { breadcrumbsDynamicItems, include, items = [] } = breadcrumbs
@@ -14,7 +15,13 @@ function renderBreadcrumbsIntoKthHeader(breadcrumbs, language) {
 
   const breadcrumbContainer = document.getElementById('breadcrumbs-header')
   if (breadcrumbContainer) {
-    ReactDOM.render(<Breadcrumbs include={include} items={breadcrumbsEnd} language={language} />, breadcrumbContainer)
+    ReactDOM.render(
+      <>
+        <Breadcrumbs include={include} items={breadcrumbsEnd} language={language} />
+        <LanguageControl language={language} />
+      </>,
+      breadcrumbContainer
+    )
   }
 }
 

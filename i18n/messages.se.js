@@ -27,7 +27,8 @@ const messages = {
     field_label_post_example: 'Min datamodell(Svar från api anrop POST): ',
 
     lang_block_id: '1.272446',
-    locale_text: 'Kurs- och programkatalogen på svenska',
+    locale_text: 'KTH på svenska',
+    other_lang: 'Denna sida på svenska',
 
     site_name: 'Kurs- och programkatalogen',
     host_name: 'KTH',

@@ -52,6 +52,7 @@ module.exports = {
   // Cortina
   blockApi: {
     blockUrl: getEnv('CM_HOST_URL', devDefaults('https://www-r.referens.sys.kth.se/cm/')),
+    globalLink: true,
   },
 
   // Logging

@@ -27,7 +27,8 @@ const messages = {
     field_label_post_example: 'My modelData(Response from api call POST): ',
 
     lang_block_id: '1.77273',
-    locale_text: 'Course and programme directory in English',
+    locale_text: 'International website',
+    other_lang: 'This page in English',
 
     site_name: 'Course and programme directory',
     host_name: 'KTH',
