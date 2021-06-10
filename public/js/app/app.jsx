@@ -36,6 +36,7 @@ import Curriculum from './pages/Curriculum'
 import Objectives from './pages/Objectives'
 import Extent from './pages/Extent'
 import Eligibility from './pages/Eligibility'
+import Implementation from './pages/Implementation'
 
 export default appFactory
 
@@ -221,6 +222,21 @@ function appFactory(ssrApplicationStore) {
         })}
         createMenuData={applicationStore => ({
           selectedId: 'eligibility',
+          ...getStudyProgrammeMenuData(applicationStore),
+        })}
+      />
+      <RouteWrapper
+        exact
+        path="/student/kurser/program/:programmeCode/:term/genomforande"
+        createBreadcrumbs={() => ({ include: 'directory' })}
+        component={Implementation}
+        layout={PageLayout}
+        applicationStore={_initStore({
+          storeId: 'implementation',
+          applicationStore: ssrApplicationStore,
+        })}
+        createMenuData={applicationStore => ({
+          selectedId: 'implementation',
           ...getStudyProgrammeMenuData(applicationStore),
         })}
       />

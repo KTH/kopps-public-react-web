@@ -48,6 +48,12 @@ function getStudyProgrammeMenuData(applicationStore) {
       text: t('programme_eligibility_and_selection'),
       url: pageLink(`${pageRoot}/${programmeCode}/${term}/behorighet`, language),
     },
+    {
+      id: 'implementation',
+      type: 'leaf',
+      text: t('programme_implementation'),
+      url: pageLink(`${pageRoot}/${programmeCode}/${term}/genomforande`, language),
+    },
   ]
   return {
     ariaLabel: t('main_menu_aria_label'),

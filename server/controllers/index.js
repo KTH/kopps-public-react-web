@@ -20,4 +20,5 @@ module.exports = {
   Objectives: require('./objectivesCtrl'),
   Extent: require('./extentCtrl'),
   Eligibility: require('./eligibilityCtrl'),
+  Implementation: require('./implementationCtrl'),
 }

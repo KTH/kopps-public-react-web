@@ -197,6 +197,7 @@ const {
   Objectives,
   Extent,
   Eligibility,
+  Implementation,
 } = require('./controllers')
 const { parseTerm } = require('../domain/term')
 
@@ -321,6 +322,25 @@ appRoute.get(
   'public.eligibility_five_digit',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/behorighet',
   Eligibility.getIndex
+)
+appRoute.get(
+  'dev.implementation_Ht_Vt',
+  config.proxyPrefixPath.programme + '/:programmeCode/:term([VvHh][Tt][0-9]{2})/genomforande',
+  (req, res) => {
+    const { programmeCode, term } = req.params
+    const parsedTerm = parseTerm(term)
+    if (!parsedTerm) {
+      const error = new Error('Malformed term')
+      error.statusCode = 404
+      throw error
+    }
+    res.redirect(301, `${config.proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/genomforande`)
+  }
+)
+appRoute.get(
+  'dev.implementation_five_digit',
+  config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/genomforande',
+  Implementation.getIndex
 )
 appRoute.get(
   'redirect.curriculumRoot_five_digit',
