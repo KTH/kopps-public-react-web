@@ -57,6 +57,10 @@ function programmeWebLink(programmeCode, language) {
   return `/social/program/${programmeCode}${languageParam}`
 }
 
+function appendix1Link(programmeCode, term) {
+  return `/student/kurser/program/${programmeCode}/${term}/kurslista`
+}
+
 function centralStudyCounselingUrl(language) {
   return language === 'en'
     ? 'https://www.kth.se/en/studies/master/general-study-counselling-1.621634'
@@ -81,4 +85,5 @@ module.exports = {
   programSyllabusLink,
   programmeWebLink,
   thirdCycleDepartmentLink,
+  appendix1Link,
 }

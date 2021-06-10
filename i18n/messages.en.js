@@ -164,6 +164,18 @@ const messages = {
     programme_extent_and_content: 'Extent and content of the programme',
     programme_eligibility_and_selection: 'Eligibility and selection',
     programme_implementation: 'Implementation of the education',
+    programme_structure: 'Structure of the education',
+    programme_implementation_courses: 'Courses',
+    programme_implementation_courses_intro: 'The programme is course-based. Lists of courses are included in',
+    programme_appendix1: 'Appendix 1: Course list',
+    programme_grading_system: 'Grading system',
+    programme_grading_system_intro:
+      'Courses in the first and the second cycle are graded on a scale from A to F. A-E are passing grades, A is the highest grade. The grades pass (P) and fail (F) are used for courses under certain circumstances.',
+    programme_participation: 'Conditions for participation in the programme',
+    programme_previous_studies: 'Recognition of previous academic studies',
+    programme_studies_abroad: 'Studies abroad',
+    programme_degree_project: 'Degree project',
+    programme_degree: 'Degree',
   },
   shb: {
     pageHeading: 'Study Handbook 00/01 to 07/08',

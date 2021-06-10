@@ -162,6 +162,18 @@ const messages = {
     programme_extent_and_content: 'Utbildningens omfattning och innehåll',
     programme_eligibility_and_selection: 'Behörighet och urval',
     programme_implementation: 'Utbildningens genomförande',
+    programme_structure: 'Utbildningens upplägg',
+    programme_implementation_courses: 'Kurser',
+    programme_implementation_courses_intro: 'Utbildningen sker i kursform. Kurslistor finns i',
+    programme_appendix1: 'Bilaga 1: Kurslista',
+    programme_grading_system: 'Betygssystem',
+    programme_grading_system_intro:
+      'För kurser på KTH används en sjugradig målrelaterad betygsskala A-F som slutbetyg för kurser på grundnivå och avancerad nivå. A-E är godkända betyg med A som högsta betyg. Betygen godkänd (P) och underkänd (F) används som slutbetyg då särskilda skäl föreligger.',
+    programme_participation: 'Villkor för deltagande i utbildningen',
+    programme_previous_studies: 'Tillgodoräknanden',
+    programme_studies_abroad: 'Utlandsstudier',
+    programme_degree_project: 'Examensarbete',
+    programme_degree: 'Examen',
   },
   shb: {
     pageHeading: 'Studiehandboken 00/01 tom 07/08',
