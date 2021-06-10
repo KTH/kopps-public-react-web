@@ -324,7 +324,7 @@ appRoute.get(
   Eligibility.getIndex
 )
 appRoute.get(
-  'dev.implementation_Ht_Vt',
+  'redirect.implementation_Ht_Vt',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([VvHh][Tt][0-9]{2})/genomforande',
   (req, res) => {
     const { programmeCode, term } = req.params
@@ -338,7 +338,7 @@ appRoute.get(
   }
 )
 appRoute.get(
-  'dev.implementation_five_digit',
+  'public.implementation_five_digit',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/genomforande',
   Implementation.getIndex
 )
