@@ -54,7 +54,7 @@ async function getIndex(req, res, next) {
 
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
 
-    const applicationStore = createStore('eligibility')
+    const applicationStore = createStore('implementation')
     await _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode, term })
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
