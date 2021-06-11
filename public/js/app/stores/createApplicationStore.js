@@ -131,6 +131,8 @@ function createApplicationStore(storeId) {
     case 'objectives':
     case 'extent':
     case 'eligibility':
+    case 'implementation':
+    case 'appendix1':
       return {
         ...commonStore,
         ...studyProgrammeStore,
