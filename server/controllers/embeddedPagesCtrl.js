@@ -19,6 +19,7 @@ async function _fovSearch(req, res, next) {
   queryParams.studypace = queryParams.studypace || ''
 
   const fovCoursesResults = await searchFovCourses(convertUserOptionsToKoppsApiParams(queryParams))
+  fovCoursesResults.sort((e1, e2) => e1.code.localeCompare(e2.code))
   const mfosOptions = await listActiveMainFieldsOfStudy()
 
   res.render('embedded/fovsearch', {
