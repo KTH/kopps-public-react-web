@@ -67,7 +67,7 @@ const listActiveMainFieldsOfStudy = async () => {
     if (noMainSubjectOption) {
       noMainSubjectOption.titleSv = 'Ej inom KTHs huvudområden'
     }
-    return data
+    return data.body
   } catch (error) {
     log.error('Exception calling from koppsAPI in koppsApi.listActiveMainFieldsOfStudy', { error })
     throw error
