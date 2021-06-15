@@ -54,6 +54,15 @@ function _getNextTerm(term) {
   return t + 10 - 1
 }
 
+function _getPreviousTerm(term) {
+  let t = parseInt(term)
+  if (_isFallTerm(term)) {
+    return t - 1
+  } else {
+    return t - 10 + 1
+  }
+}
+
 function _nTermsAgo(fromTerm, overrideDate) {
   let nTerms = 0
   let term = fromTerm
@@ -72,11 +81,7 @@ function _studyYear(term, lengthInStudyYears, overrideDate) {
 }
 
 function _splitTerm(term) {
-  if (typeof term === 'number') {
-    // TODO Verify that semester is 1 or 2?
-    return [Math.floor(term / 10), term % 10]
-  }
-  return term.split(/([1|2])$/)
+  return term.toString().split(/([1|2])$/)
 }
 
 function formatShortTerm(term, language) {
@@ -101,6 +106,17 @@ function _getNextTerms(fromTerm, numberOfTerms) {
     nTerms++
   }
   return terms
+}
+
+function _getPreviousTerms(fromTerm, numberOfPreviousTerms) {
+  // previous terms in historical order (earlier term comes first). Current term is not included.
+  let terms = []
+  let loopTerm = fromTerm
+  for (let i = 0; i < numberOfPreviousTerms; i++) {
+    loopTerm = _getPreviousTerm(loopTerm)
+    terms.push(loopTerm)
+  }
+  return terms.reverse();
 }
 
 function getRelevantTerms(numberOfTerms, overrideDate = null) {
@@ -132,6 +148,7 @@ module.exports = {
   _isSpringTerm,
   _isFallTerm,
   getNextTerm: _getNextTerm,
+  getPreviousTerm: _getPreviousTerm,
   getRelevantTerms,
   _nTermsAgo,
   studyYear: _studyYear,
@@ -140,4 +157,6 @@ module.exports = {
   splitTerm: _splitTerm,
   add,
   parseTerm,
+  getPreviousTerms: _getPreviousTerms,
+  getNextTerms: _getNextTerms,
 }

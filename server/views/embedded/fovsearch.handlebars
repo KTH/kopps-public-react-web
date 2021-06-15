@@ -80,9 +80,10 @@
             <tr>
                 <th scope="col">Kurskod</th>
                 <th scope="col">Kursnamn</th>
-                <th scope="col">Omfattning</th>
-                <th scope="col">Anm.kod</th>
                 <th scope="col">Startdatum</th>
+                <th scope="col">Omfattning</th>
+                <th scope="col">Studietakt</th>
+                <th scope="col">Anm.kod</th>
             </tr>
         </thead>
         <tbody>
@@ -92,9 +93,10 @@
                 <td>
                     <a href="{{getCourseLink this}}">{{this.title.sv}}</a>
                 </td>
-                <td class="text-right">{{getSwedishFormattedCredits this}}</td>
-                <td class="text-center">{{getAnmalningsKod this}}</td>
                 <td>{{this.startDate}}</td>
+                <td class="text-right">{{getSwedishFormattedCredits this}}</td>
+                <td class="text-center">{{this.pace}}%</td>
+                <td class="text-center">{{getAnmalningsKod this}}</td>
                 </tr>
             {{/each}}
         </tbody>

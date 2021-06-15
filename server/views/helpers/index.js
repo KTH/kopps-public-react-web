@@ -57,6 +57,5 @@ handlebars.registerHelper('getAnmalningsKod', course => {
   return course.applicationCodes[0]
 })
 handlebars.registerHelper('getCourseLink', course => {
-  // TODO: implement.
-  return 'https://www.kth.se/student/kurser/kurs/MG2013'
+  return `https://www.kth.se/student/kurser/kurs/${course.code}`
 })

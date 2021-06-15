@@ -1,4 +1,5 @@
 const moment = require('moment-timezone')
+const { getCurrentTerm, getNextTerms, getPreviousTerms, formatShortTerm } = require('./term.js')
 
 const _constants = {
   COURSE_TYPES: [
@@ -9,6 +10,7 @@ const _constants = {
     { code: 'EVENING', titleSv: 'Kvällskurser' },
     { code: 'TEACHER', titleSv: 'Lärarfortbildning' },
     { code: 'SUMMER', titleSv: 'Sommarkurser' },
+    { code: 'LANGUAGE', titleSv: 'Språkkurser' },
   ],
   /*
     These are the different study pace KTH have as of writing. We should
@@ -59,11 +61,14 @@ const _convertUserOptionsToKoppsApiParams = ({ l, type, start, mainsubject, stud
       koppsApiParams.tutoringForm = 'ITD'
       break
     case 'SUMMER':
-      koppsApiParams.category = null
-      koppsApiParams.types = ['SFV', 'SN\u00C4']
+      delete koppsApiParams.category
+      koppsApiParams.summerCoursesOnly = true
       break
     case 'TEACHER':
       koppsApiParams.teachersFurtherEdu = true
+      break
+    case 'LANGUAGE':
+      koppsApiParams.emilCodes = [558, 542, 597, 609, 583, 511, 664, 555] // KP-141.
       break
   }
 
@@ -79,28 +84,14 @@ const _convertUserOptionsToKoppsApiParams = ({ l, type, start, mainsubject, stud
 }
 
 const _searchOptionTerms = () => {
-  // TODO: return upcoming semesters based on today's date.
+  let current = getCurrentTerm()
+  let previous = getPreviousTerms(current, 2)
+  let next = getNextTerms(current, 1)
+  let termToDisplayObject = (t) => ({ code: t, titleSv: formatShortTerm(t, 'sv') })
   return [
-    {
-      code: 'current',
-      titleSv: 'Kommande',
-    },
-    {
-      code: '20201',
-      titleSv: '20201',
-    },
-    {
-      code: '20202',
-      titleSv: '20202',
-    },
-    {
-      code: '20211',
-      titleSv: '20211',
-    },
-    {
-      code: '20212',
-      titleSv: '20212',
-    },
+    { code: 'current', titleSv: 'Kommande' },
+    ...previous.map(termToDisplayObject),
+    ...next.map(termToDisplayObject),
   ]
 }
 

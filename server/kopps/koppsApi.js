@@ -32,7 +32,15 @@ const slashEndedKoppsBase = config.koppsApi.basePath.endsWith('/')
 
 function reduceToQueryParamString(params) {
   const queryParam = Object.entries(params).reduce(
-    (currentQueryParam, [key, value]) => currentQueryParam + `${key}=${encodeURIComponent(value)}&`,
+    (currentQueryParam, [key, value]) => {
+      if (Array.isArray(value)) {
+        return currentQueryParam + value.map(e => `${key}=${encodeURIComponent(e)}&`).join('')
+      } else if (typeof value === 'string') {
+        return currentQueryParam + `${key}=${encodeURIComponent(value)}&`
+      } else {
+        throw new Error('Unsupported query parameter type used.')
+      }
+    },
     '?'
   )
   return queryParam.slice(0, -1) // Remove either '?' or '&'
