@@ -61,7 +61,6 @@ const _convertUserOptionsToKoppsApiParams = ({ l, type, start, mainsubject, stud
       koppsApiParams.tutoringForm = 'ITD'
       break
     case 'SUMMER':
-      delete koppsApiParams.category
       koppsApiParams.summerCoursesOnly = true
       break
     case 'TEACHER':

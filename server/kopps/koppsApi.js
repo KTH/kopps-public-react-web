@@ -35,10 +35,8 @@ function reduceToQueryParamString(params) {
     (currentQueryParam, [key, value]) => {
       if (Array.isArray(value)) {
         return currentQueryParam + value.map(e => `${key}=${encodeURIComponent(e)}&`).join('')
-      } else if (typeof value === 'string') {
-        return currentQueryParam + `${key}=${encodeURIComponent(value)}&`
       } else {
-        throw new Error('Unsupported query parameter type used.')
+        return currentQueryParam + `${key}=${encodeURIComponent(value)}&`
       }
     },
     '?'
