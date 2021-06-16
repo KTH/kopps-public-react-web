@@ -1,19 +1,214 @@
 /* eslint-disable react/no-danger */
 import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
 import { Col, Row } from 'reactstrap'
-import { Heading, Link, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
+import { Link, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
+import { toJS } from 'mobx'
 
 import { useStore } from '../mobx'
 
 import translate from '../../../../domain/translate'
-import { formatLongTerm } from '../../../../domain/term'
 import { programSyllabusLink } from '../util/links'
+import { formatLongTerm } from '../../../../domain/term'
+import { ELECTIVE_CONDITIONS } from '../../../../domain/curriculum'
 
 import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'
+import KoppsData from '../components/KoppsData'
+
+// TODO: Duplicated, move to domain functions
+function formatCredits(language, credits) {
+  const creditsStr = typeof credits === 'number' ? credits.toString() : credits
+  if (language === 'sv') {
+    return creditsStr.includes('.') ? creditsStr.replace('.', ',') : `${creditsStr},0`
+  }
+  return creditsStr.includes('.') ? creditsStr : `${creditsStr}.0`
+}
+function CourseListTableRow({ course }) {
+  const { language } = useStore()
+  const { code, name, credits, creditAbbr, level } = course
+  const languageParam = language === 'en' ? '?l=en' : ''
+  const courseLink = `https://www.kth.se/student/kurser/kurs/${code}${languageParam}`
+  return (
+    <tr>
+      <td className="code">{code}</td>
+      <td className="name">
+        <a href={courseLink}>{name}</a>
+      </td>
+      <td className="credits">{`${credits} ${creditAbbr}`}</td>
+      <td className="level">{level}</td>
+    </tr>
+  )
+}
+
+const courseType = PropTypes.shape({
+  code: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  credits: PropTypes.number.isRequired,
+  creditAbbr: PropTypes.string.isRequired,
+  level: PropTypes.string.isRequired,
+})
+
+CourseListTableRow.propTypes = {
+  course: courseType.isRequired,
+}
+
+function CourseListTable({ courses }) {
+  const { language } = useStore()
+  const t = translate(language)
+  return Array.isArray(courses) && courses.length ? (
+    <table className="table courseList">
+      <thead>
+        <tr>
+          <th scope="col">{t('programme_list_code')}</th>
+          <th scope="col">{t('programme_list_name')}</th>
+          <th scope="col">{t('programme_list_credits')}</th>
+          <th scope="col">{t('programme_list_edulevel')}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {courses.map(course => (
+          <CourseListTableRow key={course.code} course={course} />
+        ))}
+      </tbody>
+    </table>
+  ) : null
+}
+
+CourseListTable.propTypes = {
+  courses: PropTypes.arrayOf(courseType),
+}
+
+CourseListTable.defaultProps = {
+  courses: [],
+}
+
+function ElectiveCondition({ studyYear, electiveCondition, code }) {
+  const { language, studyYearCourses, creditUnitAbbr } = useStore()
+  const t = translate(language)
+  const electiveConditionCourses = studyYearCourses[code][studyYear]
+  if (!studyYearCourses[code][studyYear] || !electiveConditionCourses[electiveCondition]) return null
+  const credits = electiveConditionCourses[electiveCondition].reduce(
+    (accCredits, course) => accCredits + course.credits,
+    0
+  )
+
+  const heading = `${t('elective_condition')[electiveCondition]} ${t('curriculums_courses')} ${formatCredits(
+    language,
+    credits
+  )} (${creditUnitAbbr})  `
+  return (
+    <Fragment key={electiveCondition}>
+      <h4>{heading}</h4>
+      <CourseListTable courses={electiveConditionCourses[electiveCondition]} />
+    </Fragment>
+  )
+}
+
+ElectiveCondition.propTypes = {
+  studyYear: PropTypes.number.isRequired,
+  electiveCondition: PropTypes.string.isRequired,
+  code: PropTypes.string.isRequired,
+}
+
+function SupplementaryInfo({ studyYear, code }) {
+  const { language, supplementaryInfo } = useStore()
+  const t = translate(language)
+  return supplementaryInfo[code][studyYear] ? (
+    <>
+      <h4>{t('programme_supplementary_information')}</h4>
+      <KoppsData html={supplementaryInfo[code][studyYear]} />
+    </>
+  ) : null
+}
+
+SupplementaryInfo.propTypes = {
+  studyYear: PropTypes.number.isRequired,
+  code: PropTypes.string.isRequired,
+}
+
+function ConditionallyElectiveCoursesInfo({ studyYear, code }) {
+  const { language, conditionallyElectiveCoursesInfo } = useStore()
+  const t = translate(language)
+  return conditionallyElectiveCoursesInfo[code] && conditionallyElectiveCoursesInfo[code][studyYear] ? (
+    <>
+      <h4>{t('programme_conditionally_elective_courses_info')}</h4>
+      <KoppsData html={conditionallyElectiveCoursesInfo[code][studyYear]} />
+    </>
+  ) : null
+}
+
+ConditionallyElectiveCoursesInfo.propTypes = {
+  studyYear: PropTypes.number.isRequired,
+  code: PropTypes.string.isRequired,
+}
+
+function StudyYear({ studyYear, code }) {
+  const { language } = useStore()
+  const t = translate(language)
+
+  const studyYearHeader = `${t('programme_year')} ${studyYear}`
+  return (
+    <Fragment key={studyYear}>
+      <h3>{studyYearHeader}</h3>
+      {ELECTIVE_CONDITIONS.map(electiveCondition => (
+        <ElectiveCondition
+          key={electiveCondition}
+          studyYear={studyYear}
+          electiveCondition={electiveCondition}
+          code={code}
+        />
+      ))}
+      <SupplementaryInfo studyYear={studyYear} code={code} />
+      <ConditionallyElectiveCoursesInfo studyYear={studyYear} code={code} />
+    </Fragment>
+  )
+}
+
+StudyYear.propTypes = {
+  studyYear: PropTypes.number.isRequired,
+  code: PropTypes.string.isRequired,
+}
+
+function CommonCourses() {
+  // TODO: Only get study years for common courses
+  const { language, studyYears } = useStore()
+  const t = translate(language)
+  return studyYears.length ? (
+    <>
+      <h2>{t('curriculums_common_courses')}</h2>
+      {studyYears.map(studyYear => (
+        <StudyYear key={studyYear} studyYear={studyYear} code="Common" />
+      ))}
+    </>
+  ) : null
+}
+
+function Specialisations() {
+  // TODO: Only get study years for specialisations
+  const { specializations } = useStore()
+  // TODO: Retrieve proper specialisations
+  return (
+    <>
+      {specializations.map(({ code, title, studyYears }) => (
+        <Fragment key={code}>
+          <h2>{`${title} (${code})`}</h2>
+          {studyYears.map(studyYear => (
+            <StudyYear key={studyYear} studyYear={studyYear} code={code} />
+          ))}
+        </Fragment>
+      ))}
+    </>
+  )
+}
 
 function ArticleContent() {
-  return <Article classNames={['paragraphs']} />
+  return (
+    <Article classNames={['paragraphs']}>
+      <CommonCourses />
+      <Specialisations />
+    </Article>
+  )
 }
 
 function Sidebar() {

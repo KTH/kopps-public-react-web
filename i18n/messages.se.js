@@ -174,6 +174,13 @@ const messages = {
     programme_studies_abroad: 'Utlandsstudier',
     programme_degree_project: 'Examensarbete',
     programme_degree: 'Examen',
+    programme_list_code: 'Kurskod',
+    programme_list_name: 'Namn',
+    programme_list_credits: 'Omfattning',
+    programme_list_edulevel: 'Utbildningsnivå',
+    programme_year: 'Årskurs',
+    programme_supplementary_information: 'Kompletterande information',
+    programme_conditionally_elective_courses_info: 'Information om villkorligt valfria kurser',
   },
   shb: {
     pageHeading: 'Studiehandboken 00/01 tom 07/08',

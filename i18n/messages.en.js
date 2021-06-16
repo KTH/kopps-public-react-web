@@ -176,6 +176,13 @@ const messages = {
     programme_studies_abroad: 'Studies abroad',
     programme_degree_project: 'Degree project',
     programme_degree: 'Degree',
+    programme_list_code: 'Code',
+    programme_list_name: 'Name',
+    programme_list_credits: 'Credits',
+    programme_list_edulevel: 'Edu. level',
+    programme_year: 'Year',
+    programme_supplementary_information: 'Supplementary information',
+    programme_conditionally_elective_courses_info: 'Information regarding conditionally elective courses',
   },
   shb: {
     pageHeading: 'Study Handbook 00/01 to 07/08',
