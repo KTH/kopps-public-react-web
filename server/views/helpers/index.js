@@ -48,7 +48,7 @@ require('kth-node-web-common/lib/handlebars/helpers/safe')
 
 const handlebars = require('handlebars')
 handlebars.registerHelper('eq', (var1, var2) => {
-  return var1 === var2
+  return var1.toString() === var2.toString()
 })
 handlebars.registerHelper('getSwedishFormattedCredits', course => {
   return course.credits.toFixed(1).toString().replace('.', ',') + ' hp'
