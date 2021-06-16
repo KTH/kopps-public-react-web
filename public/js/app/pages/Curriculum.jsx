@@ -18,6 +18,7 @@ import { ELECTIVE_CONDITIONS } from '../../../../domain/curriculum'
 import { ORDINARY_PERIODS } from '../../../../domain/periods'
 import { programSyllabusLink, programmeWebLink } from '../util/links'
 
+// TODO: Duplicated, move to domain functions
 function formatCredits(language, credits) {
   const creditsStr = typeof credits === 'number' ? credits.toString() : credits
   if (language === 'sv') {
