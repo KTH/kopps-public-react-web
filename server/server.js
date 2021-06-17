@@ -344,7 +344,7 @@ appRoute.get(
   Implementation.getIndex
 )
 appRoute.get(
-  'dev.appendix1_Ht_Vt',
+  'redirect.appendix1_Ht_Vt',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([VvHh][Tt][0-9]{2})/kurslista',
   (req, res) => {
     const { programmeCode, term } = req.params
@@ -358,7 +358,7 @@ appRoute.get(
   }
 )
 appRoute.get(
-  'dev.appendix1_five_digit',
+  'public.appendix1_five_digit',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/kurslista',
   Appendix1.getIndex
 )

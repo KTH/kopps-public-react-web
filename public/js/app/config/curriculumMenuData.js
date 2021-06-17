@@ -64,6 +64,12 @@ function getCurriculumMenuData(applicationStore) {
       text: t('programme_implementation'),
       url: pageLink(`${pageRoot}/${programmeCode}/${term}/genomforande`, language),
     },
+    {
+      id: 'appendix1',
+      type: 'leaf',
+      text: t('programme_appendix1'),
+      url: pageLink(`${pageRoot}/${programmeCode}/${term}/kurslista`, language),
+    },
   ]
   return {
     ariaLabel: t('main_menu_aria_label'),
