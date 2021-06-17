@@ -141,49 +141,6 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, progr
   const curriculums = await koppsApi.listCurriculums(studyProgrammeId, lang)
   parseCurriculums(applicationStore, curriculums)
 
-  // const mandatoryCourse = {
-  //   code: 'M2021',
-  //   name: lang === 'en' ? 'Test manadatory course, year 1' : 'Test obligatorisk kurs, år 1',
-  //   credits: 7.5,
-  //   creditAbbr: 'hp',
-  //   level: lang === 'en' ? 'First cycle' : 'Grundnivå',
-  // }
-  // const conditionallyElectiveCourse = {
-  //   code: 'M2021',
-  //   name: lang === 'en' ? 'Test elective course, year 1' : 'Test villkorligt valfri kurs, år 1',
-  //   credits: 7.5,
-  //   creditAbbr: 'hp',
-  //   level: lang === 'en' ? 'First cycle' : 'Grundnivå',
-  // }
-  // const supplementaryInfo =
-  //   lang === 'en'
-  //     ? '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu varius tortor. In vel lacus dapibus, sagittis nulla et, congue quam. Quisque at lorem velit. Etiam dignissim et neque a efficitur. Nunc quis leo sit amet diam ultrices pellentesque. Etiam vel posuere tellus. Nulla sagittis mollis viverra. Maecenas feugiat suscipit congue. Ut varius, turpis nec dapibus congue, urna turpis malesuada sapien, sit amet porta mauris dui non dui. Aliquam sagittis augue tortor, vel molestie augue luctus quis. Sed malesuada velit purus, vel viverra magna tincidunt ut. In ex arcu, porttitor eget ex vel, finibus tristique nunc. Aliquam eu maximus nulla.</p>'
-  //     : '<p>Löksås ipsum icke i vidsträckt blivit regn rot det tid, denna omfångsrik åker därmed och enligt vemod blivit träutensilierna, det sjö där stora hans vi bra ser. Själv omfångsrik del det sax nya blev både ska det äng strand tre, mjuka hwila för annan har och färdväg det göras sitt. Inom stig groda sorgliga söka åker sorgliga dock, precis tiden sorgliga genom tid smultron, hela jäst det genom gamla för.</p>'
-
-  // const conditionallyElectiveCoursesInfo =
-  //   lang === 'en'
-  //     ? '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu varius tortor. In vel lacus dapibus, sagittis nulla et, congue quam. Quisque at lorem velit. Etiam dignissim et neque a efficitur. Nunc quis leo sit amet diam ultrices pellentesque. Etiam vel posuere tellus. Nulla sagittis mollis viverra. Maecenas feugiat suscipit congue. Ut varius, turpis nec dapibus congue, urna turpis malesuada sapien, sit amet porta mauris dui non dui. Aliquam sagittis augue tortor, vel molestie augue luctus quis. Sed malesuada velit purus, vel viverra magna tincidunt ut. In ex arcu, porttitor eget ex vel, finibus tristique nunc. Aliquam eu maximus nulla.</p>'
-  //     : '<p>Löksås ipsum icke i vidsträckt blivit regn rot det tid, denna omfångsrik åker därmed och enligt vemod blivit träutensilierna, det sjö där stora hans vi bra ser. Själv omfångsrik del det sax nya blev både ska det äng strand tre, mjuka hwila för annan har och färdväg det göras sitt. Inom stig groda sorgliga söka åker sorgliga dock, precis tiden sorgliga genom tid smultron, hela jäst det genom gamla för.</p>'
-
-  // applicationStore.addElectiveConditionCourse(mandatoryCourse, 'O', 1, 'Common')
-  // applicationStore.addElectiveConditionCourse(conditionallyElectiveCourse, 'VV', 1, 'Common')
-  // applicationStore.addSupplementaryInfo(supplementaryInfo, 1, 'Common')
-  // applicationStore.addConditionallyElectiveCoursesInfo(conditionallyElectiveCoursesInfo, 1, 'Common')
-  // applicationStore.addElectiveConditionCourse(mandatoryCourse, 'O', 1, 'MAFY')
-  // applicationStore.addElectiveConditionCourse(conditionallyElectiveCourse, 'VV', 1, 'MAFY')
-  // applicationStore.addSupplementaryInfo(supplementaryInfo, 1, 'MAFY')
-  // applicationStore.addConditionallyElectiveCoursesInfo(conditionallyElectiveCoursesInfo, 1, 'MAFY')
-  // applicationStore.addStudyYear(1)
-  // applicationStore.addElectiveConditionCourse(mandatoryCourse, 'O', 1, 'MAKE')
-  // applicationStore.addSupplementaryInfo(supplementaryInfo, 1, 'MAKE')
-  // applicationStore.addElectiveConditionCourse(mandatoryCourse, 'O', 2, 'MAKE')
-  // applicationStore.addSupplementaryInfo(supplementaryInfo, 2, 'MAKE')
-  // applicationStore.addConditionallyElectiveCoursesInfo(conditionallyElectiveCoursesInfo, 2, 'MAKE')
-  // applicationStore.setSpecializations([
-  //   { code: 'MAFY', title: 'Mathematics and Physics', studyYears: [1] },
-  //   { code: 'MAKE', title: 'Mathematics and Chemistry', studyYears: [1, 2] },
-  // ])
-
   const departmentBreadCrumbItem = {
     url: programmeLink(browserConfig.proxyPrefixPath.uri, programmeCode, lang),
     label: programmeName,
