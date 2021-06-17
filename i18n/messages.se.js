@@ -181,6 +181,12 @@ const messages = {
     programme_year: 'Årskurs',
     programme_supplementary_information: 'Kompletterande information',
     programme_conditionally_elective_courses_info: 'Information om villkorligt valfria kurser',
+    programme_edulevel: {
+      PREPARATORY: 'Förberedande nivå',
+      BASIC: 'Grundnivå',
+      ADVANCED: 'Avancerad nivå',
+      RESEARCH: 'Forskarnivå',
+    },
   },
   shb: {
     pageHeading: 'Studiehandboken 00/01 tom 07/08',

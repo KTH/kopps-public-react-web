@@ -3,7 +3,6 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Col, Row } from 'reactstrap'
 import { Link, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
-import { toJS } from 'mobx'
 
 import { useStore } from '../mobx'
 
@@ -26,17 +25,21 @@ function formatCredits(language, credits) {
 }
 function CourseListTableRow({ course }) {
   const { language } = useStore()
-  const { code, name, credits, creditAbbr, level } = course
+  const t = translate(language)
+  const { code, name, comment, credits, creditAbbr, level } = course
   const languageParam = language === 'en' ? '?l=en' : ''
   const courseLink = `https://www.kth.se/student/kurser/kurs/${code}${languageParam}`
   return (
     <tr>
-      <td className="code">{code}</td>
+      <td className="code">
+        <a href={courseLink}>{code}</a>
+      </td>
       <td className="name">
         <a href={courseLink}>{name}</a>
+        {comment && <b className="course-comment">{comment}</b>}
       </td>
-      <td className="credits">{`${credits} ${creditAbbr}`}</td>
-      <td className="level">{level}</td>
+      <td className="credits">{`${formatCredits(language, credits)} ${creditAbbr}`}</td>
+      <td className="level">{`${t('programme_edulevel')[level]}`}</td>
     </tr>
   )
 }
@@ -44,6 +47,7 @@ function CourseListTableRow({ course }) {
 const courseType = PropTypes.shape({
   code: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  comment: PropTypes.string.isRequired,
   credits: PropTypes.number.isRequired,
   creditAbbr: PropTypes.string.isRequired,
   level: PropTypes.string.isRequired,
@@ -86,17 +90,18 @@ CourseListTable.defaultProps = {
 function ElectiveCondition({ studyYear, electiveCondition, code }) {
   const { language, studyYearCourses, creditUnitAbbr } = useStore()
   const t = translate(language)
+  if (!studyYearCourses[code] || !studyYearCourses[code][studyYear]) return null
   const electiveConditionCourses = studyYearCourses[code][studyYear]
-  if (!studyYearCourses[code][studyYear] || !electiveConditionCourses[electiveCondition]) return null
+  if (!electiveConditionCourses[electiveCondition]) return null
   const credits = electiveConditionCourses[electiveCondition].reduce(
     (accCredits, course) => accCredits + course.credits,
     0
   )
 
-  const heading = `${t('elective_condition')[electiveCondition]} ${t('curriculums_courses')} ${formatCredits(
-    language,
-    credits
-  )} (${creditUnitAbbr})  `
+  const formattedCredits = ` (${formatCredits(language, credits)} ${creditUnitAbbr})`
+  const heading = `${t('elective_condition')[electiveCondition]} ${t('curriculums_courses')}${
+    electiveCondition === 'O' ? formattedCredits : ''
+  }`
   return (
     <Fragment key={electiveCondition}>
       <h4>{heading}</h4>
@@ -114,7 +119,7 @@ ElectiveCondition.propTypes = {
 function SupplementaryInfo({ studyYear, code }) {
   const { language, supplementaryInfo } = useStore()
   const t = translate(language)
-  return supplementaryInfo[code][studyYear] ? (
+  return supplementaryInfo[code] && supplementaryInfo[code][studyYear] ? (
     <>
       <h4>{t('programme_supplementary_information')}</h4>
       <KoppsData html={supplementaryInfo[code][studyYear]} />

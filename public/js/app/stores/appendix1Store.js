@@ -1,4 +1,4 @@
-function setElectiveConditionCourse(courses, electiveCondition, studyYear, code) {
+function addElectiveConditionCourse(courses, electiveCondition, studyYear, code) {
   if (!this.studyYearCourses[code]) {
     this.studyYearCourses[code] = { [studyYear]: {} }
   }
@@ -11,14 +11,14 @@ function setElectiveConditionCourse(courses, electiveCondition, studyYear, code)
   this.studyYearCourses[code][studyYear][electiveCondition].push(courses)
 }
 
-function setSupplementaryInfo(supplementaryInfo, studyYear, code) {
+function addSupplementaryInfo(supplementaryInfo, studyYear, code) {
   if (!this.supplementaryInfo[code]) {
     this.supplementaryInfo[code] = { [code]: null }
   }
   this.supplementaryInfo[code][studyYear] = supplementaryInfo
 }
 
-function setConditionallyElectiveCoursesInfo(conditionallyElectiveCoursesInfo, studyYear, code) {
+function addConditionallyElectiveCoursesInfo(conditionallyElectiveCoursesInfo, studyYear, code) {
   if (!this.conditionallyElectiveCoursesInfo[code]) {
     this.conditionallyElectiveCoursesInfo[code] = { [code]: null }
   }
@@ -53,7 +53,7 @@ const appendix1Store = {
    * @param {number} studyYear
    * @param {string} code
    */
-  setElectiveConditionCourse,
+  addElectiveConditionCourse,
   /**
    * @property {{}} supplementaryInfo
    */
@@ -64,7 +64,7 @@ const appendix1Store = {
    * @param {number} studyYear
    * @param {string} code
    */
-  setSupplementaryInfo,
+  addSupplementaryInfo,
   /**
    * @property {{}} conditionallyElectiveCoursesInfo
    */
@@ -75,7 +75,7 @@ const appendix1Store = {
    * @param {number} studyYear
    * @param {string} code
    */
-  setConditionallyElectiveCoursesInfo,
+  addConditionallyElectiveCoursesInfo,
   /**
    * @property {[]} studyYears
    */

@@ -183,6 +183,12 @@ const messages = {
     programme_year: 'Year',
     programme_supplementary_information: 'Supplementary information',
     programme_conditionally_elective_courses_info: 'Information regarding conditionally elective courses',
+    programme_edulevel: {
+      PREPARATORY: 'Pre-university level',
+      BASIC: 'First cycle',
+      ADVANCED: 'Second cycle',
+      RESEARCH: 'Third cycle',
+    },
   },
   shb: {
     pageHeading: 'Study Handbook 00/01 to 07/08',
