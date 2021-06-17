@@ -47,7 +47,7 @@ function CourseListTableRow({ course }) {
 const courseType = PropTypes.shape({
   code: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  comment: PropTypes.string.isRequired,
+  comment: PropTypes.oneOfType([PropTypes.string, undefined]).isRequired,
   credits: PropTypes.number.isRequired,
   creditAbbr: PropTypes.string.isRequired,
   level: PropTypes.string.isRequired,
