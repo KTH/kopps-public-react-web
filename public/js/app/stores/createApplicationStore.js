@@ -9,6 +9,7 @@ import curriculumStore from './curriculumStore'
 import studyProgrammeStore from './studyProgrammeStore'
 import searchCoursesStore from './searchCoursesStore'
 import appendix1Store from './appendix1Store'
+import appendix2Store from './appendix2Store'
 
 // const kopps = axios.create({ baseURL: 'http://localhost:8010/proxy/api/kopps/v2' })
 
@@ -142,6 +143,12 @@ function createApplicationStore(storeId) {
         ...commonStore,
         ...studyProgrammeStore,
         ...appendix1Store,
+      }
+    case 'appendix2':
+      return {
+        ...commonStore,
+        ...studyProgrammeStore,
+        ...appendix2Store,
       }
     default:
       return {

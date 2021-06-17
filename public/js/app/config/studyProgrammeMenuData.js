@@ -60,6 +60,12 @@ function getStudyProgrammeMenuData(applicationStore) {
       text: t('programme_appendix1'),
       url: pageLink(`${pageRoot}/${programmeCode}/${term}/kurslista`, language),
     },
+    {
+      id: 'appendix2',
+      type: 'leaf',
+      text: t('programme_appendix2'),
+      url: pageLink(`${pageRoot}/${programmeCode}/${term}/inriktningar`, language),
+    },
   ]
   return {
     ariaLabel: t('main_menu_aria_label'),

@@ -168,6 +168,7 @@ const messages = {
     programme_implementation_courses: 'Courses',
     programme_implementation_courses_intro: 'The programme is course-based. Lists of courses are included in',
     programme_appendix1: 'Appendix 1: Course list',
+    programme_appendix2: 'Appendix 2: Specialisations',
     programme_grading_system: 'Grading system',
     programme_grading_system_intro:
       'Courses in the first and the second cycle are graded on a scale from A to F. A-E are passing grades, A is the highest grade. The grades pass (P) and fail (F) are used for courses under certain circumstances.',
@@ -189,6 +190,8 @@ const messages = {
       ADVANCED: 'Second cycle',
       RESEARCH: 'Third cycle',
     },
+    programme_appendix2_empty: 'This programme has no specialisations.',
+    programme_appendix2_empty_description: 'No information entered.',
   },
   shb: {
     pageHeading: 'Study Handbook 00/01 to 07/08',

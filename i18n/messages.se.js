@@ -166,6 +166,7 @@ const messages = {
     programme_implementation_courses: 'Kurser',
     programme_implementation_courses_intro: 'Utbildningen sker i kursform. Kurslistor finns i',
     programme_appendix1: 'Bilaga 1: Kurslista',
+    programme_appendix2: 'Bilaga 2: Inriktningar',
     programme_grading_system: 'Betygssystem',
     programme_grading_system_intro:
       'För kurser på KTH används en sjugradig målrelaterad betygsskala A-F som slutbetyg för kurser på grundnivå och avancerad nivå. A-E är godkända betyg med A som högsta betyg. Betygen godkänd (P) och underkänd (F) används som slutbetyg då särskilda skäl föreligger.',
@@ -187,6 +188,8 @@ const messages = {
       ADVANCED: 'Avancerad nivå',
       RESEARCH: 'Forskarnivå',
     },
+    programme_appendix2_empty: 'Programmet har inga inriktningar.',
+    programme_appendix2_empty_description: 'Ingen information inlagd.',
   },
   shb: {
     pageHeading: 'Studiehandboken 00/01 tom 07/08',

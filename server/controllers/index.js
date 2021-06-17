@@ -22,4 +22,5 @@ module.exports = {
   Eligibility: require('./eligibilityCtrl'),
   Implementation: require('./implementationCtrl'),
   Appendix1: require('./appendix1Ctrl'),
+  Appendix2: require('./appendix2Ctrl'),
 }

@@ -199,6 +199,7 @@ const {
   Eligibility,
   Implementation,
   Appendix1,
+  Appendix2,
 } = require('./controllers')
 const { parseTerm } = require('../domain/term')
 
@@ -361,6 +362,25 @@ appRoute.get(
   'public.appendix1_five_digit',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/kurslista',
   Appendix1.getIndex
+)
+appRoute.get(
+  'redirect.appendix2_Ht_Vt',
+  config.proxyPrefixPath.programme + '/:programmeCode/:term([VvHh][Tt][0-9]{2})/inriktningar',
+  (req, res) => {
+    const { programmeCode, term } = req.params
+    const parsedTerm = parseTerm(term)
+    if (!parsedTerm) {
+      const error = new Error('Malformed term')
+      error.statusCode = 404
+      throw error
+    }
+    res.redirect(301, `${config.proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/inriktningar`)
+  }
+)
+appRoute.get(
+  'public.appendix2_five_digit',
+  config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/inriktningar',
+  Appendix2.getIndex
 )
 appRoute.get(
   'redirect.curriculumRoot_five_digit',

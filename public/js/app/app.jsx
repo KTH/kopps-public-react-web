@@ -38,6 +38,7 @@ import Extent from './pages/Extent'
 import Eligibility from './pages/Eligibility'
 import Implementation from './pages/Implementation'
 import Appendix1 from './pages/Appendix1'
+import Appendix2 from './pages/Appendix2'
 
 export default appFactory
 
@@ -253,6 +254,21 @@ function appFactory(ssrApplicationStore) {
         })}
         createMenuData={applicationStore => ({
           selectedId: 'appendix1',
+          ...getStudyProgrammeMenuData(applicationStore),
+        })}
+      />
+      <RouteWrapper
+        exact
+        path="/student/kurser/program/:programmeCode/:term/inriktningar"
+        createBreadcrumbs={() => ({ include: 'directory' })}
+        component={Appendix2}
+        layout={PageLayout}
+        applicationStore={_initStore({
+          storeId: 'appendix2',
+          applicationStore: ssrApplicationStore,
+        })}
+        createMenuData={applicationStore => ({
+          selectedId: 'appendix2',
           ...getStudyProgrammeMenuData(applicationStore),
         })}
       />
