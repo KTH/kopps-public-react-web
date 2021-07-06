@@ -19,7 +19,8 @@ async function _fovSearch(req, res, next) {
   queryParams.studypace = queryParams.studypace || ''
 
   const fovCoursesResults = await searchFovCourses(convertUserOptionsToKoppsApiParams(queryParams))
-  fovCoursesResults.sort((e1, e2) => e1.code.localeCompare(e2.code))
+  // Note that string sort is used for dates here. This should be ok since leading 0:oes on months or dates are never omitted.
+  fovCoursesResults.sort((e1, e2) => e1.startDate.localeCompare(e2.startDate))
   const mfosOptions = await listActiveMainFieldsOfStudy()
 
   res.render('embedded/fovsearch', {

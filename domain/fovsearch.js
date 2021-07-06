@@ -5,7 +5,6 @@ const _constants = {
   COURSE_TYPES: [
     { code: 'ALL', titleSv: 'Alla' },
     { code: 'DISTANCE', titleSv: 'Distanskurser' },
-    { code: 'ITDISTANCE', titleSv: 'IT-distans' },
     { code: 'ENGLISH', titleSv: 'Kurser på engelska' },
     { code: 'EVENING', titleSv: 'Kvällskurser' },
     { code: 'TEACHER', titleSv: 'Lärarfortbildning' },
@@ -16,7 +15,7 @@ const _constants = {
     These are the different study pace KTH have as of writing. We should
     probably fetch these from Kopps, new api is needed for that however.
    */
-  STUDY_PACES: ['10', '17', '25', '33', '55', '67', '100'].map(code => ({ code: code, titleSv: `${code}%` })),
+  STUDY_PACES: ['10', '17', '25', '33', '50', '67', '100'].map(code => ({ code: code, titleSv: `${code}%` })),
 }
 
 const _defaultSearchParams = () => {
