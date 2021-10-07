@@ -1,22 +1,13 @@
 import i18n from '../../../../i18n'
 
-const { formatShortTerm } = require('../../../../domain/term')
-const translate = require('../../../../domain/translate')
 const { pageLink, parentLink } = require('../util/links')
 
-function _programmeToBr(programme, term, lang) {
-  return {
-    url: `${pageLink(browserConfig.proxyPrefixPath.programmeLiteratureList)}/${term}/${programme.code}`,
-    label: lang === 'sv' ? programme.sv : programme.en,
-  }
-}
-
-function getProgrammeLiteratureList(applicationStore) {
+function getLiteratureList(applicationStore) {
   const { language, languageIndex, browserConfig, schools, selectedTerm } = applicationStore
   const { main_menu_aria_label, main_menu_student } = i18n.messages[languageIndex].messages
-  const { navHeading, departmentsOtherUni } = i18n.messages[languageIndex].programmeLiteratureList
+  const { navHeading, departmentsOtherUni } = i18n.messages[languageIndex].literatureList
 
-  const pageRoot = browserConfig.proxyPrefixPath.programmeLiteratureList
+  const pageRoot = browserConfig.proxyPrefixPath.literatureList
 
   const schoolEntries = schools.map((school) => ({
     id: school.code,
@@ -47,4 +38,4 @@ function getProgrammeLiteratureList(applicationStore) {
   }
 }
 
-export default getProgrammeLiteratureList
+export default getLiteratureList

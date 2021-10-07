@@ -201,7 +201,7 @@ const {
   Implementation,
   Appendix1,
   Appendix2,
-  ProgrammeLiteratureList,
+  LiteratureList,
 } = require('./controllers')
 const { parseTerm } = require('../domain/term')
 
@@ -428,8 +428,8 @@ appRoute.get(
   Curriculum.getIndex,
 )
 appRoute.get('public.programme_literature_list',
-             config.proxyPrefixPath.programmeLiteratureList + '/:term([0-9]{4}[1-2])/:school([A-Z]+)',
-             ProgrammeLiteratureList.getProgrammeLiteratureList)
+             config.proxyPrefixPath.literatureList + '/:term([0-9]{4}[1-2])/:school([A-Z]+)',
+             LiteratureList.getLiteratureList)
 server.use('/', appRoute.getRouter())
 
 // Not found etc

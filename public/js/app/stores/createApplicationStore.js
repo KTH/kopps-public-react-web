@@ -151,7 +151,7 @@ function createApplicationStore(storeId) {
         ...studyProgrammeStore,
         ...appendix2Store,
       }
-    case 'programmeLiteratureList':
+    case 'literatureList':
       return {
         ...commonStore,
         ...literatureStore

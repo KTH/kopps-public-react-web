@@ -266,7 +266,7 @@ const messages = {
     errorOverflow: 'Sökningen gav för många träffar.',
     noQueryProvided: 'Ingen frågebegränsning angavs',
   },
-  programmeLiteratureList: {
+  literatureList: {
     title: (term, schoolCode) => `Litteraturlista ${term} ${schoolCode}`,
     heading: 'Litteraturlista',
     subHeading: (schoolName, term) => `${schoolName}, ${term}`,

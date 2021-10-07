@@ -26,7 +26,7 @@ import getThirdCycleDepartmentMenuData from './config/thirdCycleDepartmentMenuDa
 import getProgrammeMenuData from './config/programmeMenuData'
 import getCurriculumMenuData from './config/curriculumMenuData'
 import getStudyProgrammeMenuData from './config/studyProgrammeMenuData'
-import getProgrammeLiteratureList from './config/programmeLiteratureListMenuData'
+import getLiteratureList from './config/literatureListMenuData'
 import StudyHandbook from './pages/StudyHandbook'
 import ProgrammesList from './pages/ProgrammesList'
 import DepartmentsList from './pages/DepartmentsList'
@@ -40,8 +40,8 @@ import Eligibility from './pages/Eligibility'
 import Implementation from './pages/Implementation'
 import Appendix1 from './pages/Appendix1'
 import Appendix2 from './pages/Appendix2'
-import ProgrammeLiteratureList from './pages/ProgrammeLiteratureList'
-import getProgrammeLiteratureListBreadcrumbs from './config/programmeLiteratureListBreadcrumbs'
+import LiteratureList from './pages/LiteratureList'
+import getLiteratureListBreadcrumbs from './config/literatureListBreadcrumbs'
 
 export default appFactory
 
@@ -295,17 +295,17 @@ function appFactory(ssrApplicationStore) {
         path="/student/kurser/lit/:term/:school"
         createBreadcrumbs={(applicationStore) => ({
           include: 'student',
-          items: getProgrammeLiteratureListBreadcrumbs(applicationStore)
+          items: getLiteratureListBreadcrumbs(applicationStore)
         })}
-        component={ProgrammeLiteratureList}
+        component={LiteratureList}
         layout={PageLayout}
         applicationStore={_initStore({
-                                       storeId: 'programmeLiteratureList',
+                                       storeId: 'literatureList',
                                        applicationStore: ssrApplicationStore,
                                      })}
         createMenuData={applicationStore => ({
           selectedId: applicationStore.selectedSchoolCode,
-          ...getProgrammeLiteratureList(applicationStore),
+          ...getLiteratureList(applicationStore),
         })}
       />
     </Switch>

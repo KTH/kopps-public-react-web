@@ -35,17 +35,17 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, term,
   applicationStore.setLiterature(literature)
 }
 
-async function getProgrammeLiteratureList(req, res, next) {
+async function getLiteratureList(req, res, next) {
   try {
     const lang = language.getLanguage(res)
 
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
 
-    const applicationStore = createStore('programmeLiteratureList')
+    const applicationStore = createStore('literatureList')
     await _fillApplicationStoreOnServerSide({ applicationStore, lang, ...req.params })
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
-    const proxyPrefix = serverConfig.proxyPrefixPath.programmeLiteratureList
+    const proxyPrefix = serverConfig.proxyPrefixPath.literatureList
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('site_name', lang)
 
@@ -66,5 +66,5 @@ async function getProgrammeLiteratureList(req, res, next) {
 
 
 module.exports = {
-  getProgrammeLiteratureList,
+  getLiteratureList,
 }

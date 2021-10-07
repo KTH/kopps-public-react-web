@@ -274,7 +274,7 @@ const messages = {
     errorOverflow: 'There were too many results.',
     noQueryProvided: 'No query restriction was specified',
   },
-  programmeLiteratureList: {
+  literatureList: {
     title: (term, schoolCode) => `Reading list ${term} ${schoolCode}`,
     heading: 'Reading list',
     subHeading: (schoolName, term) => `${schoolName}, ${term}`,

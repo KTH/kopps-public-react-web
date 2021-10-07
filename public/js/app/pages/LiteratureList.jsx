@@ -14,13 +14,13 @@ import KoppsData from '../components/KoppsData'
 
 const { formatLongTerm } = require('../../../../domain/term')
 
-function ProgrammeLiteratureList() {
+function LiteratureList() {
   const { languageIndex, language, schools, literature, selectedSchoolCode, selectedTerm} = useStore()
   console.log(`selectedSchoolCode:${selectedSchoolCode} selectedTerm:${selectedTerm}`)
 
   const selectedSchool =  schools.find(school => school.code === selectedSchoolCode)
 
-  const { title, heading, subHeading, navHeading, intro, missing } = i18n.messages[languageIndex].programmeLiteratureList
+  const { title, heading, subHeading, navHeading, intro, missing } = i18n.messages[languageIndex].literatureList
 
   // TODO: dont use inline style.
   const LitList =
@@ -80,4 +80,4 @@ function ProgrammeLiteratureList() {
   )
 }
 
-export default ProgrammeLiteratureList
+export default LiteratureList
