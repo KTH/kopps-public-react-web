@@ -6,6 +6,7 @@ const connections = require('kth-node-api-call').Connections
 const config = require('../configuration').server
 
 // http client setup
+// TODO: timeout setting here seems to be ignored, and defaults to 5 seconds.
 const koppsOpts = {
   log,
   https: true,
@@ -35,6 +36,8 @@ function reduceToQueryParamString(params) {
     (currentQueryParam, [key, value]) => {
       if (Array.isArray(value)) {
         return currentQueryParam + value.map(e => `${key}=${encodeURIComponent(e)}&`).join('')
+      } else if (value === undefined || value === null) {
+        return currentQueryParam
       } else {
         return currentQueryParam + `${key}=${encodeURIComponent(value)}&`
       }
@@ -89,6 +92,19 @@ const listProgrammes = async lang => {
 const DEPARTMENT_CRITERIA = {
   HAS_COURSES: 'has_courses',
   HAS_THIRD_CYCLE_COURSES: 'has_third_cycle_courses',
+}
+
+
+const listSchools = async ({lang = 'sv' }) => {
+  const { client } = koppsApi.koppsApi
+  const uri = `${slashEndedKoppsBase}schools${reduceToQueryParamString({l: lang})}`
+  try {
+    const response = await client.getAsync({ uri, useCache: false })
+    return response.body
+  } catch (error) {
+    log.error('Exception calling KOPPS API in koppsApi.listSchools', { error })
+    throw error
+  }
 }
 
 const listSchoolsWithDepartments = async ({ departmentCriteria, listForActiveCourses = false, lang = 'sv' }) => {
@@ -192,11 +208,24 @@ const listCourseRoundsInYearPlan = async ({
   }
 }
 
+const literatureForCourse = async ({term, school, lang}) => {
+  const { client } = koppsApi.koppsApi
+  const uri = `${slashEndedKoppsBase}schools/${school}/courses/${term}/literature${reduceToQueryParamString({l: lang})}`
+  try {
+    const response = await client.getAsync({ uri, useCache: false , timeout: 20000})
+    return response.body
+  } catch (error) {
+    log.error('Exception calling KOPPS API in koppsApi.literatureForCourse', { error })
+    throw error
+  }
+}
+
 module.exports = {
   searchFovCourses,
   listActiveMainFieldsOfStudy,
   listProgrammes,
   DEPARTMENT_CRITERIA,
+  listSchools,
   listSchoolsWithDepartments,
   getCourses,
   getProgramme,
@@ -204,4 +233,5 @@ module.exports = {
   getStudyProgrammeVersion,
   listCurriculums,
   listCourseRoundsInYearPlan,
+  literatureForCourse,
 }

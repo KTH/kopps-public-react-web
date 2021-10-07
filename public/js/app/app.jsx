@@ -26,6 +26,7 @@ import getThirdCycleDepartmentMenuData from './config/thirdCycleDepartmentMenuDa
 import getProgrammeMenuData from './config/programmeMenuData'
 import getCurriculumMenuData from './config/curriculumMenuData'
 import getStudyProgrammeMenuData from './config/studyProgrammeMenuData'
+import getProgrammeLiteratureList from './config/programmeLiteratureListMenuData'
 import StudyHandbook from './pages/StudyHandbook'
 import ProgrammesList from './pages/ProgrammesList'
 import DepartmentsList from './pages/DepartmentsList'
@@ -39,6 +40,8 @@ import Eligibility from './pages/Eligibility'
 import Implementation from './pages/Implementation'
 import Appendix1 from './pages/Appendix1'
 import Appendix2 from './pages/Appendix2'
+import ProgrammeLiteratureList from './pages/ProgrammeLiteratureList'
+import getProgrammeLiteratureListBreadcrumbs from './config/programmeLiteratureListBreadcrumbs'
 
 export default appFactory
 
@@ -285,6 +288,24 @@ function appFactory(ssrApplicationStore) {
         createMenuData={applicationStore => ({
           selectedId: `year-${applicationStore.studyYear}`,
           ...getCurriculumMenuData(applicationStore),
+        })}
+      />
+      <RouteWrapper
+        exact
+        path="/student/kurser/lit/:term/:school"
+        createBreadcrumbs={(applicationStore) => ({
+          include: 'student',
+          items: getProgrammeLiteratureListBreadcrumbs(applicationStore)
+        })}
+        component={ProgrammeLiteratureList}
+        layout={PageLayout}
+        applicationStore={_initStore({
+                                       storeId: 'programmeLiteratureList',
+                                       applicationStore: ssrApplicationStore,
+                                     })}
+        createMenuData={applicationStore => ({
+          selectedId: applicationStore.selectedSchoolCode,
+          ...getProgrammeLiteratureList(applicationStore),
         })}
       />
     </Switch>

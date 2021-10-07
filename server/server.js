@@ -58,10 +58,10 @@ server.set('partials', path.join(__dirname, '/views/partials'))
 server.engine(
   'handlebars',
   exphbs({
-    defaultLayout: 'publicLayout',
-    layoutsDir: server.settings.layouts,
-    partialsDir: server.settings.partials,
-  })
+           defaultLayout: 'publicLayout',
+           layoutsDir: server.settings.layouts,
+           partialsDir: server.settings.partials,
+         }),
 )
 server.set('view engine', 'handlebars')
 // Register handlebar helpers
@@ -92,10 +92,11 @@ function setCustomCacheControl(res, path2) {
 }
 
 // Files/statics routes--
-// Map components HTML files as static content, but set custom cache control header, currently no-cache to force If-modified-since/Etag check.
+// Map components HTML files as static content, but set custom cache control header, currently no-cache to force
+// If-modified-since/Etag check.
 server.use(
   config.proxyPrefixPath.uri + '/static/js/components',
-  express.static('./dist/js/components', { setHeaders: setCustomCacheControl })
+  express.static('./dist/js/components', { setHeaders: setCustomCacheControl }),
 )
 
 // Expose browser configurations
@@ -157,12 +158,12 @@ for (const pageRoot in config.proxyPrefixPath) {
 server.use(
   '/',
   require('kth-node-web-common/lib/web/cortina')({
-    blockUrl: config.blockApi.blockUrl,
-    proxyPrefixPath: config.proxyPrefixPath.uri,
-    hostUrl: config.hostUrl,
-    redisConfig: config.cache.cortinaBlock.redis,
-    globalLink: config.blockApi.globalLink,
-  })
+                                                   blockUrl: config.blockApi.blockUrl,
+                                                   proxyPrefixPath: config.proxyPrefixPath.uri,
+                                                   hostUrl: config.hostUrl,
+                                                   redisConfig: config.cache.cortinaBlock.redis,
+                                                   globalLink: config.blockApi.globalLink,
+                                                 }),
 )
 
 /* ********************************
@@ -174,8 +175,8 @@ const excludeExpression = new RegExp(excludePath)
 server.use(
   excludeExpression,
   require('kth-node-web-common/lib/web/crawlerRedirect')({
-    hostUrl: config.hostUrl,
-  })
+                                                           hostUrl: config.hostUrl,
+                                                         }),
 )
 
 /* **********************************
@@ -200,6 +201,7 @@ const {
   Implementation,
   Appendix1,
   Appendix2,
+  ProgrammeLiteratureList,
 } = require('./controllers')
 const { parseTerm } = require('../domain/term')
 
@@ -219,7 +221,7 @@ const embeddedPageRoute = AppRouter()
 embeddedPageRoute.get(
   'EmbeddedPage.emptyFovSearch',
   appEndpointsPrefix + '/embedded/fovsearch',
-  EmbeddedPage.emptyFovSearch
+  EmbeddedPage.emptyFovSearch,
 )
 embeddedPageRoute.post('EmbeddedPage.fovSearch', appEndpointsPrefix + '/embedded/fovsearch', EmbeddedPage.fovSearch)
 server.use('/', embeddedPageRoute.getRouter())
@@ -233,17 +235,17 @@ appRoute.get('dev.fovkurser', config.proxyPrefixPath.uri + '/utbildning/kurser/f
 appRoute.get(
   'public.departmentsListThirdCycleStudy',
   config.proxyPrefixPath.thirdCycleSchoolsAndDepartments,
-  ThirdCycleStudy.getAllSchoolsAndDepartments
+  ThirdCycleStudy.getAllSchoolsAndDepartments,
 )
 appRoute.get(
   'public.departmentThirdCycleStudy',
   config.proxyPrefixPath.thirdCycleCoursesPerDepartment + '/:departmentCode',
-  ThirdCycleStudy.getCoursesPerDepartment
+  ThirdCycleStudy.getCoursesPerDepartment,
 )
 appRoute.get(
   'public.searchThirdCycleCourses',
   config.proxyPrefixPath.thirdCycleCourseSearch,
-  Search.searchThirdCycleCourses
+  Search.searchThirdCycleCourses,
 )
 appRoute.get('public.searchAllCourses', config.proxyPrefixPath.courseSearch, Search.searchAllCourses)
 appRoute.get('api.searchCourses', config.proxyPrefixPath.uri + '/intern-api/sok/:lang', Search.performCourseSearch)
@@ -280,12 +282,12 @@ appRoute.get(
       throw error
     }
     res.redirect(301, `${config.proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/mal`)
-  }
+  },
 )
 appRoute.get(
   'public.objectives_five_digit',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/mal',
-  Objectives.getIndex
+  Objectives.getIndex,
 )
 appRoute.get(
   'redirect.extent_Ht_Vt',
@@ -299,12 +301,12 @@ appRoute.get(
       throw error
     }
     res.redirect(301, `${config.proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/omfattning`)
-  }
+  },
 )
 appRoute.get(
   'public.extent_five_digit',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/omfattning',
-  Extent.getIndex
+  Extent.getIndex,
 )
 appRoute.get(
   'redirect.eligibility_Ht_Vt',
@@ -318,12 +320,12 @@ appRoute.get(
       throw error
     }
     res.redirect(301, `${config.proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/behorighet`)
-  }
+  },
 )
 appRoute.get(
   'public.eligibility_five_digit',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/behorighet',
-  Eligibility.getIndex
+  Eligibility.getIndex,
 )
 appRoute.get(
   'redirect.implementation_Ht_Vt',
@@ -337,12 +339,12 @@ appRoute.get(
       throw error
     }
     res.redirect(301, `${config.proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/genomforande`)
-  }
+  },
 )
 appRoute.get(
   'public.implementation_five_digit',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/genomforande',
-  Implementation.getIndex
+  Implementation.getIndex,
 )
 appRoute.get(
   'redirect.appendix1_Ht_Vt',
@@ -356,12 +358,12 @@ appRoute.get(
       throw error
     }
     res.redirect(301, `${config.proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/kurslista`)
-  }
+  },
 )
 appRoute.get(
   'public.appendix1_five_digit',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/kurslista',
-  Appendix1.getIndex
+  Appendix1.getIndex,
 )
 appRoute.get(
   'redirect.appendix2_Ht_Vt',
@@ -375,12 +377,12 @@ appRoute.get(
       throw error
     }
     res.redirect(301, `${config.proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/inriktningar`)
-  }
+  },
 )
 appRoute.get(
   'public.appendix2_five_digit',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/inriktningar',
-  Appendix2.getIndex
+  Appendix2.getIndex,
 )
 appRoute.get(
   'redirect.curriculumRoot_five_digit',
@@ -389,7 +391,7 @@ appRoute.get(
     const { programmeCode, term } = req.params
     const studyYear = 'arskurs1'
     res.redirect(301, `${config.proxyPrefixPath.programme}/${programmeCode}/${term}/${studyYear}`)
-  }
+  },
 )
 appRoute.get(
   'redirect.curriculumRoot_Ht_Vt',
@@ -404,7 +406,7 @@ appRoute.get(
     }
     const studyYear = 'arskurs1'
     res.redirect(301, `${config.proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/${studyYear}`)
-  }
+  },
 )
 appRoute.get(
   'redirect.curriculum_Ht_Vt',
@@ -418,13 +420,16 @@ appRoute.get(
       throw error
     }
     res.redirect(301, `${config.proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/arskurs${studyYear}`)
-  }
+  },
 )
 appRoute.get(
   'public.curriculumRoot_five_digit',
   config.proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/arskurs:studyYear([1-5])',
-  Curriculum.getIndex
+  Curriculum.getIndex,
 )
+appRoute.get('public.programme_literature_list',
+             config.proxyPrefixPath.programmeLiteratureList + '/:term([0-9]{4}[1-2])/:school([A-Z]+)',
+             ProgrammeLiteratureList.getProgrammeLiteratureList)
 server.use('/', appRoute.getRouter())
 
 // Not found etc

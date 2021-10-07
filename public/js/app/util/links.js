@@ -71,6 +71,10 @@ function koppsEmail() {
   return 'mailto:kopps@kth.se'
 }
 
+function literatureListForProgramLink(schoolCode, term, lang) {
+  return pageLink(`/student/kurser/lit/${term}/${schoolCode}`, lang)
+}
+
 module.exports = {
   parentLink,
   pageLink,
@@ -86,4 +90,5 @@ module.exports = {
   programmeWebLink,
   thirdCycleDepartmentLink,
   appendix1Link,
+  literatureListForProgramLink,
 }

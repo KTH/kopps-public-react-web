@@ -274,6 +274,16 @@ const messages = {
     errorOverflow: 'There were too many results.',
     noQueryProvided: 'No query restriction was specified',
   },
+  programmeLiteratureList: {
+    title: (term, schoolCode) => `Reading list ${term} ${schoolCode}`,
+    heading: 'Reading list',
+    subHeading: (schoolName, term) => `${schoolName}, ${term}`,
+    navHeading: 'Reading lists',
+    breadcrumb: 'Reading lists',
+    intro: (schoolName, term) =>`Literature from established syllabus for courses given by  ${schoolName} active in ${term}.`,
+    missing: '(information not available)',
+    departmentsOtherUni: 'Cooperation with other universities',
+  },
   searchAlarms: {
     errorUnknown: { text: 'An unknown error occurred - failed to retrieve course data' },
     errorEmpty: {

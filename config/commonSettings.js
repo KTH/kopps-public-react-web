@@ -24,5 +24,6 @@ module.exports = {
     thirdCycleSchoolsAndDepartments: '/utbildning/forskarutbildning/kurser/avdelning',
     thirdCycleCoursesPerDepartment: '/utbildning/forskarutbildning/kurser/org',
     thirdCycleRoot: '/utbildning/forskarutbildning/kurser', // Don't contain any content, is just immedately redirected.
+    programmeLiteratureList: '/student/kurser/lit',
   },
 }
