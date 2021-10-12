@@ -212,7 +212,7 @@ const literatureForCourse = async ({term, school, lang}) => {
   const { client } = koppsApi.koppsApi
   const uri = `${slashEndedKoppsBase}schools/${school}/courses/${term}/literature${reduceToQueryParamString({l: lang})}`
   try {
-    const response = await client.getAsync({ uri, useCache: false , timeout: 20000})
+    const response = await client.getAsync({ uri, useCache: true , timeout: 20000})
     return response.body
   } catch (error) {
     log.error('Exception calling KOPPS API in koppsApi.literatureForCourse', { error })
