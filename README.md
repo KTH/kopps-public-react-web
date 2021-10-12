@@ -4,6 +4,98 @@
 ![Prerequisite](https://img.shields.io/badge/node-12.0.0-blue.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#)
 
+## Start development
+
+### Install
+
+First time you might need to use options `--ignore-scripts` because of npm resolutions:
+```sh
+npm install --ignore-scripts
+```
+or 
+
+```sh
+npm install
+
+```
+You might need to install as well:
+
+```sh
+npm install cross-env
+npm install concurrently
+```
+
+### Usage
+
+
+```sh
+npm run start-dev
+```
+
+### Debug in Visual Studio Code
+It's possible to use debugging options available in Visual Studio Code
+Add a file `launch.json` to `.vscode` directory :
+- *Microsoft*
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",           
+            "request": "launch",
+            "name": "Debug kopps-public-react-web",
+            "program": "${workspaceFolder}\\app.js",
+            "envFile": "${workspaceFolder}\\.env",
+            "env": {
+              "NODE_ENV": "development"
+            }
+        }
+    ]
+}
+```
+- _Mac, Unix and so on_
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",           
+            "request": "launch",
+            "name": "Debug kopps-public-react-web",
+            "program": "${workspaceFolder}/app.js",
+            "envFile": "${workspaceFolder}/.env",
+            "env": {
+              "NODE_ENV": "development"
+            }
+        }
+    ]
+}
+```
+
+## In production
+
+Secrets and docker-compose are located in cellus-registry.
+
+Used:
+
+```sh
+npm run start
+```
+
+## Run tests
+
+```sh
+npm run test
+```
+
+## Use 🐳
+
+Copy `docker-compose.yml.in` to `docker-compose.yml` and make necessary changes, if any.
+
+```sh
+docker-compose up
+```
+
 ## Testing Against Local Kopps
 
 Set the following in your .env: `KOPPS_API_BASEURL=http://localhost:80/api/kopps/v2/`
@@ -37,3 +129,4 @@ const express = require("express");
  );
  app.listen(80);
 ```
+
