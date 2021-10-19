@@ -32,9 +32,7 @@ module.exports = {
   redirectProxyPath: {
     studentRoot,
     thirdCycleRoot,
-    // TODO: add to public PATHS: '/student/kurser/kurser-per-avdelning/'
     coursesPerDepartment: `${studentRoot}/kurser-per-avdelning`,
-    // TODO: add to public PATHS: '/student/kurser/avdelning/:departmentCode/kurser/'
     departmentCourses: `${studentRoot}/avdelning/:departmentCode/kurser/`,
   },
 }
