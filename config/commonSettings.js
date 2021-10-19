@@ -7,23 +7,34 @@
  * **************************************************
  *
  */
-const { getEnv, devDefaults } = require('kth-node-configuration')
+
+const studentRoot = '/student/kurser'
+const thirdCycleRoot = '/utbildning/forskarutbildning/kurser'
 
 module.exports = {
   // The proxy prefix path if the application is proxied. E.g /places
   proxyPrefixPath: {
-    uri: '/student/kurser',
-    department: '/student/kurser/org',
-    programme: '/student/kurser/program',
-    programmesList: '/student/kurser/kurser-inom-program',
-    schoolsList: '/student/kurser/program',
-    courseSearch: '/student/kurser/sokkurs',
+    uri: studentRoot,
+    courseSearch: `${studentRoot}/sokkurs`,
+    courseSearchInternApi: `${studentRoot}/intern-api/sok`,
+    department: `${studentRoot}/org`,
+    programme: `${studentRoot}/program`,
+    programmesList: `${studentRoot}/kurser-inom-program`,
+    schoolsList: `${studentRoot}/program`,
     studyHandbook: '/student/program/shb',
-    studentRoot: '/student/kurser',
-    thirdCycleCourseSearch: '/utbildning/forskarutbildning/kurser/sok',
-    thirdCycleSchoolsAndDepartments: '/utbildning/forskarutbildning/kurser/avdelning',
-    thirdCycleCoursesPerDepartment: '/utbildning/forskarutbildning/kurser/org',
-    thirdCycleRoot: '/utbildning/forskarutbildning/kurser', // Don't contain any content, is just immedately redirected.
-    literatureList: '/student/kurser/lit',
+    thirdCycleCourseSearch: `${thirdCycleRoot}/sok`,
+    thirdCycleSchoolsAndDepartments: `${thirdCycleRoot}/avdelning`,
+    thirdCycleCoursesPerDepartment: `${thirdCycleRoot}/org`,
+    literatureList: `${studentRoot}/lit`,
+  },
+  // Don't contain any content
+  // is just immedately redirected.
+  redirectProxyPath: {
+    studentRoot,
+    thirdCycleRoot,
+    // TODO: add to public PATHS: '/student/kurser/kurser-per-avdelning/'
+    coursesPerDepartment: `${studentRoot}/kurser-per-avdelning`,
+    // TODO: add to public PATHS: '/student/kurser/avdelning/:departmentCode/kurser/'
+    departmentCourses: `${studentRoot}/avdelning/:departmentCode/kurser/`,
   },
 }
