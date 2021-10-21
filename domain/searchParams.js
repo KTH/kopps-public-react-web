@@ -1,85 +1,9 @@
 const querystring = require('querystring')
 const i18n = require('../i18n')
-const { formatLongTerm, getRelevantTerms, termConstants, _isSpringTerm } = require('./term')
-
-const PREPARATORY_EDU_LEVEL = 'PREPARATORY'
-const BASIC_EDU_LEVEL = 'BASIC'
-const ADVANCED_EDU_LEVEL = 'ADVANCED'
-const RESEARCH_EDU_LEVEL = 'RESEARCH'
-const IN_ENGLISH_ONLY = 'onlyEnglish'
-const ONLY_MHU = 'onlyMHU'
-const SHOW_CANCELLED = 'showCancelled'
-const CLIENT_SHOW_OPTIONS = [SHOW_CANCELLED, ONLY_MHU, IN_ENGLISH_ONLY]
-
-function educationalLevel(levelNumberAsStr) {
-  switch (levelNumberAsStr) {
-    /**
-     * Education preparing for university studies.
-     */
-    case '0':
-      return PREPARATORY_EDU_LEVEL
-    /**
-     * Studies at university.
-     */
-    case '1':
-      return BASIC_EDU_LEVEL
-    /**
-     * Doctoral studies.
-     */
-    case '2':
-      return ADVANCED_EDU_LEVEL
-    /**
-     * Post-doc studies.
-     */
-    case '3':
-      return RESEARCH_EDU_LEVEL
-    default: {
-      if (typeof levelNumberAsStr !== 'string')
-        throw new Error(`Check the type of level: ${levelNumberAsStr} has the type ${typeof levelNumberAsStr}`)
-
-      throw new Error(`Unknown education level number: ${levelNumberAsStr}. Allowed types: '0'-'3'`)
-    }
-  }
-}
-
-function getShowOptions(option) {
-  // showOptions.map(opt => opt ? {})
-  switch (option) {
-    /**
-     * Courses only in English
-     */
-    case IN_ENGLISH_ONLY:
-      return 'in_english_only'
-    /**
-     * Behandlar miljö, miljöteknik eller hållbar utveckling
-     */
-    case ONLY_MHU:
-      return 'only_mhu'
-    /**
-     * Nedlagd kurs
-     */
-    case SHOW_CANCELLED:
-      return 'include_non_active'
-    default: {
-      if (typeof option !== 'string')
-        throw new Error(`Check the type of option: ${option} has the type ${typeof option}`)
-      throw new Error(
-        `Unknown show options: ${option}. Allowed options: ${IN_ENGLISH_ONLY}, ${ONLY_MHU}, ${SHOW_CANCELLED}`
-      )
-    }
-  }
-}
-
-function _summerTermsAndPeriods(year) {
-  const summerSpring = `${year}${termConstants.SPRING_TERM_NUMBER}:${SUMMER_PERIOD_SPRING}`
-  const summerAutumn = `${year}${termConstants.AUTUMN_TERM_NUMBER}:${SUMMER_PERIOD_AUTUMN}`
-  return [summerSpring, summerAutumn]
-}
-
-function _getSummerPeriodsList(termString = '1900:summer') {
-  const year = termString.substring(0, 4)
-  return _summerTermsAndPeriods(year)
-}
+const { formatLongTerm, getRelevantTerms, _isSpringTerm } = require('./term')
+const { getSummerPeriodsList, groupedPeriodsBySeasonInCorrectOrder } = require('./periods')
+const { CLIENT_EDU_LEVELS, educationalLevel } = require('./eduLevels')
+const { CLIENT_SHOW_OPTIONS, getShowOptions } = require('./courseOptions')
 
 function _transformIfSummerOrEmptyPeriods(initialPeriods) {
   const transformedPeriods = []
@@ -88,7 +12,7 @@ function _transformIfSummerOrEmptyPeriods(initialPeriods) {
     if (!p) return
 
     if (p.includes(':summer')) {
-      const summerPeriodsList = _getSummerPeriodsList(p)
+      const summerPeriodsList = getSummerPeriodsList(p)
       summerPeriodsList.forEach(summerPeriod => transformedPeriods.push(summerPeriod))
     } else transformedPeriods.push(p)
   })
@@ -117,7 +41,6 @@ function stringifyKoppsSearchParams(params) {
   const paramsStr = stringifyUrlParams(koppsFormatParams)
   return paramsStr
 }
-const CLIENT_EDU_LEVELS = ['0', '1', '2', '3']
 
 const eduLevelConfig = langIndex => {
   const { bigSearch } = i18n.messages[langIndex]
@@ -132,52 +55,11 @@ const eduLevelConfig = langIndex => {
 const showOptionsConfig = langIndex => {
   const { bigSearch } = i18n.messages[langIndex]
 
-  return [IN_ENGLISH_ONLY, ONLY_MHU, SHOW_CANCELLED].map(option => {
+  return CLIENT_SHOW_OPTIONS.map(option => {
     const label = bigSearch[option]
 
     return { label, id: option, value: option }
   })
-}
-
-/**
- * All periods in order in an array.
- */
-// const ALL_PERIODS = { 'P0', 'P1', 'P2', 'P3', 'P4', 'P5' }
-/**
- * Minimum possible period number.
- */
-const MIN_PERIOD_NUMBER = 0
-/**
- * Maximum possible period number.
- */
-const MAX_PERIOD_NUMBER = 5
-
-const AUTUMN_FIRST_PERIOD = 1
-/**
- * Period number of 2nd autumn period.
- */
-const AUTUMN_SECOND_PERIOD = 2
-/**
- * Period number of first spring period.
- */
-const SPRING_FIRST_PERIOD = 3
-/**
- * Period number of 2nd autumn period.
- */
-const SPRING_SECOND_PERIOD = 4
-/**
- * Period number of spring summer period.
- */
-const SUMMER_PERIOD_SPRING = 5
-/**
- * Period number of autumn summer period.
- */
-const SUMMER_PERIOD_AUTUMN = 0
-
-const groupedPeriodsInCorrectOrder = {
-  spring: [SPRING_FIRST_PERIOD, SPRING_SECOND_PERIOD],
-  summerGroup: [SUMMER_PERIOD_SPRING, SUMMER_PERIOD_AUTUMN],
-  autumn: [AUTUMN_FIRST_PERIOD, AUTUMN_SECOND_PERIOD],
 }
 
 function _separateYearAndPeriod(relevantTerms) {
@@ -216,7 +98,7 @@ function _periodConfigForOneYear({ year, terms }, langIndex) {
   const hasOnlyOneTerm = !!terms.length === 1
 
   const { summer: summerLabel } = i18n.messages[langIndex].bigSearch
-  const { spring: springPeriods, summerGroup, autumn: autumnPeriods } = groupedPeriodsInCorrectOrder
+  const { spring: springPeriods, summerGroup, autumn: autumnPeriods } = groupedPeriodsBySeasonInCorrectOrder
 
   let periodsForThisTerm = []
 
@@ -284,10 +166,7 @@ function getParamConfig(paramName, langIndex) {
 }
 
 module.exports = {
-  educationalLevel,
   getParamConfig,
   stringifyKoppsSearchParams,
   stringifyUrlParams,
-  CLIENT_EDU_LEVELS,
-  CLIENT_SHOW_OPTIONS,
 }

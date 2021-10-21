@@ -8,7 +8,10 @@ import { useStore } from '../mobx'
 import SearchTableView, { searchHitsPropsShape } from './SearchTableView'
 
 import i18n from '../../../../i18n'
-import { stringifyUrlParams, CLIENT_EDU_LEVELS, CLIENT_SHOW_OPTIONS } from '../../../../domain/searchParams'
+import { stringifyUrlParams } from '../../../../domain/searchParams'
+import { CLIENT_EDU_LEVELS } from '../../../../domain/eduLevels'
+import { CLIENT_SHOW_OPTIONS } from '../../../../domain/courseOptions'
+
 import { SearchAlert } from './index'
 import { STATUS, ERROR_ASYNC, useAsync } from '../hooks/searchUseAsync'
 

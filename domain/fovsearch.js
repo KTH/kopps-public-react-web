@@ -15,16 +15,14 @@ const _constants = {
     These are the different study pace KTH have as of writing. We should
     probably fetch these from Kopps, new api is needed for that however.
    */
-  STUDY_PACES: ['10', '17', '25', '33', '50', '67', '75', '100'].map(code => ({ code: code, titleSv: `${code}%` })),
+  STUDY_PACES: ['10', '17', '25', '33', '50', '67', '75', '100'].map(code => ({ code, titleSv: `${code}%` })),
 }
 
-const _defaultSearchParams = () => {
-  return {
-    category: 'VU',
-    excludedTypes: 'SAP',
-    l: 'sv-SE',
-  }
-}
+const _defaultSearchParams = () => ({
+  category: 'VU',
+  excludedTypes: 'SAP',
+  l: 'sv-SE',
+})
 
 const _convertUserOptionsToKoppsApiParams = ({ l, type, start, mainsubject, studypace }) => {
   const koppsApiParams = _defaultSearchParams()
@@ -82,10 +80,10 @@ const _convertUserOptionsToKoppsApiParams = ({ l, type, start, mainsubject, stud
 }
 
 const _searchOptionTerms = () => {
-  let current = getCurrentTerm()
-  let previous = getPreviousTerms(current, 2)
-  let next = getNextTerms(current, 1)
-  let termToDisplayObject = (t) => ({ code: t, titleSv: formatShortTerm(t, 'sv') })
+  const current = getCurrentTerm()
+  const previous = getPreviousTerms(current, 2)
+  const next = getNextTerms(current, 1)
+  const termToDisplayObject = t => ({ code: t, titleSv: formatShortTerm(t, 'sv') })
   return [
     { code: 'current', titleSv: 'Kommande' },
     ...previous.map(termToDisplayObject),
