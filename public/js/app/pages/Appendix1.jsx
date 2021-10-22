@@ -2,18 +2,18 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Col, Row } from 'reactstrap'
-import { Link, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
+import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 
 import { useStore } from '../mobx'
 
 import translate from '../../../../domain/translate'
-import { programSyllabusLink } from '../util/links'
 import { formatLongTerm } from '../../../../domain/term'
 import { ELECTIVE_CONDITIONS } from '../../../../domain/curriculum'
 
 import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'
 import KoppsData from '../components/KoppsData'
+import Sidebar from '../components/Sidebar'
 
 // TODO: Duplicated, move to domain functions
 function formatCredits(language, credits) {
@@ -213,26 +213,6 @@ function ArticleContent() {
       <CommonCourses />
       <Specialisations />
     </Article>
-  )
-}
-
-function Sidebar() {
-  const { language, programmeCode, term } = useStore()
-  const t = translate(language)
-  const syllabusLink = programSyllabusLink(programmeCode, term, language)
-
-  return (
-    <div id="sidebarContainer">
-      <aside id="pdfSidebar" className="sidebar" aria-labelledby="pdf-sidebar-heading">
-        <h2 id="pdf-sidebar-heading" className="sidebar-heading mb-2 mt-0">
-          {t('programme_plan_pdf_header')}
-        </h2>
-        <p>{t('programme_plan_pdf_text')}</p>
-        <Link href={syllabusLink} type="pdf-post-link">
-          {t('programme_plan_pdf')(programmeCode, formatLongTerm(term, language))}
-        </Link>
-      </aside>
-    </div>
   )
 }
 
