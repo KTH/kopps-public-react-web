@@ -8,13 +8,8 @@ import FooterContent from '../components/FooterContent'
 
 import { useStore } from '../mobx'
 import translate from '../../../../domain/translate'
+import { localeCompareDepartments } from '../../../../domain/departments'
 import { thirdCycleDepartmentLink } from '../util/links'
-
-function localeCompareDepartments(language) {
-  return function compareDepartments(a, b) {
-    return a.name.localeCompare(b.name, language)
-  }
-}
 
 function DepartmentsLinkListResearch({ departments }) {
   const { language } = useStore()

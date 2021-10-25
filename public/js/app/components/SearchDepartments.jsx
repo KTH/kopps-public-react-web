@@ -4,11 +4,8 @@ import PropTypes from 'prop-types'
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 
-function localeCompareDepartments(language) {
-  return function compareDepartments(a, b) {
-    return a.name.localeCompare(b.name, language)
-  }
-}
+import { localeCompareDepartments } from '../../../../domain/departments'
+
 function SearchDepartments({ onChange }) {
   const store = useStore()
   const { schoolsWithDepartments, departmentCodeOrPrefix: initialDepartmentCode = '', language, languageIndex } = store

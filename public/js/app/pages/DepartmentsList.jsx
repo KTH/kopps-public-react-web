@@ -12,11 +12,7 @@ import { useStore } from '../mobx'
 import translate from '../../../../domain/translate'
 import { departmentLink } from '../util/links'
 
-function localeCompareDepartments(language) {
-  return function compareDepartments(a, b) {
-    return a.name.localeCompare(b.name, language)
-  }
-}
+import { localeCompareDepartments } from '../../../../domain/departments'
 
 function DepartmentsLinkList({ departments }) {
   const { language } = useStore()
