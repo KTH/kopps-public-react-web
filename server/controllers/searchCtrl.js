@@ -10,7 +10,7 @@ const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
 const koppsApi = require('../kopps/koppsApi')
 const { stringifyKoppsSearchParams } = require('../../domain/searchParams')
-const { compareSchools } = require('../utils/schools')
+const { compareSchools } = require('../../domain/schools')
 
 async function searchThirdCycleCourses(req, res, next) {
   try {

@@ -12,8 +12,6 @@ import appendix1Store from './appendix1Store'
 import appendix2Store from './appendix2Store'
 import literatureStore from './literatureStore'
 
-// const kopps = axios.create({ baseURL: 'http://localhost:8010/proxy/api/kopps/v2' })
-
 export default createApplicationStore
 
 const store = {
@@ -154,7 +152,7 @@ function createApplicationStore(storeId) {
     case 'literatureList':
       return {
         ...commonStore,
-        ...literatureStore
+        ...literatureStore,
       }
     default:
       return {

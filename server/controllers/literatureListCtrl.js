@@ -9,28 +9,30 @@ const i18n = require('../../i18n')
 const koppsApi = require('../kopps/koppsApi')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
-const { compareSchools, filterOutDeprecatedSchools } = require('../utils/schools')
+const { compareSchools } = require('../../domain/schools')
 
-async function _fillApplicationStoreOnServerSide({ applicationStore, lang, term, school}) {
+async function _fillApplicationStoreOnServerSide({ applicationStore, lang, term, school }) {
   applicationStore.setLanguage(lang)
   applicationStore.setBrowserConfig(browserConfig)
 
   applicationStore.setSelectedSchoolCode(school)
   applicationStore.setSelectedTerm(term)
 
-  const schools = await koppsApi.listSchools({lang})
+  const schools = await koppsApi.listSchools({ lang })
   schools.sort(compareSchools)
-  applicationStore.setSchools(schools);
+  applicationStore.setSchools(schools)
 
-  const literature = await koppsApi.literatureForCourse({school, term, lang})
+  const literature = await koppsApi.literatureForCourse({ school, term, lang })
   literature.sort((a, b) => {
     if (a.courseCode < b.courseCode) {
       return -1
-    } else if (a.courseCode > b.courseCode)  {
-      return 1
-    } else {
-      return 0
     }
+
+    if (a.courseCode > b.courseCode) {
+      return 1
+    }
+
+    return 0
   })
   applicationStore.setLiterature(literature)
 }
@@ -62,8 +64,6 @@ async function getLiteratureList(req, res, next) {
     next(err)
   }
 }
-
-
 
 module.exports = {
   getLiteratureList,

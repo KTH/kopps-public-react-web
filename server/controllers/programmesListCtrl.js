@@ -9,7 +9,7 @@ const i18n = require('../../i18n')
 const koppsApi = require('../kopps/koppsApi')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
-const { programmeGroupHeadings, find: findProgrammeGroupHeading } = require('../utils/programmeGroupHeading')
+const { programmeGroupHeadings, find: findProgrammeGroupHeading } = require('../../domain/programmeGroupHeading')
 
 function _compareProgrammes(a, b) {
   if (a.title.toLowerCase() < b.title.toLowerCase()) {

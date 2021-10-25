@@ -17,7 +17,7 @@ import commonSettings from '../config/mocks/mockCommonSettings'
 
 const applicationStore = createApplicationStore()
 
-const proxyPrefixPath = commonSettings.proxyPrefixPath
+const { proxyPrefixPath } = commonSettings
 
 const WrapperStudyHandbook = ({ lang, ...rest }) => {
   applicationStore.setLanguage(lang)

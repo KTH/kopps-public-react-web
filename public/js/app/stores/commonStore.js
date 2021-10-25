@@ -1,7 +1,5 @@
 function setBrowserConfig(config, thisHostBaseUrl = null) {
   this.browserConfig = config
-  // this.paths = paths
-  // this.apiHost = apiHost
   this.thisHostBaseUrl = thisHostBaseUrl
 }
 
@@ -11,7 +9,7 @@ function setLanguage(lang) {
 }
 
 function setBreadcrumbsDynamicItems(items) {
-  // [{
+  // Example: [{
   //   url: 'https://www.kth.se/student/kurser/program/A/20042/arskurs5',
   //   label: 'Degree Programme in Architecture',
   // }],

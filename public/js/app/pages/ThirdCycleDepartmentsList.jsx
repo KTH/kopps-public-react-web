@@ -22,10 +22,7 @@ function DepartmentsLinkListResearch({ departments }) {
   return (
     <LinkList>
       {departments.map(department => (
-        <Link
-          key={department.name}
-          href={thirdCycleDepartmentLink(department.code, language)}
-        >
+        <Link key={department.name} href={thirdCycleDepartmentLink(department.code, language)}>
           {department.name}
         </Link>
       ))}

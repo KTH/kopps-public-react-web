@@ -20,8 +20,7 @@ expect.extend(toHaveNoViolations)
 
 const applicationStore = createApplicationStore()
 
-const testProxyPath = '/kopps-public'
-const proxyPrefixPath = commonSettings.proxyPrefixPath
+const { proxyPrefixPath } = commonSettings
 const testDepartmentName = {
   sv: 'ABE/Arkitektur, Fex övr utbildning',
   en: 'ABE/Architecture',

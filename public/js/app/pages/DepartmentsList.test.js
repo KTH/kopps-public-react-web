@@ -20,7 +20,7 @@ expect.extend(toHaveNoViolations)
 
 const applicationStore = createApplicationStore()
 
-const proxyPrefixPath = commonSettings.proxyPrefixPath
+const { proxyPrefixPath } = commonSettings
 const testCurrentSchoolsWithDepartments = {
   sv: [
     {

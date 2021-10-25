@@ -8,7 +8,7 @@ const i18n = require('../../i18n')
 const koppsApi = require('../kopps/koppsApi')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
-const { compareSchools } = require('../utils/schools.js')
+const { compareSchools } = require('../../domain/schools')
 
 async function _fillApplicationStoreWithAllCourses({ applicationStore, lang }) {
   applicationStore.setLanguage(lang)

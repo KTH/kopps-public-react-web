@@ -9,7 +9,7 @@ const i18n = require('../../i18n')
 const koppsApi = require('../kopps/koppsApi')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
-const { filterOutInvalidTerms } = require('../utils/programmes')
+const { filterOutInvalidTerms } = require('../../domain/programmes')
 
 async function _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode }) {
   applicationStore.setLanguage(lang)

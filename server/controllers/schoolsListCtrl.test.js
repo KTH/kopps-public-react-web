@@ -1,7 +1,7 @@
 jest.mock('../configuration', () => ({ server: {} }))
 jest.mock('../kopps/koppsApi', () => {})
 
-const { filterOutDeprecatedSchools, deprecatedSchools } = require('../utils/schools')
+const { filterOutDeprecatedSchools, deprecatedSchools } = require('../../domain/schools')
 
 const langSv = 'sv'
 const langEn = 'en'

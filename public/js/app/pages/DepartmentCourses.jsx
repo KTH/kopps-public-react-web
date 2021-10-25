@@ -10,7 +10,7 @@ import translate from '../../../../domain/translate'
 import { courseLink } from '../util/links'
 
 function codeCell(code) {
-  const { language, browserConfig } = useStore()
+  const { language } = useStore()
   return {
     content: <Link href={courseLink(code, language)}>{code}</Link>,
     sortKey: code,
@@ -18,7 +18,7 @@ function codeCell(code) {
 }
 
 function titleCell(code, title) {
-  const { language, browserConfig } = useStore()
+  const { language } = useStore()
   return {
     content: <Link href={courseLink(code, language)}>{title}</Link>,
     sortKey: title,
