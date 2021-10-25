@@ -12,11 +12,7 @@ const { calculate: calculateStartTerm } = require('../../domain/academicYear')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
-// TODO: There’s also links on the client side. Refactor?
-function programmeLink(proxyPrefixPath, programmeCode, lang) {
-  const languageParam = lang === 'en' ? '?l=en' : ''
-  return `${proxyPrefixPath}/student/kurser/program/${programmeCode}${languageParam}`
-}
+const { programmeLink } = require('../../domain/links')
 
 async function _getCourseRounds(curriculum, programmeCode, term, studyYear, lang) {
   const specializationCode = curriculum.programmeSpecialization
@@ -98,7 +94,7 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, progr
   applicationStore.setCurriculumInfos(curriculumInfos)
 
   const departmentBreadCrumbItem = {
-    url: programmeLink(browserConfig.proxyPrefixPath.uri, programmeCode, lang),
+    url: programmeLink(programmeCode, lang),
     label: programmeName,
   }
   applicationStore.setBreadcrumbsDynamicItems([departmentBreadCrumbItem])

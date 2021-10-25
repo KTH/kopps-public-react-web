@@ -8,18 +8,8 @@ const i18n = require('../../i18n')
 
 const koppsApi = require('../kopps/koppsApi')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
-
-// TODO: There’s also links on the client side. Refactor?
-function programmeLink(proxyPrefixPath, programmeCode, lang) {
-  const languageParam = lang === 'en' ? '?l=en' : ''
-  return `${proxyPrefixPath}/student/kurser/program/${programmeCode}${languageParam}`
-}
-
-function _setError(applicationStore, statusCode) {
-  const error = new Error('Exception calling KOPPS API in koppsApi.getStudyProgrammeVersion')
-  error.statusCode = statusCode
-  throw error
-}
+const { programmeLink } = require('../../domain/links')
+const { setErrorInProgramVersion } = require('../utils/errors')
 
 function parseCurriculums(applicationStore, curriculums) {
   curriculums.forEach(curriculum => {
@@ -131,7 +121,7 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, progr
 
   const response = await koppsApi.getStudyProgrammeVersion(programmeCode, term, lang)
   if (response.statusCode !== 200) {
-    _setError(applicationStore, response.statusCode)
+    setErrorInProgramVersion(applicationStore, response.statusCode)
     return
   }
   const studyProgramme = response.body
@@ -142,7 +132,7 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, progr
   parseCurriculums(applicationStore, curriculums)
 
   const departmentBreadCrumbItem = {
-    url: programmeLink(browserConfig.proxyPrefixPath.uri, programmeCode, lang),
+    url: programmeLink(programmeCode, lang), // browserConfig.proxyPrefixPath.uri,
     label: programmeName,
   }
   applicationStore.setBreadcrumbsDynamicItems([departmentBreadCrumbItem])
