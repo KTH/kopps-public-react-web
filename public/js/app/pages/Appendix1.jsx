@@ -7,6 +7,7 @@ import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 import { useStore } from '../mobx'
 
 import translate from '../../../../domain/translate'
+import { formatCredits } from '../../../../domain/credits'
 import { formatLongTerm } from '../../../../domain/term'
 import { ELECTIVE_CONDITIONS } from '../../../../domain/curriculum'
 
@@ -15,14 +16,6 @@ import FooterContent from '../components/FooterContent'
 import KoppsData from '../components/KoppsData'
 import Sidebar from '../components/Sidebar'
 
-// TODO: Duplicated, move to domain functions
-function formatCredits(language, credits) {
-  const creditsStr = typeof credits === 'number' ? credits.toString() : credits
-  if (language === 'sv') {
-    return creditsStr.includes('.') ? creditsStr.replace('.', ',') : `${creditsStr},0`
-  }
-  return creditsStr.includes('.') ? creditsStr : `${creditsStr}.0`
-}
 function CourseListTableRow({ course }) {
   const { language } = useStore()
   const t = translate(language)
@@ -64,10 +57,18 @@ function CourseListTable({ courses }) {
     <table className="table courseList">
       <thead>
         <tr>
-          <th scope="col">{t('programme_list_code')}</th>
-          <th scope="col">{t('programme_list_name')}</th>
-          <th scope="col">{t('programme_list_credits')}</th>
-          <th scope="col">{t('programme_list_edulevel')}</th>
+          <th key="programme_list_code" scope="col">
+            {t('programme_list_code')}
+          </th>
+          <th key="programme_list_name" scope="col">
+            {t('programme_list_name')}
+          </th>
+          <th key="programme_list_credits" scope="col">
+            {t('programme_list_credits')}
+          </th>
+          <th key="programme_list_edulevel" scope="col">
+            {t('programme_list_edulevel')}
+          </th>
         </tr>
       </thead>
       <tbody>
