@@ -3,7 +3,7 @@ const { parentLink, pageLink } = require('../util/links')
 
 function getMenuData(applicationStore) {
   const { language, browserConfig } = applicationStore
-  const {programmesList, courseSearch, department, studyHandbook} = browserConfig.proxyPrefixPath
+  const { programmesList, courseSearch, department, studyHandbook } = browserConfig.proxyPrefixPath
   const t = translate(language)
   return {
     ariaLabel: t('main_menu_aria_label'),

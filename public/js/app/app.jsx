@@ -293,16 +293,16 @@ function appFactory(ssrApplicationStore) {
       <RouteWrapper
         exact
         path="/student/kurser/lit/:term/:school"
-        createBreadcrumbs={(applicationStore) => ({
+        createBreadcrumbs={applicationStore => ({
           include: 'student',
-          items: getLiteratureListBreadcrumbs(applicationStore)
+          items: getLiteratureListBreadcrumbs(applicationStore),
         })}
         component={LiteratureList}
         layout={PageLayout}
         applicationStore={_initStore({
-                                       storeId: 'literatureList',
-                                       applicationStore: ssrApplicationStore,
-                                     })}
+          storeId: 'literatureList',
+          applicationStore: ssrApplicationStore,
+        })}
         createMenuData={applicationStore => ({
           selectedId: applicationStore.selectedSchoolCode,
           ...getLiteratureList(applicationStore),

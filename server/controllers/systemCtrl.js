@@ -155,7 +155,7 @@ function _monitor(req, res) {
     })
   })
    */
-  const subSystems = [] // TODO: check kopps api status.
+  const subSystems = []
 
   // If we need local system checks, such as memory or disk, we would add it here.
   // Make sure it returns a promise which resolves with an object containing:
