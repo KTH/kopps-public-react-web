@@ -6,6 +6,8 @@ import CourseSearch from './CourseSearch'
 import { useStore } from '../mobx'
 import { TEST_API_ANSWER_ALGEBRA, TEST_API_ANSWER_RESOLVED } from '../components/mocks/mockKoppsCourseSearch'
 
+const mockDate = new Date('2021-03-23 16:00')
+
 jest.setTimeout(1000)
 
 jest.mock('../mobx')
@@ -33,6 +35,14 @@ const showOptions = [
 ]
 
 describe('Component <CourseSearch>, events', () => {
+  beforeAll(() => {
+    jest.spyOn(global, 'Date').mockImplementation(() => mockDate)
+  })
+
+  afterAll(() => {
+    jest.spyOn(global, 'Date').mockRestore()
+  })
+
   // search options
   test('get all empty checkboxes then check them all and get a result, rerender and get the same result', async () => {
     useStore.mockReturnValue({

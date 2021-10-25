@@ -11,7 +11,7 @@ import { SearchDepartments, SearchOptions } from './index'
 
 const paramsReducer = (state, action) => ({ ...state, ...action })
 
-function SearchFormFields({ caption, openOptions, onSubmit, isTest = false }) {
+function SearchFormFields({ caption, openOptions, onSubmit }) {
   const { languageIndex, textPattern: initialPattern = '' } = useStore()
 
   const { generalSearch } = i18n.messages[languageIndex]
@@ -19,7 +19,7 @@ function SearchFormFields({ caption, openOptions, onSubmit, isTest = false }) {
   const [state, setState] = useReducer(paramsReducer, { pattern: initialPattern })
   const { pattern } = state
 
-  const currentYearDate = isTest ? new Date().setFullYear(2021) : new Date().getFullYear()
+  const currentYearDate = new Date().getFullYear()
   const currentYearLabel = `${searchStartPeriodPrefix} ${currentYearDate}`
   const nextYearLabel = `${searchStartPeriodPrefix} ${Number(currentYearDate) + 1}`
 
@@ -114,11 +114,6 @@ SearchFormFields.propTypes = {
   caption: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
   openOptions: PropTypes.bool.isRequired,
-  isTest: PropTypes.bool,
-}
-
-SearchFormFields.defaultProps = {
-  isTest: false,
 }
 
 export default SearchFormFields

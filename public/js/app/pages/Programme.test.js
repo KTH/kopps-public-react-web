@@ -18,6 +18,8 @@ import commonSettings from '../config/mocks/mockCommonSettings'
 
 expect.extend(toHaveNoViolations)
 
+const mockDate = new Date('2021-03-23 16:00')
+
 const applicationStore = createApplicationStore()
 
 const { proxyPrefixPath } = commonSettings
@@ -84,6 +86,13 @@ describe('Render component Programme within RouterWrapper', () => {
 })
 
 describe('Render component Programme within Layout', () => {
+  beforeAll(() => {
+    jest.spyOn(global, 'Date').mockImplementation(() => mockDate)
+  })
+
+  afterAll(() => {
+    jest.spyOn(global, 'Date').mockRestore()
+  })
   test('verify that page is accessible', async () => {
     const { container } = render(<ProgrammeWithLayout lang="en" />)
     expect(await axe(container)).toHaveNoViolations()
@@ -111,6 +120,13 @@ describe('Render component Programme within Layout', () => {
 })
 
 describe('Render component Programme and check its menu, content and links', () => {
+  beforeAll(() => {
+    jest.spyOn(global, 'Date').mockImplementation(() => mockDate)
+  })
+
+  afterAll(() => {
+    jest.spyOn(global, 'Date').mockRestore()
+  })
   test('check all links on the page in English', () => {
     render(<ProgrammeWithLayout lang="en" />)
     const links = screen.getAllByRole('link')

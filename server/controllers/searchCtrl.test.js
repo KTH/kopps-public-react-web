@@ -55,7 +55,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
     getSearchResults.mockReturnValue(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
     await performCourseSearch(mReq({ eduLevel: ['0'] }, langEn), mRes, mockNext())
 
-    expect(koppsApi.getSearchResults).toHaveBeenCalledWith('educational_level=PREPARATORY&', 'en')
+    expect(koppsApi.getSearchResults).toHaveBeenCalledWith('educational_level=PREPARATORY', 'en')
     expect(mRes.status().json).toBeCalledWith(TEST_API_ANSWER_ALGEBRA)
 
     done()
@@ -65,7 +65,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
     await performCourseSearch(mReq({ eduLevel: ['0', '1', '2', '3'] }, langEn), mRes, mockNext())
 
     expect(koppsApi.getSearchResults).toHaveBeenCalledWith(
-      'educational_level=PREPARATORY&educational_level=BASIC&educational_level=ADVANCED&educational_level=RESEARCH&',
+      'educational_level=PREPARATORY&educational_level=BASIC&educational_level=ADVANCED&educational_level=RESEARCH',
       'en'
     )
     expect(mRes.status().json).toBeCalledWith(TEST_API_ANSWER_ALGEBRA)
@@ -77,7 +77,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
     getSearchResults.mockReturnValue(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
     await performCourseSearch(mReq({ showOptions: ['showCancelled'] }, langEn), mRes, mockNext())
 
-    expect(koppsApi.getSearchResults).toHaveBeenCalledWith('flag=include_non_active&', 'en')
+    expect(koppsApi.getSearchResults).toHaveBeenCalledWith('flag=include_non_active', 'en')
     expect(mRes.status().json).toBeCalledWith(TEST_API_ANSWER_ALGEBRA)
 
     done()
@@ -91,7 +91,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
     )
 
     expect(koppsApi.getSearchResults).toHaveBeenCalledWith(
-      'flag=in_english_only&flag=include_non_active&flag=only_mhu&',
+      'flag=in_english_only&flag=include_non_active&flag=only_mhu',
       'en'
     )
     expect(mRes.status().json).toBeCalledWith(TEST_API_ANSWER_ALGEBRA)

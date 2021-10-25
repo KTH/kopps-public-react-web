@@ -11,7 +11,7 @@ describe('when derived using input from fovsearch form, resulting query paramete
     })
 
     test('default search for regression', () => {
-      //const queryParamString = 'l=sv&type=ALL&start=current&mainsubject=&studyPace='
+      // const queryParamString = 'l=sv&type=ALL&start=current&mainsubject=&studyPace='
       const formInput = {
         l: 'sv',
         type: 'ALL',

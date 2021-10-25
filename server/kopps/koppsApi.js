@@ -32,18 +32,15 @@ const slashEndedKoppsBase = config.koppsApi.basePath.endsWith('/')
   : config.koppsApi.basePath.concat('/')
 
 function reduceToQueryParamString(params) {
-  const queryParam = Object.entries(params).reduce(
-    (currentQueryParam, [key, value]) => {
-      if (Array.isArray(value)) {
-        return currentQueryParam + value.map(e => `${key}=${encodeURIComponent(e)}&`).join('')
-      } else if (value === undefined || value === null) {
-        return currentQueryParam
-      } else {
-        return currentQueryParam + `${key}=${encodeURIComponent(value)}&`
-      }
-    },
-    '?'
-  )
+  const queryParam = Object.entries(params).reduce((currentQueryParam, [key, value]) => {
+    if (Array.isArray(value)) {
+      return currentQueryParam + value.map(e => `${key}=${encodeURIComponent(e)}&`).join('')
+    }
+    if (value === undefined || value === null) {
+      return currentQueryParam
+    }
+    return currentQueryParam + `${key}=${encodeURIComponent(value)}&`
+  }, '?')
   return queryParam.slice(0, -1) // Remove either '?' or '&'
 }
 
@@ -94,10 +91,9 @@ const DEPARTMENT_CRITERIA = {
   HAS_THIRD_CYCLE_COURSES: 'has_third_cycle_courses',
 }
 
-
-const listSchools = async ({lang = 'sv' }) => {
+const listSchools = async ({ lang = 'sv' }) => {
   const { client } = koppsApi.koppsApi
-  const uri = `${slashEndedKoppsBase}schools${reduceToQueryParamString({l: lang})}`
+  const uri = `${slashEndedKoppsBase}schools${reduceToQueryParamString({ l: lang })}`
   try {
     const response = await client.getAsync({ uri, useCache: false })
     return response.body
@@ -208,11 +204,13 @@ const listCourseRoundsInYearPlan = async ({
   }
 }
 
-const literatureForCourse = async ({term, school, lang}) => {
+const literatureForCourse = async ({ term, school, lang }) => {
   const { client } = koppsApi.koppsApi
-  const uri = `${slashEndedKoppsBase}schools/${school}/courses/${term}/literature${reduceToQueryParamString({l: lang})}`
+  const uri = `${slashEndedKoppsBase}schools/${school}/courses/${term}/literature${reduceToQueryParamString({
+    l: lang,
+  })}`
   try {
-    const response = await client.getAsync({ uri, useCache: true , timeout: 20000})
+    const response = await client.getAsync({ uri, useCache: true, timeout: 20000 })
     return response.body
   } catch (error) {
     log.error('Exception calling KOPPS API in koppsApi.literatureForCourse', { error })

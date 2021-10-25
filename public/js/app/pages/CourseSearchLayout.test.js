@@ -71,8 +71,17 @@ describe('Render component CourseSearch within RouterWrapper', () => {
     done()
   })
 })
+const mockDate = new Date('2021-01-23 16:00')
 
 describe('Render component CourseSearch within Layout', () => {
+  beforeAll(() => {
+    jest.spyOn(global, 'Date').mockImplementation(() => mockDate)
+  })
+
+  afterAll(() => {
+    jest.spyOn(global, 'Date').mockRestore()
+  })
+
   test('get page header in English', () => {
     render(<CourseSearchWithLayout lang="en" />)
     const h1Header = screen.getByRole('heading', { level: 1 })
@@ -105,6 +114,13 @@ describe('Render component CourseSearch within Layout', () => {
 })
 
 describe('Render component CourseSearch and check its menu, content and links', () => {
+  beforeAll(() => {
+    jest.spyOn(global, 'Date').mockImplementation(() => mockDate)
+  })
+
+  afterAll(() => {
+    jest.spyOn(global, 'Date').mockRestore()
+  })
   test('check all links on the page in English', () => {
     render(<CourseSearchWithLayout lang="en" />)
     const links = screen.getAllByRole('link')
