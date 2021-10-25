@@ -122,7 +122,6 @@ const ProgrammesListWithLayout = ({ lang }) => {
   applicationStore.setLanguage(lang)
   applicationStore.setBrowserConfig({ proxyPrefixPath })
   applicationStore.setProgrammes(testProgrammes[lang])
-  // TODO: Move to mocks
   const menuData = getMenuData(applicationStore)
 
   const updatedApplicationStore = {

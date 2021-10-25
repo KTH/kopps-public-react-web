@@ -70,7 +70,6 @@ const ThirdCycleDepartmentsListWithLayout = ({ lang }) => {
   applicationStore.setLanguage(lang)
   applicationStore.setBrowserConfig({ proxyPrefixPath })
   applicationStore.setCurrentSchoolsWithDepartments(testCurrentSchoolsWithDepartments[lang])
-  // TODO: Move to mocks
   const menuData = getThirdCycleMenuData(applicationStore)
   const breadcrumbs = getThirdCycleBreadcrumbs(applicationStore)
 

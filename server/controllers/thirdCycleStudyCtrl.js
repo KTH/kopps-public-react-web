@@ -9,6 +9,7 @@ const koppsApi = require('../kopps/koppsApi')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { compareSchools } = require('../../domain/schools')
+const { thirdCycleDepartmentLink } = require('../../domain/links')
 
 async function _fillApplicationStoreWithAllCourses({ applicationStore, lang }) {
   applicationStore.setLanguage(lang)
@@ -53,11 +54,6 @@ async function getAllSchoolsAndDepartments(req, res, next) {
   }
 }
 
-function departmentLink(proxyPrefixPath, departmentCode, lang) {
-  const languageParam = lang === 'en' ? '?l=en' : ''
-  return `${proxyPrefixPath}/utbildning/forskarutbildning/kurser/org/${departmentCode}${languageParam}`
-}
-
 function getOnlyThirdCycleCourses(courses, lang) {
   const THIRD_CYCLE_LEVEL = {
     en: 'Third cycle',
@@ -76,7 +72,7 @@ async function _fillCoursesApplicationStoreOnServerSide({ applicationStore, lang
   applicationStore.setDepartmentCourses(getOnlyThirdCycleCourses(courses, lang))
 
   const departmentBreadCrumbItem = {
-    url: departmentLink(browserConfig.proxyPrefixPath.uri, departmentCode, lang),
+    url: thirdCycleDepartmentLink(departmentCode, lang),
     label: departmentName,
   }
   applicationStore.setBreadcrumbsDynamicItems([departmentBreadCrumbItem])

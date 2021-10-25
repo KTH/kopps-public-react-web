@@ -1,4 +1,4 @@
-import { pageLink, programmeLink } from '../../../../domain/links'
+import { departmentLink, pageLink, programmeLink, thirdCycleDepartmentLink } from '../../../../domain/links'
 
 function parentLink(language) {
   return pageLink(`/student/`, language)
@@ -10,14 +10,6 @@ function parentStudyLink(language) {
 
 function parentThirdCycleStudyLink(language) {
   return pageLink(`/utbildning/forskarutbildning/`, language)
-}
-
-function departmentLink(departmentCode, language) {
-  return pageLink(`/student/kurser/org/${departmentCode}`, language)
-}
-
-function thirdCycleDepartmentLink(departmentCode, language) {
-  return pageLink(`/utbildning/forskarutbildning/kurser/org/${departmentCode}`, language)
 }
 
 function courseLink(courseCode, language) {

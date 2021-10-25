@@ -64,7 +64,6 @@ const DepartmentsListWithLayout = ({ lang }) => {
   applicationStore.setLanguage(lang)
   applicationStore.setBrowserConfig({ proxyPrefixPath })
   applicationStore.setCurrentSchoolsWithDepartments(testCurrentSchoolsWithDepartments[lang])
-  // TODO: Move to mocks
   const menuData = getMenuData(applicationStore)
 
   const updatedApplicationStore = {
