@@ -1,60 +1,39 @@
-// TODO: should we use constants from commonSettings here?
-
-function getLanguageParam(language) {
-  return language === 'en' ? '?l=en' : ''
-}
+import { pageLink, programmeLink } from '../../../../domain/links'
 
 function parentLink(language) {
-  const languageParam = getLanguageParam(language)
-  return `/student/${languageParam}`
+  return pageLink(`/student/`, language)
 }
 
 function parentStudyLink(language) {
-  return `/utbildning/${getLanguageParam(language)}`
+  return pageLink(`/utbildning/`, language)
 }
 
 function parentThirdCycleStudyLink(language) {
-  return `/utbildning/forskarutbildning/${getLanguageParam(language)}`
-}
-
-function pageLink(pageId, language) {
-  const languageParam = getLanguageParam(language)
-  return `${pageId}${languageParam}`
-}
-
-function programmeLink(programmeCode, language) {
-  const languageParam = getLanguageParam(language)
-  return `/student/kurser/program/${programmeCode}${languageParam}`
+  return pageLink(`/utbildning/forskarutbildning/`, language)
 }
 
 function departmentLink(departmentCode, language) {
-  const languageParam = getLanguageParam(language)
-  return `/student/kurser/org/${departmentCode}${languageParam}`
+  return pageLink(`/student/kurser/org/${departmentCode}`, language)
 }
 
 function thirdCycleDepartmentLink(departmentCode, language) {
-  const languageParam = getLanguageParam(language)
-  return `/utbildning/forskarutbildning/kurser/org/${departmentCode}${languageParam}`
+  return pageLink(`/utbildning/forskarutbildning/kurser/org/${departmentCode}`, language)
 }
 
 function courseLink(courseCode, language) {
-  const languageParam = getLanguageParam(language)
-  return `/student/kurser/kurs/${courseCode}${languageParam}` // outside link
+  return pageLink(`/student/kurser/kurs/${courseCode}`, language) // outside link
 }
 
 function programTermLink(programmeCode, term, studyYear, language) {
-  const languageParam = language === 'en' ? '?l=en' : ''
-  return `/student/kurser/program/${programmeCode}/${term}/${studyYear}${languageParam}`
+  return pageLink(`/student/kurser/program/${programmeCode}/${term}/${studyYear}`, language)
 }
 
 function programSyllabusLink(programmeCode, term, language) {
-  const languageParam = language === 'en' ? '?l=en' : ''
-  return `/student/kurser/program/${programmeCode}-${term}.pdf${languageParam}`
+  return pageLink(`/student/kurser/program/${programmeCode}-${term}.pdf`, language)
 }
 
 function programmeWebLink(programmeCode, language) {
-  const languageParam = language === 'en' ? '?l=en' : ''
-  return `/social/program/${programmeCode}${languageParam}`
+  return pageLink(`/social/program/${programmeCode}`, language)
 }
 
 function appendix1Link(programmeCode, term) {
@@ -90,5 +69,5 @@ module.exports = {
   programmeWebLink,
   thirdCycleDepartmentLink,
   appendix1Link,
-  literatureListLink: literatureListLink,
+  literatureListLink,
 }
