@@ -17,6 +17,7 @@
     "test": "NODE_ENV=test jest",
     "test:watch": "NODE_ENV=test jest --watch",
     "test:notify": "NODE_ENV=test jest --watch --notify",
+    "test:pages": "NODE_ENV=test jest ./public/js/app/pages/CourseSearchLayout.test.js --watch --notify",
     "test:components": "NODE_ENV=test jest ./public/js/app/components/SearchResultDisplay.test.js --watch --notify",
     "build": "bash ./build.sh prod",
     "build-dev": "bash ./build.sh dev",
