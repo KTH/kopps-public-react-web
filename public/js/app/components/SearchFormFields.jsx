@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
 import { Col, Row } from 'reactstrap'
 import PropTypes from 'prop-types'
-import { CollapseDetails } from '@kth/kth-kip-style-react-components'
+import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
 
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
@@ -66,7 +66,7 @@ function SearchFormFields({ caption, openOptions, onSubmit }) {
           name="pattern"
         />
       </div>
-      <CollapseDetails color="white" open={openOptions} title={collapseHeaderOtherSearchOptions}>
+      <CollapseDetails open={openOptions} title={collapseHeaderOtherSearchOptions}>
         <Row>
           <Col>
             <SearchOptions

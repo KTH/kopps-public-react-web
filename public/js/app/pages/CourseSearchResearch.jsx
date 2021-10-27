@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Col, Row } from 'reactstrap'
-import { CollapseDetails } from '@kth/kth-kip-style-react-components'
+import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
 import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 
 import { useStore } from '../mobx'
@@ -58,7 +58,7 @@ const CourseSearchResearch = () => {
       </Row>
       <Row>
         <Col>
-          <CollapseDetails color="white" title={collapseHeader}>
+          <CollapseDetails title={collapseHeader}>
             <ul className="search-instructions">
               {helptexts.map(value => (
                 <li key={value}>{value}</li>

@@ -2,7 +2,7 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Col, Row } from 'reactstrap'
-import { CollapseDetails } from '@kth/kth-kip-style-react-components'
+import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
 import { Heading, Link, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 
 import Article from '../components/Article'

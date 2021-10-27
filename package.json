@@ -26,9 +26,8 @@
     "lint": "eslint \"public/**/*.{js,jsx}\" --quiet"
   },
   "dependencies": {
-    "@babel/runtime": "^7.14.0",
-    "@kth/kth-kip-style-react-components": "0.1.2",
-    "@kth/kth-reactstrap": "^0.4.33",
+    "@babel/runtime": "^7.15.4",
+    "@kth/kth-reactstrap": "^0.4.42",
     "applicationinsights": "^2.1.0",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
@@ -73,7 +72,7 @@
     "@kth/eslint-config-kth": "^2.0.2",
     "@testing-library/jest-dom": "^5.13.0",
     "@testing-library/react": "^12.1.2",
-    "@types/jest": "^26.0.23",
+    "@types/jest": "^27.0.2",
     "babel-eslint": "^10.1.0",
     "concurrently": "^6.3.0",
     "eslint": "^8.1.0",
@@ -83,9 +82,9 @@
     "jest-extended": "^1.1.0",
     "nodemon": "^2.0.14",
     "parcel-bundler": "^1.12.5",
-    "prettier": "^2.3.0",
-    "pretty-quick": "^3.1.0",
-    "sass": "^1.34.1"
+    "prettier": "^2.4.1",
+    "pretty-quick": "^3.1.1",
+    "sass": "^1.43.3"
   },
   "// (prettier)": "configuration version 2020-06-15 - might also reside in .prettierrc.json",
   "prettier": {
