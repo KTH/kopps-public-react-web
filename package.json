@@ -14,6 +14,7 @@
     "node": "12"
   },
   "scripts": {
+    "prettier:all": "prettier --write \"**/*.js\" \"**/*.jsx\" \"**/*.scss\"",
     "test": "NODE_ENV=test jest",
     "test:watch": "NODE_ENV=test jest --watch",
     "test:notify": "NODE_ENV=test jest --watch --notify",
@@ -21,9 +22,10 @@
     "test:components": "NODE_ENV=test jest ./public/js/app/components/SearchResultDisplay.test.js --watch --notify",
     "build": "bash ./build.sh prod",
     "build-dev": "bash ./build.sh dev",
+    "lint": "eslint \"public/**/*.{js,jsx}\" --quiet",
+    "prepare": "husky install",
     "start": "bash -c 'NODE_ENV=production node app.js'",
-    "start-dev": "bash -c 'NODE_ENV=development concurrently --kill-others -n build,app \"npm run build-dev\" \"nodemon app.js\"'",
-    "lint": "eslint \"public/**/*.{js,jsx}\" --quiet"
+    "start-dev": "bash -c 'NODE_ENV=development concurrently --kill-others -n build,app \"npm run build-dev\" \"nodemon app.js\"'"
   },
   "dependencies": {
     "@babel/runtime": "^7.15.4",
@@ -48,7 +50,7 @@
     "kth-node-redis": "^3.1.35",
     "kth-node-server": "^3.1.7",
     "kth-node-session": "^2.0.4",
-    "kth-node-web-common": "^5.1.16",
+    "kth-node-web-common": "^6.0.7",
     "kth-style": "^6.0.21",
     "local-cors-proxy": "^1.1.0",
     "mobx": "^6.3.5",
@@ -76,7 +78,7 @@
     "babel-eslint": "^10.1.0",
     "concurrently": "^6.3.0",
     "eslint": "^8.1.0",
-    "husky": "^6.0.0",
+    "husky": "^7.0.4",
     "jest": "^27.3.1",
     "jest-axe": "^5.0.1",
     "jest-extended": "^1.1.0",
