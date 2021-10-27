@@ -65,10 +65,8 @@ const CourseSearchWithLayout = ({ lang }) => {
 }
 
 describe('Render component CourseSearch within RouterWrapper', () => {
-  test('simple render', async done => {
+  test('simple render', async () => {
     render(<WrappedCourseSearch lang="en" />)
-
-    done()
   })
 })
 const mockDate = new Date('2021-01-23 16:00')
@@ -94,22 +92,18 @@ describe('Render component CourseSearch within Layout', () => {
     expect(h1Header).toHaveTextContent('Sök kurs')
   })
 
-  test('match to snapshot in English', async done => {
+  test('match to snapshot in English', async () => {
     const { asFragment, container } = render(<CourseSearchWithLayout lang="en" />)
     expect(await axe(container)).toHaveNoViolations()
 
     expect(asFragment()).toMatchSnapshot()
-
-    done()
   })
 
-  test('match to snapshot in Swedish', async done => {
+  test('match to snapshot in Swedish', async () => {
     const { asFragment, container } = render(<CourseSearchWithLayout lang="sv" />)
     expect(await axe(container)).toHaveNoViolations()
 
     expect(asFragment()).toMatchSnapshot()
-
-    done()
   })
 })
 
