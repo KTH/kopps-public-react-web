@@ -6,10 +6,6 @@ const messages = {
     // General stuff
     date_format_short: '%d-%b-%Y',
 
-    // Error messages
-    error_not_found: "Sorry, we can't find your requested page",
-    error_generic: 'Something went wrong on the server, please try again later.',
-
     // Ready for test
     ready_paths: 'Ready for Test',
     redirect_paths: 'Redirect Paths',
@@ -280,7 +276,8 @@ const messages = {
     subHeading: (schoolName, term) => `${schoolName}, ${term}`,
     navHeading: 'Reading lists',
     breadcrumb: 'Reading lists',
-    intro: (schoolName, term) =>`Literature from established syllabus for courses given by  ${schoolName} active in ${term}.`,
+    intro: (schoolName, term) =>
+      `Literature from established syllabus for courses given by  ${schoolName} active in ${term}.`,
     missing: '(information not available)',
     departmentsOtherUni: 'Cooperation with other universities',
   },

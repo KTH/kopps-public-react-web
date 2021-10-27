@@ -6,10 +6,6 @@ const messages = {
     // General stuff
     date_format_short: '%Y-%m-%d',
 
-    // Error messages
-    error_not_found: 'Tyvärr kunde vi inte hitta sidan du söker',
-    error_generic: 'Något gick fel på servern, var god försök igen senare',
-
     // Ready for test
     ready_paths: 'Klara för test',
     redirect_paths: 'Omdirigeringar',
@@ -272,7 +268,8 @@ const messages = {
     subHeading: (schoolName, term) => `${schoolName}, ${term}`,
     navHeading: 'Litteraturlistor',
     breadcrumb: 'Litteraturlistor',
-    intro: (schoolName, term) =>`Här visas information om kurslitteratur enligt gällande kursplan för kurser som ges av ${schoolName} och pågår ${term}.`,
+    intro: (schoolName, term) =>
+      `Här visas information om kurslitteratur enligt gällande kursplan för kurser som ges av ${schoolName} och pågår ${term}.`,
     missing: '(information saknas)',
     departmentsOtherUni: 'Samarbete med andra universitet',
   },

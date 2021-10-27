@@ -5,7 +5,7 @@
  */
 const os = require('os')
 
-const log = require('kth-node-log')
+const errorHandler = require('kth-node-web-common/lib/error')
 const { getPaths } = require('kth-node-express-routing')
 const language = require('kth-node-web-common/lib/language')
 const registry = require('component-registry').globalRegistry
@@ -52,15 +52,6 @@ function _notFound(req, res, next) {
   next(err)
 }
 
-function _getFriendlyErrorMessage(lang, statusCode) {
-  switch (statusCode) {
-    case 404:
-      return i18n.message('error_not_found', lang)
-    default:
-      return i18n.message('error_generic', lang)
-  }
-}
-
 // this function must keep this signature for it to work properly
 // eslint-disable-next-line no-unused-vars
 function _final(err, req, res, next) {
@@ -68,45 +59,8 @@ function _final(err, req, res, next) {
   const isProd = /prod/gi.test(process.env.NODE_ENV)
   const lang = language.getLanguage(res)
 
-  switch (statusCode) {
-    case 403:
-      log.info({ err }, `403 Forbidden ${err.message}`)
-      break
-    case 404:
-      log.info({ err }, `404 Not found ${err.message}`)
-      break
-    default:
-      log.error({ err }, `Unhandled error ${err.message}`)
-      break
-  }
-
-  res.format({
-    'text/html': () => {
-      res.status(statusCode).render('system/error', {
-        layout: 'errorLayout',
-        message: err.message,
-        friendly: _getFriendlyErrorMessage(lang, statusCode),
-        error: isProd ? {} : err,
-        status: statusCode,
-        debug: 'debug' in req.query,
-      })
-    },
-
-    'application/json': () => {
-      res.status(statusCode).json({
-        message: err.message,
-        friendly: _getFriendlyErrorMessage(lang, statusCode),
-        error: isProd ? undefined : err.stack,
-      })
-    },
-
-    default: () => {
-      res
-        .status(statusCode)
-        .type('text')
-        .send(isProd ? err.message : err.stack)
-    },
-  })
+  // Use error pages from kth-node-web-common based on given parameters.
+  errorHandler.renderErrorPage(res, req, statusCode, i18n, isProd, lang, err)
 }
 
 /* GET /_about
