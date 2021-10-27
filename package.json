@@ -28,26 +28,26 @@
   "dependencies": {
     "@babel/runtime": "^7.15.4",
     "@kth/kth-reactstrap": "^0.4.42",
-    "applicationinsights": "^2.1.0",
-    "axios": "^0.21.1",
+    "applicationinsights": "^2.1.8",
+    "axios": "^0.24.0",
     "body-parser": "^1.19.0",
-    "chalk": "^4.1.1",
+    "chalk": "^4.1.2",
     "component-registry": "^1.3.1",
     "cookie-parser": "^1.4.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "express-handlebars": "^5.3.2",
+    "express-handlebars": "^5.3.4",
     "kth": "^1.0.0",
-    "kth-node-access-log": "^0.2.4",
-    "kth-node-api-call": "^3.0.16",
-    "kth-node-configuration": "^2.0.5",
-    "kth-node-express-routing": "^2.0.9",
-    "kth-node-i18n": "^1.0.9",
-    "kth-node-log": "^3.1.6",
-    "kth-node-monitor": "^1.1.12",
-    "kth-node-redis": "^3.1.27",
-    "kth-node-server": "^3.1.4",
-    "kth-node-session": "^2.0.2",
+    "kth-node-access-log": "^0.2.6",
+    "kth-node-api-call": "^3.0.18",
+    "kth-node-configuration": "^2.0.7",
+    "kth-node-express-routing": "^2.0.11",
+    "kth-node-i18n": "^1.0.12",
+    "kth-node-log": "^3.1.10",
+    "kth-node-monitor": "^1.1.14",
+    "kth-node-redis": "^3.1.35",
+    "kth-node-server": "^3.1.7",
+    "kth-node-session": "^2.0.4",
     "kth-node-web-common": "^5.1.16",
     "kth-style": "^6.0.21",
     "local-cors-proxy": "^1.1.0",
@@ -61,7 +61,7 @@
     "react-dom": "^17.0.2",
     "react-router": "^5.2.1",
     "react-router-dom": "^5.3.0",
-    "reactstrap": "^8.10.0"
+    "reactstrap": "^8.10.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",
@@ -70,7 +70,7 @@
     "@babel/preset-env": "7.14.4",
     "@babel/preset-react": "^7.13.13",
     "@kth/eslint-config-kth": "^2.0.2",
-    "@testing-library/jest-dom": "^5.13.0",
+    "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.0.2",
     "babel-eslint": "^10.1.0",
@@ -84,7 +84,7 @@
     "parcel-bundler": "^1.12.5",
     "prettier": "^2.4.1",
     "pretty-quick": "^3.1.1",
-    "sass": "^1.43.3"
+    "sass": "^1.43.4"
   },
   "// (prettier)": "configuration version 2020-06-15 - might also reside in .prettierrc.json",
   "prettier": {
@@ -103,15 +103,6 @@
     "plugins": [
       "@babel/plugin-transform-runtime"
     ]
-  },
-  "// (jest)": "configuration version 2020-06-15 (WEB) - might also reside as module.exports in jest.config.js",
-  "jest": {
-    "clearMocks": true,
-    "notifyMode": "failure-change",
-    "setupFilesAfterEnv": [
-      "jest-extended"
-    ],
-    "verbose": true
   },
   "husky": {
     "hooks": {
