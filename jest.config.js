@@ -6,6 +6,7 @@ module.exports = {
   notifyMode: 'failure-change',
   transformIgnorePatterns: ['node_modules/(?!(@kth|@babel|@jest)/)'],
   moduleFileExtensions: ['js', 'jsx', 'json', 'node'],
-  setupFilesAfterEnv: ['jest-extended'],
+  setupFilesAfterEnv: ['jest-extended/all'],
+  testEnvironment: 'jsdom',
   verbose: true,
 }
