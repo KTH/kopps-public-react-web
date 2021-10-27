@@ -118,73 +118,53 @@ exports[`Component <SearchResultDisplay> and resolved cases double search: by de
            result(s).
         </p>
         <table
-          class="table"
+          class="table table-responsive"
         >
           <thead>
             <tr>
               <th
                 style="cursor: pointer; user-select: none;"
               >
-                <div
-                  style="display: flex; flex-direction: row;"
+                Course code
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  <p>
-                    Course code
-                  </p>
-                  <p
-                    style="opacity: 0;"
-                  >
-                    ▲
-                  </p>
-                </div>
+                  ▼
+                </span>
               </th>
               <th
                 style="cursor: pointer; user-select: none;"
               >
-                <div
-                  style="display: flex; flex-direction: row;"
+                Course name
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  <p>
-                    Course name
-                  </p>
-                  <p
-                    style="opacity: 0;"
-                  >
-                    ▲
-                  </p>
-                </div>
+                  ▼
+                </span>
               </th>
               <th
                 style="cursor: pointer; user-select: none;"
               >
-                <div
-                  style="display: flex; flex-direction: row;"
+                Scope
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  <p>
-                    Scope
-                  </p>
-                  <p
-                    style="opacity: 0;"
-                  >
-                    ▲
-                  </p>
-                </div>
+                  ▼
+                </span>
               </th>
               <th
                 style="cursor: pointer; user-select: none;"
               >
-                <div
-                  style="display: flex; flex-direction: row;"
+                Educational level
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  <p>
-                    Educational level
-                  </p>
-                  <p
-                    style="opacity: 0;"
-                  >
-                    ▲
-                  </p>
-                </div>
+                  ▼
+                </span>
               </th>
             </tr>
           </thead>
@@ -267,89 +247,64 @@ exports[`Component <SearchResultDisplay> and resolved cases double search: by de
            result(s).
         </p>
         <table
-          class="table"
+          class="table table-responsive"
         >
           <thead>
             <tr>
               <th
                 style="cursor: pointer; user-select: none;"
               >
-                <div
-                  style="display: flex; flex-direction: row;"
+                Course code
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  <p>
-                    Course code
-                  </p>
-                  <p
-                    style="opacity: 0;"
-                  >
-                    ▲
-                  </p>
-                </div>
+                  ▼
+                </span>
               </th>
               <th
                 style="cursor: pointer; user-select: none;"
               >
-                <div
-                  style="display: flex; flex-direction: row;"
+                Course name
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  <p>
-                    Course name
-                  </p>
-                  <p
-                    style="opacity: 0;"
-                  >
-                    ▲
-                  </p>
-                </div>
+                  ▼
+                </span>
               </th>
               <th
                 style="cursor: pointer; user-select: none;"
               >
-                <div
-                  style="display: flex; flex-direction: row;"
+                Scope
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  <p>
-                    Scope
-                  </p>
-                  <p
-                    style="opacity: 0;"
-                  >
-                    ▲
-                  </p>
-                </div>
+                  ▼
+                </span>
               </th>
               <th
                 style="cursor: pointer; user-select: none;"
               >
-                <div
-                  style="display: flex; flex-direction: row;"
+                Educational level
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  <p>
-                    Educational level
-                  </p>
-                  <p
-                    style="opacity: 0;"
-                  >
-                    ▲
-                  </p>
-                </div>
+                  ▼
+                </span>
               </th>
               <th
                 style="cursor: pointer; user-select: none;"
               >
-                <div
-                  style="display: flex; flex-direction: row;"
+                Periods
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  <p>
-                    Periods
-                  </p>
-                  <p
-                    style="opacity: 0;"
-                  >
-                    ▲
-                  </p>
-                </div>
+                  ▼
+                </span>
               </th>
             </tr>
           </thead>
@@ -436,73 +391,53 @@ exports[`Component <SearchResultDisplay> and resolved cases search by a text pat
            result(s).
         </p>
         <table
-          class="table"
+          class="table table-responsive"
         >
           <thead>
             <tr>
               <th
                 style="cursor: pointer; user-select: none;"
               >
-                <div
-                  style="display: flex; flex-direction: row;"
+                Course code
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  <p>
-                    Course code
-                  </p>
-                  <p
-                    style="opacity: 0;"
-                  >
-                    ▲
-                  </p>
-                </div>
+                  ▼
+                </span>
               </th>
               <th
                 style="cursor: pointer; user-select: none;"
               >
-                <div
-                  style="display: flex; flex-direction: row;"
+                Course name
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  <p>
-                    Course name
-                  </p>
-                  <p
-                    style="opacity: 0;"
-                  >
-                    ▲
-                  </p>
-                </div>
+                  ▼
+                </span>
               </th>
               <th
                 style="cursor: pointer; user-select: none;"
               >
-                <div
-                  style="display: flex; flex-direction: row;"
+                Scope
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  <p>
-                    Scope
-                  </p>
-                  <p
-                    style="opacity: 0;"
-                  >
-                    ▲
-                  </p>
-                </div>
+                  ▼
+                </span>
               </th>
               <th
                 style="cursor: pointer; user-select: none;"
               >
-                <div
-                  style="display: flex; flex-direction: row;"
+                Educational level
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  <p>
-                    Educational level
-                  </p>
-                  <p
-                    style="opacity: 0;"
-                  >
-                    ▲
-                  </p>
-                </div>
+                  ▼
+                </span>
               </th>
             </tr>
           </thead>
