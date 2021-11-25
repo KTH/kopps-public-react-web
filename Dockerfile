@@ -18,11 +18,9 @@ COPY ["package-lock.json", "package-lock.json"]
 RUN apk stats && \
     chmod a+rx build.sh && \
     apk add --no-cache bash && \
-    apk add --no-cache --virtual .gyp-dependencies python make g++ util-linux && \
     npm install --development && \
     npm run build && \
     npm prune --production && \
-    apk del .gyp-dependencies && \
     apk stats
 
 EXPOSE 3000
