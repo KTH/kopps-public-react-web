@@ -57,5 +57,5 @@ handlebars.registerHelper('getAnmalningsKod', course => {
   return course.applicationCodes[0]
 })
 handlebars.registerHelper('getCourseLink', course => {
-  return `https://www.kth.se/student/kurser/kurs/${course.code}`
+  return `${config.proxyPrefixPath.uri}/kurs/${course.code}`
 })

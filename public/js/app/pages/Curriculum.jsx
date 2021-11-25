@@ -56,9 +56,10 @@ function CourseTableRows({ participations }) {
     const { course, applicationCodes, term, creditsPerPeriod } = participation
     const { courseCode, title, credits, creditUnitAbbr, comment } = course
     const currentTerm = getCurrentTerm()
+    const config = require('../../../../server/configuration').server
     const courseNameCellData = (
       <>
-        <a href={`https://www.kth.se/student/kurser/kurs/${courseCode}`}>{`${courseCode} ${title}`}</a>
+        <a href={`${config.proxyPrefixPath.uri}/kurs/${courseCode}`}>{`${courseCode} ${title}`}</a>
         {comment && <b className="course-comment">{comment}</b>}
       </>
     )
