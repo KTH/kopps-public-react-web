@@ -71,7 +71,7 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, progr
   log.info('Fetching programme from KOPPs API, programmeCode:', programmeCode)
 
   const programme = await koppsApi.getProgramme(programmeCode, lang)
-  if (programme.statusCode !== 200) {
+  if (!programme) {
     log.error('Failed to fetch from KOPPs api, programmeCode:', programmeCode)
     return
   }
