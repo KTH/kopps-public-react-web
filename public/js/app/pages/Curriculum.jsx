@@ -17,7 +17,7 @@ import { formatLongTerm, getCurrentTerm } from '../../../../domain/term'
 import { format as formatAcademicYear, calculate as calculateStartTerm } from '../../../../domain/academicYear'
 import { ELECTIVE_CONDITIONS } from '../../../../domain/curriculum'
 import { ORDINARY_PERIODS } from '../../../../domain/periods'
-import { programSyllabusLink, programmeWebLink } from '../util/links'
+import { courseLink, programSyllabusLink, programmeWebLink } from '../util/links'
 
 function CourseTablePeriodCols({ language, creditsPerPeriod, courseCode }) {
   return ORDINARY_PERIODS.map(period => {
@@ -52,14 +52,15 @@ function CourseTableRow({
 }
 
 function CourseTableRows({ participations }) {
+  const { language } = useStore()
+
   return participations.map(participation => {
     const { course, applicationCodes, term, creditsPerPeriod } = participation
     const { courseCode, title, credits, creditUnitAbbr, comment } = course
     const currentTerm = getCurrentTerm()
-    const config = require('../../../../server/configuration').server
     const courseNameCellData = (
       <>
-        <a href={`${config.proxyPrefixPath.uri}/kurs/${courseCode}`}>{`${courseCode} ${title}`}</a>
+        <a href={courseLink(courseCode, language)}>{`${courseCode} ${title}`}</a>
         {comment && <b className="course-comment">{comment}</b>}
       </>
     )
