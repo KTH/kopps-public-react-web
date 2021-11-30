@@ -122,7 +122,7 @@ const getCourses = async ({ departmentCode, lang = 'sv' }) => {
     const response = await client.getAsync({ uri, useCache: false })
     if (response.statusCode !== 200) {
       const error = new Error(
-        `Response from KOPPS API calling /api/kopps/v2/courses/{departmentCode}.{format} with ${departmentCode}`
+        `Failed response from KOPPS API calling /api/kopps/v2/courses/{departmentCode}.{format} with ${departmentCode}`
       )
       error.statusCode = response.statusCode
       throw error
@@ -137,9 +137,17 @@ const getCourses = async ({ departmentCode, lang = 'sv' }) => {
 const getProgramme = async (programmeCode, lang) => {
   const { client } = koppsApi.koppsApi
   const uri = `${slashEndedKoppsBase}programme/${programmeCode}?l=${lang}`
+  log.info(`Fetching ${uri}`)
   try {
-    const response = await client.getAsync({ uri, useCache: false })
-    return response.body
+    const { body, statusCode } = await client.getAsync({ uri, useCache: false })
+    if (statusCode !== 200) {
+      const error = new Error(`Failed KOPPS calling ${uri}`)
+      error.statusCode = statusCode
+      throw error
+    }
+    if (body) log.info(`Successfully got data from ${uri}`)
+
+    return body
   } catch (error) {
     log.error('Exception calling KOPPS API in koppsApi.getProgramme', { error })
     throw error

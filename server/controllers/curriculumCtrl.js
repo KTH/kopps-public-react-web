@@ -62,13 +62,21 @@ function _compareCurriculum(a, b) {
 }
 
 async function _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode, term, studyYear }) {
+  log.info('Starting to fill application store, for curriculum')
   applicationStore.setLanguage(lang)
   applicationStore.setBrowserConfig(browserConfig)
   applicationStore.setProgrammeCode(programmeCode)
   applicationStore.setTerm(term)
   applicationStore.setStudyYear(studyYear)
+  log.info('Fetching programme from KOPPs API, programmeCode:', programmeCode)
 
   const programme = await koppsApi.getProgramme(programmeCode, lang)
+  if (!programme) {
+    log.error('Failed to fetch from KOPPs api, programmeCode:', programmeCode)
+    return
+  }
+  log.info('Successfully fetched programme from KOPPs API, programmeCode:', programmeCode)
+
   const { title: programmeName, owningSchoolCode, lengthInStudyYears } = programme
 
   applicationStore.setProgrammeName(programmeName)
@@ -109,10 +117,14 @@ async function getIndex(req, res, next) {
 
     const applicationStore = createStore('curriculum')
     await _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode, term, studyYear })
+    log.info('Curriculum store was filled in')
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
+    log.info('Curriculum store was compressed')
 
     const proxyPrefix = serverConfig.proxyPrefixPath.programme
-    const html = renderStaticPage({ applicationStore, location: req.url })
+    log.info('applicationStore', { applicationStore })
+
+    const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('site_name', lang)
 
     res.render('app/index', {
