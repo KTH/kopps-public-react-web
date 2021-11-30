@@ -105,7 +105,7 @@ function appFactory(ssrApplicationStore) {
         component={CourseSearch}
         layout={PageLayout}
         applicationStore={_initStore({
-          storeId: 'searchCourses',
+          storeId: '',
           applicationStore: ssrApplicationStore,
         })}
         createMenuData={applicationStore => ({ selectedId: 'searchAllCourses', ...getMenuData(applicationStore) })}

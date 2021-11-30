@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Col, Row } from 'reactstrap'
 import { PageHeading, Heading, LinkList, Link } from '@kth/kth-reactstrap/dist/components/studinfo'
+import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
 
 import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'
@@ -27,6 +28,7 @@ function DepartmentsLinkListResearch({ departments }) {
 
 function CurrentSchools() {
   const { currentSchoolsWithDepartments } = useStore()
+
   return (
     <>
       {currentSchoolsWithDepartments.map(school => (
@@ -35,6 +37,25 @@ function CurrentSchools() {
           <DepartmentsLinkListResearch departments={school.departments} />
         </Fragment>
       ))}
+    </>
+  )
+}
+
+function DeprecatedSchools() {
+  const { language, deprecatedSchoolsWithDepartments } = useStore()
+  const t = translate(language)
+  console.log(deprecatedSchoolsWithDepartments)
+  return (
+    <>
+      <h2>{t('departments_deprecated_schools')}</h2>
+      <CollapseDetails title={t('departments_deprecated_schools_collapsible')}>
+        {deprecatedSchoolsWithDepartments.map(school => (
+          <Fragment key={school.name}>
+            <Heading size="h3" text={school.name} />
+            <DepartmentsLinkListResearch departments={school.departments} />
+          </Fragment>
+        ))}
+      </CollapseDetails>
     </>
   )
 }
@@ -53,6 +74,7 @@ function ThirdCycleDepartmentsList() {
         <Col>
           <Article classNames={['paragraphs']}>
             <CurrentSchools />
+            <DeprecatedSchools />
           </Article>
         </Col>
       </Row>

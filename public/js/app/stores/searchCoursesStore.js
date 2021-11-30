@@ -49,6 +49,14 @@ function setSchoolsWithDepartments(schoolsWithDepartments) {
   //   },]
 }
 
+function setCurrentSchoolsWithDepartments(currentSchoolsWithDepartments) {
+  this.currentSchoolsWithDepartments = currentSchoolsWithDepartments
+}
+
+function setDeprecatedSchoolsWithDepartments(deprecatedSchoolsWithDepartments) {
+  this.deprecatedSchoolsWithDepartments = deprecatedSchoolsWithDepartments
+}
+
 function setDepartmentCodeOrPrefix(departmentCodeOrPrefix) {
   this.departmentCodeOrPrefix = departmentCodeOrPrefix || ''
 }
@@ -113,6 +121,28 @@ const searchCoursesStore = {
    * @property {[]} schoolsWithDepartments
    */
   schoolsWithDepartments: [],
+
+  /**
+   * @method
+   * @param {[]} currentSchoolsWithDepartments
+   */
+  setCurrentSchoolsWithDepartments,
+
+  /**
+   * @property {[]} currentSchoolsWithDepartments
+   */
+  currentSchoolsWithDepartments: [],
+
+  /**
+   * @method
+   * @param {[]} deprecatedSchoolsWithDepartments
+   */
+  setDeprecatedSchoolsWithDepartments,
+
+  /**
+   * @property {[]} deprecatedSchoolsWithDepartments
+   */
+  deprecatedSchoolsWithDepartments: [],
 }
 
 export default searchCoursesStore

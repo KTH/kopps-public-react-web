@@ -10,7 +10,7 @@ const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
 const koppsApi = require('../kopps/koppsApi')
 const { stringifyKoppsSearchParams } = require('../../domain/searchParams')
-const { compareSchools } = require('../../domain/schools')
+const { compareSchools, filterOutDeprecatedSchools } = require('../../domain/schools')
 
 async function searchThirdCycleCourses(req, res, next) {
   try {
@@ -55,6 +55,14 @@ async function _fillApplicationStoreWithAllSchools({ applicationStore, lang }) {
     lang,
   }
   const schoolsWithDepartments = await koppsApi.listSchoolsWithDepartments(params)
+  const { currentSchoolsWithDepartments, deprecatedSchoolsWithDepartments } = filterOutDeprecatedSchools(
+    schoolsWithDepartments,
+    lang
+  )
+  deprecatedSchoolsWithDepartments.sort(compareSchools)
+  currentSchoolsWithDepartments.sort(compareSchools)
+  applicationStore.setCurrentSchoolsWithDepartments(currentSchoolsWithDepartments)
+  applicationStore.setDeprecatedSchoolsWithDepartments(deprecatedSchoolsWithDepartments)
   schoolsWithDepartments.sort(compareSchools)
   applicationStore.setSchoolsWithDepartments(schoolsWithDepartments)
 }
