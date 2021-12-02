@@ -59,7 +59,7 @@ function SearchDepartments({ onChange }) {
             </optgroup>
           ))}
           <option key="deprecated-schools" className="form-control-label">
-            {t('departments_deprecated_schools_collapsible')}
+            {t('departments_deprecated_schools')}
           </option>
           {deprecatedSchoolsWithDepartments.map(({ departmentPrefix, name: schoolName, departments }) => (
             <optgroup label={schoolName} key={schoolName}>
