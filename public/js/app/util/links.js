@@ -12,8 +12,9 @@ function parentThirdCycleStudyLink(language) {
   return pageLink(`/utbildning/forskarutbildning/`, language)
 }
 
-function courseLink(courseCode, language) {
-  return pageLink(`/student/kurser/kurs/${courseCode}`, language) // outside link
+function courseLink(courseCode, language, term) {
+  const startTerm = term ? `?startterm=${term}` : ''
+  return pageLink(`/student/kurser/kurs/${courseCode}${startTerm}`, language) // outside link
 }
 
 function programTermLink(programmeCode, term, studyYear, language) {

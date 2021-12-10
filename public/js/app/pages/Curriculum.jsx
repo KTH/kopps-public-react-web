@@ -60,7 +60,7 @@ function CourseTableRows({ participations }) {
     const currentTerm = getCurrentTerm()
     const courseNameCellData = (
       <>
-        <a href={courseLink(courseCode, language)}>{`${courseCode} ${title}`}</a>
+        <a href={courseLink(courseCode, language, term)}>{`${courseCode} ${title}`}</a>
         {comment && <b className="course-comment">{comment}</b>}
       </>
     )

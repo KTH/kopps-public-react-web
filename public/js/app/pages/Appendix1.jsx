@@ -16,19 +16,23 @@ import FooterContent from '../components/FooterContent'
 import KoppsData from '../components/KoppsData'
 import Sidebar from '../components/Sidebar'
 
+import { courseLink } from '../util/links'
+
 function CourseListTableRow({ course }) {
+  const { term } = useStore()
   const { language } = useStore()
   const t = translate(language)
   const { code, name, comment, credits, creditAbbr, level } = course
-  const languageParam = language === 'en' ? '?l=en' : ''
-  const courseLink = `https://www.kth.se/student/kurser/kurs/${code}${languageParam}`
+  //const languageParam = language === 'en' ? '?l=en' : ''
+  //const courseLink = `https://www.kth.se/student/kurser/kurs/${code}${languageParam}`
+  const courselink = courseLink(code, language, term)
   return (
     <tr>
       <td className="code">
-        <a href={courseLink}>{code}</a>
+        <a href={courselink}>{code}</a>
       </td>
       <td className="name">
-        <a href={courseLink}>{name}</a>
+        <a href={courselink}>{name}</a>
         {comment && <b className="course-comment">{comment}</b>}
       </td>
       <td className="credits">{`${formatCredits(language, credits)} ${creditAbbr}`}</td>
@@ -89,7 +93,7 @@ CourseListTable.defaultProps = {
 }
 
 function ElectiveCondition({ studyYear, electiveCondition, code }) {
-  const { language, studyYearCourses, creditUnitAbbr } = useStore()
+  const { language, studyYearCourses, creditUnitAbbr, term } = useStore()
   const t = translate(language)
   if (!studyYearCourses[code] || !studyYearCourses[code][studyYear]) return null
   const electiveConditionCourses = studyYearCourses[code][studyYear]

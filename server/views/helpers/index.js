@@ -63,7 +63,6 @@ handlebars.registerHelper('getCourseLink', course => {
 handlebars.registerHelper('getQueryParams', (queryParams, course) => {
   const nextTerm = getCurrentTerm(new Date(course.startDate))
   return queryParams.start && queryParams.start !== 'current'
-  ? `?starttermin=${queryParams.start}`
-  : `?starttermin=${nextTerm}`  
+    ? `?startterm=${queryParams.start}`
+    : `?startterm=${nextTerm}`
 })
-
