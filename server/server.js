@@ -230,6 +230,18 @@ server.use('/', embeddedPageRoute.getRouter())
 
 // App routes
 const appRoute = AppRouter()
+
+appRoute.get('redirect.pdf_program_plan', proxyPrefixPath.programme + '/:programmeCodeAndTertm.pdf', (req, res) => {
+  const { programmeCodeAndTertm } = req.params
+  const { programSyllabusPdfPath } = config
+  if (!programmeCodeAndTertm) {
+    const error = new Error('Malformed programme code and term: ', programmeCodeAndTertm)
+    error.statusCode = 404
+    throw error
+  }
+  res.redirect(301, `${programSyllabusPdfPath.uri}/${programmeCodeAndTertm}.pdf`)
+})
+
 appRoute.get('system.ready', proxyPrefixPath.uri + '/_ready', Public.getReady)
 appRoute.get('example', proxyPrefixPath.uri + '/example', Public.getIndex)
 appRoute.get('public.studyhandbook', proxyPrefixPath.studyHandbook, StudyHandBook.getStudyBook)
@@ -430,6 +442,7 @@ appRoute.get(
   proxyPrefixPath.literatureList + '/:term([0-9]{4}[1-2])/:school([A-Z]+)',
   LiteratureList.getLiteratureList
 )
+
 server.use('/', appRoute.getRouter())
 
 // Not found etc
