@@ -4,6 +4,7 @@ const registerHeaderContentHelper = require('kth-node-web-common/lib/handlebars/
 const log = require('kth-node-log')
 const config = require('../../configuration').server
 const packageFile = require('../../../package.json')
+const { getCurrentTerm } = require('../../../domain/term.js')
 
 let { version } = packageFile
 
@@ -59,3 +60,10 @@ handlebars.registerHelper('getAnmalningsKod', course => {
 handlebars.registerHelper('getCourseLink', course => {
   return `${config.proxyPrefixPath.uri}/kurs/${course.code}`
 })
+handlebars.registerHelper('getQueryParams', (queryParams, course) => {
+  const nextTerm = getCurrentTerm(new Date(course.startDate))
+  return queryParams.start && queryParams.start !== 'current'
+  ? `?starttermin=${queryParams.start}`
+  : `?starttermin=${nextTerm}`  
+})
+

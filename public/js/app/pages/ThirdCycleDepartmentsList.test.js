@@ -135,8 +135,10 @@ describe('Render component ThirdCycleDepartmentsList and check its menu, content
   test('check all links on the page in English', () => {
     render(<ThirdCycleDepartmentsListWithLayout lang="en" />)
 
-    const h2Header = screen.getByRole('heading', { level: 2 })
-    expect(h2Header).toHaveTextContent('School')
+    const h2Header = screen.getAllByRole('heading', { level: 2 })
+    expect(h2Header.length).toBe(2)
+    expect(h2Header[0]).toHaveTextContent('School')
+    expect(h2Header[1]).toHaveTextContent('Older Schools')
 
     const links = screen.getAllByRole('link')
     expect(links.length).toBe(6)
@@ -160,8 +162,10 @@ describe('Render component ThirdCycleDepartmentsList and check its menu, content
   test('check all links on the page in Swedish', () => {
     render(<ThirdCycleDepartmentsListWithLayout lang="sv" />)
 
-    const h2Header = screen.getByRole('heading', { level: 2 })
-    expect(h2Header).toHaveTextContent('Skola')
+    const h2Header = screen.getAllByRole('heading', { level: 2 })
+    expect(h2Header.length).toBe(2)
+    expect(h2Header[0]).toHaveTextContent('Skola')
+    expect(h2Header[1]).toHaveTextContent('Äldre skolor')
 
     const links = screen.getAllByRole('link')
     expect(links.length).toBe(6)

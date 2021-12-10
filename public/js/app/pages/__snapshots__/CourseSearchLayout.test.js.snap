@@ -576,6 +576,11 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
                             >
                               All schools
                             </option>
+                            <option
+                              class="form-control-label"
+                            >
+                              Older Schools
+                            </option>
                           </select>
                         </fieldset>
                       </div>
@@ -1217,6 +1222,11 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
                               value=""
                             >
                               Samtliga skolor
+                            </option>
+                            <option
+                              class="form-control-label"
+                            >
+                              Äldre skolor
                             </option>
                           </select>
                         </fieldset>

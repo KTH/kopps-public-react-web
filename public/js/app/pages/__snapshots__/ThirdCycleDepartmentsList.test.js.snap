@@ -104,6 +104,20 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
                   </a>
                 </li>
               </ul>
+              <h2>
+                Older Schools
+              </h2>
+              <details
+                class=""
+              >
+                <summary
+                  aria-label=""
+                  class="white"
+                >
+                  Courses older schools
+                </summary>
+                <div />
+              </details>
             </article>
           </div>
         </div>
@@ -245,6 +259,20 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
                   </a>
                 </li>
               </ul>
+              <h2>
+                Äldre skolor
+              </h2>
+              <details
+                class=""
+              >
+                <summary
+                  aria-label=""
+                  class="white"
+                >
+                  Kurser äldre skolor
+                </summary>
+                <div />
+              </details>
             </article>
           </div>
         </div>

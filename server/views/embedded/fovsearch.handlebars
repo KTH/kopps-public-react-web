@@ -89,9 +89,9 @@
         <tbody>
             {{#each fovCoursesResults}}
             <tr>
-                <td><a href="{{getCourseLink this}}">{{this.code}}</a></td>
+                <td><a href="{{getCourseLink this}}{{getQueryParams ../queryParams this}}">{{this.code}}</a></td>
                 <td>
-                    <a href="{{getCourseLink this}}">{{this.title.sv}}</a>
+                    <a href="{{getCourseLink this}}{{getQueryParams ../queryParams this}}">{{this.title.sv}}</a>
                 </td>
                 <td>{{this.startDate}}</td>
                 <td class="text-right">{{getSwedishFormattedCredits this}}</td>
