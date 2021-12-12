@@ -13,18 +13,19 @@ import i18n from '../../../../i18n'
 import { courseLink } from '../util/links'
 import { formatShortTerm } from '../../../../domain/term'
 
-function codeCell(code) {
+function codeCell(code, startTerm) {
   const { language } = useStore()
+
   return {
-    content: <Link href={courseLink(code, language)}>{code}</Link>,
+    content: <Link href={courseLink(code, language, startTerm)}>{code}</Link>,
     sortKey: code,
   }
 }
 
-function titleCell(code, title) {
+function titleCell(code, title, startTerm) {
   const { language } = useStore()
   return {
-    content: <Link href={courseLink(code, language)}>{title}</Link>,
+    content: <Link href={courseLink(code, language, startTerm)}>{title}</Link>,
     sortKey: title,
   }
 }
@@ -68,8 +69,8 @@ function sortAndParseByCourseCode(courses, languageIndex, sliceUntilNum) {
       endTerm,
     }) =>
       [
-        codeCell(code),
-        titleCell(code, title),
+        codeCell(code, startTerm),
+        titleCell(code, title, startTerm),
         `${credits} ${creditUnitAbbr}`,
         bigSearch[level] || '',
         periodsStr(startPeriod, startTerm, endPeriod, endTerm) || '',
