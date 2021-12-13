@@ -86,14 +86,14 @@ exports[`Component <SearchTableView> for MIXED types of courses creates a table 
             <tr>
               <td>
                 <a
-                  href="/student/kurser/kurs/AF233X"
+                  href="/student/kurser/kurs/AF233X?startterm=20212"
                 >
                   AF233X
                 </a>
               </td>
               <td>
                 <a
-                  href="/student/kurser/kurs/AF233X"
+                  href="/student/kurser/kurs/AF233X?startterm=20212"
                 >
                   Examensarbete inom byggnadsmateriallära, avancerad nivå
                 </a>
@@ -111,14 +111,14 @@ exports[`Component <SearchTableView> for MIXED types of courses creates a table 
             <tr>
               <td>
                 <a
-                  href="/student/kurser/kurs/AF2402"
+                  href="/student/kurser/kurs/AF2402?startterm=20212"
                 >
                   AF2402
                 </a>
               </td>
               <td>
                 <a
-                  href="/student/kurser/kurs/AF2402"
+                  href="/student/kurser/kurs/AF2402?startterm=20212"
                 >
                   Akustik och brand
                 </a>
@@ -136,14 +136,14 @@ exports[`Component <SearchTableView> for MIXED types of courses creates a table 
             <tr>
               <td>
                 <a
-                  href="/student/kurser/kurs/AH2905"
+                  href="/student/kurser/kurs/AH2905?startterm=20212"
                 >
                   AH2905
                 </a>
               </td>
               <td>
                 <a
-                  href="/student/kurser/kurs/AH2905"
+                  href="/student/kurser/kurs/AH2905?startterm=20212"
                 >
                   Avancerad analys och design av vägbeläggningar
                 </a>
@@ -182,14 +182,14 @@ exports[`Component <SearchTableView> for MIXED types of courses creates a table 
             <tr>
               <td>
                 <a
-                  href="/student/kurser/kurs/FAH3904"
+                  href="/student/kurser/kurs/FAH3904?startterm=20212"
                 >
                   FAH3904
                 </a>
               </td>
               <td>
                 <a
-                  href="/student/kurser/kurs/FAH3904"
+                  href="/student/kurser/kurs/FAH3904?startterm=20212"
                 >
                   Introduktion till asfaltskemin
                 </a>
@@ -298,14 +298,14 @@ exports[`Component <SearchTableView> for MIXED types of courses creates a table 
             <tr>
               <td>
                 <a
-                  href="/student/kurser/kurs/AF233X?l=en"
+                  href="/student/kurser/kurs/AF233X?startterm=20212?l=en"
                 >
                   AF233X
                 </a>
               </td>
               <td>
                 <a
-                  href="/student/kurser/kurs/AF233X?l=en"
+                  href="/student/kurser/kurs/AF233X?startterm=20212?l=en"
                 >
                   Degree Project in Building Materials, Second Cycle
                 </a>
@@ -323,14 +323,14 @@ exports[`Component <SearchTableView> for MIXED types of courses creates a table 
             <tr>
               <td>
                 <a
-                  href="/student/kurser/kurs/AF2402?l=en"
+                  href="/student/kurser/kurs/AF2402?startterm=20212?l=en"
                 >
                   AF2402
                 </a>
               </td>
               <td>
                 <a
-                  href="/student/kurser/kurs/AF2402?l=en"
+                  href="/student/kurser/kurs/AF2402?startterm=20212?l=en"
                 >
                   Acoustics and Fire
                 </a>
@@ -348,14 +348,14 @@ exports[`Component <SearchTableView> for MIXED types of courses creates a table 
             <tr>
               <td>
                 <a
-                  href="/student/kurser/kurs/AH2905?l=en"
+                  href="/student/kurser/kurs/AH2905?startterm=20212?l=en"
                 >
                   AH2905
                 </a>
               </td>
               <td>
                 <a
-                  href="/student/kurser/kurs/AH2905?l=en"
+                  href="/student/kurser/kurs/AH2905?startterm=20212?l=en"
                 >
                   Advanced Pavement Engineering Analysis and Design
                 </a>
@@ -394,14 +394,14 @@ exports[`Component <SearchTableView> for MIXED types of courses creates a table 
             <tr>
               <td>
                 <a
-                  href="/student/kurser/kurs/FAH3904?l=en"
+                  href="/student/kurser/kurs/FAH3904?startterm=20212?l=en"
                 >
                   FAH3904
                 </a>
               </td>
               <td>
                 <a
-                  href="/student/kurser/kurs/FAH3904?l=en"
+                  href="/student/kurser/kurs/FAH3904?startterm=20212?l=en"
                 >
                   Introduction to Asphalt Chemistry
                 </a>
