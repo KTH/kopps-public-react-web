@@ -1,8 +1,17 @@
-function setErrorInProgramVersion(applicationStore, statusCode) {
+const log = require('kth-node-log')
+
+function setErrorKoppsCallingUri(uri) {
+  const error = new Error(`Failed KOPPS calling ${uri}`)
+  log.debug(error)
+  return error
+}
+
+function setErrorInProgramVersion() {
   const error = new Error('Exception calling KOPPS API in koppsApi.getStudyProgrammeVersion')
-  error.statusCode = statusCode
-  throw error
+  log.debug(error)
+  return error
 }
 module.exports = {
   setErrorInProgramVersion,
+  setErrorKoppsCallingUri,
 }

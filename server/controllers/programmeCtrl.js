@@ -16,7 +16,10 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, progr
   applicationStore.setBrowserConfig(browserConfig)
   applicationStore.setProgrammeCode(programmeCode)
 
-  const programme = await koppsApi.getProgramme(programmeCode, lang)
+  const { programme, statusCode } = await koppsApi.getProgramme(programmeCode, lang)
+  applicationStore.setStatusCode(statusCode)
+  if (statusCode !== 200) return // react NotFound
+
   const { title: programmeName, lengthInStudyYears } = programme
 
   const programmeTerms = filterOutInvalidTerms(programme)

@@ -16,8 +16,11 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, depar
   applicationStore.setLanguage(lang)
   applicationStore.setBrowserConfig(browserConfig)
 
-  const departmentCourses = await koppsApi.getCourses({ departmentCode, lang })
-  const { department: departmentName, courses } = departmentCourses
+  const { departmentCourses, statusCode } = await koppsApi.getCourses({ departmentCode, lang })
+  applicationStore.setStatusCode(statusCode)
+  if (statusCode !== 200) return
+
+  const { department: departmentName = '', courses } = departmentCourses
   applicationStore.setDepartmentName(departmentName)
   applicationStore.setDepartmentCourses(courses)
 
@@ -42,7 +45,6 @@ async function getIndex(req, res, next) {
     const proxyPrefix = serverConfig.proxyPrefixPath.department
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('site_name', lang)
-
     res.render('app/index', {
       html,
       title,
