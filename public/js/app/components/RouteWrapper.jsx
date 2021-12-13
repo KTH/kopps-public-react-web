@@ -3,6 +3,7 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { MobxStoreProvider } from '../mobx'
+import NotFound from '../pages/NotFound'
 
 function RouteWrapper({
   createBreadcrumbs,
@@ -14,13 +15,14 @@ function RouteWrapper({
 }) {
   const menuData = createMenuData(applicationStore)
   const breadcrumbs = createBreadcrumbs(applicationStore)
+  const { statusCode } = applicationStore
   return (
     <MobxStoreProvider initCallback={() => applicationStore}>
       <Route
         {...rest}
         render={() => (
           <Layout breadcrumbs={breadcrumbs} menuData={menuData}>
-            <Component />
+            {statusCode === 404 ? <NotFound /> : <Component />}
           </Layout>
         )}
       />

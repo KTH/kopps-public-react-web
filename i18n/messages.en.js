@@ -77,6 +77,9 @@ const messages = {
       'Pellentesque hendrerit pellentesque blandit. Duis dictum metus quis sem egestas imperdiet. Proin a enim vitae mi dapibus vulputate id vel lectus. Nullam eu dolor vitae neque malesuada lacinia. Donec interdum ligula eget massa convallis, ac egestas eros sodales. In ac sem nibh. Pellentesque ut sodales elit.',
     main_page_footer_example:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+    main_page_not_found_page_header: 'The page could not be found',
+    main_page_not_found_page_paragraph:
+      'You have given a web address or clicked on a link to a webpage that do not exist on the KTH website. Please contact the person responsible for the website if you followed a broken link from a page that belongs to KTH. Add the website address to the page with the broken link and the broken url.',
 
     main_menu_programmes_list: 'Courses Part of Programme',
     programmes_list_header: 'Courses Part of Programme',
