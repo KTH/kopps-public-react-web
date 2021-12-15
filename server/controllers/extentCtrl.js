@@ -11,25 +11,29 @@ const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
 const { programmeLink } = require('../../domain/links')
 
-const { setErrorInProgramVersion } = require('../utils/errors')
-
 async function _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode, term }) {
   applicationStore.setLanguage(lang)
   applicationStore.setBrowserConfig(browserConfig)
   applicationStore.setProgrammeCode(programmeCode)
   applicationStore.setTerm(term)
 
-  const programme = await koppsApi.getProgramme(programmeCode, lang)
+  const { programme, statusCode } = await koppsApi.getProgramme(programmeCode, lang)
+  applicationStore.setStatusCode(statusCode)
+  if (statusCode !== 200) return // react NotFound
+
   const { title: programmeName, lengthInStudyYears } = programme
   applicationStore.setProgrammeName(programmeName)
   applicationStore.setLengthInStudyYears(lengthInStudyYears)
 
-  const response = await koppsApi.getStudyProgrammeVersion(programmeCode, term, lang)
-  if (response.statusCode !== 200) {
-    setErrorInProgramVersion(applicationStore, response.statusCode)
-    return
-  }
-  const studyProgramme = response.body
+  const { studyProgramme, statusCode: secondStatusCode } = await koppsApi.getStudyProgrammeVersion(
+    programmeCode,
+    term,
+    lang
+  )
+
+  applicationStore.setStatusCode(secondStatusCode)
+  if (secondStatusCode !== 200) return // react NotFound
+
   applicationStore.setStudyProgramme(studyProgramme)
 
   const departmentBreadCrumbItem = {
@@ -51,7 +55,7 @@ async function getIndex(req, res, next) {
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
     const proxyPrefix = serverConfig.proxyPrefixPath.programme
-    const html = renderStaticPage({ applicationStore, location: req.url })
+    const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('site_name', lang)
 
     res.render('app/index', {

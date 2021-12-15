@@ -16,6 +16,10 @@ function setBreadcrumbsDynamicItems(items) {
   this.breadcrumbsDynamicItems = items
 }
 
+function setStatusCode(statusCode) {
+  this.statusCode = statusCode
+}
+
 const commonStore = {
   /**
    * @property {object} browserConfig
@@ -26,6 +30,15 @@ const commonStore = {
    * @param {object} config
    */
   setBrowserConfig,
+  /**
+   * @property {number} statusCode
+   */
+  statusCode: null,
+  /**
+   * @method
+   * @param {number} statusCode
+   */
+  setStatusCode,
   /**
    * @property {string} language
    * @property {number} languageIndex

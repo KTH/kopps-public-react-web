@@ -11,8 +11,6 @@ const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
 const { programmeLink } = require('../../domain/links')
 
-const { setErrorInProgramVersion } = require('../utils/errors')
-
 function parseSpecializations(curriculums) {
   return curriculums
     .filter(curriculum => curriculum.programmeSpecialization)
@@ -35,20 +33,28 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, progr
   applicationStore.setProgrammeCode(programmeCode)
   applicationStore.setTerm(term)
 
-  const programme = await koppsApi.getProgramme(programmeCode, lang)
+  const { programme, statusCode } = await koppsApi.getProgramme(programmeCode, lang)
+  applicationStore.setStatusCode(statusCode)
+  if (statusCode !== 200) return // react NotFound
+
   const { title: programmeName, lengthInStudyYears } = programme
   applicationStore.setProgrammeName(programmeName)
   applicationStore.setLengthInStudyYears(lengthInStudyYears)
 
-  const response = await koppsApi.getStudyProgrammeVersion(programmeCode, term, lang)
-  if (response.statusCode !== 200) {
-    setErrorInProgramVersion(applicationStore, response.statusCode)
-    return
-  }
+  const { studyProgramme, statusCode: secondStatusCode } = await koppsApi.getStudyProgrammeVersion(
+    programmeCode,
+    term,
+    lang
+  )
 
-  const studyProgramme = response.body
+  applicationStore.setStatusCode(secondStatusCode)
+  if (secondStatusCode !== 200) return // react NotFound
+
   const { id: studyProgrammeId } = studyProgramme
-  const curriculums = await koppsApi.listCurriculums(studyProgrammeId, lang)
+  const { curriculums, statusCode: thirdStatusCode } = await koppsApi.listCurriculums(studyProgrammeId, lang)
+  applicationStore.setStatusCode(thirdStatusCode)
+  if (thirdStatusCode !== 200) return // react NotFound
+
   const specializations = parseSpecializations(curriculums)
   applicationStore.setSpecializations(specializations)
 
@@ -71,7 +77,7 @@ async function getIndex(req, res, next) {
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
     const proxyPrefix = serverConfig.proxyPrefixPath.programme
-    const html = renderStaticPage({ applicationStore, location: req.url })
+    const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('site_name', lang)
 
     res.render('app/index', {

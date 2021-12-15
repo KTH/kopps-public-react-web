@@ -4,6 +4,7 @@ const log = require('kth-node-log')
 const redis = require('kth-node-redis')
 const connections = require('kth-node-api-call').Connections
 const config = require('../configuration').server
+const { setErrorKoppsCallingUri, setErrorInProgramVersion } = require('../utils/errors')
 
 // http client setup
 // TODO: timeout setting here seems to be ignored, and defaults to 5 seconds.
@@ -114,20 +115,22 @@ const listSchoolsWithDepartments = async ({ departmentCriteria, listForActiveCou
     throw error
   }
 }
-
+// use react 404
 const getCourses = async ({ departmentCode, lang = 'sv' }) => {
   const { client } = koppsApi.koppsApi
   const uri = `${slashEndedKoppsBase}courses/${departmentCode}.json?l=${lang}`
   try {
-    const response = await client.getAsync({ uri, useCache: false })
-    if (response.statusCode !== 200) {
-      const error = new Error(
+    const { body, statusCode } = await client.getAsync({ uri, useCache: false })
+    let errorMessage = null
+
+    if (statusCode !== 200) {
+      errorMessage = new Error(
         `Failed response from KOPPS API calling /api/kopps/v2/courses/{departmentCode}.{format} with ${departmentCode}`
       )
-      error.statusCode = response.statusCode
-      throw error
+      log.debug(errorMessage)
     }
-    return response.body
+
+    return { departmentCourses: body, errorMessage, statusCode }
   } catch (error) {
     log.error('Exception calling KOPPS API in koppsApi.getCourses', { error })
     throw error
@@ -140,14 +143,11 @@ const getProgramme = async (programmeCode, lang) => {
   log.info(`Fetching ${uri}`)
   try {
     const { body, statusCode } = await client.getAsync({ uri, useCache: false })
-    if (statusCode !== 200) {
-      const error = new Error(`Failed KOPPS calling ${uri}`)
-      error.statusCode = statusCode
-      throw error
-    }
+    const errorMessage = statusCode !== 200 ? setErrorKoppsCallingUri(uri) : null
+
     if (body) log.info(`Successfully got data from ${uri}`)
 
-    return body
+    return { programme: body, errorMessage, statusCode }
   } catch (error) {
     log.error('Exception calling KOPPS API in koppsApi.getProgramme', { error })
     throw error
@@ -172,7 +172,12 @@ const getStudyProgrammeVersion = async (programmeCode, validFromTerm, lang) => {
   const { client } = koppsApi.koppsApi
   const uri = `${slashEndedKoppsBase}programmes/${programmeCode}/studyprogramme/version/${validFromTerm}?l=${lang}`
   try {
-    const response = await client.getAsync({ uri, useCache: false })
+    const { body, statusCode } = await client.getAsync({ uri, useCache: false })
+    const errorMessage = statusCode !== 200 ? setErrorInProgramVersion() : null
+
+    if (body) log.info(`Successfully got data from ${uri}`)
+
+    return { studyProgramme: body, errorMessage, statusCode }
     return response
   } catch (error) {
     log.error('Exception calling KOPPS API in koppsApi.getStudyProgrammeVersion', { error })
@@ -184,8 +189,11 @@ const listCurriculums = async (studyProgrammeVersionId, lang) => {
   const { client } = koppsApi.koppsApi
   const uri = `${slashEndedKoppsBase}studyprogramme/${studyProgrammeVersionId}/curriculums?l=${lang}`
   try {
-    const response = await client.getAsync({ uri, useCache: false })
-    return response.body
+    const { body, statusCode } = await client.getAsync({ uri, useCache: false })
+    const errorMessage = statusCode !== 200 ? setErrorKoppsCallingUri(uri) : null
+
+    if (body) log.info(`Successfully got data from ${uri}`)
+    return { curriculums: body, errorMessage, statusCode }
   } catch (error) {
     log.error('Exception calling KOPPS API in koppsApi.listCurriculums', { error })
     throw error

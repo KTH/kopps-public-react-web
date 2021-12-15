@@ -75,8 +75,11 @@ async function _fillCoursesApplicationStoreOnServerSide({ applicationStore, lang
   applicationStore.setLanguage(lang)
   applicationStore.setBrowserConfig(browserConfig)
 
-  const departmentCourses = await koppsApi.getCourses({ departmentCode, lang })
-  const { department: departmentName, courses } = departmentCourses
+  const { departmentCourses, statusCode } = await koppsApi.getCourses({ departmentCode, lang })
+  applicationStore.setStatusCode(statusCode)
+  if (statusCode !== 200) return
+
+  const { department: departmentName = '', courses } = departmentCourses
   applicationStore.setDepartmentName(departmentName)
   applicationStore.setDepartmentCourses(getOnlyThirdCycleCourses(courses, lang))
 

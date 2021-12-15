@@ -70,7 +70,10 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, progr
   applicationStore.setStudyYear(studyYear)
   log.info('Fetching programme from KOPPs API, programmeCode:', programmeCode)
 
-  const programme = await koppsApi.getProgramme(programmeCode, lang)
+  const { programme, statusCode } = await koppsApi.getProgramme(programmeCode, lang)
+  applicationStore.setStatusCode(statusCode)
+  if (statusCode !== 200) return // react NotFound
+
   if (!programme) {
     log.error('Failed to fetch from KOPPs api, programmeCode:', programmeCode)
     return
@@ -83,15 +86,20 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, progr
   applicationStore.setOwningSchoolCode(owningSchoolCode)
   applicationStore.setLengthInStudyYears(lengthInStudyYears)
 
-  const response = await koppsApi.getStudyProgrammeVersion(programmeCode, term, lang)
-  if (response.statusCode !== 200) {
-    _setError(applicationStore, response.statusCode)
+  const { studyProgramme, statusCode: secondStatusCode } = await koppsApi.getStudyProgrammeVersion(
+    programmeCode,
+    term,
+    lang
+  )
+  applicationStore.setStatusCode(secondStatusCode)
+  if (secondStatusCode !== 200) {
+    _setError(applicationStore, secondStatusCode)
     return
-  }
-  const studyProgramme = response.body
+  } // react NotFound
+
   const { id: studyProgrammeId } = studyProgramme
 
-  const curriculums = await koppsApi.listCurriculums(studyProgrammeId, lang)
+  const { curriculums, statusCode: thirdStatusCode } = await koppsApi.listCurriculums(studyProgrammeId, lang)
   const curriculumsWithCourseRounds = await _addCourseRounds(curriculums, programmeCode, term, studyYear, lang)
   applicationStore.setCurriculums(curriculumsWithCourseRounds)
   const curriculumInfos = curriculumsWithCourseRounds
