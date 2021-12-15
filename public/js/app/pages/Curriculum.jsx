@@ -58,9 +58,10 @@ function CourseTableRows({ participations }) {
     const { course, applicationCodes, term, creditsPerPeriod } = participation
     const { courseCode, title, credits, creditUnitAbbr, comment } = course
     const currentTerm = getCurrentTerm()
+    const periods = creditsPerPeriod.length
     const courseNameCellData = (
       <>
-        <a href={courseLink(courseCode, language, term)}>{`${courseCode} ${title}`}</a>
+        <a href={courseLink(courseCode, language, { periods: periods, term: term })}>{`${courseCode} ${title}`}</a>
         {comment && <b className="course-comment">{comment}</b>}
       </>
     )
