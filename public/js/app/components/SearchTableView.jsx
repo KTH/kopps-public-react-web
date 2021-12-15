@@ -17,7 +17,7 @@ function codeCell(code, startTerm) {
   const { language } = useStore()
 
   return {
-    content: <Link href={courseLink(code, language, startTerm)}>{code}</Link>,
+    content: <Link href={courseLink(code, language, { term: startTerm })}>{code}</Link>,
     sortKey: code,
   }
 }

@@ -319,7 +319,7 @@ exports[`Component <SearchResultDisplay> and resolved cases double search: by de
               </td>
               <td>
                 <a
-                  href="/student/kurser/kurs/AF2402?startterm=20212?l=en"
+                  href="/student/kurser/kurs/AF2402?l=en"
                 >
                   Acoustics and Fire
                 </a>
@@ -344,7 +344,7 @@ exports[`Component <SearchResultDisplay> and resolved cases double search: by de
               </td>
               <td>
                 <a
-                  href="/student/kurser/kurs/AH2905?startterm=20212?l=en"
+                  href="/student/kurser/kurs/AH2905?l=en"
                 >
                   Advanced Pavement Engineering Analysis and Design
                 </a>
