@@ -40,10 +40,25 @@ const messages = {
     template_try_me: 'Testa ut',
     template_button_works: 'Knappen fungerar!',
 
-    semester: {
-      1: 'VT',
-      2: 'HT',
-    },
+    course_credits: 'Omfattning',
+    course_scope: 'Omfattning',
+    course_scope_abbr: 'Omf.',
+
+    courses: 'Kurser',
+    courses_of_program: 'Kurser inom program',
+    courses_by_school: 'Kurser per skola',
+
+    course_code: 'Kurskod',
+    course_name: 'Kursnamn',
+    course_educational_level: 'Utbildningsnivå',
+    course_educational_level_abbr: 'Utbildningsnivå',
+
+    study_year: 'Årskurs',
+
+    third_cycle_courses_by_school: 'Forskarkurser per skola',
+
+    // TODO: MOVE TO kth-course-program-vocabulary
+
     general_number_as_word: {
       0: 'noll',
       1: 'ett',
@@ -56,7 +71,11 @@ const messages = {
       8: 'åtta',
       9: 'nio',
     },
-
+    semester: {
+      1: 'VT',
+      2: 'HT',
+    },
+    ///end///
     main_menu_aria_label: 'Undermeny',
     main_menu_student: 'Student på KTH',
     main_menu_study_at_kth: 'Utbildning',
@@ -65,7 +84,6 @@ const messages = {
     main_menu_shb: 'Studiehandboken 00/01 tom 07/08',
     main_menu_search_all: 'Sök kurs',
     main_menu_third_cycle_studies: 'Forskarutbildning',
-    main_menu_third_cycle_departments_list_header: 'Forskarkurser per skola',
     main_menu_third_cycle_courses_search: 'Sök forskarkurs',
 
     main_page_header_example: 'Exempel',
@@ -80,8 +98,6 @@ const messages = {
     main_page_not_found_page_header: 'Sidan kunde inte hittas',
     main_page_not_found_page_paragraph:
       'Du har angivit en adress eller klickat på en länk till en webbsida som inte finns på KTHs webbplats. Kontakta KTHs webbansvariga om du följde en felaktig länk från någon av KTHs webbsidor. Ange webbadress för sidan med den felaktiga länken och till vilken adress länken pekar.',
-    main_menu_programmes_list: 'Kurser inom program',
-    programmes_list_header: 'Kurser inom program',
     programmes_list_lead:
       'Välj program nedan för att få en översikt av de kurser och årskursindelning som utgör programmet.',
     programme_type: {
@@ -99,19 +115,11 @@ const messages = {
     programmes_admitted_until: 'antagna/kull t.o.m.',
     programmes_admitted_from: 'antagna/kull fr.o.m.',
     programmes_older: 'Program utan nyantagning',
-    main_menu_departments_list: 'Kurser per skola',
-    departments_list_header: 'Kurser per skola',
     departments_list_lead:
       'Här listas alla KTH:s aktiva kurser på samtliga utbildningsnivåer, uppdelat enligt respektive skolas organisation.',
     departments_deprecated_schools: 'Äldre skolor',
     departments_deprecated_schools_collapsible: 'Kurser äldre skolor',
-    department_courses: 'Kurser',
-    department_course_code: 'Kurskod',
-    department_course_name: 'Kursnamn',
-    department_course_credits: 'Omfattning',
-    department_course_educational_level: 'Utbildningsnivå',
     department_period_abbr: 'Perioder',
-    third_cycle_departments_list_header: 'Forskarkurser per skola',
     programme_study_years: 'Utbildningsplaner',
     programme_study_years_explanation:
       'Välj utbildningsplan. Oftast överensstämmer kull med den termin då studierna påbörjades vid programmet.',
@@ -119,7 +127,6 @@ const messages = {
     curriculums_missing_admission: 'Utbildningsplan saknas',
     curriculums_missing_admission_text: school =>
       `Den sökta utbildningsplanen kan inte hittas. För hjälp, kontakta utbildningskansliet för ${school}-skolan.`,
-    curriculums_admitted_year_long: 'Årskurs',
     curriculums_studyyear_explanation_1: studyYear =>
       `Enligt utbildningsplanen för programmet ingår dessa kurser i årskurs ${messages.messages.general_number_as_word[studyYear]}.`,
     curriculums_studyyear_explanation_2: year =>
@@ -136,12 +143,9 @@ const messages = {
       R: 'Rekommenderade',
       V: 'Valfria',
     },
-    curriculums_courses: 'kurser',
     coursesbyprogramme_labels_course: 'Kursens kod och namn',
     coursesbyprogramme_labels_code: 'Anmälningskod',
     coursesbyprogramme_labels_code_abbr: 'Anm.\u00A0kod',
-    coursesbyprogramme_labels_scope: 'Omfattning',
-    coursesbyprogramme_labels_scope_abbr: 'Omf.',
     coursesbyprogramme_labels_period: period => `Läsperiod ${period}`,
     coursesbyprogramme_labels_period_abbr: period => `P${period}`,
     programme_plan_pdf_header: 'Ut\u00ADbild\u00ADnings\u00ADplan som pdf',
@@ -161,7 +165,6 @@ const messages = {
     programme_eligibility_and_selection: 'Behörighet och urval',
     programme_implementation: 'Utbildningens genomförande',
     programme_structure: 'Utbildningens upplägg',
-    programme_implementation_courses: 'Kurser',
     programme_implementation_courses_intro: 'Utbildningen sker i kursform. Kurslistor finns i',
     programme_appendix1: 'Bilaga 1: Kurslista',
     programme_appendix2: 'Bilaga 2: Inriktningar',
@@ -173,11 +176,6 @@ const messages = {
     programme_studies_abroad: 'Utlandsstudier',
     programme_degree_project: 'Examensarbete',
     programme_degree: 'Examen',
-    programme_list_code: 'Kurskod',
-    programme_list_name: 'Namn',
-    programme_list_credits: 'Omfattning',
-    programme_list_edulevel: 'Utbildningsnivå',
-    programme_year: 'Årskurs',
     programme_supplementary_information: 'Kompletterande information',
     programme_conditionally_elective_courses_info: 'Information om villkorligt valfria kurser',
     programme_edulevel: {

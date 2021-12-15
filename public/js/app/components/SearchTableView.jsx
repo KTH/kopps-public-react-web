@@ -97,10 +97,10 @@ const SearchTableView = ({ unsortedSearchResults }) => {
 
   const sliceUntilNum = hasSearchHitInterval ? 5 : 4
   const headers = [
-    t('department_course_code'),
-    t('department_course_name'),
-    t('department_course_credits'),
-    t('department_course_educational_level'),
+    t('course_code'),
+    t('course_name'),
+    t('course_scope'),
+    t('course_educational_level'),
     t('department_period_abbr'),
   ].slice(0, sliceUntilNum)
 
@@ -124,7 +124,7 @@ const SearchTableView = ({ unsortedSearchResults }) => {
               {' resultat.'}
             </p>
           )}
-          <SortableTable headers={headers} data={courses} />
+          <SortableTable headers={headers} data={courses} includeNumeric />
         </Article>
       </Col>
     </Row>

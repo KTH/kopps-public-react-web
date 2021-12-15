@@ -15,7 +15,7 @@ function getThirdCycleBreadcrumbs(applicationStore) {
     },
     {
       url: pageLink(browserConfig.redirectProxyPath.thirdCycleRoot, language),
-      label: t('department_courses'),
+      label: t('courses'),
     },
   ]
 }

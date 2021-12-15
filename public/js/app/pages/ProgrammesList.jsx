@@ -110,7 +110,7 @@ function ProgrammesList() {
     <>
       <Row>
         <Col>
-          <PageHeading>{t('programmes_list_header')}</PageHeading>
+          <PageHeading>{t('courses_of_program')}</PageHeading>
           <Lead text={t('programmes_list_lead')} />
         </Col>
       </Row>

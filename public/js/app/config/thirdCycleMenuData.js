@@ -3,7 +3,7 @@ const { parentThirdCycleStudyLink, pageLink } = require('../util/links')
 
 function getThirdCycleMenuData(applicationStore) {
   const { language, browserConfig } = applicationStore
-  const { thirdCycleSchoolsAndDepartments, thirdCycleCourseSearch } = browserConfig.proxyPrefixPath
+  const { thirdCycleSchoolsAndDepartments, thirdCycleCourseSearch } = browserConfig.proxyPrefixPath
   const t = translate(language)
   return {
     ariaLabel: t('main_menu_aria_label'),
@@ -17,12 +17,12 @@ function getThirdCycleMenuData(applicationStore) {
         {
           id: 'directory',
           type: 'ancestor',
-          text: t('department_courses'),
+          text: t('courses'),
         },
         {
           id: 'thirdCycleDepartmentsList',
           type: 'leaf',
-          text: t('main_menu_third_cycle_departments_list_header'),
+          text: t('third_cycle_courses_by_school'),
           url: pageLink(thirdCycleSchoolsAndDepartments, language),
         },
         {

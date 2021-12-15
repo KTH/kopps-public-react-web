@@ -62,16 +62,16 @@ function CourseListTable({ courses }) {
       <thead>
         <tr>
           <th key="programme_list_code" scope="col">
-            {t('programme_list_code')}
+            {t('course_code')}
           </th>
           <th key="programme_list_name" scope="col">
-            {t('programme_list_name')}
+            {t('course_name')}
           </th>
           <th key="programme_list_credits" scope="col">
-            {t('programme_list_credits')}
+            {t('course_credits')}
           </th>
           <th key="programme_list_edulevel" scope="col">
-            {t('programme_list_edulevel')}
+            {t('course_educational_level_abbr')}
           </th>
         </tr>
       </thead>
@@ -104,7 +104,7 @@ function ElectiveCondition({ studyYear, electiveCondition, code }) {
   )
 
   const formattedCredits = ` (${formatCredits(language, credits)} ${creditUnitAbbr})`
-  const heading = `${t('elective_condition')[electiveCondition]} ${t('curriculums_courses')}${
+  const heading = `${t('elective_condition')[electiveCondition]} ${t('courses').toLowerCase()}${
     electiveCondition === 'O' ? formattedCredits : ''
   }`
   return (
@@ -157,7 +157,7 @@ function StudyYear({ studyYear, code }) {
   const { language } = useStore()
   const t = translate(language)
 
-  const studyYearHeader = `${t('programme_year')} ${studyYear}`
+  const studyYearHeader = `${t('study_year')} ${studyYear}`
   return (
     <Fragment key={studyYear}>
       <h3>{studyYearHeader}</h3>

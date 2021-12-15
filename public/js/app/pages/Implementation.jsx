@@ -47,7 +47,7 @@ function ImplementationCourses() {
   const { courseRules } = studyProgramme
   return (
     <>
-      <Heading size="h2" text={t('programme_implementation_courses')} />
+      <Heading size="h2" text={t('courses')} />
       <p>
         {`${t('programme_implementation_courses_intro')} `}
         <Link href={appendix1Link(programmeCode, term)}>{t('programme_appendix1')}</Link>

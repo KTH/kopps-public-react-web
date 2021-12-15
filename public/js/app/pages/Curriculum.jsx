@@ -95,7 +95,7 @@ function CourseTable({ curriculumInfo, participations, electiveCondition }) {
             <abbr title={t('coursesbyprogramme_labels_code')}>{t('coursesbyprogramme_labels_code_abbr')}</abbr>
           </th>
           <th scope="col">
-            <abbr title={t('coursesbyprogramme_labels_scope')}>{t('coursesbyprogramme_labels_scope_abbr')}</abbr>
+            <abbr title={t('course_scope')}>{t('course_scope_abbr')}</abbr>
           </th>
           {ORDINARY_PERIODS.map(period => (
             <th scope="col" key={`P${period}`}>
@@ -133,11 +133,11 @@ function Courses({ curriculumInfo }) {
               )}
               {code ? (
                 <h4 id={`heading-${code}-${electiveCondition}`}>
-                  {`${t('elective_condition')[electiveCondition]} ${t('curriculums_courses')}`}
+                  {`${t('elective_condition')[electiveCondition]} ${t('courses').toLowerCase()}`}
                 </h4>
               ) : (
                 <h3 id={`heading-common-${electiveCondition}`}>
-                  {`${t('elective_condition')[electiveCondition]} ${t('curriculums_courses')}`}
+                  {`${t('elective_condition')[electiveCondition]} ${t('courses').toLowerCase()}`}
                 </h3>
               )}
               <CourseTable
@@ -251,9 +251,7 @@ function Sidebar() {
 function Curriculum() {
   const { programmeCode, programmeName, term, studyYear, language, isMissingAdmission } = useStore()
   const t = translate(language)
-  const pageHeading = isMissingAdmission()
-    ? `${t('curriculums_missing_admission')}`
-    : `${t('curriculums_admitted_year_long')} ${studyYear}`
+  const pageHeading = isMissingAdmission() ? `${t('curriculums_missing_admission')}` : `${t('study_year')} ${studyYear}`
   const subHeading = `${t('programme_admitted_year')} ${formatLongTerm(
     term,
     language

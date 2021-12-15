@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.16.3",
-    "@kth/kth-reactstrap": "^0.4.43",
+    "@kth/kth-reactstrap": "^0.4.45",
     "applicationinsights": "^2.2.0",
     "axios": "^0.24.0",
     "body-parser": "^1.19.1",

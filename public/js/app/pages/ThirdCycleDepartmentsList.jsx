@@ -67,7 +67,7 @@ function ThirdCycleDepartmentsList() {
     <>
       <Row>
         <Col>
-          <PageHeading>{t('main_menu_third_cycle_departments_list_header')}</PageHeading>
+          <PageHeading>{t('third_cycle_courses_by_school')}</PageHeading>
         </Col>
       </Row>
       <Row>

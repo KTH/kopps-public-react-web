@@ -52,25 +52,19 @@ function DepartmentsList() {
   const { language, departmentName, departmentCourses } = useStore()
   const t = translate(language)
 
-  const headers = [
-    t('department_course_code'),
-    t('department_course_name'),
-    t('department_course_credits'),
-    t('department_course_educational_level'),
-  ]
+  const headers = [t('course_code'), t('course_name'), t('course_scope'), t('course_educational_level')]
   const courses = sortAndParseCourses(departmentCourses)
-
   return (
     <>
       <Row>
         <Col>
-          <PageHeading subHeading={departmentName}>{t('department_courses')}</PageHeading>
+          <PageHeading subHeading={departmentName}>{t('courses')}</PageHeading>
         </Col>
       </Row>
       <Row>
         <Col>
           <Article>
-            <SortableTable headers={headers} data={courses} />
+            <SortableTable headers={headers} data={courses} includeNumeric />
           </Article>
         </Col>
       </Row>

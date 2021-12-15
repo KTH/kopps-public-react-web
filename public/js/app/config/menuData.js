@@ -22,7 +22,7 @@ function getMenuData(applicationStore) {
         {
           id: 'programmesList',
           type: 'leaf',
-          text: t('main_menu_programmes_list'),
+          text: t('courses_of_program'),
           url: pageLink(programmesList),
         },
         {
@@ -34,7 +34,7 @@ function getMenuData(applicationStore) {
         {
           id: 'departmentsList',
           type: 'leaf',
-          text: t('main_menu_departments_list'),
+          text: t('courses_by_school'),
           url: pageLink(department),
         },
         {

@@ -7,7 +7,7 @@ function getThirdCycleDepartmentMenuData(applicationStore) {
   return {
     ariaLabel: t('main_menu_aria_label'),
     parentLink: {
-      text: t('department_courses'),
+      text: t('courses'),
       url: pageLink(browserConfig.proxyPrefixPath.thirdCycleRoot, language),
     },
     navList: {
@@ -21,7 +21,7 @@ function getThirdCycleDepartmentMenuData(applicationStore) {
         {
           id: 'courses',
           type: 'leaf',
-          text: t('department_courses'),
+          text: t('courses'),
         },
       ],
     },

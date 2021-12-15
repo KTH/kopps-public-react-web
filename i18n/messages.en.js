@@ -39,11 +39,25 @@ const messages = {
     template_store_text: 'Message from applicationStore',
     template_try_me: 'Try me',
     template_button_works: 'Button works!',
+    // TODO: MOVE TO kth-course-program-vocabulary
 
-    semester: {
-      1: 'Spring',
-      2: 'Autumn',
-    },
+    course_credits: 'Credits',
+    course_scope: 'Scope',
+    course_scope_abbr: 'Scope',
+
+    courses: 'Courses',
+    courses_of_program: 'Courses Part of Programme',
+    courses_by_school: 'Courses by school',
+
+    course_code: 'Course code',
+    course_name: 'Course name',
+    course_educational_level: 'Educational level',
+    course_educational_level_abbr: 'Edu. level',
+
+    study_year: 'Study year',
+
+    third_cycle_courses_by_school: 'Third-cycle courses by school',
+
     general_number_as_word: {
       0: 'zero',
       1: 'one',
@@ -56,6 +70,13 @@ const messages = {
       8: 'eight',
       9: 'nine',
     },
+
+    semester: {
+      1: 'Spring',
+      2: 'Autumn',
+    },
+
+    ///end///
     main_menu_aria_label: 'Sub menu',
     main_menu_student: 'Student at KTH',
     main_menu_study_at_kth: 'Study at KTH',
@@ -64,7 +85,6 @@ const messages = {
     main_menu_shb: 'Study Handbook 00/01 to 07/08',
     main_menu_search_all: 'Search course',
     main_menu_third_cycle_studies: 'PhD studies',
-    main_menu_third_cycle_departments_list_header: 'Third-cycle courses by school',
     main_menu_third_cycle_courses_search: 'Search third-cycle courses',
 
     main_page_header_example: 'Example',
@@ -81,8 +101,6 @@ const messages = {
     main_page_not_found_page_paragraph:
       'You have given a web address or clicked on a link to a webpage that do not exist on the KTH website. Please contact the person responsible for the website if you followed a broken link from a page that belongs to KTH. Add the website address to the page with the broken link and the broken url.',
 
-    main_menu_programmes_list: 'Courses Part of Programme',
-    programmes_list_header: 'Courses Part of Programme',
     programmes_list_lead:
       'Choose a programme below to get an overview of courses and study years forming the programme.',
     programme_type: {
@@ -100,19 +118,11 @@ const messages = {
     programmes_admitted_until: 'admitted/batch until',
     programmes_admitted_from: 'admitted/batch from',
     programmes_older: 'Programmes without new admission',
-    main_menu_departments_list: 'Courses by school',
-    departments_list_header: 'Courses by school',
     departments_list_lead:
       'All active courses on all educational levels given at KTH, listed according to the organization of each school.',
     departments_deprecated_schools: 'Older Schools',
     departments_deprecated_schools_collapsible: 'Courses older schools',
-    department_courses: 'Courses',
-    department_course_code: 'Course code',
-    department_course_name: 'Course name',
-    department_course_credits: 'Scope',
-    department_course_educational_level: 'Educational level',
     department_period_abbr: 'Periods',
-    third_cycle_department_courses: 'Third-cycle courses by school',
     programme_study_years: 'Programme Syllabuses',
     programme_study_years_explanation:
       'Choose programme syllabus. Batch most often equals first registration term at programme.',
@@ -120,7 +130,6 @@ const messages = {
     curriculums_missing_admission: 'Programme syllabus missing',
     curriculums_missing_admission_text: school =>
       `The chosen programme syllabus could not be found. For further assistance, please contact the student office at the ${school} school.`,
-    curriculums_admitted_year_long: 'Study year',
     curriculums_studyyear_explanation_1: studyYear =>
       `The following courses are part of study year ${messages.messages.general_number_as_word[studyYear]}.`,
     curriculums_studyyear_explanation_2: year =>
@@ -138,12 +147,9 @@ const messages = {
       R: 'Recommended',
       V: 'Optional',
     },
-    curriculums_courses: 'courses',
     coursesbyprogramme_labels_course: 'Course code and name',
     coursesbyprogramme_labels_code: 'Application code',
     coursesbyprogramme_labels_code_abbr: 'Appl.code',
-    coursesbyprogramme_labels_scope: 'Scope',
-    coursesbyprogramme_labels_scope_abbr: 'Scope',
     coursesbyprogramme_labels_period: period => `Study period ${period}`,
     coursesbyprogramme_labels_period_abbr: period => `P${period}`,
     programme_plan_pdf_header: 'Pro\u00ADgram\u00ADme syl\u00ADla\u00ADbus as pdf',
@@ -164,7 +170,6 @@ const messages = {
     programme_eligibility_and_selection: 'Eligibility and selection',
     programme_implementation: 'Implementation of the education',
     programme_structure: 'Structure of the education',
-    programme_implementation_courses: 'Courses',
     programme_implementation_courses_intro: 'The programme is course-based. Lists of courses are included in',
     programme_appendix1: 'Appendix 1: Course list',
     programme_appendix2: 'Appendix 2: Specialisations',
@@ -176,11 +181,6 @@ const messages = {
     programme_studies_abroad: 'Studies abroad',
     programme_degree_project: 'Degree project',
     programme_degree: 'Degree',
-    programme_list_code: 'Code',
-    programme_list_name: 'Name',
-    programme_list_credits: 'Credits',
-    programme_list_edulevel: 'Edu. level',
-    programme_year: 'Year',
     programme_supplementary_information: 'Supplementary information',
     programme_conditionally_elective_courses_info: 'Information regarding conditionally elective courses',
     programme_edulevel: {

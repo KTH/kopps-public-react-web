@@ -68,7 +68,7 @@ function DepartmentsList() {
     <>
       <Row>
         <Col>
-          <PageHeading>{t('departments_list_header')}</PageHeading>
+          <PageHeading>{t('courses_by_school')}</PageHeading>
           <Lead text={t('departments_list_lead')} />
         </Col>
       </Row>

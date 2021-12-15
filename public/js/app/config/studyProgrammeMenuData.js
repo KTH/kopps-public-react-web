@@ -11,7 +11,7 @@ function _studyYearItems(applicationStore) {
     studyYears.push({
       id: `year-${year}`,
       type: 'leaf',
-      text: `${t('curriculums_admitted_year_long')} ${year}`,
+      text: `${t('study_year')} ${year}`,
       url: pageLink(`${pageRoot}/${programmeCode}/${term}/arskurs${year}`, language),
     })
   }
