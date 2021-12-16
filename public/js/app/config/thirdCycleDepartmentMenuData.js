@@ -8,7 +8,7 @@ function getThirdCycleDepartmentMenuData(applicationStore) {
     ariaLabel: t('main_menu_aria_label'),
     parentLink: {
       text: t('courses'),
-      url: pageLink(browserConfig.proxyPrefixPath.thirdCycleRoot, language),
+      url: pageLink(browserConfig.redirectProxyPath.thirdCycleRoot, language),
     },
     navList: {
       type: 'expandable',
