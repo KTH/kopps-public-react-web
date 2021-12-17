@@ -13,9 +13,11 @@ function parentThirdCycleStudyLink(language) {
 }
 
 function courseLink(courseCode, language, { periods = undefined, term = undefined } = {}) {
-  const startTerm = term !== undefined && term !== '' ? `?startterm=${term}` : ''
-  const period = periods !== undefined ? `?periods=${periods}` : ''
-  return pageLink(`/student/kurser/kurs/${courseCode}${period}${startTerm}`, language) // outside link
+  const startSign = (term !== undefined && term !== '') || periods !== undefined ? '?' : ''
+  const bindSign = term !== undefined && term !== '' && periods !== undefined ? '&' : ''
+  const startTerm = term !== undefined && term !== '' ? `startterm=${term}` : ''
+  const period = periods !== undefined ? `periods=${periods}` : ''
+  return pageLink(`/student/kurser/kurs/${courseCode}${startSign}${period}${bindSign}${startTerm}`, language) // outside link
 }
 
 function programTermLink(programmeCode, term, studyYear, language) {
