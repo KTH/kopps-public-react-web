@@ -37,7 +37,7 @@ function appendix1Link(programmeCode, term) {
 function centralStudyCounselingUrl(language) {
   return language === 'en'
     ? 'https://www.kth.se/en/studies/master/general-study-counselling-1.621634'
-    : 'https://www.kth.se/utbildning/traffakth/studievagledning'
+    : 'https://www.kth.se/studievagledning'
 }
 
 function koppsEmail() {
