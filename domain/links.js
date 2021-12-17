@@ -1,10 +1,14 @@
-function getLanguageParam(language) {
-  return language === 'en' ? '?l=en' : ''
+function _getLanguageParam(language, url = '') {
+  if (language !== 'en') return ''
+
+  const querySeparator = url.includes('?') ? '&' : '?'
+
+  return `${querySeparator}l=en`
 }
 
-function pageLink(pageId, language) {
-  const languageParam = getLanguageParam(language)
-  return `${pageId}${languageParam}`
+function pageLink(pagePath, language) {
+  const languageParam = _getLanguageParam(language, pagePath)
+  return `${pagePath}${languageParam}`
 }
 
 function departmentLink(departmentCode, language) {
@@ -19,4 +23,4 @@ function thirdCycleDepartmentLink(departmentCode, language) {
   return pageLink(`/utbildning/forskarutbildning/kurser/org/${departmentCode}`, language)
 }
 
-module.exports = { departmentLink, getLanguageParam, pageLink, programmeLink, thirdCycleDepartmentLink }
+module.exports = { departmentLink, pageLink, programmeLink, thirdCycleDepartmentLink }

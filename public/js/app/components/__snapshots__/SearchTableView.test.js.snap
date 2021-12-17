@@ -298,7 +298,7 @@ exports[`Component <SearchTableView> for MIXED types of courses creates a table 
             <tr>
               <td>
                 <a
-                  href="/student/kurser/kurs/AF233X?startterm=20212?l=en"
+                  href="/student/kurser/kurs/AF233X?startterm=20212&l=en"
                 >
                   AF233X
                 </a>
@@ -323,7 +323,7 @@ exports[`Component <SearchTableView> for MIXED types of courses creates a table 
             <tr>
               <td>
                 <a
-                  href="/student/kurser/kurs/AF2402?startterm=20212?l=en"
+                  href="/student/kurser/kurs/AF2402?startterm=20212&l=en"
                 >
                   AF2402
                 </a>
@@ -348,7 +348,7 @@ exports[`Component <SearchTableView> for MIXED types of courses creates a table 
             <tr>
               <td>
                 <a
-                  href="/student/kurser/kurs/AH2905?startterm=20212?l=en"
+                  href="/student/kurser/kurs/AH2905?startterm=20212&l=en"
                 >
                   AH2905
                 </a>
@@ -394,7 +394,7 @@ exports[`Component <SearchTableView> for MIXED types of courses creates a table 
             <tr>
               <td>
                 <a
-                  href="/student/kurser/kurs/FAH3904?startterm=20212?l=en"
+                  href="/student/kurser/kurs/FAH3904?startterm=20212&l=en"
                 >
                   FAH3904
                 </a>
