@@ -17,11 +17,9 @@ import commonSettings from '../config/mocks/mockCommonSettings'
 
 const applicationStore = createApplicationStore()
 
-const { proxyPrefixPath } = commonSettings
-
 const WrapperStudyHandbook = ({ lang, ...rest }) => {
   applicationStore.setLanguage(lang)
-  applicationStore.setBrowserConfig({ proxyPrefixPath })
+  applicationStore.setBrowserConfig(commonSettings)
 
   const updatedApplicationStore = {
     ...applicationStore,
@@ -44,7 +42,7 @@ const WrapperStudyHandbook = ({ lang, ...rest }) => {
 
 const StudyHandbookWithLayout = ({ lang }) => {
   applicationStore.setLanguage(lang)
-  applicationStore.setBrowserConfig({ proxyPrefixPath })
+  applicationStore.setBrowserConfig(commonSettings)
   const menuData = getMenuData(applicationStore)
 
   const updatedApplicationStore = {

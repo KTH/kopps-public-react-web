@@ -22,7 +22,6 @@ const mockDate = new Date('2021-03-23 16:00')
 
 const applicationStore = createApplicationStore()
 
-const { proxyPrefixPath } = commonSettings
 const testProgrammeCode = 'ARKIT'
 const testProgrammeName = {
   sv: 'Arkitektutbildning',
@@ -33,7 +32,7 @@ const testProgrammeTerms = ['20192', '20211']
 
 const WrapperProgramme = ({ lang }) => {
   applicationStore.setLanguage(lang)
-  applicationStore.setBrowserConfig({ proxyPrefixPath })
+  applicationStore.setBrowserConfig(commonSettings)
   const updatedApplicationStore = {
     ...applicationStore,
   }
@@ -54,7 +53,7 @@ const WrapperProgramme = ({ lang }) => {
 
 const ProgrammeWithLayout = ({ lang }) => {
   applicationStore.setLanguage(lang)
-  applicationStore.setBrowserConfig({ proxyPrefixPath })
+  applicationStore.setBrowserConfig(commonSettings)
   applicationStore.setProgrammeCode(testProgrammeCode)
   applicationStore.setProgrammeName(testProgrammeName[lang])
   applicationStore.setLengthInStudyYears(testLengthInStudyYears)

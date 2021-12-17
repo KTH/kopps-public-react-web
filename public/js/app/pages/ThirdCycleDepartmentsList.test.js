@@ -21,7 +21,6 @@ expect.extend(toHaveNoViolations)
 
 const applicationStore = createApplicationStore()
 
-const { proxyPrefixPath } = commonSettings
 const testCurrentSchoolsWithDepartments = {
   sv: [
     {
@@ -41,7 +40,7 @@ const testCurrentSchoolsWithDepartments = {
 
 const WrapperThirdCycleDepartmentsList = ({ lang }) => {
   applicationStore.setLanguage(lang)
-  applicationStore.setBrowserConfig({ proxyPrefixPath })
+  applicationStore.setBrowserConfig(commonSettings)
   const updatedApplicationStore = {
     ...applicationStore,
   }
@@ -68,7 +67,7 @@ const WrapperThirdCycleDepartmentsList = ({ lang }) => {
 
 const ThirdCycleDepartmentsListWithLayout = ({ lang }) => {
   applicationStore.setLanguage(lang)
-  applicationStore.setBrowserConfig({ proxyPrefixPath })
+  applicationStore.setBrowserConfig(commonSettings)
   applicationStore.setCurrentSchoolsWithDepartments(testCurrentSchoolsWithDepartments[lang])
   const menuData = getThirdCycleMenuData(applicationStore)
   const breadcrumbs = getThirdCycleBreadcrumbs(applicationStore)

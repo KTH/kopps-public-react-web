@@ -20,7 +20,6 @@ expect.extend(toHaveNoViolations)
 
 const applicationStore = createApplicationStore()
 
-const { proxyPrefixPath } = commonSettings
 const testDepartmentName = {
   sv: 'ABE/Arkitektur, Fex övr utbildning',
   en: 'ABE/Architecture',
@@ -56,7 +55,7 @@ const testDepartmentCourses = {
 
 const WrapperDepartmentCourses = ({ lang }) => {
   applicationStore.setLanguage(lang)
-  applicationStore.setBrowserConfig({ proxyPrefixPath })
+  applicationStore.setBrowserConfig(commonSettings)
 
   const updatedApplicationStore = {
     ...applicationStore,
@@ -78,7 +77,7 @@ const WrapperDepartmentCourses = ({ lang }) => {
 
 const DepartmentCoursesWithLayout = ({ lang }) => {
   applicationStore.setLanguage(lang)
-  applicationStore.setBrowserConfig({ proxyPrefixPath })
+  applicationStore.setBrowserConfig(commonSettings)
   applicationStore.setDepartmentName(testDepartmentName[lang])
   applicationStore.setDepartmentCourses(testDepartmentCourses[lang])
   const departmentMenuData = getMenuDepartmentData(applicationStore)

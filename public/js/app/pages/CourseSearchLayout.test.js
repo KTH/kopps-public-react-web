@@ -19,11 +19,9 @@ expect.extend(toHaveNoViolations)
 const storeId = 'searchCourses'
 const applicationStore = createApplicationStore(storeId)
 
-const { proxyPrefixPath } = commonSettings
-
 const WrappedCourseSearch = ({ lang, ...rest }) => {
   applicationStore.setLanguage(lang)
-  applicationStore.setBrowserConfig({ proxyPrefixPath })
+  applicationStore.setBrowserConfig(commonSettings)
 
   const updatedApplicationStore = {
     ...applicationStore,
@@ -47,7 +45,7 @@ const WrappedCourseSearch = ({ lang, ...rest }) => {
 
 const CourseSearchWithLayout = ({ lang }) => {
   applicationStore.setLanguage(lang)
-  applicationStore.setBrowserConfig({ proxyPrefixPath })
+  applicationStore.setBrowserConfig(commonSettings)
   const menuData = getMenuData(applicationStore)
 
   const updatedApplicationStore = {
