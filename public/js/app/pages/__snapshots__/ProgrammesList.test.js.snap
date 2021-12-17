@@ -379,7 +379,7 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Swed
               <address>
                 Kontakt för frågor om utbildning på KTH: 
                 <a
-                  href="https://www.kth.se/utbildning/traffakth/studievagledning"
+                  href="https://www.kth.se/studievagledning"
                 >
                   Central studievägledning
                 </a>

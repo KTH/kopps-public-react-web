@@ -1273,7 +1273,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
               <address>
                 Kontakt för frågor om utbildning på KTH: 
                 <a
-                  href="https://www.kth.se/utbildning/traffakth/studievagledning"
+                  href="https://www.kth.se/studievagledning"
                 >
                   Central studievägledning
                 </a>

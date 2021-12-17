@@ -154,7 +154,7 @@ describe('Render component StudyHandbook and check its menu, content and links',
     expect(links[5].href).toStrictEqual('https://intra.kth.se/utbildning/utbildningsadministr/kopps/shb')
 
     expect(links[6]).toHaveTextContent('Central studievägledning')
-    expect(links[6].href).toStrictEqual('https://www.kth.se/utbildning/traffakth/studievagledning')
+    expect(links[6].href).toStrictEqual('https://www.kth.se/studievagledning')
 
     expect(links[7]).toHaveTextContent('kopps@kth.se')
     expect(links[7].href).toStrictEqual('mailto:kopps@kth.se')

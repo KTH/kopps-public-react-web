@@ -180,7 +180,7 @@ describe('Render component ThirdCycleDepartmentsList and check its menu, content
     expect(links[3].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser/org/BB')
     // Footer links
     expect(links[4]).toHaveTextContent('Central studievägledning')
-    expect(links[4].href).toStrictEqual('https://www.kth.se/utbildning/traffakth/studievagledning')
+    expect(links[4].href).toStrictEqual('https://www.kth.se/studievagledning')
     expect(links[5]).toHaveTextContent('kopps@kth.se')
     expect(links[5].href).toStrictEqual('mailto:kopps@kth.se')
   })

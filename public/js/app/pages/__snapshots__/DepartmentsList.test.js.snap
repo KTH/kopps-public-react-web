@@ -315,7 +315,7 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Swe
               <address>
                 Kontakt för frågor om utbildning på KTH: 
                 <a
-                  href="https://www.kth.se/utbildning/traffakth/studievagledning"
+                  href="https://www.kth.se/studievagledning"
                 >
                   Central studievägledning
                 </a>

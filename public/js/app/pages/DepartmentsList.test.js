@@ -171,7 +171,7 @@ describe('Render component DepartmentsList and check its menu, content and links
     expect(links[5].href).toStrictEqual('http://localhost/student/kurser/org/BB')
     // Footer links
     expect(links[6]).toHaveTextContent('Central studievägledning')
-    expect(links[6].href).toStrictEqual('https://www.kth.se/utbildning/traffakth/studievagledning')
+    expect(links[6].href).toStrictEqual('https://www.kth.se/studievagledning')
     expect(links[7]).toHaveTextContent('kopps@kth.se')
     expect(links[7].href).toStrictEqual('mailto:kopps@kth.se')
   })
