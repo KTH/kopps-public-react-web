@@ -1,6 +1,6 @@
 {
   "name": "kopps-public-react-web",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Migration from Kopps in Play Framework 2.X to Express and React.",
   "main": "app.js",
   "private": true,
