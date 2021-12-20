@@ -23,8 +23,7 @@ function CourseListTableRow({ course }) {
   const { language } = useStore()
   const t = translate(language)
   const { code, name, comment, credits, creditAbbr, level } = course
-  //const languageParam = language === 'en' ? '?l=en' : ''
-  //const courseLink = `https://www.kth.se/student/kurser/kurs/${code}${languageParam}`
+
   const courselink = courseLink(code, language, { term: term })
   return (
     <tr>
