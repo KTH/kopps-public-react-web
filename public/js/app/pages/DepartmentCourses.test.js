@@ -137,7 +137,7 @@ describe('Render component DepartmentCourses and check its menu, content and lin
     expect(links.length).toBe(5)
     // Menu links
     expect(links[0]).toHaveTextContent('Course and programme directory')
-    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/org?l=en')
+    expect(links[0].href).toStrictEqual('http://localhost/student/kurser?l=en')
     // Main content links
     expect(links[1]).toHaveTextContent('AD12DA')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurs/AD12DA?l=en')
@@ -155,7 +155,7 @@ describe('Render component DepartmentCourses and check its menu, content and lin
     expect(links.length).toBe(5)
     // Menu links
     expect(links[0]).toHaveTextContent('Kurs- och programkatalogen')
-    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/org')
+    expect(links[0].href).toStrictEqual('http://localhost/student/kurser')
     // Main content links
     expect(links[1]).toHaveTextContent('AD12DA')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurs/AD12DA')

@@ -132,7 +132,7 @@ describe('Render component Programme and check its menu, content and links', () 
     expect(links.length).toBe(5)
     // Menu links
     expect(links[0]).toHaveTextContent('Course and programme directory')
-    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/org?l=en')
+    expect(links[0].href).toStrictEqual('http://localhost/student/kurser?l=en')
     // Main content links
     expect(links[1]).toHaveTextContent('Programme syllabus for studies starting in Autumn 19')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/program/ARKIT/20192/arskurs2?l=en')
@@ -150,7 +150,7 @@ describe('Render component Programme and check its menu, content and links', () 
     expect(links.length).toBe(5)
     // Menu links
     expect(links[0]).toHaveTextContent('Kurs- och programkatalogen')
-    expect(links[0].href).toStrictEqual('http://localhost/student/kurser/org')
+    expect(links[0].href).toStrictEqual('http://localhost/student/kurser')
     // Main content links
     expect(links[1]).toHaveTextContent('Utbildningsplan kull HT19')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/program/ARKIT/20192/arskurs2')

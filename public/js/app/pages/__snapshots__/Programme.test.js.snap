@@ -21,7 +21,7 @@ exports[`Render component Programme within Layout match to snapshot in English 1
             class="parentLink"
           >
             <a
-              href="/student/kurser/org?l=en"
+              href="/student/kurser?l=en"
             >
               Course and programme directory
             </a>
@@ -168,7 +168,7 @@ exports[`Render component Programme within Layout match to snapshot in Swedish 1
             class="parentLink"
           >
             <a
-              href="/student/kurser/org"
+              href="/student/kurser"
             >
               Kurs- och programkatalogen
             </a>

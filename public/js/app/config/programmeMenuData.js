@@ -8,7 +8,7 @@ function getProgrammeMenuData(applicationStore) {
     ariaLabel: t('main_menu_aria_label'),
     parentLink: {
       text: t('main_menu_directory'),
-      url: pageLink(browserConfig.proxyPrefixPath.department, language),
+      url: pageLink(browserConfig.proxyPrefixPath.uri, language),
     },
     navList: {
       type: 'expandable',
