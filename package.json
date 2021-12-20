@@ -15,8 +15,7 @@
   },
   "scripts": {
     "prettier:all": "prettier --write \"**/*.js\" \"**/*.jsx\" \"**/*.scss\"",
-    "test": "NODE_ENV=test jest",
-    "test-win": "cross-env NODE_ENV=test jest",
+    "test": "cross-env NODE_ENV=test jest",
     "test:watch": "NODE_ENV=test jest --watch",
     "test:notify": "NODE_ENV=test jest --watch --notify",
     "test:pages": "NODE_ENV=test jest ./public/js/app/pages/CourseSearchLayout.test.js --watch --notify",
