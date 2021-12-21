@@ -22,7 +22,7 @@ function ProgrammeTermsLinkListItem({ term }) {
   const { language, programmeCode, lengthInStudyYears } = useStore()
   const studyYear = calculateStudyYear(term, lengthInStudyYears)
   return (
-    <Link key={term} href={programTermLink(programmeCode, term, `arskurs${studyYear}`, language)}>
+    <Link key={term} href={programTermLink(programmeCode, term, `arskurs${studyYear}`, language)} target="_blank">
       {programmeTermLinkText(term)}
     </Link>
   )
