@@ -233,13 +233,14 @@ const appRoute = AppRouter()
 
 appRoute.get('redirect.pdf_program_plan', proxyPrefixPath.programme + '/:programmeCodeAndTertm.pdf', (req, res) => {
   const { programmeCodeAndTertm } = req.params
+  const { l: language } = req.query
   const { programSyllabusPdfPath } = config
   if (!programmeCodeAndTertm) {
     const error = new Error('Malformed programme code and term: ', programmeCodeAndTertm)
     error.statusCode = 404
     throw error
   }
-  res.redirect(301, `${programSyllabusPdfPath.uri}/${programmeCodeAndTertm}.pdf`)
+  res.redirect(301, `${programSyllabusPdfPath.uri}/${programmeCodeAndTertm}.pdf${language === 'en' ? '?l=en' : ''} `)
 })
 
 appRoute.get('system.ready', proxyPrefixPath.uri + '/_ready', Public.getReady)
