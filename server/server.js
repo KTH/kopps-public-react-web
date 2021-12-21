@@ -207,14 +207,16 @@ const {
 } = require('./controllers')
 const { parseTerm } = require('../domain/term')
 
-const appEndpointsPrefix = '/kp-react'
+const appEmbeddedPageEndpointsPrefix = '/kp-react'
 
 // System routes
 const systemRoute = AppRouter()
 // TODO: change systemroutes back to same place as static resources, after kp migration is done.
-systemRoute.get('system.monitor', appEndpointsPrefix + '/_monitor', System.monitor)
-systemRoute.get('system.about', appEndpointsPrefix + '/_about', System.about)
-systemRoute.get('system.paths', appEndpointsPrefix + '/_paths', System.paths)
+systemRoute.get('system.monitor', proxyPrefixPath.uri + '/_monitor', System.monitor)
+systemRoute.get('system.monitor_prefix', appEmbeddedPageEndpointsPrefix + '/_monitor', System.monitor)
+
+systemRoute.get('system.about', proxyPrefixPath.uri + '/_about', System.about)
+systemRoute.get('system.paths', proxyPrefixPath.uri + '/_paths', System.paths)
 systemRoute.get('system.robots', '/robots.txt', System.robotsTxt)
 server.use('/', systemRoute.getRouter())
 
@@ -222,10 +224,14 @@ server.use('/', systemRoute.getRouter())
 const embeddedPageRoute = AppRouter()
 embeddedPageRoute.get(
   'EmbeddedPage.emptyFovSearch',
-  appEndpointsPrefix + '/embedded/fovsearch',
+  appEmbeddedPageEndpointsPrefix + '/embedded/fovsearch',
   EmbeddedPage.emptyFovSearch
 )
-embeddedPageRoute.post('EmbeddedPage.fovSearch', appEndpointsPrefix + '/embedded/fovsearch', EmbeddedPage.fovSearch)
+embeddedPageRoute.post(
+  'EmbeddedPage.fovSearch',
+  appEmbeddedPageEndpointsPrefix + '/embedded/fovsearch',
+  EmbeddedPage.fovSearch
+)
 server.use('/', embeddedPageRoute.getRouter())
 
 // App routes
@@ -240,7 +246,7 @@ appRoute.get('redirect.pdf_program_plan', proxyPrefixPath.programme + '/:program
     error.statusCode = 404
     throw error
   }
-  res.redirect(301, `${programSyllabusPdfPath.uri}/${programmeCodeAndTertm}.pdf${language === 'en' ? '?l=en' : ''} `)
+  res.redirect(301, `${programSyllabusPdfPath.uri}/${programmeCodeAndTertm}.pdf${language === 'en' ? '?l=en' : ''}`)
 })
 
 appRoute.get('system.ready', proxyPrefixPath.uri + '/_ready', Public.getReady)
