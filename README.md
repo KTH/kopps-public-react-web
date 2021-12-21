@@ -72,6 +72,10 @@ Add a file `launch.json` to `.vscode` directory :
 }
 ```
 
+## Publish service (KTH related)
+Documentation about routing rules exists in [Kopps Public migration and Traefik 2 Routing](https://confluence.sys.kth.se/confluence/display/TFI/Kopps+Public+migration+and+Traefik+2+Routing)
+
+
 ## In production
 
 Secrets and docker-compose are located in cellus-registry.
