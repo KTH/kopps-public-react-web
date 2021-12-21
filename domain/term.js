@@ -80,20 +80,20 @@ function _studyYear(term, lengthInStudyYears, overrideDate) {
   return parseInt(studyYear, 10)
 }
 
-function _splitTerm(term) {
+function splitTerm(term) {
   return term.toString().split(/([1|2])$/)
 }
 
 function formatShortTerm(term, language) {
   const t = translate(language)
-  const [year, semester] = _splitTerm(term)
+  const [year, semester] = splitTerm(term)
   const shortYear = year.slice(-2)
   return `${t('semester')[semester]}${language === 'en' ? ' ' : ''}${shortYear}`
 }
 
 function formatLongTerm(term, language) {
   const t = translate(language)
-  const [year, semester] = _splitTerm(term)
+  const [year, semester] = splitTerm(term)
   return `${t('semester')[semester]}${language === 'en' ? ' ' : ''}${year}`
 }
 
@@ -116,7 +116,7 @@ function _getPreviousTerms(fromTerm, numberOfPreviousTerms) {
     loopTerm = _getPreviousTerm(loopTerm)
     terms.push(loopTerm)
   }
-  return terms.reverse();
+  return terms.reverse()
 }
 
 function getRelevantTerms(numberOfTerms, overrideDate = null) {
@@ -154,7 +154,7 @@ module.exports = {
   studyYear: _studyYear,
   formatShortTerm,
   formatLongTerm,
-  splitTerm: _splitTerm,
+  splitTerm,
   add,
   parseTerm,
   getPreviousTerms: _getPreviousTerms,

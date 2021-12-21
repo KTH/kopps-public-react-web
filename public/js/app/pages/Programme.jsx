@@ -9,7 +9,8 @@ import FooterContent from '../components/FooterContent'
 import { useStore } from '../mobx'
 import translate from '../../../../domain/translate'
 import { programTermLink } from '../util/links'
-import { formatShortTerm, studyYear as calculateStudyYear } from '../../../../domain/term'
+import { formatShortTerm, studyYear as calculateStudyYear, splitTerm } from '../../../../domain/term'
+import { pageLink } from '../../../../domain/links'
 
 function programmeTermLinkText(term) {
   const { language } = useStore()
@@ -21,26 +22,27 @@ function ProgrammeTermsLinkListItem({ term }) {
   const { language, programmeCode, lengthInStudyYears } = useStore()
   const studyYear = calculateStudyYear(term, lengthInStudyYears)
   return (
-    <Link href={programTermLink(programmeCode, term, `arskurs${studyYear}`, language)}>
+    <Link key={term} href={programTermLink(programmeCode, term, `arskurs${studyYear}`, language)}>
       {programmeTermLinkText(term)}
     </Link>
   )
 }
 
-function ProgrammeTermsLinkList() {
-  const { programmeTerms } = useStore()
-  return (
-    <LinkList>
-      {programmeTerms.map(term => (
-        <ProgrammeTermsLinkListItem key={term} term={term} />
-      ))}
-    </LinkList>
-  )
+function getFirstAdmissionYear(firstAdmissionTerm) {
+  if (firstAdmissionTerm === null || !firstAdmissionTerm) {
+    return null
+  }
+  const [year] = splitTerm(firstAdmissionTerm)
+  if (!year) {
+    return null
+  }
+  return Number(year)
 }
 
 function Programme() {
-  const { language, programmeCode, programmeName } = useStore()
+  const { firstAdmissionTerm, language, programmeCode, programmeName, programmeTerms } = useStore()
   const t = translate(language)
+  const firstAdmissionYear = getFirstAdmissionYear(firstAdmissionTerm)
   return (
     <>
       <Row>
@@ -50,12 +52,31 @@ function Programme() {
       </Row>
       <Row>
         <Col>
-          <Article>
-            <p>{t('programme_study_years_explanation')}</p>
-            <ProgrammeTermsLinkList />
-          </Article>
+          {programmeTerms.length === 0 ? (
+            <p>{t('programme_study_years_syllabus_missing')}</p>
+          ) : (
+            <Article>
+              <p>{t('programme_study_years_explanation')}</p>
+              <LinkList>
+                {programmeTerms.map(term => (
+                  <ProgrammeTermsLinkListItem key={term} term={term} />
+                ))}
+              </LinkList>
+            </Article>
+          )}
         </Col>
       </Row>
+      {(firstAdmissionYear === null || firstAdmissionYear < 2007) && (
+        <Row>
+          <Col>
+            <h2>{t('programme_study_years_old')}</h2>
+            <p>{t('programme_study_years_old_explanation')}</p>
+            <p>
+              <a href={pageLink(`/student/program/shb`, language)}>{t('main_menu_shb')}</a>
+            </p>
+          </Col>
+        </Row>
+      )}
       <Row>
         <Col>
           <FooterContent />

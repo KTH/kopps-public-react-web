@@ -126,6 +126,10 @@ const messages = {
     programme_study_years: 'Programme Syllabuses',
     programme_study_years_explanation:
       'Choose programme syllabus. Batch most often equals first registration term at programme.',
+    programme_study_years_syllabus_missing: 'Programme syllabus according to study regulation of 2007 is missing.',
+    programme_study_years_old: 'Older programme syllabuses',
+    programme_study_years_old_explanation:
+      'Until the study year 2007/2008 the study handbook contained the programme syllabuses.',
     programme_admitted_year: 'Programme syllabus for studies starting in',
     curriculums_missing_admission: 'Programme syllabus missing',
     curriculums_missing_admission_text: school =>
