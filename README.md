@@ -1,6 +1,6 @@
 # Welcome to kopps-public-react-web 👋
 
-![Version](https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000)
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000)
 ![Prerequisite](https://img.shields.io/badge/node-12.0.0-blue.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#)
 
@@ -71,6 +71,10 @@ Add a file `launch.json` to `.vscode` directory :
     ]
 }
 ```
+
+## Publish service (KTH related)
+Documentation about routing rules exists in [Kopps Public migration and Traefik 2 Routing](https://confluence.sys.kth.se/confluence/display/TFI/Kopps+Public+migration+and+Traefik+2+Routing)
+
 
 ## In production
 
