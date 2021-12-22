@@ -22,7 +22,7 @@ function ProgrammeTermsLinkListItem({ term }) {
   const { language, programmeCode, lengthInStudyYears } = useStore()
   const studyYear = calculateStudyYear(term, lengthInStudyYears)
   return (
-    <Link key={term} href={programTermLink(programmeCode, term, `arskurs${studyYear}`, language)} target="_blank">
+    <Link key={term} href={programTermLink(programmeCode, term, `arskurs${studyYear}`, language)}>
       {programmeTermLinkText(term)}
     </Link>
   )
@@ -45,12 +45,12 @@ function Programme() {
   const firstAdmissionYear = getFirstAdmissionYear(firstAdmissionTerm)
   return (
     <>
-      <Row>
+      <Row key="programme-syllabus-heading">
         <Col>
           <PageHeading subHeading={`${programmeName} (${programmeCode})`}>{t('programme_study_years')}</PageHeading>
         </Col>
       </Row>
-      <Row>
+      <Row key="programme-syllabus-list">
         <Col>
           {programmeTerms.length === 0 ? (
             <p>{t('programme_study_years_syllabus_missing')}</p>
@@ -67,17 +67,17 @@ function Programme() {
         </Col>
       </Row>
       {(firstAdmissionYear === null || firstAdmissionYear < 2007) && (
-        <Row>
+        <Row key="programme-syllabus-old">
           <Col>
             <h2>{t('programme_study_years_old')}</h2>
             <p>{t('programme_study_years_old_explanation')}</p>
             <p>
-              <a href={pageLink(`/student/program/shb`, language)}>{t('main_menu_shb')}</a>
+              <Link href={pageLink(`/student/program/shb`, language)}>{t('main_menu_shb')}</Link>
             </p>
           </Col>
         </Row>
       )}
-      <Row>
+      <Row key="footer">
         <Col>
           <FooterContent />
         </Col>
