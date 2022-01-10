@@ -65,7 +65,7 @@ function _renderOnClientSide() {
   const app = <BrowserRouter>{appFactory()}</BrowserRouter>
 
   const domElement = document.getElementById('app')
-  ReactDOM.hydrate(app, domElement)
+  ReactDOM.render(app, domElement)
 }
 
 function appFactory(ssrApplicationStore) {
