@@ -24,7 +24,7 @@ function CourseListTableRow({ course }) {
   const t = translate(language)
   const { code, name, comment, credits, creditAbbr, level } = course
 
-  const courselink = courseLink(code, language, { term: term })
+  const courselink = courseLink(code, language)
   return (
     <tr>
       <td className="code">
