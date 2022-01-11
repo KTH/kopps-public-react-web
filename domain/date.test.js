@@ -9,8 +9,8 @@ const dateOnlyString = '2021-01-02'
 const dateTimeString = '2021-01-02T00:01:02'
 const dateTimeLongString = '2021-01-02T00:01:02.000+01:00'
 
-const expectedSwedishFormatted = '2021-01-02'
-const expectedEnglishFormatted = '1/2/2021'
+const expectedSwedishFormatted = '2 januari 2021'
+const expectedEnglishFormatted = 'January 2, 2021'
 
 describe('Format date', () => {
   test('in Swedish format', () => {

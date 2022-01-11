@@ -12,7 +12,8 @@ function formatISODate(date, lang) {
       languageTag = 'en-US'
       break
   }
-  return parsedDate.toLocaleDateString(languageTag)
+  const options = { year: 'numeric', month: 'long', day: 'numeric' }
+  return parsedDate.toLocaleDateString(languageTag, options)
 }
 
 module.exports = {
