@@ -25,6 +25,15 @@ const store = {
    */
   setMessage,
   /**
+   * @property {string} firstAdmissionTerm
+   */
+  firstAdmissionTerm: '',
+  /**
+   * @method
+   * @param {string} firstAdmissionTerm
+   */
+  setFirstAdmissionTerm,
+  /**
    * @method
    * @param {map<string, {}>} programmes
    */
@@ -184,6 +193,11 @@ function setDepartmentName(departmentName) {
 
 function setDepartmentCourses(departmentCourses) {
   this.departmentCourses = departmentCourses
+}
+
+function setFirstAdmissionTerm(firstAdmissionTerm) {
+  console.log('============== firstAdmissionTerm ===================', firstAdmissionTerm)
+  this.firstAdmissionTerm = firstAdmissionTerm
 }
 
 function setProgrammeName(programmeName) {
