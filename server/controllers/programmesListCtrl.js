@@ -47,6 +47,7 @@ function _addCategorizedProgramme(c, programme, degree) {
   const heading = findProgrammeGroupHeading(programme, degree)
   if (!categorized.has(heading)) return categorized
   if (programme.lastAdmissionTerm) {
+    // Program utan nyantagning
     categorized.get(heading).second.push(programme)
   } else {
     categorized.get(heading).first.push(programme)

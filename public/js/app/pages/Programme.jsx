@@ -28,21 +28,9 @@ function ProgrammeTermsLinkListItem({ term }) {
   )
 }
 
-function getFirstAdmissionYear(firstAdmissionTerm) {
-  if (firstAdmissionTerm === null || !firstAdmissionTerm) {
-    return null
-  }
-  const [year] = splitTerm(firstAdmissionTerm)
-  if (!year) {
-    return null
-  }
-  return Number(year)
-}
-
 function Programme() {
-  const { firstAdmissionTerm, language, programmeCode, programmeName, programmeTerms } = useStore()
+  const { lastAdmissionTerm, language, programmeCode, programmeName, programmeTerms } = useStore()
   const t = translate(language)
-  const firstAdmissionYear = getFirstAdmissionYear(firstAdmissionTerm)
   return (
     <>
       <Row key="programme-syllabus-heading">
@@ -66,7 +54,7 @@ function Programme() {
           )}
         </Col>
       </Row>
-      {(firstAdmissionYear === null || firstAdmissionYear < 2007) && (
+      {lastAdmissionTerm && (
         <Row key="programme-syllabus-old">
           <Col>
             <h2>{t('programme_study_years_old')}</h2>

@@ -20,12 +20,12 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, progr
   applicationStore.setStatusCode(statusCode)
   if (statusCode !== 200) return // react NotFound
 
-  const { firstAdmissionTerm, lengthInStudyYears, title: programmeName } = programme
+  const { lastAdmissionTerm, lengthInStudyYears, title: programmeName } = programme
 
   const programmeTerms = filterOutInvalidTerms(programme)
   programmeTerms.sort().reverse()
 
-  applicationStore.setFirstAdmissionTerm(firstAdmissionTerm)
+  applicationStore.setLastAdmissionTerm(lastAdmissionTerm)
   applicationStore.setProgrammeName(programmeName)
   applicationStore.setLengthInStudyYears(lengthInStudyYears)
   applicationStore.setProgrammeTerms(programmeTerms)
