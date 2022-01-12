@@ -3,66 +3,27 @@
 const log = require('kth-node-log')
 const language = require('kth-node-web-common/lib/language')
 
-const { browser: browserConfig, server: serverConfig } = require('../configuration')
+const { server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 
-const koppsApi = require('../kopps/koppsApi')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
+const { programmeFullName } = require('../utils/programmeFullName')
 
-const { programmeLink } = require('../../domain/links')
+const {
+  fillBasicPageConfig,
+  fetchAndFillProgrammeProps,
+  fillBreadcrumbsDynamicItems,
+  fetchAndFillStudyProgrammeVersion,
+  fetchAndFillCurriculumSpecializations,
+} = require('./programmeStoreSSR')
 
-function parseSpecializations(curriculums) {
-  return curriculums
-    .filter(curriculum => curriculum.programmeSpecialization)
-    .map(curriculum => {
-      const { programmeSpecialization } = curriculum
-      const { programmeSpecializationCode: code, title } = programmeSpecialization
-      const description = programmeSpecialization.description || null
-      const specialization = {
-        code,
-        title,
-        description,
-      }
-      return specialization
-    })
-}
-
-async function _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode, term }) {
-  applicationStore.setLanguage(lang)
-  applicationStore.setBrowserConfig(browserConfig)
-  applicationStore.setProgrammeCode(programmeCode)
-  applicationStore.setTerm(term)
-
-  const { programme, statusCode } = await koppsApi.getProgramme(programmeCode, lang)
-  applicationStore.setStatusCode(statusCode)
-  if (statusCode !== 200) return // react NotFound
-
-  const { title: programmeName, lengthInStudyYears } = programme
-  applicationStore.setProgrammeName(programmeName)
-  applicationStore.setLengthInStudyYears(lengthInStudyYears)
-
-  const { studyProgramme, statusCode: secondStatusCode } = await koppsApi.getStudyProgrammeVersion(
-    programmeCode,
-    term,
+function metaTitleAndDescription(lang, programmeCode, programmeName, term) {
+  const metaTitle = `${programmeFullName(lang, programmeCode, programmeName, term)}, ${i18n.message(
+    'programme_appendix2',
     lang
-  )
+  )}`
 
-  applicationStore.setStatusCode(secondStatusCode)
-  if (secondStatusCode !== 200) return // react NotFound
-
-  const { id: studyProgrammeId } = studyProgramme
-  const { curriculums, statusCode: thirdStatusCode } = await koppsApi.listCurriculums(studyProgrammeId, lang)
-  applicationStore.setStatusCode(thirdStatusCode)
-  if (thirdStatusCode !== 200) return // react NotFound
-
-  const specializations = parseSpecializations(curriculums)
-  applicationStore.setSpecializations(specializations)
-
-  const departmentBreadCrumbItem = {
-    url: programmeLink(programmeCode, lang),
-    label: programmeName,
-  }
-  applicationStore.setBreadcrumbsDynamicItems([departmentBreadCrumbItem])
+  return { metaTitle, metaDescription: '' }
 }
 
 async function getIndex(req, res, next) {
@@ -71,20 +32,33 @@ async function getIndex(req, res, next) {
     const { programmeCode, term } = req.params
 
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
+    const storeId = 'appendix2'
+    log.info(`Creating an application store ${storeId}`)
 
-    const applicationStore = createStore('appendix2')
-    await _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode, term })
+    const applicationStore = createStore(storeId)
+    const options = { applicationStore, lang, programmeCode, term }
+
+    log.info(`Starting to fill application store, for ${storeId}`)
+    const programmeName = await fetchAndFillProgrammeProps(options, storeId)
+    fillBasicPageConfig(options)
+    fillBreadcrumbsDynamicItems(options, programmeName)
+    await fetchAndFillCurriculumSpecializations(options)
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
+    log.info(`${storeId} store was filled in and compressed`)
 
     const proxyPrefix = serverConfig.proxyPrefixPath.programme
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
-    const title = i18n.message('site_name', lang)
-
+    const { metaTitle: title, metaDescription: description } = metaTitleAndDescription(
+      lang,
+      programmeCode,
+      programmeName,
+      term
+    )
     res.render('app/index', {
       html,
       title,
       compressedStoreCode,
-      description: title,
+      description,
       lang,
       proxyPrefix,
     })
