@@ -51,13 +51,14 @@ const WrapperProgramme = ({ lang }) => {
   )
 }
 
-const ProgrammeWithLayout = ({ lang }) => {
+const ProgrammeWithLayout = ({ lang, lastAdmissionTerm }) => {
   applicationStore.setLanguage(lang)
   applicationStore.setBrowserConfig(commonSettings)
   applicationStore.setProgrammeCode(testProgrammeCode)
   applicationStore.setProgrammeName(testProgrammeName[lang])
   applicationStore.setLengthInStudyYears(testLengthInStudyYears)
   applicationStore.setProgrammeTerms(testProgrammeTerms)
+  applicationStore.setLastAdmissionTerm(lastAdmissionTerm) // to test older programs
   const programmeMenuData = getProgrammeMenuData(applicationStore)
 
   const updatedApplicationStore = {
@@ -126,8 +127,26 @@ describe('Render component Programme and check its menu, content and links', () 
   afterAll(() => {
     jest.spyOn(global, 'Date').mockRestore()
   })
-  test('check all links on the page in English', () => {
+  test('check all links on the page in English for a programme which is available for new admission', () => {
     render(<ProgrammeWithLayout lang="en" />)
+    const links = screen.getAllByRole('link')
+    expect(links.length).toBe(5)
+    // Menu links
+    expect(links[0]).toHaveTextContent('Course and programme directory')
+    expect(links[0].href).toStrictEqual('http://localhost/student/kurser?l=en')
+    // Main content links
+    expect(links[1]).toHaveTextContent('Programme syllabus for studies starting in Autumn 19')
+    expect(links[1].href).toStrictEqual('http://localhost/student/kurser/program/ARKIT/20192/arskurs2?l=en')
+    expect(links[2]).toHaveTextContent('Programme syllabus for studies starting in Spring 21')
+    expect(links[2].href).toStrictEqual('http://localhost/student/kurser/program/ARKIT/20211/arskurs1?l=en')
+    // Footer links
+    expect(links[3]).toHaveTextContent('Central study counseling')
+    expect(links[3].href).toStrictEqual('https://www.kth.se/en/studies/master/general-study-counselling-1.621634')
+    expect(links[4]).toHaveTextContent('kopps@kth.se')
+    expect(links[4].href).toStrictEqual('mailto:kopps@kth.se')
+  })
+  test('check all links on the page in English for a programme without new admission', () => {
+    render(<ProgrammeWithLayout lang="en" lastAdmissionTerm="20172" />)
     const links = screen.getAllByRole('link')
     expect(links.length).toBe(6)
     // Menu links
@@ -146,8 +165,27 @@ describe('Render component Programme and check its menu, content and links', () 
     expect(links[5]).toHaveTextContent('kopps@kth.se')
     expect(links[5].href).toStrictEqual('mailto:kopps@kth.se')
   })
-  test('check all links on the page in Swedish', () => {
+  test('check all links on the page in Swedish for a programme which is available for new admission', () => {
     render(<ProgrammeWithLayout lang="sv" />)
+    const links = screen.getAllByRole('link')
+    expect(links.length).toBe(5)
+    // Menu links
+    expect(links[0]).toHaveTextContent('Kurs- och programkatalogen')
+    expect(links[0].href).toStrictEqual('http://localhost/student/kurser')
+    // Main content links
+    expect(links[1]).toHaveTextContent('Utbildningsplan kull HT19')
+    expect(links[1].href).toStrictEqual('http://localhost/student/kurser/program/ARKIT/20192/arskurs2')
+    expect(links[2]).toHaveTextContent('Utbildningsplan kull VT21')
+    expect(links[2].href).toStrictEqual('http://localhost/student/kurser/program/ARKIT/20211/arskurs1')
+    // Footer links
+    expect(links[3]).toHaveTextContent('Central studievägledning')
+    expect(links[3].href).toStrictEqual('https://www.kth.se/studievagledning')
+    expect(links[4]).toHaveTextContent('kopps@kth.se')
+    expect(links[4].href).toStrictEqual('mailto:kopps@kth.se')
+  })
+
+  test('check all links on the page in Swedish for a programme without new admission', () => {
+    render(<ProgrammeWithLayout lang="sv" lastAdmissionTerm="20212" />)
     const links = screen.getAllByRole('link')
     expect(links.length).toBe(6)
     // Menu links

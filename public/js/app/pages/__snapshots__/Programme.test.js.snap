@@ -119,27 +119,6 @@ exports[`Render component Programme within Layout match to snapshot in English 1
           <div
             class="col"
           >
-            <h2>
-              Older programme syllabuses
-            </h2>
-            <p>
-              Until the study year 2007/2008 the study handbook contained the programme syllabuses.
-            </p>
-            <p>
-              <a
-                href="/student/program/shb?l=en"
-              >
-                Study Handbook 00/01 to 07/08
-              </a>
-            </p>
-          </div>
-        </div>
-        <div
-          class="row"
-        >
-          <div
-            class="col"
-          >
             <footer
               class="border-top mt-4 pt-1"
               id="articleFooter"
@@ -279,27 +258,6 @@ exports[`Render component Programme within Layout match to snapshot in Swedish 1
                 </li>
               </ul>
             </article>
-          </div>
-        </div>
-        <div
-          class="row"
-        >
-          <div
-            class="col"
-          >
-            <h2>
-              Äldre utbildningsplaner
-            </h2>
-            <p>
-              Fram till läsåret 2007/2008 fanns utbildningsplanerna i studiehandboken.
-            </p>
-            <p>
-              <a
-                href="/student/program/shb"
-              >
-                Studiehandboken 00/01 tom 07/08
-              </a>
-            </p>
           </div>
         </div>
         <div
