@@ -211,15 +211,6 @@ function Specialisations() {
   )
 }
 
-function ArticleContent() {
-  return (
-    <Article classNames={['paragraphs']}>
-      <CommonCourses />
-      <Specialisations />
-    </Article>
-  )
-}
-
 function Appendix1() {
   const { language, programmeName, programmeCode, term } = useStore()
   const t = translate(language)
@@ -238,7 +229,10 @@ function Appendix1() {
       </Row>
       <Row>
         <Col>
-          <ArticleContent />
+          <Article classNames={['paragraphs']}>
+            <CommonCourses />
+            <Specialisations />
+          </Article>
         </Col>
         <Col xs="12" xl="3">
           <Sidebar />
