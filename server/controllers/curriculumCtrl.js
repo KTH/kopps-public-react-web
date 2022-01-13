@@ -3,7 +3,7 @@
 const log = require('kth-node-log')
 const language = require('kth-node-web-common/lib/language')
 
-const { browser: browserConfig, server: serverConfig } = require('../configuration')
+const { server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 
 const koppsApi = require('../kopps/koppsApi')
@@ -11,9 +11,24 @@ const { curriculumInfo, setFirstSpec } = require('../../domain/curriculum')
 const { calculate: calculateStartTerm } = require('../../domain/academicYear')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
+const { programmeFullName } = require('../utils/programmeFullName')
 
 const { programmeLink } = require('../../domain/links')
+const {
+  fillStoreWithQueryParams,
+  fetchAndFillProgrammeDetails,
+  fillBreadcrumbsDynamicItems,
+  fetchAndFillStudyProgrammeVersion,
+} = require('./programmeStoreSSR')
 
+/**
+ *
+ * @param {object} curriculum
+ * @param {string} programmeCode
+ * @param {string} term
+ * @param {string} studyYear
+ * @param {string} lang
+ */
 async function _getCourseRounds(curriculum, programmeCode, term, studyYear, lang) {
   const specializationCode = curriculum.programmeSpecialization
     ? curriculum.programmeSpecialization.programmeSpecializationCode
@@ -41,14 +56,11 @@ async function _addCourseRounds(curriculums, programmeCode, term, studyYear, lan
   return curriculumsWithCourseRounds
 }
 
-function _setError(applicationStore, statusCode) {
+function _setErrorMissingAdmission(applicationStore, statusCode) {
   if (statusCode === 404) {
     applicationStore.setMissingAdmission()
-  } else {
-    const error = new Error('Exception calling KOPPS API in koppsApi.getStudyProgrammeVersion')
-    error.statusCode = statusCode
-    throw error
   }
+  return
 }
 
 function _compareCurriculum(a, b) {
@@ -61,45 +73,26 @@ function _compareCurriculum(a, b) {
   return 0
 }
 
-async function _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode, term, studyYear }) {
-  log.info('Starting to fill application store, for curriculum')
-  applicationStore.setLanguage(lang)
-  applicationStore.setBrowserConfig(browserConfig)
-  applicationStore.setProgrammeCode(programmeCode)
-  applicationStore.setTerm(term)
-  applicationStore.setStudyYear(studyYear)
-  log.info('Fetching programme from KOPPs API, programmeCode:', programmeCode)
-
-  const { programme, statusCode } = await koppsApi.getProgramme(programmeCode, lang)
-  applicationStore.setStatusCode(statusCode)
-  if (statusCode !== 200) return // react NotFound
-
-  if (!programme) {
-    log.error('Failed to fetch from KOPPs api, programmeCode:', programmeCode)
-    return
-  }
-  log.info('Successfully fetched programme from KOPPs API, programmeCode:', programmeCode)
-
-  const { title: programmeName, owningSchoolCode, lengthInStudyYears } = programme
-
-  applicationStore.setProgrammeName(programmeName)
-  applicationStore.setOwningSchoolCode(owningSchoolCode)
-  applicationStore.setLengthInStudyYears(lengthInStudyYears)
-
-  const { studyProgramme, statusCode: secondStatusCode } = await koppsApi.getStudyProgrammeVersion(
-    programmeCode,
-    term,
-    lang
-  )
-  applicationStore.setStatusCode(secondStatusCode)
-  if (secondStatusCode !== 200) {
-    _setError(applicationStore, secondStatusCode)
+/**
+ * Curriculum
+ *
+ * @param {object} options.applicationStore
+ * @param {string} options.lang
+ * @param {string} options.programmeCode
+ * @param {string} options.term
+ * @param {string} storeId
+ */
+async function _fetchAndFillCurriculumByStudyYear(options, storeId) {
+  const { applicationStore, lang, programmeCode, studyYear, term } = options
+  const { studyProgrammeId, statusCode } = await fetchAndFillStudyProgrammeVersion({ ...options, storeId })
+  if (!studyProgrammeId) {
+    _setErrorMissingAdmission(applicationStore, statusCode)
     return
   } // react NotFound
+  const { curriculums, statusCode: secondStatusCode } = await koppsApi.listCurriculums(studyProgrammeId, lang)
+  applicationStore.setStatusCode(secondStatusCode)
+  if (secondStatusCode !== 200) return // react NotFound
 
-  const { id: studyProgrammeId } = studyProgramme
-
-  const { curriculums, statusCode: thirdStatusCode } = await koppsApi.listCurriculums(studyProgrammeId, lang)
   const curriculumsWithCourseRounds = await _addCourseRounds(curriculums, programmeCode, term, studyYear, lang)
   applicationStore.setCurriculums(curriculumsWithCourseRounds)
   const curriculumInfos = curriculumsWithCourseRounds
@@ -108,12 +101,16 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, lang, progr
   curriculumInfos.sort(_compareCurriculum)
   setFirstSpec(curriculumInfos)
   applicationStore.setCurriculumInfos(curriculumInfos)
+  return
+}
 
-  const departmentBreadCrumbItem = {
-    url: programmeLink(programmeCode, lang),
-    label: programmeName,
-  }
-  applicationStore.setBreadcrumbsDynamicItems([departmentBreadCrumbItem])
+function metaTitleAndDescription(lang, programmeCode, programmeName, studyYear, term) {
+  const metaTitle = `${programmeFullName(lang, programmeCode, programmeName, term)}, ${i18n.message(
+    'study_year',
+    lang
+  )} ${studyYear}`
+
+  return { metaTitle, metaDescription: '' }
 }
 
 async function getIndex(req, res, next) {
@@ -122,19 +119,33 @@ async function getIndex(req, res, next) {
     const { programmeCode, term, studyYear } = req.params
 
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
+    const storeId = 'curriculum'
+    log.info(`Creating an application store ${storeId} on server side`)
 
-    const applicationStore = createStore('curriculum')
-    await _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode, term, studyYear })
-    log.info('Curriculum store was filled in')
+    const applicationStore = createStore(storeId)
+    const options = { applicationStore, lang, programmeCode, term, studyYear }
+
+    log.info(`Starting to fill in application store ${storeId} on server side `)
+    const programmeName = await fetchAndFillProgrammeDetails(options, storeId)
+
+    fillStoreWithQueryParams(options)
+    fillBreadcrumbsDynamicItems(options, programmeName)
+    await _fetchAndFillCurriculumByStudyYear(options, storeId)
+
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
-    log.info('Curriculum store was compressed')
+    log.info(`${storeId} store was filled in and compressed`)
 
-    const proxyPrefix = serverConfig.proxyPrefixPath.programme
-    log.info('applicationStore', { applicationStore })
+    const { programme: proxyPrefix } = serverConfig.proxyPrefixPath
+    log.debug({ applicationStore })
 
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
-    const title = i18n.message('site_name', lang)
-
+    const { metaTitle: title, metaDescription: description } = metaTitleAndDescription(
+      lang,
+      programmeCode,
+      programmeName,
+      studyYear,
+      term
+    )
     res.render('app/index', {
       html,
       title,
