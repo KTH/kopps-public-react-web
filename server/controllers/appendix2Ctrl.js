@@ -16,7 +16,14 @@ const {
   fetchAndFillSpecializations,
 } = require('./programmeStoreSSR')
 
-function metaTitleAndDescription(lang, programmeCode, programmeName, term) {
+/**
+ * @param {string} lang
+ * @param {string} programmeCode
+ * @param {string} programmeName
+ * @param {string} term
+ * @returns {object}
+ */
+function _metaTitleAndDescription(lang, programmeCode, programmeName, term) {
   const metaTitle = `${programmeFullName(lang, programmeCode, programmeName, term)}, ${i18n.message(
     'programme_appendix2',
     lang
@@ -47,7 +54,7 @@ async function getIndex(req, res, next) {
 
     const { programme: proxyPrefix } = serverConfig.proxyPrefixPath
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
-    const { metaTitle: title, metaDescription: description } = metaTitleAndDescription(
+    const { metaTitle: title, metaDescription: description } = _metaTitleAndDescription(
       lang,
       programmeCode,
       programmeName,

@@ -89,7 +89,7 @@ function fillBreadcrumbsDynamicItems({ applicationStore, lang, programmeCode }, 
  * @param {string} options.programmeCode
  * @param {string} options.term
  * @param {string} options.storeId
- * @returns {string}
+ * @returns {object}
  */
 async function fetchAndFillStudyProgrammeVersion({ applicationStore, lang, programmeCode, term, storeId }) {
   const { studyProgramme, statusCode } = await koppsApi.getStudyProgrammeVersion(programmeCode, term, lang)

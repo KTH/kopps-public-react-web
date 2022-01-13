@@ -14,7 +14,7 @@ const { departmentLink } = require('../../domain/links')
 
 /**
  * @param {string} departmentName
- * @param {string} options.lang
+ * @param {string} lang
  * @returns {object}
  */
 function _metaTitleAndDescription(departmentName, lang) {
@@ -76,13 +76,18 @@ async function getIndex(req, res, next) {
 
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
 
+    log.info(`Creating a default application store for department controller`)
+
     const applicationStore = createStore()
+
     const options = { applicationStore, lang, departmentCode }
+    log.debug(`Starting to fill a default application store, for department controller`)
     const departmentName = await _fetchAndFillDepartmentCourses(options)
     await _fillStoreWithBasicConfig(options)
     await _fillBreadcrumbsDynamicItems(options, departmentName)
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
+    log.info(`Default store was filled in and compressed on server side`)
 
     const proxyPrefix = serverConfig.proxyPrefixPath.department
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
