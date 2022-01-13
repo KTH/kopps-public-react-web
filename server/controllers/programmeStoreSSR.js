@@ -1,3 +1,5 @@
+const log = require('kth-node-log')
+
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 const koppsApi = require('../kopps/koppsApi')
@@ -6,11 +8,12 @@ const { programmeLink } = require('../../domain/links')
 // @ts-check
 
 module.exports = {
-  fillBasicPageConfig,
-  fetchAndFillProgrammeProps,
+  fillStoreWithQueryParams,
+  fetchAndFillProgrammeDetails,
   fillBreadcrumbsDynamicItems,
   fetchAndFillCurriculumList,
-  fetchAndFillCurriculumSpecializations,
+  fetchAndFillSpecializations,
+  fetchAndFillStudyProgrammeVersion,
 }
 /**
  * add props to a MobX-stores on server side
@@ -20,14 +23,17 @@ module.exports = {
  * @param {object} options.applicationStore
  * @param {string} options.lang
  * @param {string} options.programmeCode
- * @param {string} options.term
+ * @param {string | undefined} options.studyYear
+ * @param {string | undefined} options.term
  */
 
-function fillBasicPageConfig({ applicationStore, lang, programmeCode, term }) {
+function fillStoreWithQueryParams({ applicationStore, lang, programmeCode, studyYear, term }) {
   applicationStore.setLanguage(lang)
   applicationStore.setBrowserConfig(browserConfig)
   applicationStore.setProgrammeCode(programmeCode)
-  if (term) applicationStore.setTerm(term)
+  if (term) applicationStore.setTerm(term) // appendixes
+  //storeId === 'curriculum'?
+  if (studyYear) applicationStore.setStudyYear(studyYear) // curriculumCtrl
   return
 }
 
@@ -39,17 +45,23 @@ function fillBasicPageConfig({ applicationStore, lang, programmeCode, term }) {
  * @param {string} storeId
  * @returns {string}
  */
-async function fetchAndFillProgrammeProps({ applicationStore, lang, programmeCode, term }, storeId = '') {
+async function fetchAndFillProgrammeDetails({ applicationStore, lang, programmeCode, term }, storeId = '') {
+  log.info('Fetching programme from KOPPs API, programmeCode:', programmeCode)
+
   const { programme, statusCode } = await koppsApi.getProgramme(programmeCode, lang)
   applicationStore.setStatusCode(statusCode)
-  if (statusCode !== 200) return // react NotFound
+  if (statusCode !== 200 || !programme) {
+    log.debug('Failed to fetch from KOPPs api, programmeCode:', programmeCode)
+    return
+  } // react NotFound
+
+  log.info('Successfully fetched programme from KOPPs API, programmeCode:', programmeCode)
 
   const { title: programmeName, lengthInStudyYears, creditUnitAbbr, owningSchoolCode } = programme
   applicationStore.setProgrammeName(programmeName)
   applicationStore.setLengthInStudyYears(lengthInStudyYears)
   if (storeId === 'appendix1') applicationStore.setCreditUnitAbbr(creditUnitAbbr)
   if (storeId === 'curriculum') {
-    applicationStore.setCreditUnitAbbr(creditUnitAbbr)
     applicationStore.setOwningSchoolCode(owningSchoolCode)
   }
 
@@ -79,20 +91,21 @@ function fillBreadcrumbsDynamicItems({ applicationStore, lang, programmeCode }, 
  * @param {string} options.storeId
  * @returns {string}
  */
-async function _fetchAndFillStudyProgrammeVersion({ applicationStore, lang, programmeCode, term, storeId }) {
+async function fetchAndFillStudyProgrammeVersion({ applicationStore, lang, programmeCode, term, storeId }) {
   const { studyProgramme, statusCode } = await koppsApi.getStudyProgrammeVersion(programmeCode, term, lang)
 
   applicationStore.setStatusCode(statusCode)
-  if (statusCode !== 200) return // react NotFound
+  if (statusCode !== 200) return { statusCode } // react NotFound
 
   if (storeId === 'appendix1') applicationStore.setStudyProgramme(studyProgramme) // only works for store appendix 1
 
   const { id: studyProgrammeId } = studyProgramme
 
-  return studyProgrammeId
+  return { studyProgrammeId, statusCode }
 }
 
 /**
+ * Appendix 1
  *
  * @param {object} applicationStore
  * @param {array} curriculums
@@ -194,6 +207,7 @@ function _parseCurriculums(applicationStore, curriculums) {
 }
 
 /**
+ * Appendix 2
  *
  * @param {array} curriculums
  * @returns {array}
@@ -223,7 +237,7 @@ function _parseSpecializations(curriculums) {
  */
 async function fetchAndFillCurriculumList(options) {
   const { applicationStore, lang } = options
-  const studyProgrammeId = await _fetchAndFillStudyProgrammeVersion({ ...options, storeId: 'appendix1' })
+  const { studyProgrammeId } = await fetchAndFillStudyProgrammeVersion({ ...options, storeId: 'appendix1' })
   if (!studyProgrammeId) return
   const { curriculums, statusCode: secondStatusCode } = await koppsApi.listCurriculums(studyProgrammeId, lang)
   applicationStore.setStatusCode(secondStatusCode)
@@ -240,9 +254,9 @@ async function fetchAndFillCurriculumList(options) {
  * @param {string} options.programmeCode
  * @param {string} options.term
  */
-async function fetchAndFillCurriculumSpecializations(options) {
+async function fetchAndFillSpecializations(options) {
   const { applicationStore, lang } = options
-  const studyProgrammeId = await _fetchAndFillStudyProgrammeVersion({ ...options, storeId: 'appendix2' })
+  const { studyProgrammeId } = await fetchAndFillStudyProgrammeVersion({ ...options, storeId: 'appendix2' })
   if (!studyProgrammeId) return
   const { curriculums, statusCode: secondStatusCode } = await koppsApi.listCurriculums(studyProgrammeId, lang)
   applicationStore.setStatusCode(secondStatusCode)

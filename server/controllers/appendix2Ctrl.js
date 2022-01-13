@@ -10,11 +10,10 @@ const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { programmeFullName } = require('../utils/programmeFullName')
 
 const {
-  fillBasicPageConfig,
-  fetchAndFillProgrammeProps,
+  fillStoreWithQueryParams,
+  fetchAndFillProgrammeDetails,
   fillBreadcrumbsDynamicItems,
-  fetchAndFillStudyProgrammeVersion,
-  fetchAndFillCurriculumSpecializations,
+  fetchAndFillSpecializations,
 } = require('./programmeStoreSSR')
 
 function metaTitleAndDescription(lang, programmeCode, programmeName, term) {
@@ -39,14 +38,14 @@ async function getIndex(req, res, next) {
     const options = { applicationStore, lang, programmeCode, term }
 
     log.info(`Starting to fill application store, for ${storeId}`)
-    const programmeName = await fetchAndFillProgrammeProps(options, storeId)
-    fillBasicPageConfig(options)
+    const programmeName = await fetchAndFillProgrammeDetails(options, storeId)
+    fillStoreWithQueryParams(options)
     fillBreadcrumbsDynamicItems(options, programmeName)
-    await fetchAndFillCurriculumSpecializations(options)
+    await fetchAndFillSpecializations(options)
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
-    log.info(`${storeId} store was filled in and compressed`)
+    log.info(`${storeId} store was filled in and compressed on server side`)
 
-    const proxyPrefix = serverConfig.proxyPrefixPath.programme
+    const { programme: proxyPrefix } = serverConfig.proxyPrefixPath
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const { metaTitle: title, metaDescription: description } = metaTitleAndDescription(
       lang,

@@ -9,10 +9,9 @@ const i18n = require('../../i18n')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { programmeFullName } = require('../utils/programmeFullName')
 const {
-  fillBasicPageConfig,
-  fetchAndFillProgrammeProps,
+  fillStoreWithQueryParams,
+  fetchAndFillProgrammeDetails,
   fillBreadcrumbsDynamicItems,
-  fetchAndFillStudyProgrammeVersion,
   fetchAndFillCurriculumList,
 } = require('./programmeStoreSSR')
 
@@ -24,9 +23,6 @@ function metaTitleAndDescription(lang, programmeCode, programmeName, term) {
 
   return { metaTitle, metaDescription: '' }
 }
-async function _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode, term, studyYear }) {
-  log.info('Starting to fill application store, for curriculum')
-}
 
 async function getIndex(req, res, next) {
   try {
@@ -35,16 +31,18 @@ async function getIndex(req, res, next) {
 
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
     const storeId = 'appendix1'
-    log.info(`Creating an application store ${storeId}`)
+    log.info(`Creating an application store ${storeId} on server side`)
     const applicationStore = createStore(storeId)
     const options = { applicationStore, lang, programmeCode, term }
-    log.info(`Starting to fill application store, for ${storeId}`)
-    const programmeName = await fetchAndFillProgrammeProps(options, storeId)
-    fillBasicPageConfig(options)
+    log.info(`Starting to fill in application store ${storeId} on server side `)
+
+    const programmeName = await fetchAndFillProgrammeDetails(options, storeId)
+
+    fillStoreWithQueryParams(options)
     fillBreadcrumbsDynamicItems(options, programmeName)
     await fetchAndFillCurriculumList(options)
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
-    log.info(`${storeId} store was filled in and compressed`)
+    log.info(`${storeId} store was filled in and compressed on server side`)
 
     const { programme: proxyPrefix } = serverConfig.proxyPrefixPath
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
