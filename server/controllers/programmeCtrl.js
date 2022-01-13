@@ -10,25 +10,40 @@ const koppsApi = require('../kopps/koppsApi')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { filterOutInvalidTerms } = require('../../domain/programmes')
+const { fillStoreWithQueryParams, fetchAndFillProgrammeDetails } = require('./programmeStoreSSR')
+const { programmeFullName } = require('../utils/programmeFullName')
 
-async function _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode }) {
-  applicationStore.setLanguage(lang)
-  applicationStore.setBrowserConfig(browserConfig)
-  applicationStore.setProgrammeCode(programmeCode)
+/**
+ * @param {string} lang
+ * @param {string} programmeCode
+ * @param {string} programmeName
+ * @returns {object}
+ */
+function _metaTitleAndDescription(lang, programmeCode, programmeName) {
+  const metaTitle = `${programmeName} (${programmeCode}), ${i18n.message('programme_study_years', lang)}`
 
-  const { programme, statusCode } = await koppsApi.getProgramme(programmeCode, lang)
-  applicationStore.setStatusCode(statusCode)
-  if (statusCode !== 200) return // react NotFound
+  return { metaTitle, metaDescription: '' }
+}
+/**
+ * @param {object} options.applicationStore
+ * @param {string} options.lang
+ * @param {string} options.programmeCode
+ * @returns {object}
+ */
+async function _fetchSortAndFillProgrammeTerms({ applicationStore, lang, programmeCode }) {
+  const {
+    approvedStudyProgrammeTerms,
+    firstAdmissionTerm,
+    lastAdmissionTerm,
+    title: programmeName,
+  } = await fetchAndFillProgrammeDetails({ applicationStore, lang, programmeCode })
 
-  const { lastAdmissionTerm, lengthInStudyYears, title: programmeName } = programme
-
-  const programmeTerms = filterOutInvalidTerms(programme)
+  const programmeTerms = filterOutInvalidTerms({ approvedStudyProgrammeTerms, firstAdmissionTerm, lastAdmissionTerm })
   programmeTerms.sort().reverse()
 
   applicationStore.setLastAdmissionTerm(lastAdmissionTerm)
-  applicationStore.setProgrammeName(programmeName)
-  applicationStore.setLengthInStudyYears(lengthInStudyYears)
   applicationStore.setProgrammeTerms(programmeTerms)
+  return { programmeName }
 }
 
 async function getIndex(req, res, next) {
@@ -38,19 +53,35 @@ async function getIndex(req, res, next) {
 
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
 
-    const applicationStore = createStore()
-    await _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode })
-    const compressedStoreCode = getCompressedStoreCode(applicationStore)
+    log.info(`Creating a default application store for programme controller`, { programmeCode })
 
-    const proxyPrefix = serverConfig.proxyPrefixPath.programme
+    const applicationStore = createStore()
+    const options = { applicationStore, lang, programmeCode }
+    log.debug(`Starting to fill a default application store, for programme controller`, { programmeCode })
+    const { programmeName } = await _fetchSortAndFillProgrammeTerms(options)
+
+    fillStoreWithQueryParams(options)
+
+    const compressedStoreCode = getCompressedStoreCode(applicationStore)
+    log.info(
+      `Default store was filled in and compressed on server side`,
+      { programmeCode },
+      ', for programme controller'
+    )
+
+    const { programme: proxyPrefix } = serverConfig.proxyPrefixPath
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
-    const title = i18n.message('site_name', lang)
+    const { metaTitle: title, metaDescription: description } = _metaTitleAndDescription(
+      lang,
+      programmeCode,
+      programmeName
+    )
 
     res.render('app/index', {
       html,
       title,
       compressedStoreCode,
-      description: title,
+      description,
       lang,
       proxyPrefix,
     })
