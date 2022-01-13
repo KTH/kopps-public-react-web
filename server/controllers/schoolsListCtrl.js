@@ -37,15 +37,16 @@ async function getSchoolsList(req, res, next) {
     await _fillApplicationStoreOnServerSide({ applicationStore, lang })
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
-    const proxyPrefix = serverConfig.proxyPrefixPath.schoolsList
+    const { schoolsList: proxyPrefix } = serverConfig.proxyPrefixPath
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
-    const title = i18n.message('site_name', lang)
+    const title = i18n.message('courses_by_school', lang)
+    const description = i18n.message('departments_list_lead', lang)
 
     res.render('app/index', {
       html,
       title,
       compressedStoreCode,
-      description: title,
+      description,
       lang,
       proxyPrefix,
     })
