@@ -89,7 +89,7 @@ async function getIndex(req, res, next) {
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
     log.info(`Default store was filled in and compressed on server side`, { departmentCode })
 
-    const proxyPrefix = serverConfig.proxyPrefixPath.department
+    const { department: proxyPrefix } = serverConfig.proxyPrefixPath
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const { metaTitle: title, metaDescription: description } = _metaTitleAndDescription(departmentName, lang)
     res.render('app/index', {

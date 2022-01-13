@@ -45,11 +45,10 @@ function fillStoreWithQueryParams({ applicationStore, lang, programmeCode, study
  * @param {object} options.applicationStore
  * @param {string} options.lang
  * @param {string} options.programmeCode
- * @param {string} options.term
  * @param {string} storeId
- * @returns {string}
+ * @returns {object}
  */
-async function fetchAndFillProgrammeDetails({ applicationStore, lang, programmeCode, term }, storeId = '') {
+async function fetchAndFillProgrammeDetails({ applicationStore, lang, programmeCode }, storeId = '') {
   log.info('Fetching programme from KOPPs API, programmeCode:', programmeCode)
 
   const { programme, statusCode } = await koppsApi.getProgramme(programmeCode, lang)
@@ -69,7 +68,7 @@ async function fetchAndFillProgrammeDetails({ applicationStore, lang, programmeC
     applicationStore.setOwningSchoolCode(owningSchoolCode)
   }
 
-  return programmeName
+  return programme
 }
 
 /**

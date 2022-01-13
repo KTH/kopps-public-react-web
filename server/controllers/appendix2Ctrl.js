@@ -45,7 +45,7 @@ async function getIndex(req, res, next) {
     const options = { applicationStore, lang, programmeCode, term }
 
     log.info(`Starting to fill application store, for ${storeId}`)
-    const programmeName = await fetchAndFillProgrammeDetails(options, storeId)
+    const { programmeName } = await fetchAndFillProgrammeDetails(options, storeId)
     fillStoreWithQueryParams(options)
     fillBreadcrumbsDynamicItems(options, programmeName)
     await fetchAndFillSpecializations(options)
