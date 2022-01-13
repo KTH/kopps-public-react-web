@@ -101,7 +101,7 @@ async function fetchAndFillStudyProgrammeVersion({ applicationStore, lang, progr
   applicationStore.setStatusCode(statusCode)
   if (statusCode !== 200) return { statusCode } // react NotFound
 
-  if (storeId === 'appendix1' || storeId === 'eligibility' || storeId === 'extent') {
+  if (storeId === 'appendix1' || storeId === 'eligibility' || storeId === 'extent' || storeId === ' implementation') {
     applicationStore.setStudyProgramme(studyProgramme)
   }
   const { id: studyProgrammeId } = studyProgramme
