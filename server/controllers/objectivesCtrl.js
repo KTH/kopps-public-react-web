@@ -3,43 +3,34 @@
 const log = require('kth-node-log')
 const language = require('kth-node-web-common/lib/language')
 
-const { browser: browserConfig, server: serverConfig } = require('../configuration')
+const { server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 
 const koppsApi = require('../kopps/koppsApi')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
+const { programmeFullName } = require('../utils/programmeFullName')
 
-const { programmeLink } = require('../../domain/links')
+const {
+  fillStoreWithQueryParams,
+  fetchAndFillProgrammeDetails,
+  fillBreadcrumbsDynamicItems,
+  fetchAndFillStudyProgrammeVersion,
+} = require('./programmeStoreSSR')
 
-async function _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode, term }) {
-  applicationStore.setLanguage(lang)
-  applicationStore.setBrowserConfig(browserConfig)
-  applicationStore.setProgrammeCode(programmeCode)
-  applicationStore.setTerm(term)
-
-  const { programme, statusCode } = await koppsApi.getProgramme(programmeCode, lang)
-  applicationStore.setStatusCode(statusCode)
-  if (statusCode !== 200) return // react NotFound
-
-  const { title: programmeName, lengthInStudyYears } = programme
-  applicationStore.setProgrammeName(programmeName)
-  applicationStore.setLengthInStudyYears(lengthInStudyYears)
-
-  const { studyProgramme, statusCode: secondStatusCode } = await koppsApi.getStudyProgrammeVersion(
-    programmeCode,
-    term,
+/**
+ * @param {string} lang
+ * @param {string} programmeCode
+ * @param {string} programmeName
+ * @param {string} term
+ * @returns {object}
+ */
+function _metaTitleAndDescription(lang, programmeCode, programmeName, term) {
+  const metaTitle = `${programmeFullName(lang, programmeCode, programmeName, term)}, ${i18n.message(
+    'programme_objectives',
     lang
-  )
-  applicationStore.setStatusCode(secondStatusCode)
-  if (secondStatusCode !== 200) return // react NotFound
+  )}`
 
-  applicationStore.setStudyProgramme(studyProgramme)
-
-  const departmentBreadCrumbItem = {
-    url: programmeLink(programmeCode, lang),
-    label: programmeName,
-  }
-  applicationStore.setBreadcrumbsDynamicItems([departmentBreadCrumbItem])
+  return { metaTitle, metaDescription: '' }
 }
 
 async function getIndex(req, res, next) {
@@ -49,19 +40,35 @@ async function getIndex(req, res, next) {
 
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
 
-    const applicationStore = createStore('objectives')
-    await _fillApplicationStoreOnServerSide({ applicationStore, lang, programmeCode, term })
-    const compressedStoreCode = getCompressedStoreCode(applicationStore)
+    const storeId = 'objectives'
+    log.info(`Creating an application store ${storeId} on server side`, { programmeCode })
+    const applicationStore = createStore(storeId)
+    const options = { applicationStore, lang, programmeCode, term }
+    log.info(`Starting to fill in application store ${storeId} on server side `, { programmeCode })
 
-    const proxyPrefix = serverConfig.proxyPrefixPath.programme
+    const programmeName = await fetchAndFillProgrammeDetails(options, storeId)
+
+    fillStoreWithQueryParams(options)
+    fillBreadcrumbsDynamicItems(options, programmeName)
+    await fetchAndFillStudyProgrammeVersion({ ...options, storeId })
+
+    const compressedStoreCode = getCompressedStoreCode(applicationStore)
+    log.info(`${storeId} store was filled in and compressed on server side`, { programmeCode })
+
+    const { programme: proxyPrefix } = serverConfig.proxyPrefixPath
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
-    const title = i18n.message('site_name', lang)
+    const { metaTitle: title, metaDescription: description } = _metaTitleAndDescription(
+      lang,
+      programmeCode,
+      programmeName,
+      term
+    )
 
     res.render('app/index', {
       html,
       title,
       compressedStoreCode,
-      description: title,
+      description,
       lang,
       proxyPrefix,
     })
