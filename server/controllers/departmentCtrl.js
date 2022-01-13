@@ -76,18 +76,18 @@ async function getIndex(req, res, next) {
 
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
 
-    log.info(`Creating a default application store for department controller`)
+    log.info(`Creating a default application store for department controller`, { departmentCode })
 
     const applicationStore = createStore()
 
     const options = { applicationStore, lang, departmentCode }
-    log.debug(`Starting to fill a default application store, for department controller`)
+    log.debug(`Starting to fill a default application store, for department controller`, { departmentCode })
     const departmentName = await _fetchAndFillDepartmentCourses(options)
     await _fillStoreWithBasicConfig(options)
     await _fillBreadcrumbsDynamicItems(options, departmentName)
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
-    log.info(`Default store was filled in and compressed on server side`)
+    log.info(`Default store was filled in and compressed on server side`, { departmentCode })
 
     const proxyPrefix = serverConfig.proxyPrefixPath.department
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
@@ -96,7 +96,7 @@ async function getIndex(req, res, next) {
       html,
       title,
       compressedStoreCode,
-      description: title,
+      description,
       lang,
       proxyPrefix,
     })

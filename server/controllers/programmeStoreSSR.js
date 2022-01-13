@@ -17,9 +17,13 @@ module.exports = {
 }
 /**
  * add props to a MobX-stores on server side
- * Appendix1, Appendix2
+ * Appendix1, Appendix2, Curriculum, Eligibility
  * so that its data can be used with the useStore() hook on client side
  *
+ */
+
+/**
+ * Appendix1, Appendix2, Curriculum, Eligibility
  * @param {object} options.applicationStore
  * @param {string} options.lang
  * @param {string} options.programmeCode
@@ -32,7 +36,7 @@ function fillStoreWithQueryParams({ applicationStore, lang, programmeCode, study
   applicationStore.setBrowserConfig(browserConfig)
   applicationStore.setProgrammeCode(programmeCode)
   if (term) applicationStore.setTerm(term) // appendixes
-  //storeId === 'curriculum'?
+  // storeId === 'curriculum'?
   if (studyYear) applicationStore.setStudyYear(studyYear) // curriculumCtrl
   return
 }
@@ -97,7 +101,7 @@ async function fetchAndFillStudyProgrammeVersion({ applicationStore, lang, progr
   applicationStore.setStatusCode(statusCode)
   if (statusCode !== 200) return { statusCode } // react NotFound
 
-  if (storeId === 'appendix1') applicationStore.setStudyProgramme(studyProgramme) // only works for store appendix 1
+  if (storeId === 'appendix1' || storeId === 'eligibility') applicationStore.setStudyProgramme(studyProgramme) // only works for store appendix 1
 
   const { id: studyProgrammeId } = studyProgramme
 

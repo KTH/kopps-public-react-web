@@ -15,7 +15,7 @@ const {
   fetchAndFillCurriculumList,
 } = require('./programmeStoreSSR')
 
-function metaTitleAndDescription(lang, programmeCode, programmeName, term) {
+function _metaTitleAndDescription(lang, programmeCode, programmeName, term) {
   const metaTitle = `${programmeFullName(lang, programmeCode, programmeName, term)}, ${i18n.message(
     'programme_appendix1',
     lang
@@ -31,10 +31,10 @@ async function getIndex(req, res, next) {
 
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
     const storeId = 'appendix1'
-    log.info(`Creating an application store ${storeId} on server side`)
+    log.info(`Creating an application store ${storeId} on server side`, { programmeCode })
     const applicationStore = createStore(storeId)
     const options = { applicationStore, lang, programmeCode, term }
-    log.info(`Starting to fill in application store ${storeId} on server side `)
+    log.info(`Starting to fill in application store ${storeId} on server side `, { programmeCode })
 
     const programmeName = await fetchAndFillProgrammeDetails(options, storeId)
 
@@ -42,11 +42,11 @@ async function getIndex(req, res, next) {
     fillBreadcrumbsDynamicItems(options, programmeName)
     await fetchAndFillCurriculumList(options)
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
-    log.info(`${storeId} store was filled in and compressed on server side`)
+    log.info(`${storeId} store was filled in and compressed on server side`, { programmeCode })
 
     const { programme: proxyPrefix } = serverConfig.proxyPrefixPath
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
-    const { metaTitle: title, metaDescription: description } = metaTitleAndDescription(
+    const { metaTitle: title, metaDescription: description } = _metaTitleAndDescription(
       lang,
       programmeCode,
       programmeName,

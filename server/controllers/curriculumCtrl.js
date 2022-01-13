@@ -120,12 +120,12 @@ async function getIndex(req, res, next) {
 
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
     const storeId = 'curriculum'
-    log.info(`Creating an application store ${storeId} on server side`)
+    log.info(`Creating an application store ${storeId} on server side`, { programmeCode })
 
     const applicationStore = createStore(storeId)
     const options = { applicationStore, lang, programmeCode, term, studyYear }
 
-    log.info(`Starting to fill in application store ${storeId} on server side `)
+    log.info(`Starting to fill in application store ${storeId} on server side `, { programmeCode })
     const programmeName = await fetchAndFillProgrammeDetails(options, storeId)
 
     fillStoreWithQueryParams(options)
@@ -133,7 +133,7 @@ async function getIndex(req, res, next) {
     await _fetchAndFillCurriculumByStudyYear(options, storeId)
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
-    log.info(`${storeId} store was filled in and compressed`)
+    log.info(`${storeId} store was filled in and compressed`, { programmeCode })
 
     const { programme: proxyPrefix } = serverConfig.proxyPrefixPath
     log.debug({ applicationStore })
@@ -150,7 +150,7 @@ async function getIndex(req, res, next) {
       html,
       title,
       compressedStoreCode,
-      description: title,
+      description,
       lang,
       proxyPrefix,
     })
