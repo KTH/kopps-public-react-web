@@ -28,13 +28,13 @@ async function searchThirdCycleCourses(req, res, next) {
 
     const proxyPrefix = serverConfig.proxyPrefixPath.thirdCycleCourseSearch
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
-    const title = i18n.message('site_name', lang)
+    const title = i18n.message('main_menu_third_cycle_courses_search', lang)
 
     res.render('app/index', {
       html,
       title,
       compressedStoreCode,
-      description: title,
+      description: '',
       lang,
       proxyPrefix,
     })
@@ -87,13 +87,13 @@ async function searchAllCourses(req, res, next) {
 
     const { uri: proxyPrefix } = serverConfig.proxyPrefixPath.courseSearch
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
-    const title = i18n.message('site_name', lang)
+    const title = i18n.message('main_menu_search_all', lang)
 
     res.render('app/index', {
       html,
       title,
       compressedStoreCode,
-      description: title,
+      description: '',
       lang,
       proxyPrefix,
     })

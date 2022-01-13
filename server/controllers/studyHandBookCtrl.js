@@ -21,13 +21,13 @@ async function getStudyBook(req, res, next) {
 
     const proxyPrefix = serverConfig.proxyPrefixPath.studyHandbook
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
-    const title = i18n.message('site_name', lang)
+    const title = i18n.message('main_menu_shb', lang)
 
     res.render('app/index', {
       html,
       title,
       compressedStoreCode,
-      description: title,
+      description: '',
       lang,
       proxyPrefix,
     })

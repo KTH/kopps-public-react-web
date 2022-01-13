@@ -102,15 +102,15 @@ async function getCoursesPerDepartment(req, res, next) {
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
-    const proxyPrefix = serverConfig.proxyPrefixPath.thirdCycleCoursesPerDepartment
+    const { thirdCycleCoursesPerDepartment: proxyPrefix } = serverConfig.proxyPrefixPath
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
-    const title = i18n.message('site_name', lang)
+    const title = i18n.message('third_cycle_courses_by_school', lang)
 
     res.render('app/index', {
       html,
       title,
       compressedStoreCode,
-      description: title,
+      description: '',
       lang,
       proxyPrefix,
     })
