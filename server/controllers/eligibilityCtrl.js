@@ -3,14 +3,13 @@
 const log = require('kth-node-log')
 const language = require('kth-node-web-common/lib/language')
 
-const { browser: browserConfig, server: serverConfig } = require('../configuration')
+const { server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 
 const koppsApi = require('../kopps/koppsApi')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { programmeFullName } = require('../utils/programmeFullName')
 
-const { programmeLink } = require('../../domain/links')
 const {
   fillStoreWithQueryParams,
   fetchAndFillProgrammeDetails,
