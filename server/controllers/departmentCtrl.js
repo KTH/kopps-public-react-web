@@ -12,23 +12,61 @@ const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
 const { departmentLink } = require('../../domain/links')
 
-async function _fillApplicationStoreOnServerSide({ applicationStore, lang, departmentCode }) {
-  applicationStore.setLanguage(lang)
-  applicationStore.setBrowserConfig(browserConfig)
+/**
+ * @param {string} departmentName
+ * @param {string} options.lang
+ * @returns {object}
+ */
+function _metaTitleAndDescription(departmentName, lang) {
+  const metaTitle = `${i18n.message('courses', lang)} ${departmentName}`
 
-  const { departmentCourses, statusCode } = await koppsApi.getCourses({ departmentCode, lang })
-  applicationStore.setStatusCode(statusCode)
-  if (statusCode !== 200) return
+  return { metaTitle, metaDescription: '' }
+}
 
-  const { department: departmentName = '', courses } = departmentCourses
-  applicationStore.setDepartmentName(departmentName)
-  applicationStore.setDepartmentCourses(courses)
-
+/**
+ * @param {object} options.applicationStore
+ * @param {string} options.lang
+ * @param {string} options.departmentCode
+ * @param {string} departmentName
+ */
+function _fillBreadcrumbsDynamicItems({ applicationStore, lang, departmentCode }, departmentName) {
   const departmentBreadCrumbItem = {
     url: departmentLink(departmentCode, lang),
     label: departmentName,
   }
   applicationStore.setBreadcrumbsDynamicItems([departmentBreadCrumbItem])
+}
+
+/**
+ * @param {object} options.applicationStore
+ * @param {string} options.lang
+ */
+function _fillStoreWithBasicConfig({ applicationStore, lang }) {
+  applicationStore.setLanguage(lang)
+  applicationStore.setBrowserConfig(browserConfig)
+}
+
+/**
+ * @param {object} options.applicationStore
+ * @param {string} options.lang
+ * @param {string} options.departmentCode
+ * @returns {string}
+ */
+async function _fetchAndFillDepartmentCourses({ applicationStore, lang, departmentCode }) {
+  log.info('Fetching department courses from KOPPs API', { departmentCode })
+
+  const { departmentCourses, statusCode } = await koppsApi.getCourses({ departmentCode, lang })
+  applicationStore.setStatusCode(statusCode)
+  if (statusCode !== 200) {
+    log.debug('Failed to fetch department courses from KOPPs api', { departmentCode })
+    return
+  }
+  log.info('Successfully fetched department courses from KOPPs API', { departmentCode })
+
+  const { department: departmentName = '', courses } = departmentCourses
+  applicationStore.setDepartmentName(departmentName)
+  applicationStore.setDepartmentCourses(courses)
+  return departmentName
 }
 
 async function getIndex(req, res, next) {
@@ -39,12 +77,16 @@ async function getIndex(req, res, next) {
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
 
     const applicationStore = createStore()
-    await _fillApplicationStoreOnServerSide({ applicationStore, lang, departmentCode })
+    const options = { applicationStore, lang, departmentCode }
+    const departmentName = await _fetchAndFillDepartmentCourses(options)
+    await _fillStoreWithBasicConfig(options)
+    await _fillBreadcrumbsDynamicItems(options, departmentName)
+
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
     const proxyPrefix = serverConfig.proxyPrefixPath.department
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
-    const title = i18n.message('site_name', lang)
+    const { metaTitle: title, metaDescription: description } = _metaTitleAndDescription(departmentName, lang)
     res.render('app/index', {
       html,
       title,
