@@ -11,6 +11,7 @@ module.exports = {
   fillBreadcrumbsDynamicItems,
   fillStoreWithBasicConfig,
   fetchAndFillDepartmentCourses,
+  getOnlyThirdCycleCourses,
 }
 /**
  * add props to a MobX-stores on server side
