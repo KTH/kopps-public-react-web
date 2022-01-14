@@ -1,0 +1,43 @@
+<!--indexOff: all-->
+<header>
+  <div class='container-fluid'>
+    <div class='container'>
+      <div class='header-container__top'>
+        {{{blocks.image}}}
+        {{{blocks.title}}}
+        <div id='mobileMenuWrapper'>
+          <button
+            id='nav-icon'
+            class='navbar-toggler nav-icon'
+            type='button'
+            title='{{i18n "button_mobile_menu_label" lang}}'
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <nav
+            id='mobileMenu'
+            aria-label='{{i18n "mobile_menu_aria_label" lang}}'
+            class='block navbar navbar-expand-lg navbar-light'
+          >
+            <div id='mobileMenuContent' class='navbar-collapse collapse'>
+              <ul id='mobileMenuList' class='menu navbar-nav mr-auto'></ul>
+            </div>
+          </nav>
+        </div>
+        {{{blocks.studentSecondaryMenu}}}
+      </div>
+      <div class='header-container__bottom'>{{{blocks.studentMegaMenu}}} {{{blocks.studentSearch}}}</div>
+    </div>
+  </div>
+  <div id='gradientBorder'></div>
+
+  <div class='container articleNavigation'>
+    <div id='breadcrumbs-header' class='row justify-content-between'>
+      {{! HERE WILL BE RENDERED REACT COMPONENT Breadcrumbs }}
+    </div>
+  </div>
+</header>
+<!--indexOn: all-->

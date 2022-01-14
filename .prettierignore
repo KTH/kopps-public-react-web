@@ -1,0 +1,2 @@
+# Prevent SyntaxError: Handlebars partials are not supported
+server/views/layouts/

@@ -32,11 +32,19 @@
 
 <body>
   <a class="skipToMainContent" href="#mainContent" tabindex="1">{{i18n 'skip_to_main_content' lang}}</a>
+  {{#if studentWeb}}
+  {{> studentHeader }}
+  {{else}}
   {{> kthHeader }}
+  {{/if}}
   <div class="container main standard withMainMenu">
     {{{body}}}
   </div>
+  {{#if studentWeb}}
+  {{> studentFooter}}
+  {{else}}
   {{> kthFooter }}
+  {{/if}}
   {{{render 'scripts'}}}
 </body>
 
