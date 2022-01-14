@@ -108,10 +108,19 @@ const listSchoolsWithDepartments = async ({ departmentCriteria, listForActiveCou
   const { client } = koppsApi.koppsApi
   const uri = `${slashEndedKoppsBase}schools/departments?department_criteria=${departmentCriteria}&listForActiveCourses=${listForActiveCourses}&l=${lang}`
   try {
-    const response = await client.getAsync({ uri, useCache: false })
-    return response.body
+    const { body, statusCode } = await client.getAsync({ uri, useCache: false })
+    let errorMessage = null
+
+    if (statusCode !== 200) {
+      errorMessage = `Failed response calling ${uri}`
+
+      log.debug(errorMessage)
+    }
+    if (body) log.info(`Successfully got data from`, { uri })
+
+    return { schoolsWithDepartments: body, statusCode }
   } catch (error) {
-    log.error('Exception calling KOPPS API in koppsApi.listSchoolsWithDepartments', { error })
+    log.error('Exception ', { error })
     throw error
   }
 }
@@ -124,15 +133,15 @@ const getCourses = async ({ departmentCode, lang = 'sv' }) => {
     let errorMessage = null
 
     if (statusCode !== 200) {
-      errorMessage = new Error(
-        `Failed response from KOPPS API calling /api/kopps/v2/courses/{departmentCode}.{format} with ${departmentCode}`
-      )
+      errorMessage = `Failed response from KOPPS API calling ${uri} with ${departmentCode}`
+
       log.debug(errorMessage)
     }
+    if (body) log.info(`Successfully got data from`, { uri })
 
     return { departmentCourses: body, errorMessage, statusCode }
   } catch (error) {
-    log.error('Exception calling KOPPS API in koppsApi.getCourses', { error })
+    log.error('Exception koppsApi.getCourses', { error })
     throw error
   }
 }
@@ -145,11 +154,11 @@ const getProgramme = async (programmeCode, lang) => {
     const { body, statusCode } = await client.getAsync({ uri, useCache: false })
     const errorMessage = statusCode !== 200 ? setErrorKoppsCallingUri(uri) : null
 
-    if (body) log.info(`Successfully got data from ${uri}`)
+    if (body) log.info(`Successfully got data from`, { uri })
 
     return { programme: body, errorMessage, statusCode }
   } catch (error) {
-    log.error('Exception calling KOPPS API in koppsApi.getProgramme', { error })
+    log.error('Exception in koppsApi.getProgramme', { error })
     throw error
   }
 }
@@ -175,12 +184,11 @@ const getStudyProgrammeVersion = async (programmeCode, validFromTerm, lang) => {
     const { body, statusCode } = await client.getAsync({ uri, useCache: false })
     const errorMessage = statusCode !== 200 ? setErrorInProgramVersion() : null
 
-    if (body) log.info(`Successfully got data from ${uri}`)
+    if (body) log.info(`Successfully got data from`, { uri })
 
     return { studyProgramme: body, errorMessage, statusCode }
-    return response
   } catch (error) {
-    log.error('Exception calling KOPPS API in koppsApi.getStudyProgrammeVersion', { error })
+    log.error('Exception in koppsApi.getStudyProgrammeVersion', { error })
     throw error
   }
 }
@@ -192,10 +200,10 @@ const listCurriculums = async (studyProgrammeVersionId, lang) => {
     const { body, statusCode } = await client.getAsync({ uri, useCache: false })
     const errorMessage = statusCode !== 200 ? setErrorKoppsCallingUri(uri) : null
 
-    if (body) log.info(`Successfully got data from ${uri}`)
+    if (body) log.info(`Successfully got data from`, { uri })
     return { curriculums: body, errorMessage, statusCode }
   } catch (error) {
-    log.error('Exception calling KOPPS API in koppsApi.listCurriculums', { error })
+    log.error('Exception in koppsApi.listCurriculums', { error })
     throw error
   }
 }
