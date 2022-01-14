@@ -188,7 +188,8 @@ server.use(
 const {
   StudyHandBook,
   System,
-  ThirdCycleStudy,
+  ThirdCycleStudyDepartment,
+  ThirdCycleStudySchoolsList,
   Public,
   EmbeddedPage,
   ProgrammesList,
@@ -256,12 +257,12 @@ appRoute.get('dev.fovkurser', proxyPrefixPath.uri + '/utbildning/kurser/fovkurse
 appRoute.get(
   'public.departmentsListThirdCycleStudy',
   proxyPrefixPath.thirdCycleSchoolsAndDepartments,
-  ThirdCycleStudy.getAllSchoolsAndDepartments
+  ThirdCycleStudySchoolsList.getAllSchoolsAndDepartmentsInThirdCycleStudy
 )
 appRoute.get(
   'public.departmentThirdCycleStudy',
   proxyPrefixPath.thirdCycleCoursesPerDepartment + '/:departmentCode',
-  ThirdCycleStudy.getCoursesPerDepartment
+  ThirdCycleStudyDepartment.getCoursesPerDepartment
 )
 appRoute.get('public.searchThirdCycleCourses', proxyPrefixPath.thirdCycleCourseSearch, Search.searchThirdCycleCourses)
 appRoute.get('public.searchAllCourses', proxyPrefixPath.courseSearch, Search.searchAllCourses)
