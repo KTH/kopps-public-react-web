@@ -9,39 +9,12 @@ const koppsApi = require('../kopps/koppsApi')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { compareSchools, filterOutDeprecatedSchools } = require('../../domain/schools')
-const { thirdCycleDepartmentLink } = require('../../domain/links')
-const { metaTitleAndDescriptionByDepartment } = require('../utils/titles')
+const { departmentTabTitle } = require('../utils/titles')
 const {
   fillBreadcrumbsDynamicItems,
   fillStoreWithBasicConfig,
   fetchAndFillDepartmentCourses,
 } = require('../stores/departmentStoreSSR')
-
-function getOnlyThirdCycleCourses(courses, lang) {
-  const THIRD_CYCLE_LEVEL = {
-    en: 'Third cycle',
-    sv: 'Forskarnivå',
-  }
-  return courses.filter(course => course.level === THIRD_CYCLE_LEVEL[lang])
-}
-
-async function _fillCoursesApplicationStoreOnServerSide({ applicationStore, lang, departmentCode }) {
-  fillStoreWithBasicConfig({ applicationStore, lang })
-
-  const { departmentCourses, statusCode } = await koppsApi.getCourses({ departmentCode, lang })
-  applicationStore.setStatusCode(statusCode)
-  if (statusCode !== 200) return
-
-  const { department: departmentName = '', courses } = departmentCourses
-  applicationStore.setDepartmentName(departmentName)
-  applicationStore.setDepartmentCourses(getOnlyThirdCycleCourses(courses, lang))
-
-  const departmentBreadCrumbItem = {
-    url: thirdCycleDepartmentLink(departmentCode, lang),
-    label: departmentName,
-  }
-  applicationStore.setBreadcrumbsDynamicItems([departmentBreadCrumbItem])
-}
 
 async function getCoursesPerDepartment(req, res, next) {
   try {
@@ -49,16 +22,23 @@ async function getCoursesPerDepartment(req, res, next) {
     const { departmentCode } = req.params
 
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
+    log.info(`Creating a default application store for a third-cycle department controller`, { departmentCode })
 
     const applicationStore = createStore()
-    await _fillCoursesApplicationStoreOnServerSide({ applicationStore, lang, departmentCode })
-
+    const options = { applicationStore, lang, departmentCode }
+    log.debug(`Starting to fill a default application store, for a third-cycle department controller`, {
+      departmentCode,
+    })
+    const departmentName = await fetchAndFillDepartmentCourses(options, 'third-cycle')
+    await fillStoreWithBasicConfig(options)
+    await fillBreadcrumbsDynamicItems(options, departmentName, 'third-cycle')
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
+    log.info(`Default store was filled in and compressed on server side`, { departmentCode })
 
     const { thirdCycleCoursesPerDepartment: proxyPrefix } = serverConfig.proxyPrefixPath
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
 
-    const { metaTitle: title, metaDescription: description } = metaTitleAndDescriptionByDepartment(departmentName, lang)
+    const title = departmentTabTitle(departmentName, lang)
 
     res.render('app/index', {
       html,
@@ -76,5 +56,4 @@ async function getCoursesPerDepartment(req, res, next) {
 
 module.exports = {
   getCoursesPerDepartment,
-  getOnlyThirdCycleCourses,
 }

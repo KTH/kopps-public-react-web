@@ -10,7 +10,7 @@ const koppsApi = require('../kopps/koppsApi')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
-const { metaTitleAndDescriptionByDepartment } = require('../utils/titles')
+const { departmentTabTitle } = require('../utils/titles')
 const {
   fillBreadcrumbsDynamicItems,
   fillStoreWithBasicConfig,
@@ -39,12 +39,14 @@ async function getIndex(req, res, next) {
 
     const { department: proxyPrefix } = serverConfig.proxyPrefixPath
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
-    const { metaTitle: title, metaDescription: description } = metaTitleAndDescriptionByDepartment(departmentName, lang)
+
+    const title = departmentTabTitle(departmentName, lang)
+
     res.render('app/index', {
       html,
       title,
       compressedStoreCode,
-      description,
+      description: '',
       lang,
       proxyPrefix,
     })

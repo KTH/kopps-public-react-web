@@ -3,8 +3,7 @@ const log = require('kth-node-log')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 const koppsApi = require('../kopps/koppsApi')
-const { thirdCycleDepartmentLink } = require('../../domain/links')
-const { departmentLink } = require('../../domain/links')
+const { departmentLink, thirdCycleDepartmentLink } = require('../../domain/links')
 
 // @ts-check
 
@@ -15,8 +14,8 @@ module.exports = {
 }
 /**
  * add props to a MobX-stores on server side
- * student/kurser/org/:departmentCode
- * utbildning/forskarutbildning/kurser/org/:departmentCode
+ * studyType === all -> student/kurser/org/:departmentCode
+ * studyType === third-cycle -> utbildning/forskarutbildning/kurser/org/:departmentCode
  * so that its data can be used with the useStore() hook on client side
  *
  */
@@ -25,10 +24,14 @@ module.exports = {
  * @param {string} options.lang
  * @param {string} options.departmentCode
  * @param {string} departmentName
+ * @param {string | undefined} studyType
  */
-function fillBreadcrumbsDynamicItems({ applicationStore, lang, departmentCode }, departmentName) {
+function fillBreadcrumbsDynamicItems({ applicationStore, lang, departmentCode }, departmentName, studyType = 'all') {
   const departmentBreadCrumbItem = {
-    url: departmentLink(departmentCode, lang),
+    url:
+      studyType === 'third-cycle'
+        ? thirdCycleDepartmentLink(departmentCode, lang)
+        : departmentLink(departmentCode, lang),
     label: departmentName,
   }
   applicationStore.setBreadcrumbsDynamicItems([departmentBreadCrumbItem])
@@ -43,10 +46,19 @@ function fillStoreWithBasicConfig({ applicationStore, lang }) {
   applicationStore.setBrowserConfig(browserConfig)
 }
 
+function getOnlyThirdCycleCourses(courses, lang) {
+  const THIRD_CYCLE_LEVEL = {
+    en: 'Third cycle',
+    sv: 'Forskarnivå',
+  }
+  return courses.filter(course => course.level === THIRD_CYCLE_LEVEL[lang])
+}
+
 /**
  * @param {object} options.applicationStore
  * @param {string} options.lang
  * @param {string} options.departmentCode
+ * @param {string | undefined} options.studyType
  * @returns {string}
  */
 async function fetchAndFillDepartmentCourses({ applicationStore, lang, departmentCode }, studyType = 'all') {
@@ -63,6 +75,9 @@ async function fetchAndFillDepartmentCourses({ applicationStore, lang, departmen
   const { department: departmentName = '', courses } = departmentCourses
   applicationStore.setDepartmentName(departmentName)
 
-  applicationStore.setDepartmentCourses(courses)
+  const coursesByStudyType = studyType === 'third-cycle' ? await getOnlyThirdCycleCourses(courses, lang) : courses
+
+  applicationStore.setDepartmentCourses(coursesByStudyType)
+
   return departmentName
 }

@@ -4,12 +4,12 @@ const i18n = require('../../i18n')
 /**
  * @param {string} departmentName
  * @param {string} lang
- * @returns {object}
+ * @returns {string}
  */
-function metaTitleAndDescriptionByDepartment(departmentName, lang) {
-  const metaTitle = `${i18n.message('courses', lang)} ${departmentName}`
+function departmentTabTitle(departmentName, lang) {
+  const title = `${i18n.message('courses', lang)} ${departmentName}`
 
-  return { metaTitle, metaDescription: '' }
+  return title
 }
 
-module.exports = { metaTitleAndDescriptionByDepartment }
+module.exports = { departmentTabTitle }
