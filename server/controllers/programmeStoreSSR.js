@@ -104,7 +104,7 @@ async function fetchAndFillStudyProgrammeVersion({ applicationStore, lang, progr
     storeId === 'appendix1' ||
     storeId === 'eligibility' ||
     storeId === 'extent' ||
-    storeId === ' implementation' ||
+    storeId === 'implementation' ||
     storeId === 'objectives'
   ) {
     applicationStore.setStudyProgramme(studyProgramme)
