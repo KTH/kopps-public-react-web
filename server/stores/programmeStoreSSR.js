@@ -68,7 +68,7 @@ async function fetchAndFillProgrammeDetails({ applicationStore, lang, programmeC
     applicationStore.setOwningSchoolCode(owningSchoolCode)
   }
 
-  return programme
+  return { programmeName, ...programme }
 }
 
 /**

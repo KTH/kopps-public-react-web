@@ -31,12 +31,8 @@ function _metaTitleAndDescription(lang, programmeCode, programmeName) {
  * @returns {object}
  */
 async function _fetchSortAndFillProgrammeTerms({ applicationStore, lang, programmeCode }) {
-  const {
-    approvedStudyProgrammeTerms,
-    firstAdmissionTerm,
-    lastAdmissionTerm,
-    title: programmeName,
-  } = await fetchAndFillProgrammeDetails({ applicationStore, lang, programmeCode })
+  const { approvedStudyProgrammeTerms, firstAdmissionTerm, lastAdmissionTerm, programmeName } =
+    await fetchAndFillProgrammeDetails({ applicationStore, lang, programmeCode })
 
   const programmeTerms = filterOutInvalidTerms({ approvedStudyProgrammeTerms, firstAdmissionTerm, lastAdmissionTerm })
   programmeTerms.sort().reverse()
