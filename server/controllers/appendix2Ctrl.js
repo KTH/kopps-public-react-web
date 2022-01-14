@@ -14,7 +14,7 @@ const {
   fetchAndFillProgrammeDetails,
   fillBreadcrumbsDynamicItems,
   fetchAndFillSpecializations,
-} = require('./programmeStoreSSR')
+} = require('../stores/programmeStoreSSR')
 
 /**
  * @param {string} lang

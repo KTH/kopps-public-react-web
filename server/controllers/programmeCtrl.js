@@ -10,7 +10,7 @@ const koppsApi = require('../kopps/koppsApi')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { filterOutInvalidTerms } = require('../../domain/programmes')
-const { fillStoreWithQueryParams, fetchAndFillProgrammeDetails } = require('./programmeStoreSSR')
+const { fillStoreWithQueryParams, fetchAndFillProgrammeDetails } = require('../stores/programmeStoreSSR')
 const { programmeFullName } = require('../utils/programmeFullName')
 
 /**

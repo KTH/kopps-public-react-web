@@ -13,7 +13,7 @@ const {
   fetchAndFillProgrammeDetails,
   fillBreadcrumbsDynamicItems,
   fetchAndFillCurriculumList,
-} = require('./programmeStoreSSR')
+} = require('../stores/programmeStoreSSR')
 
 function _metaTitleAndDescription(lang, programmeCode, programmeName, term) {
   const metaTitle = `${programmeFullName(lang, programmeCode, programmeName, term)}, ${i18n.message(
