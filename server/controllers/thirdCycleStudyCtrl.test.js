@@ -2,7 +2,7 @@ jest.mock('../configuration', () => ({ server: {} }))
 jest.mock('../kopps/koppsApi', () => {})
 
 const { coursesFromKopps, expectedThirdCycleCourseList } = require('../mocks/mockKoppsCoursesPerDepartment')
-const { getOnlyThirdCycleCourses } = require('./thirdCycleStudyCtrl')
+const { getOnlyThirdCycleCourses } = require('./thirdCycleStudyDepartmentCtrl')
 
 const langSv = 'sv'
 const langEn = 'en'
