@@ -11,6 +11,10 @@ const koppsApi = require('../kopps/koppsApi')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { fillStoreWithBasicConfig, fetchAndFillSchoolsList } = require('../stores/schoolsListStoreSSR')
 
+/**
+ * @param {object} options.applicationStore
+ * @param {string} options.lang
+ */
 async function _fillApplicationStoreOnServerSide({ applicationStore, lang }) {
   fillStoreWithBasicConfig({ applicationStore, lang })
 
