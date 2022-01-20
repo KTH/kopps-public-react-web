@@ -54,7 +54,7 @@ async function _fillApplicationStoreWithAllSchools({ applicationStore, lang }) {
     listForActiveCourses,
     lang,
   }
-  const schoolsWithDepartments = await koppsApi.listSchoolsWithDepartments(params)
+  const { schoolsWithDepartments } = await koppsApi.listSchoolsWithDepartments(params)
   const { currentSchoolsWithDepartments, deprecatedSchoolsWithDepartments } = filterOutDeprecatedSchools(
     schoolsWithDepartments,
     lang
