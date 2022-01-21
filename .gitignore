@@ -42,3 +42,6 @@ server/views/layouts/errorLayout.handlebars
 
 # Local testing tools (Alexander):
 docker-local.*
+
+# Artillery
+test/artillery/docker-compose.yml
