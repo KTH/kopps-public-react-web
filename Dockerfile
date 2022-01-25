@@ -28,4 +28,4 @@ EXPOSE 9229
 
 ENV TZ Europe/Stockholm
 
-CMD ["npm", "start-inspect"]
+CMD ["npm", "start"]
