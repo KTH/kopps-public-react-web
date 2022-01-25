@@ -27,4 +27,4 @@ EXPOSE 3000
 
 ENV TZ Europe/Stockholm
 
-CMD ["node", "app.js"]
+CMD ["node --inspect", "app.js"]
