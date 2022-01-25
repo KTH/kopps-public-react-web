@@ -28,4 +28,4 @@ EXPOSE 9229
 
 ENV TZ Europe/Stockholm
 
-CMD ["node --inspect", "app.js"]
+CMD ["npm", "start-inspect"]
