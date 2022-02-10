@@ -49,6 +49,7 @@ async function getIndex(req, res, next) {
       description: '',
       lang,
       proxyPrefix,
+      studentWeb: true,
     })
   } catch (err) {
     log.error('Error in getIndex', { error: err })

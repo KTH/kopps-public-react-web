@@ -45,6 +45,7 @@ async function getSchoolsList(req, res, next) {
       description,
       lang,
       proxyPrefix,
+      studentWeb: true,
     })
   } catch (err) {
     log.error('Error in getSchoolsList', { error: err })

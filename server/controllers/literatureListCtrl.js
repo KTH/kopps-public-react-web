@@ -58,6 +58,7 @@ async function getLiteratureList(req, res, next) {
       description: title,
       lang,
       proxyPrefix,
+      studentWeb: true,
     })
   } catch (err) {
     log.error('Error in getIndex', { error: err })

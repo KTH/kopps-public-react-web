@@ -37,6 +37,7 @@ async function searchThirdCycleCourses(req, res, next) {
       description: '',
       lang,
       proxyPrefix,
+      studentWeb: true,
     })
   } catch (err) {
     log.error('Error in searchThirdCycleCourses', { error: err })
@@ -96,6 +97,7 @@ async function searchAllCourses(req, res, next) {
       description: '',
       lang,
       proxyPrefix,
+      studentWeb: true,
     })
   } catch (err) {
     log.error('Error in searchAllCourses', { error: err })
