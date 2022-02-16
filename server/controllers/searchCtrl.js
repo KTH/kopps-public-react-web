@@ -37,6 +37,7 @@ async function searchThirdCycleCourses(req, res, next) {
       description: '',
       lang,
       proxyPrefix,
+      studentWeb: true,
     })
   } catch (err) {
     log.error('Error in searchThirdCycleCourses', { error: err })
@@ -54,7 +55,7 @@ async function _fillApplicationStoreWithAllSchools({ applicationStore, lang }) {
     listForActiveCourses,
     lang,
   }
-  const schoolsWithDepartments = await koppsApi.listSchoolsWithDepartments(params)
+  const { schoolsWithDepartments } = await koppsApi.listSchoolsWithDepartments(params)
   const { currentSchoolsWithDepartments, deprecatedSchoolsWithDepartments } = filterOutDeprecatedSchools(
     schoolsWithDepartments,
     lang
@@ -96,6 +97,7 @@ async function searchAllCourses(req, res, next) {
       description: '',
       lang,
       proxyPrefix,
+      studentWeb: true,
     })
   } catch (err) {
     log.error('Error in searchAllCourses', { error: err })

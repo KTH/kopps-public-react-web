@@ -165,6 +165,7 @@ server.use(
     hostUrl: config.hostUrl,
     redisConfig: config.cache.cortinaBlock.redis,
     globalLink: config.blockApi.globalLink,
+    addBlocks: config.blockApi.addBlocks,
   })
 )
 

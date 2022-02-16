@@ -73,3 +73,16 @@
 .utbildningsplan.paragraphs > :first-child {
   margin-top: 0;
 }
+
+body #gradientBorder {
+  background-image: none;
+  background-color: #65656c;
+}
+
+.block.megaMenu.navbar.navbar-light ul.menu.navbar-nav#megaMenu li.item.nav-item .headerItem.active a.nav-link {
+  border-bottom: 5px solid #65656c;
+}
+
+.block.megaMenu.navbar.navbar-light ul.menu.navbar-nav#megaMenu li.item.nav-item .menuItemContent .megaMenuBody {
+  border-bottom: 5px solid #65656c;
+}

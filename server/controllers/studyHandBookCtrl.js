@@ -30,6 +30,7 @@ async function getStudyBook(req, res, next) {
       description: '',
       lang,
       proxyPrefix,
+      studentWeb: true,
     })
   } catch (err) {
     log.error('Error in getStudyBook', { error: err })

@@ -24,7 +24,8 @@ RUN apk stats && \
     apk stats
 
 EXPOSE 3000
+EXPOSE 9229
 
 ENV TZ Europe/Stockholm
 
-CMD ["node", "app.js"]
+CMD ["npm", "start"]
