@@ -7,9 +7,9 @@
 
 const i18n = require('kth-node-i18n')
 
-// Include error messages from kth-node-web-common package
-const errorMessagesEnglish = require('kth-node-web-common/lib/i18n/errorMessages.en')
-const errorMessagesSwedish = require('kth-node-web-common/lib/i18n/errorMessages.sv')
+// Include error messages from @kth/kth-node-web-common package
+const errorMessagesEnglish = require('@kth/kth-node-web-common/lib/i18n/errorMessages.en')
+const errorMessagesSwedish = require('@kth/kth-node-web-common/lib/i18n/errorMessages.sv')
 
 // Include application messasges
 const messagesEnglish = require('./messages.en')

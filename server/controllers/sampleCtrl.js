@@ -2,8 +2,8 @@
 
 // @ts-check
 
-const log = require('kth-node-log')
-const language = require('kth-node-web-common/lib/language')
+const log = require('@kth/log')
+const language = require('@kth/kth-node-web-common/lib/language')
 
 // eslint-disable-next-line no-unused-vars
 const api = require('../api')

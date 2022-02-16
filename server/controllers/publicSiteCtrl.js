@@ -2,8 +2,8 @@
 
 // @ts-check
 
-const log = require('kth-node-log')
-const language = require('kth-node-web-common/lib/language')
+const log = require('@kth/log')
+const language = require('@kth/kth-node-web-common/lib/language')
 const { getPaths } = require('kth-node-express-routing')
 
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
