@@ -1,5 +1,5 @@
 /* eslint-disable import/order */
-const server = require('kth-node-server')
+const server = require('@kth/server')
 
 // Now read the server config etc.
 const config = require('./configuration').server

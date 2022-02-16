@@ -1,4 +1,4 @@
-const log = require('kth-node-log')
+const log = require('@kth/log')
 
 function setErrorKoppsCallingUri(uri) {
   const error = new Error(`Failed KOPPS calling ${uri}`)

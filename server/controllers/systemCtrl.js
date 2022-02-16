@@ -8,8 +8,14 @@ const os = require('os')
 const errorHandler = require('kth-node-web-common/lib/error')
 const { getPaths } = require('kth-node-express-routing')
 const language = require('kth-node-web-common/lib/language')
+
+const log = require('@kth/log')
+const monitorSystems = require('@kth/monitor')
+
+const redis = require('kth-node-redis')
+
 const { globalRegistry: registry } = require('component-registry')
-const { IHealthCheck } = require('kth-node-monitor').interfaces
+const { IHealthCheck } = require('@kth/monitor').interfaces
 
 const version = require('../../config/version')
 const i18n = require('../../i18n')
@@ -59,7 +65,7 @@ function _final(err, req, res, next) {
   const isProd = /prod/gi.test(process.env.NODE_ENV)
   const lang = language.getLanguage(res)
 
-  // Use error pages from kth-node-web-common based on given parameters.
+  // Use error pages from @kth/kth-node-web-common based on given parameters.
   errorHandler.renderErrorPage(res, req, statusCode, i18n, isProd, lang, err)
 }
 

@@ -1,4 +1,4 @@
-const log = require('kth-node-log')
+const log = require('@kth/log')
 
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
