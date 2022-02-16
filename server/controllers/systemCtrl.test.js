@@ -33,6 +33,7 @@ jest.mock('../../server/configuration', () => ({
     api_keys: '1234',
     apiKey: {},
     nodeApi: {},
+    koppsApi: { defaultTimeout: 5000 },
     db: {},
     logging: {
       log: {

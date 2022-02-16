@@ -1,7 +1,6 @@
 import React from 'react'
 import { render, screen, act, waitForElementToBeRemoved } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-import chalk from 'chalk'
 import koppsCourseSearch from '../util/internApi'
 import SearchResultDisplay from './SearchResultDisplay'
 import { useStore } from '../mobx'
@@ -47,9 +46,7 @@ describe('Component <SearchResultDisplay> and its warning messages', () => {
       expect(screen.getByText(/Search results/i)).toBeInTheDocument()
       expect(screen.getByText(/No query restriction was specified/i)).toBeInTheDocument()
     } catch (error) {
-      error.message = `🚨  ${chalk.red(
-        `Because it is a second try to search with empty params it must give a warning message\n\n ${error}`
-      )} `
+      error.message = `${`Because it is a second try to search with empty params it must give a warning message\n\n ${error}`} `
       throw error
     }
 
@@ -81,9 +78,7 @@ describe('Component <SearchResultDisplay> and its warning messages', () => {
       expect(screen.getByText(/Search results/i)).toBeInTheDocument()
       expect(screen.getByText(/No query restriction was specified/i)).toBeInTheDocument()
     } catch (error) {
-      error.message = `🚨  ${chalk.red(
-        `Because it is a second try to search with empty params it must give a warning message\n\n ${error}`
-      )} `
+      error.message = ` ${`Because it is a second try to search with empty params it must give a warning message\n\n ${error}`} `
       throw error
     }
 

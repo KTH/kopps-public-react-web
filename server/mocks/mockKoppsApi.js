@@ -1,5 +1,3 @@
-const chalk = require('chalk')
-
 const TEST_SEARCH_HITS_MIXED_SV = {
   // UNSORTED
   searchHits: [
@@ -220,7 +218,7 @@ const getMockedSearchResults = searchString => {
     case '':
       return { data: TEST_API_ANSWER_EMPTY_PARAMS }
     default:
-      throw new Error(`🚨  ${chalk.red(`Smth wrong in a search string with search parameters ${searchString}`)}\n\n `)
+      throw new Error(` ${`Smth wrong in a search string with search parameters ${searchString}`}\n\n `)
   }
 }
 
