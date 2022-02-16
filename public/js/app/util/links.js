@@ -50,7 +50,7 @@ function literatureListLink(schoolCode, term, lang) {
   return pageLink(`/student/kurser/lit/${term}/${schoolCode}`, lang)
 }
 
-module.exports = {
+export {
   parentLink,
   pageLink,
   programmeLink,
