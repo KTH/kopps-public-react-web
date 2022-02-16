@@ -22,6 +22,11 @@ if (config.appInsights && config.appInsights.instrumentationKey) {
 }
 
 const { proxyPrefixPath, redirectProxyPath } = config
+const _addAppEmbeddedPageEndpointsPrefix = uri => `/kp-react${uri}`
+const _addDepartmentProxy = (uri = '') => `${proxyPrefixPath.department}${uri}`
+const _addProxy = uri => `${proxyPrefixPath.uri}${uri}`
+const _addProgramProxy = (uri = '') => `${proxyPrefixPath.programme}${uri}`
+const _addProgrammesListProxy = (uri = '') => `${proxyPrefixPath.programmesList}${uri}`
 
 // Expose the server and paths
 server.locals.secret = new Map()
@@ -85,6 +90,9 @@ const browserConfig = require('./configuration').browser
 const browserConfigHandler = require('kth-node-configuration').getHandler(browserConfig, getPaths())
 const express = require('express')
 
+// Removes the "X-Powered-By: Express header" that shows the underlying Express framework
+server.disable('x-powered-by')
+
 // helper
 function setCustomCacheControl(res, path2) {
   if (express.static.mime.lookup(path2) === 'text/html') {
@@ -94,24 +102,26 @@ function setCustomCacheControl(res, path2) {
 }
 
 // Files/statics routes--
-// Map components HTML files as static content, but set custom cache control header, currently no-cache to force
-// If-modified-since/Etag check.
+// Map components HTML files as static content, but set custom cache control header, currently no-cache to force If-modified-since/Etag check.
+
+const staticOption = { maxAge: 365 * 24 * 3600 * 1000 } // 365 days in ms is maximum
+
 server.use(
-  proxyPrefixPath.uri + '/static/js/components',
+  _addProxy('/static/js/components'),
   express.static('./dist/js/components', { setHeaders: setCustomCacheControl })
 )
 
 // Expose browser configurations
-server.use(proxyPrefixPath.uri + '/static/browserConfig', browserConfigHandler)
+server.use(_addProxy('/static/browserConfig'), browserConfigHandler)
 // Files/statics routes
-server.use(proxyPrefixPath.uri + '/static/kth-style', express.static('./node_modules/kth-style/dist'))
+server.use(_addProxy('/static/kth-style'), express.static('./node_modules/kth-style/dist', staticOption))
 // Map static content like images, css and js.
-server.use(proxyPrefixPath.uri + '/static', express.static('./dist'))
+server.use(_addProxy('/static'), express.static('./dist', staticOption))
 
-server.use(proxyPrefixPath.uri + '/static/icon/favicon', express.static('./public/favicon.ico'))
+server.use(_addProxy('/static/icon/favicon'), express.static('./public/favicon.ico', staticOption))
 
-// Return 404 if static file isn't found so we don't go through the rest of the pipeline
-server.use(proxyPrefixPath.uri + '/static', (req, res, next) => {
+/// Return 404 if static file isn't found so we don't go through the rest of the pipeline
+server.use(_addProxy('/static'), (req, res, next) => {
   const error = new Error('File not found: ' + req.originalUrl)
   error.status = 404
   next(error)
@@ -136,7 +146,7 @@ server.use(cookieParser())
  * ******* SESSION *******
  * ***********************
  */
-const session = require('kth-node-session')
+const session = require('@kth/session')
 
 const options = config.session
 options.sessionOptions.secret = config.sessionSecret
@@ -150,24 +160,9 @@ const { languageHandler } = require('@kth/kth-node-web-common/lib/language')
 
 // eslint-disable-next-line guard-for-in
 for (const pageRoot in proxyPrefixPath) {
+  // customized for kopps public
   server.use(proxyPrefixPath[pageRoot], languageHandler)
 }
-
-/* ******************************
- * ******* CORTINA BLOCKS *******
- * ******************************
- */
-server.use(
-  '/',
-  require('@kth/kth-node-web-common/lib/web/cortina')({
-    blockUrl: config.blockApi.blockUrl,
-    proxyPrefixPath: proxyPrefixPath.uri,
-    hostUrl: config.hostUrl,
-    redisConfig: config.cache.cortinaBlock.redis,
-    globalLink: config.blockApi.globalLink,
-    addBlocks: config.blockApi.addBlocks,
-  })
-)
 
 /* ********************************
  * ******* CRAWLER REDIRECT *******
@@ -183,12 +178,44 @@ server.use(
 )
 
 /* **********************************
+ * ******* SYSTEM ROUTES *******
+ * **********************************
+ */
+const { System } = require('./controllers')
+
+// System routes
+const systemRoute = AppRouter()
+// TODO: change systemroutes back to same place as static resources, after kp migration is done.
+systemRoute.get('system.monitor', _addProxy('/_monitor'), System.monitor)
+systemRoute.get('system.monitor_prefix', _addAppEmbeddedPageEndpointsPrefix('/_monitor'), System.monitor)
+
+systemRoute.get('system.about', _addProxy('/_about'), System.about)
+systemRoute.get('system.paths', _addProxy('/_paths'), System.paths)
+systemRoute.get('system.robots', '/robots.txt', System.robotsTxt)
+server.use('/', systemRoute.getRouter())
+
+/* ******************************
+ * ******* CORTINA BLOCKS *******
+ * ******************************
+ */
+server.use(
+  '/', //  customized to kopps-public
+  require('@kth/kth-node-web-common/lib/web/cortina')({
+    blockUrl: config.blockApi.blockUrl,
+    proxyPrefixPath: proxyPrefixPath.uri,
+    hostUrl: config.hostUrl,
+    redisConfig: config.cache.cortinaBlock.redis,
+    globalLink: config.blockApi.globalLink,
+    addBlocks: config.blockApi.addBlocks,
+  })
+)
+
+/* **********************************
  * ******* APPLICATION ROUTES *******
  * **********************************
  */
 const {
   StudyHandBook,
-  System,
   ThirdCycleStudyDepartment,
   ThirdCycleStudySchoolsList,
   Public,
@@ -209,29 +236,16 @@ const {
 } = require('./controllers')
 const { parseTerm } = require('../domain/term')
 
-const appEmbeddedPageEndpointsPrefix = '/kp-react'
-
-// System routes
-const systemRoute = AppRouter()
-// TODO: change systemroutes back to same place as static resources, after kp migration is done.
-systemRoute.get('system.monitor', proxyPrefixPath.uri + '/_monitor', System.monitor)
-systemRoute.get('system.monitor_prefix', appEmbeddedPageEndpointsPrefix + '/_monitor', System.monitor)
-
-systemRoute.get('system.about', proxyPrefixPath.uri + '/_about', System.about)
-systemRoute.get('system.paths', proxyPrefixPath.uri + '/_paths', System.paths)
-systemRoute.get('system.robots', '/robots.txt', System.robotsTxt)
-server.use('/', systemRoute.getRouter())
-
 // Embedded page (html-based api) routes
 const embeddedPageRoute = AppRouter()
 embeddedPageRoute.get(
   'EmbeddedPage.emptyFovSearch',
-  appEmbeddedPageEndpointsPrefix + '/embedded/fovsearch',
+  _addAppEmbeddedPageEndpointsPrefix('/embedded/fovsearch'),
   EmbeddedPage.emptyFovSearch
 )
 embeddedPageRoute.post(
   'EmbeddedPage.fovSearch',
-  appEmbeddedPageEndpointsPrefix + '/embedded/fovsearch',
+  _addAppEmbeddedPageEndpointsPrefix('/embedded/fovsearch'),
   EmbeddedPage.fovSearch
 )
 server.use('/', embeddedPageRoute.getRouter())
@@ -239,7 +253,7 @@ server.use('/', embeddedPageRoute.getRouter())
 // App routes
 const appRoute = AppRouter()
 
-appRoute.get('redirect.pdf_program_plan', proxyPrefixPath.programme + '/:programmeCodeAndTertm.pdf', (req, res) => {
+appRoute.get('redirect.pdf_program_plan', _addProgramProxy('/:programmeCodeAndTertm.pdf'), (req, res) => {
   const { programmeCodeAndTertm } = req.params
   const { l: language } = req.query
   const { programSyllabusPdfPath } = config
@@ -251,10 +265,10 @@ appRoute.get('redirect.pdf_program_plan', proxyPrefixPath.programme + '/:program
   res.redirect(301, `${programSyllabusPdfPath.uri}/${programmeCodeAndTertm}.pdf${language === 'en' ? '?l=en' : ''}`)
 })
 
-appRoute.get('system.ready', proxyPrefixPath.uri + '/_ready', Public.getReady)
-appRoute.get('example', proxyPrefixPath.uri + '/example', Public.getIndex)
+appRoute.get('system.ready', _addProxy('/_ready'), Public.getReady)
+appRoute.get('example', _addProxy('/example'), Public.getIndex)
 appRoute.get('public.studyhandbook', proxyPrefixPath.studyHandbook, StudyHandBook.getStudyBook)
-appRoute.get('dev.fovkurser', proxyPrefixPath.uri + '/utbildning/kurser/fovkurser', Public.getFovSearch)
+appRoute.get('dev.fovkurser', _addProxy('/utbildning/kurser/fovkurser'), Public.getFovSearch)
 appRoute.get(
   'public.departmentsListThirdCycleStudy',
   proxyPrefixPath.thirdCycleSchoolsAndDepartments,
@@ -273,25 +287,25 @@ appRoute.get('redirect.departmentsListThirdCycleStudy', redirectProxyPath.thirdC
   res.redirect(301, proxyPrefixPath.thirdCycleSchoolsAndDepartments)
 })
 appRoute.get('redirect.kurser-per-avdelning', redirectProxyPath.coursesPerDepartment, (req, res) => {
-  res.redirect(301, proxyPrefixPath.department)
+  res.redirect(301, _addDepartmentProxy())
 })
 appRoute.get('redirect.avdelning-kurser', redirectProxyPath.departmentCourses, (req, res) => {
   const { departmentCode } = req.params
-  res.redirect(301, `${proxyPrefixPath.department}/${departmentCode}`)
+  res.redirect(301, _addDepartmentProxy(`/${departmentCode}`))
 })
-appRoute.get('public.programmesList', proxyPrefixPath.programmesList, ProgrammesList.getProgrammesList)
-appRoute.get('public.departmentsList', proxyPrefixPath.department, SchoolsList.getSchoolsList)
-appRoute.get('public.department', proxyPrefixPath.department + '/:departmentCode', Department.getIndex)
-appRoute.get('public.programme', proxyPrefixPath.programme + '/:programmeCode', Programme.getIndex)
+appRoute.get('public.programmesList', _addProgrammesListProxy(), ProgrammesList.getProgrammesList)
+appRoute.get('public.departmentsList', _addDepartmentProxy(), SchoolsList.getSchoolsList)
+appRoute.get('public.department', _addDepartmentProxy('/:departmentCode'), Department.getIndex)
+appRoute.get('public.programme', _addProgramProxy('/:programmeCode'), Programme.getIndex)
 appRoute.get('redirect.kurser', redirectProxyPath.studentRoot, (req, res) => {
-  res.redirect(301, proxyPrefixPath.programmesList)
+  res.redirect(301, _addProgrammesListProxy())
 })
-appRoute.get('redirect.program', proxyPrefixPath.programme, (req, res) => {
-  res.redirect(301, proxyPrefixPath.programmesList)
+appRoute.get('redirect.program', _addProgramProxy(), (req, res) => {
+  res.redirect(301, _addProgrammesListProxy())
 })
 appRoute.get(
   'redirect.objectives_Ht_Vt',
-  proxyPrefixPath.programme + '/:programmeCode/:term([VvHh][Tt][0-9]{2})/mal',
+  _addProgramProxy('/:programmeCode/:term([VvHh][Tt][0-9]{2})/mal'),
   (req, res) => {
     const { programmeCode, term } = req.params
     const parsedTerm = parseTerm(term)
@@ -300,17 +314,17 @@ appRoute.get(
       error.statusCode = 404
       throw error
     }
-    res.redirect(301, `${proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/mal`)
+    res.redirect(301, _addProgramProxy(`/${programmeCode}/${parsedTerm}/mal`))
   }
 )
 appRoute.get(
   'public.objectives_five_digit',
-  proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/mal',
+  _addProgramProxy('/:programmeCode/:term([0-9]{4}[1-2])/mal'),
   Objectives.getIndex
 )
 appRoute.get(
   'redirect.extent_Ht_Vt',
-  proxyPrefixPath.programme + '/:programmeCode/:term([VvHh][Tt][0-9]{2})/omfattning',
+  _addProgramProxy('/:programmeCode/:term([VvHh][Tt][0-9]{2})/omfattning'),
   (req, res) => {
     const { programmeCode, term } = req.params
     const parsedTerm = parseTerm(term)
@@ -319,17 +333,17 @@ appRoute.get(
       error.statusCode = 404
       throw error
     }
-    res.redirect(301, `${proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/omfattning`)
+    res.redirect(301, _addProgramProxy(`/${programmeCode}/${parsedTerm}/omfattning`))
   }
 )
 appRoute.get(
   'public.extent_five_digit',
-  proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/omfattning',
+  _addProgramProxy('/:programmeCode/:term([0-9]{4}[1-2])/omfattning'),
   Extent.getIndex
 )
 appRoute.get(
   'redirect.eligibility_Ht_Vt',
-  proxyPrefixPath.programme + '/:programmeCode/:term([VvHh][Tt][0-9]{2})/behorighet',
+  _addProgramProxy('/:programmeCode/:term([VvHh][Tt][0-9]{2})/behorighet'),
   (req, res) => {
     const { programmeCode, term } = req.params
     const parsedTerm = parseTerm(term)
@@ -338,17 +352,17 @@ appRoute.get(
       error.statusCode = 404
       throw error
     }
-    res.redirect(301, `${proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/behorighet`)
+    res.redirect(301, _addProgramProxy(`/${programmeCode}/${parsedTerm}/behorighet`))
   }
 )
 appRoute.get(
   'public.eligibility_five_digit',
-  proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/behorighet',
+  _addProgramProxy('/:programmeCode/:term([0-9]{4}[1-2])/behorighet'),
   Eligibility.getIndex
 )
 appRoute.get(
   'redirect.implementation_Ht_Vt',
-  proxyPrefixPath.programme + '/:programmeCode/:term([VvHh][Tt][0-9]{2})/genomforande',
+  _addProgramProxy('/:programmeCode/:term([VvHh][Tt][0-9]{2})/genomforande'),
   (req, res) => {
     const { programmeCode, term } = req.params
     const parsedTerm = parseTerm(term)
@@ -357,17 +371,17 @@ appRoute.get(
       error.statusCode = 404
       throw error
     }
-    res.redirect(301, `${proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/genomforande`)
+    res.redirect(301, _addProgramProxy(`/${programmeCode}/${parsedTerm}/genomforande`))
   }
 )
 appRoute.get(
   'public.implementation_five_digit',
-  proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/genomforande',
+  _addProgramProxy('/:programmeCode/:term([0-9]{4}[1-2])/genomforande'),
   Implementation.getIndex
 )
 appRoute.get(
   'redirect.appendix1_Ht_Vt',
-  proxyPrefixPath.programme + '/:programmeCode/:term([VvHh][Tt][0-9]{2})/kurslista',
+  _addProgramProxy('/:programmeCode/:term([VvHh][Tt][0-9]{2})/kurslista'),
   (req, res) => {
     const { programmeCode, term } = req.params
     const parsedTerm = parseTerm(term)
@@ -376,17 +390,17 @@ appRoute.get(
       error.statusCode = 404
       throw error
     }
-    res.redirect(301, `${proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/kurslista`)
+    res.redirect(301, _addProgramProxy(`/${programmeCode}/${parsedTerm}/kurslista`))
   }
 )
 appRoute.get(
   'public.appendix1_five_digit',
-  proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/kurslista',
+  _addProgramProxy('/:programmeCode/:term([0-9]{4}[1-2])/kurslista'),
   Appendix1.getIndex
 )
 appRoute.get(
   'redirect.appendix2_Ht_Vt',
-  proxyPrefixPath.programme + '/:programmeCode/:term([VvHh][Tt][0-9]{2})/inriktningar',
+  _addProgramProxy('/:programmeCode/:term([VvHh][Tt][0-9]{2})/inriktningar'),
   (req, res) => {
     const { programmeCode, term } = req.params
     const parsedTerm = parseTerm(term)
@@ -395,26 +409,26 @@ appRoute.get(
       error.statusCode = 404
       throw error
     }
-    res.redirect(301, `${proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/inriktningar`)
+    res.redirect(301, _addProgramProxy(`/${programmeCode}/${parsedTerm}/inriktningar`))
   }
 )
 appRoute.get(
   'public.appendix2_five_digit',
-  proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/inriktningar',
+  _addProgramProxy('/:programmeCode/:term([0-9]{4}[1-2])/inriktningar'),
   Appendix2.getIndex
 )
 appRoute.get(
   'redirect.curriculumRoot_five_digit',
-  proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])',
+  _addProgramProxy('/:programmeCode/:term([0-9]{4}[1-2])'),
   (req, res) => {
     const { programmeCode, term } = req.params
     const studyYear = 'arskurs1'
-    res.redirect(301, `${proxyPrefixPath.programme}/${programmeCode}/${term}/${studyYear}`)
+    res.redirect(301, _addProgramProxy(`/${programmeCode}/${term}/${studyYear}`))
   }
 )
 appRoute.get(
   'redirect.curriculumRoot_Ht_Vt',
-  proxyPrefixPath.programme + '/:programmeCode/:term([VvHh][Tt][0-9]{2})',
+  _addProgramProxy('/:programmeCode/:term([VvHh][Tt][0-9]{2})'),
   (req, res) => {
     const { programmeCode, term } = req.params
     const parsedTerm = parseTerm(term)
@@ -424,12 +438,12 @@ appRoute.get(
       throw error
     }
     const studyYear = 'arskurs1'
-    res.redirect(301, `${proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/${studyYear}`)
+    res.redirect(301, _addProgramProxy(`/${programmeCode}/${parsedTerm}/${studyYear}`))
   }
 )
 appRoute.get(
   'redirect.curriculum_Ht_Vt',
-  proxyPrefixPath.programme + '/:programmeCode/:term([VvHh][Tt][0-9]{2})/arskurs:studyYear([1-5])',
+  _addProgramProxy('/:programmeCode/:term([VvHh][Tt][0-9]{2})/arskurs:studyYear([1-5])'),
   (req, res) => {
     const { programmeCode, term, studyYear } = req.params
     const parsedTerm = parseTerm(term)
@@ -438,12 +452,12 @@ appRoute.get(
       error.statusCode = 404
       throw error
     }
-    res.redirect(301, `${proxyPrefixPath.programme}/${programmeCode}/${parsedTerm}/arskurs${studyYear}`)
+    res.redirect(301, _addProgramProxy(`/${programmeCode}/${parsedTerm}/arskurs${studyYear}`))
   }
 )
 appRoute.get(
   'public.curriculumRoot_five_digit',
-  proxyPrefixPath.programme + '/:programmeCode/:term([0-9]{4}[1-2])/arskurs:studyYear([1-5])',
+  _addProgramProxy('/:programmeCode/:term([0-9]{4}[1-2])/arskurs:studyYear([1-5])'),
   Curriculum.getIndex
 )
 appRoute.get(
