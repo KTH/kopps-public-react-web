@@ -1,8 +1,30 @@
 /* eslint-disable import/order */
-const server = require('@kth/server')
 
 // Now read the server config etc.
 const config = require('./configuration').server
+
+/* ***********************
+ * ******* LOGGING *******
+ * ***********************
+ */
+const log = require('@kth/log')
+
+const packageFile = require('../package.json')
+
+const logConfiguration = {
+  name: packageFile.name,
+  app: packageFile.name,
+  env: process.env.NODE_ENV,
+  level: config.logging.log.level,
+  console: config.logging.console,
+  stdout: config.logging.stdout,
+  src: config.logging.src,
+}
+
+log.init(logConfiguration)
+
+const server = require('@kth/server')
+
 require('./api')
 const AppRouter = require('kth-node-express-routing').PageRouter
 const { getPaths } = require('kth-node-express-routing')
@@ -32,25 +54,6 @@ const _addProgrammesListProxy = (uri = '') => `${proxyPrefixPath.programmesList}
 server.locals.secret = new Map()
 module.exports = server
 module.exports.getPaths = () => getPaths()
-
-/* ***********************
- * ******* LOGGING *******
- * ***********************
- */
-const log = require('kth-node-log')
-const packageFile = require('../package.json')
-
-const logConfiguration = {
-  name: packageFile.name,
-  app: packageFile.name,
-  env: process.env.NODE_ENV,
-  level: config.logging.log.level,
-  console: config.logging.console,
-  stdout: config.logging.stdout,
-  src: config.logging.src,
-}
-
-log.init(logConfiguration)
 
 /* **************************
  * ******* TEMPLATING *******

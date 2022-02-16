@@ -8,15 +8,9 @@ const os = require('os')
 const errorHandler = require('@kth/kth-node-web-common/lib/error')
 const { getPaths } = require('kth-node-express-routing')
 const language = require('@kth/kth-node-web-common/lib/language')
-
 const log = require('@kth/log')
 const monitorSystems = require('@kth/monitor')
-
 const redis = require('kth-node-redis')
-
-const { globalRegistry: registry } = require('component-registry')
-const { IHealthCheck } = require('@kth/monitor').interfaces
-
 const version = require('../../config/version')
 const i18n = require('../../i18n')
 const packageFile = require('../../package.json')
