@@ -11,6 +11,7 @@ const koppsApi = require('../kopps/koppsApi')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { compareSchools } = require('../../domain/schools')
 const { fillStoreWithBasicConfig, fetchAndFillSchoolsList } = require('../stores/schoolsListStoreSSR')
+const { formatLongTerm } = require('../../domain/term')
 
 /**
  * @param {object} options.applicationStore
@@ -52,20 +53,24 @@ async function getLiteratureList(req, res, next) {
 
     const storeId = 'literatureList'
 
-    log.info(`Creating an application store ${storeId} on server side`, { term, school })
+    log.info(` Creating an application store ${storeId} on server side `, { term, school })
 
     const applicationStore = createStore(storeId)
-    log.info(`Starting to fill in application store ${storeId} on server side `, { term, school })
+    log.info(` Starting to fill in application store ${storeId} on server side `, { term, school })
 
     await _fillApplicationStoreOnServerSide({ applicationStore, lang, term, school })
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
+    log.info(` ${storeId} store was filled in and compressed on server side `, { term, school })
+
     const { literatureList: proxyPrefix } = serverConfig.proxyPrefixPath
+
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
 
-    const { heading, subHeading, intro, missing } = i18n.messages[lang === 'en' ? 0 : 1].literatureList
+    const langIndex = lang === 'en' ? 0 : 1
+    const { heading, subHeading, intro, missing } = i18n.messages[langIndex].literatureList
 
-    const title = i18n.message('site_name', lang)
+    const title = `${heading} ${formatLongTerm(term, lang)} ${school}`
 
     res.render('app/index', {
       html,
