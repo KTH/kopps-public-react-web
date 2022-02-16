@@ -146,7 +146,7 @@ server.use(session(options))
  * ******* LANGUAGE *******
  * ************************
  */
-const { languageHandler } = require('kth-node-web-common/lib/language')
+const { languageHandler } = require('@kth/kth-node-web-common/lib/language')
 
 // eslint-disable-next-line guard-for-in
 for (const pageRoot in proxyPrefixPath) {
@@ -159,7 +159,7 @@ for (const pageRoot in proxyPrefixPath) {
  */
 server.use(
   '/',
-  require('kth-node-web-common/lib/web/cortina')({
+  require('@kth/kth-node-web-common/lib/web/cortina')({
     blockUrl: config.blockApi.blockUrl,
     proxyPrefixPath: proxyPrefixPath.uri,
     hostUrl: config.hostUrl,
@@ -177,7 +177,7 @@ const excludePath = proxyPrefixPath.uri + '(?!/static).*'
 const excludeExpression = new RegExp(excludePath)
 server.use(
   excludeExpression,
-  require('kth-node-web-common/lib/web/crawlerRedirect')({
+  require('@kth/kth-node-web-common/lib/web/crawlerRedirect')({
     hostUrl: config.hostUrl,
   })
 )

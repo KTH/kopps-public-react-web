@@ -32,11 +32,11 @@ mkdir -p ./server/views/system ./server/views/layouts
 
 # Copy error.handlebars page to this project
 echoYellow "     -> Copying error.handlebars to server/views/system folder"
-cp -R ./node_modules/kth-node-web-common/lib/handlebars/pages/views/. server/views/system
+cp -R ./node_modules/@kth/kth-node-web-common/lib/handlebars/pages/views/. server/views/system
 
 # Copy errorLayout.handlebars layout to this project
 echoYellow "     -> Copying errorLayout.handlebars to server/views/layouts folder"
-cp -R ./node_modules/kth-node-web-common/lib/handlebars/pages/layouts/. server/views/layouts
+cp -R ./node_modules/@kth/kth-node-web-common/lib/handlebars/pages/layouts/. server/views/layouts
 
 # Run parcel build on the vendor.js file and put the optimized file into the /dist folder.
 echo
