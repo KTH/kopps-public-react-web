@@ -15,6 +15,14 @@ process.on('uncaughtException', err => {
   process.exit(1)
 })
 
+// catches unhandled promise rejections
+process.on('unhandledRejection', reason => {
+  // This line below provokes an uncaughtException and will be caught few lines
+  // above
+  log.error(`unhandledRejection  ${packageFile.name}`, reason)
+  // throw reason
+})
+
 /* ****************************
  * ******* SERVER START *******
  * ****************************
