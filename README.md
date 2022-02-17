@@ -100,6 +100,20 @@ Copy `docker-compose.yml.in` to `docker-compose.yml` and make necessary changes,
 docker-compose up
 ```
 
+## Traefik 2 and path rules
+More details on https://confluence.sys.kth.se/confluence/x/jQ9wBw
+```
+- "traefik.http.routers.${APPLICATION_NAME}.rule=PathPrefix(`/kp-react`,`/student/kurser/org`,`/student/kurser/program`,`/student/kurser/kurser-inom-program`,`/student/kurser/program`,`/student/kurser/sokkurs`,`/student/kurser/intern-api/sok/`,`/student/program/shb`,`/student/kurser/static`,`/utbildning/forskarutbildning/kurser/sok`,`/utbildning/forskarutbildning/kurser/avdelning`,`/utbildning/forskarutbildning/kurser/org`,`/utbildning/forskarutbildning/kurser`,`/student/kurser/lit`, `/student/kurser/kurser-per-avdelning`, `/student/kurser/avdelning/{departmentCode}/kurser`) || Path(`/student/kurser`)"
+```
+### Explanations:
+
+- PathPrefix(`/kp-react`) under this url is served embedded pages used by polopoly, this path is not published on `www`
+- There is used a combination of rules PathPrefix || Path. Which means: use some of these rules. If you replace || (OR) with &&(AND), it will stop support all url and support only one '/student/kurser/' (not even '/student/kurser'). AND means use url which you meet in both rules, while OR means use all of them which are specified.
+- Path(`/student/kurser`) is used instead of PathPrefix to prevent it from a conflicting with kursinfo-web's path `/student/kurser/kurs`. Path is used for exact urls, not for umbrella url, that's why it will not override /student/kurser/kurs.
+- Other deeper urls which are safe for other services served with PathPrefix, because PathPrefix is serving umbrellas urls
+- `/student/kurser/static` is used for all static files like scripts and css styles
+- `/student/kurser/intern-api/sok/` is used for internal server-side api for course search page
+
 ## Testing Against Local Kopps
 
 Set the following in your .env: `KOPPS_API_BASEURL=http://localhost:80/api/kopps/v2/`
