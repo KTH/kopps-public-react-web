@@ -60,8 +60,9 @@ function useAsync(asyncCallback, initialState) {
       data => {
         const { searchHits, errorCode } = data
         if (errorCode && errorCode === 'search-error-overflow') overflowDispatch(dispatch)
+        else if (errorCode) dispatch({ type: STATUS.rejected, error: errorCode })
         else if (searchHits && searchHits.length === 0) noHitsDispatch(dispatch)
-        else if (!searchHits && data === 'No query restriction was specified') noQueryProvidedDispatch(dispatch)
+        else if (!searchHits || data === 'No query restriction was specified') noQueryProvidedDispatch(dispatch)
         else dispatch({ type: STATUS.resolved, data })
       },
       error => dispatch({ type: STATUS.rejected, error }) // 'search-error-unknown'

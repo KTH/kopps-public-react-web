@@ -1,7 +1,7 @@
 // @ts-check
 
-const log = require('kth-node-log')
-const language = require('kth-node-web-common/lib/language')
+const log = require('@kth/log')
+const language = require('@kth/kth-node-web-common/lib/language')
 
 const { server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
@@ -11,6 +11,10 @@ const koppsApi = require('../kopps/koppsApi')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { fillStoreWithBasicConfig, fetchAndFillSchoolsList } = require('../stores/schoolsListStoreSSR')
 
+/**
+ * @param {object} options.applicationStore
+ * @param {string} options.lang
+ */
 async function _fillApplicationStoreOnServerSide({ applicationStore, lang }) {
   fillStoreWithBasicConfig({ applicationStore, lang })
 
@@ -45,6 +49,7 @@ async function getSchoolsList(req, res, next) {
       description,
       lang,
       proxyPrefix,
+      studentWeb: true,
     })
   } catch (err) {
     log.error('Error in getSchoolsList', { error: err })

@@ -80,14 +80,17 @@ function sortAndParseByCourseCode(courses, languageIndex, sliceUntilNum) {
 }
 
 const SearchTableView = ({ unsortedSearchResults }) => {
+  const { searchHits } = unsortedSearchResults
+
+  if (!searchHits) return null
+
   const { language, languageIndex } = useStore()
 
   const t = translate(language)
 
-  const { searchHits } = unsortedSearchResults
   let hasSearchHitInterval = false
 
-  const flattCoursesArr = searchHits.map(({ course, searchHitInterval }) => {
+  const flatCoursesArr = searchHits.map(({ course, searchHitInterval }) => {
     if (searchHitInterval) hasSearchHitInterval = true
     return {
       ...course,
@@ -104,7 +107,7 @@ const SearchTableView = ({ unsortedSearchResults }) => {
     t('department_period_abbr'),
   ].slice(0, sliceUntilNum)
 
-  const courses = sortAndParseByCourseCode(flattCoursesArr, languageIndex, sliceUntilNum)
+  const courses = sortAndParseByCourseCode(flatCoursesArr, languageIndex, sliceUntilNum)
 
   const hitsNumber = courses.length
   return (

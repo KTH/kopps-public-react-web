@@ -1,8 +1,6 @@
 import React from 'react'
 import { render, screen, within } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-import chalk from 'chalk'
-
 import SearchTableView from './SearchTableView'
 import { useStore } from '../mobx'
 import {
@@ -52,11 +50,9 @@ describe('Component <SearchTableView> for RESEARCH courses', () => {
     try {
       columnHeaders.map((colHeader, index) => expect(colHeader).toHaveTextContent(reseacrhHitsColHeaders.en[index]))
     } catch (error) {
-      error.message = `🚨  ${chalk.red(
-        `Table head row missing a correct translations. List of correct translations ${reseacrhHitsColHeaders.en.join(
-          ', '
-        )}`
-      )}\n\n ${error}`
+      error.message = `${`Table head row missing a correct translations. List of correct translations ${reseacrhHitsColHeaders.en.join(
+        ', '
+      )}`}\n\n ${error}`
 
       throw error
     }
@@ -73,9 +69,7 @@ describe('Component <SearchTableView> for RESEARCH courses', () => {
         expect(utils.getAllByRole('cell')[3]).toHaveTextContent('Third cycle')
       })
     } catch (error) {
-      error.message = `🚨  ${chalk.red(
-        `Courses has been rendered incorrect. Course content in the table is differ from an expected content`
-      )}\n\n ${error}`
+      error.message = `${`Courses has been rendered incorrect. Course content in the table is differ from an expected content`}\n\n ${error}`
 
       throw error
     }
@@ -102,11 +96,9 @@ describe('Component <SearchTableView> for RESEARCH courses', () => {
     try {
       columnHeaders.map((colHeader, index) => expect(colHeader).toHaveTextContent(reseacrhHitsColHeaders.sv[index]))
     } catch (error) {
-      error.message = `🚨  ${chalk.red(
-        `Table head row missing a correct translations. List of correct translations ${reseacrhHitsColHeaders.sv.join(
-          ', '
-        )}`
-      )}\n\n ${error}`
+      error.message = `${`Table head row missing a correct translations. List of correct translations ${reseacrhHitsColHeaders.sv.join(
+        ', '
+      )}`}\n\n ${error}`
 
       throw error
     }
@@ -123,9 +115,7 @@ describe('Component <SearchTableView> for RESEARCH courses', () => {
         expect(utils.getAllByRole('cell')[3]).toHaveTextContent('Forskarnivå')
       })
     } catch (error) {
-      error.message = `🚨  ${chalk.red(
-        `Courses has been rendered incorrect. Course content in the table is differ from an expected content`
-      )}\n\n ${error}`
+      error.message = `${`Courses has been rendered incorrect. Course content in the table is differ from an expected content`}\n\n ${error}`
 
       throw error
     }
@@ -151,11 +141,9 @@ describe('Component <SearchTableView> for RESEARCH courses', () => {
     try {
       columnHeaders.map((colHeader, index) => expect(colHeader).toHaveTextContent(reseacrhHitsColHeaders.en[index]))
     } catch (error) {
-      error.message = `🚨  ${chalk.red(
-        `Table head row missing a correct translations. List of correct translations ${reseacrhHitsColHeaders.en.join(
-          ', '
-        )}`
-      )}\n\n ${error}`
+      error.message = `${`Table head row missing a correct translations. List of correct translations ${reseacrhHitsColHeaders.en.join(
+        ', '
+      )}`}\n\n ${error}`
 
       throw error
     }
@@ -172,9 +160,7 @@ describe('Component <SearchTableView> for RESEARCH courses', () => {
         expect(utils.getAllByRole('cell')[3]).toHaveTextContent('Third cycle')
       })
     } catch (error) {
-      error.message = `🚨  ${chalk.red(
-        `Courses has been rendered incorrect. Course content in the table is differ from an expected content`
-      )}\n\n ${error}`
+      error.message = `${`Courses has been rendered incorrect. Course content in the table is differ from an expected content`}\n\n ${error}`
 
       throw error
     }
@@ -200,11 +186,9 @@ describe('Component <SearchTableView> for MIXED types of courses', () => {
     try {
       columnHeaders.map((colHeader, index) => expect(colHeader).toHaveTextContent(mixedHitsColHeaders.en[index]))
     } catch (error) {
-      error.message = `🚨  ${chalk.red(
-        `Table head row missing a correct translations. List of correct translations ${mixedHitsColHeaders.en.join(
-          ', '
-        )}`
-      )}\n\n ${error}`
+      error.message = `${`Table head row missing a correct translations. List of correct translations ${mixedHitsColHeaders.en.join(
+        ', '
+      )}`}\n\n ${error}`
 
       throw error
     }
@@ -228,9 +212,7 @@ describe('Component <SearchTableView> for MIXED types of courses', () => {
         )
       })
     } catch (error) {
-      error.message = `🚨  ${chalk.red(
-        `Courses has been rendered incorrect. Course content in the table is differ from an expected content`
-      )}\n\n ${error}`
+      error.message = `${`Courses has been rendered incorrect. Course content in the table is differ from an expected content`}\n\n ${error}`
 
       throw error
     }
@@ -255,11 +237,9 @@ describe('Component <SearchTableView> for MIXED types of courses', () => {
     try {
       columnHeaders.map((colHeader, index) => expect(colHeader).toHaveTextContent(mixedHitsColHeaders.sv[index]))
     } catch (error) {
-      error.message = `🚨  ${chalk.red(
-        `Table head row missing a correct translations. List of correct translations ${mixedHitsColHeaders.sv.join(
-          ', '
-        )}`
-      )}\n\n ${error}`
+      error.message = `${`Table head row missing a correct translations. List of correct translations ${mixedHitsColHeaders.sv.join(
+        ', '
+      )}`}\n\n ${error}`
 
       throw error
     }
@@ -283,9 +263,7 @@ describe('Component <SearchTableView> for MIXED types of courses', () => {
         )
       })
     } catch (error) {
-      error.message = `🚨  ${chalk.red(
-        `Courses has been rendered incorrectly. Course content in the table is differ from an expected content`
-      )}\n\n ${error}`
+      error.message = `${`Courses has been rendered incorrectly. Course content in the table is differ from an expected content`}\n\n ${error}`
 
       throw error
     }

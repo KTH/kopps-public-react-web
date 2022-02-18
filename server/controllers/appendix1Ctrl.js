@@ -1,7 +1,7 @@
 // @ts-check
 
-const log = require('kth-node-log')
-const language = require('kth-node-web-common/lib/language')
+const log = require('@kth/log')
+const language = require('@kth/kth-node-web-common/lib/language')
 
 const { server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
@@ -60,6 +60,7 @@ async function getIndex(req, res, next) {
       description,
       lang,
       proxyPrefix,
+      studentWeb: true,
     })
   } catch (err) {
     log.error('Error in getIndex', { error: err })

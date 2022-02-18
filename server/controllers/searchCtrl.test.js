@@ -1,11 +1,11 @@
-const log = require('kth-node-log')
+const log = require('@kth/log')
 
 const koppsApi = require('../kopps/koppsApi')
 const { performCourseSearch } = require('./searchCtrl')
 
 jest.mock('../configuration', () => ({ server: {} }))
 jest.mock('../kopps/koppsApi', () => ({ getSearchResults: jest.fn() }))
-jest.mock('kth-node-log')
+jest.mock('@kth/log')
 log.info = jest.fn()
 log.debug = jest.fn()
 log.error = jest.fn()

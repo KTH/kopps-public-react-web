@@ -1,4 +1,4 @@
-const log = require('kth-node-log')
+const log = require('@kth/log')
 
 const { browser: browserConfig } = require('../configuration')
 const i18n = require('../../i18n')
@@ -32,7 +32,7 @@ function fillStoreWithBasicConfig({ applicationStore, lang }) {
 /**
  * @param {object} applicationStore
  * @param {string} params.departmentCriteria
- * @param {array} params.listForActiveCourses
+ * @param {boolean} params.listForActiveCourses
  * @param {string} params.lang
  * @returns {object}
  */

@@ -1,7 +1,7 @@
 'use strict'
 
-const registerHeaderContentHelper = require('kth-node-web-common/lib/handlebars/helpers/headerContent')
-const log = require('kth-node-log')
+const registerHeaderContentHelper = require('@kth/kth-node-web-common/lib/handlebars/helpers/headerContent')
+const log = require('@kth/log')
 const config = require('../../configuration').server
 const packageFile = require('../../../package.json')
 const { getCurrentTerm } = require('../../../domain/term.js')
@@ -32,20 +32,20 @@ registerHeaderContentHelper({
 
 /**
  * Add any application specific helpers here, you can find some
- * packaged helpers in https://github.com/KTH/kth-node-web-common/tree/master/lib/handlebars/helpers
+ * packaged helpers in https://github.com/KTH/@kth/kth-node-web-common/tree/master/lib/handlebars/helpers
  * Those only need to be required. Docs embedded in source.
  */
-require('kth-node-web-common/lib/handlebars/helpers/breadcrumbs')(
+require('@kth/kth-node-web-common/lib/handlebars/helpers/breadcrumbs')(
   config.hostUrl,
   'host_name',
   config.proxyPrefixPath.uri,
   'site_name'
 )
-require('kth-node-web-common/lib/handlebars/helpers/contentedit')
+require('@kth/kth-node-web-common/lib/handlebars/helpers/contentedit')
 
 const i18n = require('../../../i18n')
-require('kth-node-web-common/lib/handlebars/helpers/createI18nHelper')(i18n)
-require('kth-node-web-common/lib/handlebars/helpers/safe')
+require('@kth/kth-node-web-common/lib/handlebars/helpers/createI18nHelper')(i18n)
+require('@kth/kth-node-web-common/lib/handlebars/helpers/safe')
 
 const handlebars = require('handlebars')
 handlebars.registerHelper('eq', (var1, var2) => {
