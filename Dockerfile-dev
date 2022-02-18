@@ -22,7 +22,7 @@ RUN apk stats && \
     chmod a+rx build.sh && \
     apk add --no-cache bash && \
     npm install --development && \
-    npm run build-dev-docker && \
+    npm run docker:pack-dev && \
     npm prune --production && \
     apk stats
 
