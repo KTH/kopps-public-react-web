@@ -1,5 +1,6 @@
 # https://artillery.io/docs/guides/getting-started/writing-your-first-test.html#Running-a-performance-test
 config:
+  # localhost and 0.0.0.0 will not work here because node app is running on a separate docker
   target: 'http://host.docker.internal:3000'
   http:
     timeout: 15
@@ -10,7 +11,7 @@ config:
     # - duration: 120
     #   arrivalRate: 5
     #   rampTo: 50
-    #   name: Ramp up load
+    #   name: Ramp up loadc
     # - duration: 600
     #   arrivalRate: 50
     #   name: Sustained load

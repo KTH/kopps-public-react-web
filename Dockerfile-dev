@@ -22,13 +22,13 @@ RUN apk stats && \
     chmod a+rx build.sh && \
     apk add --no-cache bash && \
     npm install --development && \
-    npm run build && \
+    npm run build-dev-docker && \
     npm prune --production && \
     apk stats
 
 EXPOSE 3000
-EXPOSE 9229
+EXPOSE 3000
 
 ENV TZ Europe/Stockholm
 
-CMD ["npm", "start-dev"]
+CMD ["npm", "run", "start-in-docker"]
