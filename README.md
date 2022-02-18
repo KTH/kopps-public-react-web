@@ -103,7 +103,7 @@ npm run test
 
 ### Performance test
 
-Read more in section [Performance test in docker](https://github.com/KTH/kopps-public-react-web/tree/load-test-new-structure#performance-test-in-docker)
+Read more in section [Performance test in docker](#performance-test-in-docker)
 
 ```sh
 npm run start-test:load
