@@ -31,17 +31,19 @@ npm install concurrently
 If it plans to use Docker images locally, then install Docker as well.
 
 ### Usage
+
 There are several options
 
-#### In terminal, locally in development *watch* mode (rebuilds if any changes)
+#### In terminal, locally in development _watch_ mode (rebuilds if any changes)
 
 ```sh
 npm run start-dev
 ```
 
-#### To run locally as a *docker* image, *read more in section* [Use Docker](#use-docker-)
+#### To run locally as a _docker_ image, _read more in section_ [Use Docker](#use-docker-)
+
 ```sh
- npm run start-dev:docker
+ npm run docker:start-dev
 ```
 
 #### To run in debug mode in Visual Studio Code
@@ -116,13 +118,11 @@ In project exist several Dockerfile:
 
 ### Build and run docker locally
 
-To build an image, run docker image locally and start the app service inside a docker image, use next command:
+To build an image, run docker image locally and start the app service inside a docker image in a `dev` mode, use next command:
 
 ```sh
-npm run start-dev:docker
+npm run docker:start-dev
 ```
-
-- it uses `start-in-dev-docker` command to start app inside docker in a `dev` mode
 
 ### Performance test in docker
 
@@ -130,8 +130,16 @@ Copy `test/artillery/docker-compose.yml.in` to `test/artillery/docker-compose.ym
 
 To build and run 2 docker images (web app and load test images) use next command:
 
+1. Run built web service image:
+
 ```sh
-npm run start-test:load
+npm run docker:start-dev
+```
+
+2. Run performance tests to test a load (it will run in a separate docker image):
+
+```sh
+npm run test:load
 ```
 
 - it uses `test:load` which builds artillery test docker image and runs load tests
@@ -149,7 +157,6 @@ Example:
 
 - test/artillery/docker-compose.yml to start artillery image for load tests
 - docker-compose.yml.in to start app related docker images
-
 
 ## Developing and Testing Against Local Kopps
 
