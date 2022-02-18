@@ -1,2 +1,3 @@
 /server/mocks/mockKoppsApi.js
 /package-lock.json
+/config/version.js
