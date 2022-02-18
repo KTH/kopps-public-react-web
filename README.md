@@ -103,10 +103,6 @@ npm run test
 
 Read more in section [Performance test in docker](#performance-test-in-docker)
 
-```sh
-npm run start-test:load
-```
-
 ## Use Docker 🐳
 
 Use Dockerfile for each container.
@@ -128,9 +124,9 @@ npm run docker:start-dev
 
 Copy `test/artillery/docker-compose.yml.in` to `test/artillery/docker-compose.yml` (and make necessary changes, if any).
 
-To build and run 2 docker images (web app and load test images) use next command:
+To build and run 2 docker images (web app and load test images) use next commands in separate terminals:
 
-1. Run built web service image:
+1. Run built web service image and wait until it builds and runs the web service and ready to be used:
 
 ```sh
 npm run docker:start-dev
