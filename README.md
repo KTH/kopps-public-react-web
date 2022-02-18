@@ -191,6 +191,7 @@ app.listen(80)
 ## Publish service (KTH related)
 
 Documentation about routing rules exists in [Kopps Public migration and Traefik 2 Routing](https://confluence.sys.kth.se/confluence/x/jQ9wBw)
+Documentation about pipeline exists in [Evolene](https://github.com/KTH/https://github.com/KTH/evolene#readme)
 
 ## In production
 
