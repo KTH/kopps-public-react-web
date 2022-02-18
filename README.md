@@ -28,13 +28,23 @@ npm install cross-env
 npm install concurrently
 ```
 
+If it plans to use Docker images locally, then install Docker as well.
+
 ### Usage
+There are several options
+
+#### In terminal, locally in development *watch* mode (rebuilds if any changes)
 
 ```sh
 npm run start-dev
 ```
 
-### Debug in Visual Studio Code
+#### To run locally as a *docker* image, *read more in section* [Use Docker](#use-docker-)
+```sh
+ npm run start-dev:docker
+```
+
+#### To run in debug mode in Visual Studio Code
 
 It's possible to use debugging options available in Visual Studio Code
 Add a file `launch.json` to `.vscode` directory :
