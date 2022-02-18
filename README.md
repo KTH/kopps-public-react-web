@@ -126,7 +126,7 @@ To build an image, run docker image locally and start the app service inside a d
 npm run start-dev:docker
 ```
 
-- it uses `start-in-docker` command to start app inside docker in a `dev` mode
+- it uses `start-in-dev-docker` command to start app inside docker in a `dev` mode
 
 ### Performance test in docker
 

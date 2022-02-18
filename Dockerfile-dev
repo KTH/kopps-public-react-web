@@ -31,4 +31,4 @@ EXPOSE 3000
 
 ENV TZ Europe/Stockholm
 
-CMD ["npm", "run", "start-in-docker"]
+CMD ["npm", "run", "start-in-dev-docker"]
