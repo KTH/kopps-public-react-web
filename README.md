@@ -81,7 +81,7 @@ Add a file `launch.json` to `.vscode` directory :
 
 ## Publish service (KTH related)
 
-Documentation about routing rules exists in [Kopps Public migration and Traefik 2 Routing](https://confluence.sys.kth.se/confluence/display/TFI/Kopps+Public+migration+and+Traefik+2+Routing)
+Documentation about routing rules exists in [Kopps Public migration and Traefik 2 Routing](https://confluence.sys.kth.se/confluence/x/jQ9wBw)
 
 ## In production
 
@@ -103,7 +103,7 @@ npm run test
 
 ### Performance test
 
-Read more in section "Performance test in docker"
+Read more in section [Performance test in docker](https://github.com/KTH/kopps-public-react-web/tree/load-test-new-structure#performance-test-in-docker)
 
 ```sh
 npm run start-test:load
@@ -120,7 +120,7 @@ In project exist several Dockerfile:
 
 ### Build and run docker locally
 
-To build an image, run docker image locally and start the app service inside a docker image, use a next command:
+To build an image, run docker image locally and start the app service inside a docker image, use next command:
 
 ```sh
 npm run start-dev:docker
@@ -154,7 +154,7 @@ Example:
 
 ## Traefik 2 and path rules
 
-More details on https://confluence.sys.kth.se/confluence/x/jQ9wBw
+More details on [Kopps Public migration and Traefik 2 Routing](https://confluence.sys.kth.se/confluence/x/jQ9wBw)
 
 ```
 - "traefik.http.routers.${APPLICATION_NAME}.rule=PathPrefix(`/kp-react`,`/student/kurser/org`,`/student/kurser/program`,`/student/kurser/kurser-inom-program`,`/student/kurser/program`,`/student/kurser/sokkurs`,`/student/kurser/intern-api/sok/`,`/student/program/shb`,`/student/kurser/static`,`/utbildning/forskarutbildning/kurser/sok`,`/utbildning/forskarutbildning/kurser/avdelning`,`/utbildning/forskarutbildning/kurser/org`,`/utbildning/forskarutbildning/kurser`,`/student/kurser/lit`, `/student/kurser/kurser-per-avdelning`, `/student/kurser/avdelning/{departmentCode}/kurser`) || Path(`/student/kurser`)"
@@ -169,7 +169,7 @@ More details on https://confluence.sys.kth.se/confluence/x/jQ9wBw
 - `/student/kurser/static` is used for all static files like scripts and css styles
 - `/student/kurser/intern-api/sok/` is used for internal server-side api for course search page
 
-## Testing Against Local Kopps
+## Developing and Testing Against Local Kopps
 
 Set the following in your .env: `KOPPS_API_BASEURL=http://localhost:80/api/kopps/v2/`
 
