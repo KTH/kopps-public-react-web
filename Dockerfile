@@ -31,4 +31,4 @@ EXPOSE 9229
 
 ENV TZ Europe/Stockholm
 
-CMD ["npm", "start-dev"]
+CMD ["npm", "start"]
