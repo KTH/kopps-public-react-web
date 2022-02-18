@@ -130,6 +130,8 @@ npm run start-dev:docker
 
 ### Performance test in docker
 
+Copy `test/artillery/docker-compose.yml.in` to `test/artillery/docker-compose.yml` (and make necessary changes, if any).
+
 To build and run 2 docker images (web app and load test images) use next command:
 
 ```sh
