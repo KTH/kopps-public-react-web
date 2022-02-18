@@ -32,7 +32,7 @@ function fillStoreWithBasicConfig({ applicationStore, lang }) {
 /**
  * @param {object} applicationStore
  * @param {string} params.departmentCriteria
- * @param {array} params.listForActiveCourses
+ * @param {boolean} params.listForActiveCourses
  * @param {string} params.lang
  * @returns {object}
  */
