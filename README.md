@@ -141,6 +141,12 @@ npm run test:load
 - it uses `test:load` which builds artillery test docker image and runs load tests
 - it runs load tests to a service located on a separate image, therefore target can't be `localhost/0.0.0.0`. It uses `target: 'http://host.docker.internal:3000'`
 
+_OR_
+
+```sh
+npm run docker:test:load
+```
+
 ### Docker compose
 
 Copy `docker-compose.yml.in` to `docker-compose.yml` and make necessary changes, if any.
