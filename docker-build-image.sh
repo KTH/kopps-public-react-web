@@ -18,14 +18,18 @@ IMAGE_NAME="kopps-prw"
 if [ "$ENV" == "dev" ]; then
 
   echo
-  echoYellow "  1. Remove previous Docker image: a name tag is $IMAGE_NAME\n"
+  echoYellow "  1. Stop previous Docker image: a name tag is $IMAGE_NAME\n"
+  docker stop "$IMAGE_NAME"
+
+  echo
+  echoYellow "  2. Remove previous Docker image: a name tag is $IMAGE_NAME\n"
   docker rmi "$IMAGE_NAME"
 
   echo
-  echoYellow "  2. Build Docker image: a name tag is $IMAGE_NAME\n"
+  echoYellow "  3. Build Docker image: a name tag is $IMAGE_NAME\n"
   docker build -f Dockerfile-dev -t "$IMAGE_NAME" .
 
   echo
-  echoYellow "  3. List images\n"
+  echoYellow "  4. List images\n"
   docker images
 fi
