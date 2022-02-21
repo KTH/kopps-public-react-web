@@ -1,9 +1,15 @@
-const { detailedInformation: detailedInformationResponse } = require('./responses')
+const {
+  detailedInformation: detailedInformationResponse,
+  departmentCourses: departmentCoursesResponse,
+  programmesList: programmesListResponse,
+  programme: programmeResponse,
+  programmeStudyVersion: programmeStudyVersionResponse,
+} = require('./responses')
 
 module.exports = {
   host: {
     address: '0.0.0.0',
-    port: 3001,
+    port: 3000,
   },
   paths: [
     {
@@ -13,8 +19,40 @@ module.exports = {
     },
     {
       method: 'get',
+      url: '/kopps/courses/*.json?l=*',
+      response: departmentCoursesResponse,
+    },
+    {
+      method: 'get',
+      url: '/kopps/courses/ADD.json?l=en',
+      response: departmentCoursesResponse,
+    },
+    {
+      method: 'get',
+      url: '/kopps/courses/ADD.json?l=sv',
+      response: departmentCoursesResponse,
+    },
+    {
+      method: 'get',
       url: '/cm/*',
       response: '',
+    },
+    /////////////////////////
+    {
+      method: 'get',
+      url: '/kopps/programmes/all',
+      response: programmesListResponse,
+    },
+    /////////////////////////
+    {
+      method: 'get',
+      url: '/kopps/programme/*',
+      response: programmeResponse,
+    },
+    {
+      method: 'get',
+      url: 'programmes/*/studyprogramme/version/*',
+      response: programmeStudyVersionResponse,
     },
   ],
 }

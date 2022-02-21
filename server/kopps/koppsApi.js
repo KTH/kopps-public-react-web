@@ -21,6 +21,7 @@ const koppsOpts = {
 
 config.koppsApi.doNotCallPathsEndpoint = true // skip checking _paths, because kopps doesnt have it
 config.koppsApi.connected = true
+if (process.env.TEST_TYPE && process.env.TEST_TYPE === 'performance') config.koppsApi.host = 'http://mock-api:3000'
 
 const koppsConfig = {
   koppsApi: config.koppsApi,
@@ -47,6 +48,8 @@ function reduceToQueryParamString(params) {
 
 const searchFovCourses = async searchOptions => {
   const { client } = koppsApi.koppsApi
+  console.log('client', JSON.stringify(client))
+
   const queryParams = reduceToQueryParamString(searchOptions)
   const uri = `${slashEndedKoppsBase}courses/courserounds${queryParams}`
   try {
@@ -77,6 +80,8 @@ const listActiveMainFieldsOfStudy = async () => {
 
 const listProgrammes = async lang => {
   const { client } = koppsApi.koppsApi
+  // const uri = `${config.koppsApi.proxyBasePath}course/${courseCode}/detailedinformation?l=${language}`
+
   const uri = `${slashEndedKoppsBase}programmes/all${lang ? `?l=${lang}` : ''}`
   try {
     const response = await client.getAsync({ uri, useCache: true })
@@ -148,6 +153,9 @@ const getCourses = async ({ departmentCode, lang = 'sv' }) => {
 
 const getProgramme = async (programmeCode, lang) => {
   const { client } = koppsApi.koppsApi
+  console.log('----------- koppsApi.koppsApi', JSON.stringify(koppsApi.koppsApi))
+
+  console.log('----------- client', JSON.stringify(client))
   const uri = `${slashEndedKoppsBase}programme/${programmeCode}?l=${lang}`
   log.info(`Fetching ${uri}`)
   try {

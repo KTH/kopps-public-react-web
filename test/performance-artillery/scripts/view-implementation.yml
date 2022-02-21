@@ -15,15 +15,19 @@ config:
     #   arrivalRate: 50
     #   name: Sustained load
 scenarios:
-  - name: 'Get a study notbook withou calling kopps api'
-    flow:
-      - get:
-          url: '/student/program/shb'
+  # - name: 'View a static page without calling kopps api'
+  #   flow:
+  #     - get:
+  #         url: '/student/program/shb'
   # - name: 'View list of courses for ADD program, one call to kopps api'
   #   flow:
   #     - get:
   #         url: '/student/kurser/org/ADD'
-  # - name: 'View Implementation of the education'
+  # - name: 'View programmes, on call to kopps api'
   #   flow:
   #     - get:
-  #         url: '/student/kurser/program/CTFYS/20192/genomforande'
+  #         url: '/student/kurser/kurser-inom-program'
+  - name: 'View Implementation of the education'
+    flow:
+      - get:
+          url: '/student/kurser/program/CTFYS/20192/genomforande'

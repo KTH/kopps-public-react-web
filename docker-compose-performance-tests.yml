@@ -14,7 +14,7 @@ services:
   web:
     image: $LOCAL_IMAGE_ID
     environment:
-      KOPPS_API_BASEURL: 'http://mock-api:3000/kopps/'
+      KOPPS_API_BASEURL: 'http://mock-api:3001/kopps/'
       NODE_ENV: 'development'
       SESSION_USE_REDIS: 'false'
       REDIS_URI: 'redis://redis:6379'
@@ -27,14 +27,14 @@ services:
       LOGGING_LEVEL: 'error'
       LOG_LEVEL: 'error'
       LOGGING_ACCESS_LOG: 'false'
-      CM_HOST_URL: 'http://mock-api:3000/cm/'
+      CM_HOST_URL: 'http://mock-api:3001/cm/'
     ports:
       - '3000:3000'
     depends_on:
-      - redis
       - mock-api
+      - redis
 
   artillery:
-    build: ./test/artillery-in-stage
+    build: ./test/performance-artillery
     depends_on:
       - web
