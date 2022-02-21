@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  mock-api:
+    build: ./test/mock-api
+    ports:
+      - '3001:3000'
+
+  redis:
+    image: redis:6.2.3
+    ports:
+      - '6379'
+
+  web:
+    image: $LOCAL_IMAGE_ID
+    environment:
+      KOPPS_API_BASEURL: 'http://mock-api:3000/kopps/'
+      NODE_ENV: 'development'
+      SESSION_USE_REDIS: 'false'
+      REDIS_URI: 'redis://redis:6379'
+      SKIP_PREFLIGHT_CHECK: 'true'
+      SERVICE_PUBLISH: '/student/kurser'
+      SERVER_PORT: '3000'
+      SESSION_SECRET: '1234'
+      SESSION_KEY: 'k-kopps.public.react.web.pid'
+      LOGGING_USER: 'k-kopps'
+      LOGGING_LEVEL: 'error'
+      LOG_LEVEL: 'error'
+      LOGGING_ACCESS_LOG: 'false'
+      CM_HOST_URL: 'http://mock-api:3000/cm/'
+    ports:
+      - '3000:3000'
+    depends_on:
+      - redis
+      - mock-api
+
+  artillery:
+    build: ./test/artillery-in-stage
+    depends_on:
+      - web
