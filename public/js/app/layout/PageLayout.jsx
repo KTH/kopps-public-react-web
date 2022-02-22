@@ -34,9 +34,13 @@ function MainContent({ children }) {
 }
 
 function PageLayout({ breadcrumbs, menuData, children }) {
-  const { breadcrumbsDynamicItems, language } = useStore()
+  const { breadcrumbsDynamicItems = {}, language } = useStore()
 
-  useEffect(() => renderBreadcrumbsIntoKthHeader({ ...breadcrumbs, breadcrumbsDynamicItems }, language))
+  useEffect(() => {
+    let isMounted = true
+    if (isMounted) renderBreadcrumbsIntoKthHeader({ ...breadcrumbs, breadcrumbsDynamicItems }, language)
+    return () => (isMounted = false)
+  })
   return (
     // Container in publicLayout.handlebars – begin
     <Row>

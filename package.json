@@ -20,7 +20,8 @@
     "docker:build": "bash ./docker-build-image.sh dev",
     "docker:run": "bash ./docker-run-image.sh dev",
     "docker:start-dev": "npm run docker:build && npm run docker:run",
-    "docker:test:load": "npm run docker:build && bash -c 'NODE_ENV=development concurrently --kill-others -n build,app \"npm run docker:run\" \"npm run wait-and-test:load\"'",
+    "docker:test-dev:performance": "npm run docker:build && bash -c 'NODE_ENV=development concurrently --kill-others -n build,app \"npm run docker:run\" \"npm run wait-and-test:load\"'",
+    "docker:test-prod:performance": "ID=$(docker build -f Dockerfile-performance-test -q .) && LOCAL_IMAGE_ID=$ID docker-compose -f docker-compose-performance-tests.yml up --build --abort-on-container-exit --remove-orphans",
     "wait-and-test:load": "echo '----- wait 40 seconds before running artillery test -----\n' && sleep 40 && echo '----- START ARTILLERY BUILD AND TEST LOAD -----\n' && npm run test:load",
     "lint": "eslint \"{public,server}/**/*.{js,jsx}\" --quiet",
     "lint-v": "eslint \"{public,server}/**/*.{js,jsx}\" ",
@@ -36,8 +37,7 @@
     "test:load": "docker-compose -f test/artillery/docker-compose.yml up --build --abort-on-container-exit --remove-orphans",
     "test:notify": "NODE_ENV=test jest --watch --notify",
     "test:pages": "NODE_ENV=test jest ./public/js/app/pages/CourseSearchLayout.test.js --watch --notify",
-    "test:watch": "NODE_ENV=test jest --watch",
-    "test-performance-in-docker": "ID=$(docker build -f Dockerfile-performance-test -q .) && LOCAL_IMAGE_ID=$ID docker-compose -f docker-compose-performance-tests.yml up --build --abort-on-container-exit --remove-orphans"
+    "test:watch": "NODE_ENV=test jest --watch"
   },
   "dependencies": {
     "@babel/runtime": "^7.17.2",

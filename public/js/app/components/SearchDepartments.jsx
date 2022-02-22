@@ -22,7 +22,9 @@ function SearchDepartments({ onChange }) {
   const t = translate(language)
 
   useEffect(() => {
-    onChange({ department })
+    let isMounted = true
+    if (isMounted) onChange({ department })
+    return () => (isMounted = false)
   }, [department])
 
   function handleChange(e) {

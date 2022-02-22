@@ -12,6 +12,7 @@ const ENSURE_THAT_BUILDDEV_RECEIVES_UPDATED_SSR_PACKAGES = true
  */
 function getServerSideFunctions() {
   if (process.env.NODE_ENV === 'production') {
+    console.log('=========================> PRODUCTION <============================')
     // @ts-ignore
     // eslint-disable-next-line import/no-unresolved,global-require
     const parcelBuildForSSR = require('../../dist/ssr-app').default
@@ -19,13 +20,21 @@ function getServerSideFunctions() {
   }
 
   try {
-    if (ENSURE_THAT_BUILDDEV_RECEIVES_UPDATED_SSR_PACKAGES) {
-      delete require.cache[require.resolve('../../dist/ssr-app')]
-    }
+    // if (ENSURE_THAT_BUILDDEV_RECEIVES_UPDATED_SSR_PACKAGES) {
+    //   console.log(
+    //     '=========================> ENSURE_THAT_BUILDDEV_RECEIVES_UPDATED_SSR_PACKAGES VVVV <============================'
+    //   )
+
+    //   delete require.cache[require.resolve('../../dist/ssr-app')]
+    // }
 
     // @ts-ignore
     // eslint-disable-next-line import/no-unresolved,global-require
     const parcelBuildDevForSSR = require('../../dist/ssr-app').default
+    console.log(
+      '=========================> parcelBuildDevForSSR NOT PRODUCTION DONE VVVV <============================'
+    )
+
     return parcelBuildDevForSSR
   } catch (error) {
     if (error.message.includes('../../dist/ssr-app')) {

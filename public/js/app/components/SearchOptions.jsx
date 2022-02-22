@@ -46,7 +46,10 @@ function SearchOptions({ overrideSearchHead = '', paramAliasName = '', paramName
   // [{ label, id, value}, ...]
 
   useEffect(() => {
-    onChange({ [paramName]: options })
+    let isMounted = true
+
+    if (isMounted) onChange({ [paramName]: options })
+    return () => (isMounted = false)
   }, [options.length])
 
   function handleChange(e) {

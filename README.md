@@ -144,7 +144,7 @@ npm run test:load
 _OR_
 
 ```sh
-npm run docker:test:load
+npm run docker:test-dev:performance
 ```
 
 ### Docker compose

@@ -103,9 +103,13 @@ function SearchResultDisplay({ searchParameters, onlyPattern = false }) {
   const { data: searchResults, status, error: errorType } = state
 
   useEffect(() => {
-    if (errorType && errorType !== null) {
-      renderAlertToTop(errorType, languageIndex)
-    } else dismountTopAlert()
+    let isMounted = true
+    if (isMounted) {
+      if (errorType && errorType !== null) {
+        renderAlertToTop(errorType, languageIndex)
+      } else dismountTopAlert()
+    }
+    return () => (isMounted = false)
   }, [status])
 
   useEffect(() => {

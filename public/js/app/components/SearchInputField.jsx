@@ -12,7 +12,10 @@ function SearchInputField({ caption = 'N/A', pattern: externalPattern, onSubmit 
   const { searchLabel, searchText } = generalSearch
 
   useEffect(() => {
-    if (typeof externalPattern === 'string') setPattern(externalPattern)
+    let isMounted = true
+
+    if (isMounted && typeof externalPattern === 'string') setPattern(externalPattern)
+    return () => (isMounted = false)
   }, [externalPattern])
 
   function handleChange(e) {

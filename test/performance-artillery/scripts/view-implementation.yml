@@ -7,26 +7,26 @@ config:
     - duration: 60
       arrivalRate: 5
       name: Warm up
-    # - duration: 120
-    #   arrivalRate: 5
-    #   rampTo: 50
-    #   name: Ramp up loadc
-    # - duration: 600
-    #   arrivalRate: 50
-    #   name: Sustained load
+    - duration: 120
+      arrivalRate: 5
+      rampTo: 50
+      name: Ramp up loadc
+    - duration: 600
+      arrivalRate: 50
+      name: Sustained load
 scenarios:
-  # - name: 'View a static page without calling kopps api'
-  #   flow:
-  #     - get:
-  #         url: '/student/program/shb'
-  # - name: 'View list of courses for ADD program, one call to kopps api'
-  #   flow:
-  #     - get:
-  #         url: '/student/kurser/org/ADD'
-  # - name: 'View programmes, on call to kopps api'
-  #   flow:
-  #     - get:
-  #         url: '/student/kurser/kurser-inom-program'
+  - name: 'View a static page without calling kopps api'
+    flow:
+      - get:
+          url: '/student/program/shb'
+  - name: 'View list of courses for ADD program, one call to kopps api'
+    flow:
+      - get:
+          url: '/student/kurser/org/ADD'
+  - name: 'View programmes, on call to kopps api'
+    flow:
+      - get:
+          url: '/student/kurser/kurser-inom-program'
   - name: 'View Implementation of the education'
     flow:
       - get:

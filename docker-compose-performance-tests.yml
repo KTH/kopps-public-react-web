@@ -14,8 +14,8 @@ services:
   web:
     image: $LOCAL_IMAGE_ID
     environment:
-      KOPPS_API_BASEURL: 'http://mock-api:3001/kopps/'
-      NODE_ENV: 'development'
+      KOPPS_API_BASEURL: 'http://mock-api:3001/kopps/' # port spelar inte roll?
+      NODE_ENV: 'production'
       SESSION_USE_REDIS: 'false'
       REDIS_URI: 'redis://redis:6379'
       SKIP_PREFLIGHT_CHECK: 'true'
