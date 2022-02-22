@@ -68,7 +68,7 @@ function _renderOnClientSide() {
   ReactDOM.render(app, domElement)
 }
 
-function appFactory(ssrApplicationStore) {
+function appFactory() {
   return (
     <Switch>
       <RouteWrapper
@@ -77,7 +77,7 @@ function appFactory(ssrApplicationStore) {
         component={Example}
         createBreadcrumbs={() => ({ include: 'directory' })}
         layout={PageLayout}
-        applicationStore={_initStore({ storeId: '', applicationStore: ssrApplicationStore })}
+        applicationStore={_initStore({ storeId: '' })}
         createMenuData={applicationStore => ({ selectedId: 'example', ...getMenuDataExample(applicationStore) })}
       />
       <RouteWrapper
@@ -86,7 +86,7 @@ function appFactory(ssrApplicationStore) {
         component={StudyHandbook}
         createBreadcrumbs={() => ({ include: 'directory' })}
         layout={PageLayout}
-        applicationStore={_initStore({ storeId: '', applicationStore: ssrApplicationStore })}
+        applicationStore={_initStore({ storeId: '' })}
         createMenuData={applicationStore => ({ selectedId: 'shb', ...getMenuData(applicationStore) })}
       />
       <RouteWrapper
@@ -95,7 +95,7 @@ function appFactory(ssrApplicationStore) {
         component={ProgrammesList}
         createBreadcrumbs={() => ({ include: 'directory' })}
         layout={PageLayout}
-        applicationStore={_initStore({ storeId: '', applicationStore: ssrApplicationStore })}
+        applicationStore={_initStore({ storeId: '' })}
         createMenuData={applicationStore => ({ selectedId: 'programmesList', ...getMenuData(applicationStore) })}
       />
       <RouteWrapper
@@ -106,7 +106,6 @@ function appFactory(ssrApplicationStore) {
         layout={PageLayout}
         applicationStore={_initStore({
           storeId: '',
-          applicationStore: ssrApplicationStore,
         })}
         createMenuData={applicationStore => ({ selectedId: 'searchAllCourses', ...getMenuData(applicationStore) })}
       />
@@ -116,7 +115,7 @@ function appFactory(ssrApplicationStore) {
         createBreadcrumbs={() => ({ include: 'directory' })}
         component={DepartmentsList}
         layout={PageLayout}
-        applicationStore={_initStore({ storeId: '', applicationStore: ssrApplicationStore })}
+        applicationStore={_initStore({ storeId: '' })}
         createMenuData={applicationStore => ({ selectedId: 'departmentsList', ...getMenuData(applicationStore) })}
       />
       <RouteWrapper
@@ -125,7 +124,7 @@ function appFactory(ssrApplicationStore) {
         createBreadcrumbs={() => ({ include: 'directory' })}
         component={DepartmentCourses}
         layout={PageLayout}
-        applicationStore={_initStore({ storeId: '', applicationStore: ssrApplicationStore })}
+        applicationStore={_initStore({ storeId: '' })}
         createMenuData={applicationStore => ({ selectedId: 'courses', ...getDepartmentMenuData(applicationStore) })}
       />
       <RouteWrapper
@@ -134,7 +133,7 @@ function appFactory(ssrApplicationStore) {
         createBreadcrumbs={() => ({ include: 'directory' })}
         component={Programme}
         layout={PageLayout}
-        applicationStore={_initStore({ storeId: '', applicationStore: ssrApplicationStore })}
+        applicationStore={_initStore({ storeId: '' })}
         createMenuData={applicationStore => ({ selectedId: 'studyYears', ...getProgrammeMenuData(applicationStore) })}
       />
       <RouteWrapper
@@ -146,7 +145,7 @@ function appFactory(ssrApplicationStore) {
         })}
         component={ThirdCycleDepartmentsList}
         layout={PageLayout}
-        applicationStore={_initStore({ storeId: '', applicationStore: ssrApplicationStore })}
+        applicationStore={_initStore({ storeId: '' })}
         createMenuData={applicationStore => ({
           selectedId: 'thirdCycleDepartmentsList',
           ...getThirdCycleMenuData(applicationStore),
@@ -161,7 +160,7 @@ function appFactory(ssrApplicationStore) {
         })}
         component={DepartmentCourses}
         layout={PageLayout}
-        applicationStore={_initStore({ storeId: '', applicationStore: ssrApplicationStore })}
+        applicationStore={_initStore({ storeId: '' })}
         createMenuData={applicationStore => ({
           selectedId: 'courses',
           ...getThirdCycleDepartmentMenuData(applicationStore),
@@ -178,7 +177,6 @@ function appFactory(ssrApplicationStore) {
         layout={PageLayout}
         applicationStore={_initStore({
           storeId: 'searchCourses',
-          applicationStore: ssrApplicationStore,
         })}
         createMenuData={applicationStore => ({
           selectedId: 'searchThirdCycleCourses',
@@ -193,7 +191,6 @@ function appFactory(ssrApplicationStore) {
         layout={PageLayout}
         applicationStore={_initStore({
           storeId: 'objective',
-          applicationStore: ssrApplicationStore,
         })}
         createMenuData={applicationStore => ({
           selectedId: 'objectives',
@@ -208,7 +205,6 @@ function appFactory(ssrApplicationStore) {
         layout={PageLayout}
         applicationStore={_initStore({
           storeId: 'extent',
-          applicationStore: ssrApplicationStore,
         })}
         createMenuData={applicationStore => ({
           selectedId: 'extent',
@@ -223,7 +219,6 @@ function appFactory(ssrApplicationStore) {
         layout={PageLayout}
         applicationStore={_initStore({
           storeId: 'eligibility',
-          applicationStore: ssrApplicationStore,
         })}
         createMenuData={applicationStore => ({
           selectedId: 'eligibility',
@@ -238,7 +233,6 @@ function appFactory(ssrApplicationStore) {
         layout={PageLayout}
         applicationStore={_initStore({
           storeId: 'implementation',
-          applicationStore: ssrApplicationStore,
         })}
         createMenuData={applicationStore => ({
           selectedId: 'implementation',
@@ -253,7 +247,6 @@ function appFactory(ssrApplicationStore) {
         layout={PageLayout}
         applicationStore={_initStore({
           storeId: 'appendix1',
-          applicationStore: ssrApplicationStore,
         })}
         createMenuData={applicationStore => ({
           selectedId: 'appendix1',
@@ -268,7 +261,6 @@ function appFactory(ssrApplicationStore) {
         layout={PageLayout}
         applicationStore={_initStore({
           storeId: 'appendix2',
-          applicationStore: ssrApplicationStore,
         })}
         createMenuData={applicationStore => ({
           selectedId: 'appendix2',
@@ -283,7 +275,6 @@ function appFactory(ssrApplicationStore) {
         layout={PageLayout}
         applicationStore={_initStore({
           storeId: 'curriculum',
-          applicationStore: ssrApplicationStore,
         })}
         createMenuData={applicationStore => ({
           selectedId: `year-${applicationStore.studyYear}`,
@@ -301,7 +292,6 @@ function appFactory(ssrApplicationStore) {
         layout={PageLayout}
         applicationStore={_initStore({
           storeId: 'literatureList',
-          applicationStore: ssrApplicationStore,
         })}
         createMenuData={applicationStore => ({
           selectedId: applicationStore.selectedSchoolCode,
