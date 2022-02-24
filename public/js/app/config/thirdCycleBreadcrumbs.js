@@ -1,8 +1,12 @@
 const translate = require('../../../../domain/translate')
 const { parentThirdCycleStudyLink, pageLink, parentStudyLink } = require('../util/links')
+const { throwErrorIfNoBrowserConfig } = require('../util/errors')
 
 function getThirdCycleBreadcrumbs(applicationStore) {
   const { language, browserConfig } = applicationStore
+  throwErrorIfNoBrowserConfig(browserConfig)
+  const { thirdCycleRoot } = browserConfig.redirectProxyPath
+
   const t = translate(language)
   return [
     {
@@ -14,7 +18,7 @@ function getThirdCycleBreadcrumbs(applicationStore) {
       label: t('main_menu_third_cycle_studies'),
     },
     {
-      url: pageLink(browserConfig.redirectProxyPath.thirdCycleRoot, language),
+      url: pageLink(thirdCycleRoot, language),
       label: t('courses'),
     },
   ]

@@ -1,8 +1,11 @@
 const translate = require('../../../../domain/translate')
 const { parentThirdCycleStudyLink, pageLink } = require('../util/links')
+const { throwErrorIfNoBrowserConfig } = require('../util/errors')
 
 function getThirdCycleMenuData(applicationStore) {
   const { language, browserConfig } = applicationStore
+  throwErrorIfNoBrowserConfig(browserConfig)
+
   const { thirdCycleSchoolsAndDepartments, thirdCycleCourseSearch } = browserConfig.proxyPrefixPath
   const t = translate(language)
   return {

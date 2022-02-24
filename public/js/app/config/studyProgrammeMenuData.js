@@ -1,10 +1,13 @@
 const { formatShortTerm } = require('../../../../domain/term')
 const translate = require('../../../../domain/translate')
 const { pageLink } = require('../util/links')
+const { throwErrorIfNoBrowserConfig } = require('../util/errors')
 
 function _studyYearItems(applicationStore) {
   const { language, browserConfig, programmeCode, term, lengthInStudyYears } = applicationStore
-  const pageRoot = browserConfig.proxyPrefixPath.schoolsList
+  throwErrorIfNoBrowserConfig(browserConfig)
+
+  const { schoolsList: pageRoot } = browserConfig.proxyPrefixPath
   const t = translate(language)
   const studyYears = []
   for (let year = 1; year <= lengthInStudyYears; year++) {
@@ -20,7 +23,9 @@ function _studyYearItems(applicationStore) {
 
 function getStudyProgrammeMenuData(applicationStore) {
   const { language, browserConfig, programmeCode, programmeName, term } = applicationStore
-  const pageRoot = browserConfig.proxyPrefixPath.schoolsList
+  throwErrorIfNoBrowserConfig(browserConfig)
+
+  const { schoolsList: pageRoot } = browserConfig.proxyPrefixPath
   const t = translate(language)
   const directoryText = `${t('programme_admitted_year')} ${formatShortTerm(term, language)}`
   const navListItems = [

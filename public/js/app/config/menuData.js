@@ -1,8 +1,10 @@
 const translate = require('../../../../domain/translate')
 const { parentLink, pageLink } = require('../util/links')
+const { throwErrorIfNoBrowserConfig } = require('../util/errors')
 
 function getMenuData(applicationStore) {
   const { language, browserConfig } = applicationStore
+  throwErrorIfNoBrowserConfig(browserConfig)
   const { programmesList, courseSearch, department, studyHandbook } = browserConfig.proxyPrefixPath
   const t = translate(language)
   return {
