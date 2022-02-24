@@ -36,7 +36,7 @@ RouteWrapper.propTypes = {
   layout: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
   createMenuData: PropTypes.func.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
-  applicationStore: PropTypes.object.isRequired,
+  applicationStore: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 }
 
 RouteWrapper.defaultProps = {

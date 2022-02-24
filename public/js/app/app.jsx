@@ -47,12 +47,16 @@ export default appFactory
 
 _renderOnClientSide()
 
-function _initStore({ storeId, applicationStore }) {
+function _initStore(optionalStoreProps = {}) {
   // Server side application store, most likely created in controller
-  if (applicationStore) return applicationStore
+  const { caller = '', storeId = '', serverSideApplicationStore = null } = optionalStoreProps
+
+  if (serverSideApplicationStore) return serverSideApplicationStore
 
   // Client side application store
+  console.log(`Creating client-side applicationStore with storeId: ${storeId} and caller funcation is ${caller}`)
   const clientSideApplicationStore = createApplicationStore(storeId)
+
   uncompressStoreInPlaceFromDocument(clientSideApplicationStore)
   return clientSideApplicationStore
 }
@@ -62,13 +66,15 @@ function _renderOnClientSide() {
   if (!isClientSide) {
     return
   }
+  console.log('_renderOnClientSide: start rendering appFactory')
+
   const app = <BrowserRouter>{appFactory()}</BrowserRouter>
 
   const domElement = document.getElementById('app')
   ReactDOM.render(app, domElement)
 }
 
-function appFactory() {
+function appFactory(serverSideApplicationStore = null) {
   return (
     <Switch>
       <RouteWrapper
@@ -77,8 +83,8 @@ function appFactory() {
         component={Example}
         createBreadcrumbs={() => ({ include: 'directory' })}
         layout={PageLayout}
-        applicationStore={_initStore({ storeId: '' })}
-        createMenuData={applicationStore => ({ selectedId: 'example', ...getMenuDataExample(applicationStore) })}
+        applicationStore={_initStore()}
+        createMenuData={store => ({ selectedId: 'example', ...getMenuDataExample(store) })}
       />
       <RouteWrapper
         exact
@@ -86,8 +92,8 @@ function appFactory() {
         component={StudyHandbook}
         createBreadcrumbs={() => ({ include: 'directory' })}
         layout={PageLayout}
-        applicationStore={_initStore({ storeId: '' })}
-        createMenuData={applicationStore => ({ selectedId: 'shb', ...getMenuData(applicationStore) })}
+        applicationStore={_initStore({ caller: 'StudyHandbook' })}
+        createMenuData={store => ({ selectedId: 'shb', ...getMenuData(store) })}
       />
       <RouteWrapper
         exact
@@ -95,8 +101,8 @@ function appFactory() {
         component={ProgrammesList}
         createBreadcrumbs={() => ({ include: 'directory' })}
         layout={PageLayout}
-        applicationStore={_initStore({ storeId: '' })}
-        createMenuData={applicationStore => ({ selectedId: 'programmesList', ...getMenuData(applicationStore) })}
+        applicationStore={_initStore({ caller: 'ProgrammesList' })}
+        createMenuData={store => ({ selectedId: 'programmesList', ...getMenuData(store) })}
       />
       <RouteWrapper
         exact
@@ -104,10 +110,8 @@ function appFactory() {
         createBreadcrumbs={() => ({ include: 'directory' })}
         component={CourseSearch}
         layout={PageLayout}
-        applicationStore={_initStore({
-          storeId: '',
-        })}
-        createMenuData={applicationStore => ({ selectedId: 'searchAllCourses', ...getMenuData(applicationStore) })}
+        applicationStore={_initStore({ caller: 'CourseSearch' })}
+        createMenuData={store => ({ selectedId: 'searchAllCourses', ...getMenuData(store) })}
       />
       <RouteWrapper
         exact
@@ -115,8 +119,11 @@ function appFactory() {
         createBreadcrumbs={() => ({ include: 'directory' })}
         component={DepartmentsList}
         layout={PageLayout}
-        applicationStore={_initStore({ storeId: '' })}
-        createMenuData={applicationStore => ({ selectedId: 'departmentsList', ...getMenuData(applicationStore) })}
+        applicationStore={_initStore({ caller: 'DepartmentsList', serverSideApplicationStore })}
+        createMenuData={store => ({
+          selectedId: 'departmentsList',
+          ...getMenuData(store),
+        })}
       />
       <RouteWrapper
         exact
@@ -124,8 +131,8 @@ function appFactory() {
         createBreadcrumbs={() => ({ include: 'directory' })}
         component={DepartmentCourses}
         layout={PageLayout}
-        applicationStore={_initStore({ storeId: '' })}
-        createMenuData={applicationStore => ({ selectedId: 'courses', ...getDepartmentMenuData(applicationStore) })}
+        applicationStore={_initStore({ caller: 'DepartmentCourses' })}
+        createMenuData={store => ({ selectedId: 'courses', ...getDepartmentMenuData(store) })}
       />
       <RouteWrapper
         exact
@@ -133,54 +140,52 @@ function appFactory() {
         createBreadcrumbs={() => ({ include: 'directory' })}
         component={Programme}
         layout={PageLayout}
-        applicationStore={_initStore({ storeId: '' })}
-        createMenuData={applicationStore => ({ selectedId: 'studyYears', ...getProgrammeMenuData(applicationStore) })}
+        applicationStore={_initStore({ caller: 'Programme' })}
+        createMenuData={store => ({ selectedId: 'studyYears', ...getProgrammeMenuData(store) })}
       />
       <RouteWrapper
         exact
         path="/utbildning/forskarutbildning/kurser/avdelning"
-        createBreadcrumbs={applicationStore => ({
+        createBreadcrumbs={store => ({
           include: 'university',
-          items: getThirdCycleBreadcrumbs(applicationStore),
+          items: getThirdCycleBreadcrumbs(store),
         })}
         component={ThirdCycleDepartmentsList}
         layout={PageLayout}
-        applicationStore={_initStore({ storeId: '' })}
-        createMenuData={applicationStore => ({
+        applicationStore={_initStore({ caller: 'ThirdCycleDepartmentsList' })}
+        createMenuData={store => ({
           selectedId: 'thirdCycleDepartmentsList',
-          ...getThirdCycleMenuData(applicationStore),
+          ...getThirdCycleMenuData(store),
         })}
       />
       <RouteWrapper
         exact
         path="/utbildning/forskarutbildning/kurser/org/:departmentCode"
-        createBreadcrumbs={applicationStore => ({
+        createBreadcrumbs={store => ({
           include: 'university',
-          items: getThirdCycleBreadcrumbs(applicationStore),
+          items: getThirdCycleBreadcrumbs(store),
         })}
         component={DepartmentCourses}
         layout={PageLayout}
-        applicationStore={_initStore({ storeId: '' })}
-        createMenuData={applicationStore => ({
+        applicationStore={_initStore({ caller: 'DepartmentCourses' })}
+        createMenuData={store => ({
           selectedId: 'courses',
-          ...getThirdCycleDepartmentMenuData(applicationStore),
+          ...getThirdCycleDepartmentMenuData(store),
         })}
       />
       <RouteWrapper
         exact
         path="/utbildning/forskarutbildning/kurser/sok"
-        createBreadcrumbs={applicationStore => ({
+        createBreadcrumbs={store => ({
           include: 'university',
-          items: getThirdCycleBreadcrumbs(applicationStore),
+          items: getThirdCycleBreadcrumbs(store),
         })}
         component={CourseSearchResearch}
         layout={PageLayout}
-        applicationStore={_initStore({
-          storeId: 'searchCourses',
-        })}
-        createMenuData={applicationStore => ({
+        applicationStore={_initStore({ storeId: 'searchCourses' })}
+        createMenuData={store => ({
           selectedId: 'searchThirdCycleCourses',
-          ...getThirdCycleMenuData(applicationStore),
+          ...getThirdCycleMenuData(store),
         })}
       />
       <RouteWrapper
@@ -189,12 +194,10 @@ function appFactory() {
         createBreadcrumbs={() => ({ include: 'directory' })}
         component={Objectives}
         layout={PageLayout}
-        applicationStore={_initStore({
-          storeId: 'objective',
-        })}
-        createMenuData={applicationStore => ({
+        applicationStore={_initStore({ storeId: 'objective' })}
+        createMenuData={store => ({
           selectedId: 'objectives',
-          ...getStudyProgrammeMenuData(applicationStore),
+          ...getStudyProgrammeMenuData(store),
         })}
       />
       <RouteWrapper
@@ -203,12 +206,10 @@ function appFactory() {
         createBreadcrumbs={() => ({ include: 'directory' })}
         component={Extent}
         layout={PageLayout}
-        applicationStore={_initStore({
-          storeId: 'extent',
-        })}
-        createMenuData={applicationStore => ({
+        applicationStore={_initStore({ storeId: 'extent' })}
+        createMenuData={store => ({
           selectedId: 'extent',
-          ...getStudyProgrammeMenuData(applicationStore),
+          ...getStudyProgrammeMenuData(store),
         })}
       />
       <RouteWrapper
@@ -217,12 +218,10 @@ function appFactory() {
         createBreadcrumbs={() => ({ include: 'directory' })}
         component={Eligibility}
         layout={PageLayout}
-        applicationStore={_initStore({
-          storeId: 'eligibility',
-        })}
-        createMenuData={applicationStore => ({
+        applicationStore={_initStore({ storeId: 'eligibility' })}
+        createMenuData={store => ({
           selectedId: 'eligibility',
-          ...getStudyProgrammeMenuData(applicationStore),
+          ...getStudyProgrammeMenuData(store),
         })}
       />
       <RouteWrapper
@@ -231,12 +230,10 @@ function appFactory() {
         createBreadcrumbs={() => ({ include: 'directory' })}
         component={Implementation}
         layout={PageLayout}
-        applicationStore={_initStore({
-          storeId: 'implementation',
-        })}
-        createMenuData={applicationStore => ({
+        applicationStore={_initStore({ storeId: 'implementation' })}
+        createMenuData={store => ({
           selectedId: 'implementation',
-          ...getStudyProgrammeMenuData(applicationStore),
+          ...getStudyProgrammeMenuData(store),
         })}
       />
       <RouteWrapper
@@ -245,12 +242,10 @@ function appFactory() {
         createBreadcrumbs={() => ({ include: 'directory' })}
         component={Appendix1}
         layout={PageLayout}
-        applicationStore={_initStore({
-          storeId: 'appendix1',
-        })}
-        createMenuData={applicationStore => ({
+        applicationStore={_initStore({ storeId: 'appendix1' })}
+        createMenuData={store => ({
           selectedId: 'appendix1',
-          ...getStudyProgrammeMenuData(applicationStore),
+          ...getStudyProgrammeMenuData(store),
         })}
       />
       <RouteWrapper
@@ -259,12 +254,10 @@ function appFactory() {
         createBreadcrumbs={() => ({ include: 'directory' })}
         component={Appendix2}
         layout={PageLayout}
-        applicationStore={_initStore({
-          storeId: 'appendix2',
-        })}
-        createMenuData={applicationStore => ({
+        applicationStore={_initStore({ storeId: 'appendix2' })}
+        createMenuData={store => ({
           selectedId: 'appendix2',
-          ...getStudyProgrammeMenuData(applicationStore),
+          ...getStudyProgrammeMenuData(store),
         })}
       />
       <RouteWrapper
@@ -273,29 +266,25 @@ function appFactory() {
         createBreadcrumbs={() => ({ include: 'directory' })}
         component={Curriculum}
         layout={PageLayout}
-        applicationStore={_initStore({
-          storeId: 'curriculum',
-        })}
-        createMenuData={applicationStore => ({
-          selectedId: `year-${applicationStore.studyYear}`,
-          ...getCurriculumMenuData(applicationStore),
+        applicationStore={_initStore({ storeId: 'curriculum' })}
+        createMenuData={store => ({
+          selectedId: `year-${store.studyYear}`,
+          ...getCurriculumMenuData(store),
         })}
       />
       <RouteWrapper
         exact
         path="/student/kurser/lit/:term/:school"
-        createBreadcrumbs={applicationStore => ({
+        createBreadcrumbs={store => ({
           include: 'student',
-          items: getLiteratureListBreadcrumbs(applicationStore),
+          items: getLiteratureListBreadcrumbs(store),
         })}
         component={LiteratureList}
         layout={PageLayout}
-        applicationStore={_initStore({
-          storeId: 'literatureList',
-        })}
-        createMenuData={applicationStore => ({
-          selectedId: applicationStore.selectedSchoolCode,
-          ...getLiteratureList(applicationStore),
+        applicationStore={_initStore({ storeId: 'literatureList' })}
+        createMenuData={store => ({
+          selectedId: store.selectedSchoolCode,
+          ...getLiteratureList(store),
         })}
       />
     </Switch>
