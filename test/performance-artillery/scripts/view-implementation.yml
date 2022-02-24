@@ -23,6 +23,10 @@ scenarios:
     flow:
       - get:
           url: '/student/kurser/org/ADD'
+  - name: 'View programmes list, one call to kopps api'
+    flow:
+      - get:
+          url: '/student/kurser/org'
   - name: 'View programmes, on call to kopps api'
     flow:
       - get:
