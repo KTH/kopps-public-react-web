@@ -106,6 +106,7 @@ function ObsololeteProgrammesList({ programmeType, programmes = [] }) {
 function ProgrammesList() {
   const { language, programmes } = useStore()
   const t = translate(language)
+
   return (
     <>
       <Row>
@@ -117,13 +118,17 @@ function ProgrammesList() {
       <Row>
         <Col>
           <Article classNames={['paragraphs']}>
-            {programmes.map(programme => (
-              <Section key={programme[0]} programmeType={programme[0]}>
-                <Heading id={`heading-${programme[0]}`} size="h2" text={t('programme_type')[programme[0]]} />
-                <CurrentProgrammesList programmes={programme[1].first} />
-                <ObsololeteProgrammesList programmeType={programme[0]} programmes={programme[1].second} />
-              </Section>
-            ))}
+            {programmes.map(programme => {
+              const currentProgrammes = programme[1].first
+              const obsoleteProgrammes = programme[1].second
+              return (
+                <Section key={programme[0]} programmeType={programme[0]}>
+                  <Heading id={`heading-${programme[0]}`} size="h2" text={t('programme_type')[programme[0]]} />
+                  <CurrentProgrammesList programmes={currentProgrammes} />
+                  <ObsololeteProgrammesList programmeType={programme[0]} programmes={obsoleteProgrammes} />
+                </Section>
+              )
+            })}
           </Article>
         </Col>
       </Row>
