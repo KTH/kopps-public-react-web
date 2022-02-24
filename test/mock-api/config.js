@@ -1,6 +1,7 @@
 const {
   detailedInformation: detailedInformationResponse,
   departmentCourses: departmentCoursesResponse,
+  listSchoolsWithDepartments: listSchoolsWithDepartmentsResponse,
   programmesList: programmesListResponse,
   programme: programmeResponse,
   programmeStudyVersion: programmeStudyVersionResponse,
@@ -16,6 +17,11 @@ module.exports = {
       method: 'get',
       url: '/kopps/course/*/detailedinformation',
       response: detailedInformationResponse,
+    },
+    {
+      method: 'get',
+      url: '/kopps/schools/departments?*',
+      response: listSchoolsWithDepartmentsResponse,
     },
     {
       method: 'get',
