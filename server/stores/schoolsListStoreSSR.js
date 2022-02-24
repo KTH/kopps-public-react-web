@@ -1,6 +1,6 @@
 const log = require('@kth/log')
 
-const { browser: browserConfig } = require('../configuration')
+const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 const koppsApi = require('../kopps/koppsApi')
 const { compareSchools, filterOutDeprecatedSchools } = require('../../domain/schools')
@@ -26,7 +26,7 @@ module.exports = {
  */
 function fillStoreWithBasicConfig({ applicationStore, lang }) {
   applicationStore.setLanguage(lang)
-  applicationStore.setBrowserConfig(browserConfig)
+  applicationStore.setBrowserConfig(browserConfig, serverConfig.hostUrl)
 }
 
 /**
@@ -43,17 +43,17 @@ async function fetchAndFillSchoolsList(applicationStore, params) {
   const { schoolsWithDepartments, statusCode } = await koppsApi.listSchoolsWithDepartments(params)
   applicationStore.setStatusCode(statusCode)
   if (statusCode !== 200) {
-    log.debug('Failed to fetch schools', { departmentCriteria })
+    log.info('Failed to fetch schools', { departmentCriteria })
     return
   }
-  log.info('Successfully fetched department courses', { departmentCriteria })
+  log.info('Successfully fetched schools with departments', { departmentCriteria })
 
-  const { currentSchoolsWithDepartments, deprecatedSchoolsWithDepartments } = filterOutDeprecatedSchools(
+  const { currentSchoolsWithDepartments, deprecatedSchoolsWithDepartments } = await filterOutDeprecatedSchools(
     schoolsWithDepartments,
     lang
   )
-  deprecatedSchoolsWithDepartments.sort(compareSchools)
-  currentSchoolsWithDepartments.sort(compareSchools)
+  await deprecatedSchoolsWithDepartments.sort(compareSchools)
+  await currentSchoolsWithDepartments.sort(compareSchools)
   applicationStore.setCurrentSchoolsWithDepartments(currentSchoolsWithDepartments)
   applicationStore.setDeprecatedSchoolsWithDepartments(deprecatedSchoolsWithDepartments)
 

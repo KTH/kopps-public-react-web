@@ -34,6 +34,7 @@ async function getSchoolsList(req, res, next) {
     log.debug(`Starting to fill a default application store with all schools with any type of courses`)
 
     await _fillApplicationStoreOnServerSide({ applicationStore, lang })
+
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
     log.info(`Default store was filled in and compressed on server side, for schools with all-type courses`)
 
@@ -52,7 +53,7 @@ async function getSchoolsList(req, res, next) {
       studentWeb: true,
     })
   } catch (err) {
-    log.error('Error in getSchoolsList', { error: err })
+    log.error('Error', { error: err })
     next(err)
   }
 }

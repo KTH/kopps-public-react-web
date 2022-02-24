@@ -50,7 +50,7 @@ async function getCoursesPerDepartment(req, res, next) {
       studentWeb: true,
     })
   } catch (err) {
-    log.error('Error in thirdCycleStudyCtrl -> getAllSchoolsAndDepartmentsInThirdCycleStudy', { error: err })
+    log.error('Error', { error: err })
     next(err)
   }
 }

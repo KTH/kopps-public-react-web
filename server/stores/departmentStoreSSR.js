@@ -44,7 +44,7 @@ function fillBreadcrumbsDynamicItems({ applicationStore, lang, departmentCode },
  */
 function fillStoreWithBasicConfig({ applicationStore, lang }) {
   applicationStore.setLanguage(lang)
-  applicationStore.setBrowserConfig(browserConfig)
+  applicationStore.setBrowserConfig(browserConfig, serverConfig.hostUrl)
 }
 
 function getOnlyThirdCycleCourses(courses, lang) {
@@ -68,7 +68,7 @@ async function fetchAndFillDepartmentCourses({ applicationStore, lang, departmen
   const { departmentCourses, statusCode } = await koppsApi.getCourses({ departmentCode, lang })
   applicationStore.setStatusCode(statusCode)
   if (statusCode !== 200) {
-    log.debug('Failed to fetch department courses from KOPPs api', { departmentCode })
+    log.info('Failed to fetch department courses from KOPPs api', { departmentCode })
     return
   }
   log.info('Successfully fetched department courses from KOPPs API', { departmentCode })

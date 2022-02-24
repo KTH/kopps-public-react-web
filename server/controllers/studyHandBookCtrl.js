@@ -19,7 +19,7 @@ async function getStudyBook(req, res, next) {
     applicationStore.setBrowserConfig(browserConfig)
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
-    const proxyPrefix = serverConfig.proxyPrefixPath.studyHandbook
+    const { studyHandbook: proxyPrefix } = serverConfig.proxyPrefixPath
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('main_menu_shb', lang)
 
@@ -33,7 +33,7 @@ async function getStudyBook(req, res, next) {
       studentWeb: true,
     })
   } catch (err) {
-    log.error('Error in getStudyBook', { error: err })
+    log.error('Error', { error: err })
     next(err)
   }
 }

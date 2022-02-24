@@ -84,8 +84,17 @@ const listProgrammes = async lang => {
 
   const uri = `${slashEndedKoppsBase}programmes/all${lang ? `?l=${lang}` : ''}`
   try {
-    const response = await client.getAsync({ uri, useCache: true })
-    return response.body
+    const { body, statusCode } = await client.getAsync({ uri, useCache: true })
+    let errorMessage = null
+
+    if (statusCode !== 200) {
+      errorMessage = `Failed response from KOPPS API calling ${uri} list of programmes`
+
+      log.debug(errorMessage)
+    }
+    if (body) log.info(`Successfully got data from`, { uri })
+
+    return { programmes: body, statusCode }
   } catch (error) {
     log.error('Exception calling KOPPS API in koppsApi.listProgrammes', { error })
     throw error
@@ -122,6 +131,7 @@ const listSchoolsWithDepartments = async ({ departmentCriteria, listForActiveCou
       log.debug(errorMessage)
     }
     if (body) log.info(`Successfully got data from`, { uri })
+    console.log('body', JSON.stringify(body))
 
     return { schoolsWithDepartments: body, statusCode }
   } catch (error) {
@@ -153,9 +163,6 @@ const getCourses = async ({ departmentCode, lang = 'sv' }) => {
 
 const getProgramme = async (programmeCode, lang) => {
   const { client } = koppsApi.koppsApi
-  console.log('----------- koppsApi.koppsApi', JSON.stringify(koppsApi.koppsApi))
-
-  console.log('----------- client', JSON.stringify(client))
   const uri = `${slashEndedKoppsBase}programme/${programmeCode}?l=${lang}`
   log.info(`Fetching ${uri}`)
   try {

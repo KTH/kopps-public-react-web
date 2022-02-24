@@ -90,7 +90,17 @@ function _categorizeProgrammes(programmes) {
 async function _fillApplicationStoreOnServerSide({ applicationStore, lang }) {
   applicationStore.setLanguage(lang)
   applicationStore.setBrowserConfig(browserConfig)
-  const programmes = await koppsApi.listProgrammes(lang)
+  log.info('Fetching programmes from KOPPs API')
+
+  const { programmes, statusCode } = await koppsApi.listProgrammes(lang)
+  applicationStore.setStatusCode(statusCode)
+
+  if (statusCode !== 200) {
+    log.info('Failed to fetch programmes')
+    return
+  }
+  log.info('Successfully fetched programmes')
+
   const programmesByDegree = _categorizeProgrammes(programmes)
   applicationStore.setProgrammes(programmesByDegree)
 }
@@ -101,11 +111,16 @@ async function getProgrammesList(req, res, next) {
 
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
 
+    log.info(`Creating a default application store for programmesList controller`)
+
     const applicationStore = createStore()
+    log.debug(`Starting to fill a default application store, for programmesList controller`)
+
     await _fillApplicationStoreOnServerSide({ applicationStore, lang })
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
+    log.info('Default store was filled in and compressed on server side, for programmesList controller')
 
-    const proxyPrefix = serverConfig.proxyPrefixPath.programmesList
+    const { programmesList: proxyPrefix } = serverConfig.proxyPrefixPath
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('courses_of_program', lang)
     const description = i18n.message('programmes_list_lead', lang)
@@ -120,7 +135,7 @@ async function getProgrammesList(req, res, next) {
       studentWeb: true,
     })
   } catch (err) {
-    log.error('Error in getIndex', { error: err })
+    log.error('Error', { error: err })
     next(err)
   }
 }

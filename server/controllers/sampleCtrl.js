@@ -38,7 +38,7 @@ async function getIndex(req, res, next) {
       studentWeb: true,
     })
   } catch (err) {
-    log.error('Error in getIndex', { error: err })
+    log.error('Error', { error: err })
     next(err)
   }
 }

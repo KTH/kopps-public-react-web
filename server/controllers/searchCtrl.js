@@ -26,7 +26,7 @@ async function searchThirdCycleCourses(req, res, next) {
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
-    const proxyPrefix = serverConfig.proxyPrefixPath.thirdCycleCourseSearch
+    const { thirdCycleCourseSearch: proxyPrefix } = serverConfig.proxyPrefixPath
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('main_menu_third_cycle_courses_search', lang)
 
@@ -40,7 +40,7 @@ async function searchThirdCycleCourses(req, res, next) {
       studentWeb: true,
     })
   } catch (err) {
-    log.error('Error in searchThirdCycleCourses', { error: err })
+    log.error('Error', { error: err })
     next(err)
   }
 }
@@ -86,7 +86,7 @@ async function searchAllCourses(req, res, next) {
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
-    const { uri: proxyPrefix } = serverConfig.proxyPrefixPath.courseSearch
+    const { courseSearch: proxyPrefix } = serverConfig.proxyPrefixPath
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('main_menu_search_all', lang)
 
@@ -100,7 +100,7 @@ async function searchAllCourses(req, res, next) {
       studentWeb: true,
     })
   } catch (err) {
-    log.error('Error in searchAllCourses', { error: err })
+    log.error('Error', { error: err })
     next(err)
   }
 }
