@@ -1,5 +1,5 @@
 /* eslint no-use-before-define: ["error", "nofunc"] */
-
+//
 // @ts-check
 
 module.exports = { getServerSideFunctions }
@@ -12,7 +12,6 @@ const ENSURE_THAT_BUILDDEV_RECEIVES_UPDATED_SSR_PACKAGES = true
  */
 function getServerSideFunctions() {
   if (process.env.NODE_ENV === 'production') {
-    console.log('=========================> PRODUCTION <============================')
     // @ts-ignore
     // eslint-disable-next-line import/no-unresolved,global-require
     const parcelBuildForSSR = require('../../dist/ssr-app').default
@@ -20,21 +19,17 @@ function getServerSideFunctions() {
   }
 
   try {
-    // if (ENSURE_THAT_BUILDDEV_RECEIVES_UPDATED_SSR_PACKAGES) {
-    //   console.log(
-    //     '=========================> ENSURE_THAT_BUILDDEV_RECEIVES_UPDATED_SSR_PACKAGES VVVV <============================'
-    //   )
+    if (ENSURE_THAT_BUILDDEV_RECEIVES_UPDATED_SSR_PACKAGES && process.env.HAS_PRUNED_DEV_DEPEND !== 'true') {
+      const decache = require('decache')
 
-    //   delete require.cache[require.resolve('../../dist/ssr-app')]
-    // }
+      // IMPORTANT! DON'T USE node-webs: delete require.cache[require.resolve('../../dist/ssr-app')]
+      // because 'it deletes the reference to the loaded module, NOT the loaded data itself. The module is not garbage collected, it LEAKS memory.
+      if (decache) decache(require.resolve('../../dist/ssr-app'))
+    }
 
     // @ts-ignore
     // eslint-disable-next-line import/no-unresolved,global-require
     const parcelBuildDevForSSR = require('../../dist/ssr-app').default
-    console.log(
-      '=========================> parcelBuildDevForSSR NOT PRODUCTION DONE VVVV <============================'
-    )
-
     return parcelBuildDevForSSR
   } catch (error) {
     if (error.message.includes('../../dist/ssr-app')) {

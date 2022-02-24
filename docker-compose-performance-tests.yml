@@ -15,7 +15,7 @@ services:
     image: $LOCAL_IMAGE_ID
     environment:
       KOPPS_API_BASEURL: 'http://mock-api:3001/kopps/' # port spelar inte roll?
-      NODE_ENV: 'production'
+      NODE_ENV: 'production' # changing this will not help, it will be production mode anyway
       SESSION_USE_REDIS: 'false'
       REDIS_URI: 'redis://redis:6379'
       SKIP_PREFLIGHT_CHECK: 'true'
