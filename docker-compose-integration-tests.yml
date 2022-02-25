@@ -16,6 +16,7 @@ services:
     environment:
       KOPPS_API_BASEURL: 'http://mock-api:3000/kopps/' # port spelar inte roll, prod ignores port of kopps api
       NODE_ENV: 'production' # changing this will not help, it will be production mode anyway
+      TEST_TYPE: 'performance'
       SESSION_USE_REDIS: 'false'
       REDIS_URI: 'redis://redis:6379'
       SKIP_PREFLIGHT_CHECK: 'true'
