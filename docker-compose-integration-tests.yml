@@ -15,7 +15,7 @@ services:
     image: $LOCAL_IMAGE_ID
     environment:
       KOPPS_API_BASEURL: 'http://mock-api:3000/kopps/' # port spelar inte roll, prod ignores port of kopps api
-      #NODE_ENV: 'production' # changing this will not help, it will be production mode anyway
+      NODE_ENV: 'production' # changing this will not help, it will be production mode anyway
       SESSION_USE_REDIS: 'false'
       REDIS_URI: 'redis://redis:6379'
       SKIP_PREFLIGHT_CHECK: 'true'
@@ -35,6 +35,6 @@ services:
       - redis
 
   artillery:
-    build: ./test/performance-artillery-prod
+    build: ./test/integration-artillery-prod
     depends_on:
       - web

@@ -31,4 +31,4 @@ EXPOSE 9229
 
 ENV TZ Europe/Stockholm
 
-CMD ["npm", "run", "start-in-performance-docker"]
+CMD ["npm", "run", "start-in-prod-performance-docker"]

@@ -110,7 +110,7 @@ In project exist several Dockerfile:
 
 - `Dockerfile` to start web service
 - `Dockerfile-dev` to start web service in _dev_ mode inside built docker image
-- `test/artillery/Dockerfile`
+- `test/performance-artillery-dev/Dockerfile`
 
 ### Build and run docker locally
 
@@ -122,7 +122,11 @@ npm run docker:start-dev
 
 ### Performance test in docker
 
-Copy `test/artillery/docker-compose.yml.in` to `test/artillery/docker-compose.yml` (and make necessary changes, if any).
+Copy `test/performance-artillery-dev/docker-compose.yml.in` to `test/performance-artillery-dev/docker-compose.yml` (and make necessary changes, if any).
+
+#### Option 1
+
+Install Docker
 
 To build and run 2 docker images (web app and load test images) use next commands in separate terminals:
 
@@ -135,13 +139,23 @@ npm run docker:start-dev
 2. Run performance tests to test a load (it will run in a separate docker image):
 
 ```sh
-npm run test:load
+npm run test-dev:load
 ```
 
-- it uses `test:load` which builds artillery test docker image and runs load tests
+- it uses `test-dev:load` which builds artillery test docker image and runs load tests
 - it runs load tests to a service located on a separate image, therefore target can't be `localhost/0.0.0.0`. It uses `target: 'http://host.docker.internal:3000'`
 
 _OR_
+
+#### Option 2
+
+To imitate _DEV_ and run tests by using one command
+
+```sh
+npm run docker:test-dev:performance
+```
+
+To imitate _PROD_ and run tests by using one command
 
 ```sh
 npm run docker:test-dev:performance
@@ -157,7 +171,7 @@ docker-compose up
 
 Example:
 
-- test/artillery/docker-compose.yml to start artillery image for load tests
+- test/performance-artillery-dev/docker-compose.yml to start artillery image for load tests
 - docker-compose.yml.in to start app related docker images
 
 ## Developing and Testing Against Local Kopps

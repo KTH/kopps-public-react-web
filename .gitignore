@@ -44,4 +44,4 @@ server/views/layouts/errorLayout.handlebars
 docker-local.*
 
 # Artillery
-test/artillery/docker-compose.yml
+test/performance-artillery-dev/docker-compose.yml

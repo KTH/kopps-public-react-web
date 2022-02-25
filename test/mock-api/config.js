@@ -15,6 +15,11 @@ module.exports = {
   paths: [
     {
       method: 'get',
+      url: '/cm/*',
+      response: '',
+    },
+    {
+      method: 'get',
       url: '/kopps/course/*/detailedinformation',
       response: detailedInformationResponse,
     },
