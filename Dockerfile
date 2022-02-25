@@ -17,6 +17,9 @@ COPY ["build.sh", "build.sh"]
 COPY ["package.json", "package.json"]
 COPY ["package-lock.json", "package-lock.json"]
 COPY ["webpack.config.js", "webpack.config.js"]
+# Config for jest tester
+COPY ["babel.config.js", "babel.config.js"]
+COPY ["jest.config.js", "jest.config.js"]
 
 RUN apk stats && \
     chmod a+rx build.sh && \
