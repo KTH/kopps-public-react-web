@@ -11,37 +11,37 @@ import createApplicationStore from './stores/createApplicationStore'
 
 import '../../css/node-web.scss'
 
-import CourseSearch from './pages/CourseSearch'
-import CourseSearchResearch from './pages/CourseSearchResearch'
-import Example from './pages/Example'
-import PageLayout from './layout/PageLayout'
-import RouteWrapper from './components/RouteWrapper'
-
-import getMenuData from './config/menuData'
-import getMenuDataExample from './config/menuDataExample'
-import getDepartmentMenuData from './config/departmentMenuData'
-import getThirdCycleMenuData from './config/thirdCycleMenuData'
-import getThirdCycleBreadcrumbs from './config/thirdCycleBreadcrumbs'
-import getThirdCycleDepartmentMenuData from './config/thirdCycleDepartmentMenuData'
-import getProgrammeMenuData from './config/programmeMenuData'
-import getCurriculumMenuData from './config/curriculumMenuData'
-import getStudyProgrammeMenuData from './config/studyProgrammeMenuData'
-import getLiteratureList from './config/literatureListMenuData'
-import StudyHandbook from './pages/StudyHandbook'
-import ProgrammesList from './pages/ProgrammesList'
-import DepartmentsList from './pages/DepartmentsList'
-import DepartmentCourses from './pages/DepartmentCourses'
-import ThirdCycleDepartmentsList from './pages/ThirdCycleDepartmentsList'
-import Programme from './pages/Programme'
-import Curriculum from './pages/Curriculum'
-import Objectives from './pages/Objectives'
-import Extent from './pages/Extent'
-import Eligibility from './pages/Eligibility'
-import Implementation from './pages/Implementation'
 import Appendix1 from './pages/Appendix1'
 import Appendix2 from './pages/Appendix2'
+import CourseSearch from './pages/CourseSearch'
+import CourseSearchResearch from './pages/CourseSearchResearch'
+import Curriculum from './pages/Curriculum'
+import DepartmentCourses from './pages/DepartmentCourses'
+import DepartmentsList from './pages/DepartmentsList'
+import Eligibility from './pages/Eligibility'
+import Example from './pages/Example'
+import Extent from './pages/Extent'
+import Implementation from './pages/Implementation'
 import LiteratureList from './pages/LiteratureList'
+import Objectives from './pages/Objectives'
+import Programme from './pages/Programme'
+import ProgrammesList from './pages/ProgrammesList'
+import PageLayout from './layout/PageLayout'
+import RouteWrapper from './components/RouteWrapper'
+import StudyHandbook from './pages/StudyHandbook'
+import ThirdCycleDepartmentsList from './pages/ThirdCycleDepartmentsList'
+
+import getCurriculumMenuData from './config/curriculumMenuData'
+import getDepartmentMenuData from './config/departmentMenuData'
 import getLiteratureListBreadcrumbs from './config/literatureListBreadcrumbs'
+import getLiteratureList from './config/literatureListMenuData'
+import getMenuData from './config/menuData'
+import getMenuDataExample from './config/menuDataExample'
+import getProgrammeMenuData from './config/programmeMenuData'
+import getStudyProgrammeMenuData from './config/studyProgrammeMenuData'
+import getThirdCycleBreadcrumbs from './config/thirdCycleBreadcrumbs'
+import getThirdCycleDepartmentMenuData from './config/thirdCycleDepartmentMenuData'
+import getThirdCycleMenuData from './config/thirdCycleMenuData'
 
 export default appFactory
 
@@ -54,7 +54,11 @@ function _initStore(optionalStoreProps = {}) {
   if (serverSideApplicationStore) return serverSideApplicationStore
 
   // Client side application store
-  console.log(`Creating client-side applicationStore with storeId: ${storeId} and caller funcation is ${caller}`)
+  console.log(
+    `Creating client-side ${storeId ? `with ${storeId}` : 'with default'} applicationStore ${
+      caller ? `and a caller function is ${caller}` : ''
+    } `
+  )
   const clientSideApplicationStore = createApplicationStore(storeId)
 
   uncompressStoreInPlaceFromDocument(clientSideApplicationStore)
