@@ -44,7 +44,6 @@ function CurrentSchools() {
 function DeprecatedSchools() {
   const { language, deprecatedSchoolsWithDepartments } = useStore()
   const t = translate(language)
-  console.log(deprecatedSchoolsWithDepartments)
   return (
     <>
       <h2>{t('departments_deprecated_schools')}</h2>

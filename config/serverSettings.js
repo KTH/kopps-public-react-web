@@ -104,4 +104,9 @@ module.exports = {
   programSyllabusPdfPath: {
     uri: getEnv('PDF_PROGRAM_SYLLABUS_URL', devProgramSyllabusPdfUrl),
   },
+
+  // APPLICATION INSIGHTS IN AZURE
+  appInsights: {
+    instrumentationKey: getEnv('APPINSIGHTS_INSTRUMENTATIONKEY', ''),
+  },
 }
