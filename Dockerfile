@@ -24,13 +24,14 @@ COPY ["jest.config.js", "jest.config.js"]
 RUN apk stats && \
     chmod a+rx build.sh && \
     apk add --no-cache bash && \
-    npm install --development && \
+    apk add --no-cache --virtual .gyp-dependencies python2 make g++ util-linux && \
+    npm ci --unsafe-perm && \
     npm run build && \
     npm prune --production && \
+    apk del .gyp-dependencies && \
     apk stats
 
 EXPOSE 3000
-EXPOSE 9229
 
 ENV TZ Europe/Stockholm
 
