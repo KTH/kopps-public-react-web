@@ -62,8 +62,6 @@ function compressStoreIntoJavascriptCode(store) {
 function uncompressStoreInPlaceFromDocument(store) {
   const isClientSide = typeof window !== 'undefined'
   if (!isClientSide) {
-    // eslint-disable-next-line no-console
-    console.error('uncompressStoreInPlaceFromDocument(): Expected to be run on client side')
     return store
   }
 

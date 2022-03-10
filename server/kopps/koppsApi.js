@@ -48,7 +48,6 @@ function reduceToQueryParamString(params) {
 
 const searchFovCourses = async searchOptions => {
   const { client } = koppsApi.koppsApi
-  console.log('client', JSON.stringify(client))
 
   const queryParams = reduceToQueryParamString(searchOptions)
   const uri = `${slashEndedKoppsBase}courses/courserounds${queryParams}`
@@ -131,7 +130,6 @@ const listSchoolsWithDepartments = async ({ departmentCriteria, listForActiveCou
       log.debug(errorMessage)
     }
     if (body) log.info(`Successfully got data from`, { uri })
-    console.log('body', JSON.stringify(body))
 
     return { schoolsWithDepartments: body, statusCode }
   } catch (error) {

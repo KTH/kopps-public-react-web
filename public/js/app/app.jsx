@@ -54,11 +54,11 @@ function _initStore(optionalStoreProps = {}) {
   if (serverSideApplicationStore) return serverSideApplicationStore
 
   // Client side application store
-  console.log(
-    `Creating client-side ${storeId ? `with ${storeId}` : 'with default'} applicationStore ${
-      caller ? `and a caller function is ${caller}` : ''
-    } `
-  )
+  // console.debug(
+  //   `Creating client-side ${storeId ? `with ${storeId}` : 'with default'} applicationStore ${
+  //     caller ? `and a caller function is ${caller}` : ''
+  //   } `
+  // )
   const clientSideApplicationStore = createApplicationStore(storeId)
 
   uncompressStoreInPlaceFromDocument(clientSideApplicationStore)
@@ -70,7 +70,6 @@ function _renderOnClientSide() {
   if (!isClientSide) {
     return
   }
-  console.log('_renderOnClientSide: start rendering appFactory')
 
   const app = <BrowserRouter>{appFactory()}</BrowserRouter>
 
