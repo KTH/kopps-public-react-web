@@ -192,7 +192,8 @@ const getSearchResults = async (searchParamsStr, lang) => {
 
 const getStudyProgrammeVersion = async (programmeCode, validFromTerm, lang) => {
   const { client } = koppsApi.koppsApi
-  const uri = `${slashEndedKoppsBase}programmes/${programmeCode}/studyprogramme/version/${validFromTerm}?l=${lang}`
+  const programmeCodeUpperCase = programmeCode?.toUpperCase()
+  const uri = `${slashEndedKoppsBase}programmes/${programmeCodeUpperCase}/studyprogramme/version/${validFromTerm}?l=${lang}`
   try {
     const { body, statusCode } = await client.getAsync({ uri, useCache: true })
     const errorMessage = statusCode !== 200 ? setErrorInProgramVersion() : null
@@ -229,7 +230,8 @@ const listCourseRoundsInYearPlan = async ({
   lang,
 }) => {
   const { client } = koppsApi.koppsApi
-  const uri = `${slashEndedKoppsBase}academicyearplan/${programmeCode}/${
+  const programmeCodeUpperCase = programmeCode?.toUpperCase()
+  const uri = `${slashEndedKoppsBase}academicyearplan/${programmeCodeUpperCase}/${
     specializationCode ? `${specializationCode}/` : ''
   }${academicYearStartTerm}/${studyYearNumber}?l=${lang}`
   try {

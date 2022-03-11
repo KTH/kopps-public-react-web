@@ -32,9 +32,11 @@ module.exports = {
  */
 
 function fillStoreWithQueryParams({ applicationStore, lang, programmeCode, studyYear, term }) {
+  const programmeCodeUpperCase = programmeCode?.toUpperCase()
+
   applicationStore.setLanguage(lang)
   applicationStore.setBrowserConfig(browserConfig)
-  applicationStore.setProgrammeCode(programmeCode)
+  applicationStore.setProgrammeCode(programmeCodeUpperCase)
   if (term) applicationStore.setTerm(term) // appendixes
   // storeId === 'curriculum'?
   if (studyYear) applicationStore.setStudyYear(studyYear) // curriculumCtrl
@@ -78,8 +80,10 @@ async function fetchAndFillProgrammeDetails({ applicationStore, lang, programmeC
  * @param {string} programmeName
  */
 function fillBreadcrumbsDynamicItems({ applicationStore, lang, programmeCode }, programmeName) {
+  const programmeCodeUpperCase = programmeCode?.toUpperCase()
+
   const departmentBreadCrumbItem = {
-    url: programmeLink(programmeCode, lang),
+    url: programmeLink(programmeCodeUpperCase, lang),
     label: programmeName,
   }
   applicationStore.setBreadcrumbsDynamicItems([departmentBreadCrumbItem])

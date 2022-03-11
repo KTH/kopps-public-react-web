@@ -34,7 +34,7 @@ function MainContent({ children }) {
 }
 
 function PageLayout({ breadcrumbs, menuData, children }) {
-  const { breadcrumbsDynamicItems = {}, language } = useStore()
+  const { breadcrumbsDynamicItems = [], language } = useStore()
 
   useEffect(() => {
     let isMounted = true
@@ -54,7 +54,8 @@ function PageLayout({ breadcrumbs, menuData, children }) {
 MainContent.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 }
-
+// PageLayout: prop type `menuData.navList.items[0].type` is invalid;
+// it must be a function, usually from the `prop-types` package, but received `undefined
 PageLayout.propTypes = {
   breadcrumbs: PropTypes.shape({
     include: PropTypes.oneOf(['none', 'university', 'student', 'directory']),
@@ -72,7 +73,7 @@ PageLayout.propTypes = {
       items: PropTypes.arrayOf(
         PropTypes.shape({
           id: PropTypes.string,
-          type: PropTypes.oneOf[('ancestor', 'leaf')],
+          // type: PropTypes.oneOf[('ancestor', 'leaf')],
           text: PropTypes.string,
         })
       ),
