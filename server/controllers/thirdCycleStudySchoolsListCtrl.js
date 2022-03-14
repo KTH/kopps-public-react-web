@@ -45,6 +45,7 @@ async function getAllSchoolsAndDepartmentsInThirdCycleStudy(req, res, next) {
     const title = i18n.message('third_cycle_courses_by_school', lang)
 
     res.render('app/index', {
+      instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
       html,
       title,
       compressedStoreCode,

@@ -24,6 +24,7 @@ async function getStudyBook(req, res, next) {
     const title = i18n.message('main_menu_shb', lang)
 
     res.render('app/index', {
+      instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
       html,
       title,
       compressedStoreCode,

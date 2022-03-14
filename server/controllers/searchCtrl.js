@@ -31,6 +31,7 @@ async function searchThirdCycleCourses(req, res, next) {
     const title = i18n.message('main_menu_third_cycle_courses_search', lang)
 
     res.render('app/index', {
+      instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
       html,
       title,
       compressedStoreCode,
@@ -91,6 +92,7 @@ async function searchAllCourses(req, res, next) {
     const title = i18n.message('main_menu_search_all', lang)
 
     res.render('app/index', {
+      instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
       html,
       title,
       compressedStoreCode,

@@ -126,6 +126,7 @@ async function getProgrammesList(req, res, next) {
     const description = i18n.message('programmes_list_lead', lang)
 
     res.render('app/index', {
+      instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
       html,
       title,
       compressedStoreCode,

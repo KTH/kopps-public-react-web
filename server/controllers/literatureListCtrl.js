@@ -73,6 +73,7 @@ async function getLiteratureList(req, res, next) {
     const title = `${heading} ${formatLongTerm(term, lang)} ${school}`
 
     res.render('app/index', {
+      instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
       html,
       title,
       compressedStoreCode,

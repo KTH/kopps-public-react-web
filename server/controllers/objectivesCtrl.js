@@ -65,6 +65,7 @@ async function getIndex(req, res, next) {
     )
 
     res.render('app/index', {
+      instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
       html,
       title,
       compressedStoreCode,

@@ -44,6 +44,7 @@ async function getSchoolsList(req, res, next) {
     const description = i18n.message('departments_list_lead', lang)
 
     res.render('app/index', {
+      instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
       html,
       title,
       compressedStoreCode,
