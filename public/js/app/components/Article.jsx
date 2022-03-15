@@ -1,8 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Article({ classNames, children }) {
-  return <article className={`article ${classNames ? classNames.join(' ') : ''}`}>{children}</article>
+function Article({ classNames, children, uiKey = '' }) {
+  return (
+    <article className={`article ${classNames ? classNames.join(' ') : ''}`} key={uiKey}>
+      {children}
+    </article>
+  )
 }
 
 Article.propTypes = {

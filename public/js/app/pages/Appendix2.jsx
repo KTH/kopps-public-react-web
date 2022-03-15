@@ -17,23 +17,23 @@ function Specializations() {
   const { language, specializations } = useStore()
   const t = translate(language)
 
-  return specializations.length ? (
-    specializations.map(({ code, title, description }) => {
-      const heading = `${title} (${code})`
-      return (
-        <>
-          <h2>{heading}</h2>
-          {description ? (
-            <KoppsData html={description} />
-          ) : (
-            <p className="font-italic">{t('programme_appendix2_empty_description')}</p>
-          )}
-        </>
-      )
-    })
-  ) : (
-    <p>{t('programme_appendix2_empty')}</p>
-  )
+  if (!specializations.length) return <p>{t('programme_appendix2_empty')}</p>
+
+  return specializations.map(({ code, title, description }) => {
+    const heading = `${title} (${code})`
+    return (
+      <div key={`div-${heading}`}>
+        <h2 key={heading}>{heading}</h2>
+        {description ? (
+          <KoppsData key={`kopps-data-${heading}`} html={description} />
+        ) : (
+          <p key="empty" className="font-italic">
+            {t('programme_appendix2_empty_description')}
+          </p>
+        )}
+      </div>
+    )
+  })
 }
 
 function Appendix2() {
@@ -47,22 +47,22 @@ function Appendix2() {
 
   return (
     <>
-      <Row>
+      <Row key="page-heading-row-appendix-2">
         <Col>
           <PageHeading subHeading={subHeading}>{pageHeading}</PageHeading>
         </Col>
       </Row>
-      <Row>
-        <Col>
-          <Article classNames={['paragraphs', 'utbildningsplan']}>
-            <Specializations />
+      <Row key="data-area-row">
+        <Col key="article-specializations">
+          <Article uiKey="article" classNames={['paragraphs', 'utbildningsplan']}>
+            <Specializations key="specializations-appendix-2" />
           </Article>
         </Col>
-        <Col xs="12" xl="3">
+        <Col key="sidebar" xs="12" xl="3">
           <Sidebar />
         </Col>
       </Row>
-      <Row>
+      <Row key="footer-row">
         <Col>
           <FooterContent />
         </Col>

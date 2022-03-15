@@ -6,6 +6,7 @@ import { MobxStoreProvider } from '../mobx'
 import NotFound from '../pages/NotFound'
 
 function RouteWrapper({
+  key,
   createBreadcrumbs,
   component: Component,
   layout: Layout,
@@ -17,7 +18,7 @@ function RouteWrapper({
   const breadcrumbs = createBreadcrumbs(applicationStore)
   const { statusCode } = applicationStore
   return (
-    <MobxStoreProvider initCallback={() => applicationStore}>
+    <MobxStoreProvider key={key} initCallback={() => applicationStore}>
       <Route
         {...rest}
         render={() => (

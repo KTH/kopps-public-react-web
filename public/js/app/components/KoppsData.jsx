@@ -9,9 +9,9 @@ function KoppsData({ html }) {
   const { browserConfig } = useStore()
   const { markHtmlFromKopps } = browserConfig
   return markHtmlFromKopps ? (
-    <div data-from-kopps dangerouslySetInnerHTML={{ __html: html }} />
+    <div key="marked-data-from-kopps" data-from-kopps dangerouslySetInnerHTML={{ __html: html }} />
   ) : (
-    <div dangerouslySetInnerHTML={{ __html: html }} />
+    <div key="data-from-kopps" dangerouslySetInnerHTML={{ __html: html }} />
   )
 }
 

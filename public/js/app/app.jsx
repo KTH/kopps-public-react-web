@@ -81,6 +81,7 @@ function appFactory(serverSideApplicationStore = null) {
   return (
     <Switch>
       <RouteWrapper
+        key="example"
         exact
         path="/example"
         component={Example}
@@ -90,6 +91,7 @@ function appFactory(serverSideApplicationStore = null) {
         createMenuData={store => ({ selectedId: 'example', ...getMenuDataExample(store) })}
       />
       <RouteWrapper
+        key="shb"
         exact
         path="/student/program/shb"
         component={StudyHandbook}
@@ -99,6 +101,7 @@ function appFactory(serverSideApplicationStore = null) {
         createMenuData={store => ({ selectedId: 'shb', ...getMenuData(store) })}
       />
       <RouteWrapper
+        key="programmes-list"
         exact
         path="/student/kurser/kurser-inom-program"
         component={ProgrammesList}
@@ -108,6 +111,7 @@ function appFactory(serverSideApplicationStore = null) {
         createMenuData={store => ({ selectedId: 'programmesList', ...getMenuData(store) })}
       />
       <RouteWrapper
+        key="search-course"
         exact
         path="/student/kurser/sokkurs"
         createBreadcrumbs={() => ({ include: 'directory' })}
@@ -117,6 +121,7 @@ function appFactory(serverSideApplicationStore = null) {
         createMenuData={store => ({ selectedId: 'searchAllCourses', ...getMenuData(store) })}
       />
       <RouteWrapper
+        key="departments-list"
         exact
         path="/student/kurser/org"
         createBreadcrumbs={() => ({ include: 'directory' })}
@@ -129,6 +134,7 @@ function appFactory(serverSideApplicationStore = null) {
         })}
       />
       <RouteWrapper
+        key="department-courses"
         exact
         path="/student/kurser/org/:departmentCode"
         createBreadcrumbs={() => ({ include: 'directory' })}
@@ -138,6 +144,7 @@ function appFactory(serverSideApplicationStore = null) {
         createMenuData={store => ({ selectedId: 'courses', ...getDepartmentMenuData(store) })}
       />
       <RouteWrapper
+        key="programme-overview"
         exact
         path="/student/kurser/program/:programmeCode"
         createBreadcrumbs={() => ({ include: 'directory' })}
@@ -147,6 +154,7 @@ function appFactory(serverSideApplicationStore = null) {
         createMenuData={store => ({ selectedId: 'studyYears', ...getProgrammeMenuData(store) })}
       />
       <RouteWrapper
+        key="third-cycle-departments-list"
         exact
         path="/utbildning/forskarutbildning/kurser/avdelning"
         createBreadcrumbs={store => ({
@@ -162,6 +170,7 @@ function appFactory(serverSideApplicationStore = null) {
         })}
       />
       <RouteWrapper
+        key="third-cycle-department-courses"
         exact
         path="/utbildning/forskarutbildning/kurser/org/:departmentCode"
         createBreadcrumbs={store => ({
@@ -177,6 +186,7 @@ function appFactory(serverSideApplicationStore = null) {
         })}
       />
       <RouteWrapper
+        key="third-cycle-search-courses"
         exact
         path="/utbildning/forskarutbildning/kurser/sok"
         createBreadcrumbs={store => ({
@@ -192,6 +202,7 @@ function appFactory(serverSideApplicationStore = null) {
         })}
       />
       <RouteWrapper
+        key="programme-objectives"
         exact
         path="/student/kurser/program/:programmeCode/:term/mal"
         createBreadcrumbs={() => ({ include: 'directory' })}
@@ -204,6 +215,7 @@ function appFactory(serverSideApplicationStore = null) {
         })}
       />
       <RouteWrapper
+        key="programme-extent"
         exact
         path="/student/kurser/program/:programmeCode/:term/omfattning"
         createBreadcrumbs={() => ({ include: 'directory' })}
@@ -216,6 +228,7 @@ function appFactory(serverSideApplicationStore = null) {
         })}
       />
       <RouteWrapper
+        key="programme-eligibility"
         exact
         path="/student/kurser/program/:programmeCode/:term/behorighet"
         createBreadcrumbs={() => ({ include: 'directory' })}
@@ -228,6 +241,7 @@ function appFactory(serverSideApplicationStore = null) {
         })}
       />
       <RouteWrapper
+        key="programme-implementation"
         exact
         path="/student/kurser/program/:programmeCode/:term/genomforande"
         createBreadcrumbs={() => ({ include: 'directory' })}
@@ -240,6 +254,7 @@ function appFactory(serverSideApplicationStore = null) {
         })}
       />
       <RouteWrapper
+        key="programme-appendix1"
         exact
         path="/student/kurser/program/:programmeCode/:term/kurslista"
         createBreadcrumbs={() => ({ include: 'directory' })}
@@ -252,6 +267,7 @@ function appFactory(serverSideApplicationStore = null) {
         })}
       />
       <RouteWrapper
+        key="programme-appendix2"
         exact
         path="/student/kurser/program/:programmeCode/:term/inriktningar"
         createBreadcrumbs={() => ({ include: 'directory' })}
@@ -264,6 +280,7 @@ function appFactory(serverSideApplicationStore = null) {
         })}
       />
       <RouteWrapper
+        key="programme-curriculum"
         exact
         path="/student/kurser/program/:programmeCode/:term/:studyYear"
         createBreadcrumbs={() => ({ include: 'directory' })}
@@ -276,6 +293,7 @@ function appFactory(serverSideApplicationStore = null) {
         })}
       />
       <RouteWrapper
+        key="literature-list"
         exact
         path="/student/kurser/lit/:term/:school"
         createBreadcrumbs={store => ({

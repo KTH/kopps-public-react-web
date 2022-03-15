@@ -87,7 +87,7 @@ const listProgrammes = async lang => {
     let errorMessage = null
 
     if (statusCode !== 200) {
-      errorMessage = `Failed response from KOPPS API calling ${uri} list of programmes`
+      errorMessage = `Failed response ${statusCode} from KOPPS API calling ${uri} list of programmes`
 
       log.debug(errorMessage)
     }
@@ -165,7 +165,7 @@ const getProgramme = async (programmeCode, lang) => {
   log.info(`Fetching ${uri}`)
   try {
     const { body, statusCode } = await client.getAsync({ uri, useCache: true })
-    const errorMessage = statusCode !== 200 ? setErrorKoppsCallingUri(uri) : null
+    const errorMessage = statusCode !== 200 ? setErrorKoppsCallingUri(uri, statusCode) : null
 
     if (body) log.info(`Successfully got data from`, { uri })
 
@@ -212,7 +212,7 @@ const listCurriculums = async (studyProgrammeVersionId, lang) => {
   const uri = `${slashEndedKoppsBase}studyprogramme/${studyProgrammeVersionId}/curriculums?l=${lang}`
   try {
     const { body, statusCode } = await client.getAsync({ uri, useCache: true })
-    const errorMessage = statusCode !== 200 ? setErrorKoppsCallingUri(uri) : null
+    const errorMessage = statusCode !== 200 ? setErrorKoppsCallingUri(uri, statusCode) : null
 
     if (body) log.info(`Successfully got data from`, { uri })
     return { curriculums: body, errorMessage, statusCode }
