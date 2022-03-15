@@ -1,14 +1,14 @@
 const log = require('@kth/log')
 
-function setErrorKoppsCallingUri(uri) {
-  const error = new Error(`Failed KOPPS calling ${uri}`)
-  log.debug(error)
+function setErrorKoppsCallingUri(uri, statusCode) {
+  const error = new Error(`Failed KOPPS calling ${uri}, error ${statusCode}`)
+  log.error(error)
   return error
 }
 
 function setErrorInProgramVersion() {
   const error = new Error('Exception calling KOPPS API in koppsApi.getStudyProgrammeVersion')
-  log.debug(error)
+  log.error(error)
   return error
 }
 module.exports = {
