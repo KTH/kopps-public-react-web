@@ -38,101 +38,104 @@ function setLengthInStudyYears(lengthInStudyYears) {
   this.lengthInStudyYears = lengthInStudyYears
 }
 
-const curriculumStore = {
-  /**
-   * @property {string} programmeCode
-   */
-  // TODO: Refactor. Duplicate in createApplicationStore
-  programmeCode: '',
-  /**
-   * @method
-   * @param {string} programmeCode
-   */
-  // TODO: Refactor. Duplicate in createApplicationStore
-  setProgrammeCode,
-  /**
-   * @property {string} programmeName
-   */
-  // TODO: Refactor. Duplicate in createApplicationStore
-  programmeName: '',
-  /**
-   * @method
-   * @param {string} programmeName
-   */
-  // TODO: Refactor. Duplicate in createApplicationStore
-  setProgrammeName,
-  /**
-   * @property {string} owningSchoolCode
-   */
-  owningSchoolCode: '',
-  /**
-   * @method
-   * @param {string} owningSchoolCode
-   */
-  setOwningSchoolCode,
-  /**
-   * @property {string} term
-   */
-  term: '',
-  /**
-   * @method
-   * @param {string} term
-   */
-  setTerm,
-  /**
-   * @property {string} studyYear
-   */
-  studyYear: '',
-  /**
-   * @method
-   * @param {string} studyYear
-   */
-  setStudyYear,
-  /**
-   * @property {[]} curriculums
-   */
-  curriculums: [],
-  /**
-   * @method
-   * @param {[]} curriculums
-   */
-  setCurriculums,
-  /**
-   * @property {{}} errorType
-   */
-  errorType: {
-    MISSING_ADMISSION: 'missing_admission',
-  },
-  /**
-   * @property {string} error
-   */
-  error: null,
-  /**
-   * @method
-   */
-  setMissingAdmission,
-  /**
-   * @method
-   */
-  isMissingAdmission,
-  /**
-   * @property {[]} curriculumInfos
-   */
-  curriculumInfos: null,
-  /**
-   * @method
-   * @param {[]} curriculumInfos
-   */
-  setCurriculumInfos,
-  /**
-   * @property {number} lengthInStudyYears
-   */
-  lengthInStudyYears: 0,
-  /**
-   * @method
-   * @param {number} lengthInStudyYears
-   */
-  setLengthInStudyYears,
+function createCurriculumStore() {
+  const curriculumStore = {
+    /**
+     * @property {string} programmeCode
+     */
+    // TODO: Refactor. Duplicate in createApplicationStore
+    programmeCode: '',
+    /**
+     * @method
+     * @param {string} programmeCode
+     */
+    // TODO: Refactor. Duplicate in createApplicationStore
+    setProgrammeCode,
+    /**
+     * @property {string} programmeName
+     */
+    // TODO: Refactor. Duplicate in createApplicationStore
+    programmeName: '',
+    /**
+     * @method
+     * @param {string} programmeName
+     */
+    // TODO: Refactor. Duplicate in createApplicationStore
+    setProgrammeName,
+    /**
+     * @property {string} owningSchoolCode
+     */
+    owningSchoolCode: '',
+    /**
+     * @method
+     * @param {string} owningSchoolCode
+     */
+    setOwningSchoolCode,
+    /**
+     * @property {string} term
+     */
+    term: '',
+    /**
+     * @method
+     * @param {string} term
+     */
+    setTerm,
+    /**
+     * @property {string} studyYear
+     */
+    studyYear: '',
+    /**
+     * @method
+     * @param {string} studyYear
+     */
+    setStudyYear,
+    /**
+     * @property {[]} curriculums
+     */
+    curriculums: [],
+    /**
+     * @method
+     * @param {[]} curriculums
+     */
+    setCurriculums,
+    /**
+     * @property {{}} errorType
+     */
+    errorType: {
+      MISSING_ADMISSION: 'missing_admission',
+    },
+    /**
+     * @property {string} error
+     */
+    error: null,
+    /**
+     * @method
+     */
+    setMissingAdmission,
+    /**
+     * @method
+     */
+    isMissingAdmission,
+    /**
+     * @property {[]} curriculumInfos
+     */
+    curriculumInfos: null,
+    /**
+     * @method
+     * @param {[]} curriculumInfos
+     */
+    setCurriculumInfos,
+    /**
+     * @property {number} lengthInStudyYears
+     */
+    lengthInStudyYears: 0,
+    /**
+     * @method
+     * @param {number} lengthInStudyYears
+     */
+    setLengthInStudyYears,
+  }
+  return curriculumStore
 }
 
-export default curriculumStore
+export default createCurriculumStore

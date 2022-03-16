@@ -124,7 +124,7 @@ async function fetchAndFillStudyProgrammeVersion({ applicationStore, lang, progr
  * @param {object} applicationStore
  * @param {array} curriculums
  */
-function _parseCurriculums(applicationStore, curriculums) {
+function _parseCurriculumsAndFillStore(applicationStore, curriculums) {
   curriculums.forEach(curriculum => {
     if (curriculum.programmeSpecialization) {
       // Specialization
@@ -256,7 +256,8 @@ async function fetchAndFillCurriculumList(options) {
   const { curriculums, statusCode: secondStatusCode } = await koppsApi.listCurriculums(studyProgrammeId, lang)
   applicationStore.setStatusCode(secondStatusCode)
   if (secondStatusCode !== 200) return // react NotFound
-  _parseCurriculums(applicationStore, curriculums)
+
+  _parseCurriculumsAndFillStore(applicationStore, curriculums)
   return
 }
 

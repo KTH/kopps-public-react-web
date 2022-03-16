@@ -20,46 +20,48 @@ function setStatusCode(statusCode) {
   this.statusCode = statusCode
 }
 
-const commonStore = {
-  /**
-   * @property {object} browserConfig
-   */
-  browserConfig: {},
-  /**
-   * @method
-   * @param {object} config
-   */
-  setBrowserConfig,
-  /**
-   * @property {number} statusCode
-   */
-  statusCode: null,
-  /**
-   * @method
-   * @param {number} statusCode
-   */
-  setStatusCode,
-  /**
-   * @property {string} language
-   * @property {number} languageIndex
-   */
-  language: null,
-  languageIndex: 0,
-  /**
-   * @method
-   * @param {string} lang
-   */
-  setLanguage,
-  /**
-   * @property {array<map<string, string>>} breadcrumbsDynamicItems
-   */
-  /* Use only if breadcrumbs ending depends on f.e., api */
-  breadcrumbsDynamicItems: [],
-  /**
-   * @method
-   * @param {array<map<string, string>>} items
-   */
-  setBreadcrumbsDynamicItems,
+function createCommonStore() {
+  const commonStore = {
+    /**
+     * @property {object} browserConfig
+     */
+    browserConfig: {},
+    /**
+     * @method
+     * @param {object} config
+     */
+    setBrowserConfig,
+    /**
+     * @property {number} statusCode
+     */
+    statusCode: null,
+    /**
+     * @method
+     * @param {number} statusCode
+     */
+    setStatusCode,
+    /**
+     * @property {string} language
+     * @property {number} languageIndex
+     */
+    language: null,
+    languageIndex: 0,
+    /**
+     * @method
+     * @param {string} lang
+     */
+    setLanguage,
+    /**
+     * @property {array<map<string, string>>} breadcrumbsDynamicItems
+     */
+    /* Use only if breadcrumbs ending depends on f.e., api */
+    breadcrumbsDynamicItems: [],
+    /**
+     * @method
+     * @param {array<map<string, string>>} items
+     */
+    setBreadcrumbsDynamicItems,
+  }
+  return commonStore
 }
-
-export default commonStore
+export default createCommonStore

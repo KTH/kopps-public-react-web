@@ -4,169 +4,171 @@
 
 // eslint-disable-next-line no-unused-vars
 import { observable } from 'mobx'
-import commonStore from './commonStore'
-import curriculumStore from './curriculumStore'
+import createCommonStore from './commonStore'
+import createCurriculumStore from './curriculumStore'
 import createStudyProgrammeStore from './studyProgrammeStore'
-import searchCoursesStore from './searchCoursesStore'
+import createSearchCoursesStore from './searchCoursesStore'
 import createAppendix1Store from './appendix1Store'
 import createAppendix2Store from './appendix2Store'
-import literatureStore from './literatureStore'
+import createLiteratureStore from './literatureStore'
 
 export default createApplicationStore
 
-const store = {
-  /**
-   * @property {string} message
-   */
-  message: 'Hallo',
-  /**
-   * @method
-   * @param {string} text
-   */
-  setMessage,
-  /**
-   * @property {string} lastAdmissionTerm
-   */
-  lastAdmissionTerm: '',
-  /**
-   * @method
-   * @param {string} lastAdmissionTerm
-   */
-  setLastAdmissionTerm,
-  /**
-   * @method
-   * @param {map<string, {}>} programmes
-   */
-  setProgrammes,
+function createStore() {
+  const store = {
+    /**
+     * @property {string} message
+     */
+    message: 'Hallo',
+    /**
+     * @method
+     * @param {string} text
+     */
+    setMessage,
+    /**
+     * @property {string} lastAdmissionTerm
+     */
+    lastAdmissionTerm: '',
+    /**
+     * @method
+     * @param {string} lastAdmissionTerm
+     */
+    setLastAdmissionTerm,
+    /**
+     * @method
+     * @param {map<string, {}>} programmes
+     */
+    setProgrammes,
 
-  /**
-   * @property {map<string, {}>} programmes
-   */
-  programmes: [],
+    /**
+     * @property {map<string, {}>} programmes
+     */
+    programmes: [],
 
-  /**
-   * @method
-   * @param {[]} currentSchoolsWithDepartments
-   */
-  setCurrentSchoolsWithDepartments,
+    /**
+     * @method
+     * @param {[]} currentSchoolsWithDepartments
+     */
+    setCurrentSchoolsWithDepartments,
 
-  /**
-   * @property {[]} currentSchoolsWithDepartments
-   */
-  currentSchoolsWithDepartments: [],
+    /**
+     * @property {[]} currentSchoolsWithDepartments
+     */
+    currentSchoolsWithDepartments: [],
 
-  /**
-   * @method
-   * @param {[]} deprecatedSchoolsWithDepartments
-   */
-  setDeprecatedSchoolsWithDepartments,
+    /**
+     * @method
+     * @param {[]} deprecatedSchoolsWithDepartments
+     */
+    setDeprecatedSchoolsWithDepartments,
 
-  /**
-   * @property {[]} deprecatedSchoolsWithDepartments
-   */
-  deprecatedSchoolsWithDepartments: [],
-  /**
-   * @property {string} departmentName
-   */
-  departmentName: '',
-  /**
-   * @method
-   * @param {string} departmentName
-   */
-  setDepartmentName,
+    /**
+     * @property {[]} deprecatedSchoolsWithDepartments
+     */
+    deprecatedSchoolsWithDepartments: [],
+    /**
+     * @property {string} departmentName
+     */
+    departmentName: '',
+    /**
+     * @method
+     * @param {string} departmentName
+     */
+    setDepartmentName,
 
-  /**
-   * @property {[]} departmentCourses
-   */
-  departmentCourses: [],
-  /**
-   * @method
-   * @param {[]} departmentCourses
-   */
-  setDepartmentCourses,
-  /**
-   * @property {string} programmeName
-   */
-  programmeName: '',
-  /**
-   * @method
-   * @param {string} programmeName
-   */
-  setProgrammeName,
-  /**
-   * @property {string} programmeCode
-   */
-  programmeCode: '',
-  /**
-   * @method
-   * @param {string} programmeCode
-   */
-  setProgrammeCode,
-  /**
-   * @property {[]} programmeTerms
-   */
-  programmeTerms: [],
-  /**
-   * @method
-   * @param {[]} programmeTerms
-   */
-  setProgrammeTerms,
-  /**
-   * @property {number} lengthInStudyYears
-   */
-  lengthInStudyYears: 0,
-  /**
-   * @method
-   * @param {number} lengthInStudyYears
-   */
-  setLengthInStudyYears,
-  /**
-   * @property {string} thisHostBaseUrl
-   */
-  thisHostBaseUrl: null,
+    /**
+     * @property {[]} departmentCourses
+     */
+    departmentCourses: [],
+    /**
+     * @method
+     * @param {[]} departmentCourses
+     */
+    setDepartmentCourses,
+    /**
+     * @property {string} programmeName
+     */
+    programmeName: '',
+    /**
+     * @method
+     * @param {string} programmeName
+     */
+    setProgrammeName,
+    /**
+     * @property {string} programmeCode
+     */
+    programmeCode: '',
+    /**
+     * @method
+     * @param {string} programmeCode
+     */
+    setProgrammeCode,
+    /**
+     * @property {[]} programmeTerms
+     */
+    programmeTerms: [],
+    /**
+     * @method
+     * @param {[]} programmeTerms
+     */
+    setProgrammeTerms,
+    /**
+     * @property {number} lengthInStudyYears
+     */
+    lengthInStudyYears: 0,
+    /**
+     * @method
+     * @param {number} lengthInStudyYears
+     */
+    setLengthInStudyYears,
+    /**
+     * @property {string} thisHostBaseUrl
+     */
+    thisHostBaseUrl: null,
+  }
+  return store
 }
-
 function createApplicationStore(storeId) {
   switch (storeId) {
     case 'curriculum':
       return {
-        ...commonStore,
-        ...curriculumStore,
+        ...createCommonStore(),
+        ...createCurriculumStore(),
       }
     case 'searchCourses':
       return {
-        ...commonStore,
-        ...searchCoursesStore,
+        ...createCommonStore(),
+        ...createSearchCoursesStore(),
       }
     case 'objectives':
     case 'extent':
     case 'eligibility':
     case 'implementation':
       return {
-        ...commonStore,
+        ...createCommonStore(),
         ...createStudyProgrammeStore(),
       }
     case 'appendix1':
       return {
-        ...commonStore,
+        ...createCommonStore(),
         ...createStudyProgrammeStore(),
         ...createAppendix1Store(),
       }
     case 'appendix2':
       return {
-        ...commonStore,
+        ...createCommonStore(),
         ...createStudyProgrammeStore(),
         ...createAppendix2Store(),
       }
     case 'literatureList':
       return {
-        ...commonStore,
-        ...literatureStore,
+        ...createCommonStore(),
+        ...createLiteratureStore(),
       }
     default:
       return {
-        ...commonStore,
-        ...store,
+        ...createCommonStore(),
+        ...createStore(),
       }
   }
 }

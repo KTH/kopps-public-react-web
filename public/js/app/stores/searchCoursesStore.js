@@ -61,88 +61,91 @@ function setDepartmentCodeOrPrefix(departmentCodeOrPrefix) {
   this.departmentCodeOrPrefix = departmentCodeOrPrefix || ''
 }
 
-const searchCoursesStore = {
-  /**
-   * @property {string} departmentCodeOrPrefix
-   */
-  departmentCodeOrPrefix: '',
-  /**
-   * @method
-   * @param {string} departmentCodeOrPrefix
-   */
-  setDepartmentCodeOrPrefix,
-  /**
-   * @property {string} textPattern
-   */
-  textPattern: '',
-  /**
-   * @method
-   * @param {string} textPattern
-   */
-  setPattern,
-  /**
-   * @property {string} programmeName
-   */
-  /**
-   * @property {[]} eduLevel
-   */
-  eduLevel: [],
-  /**
-   * @method
-   * @param {[]} eduLevels
-   */
-  setEduLevels,
-  /**
-   * @property {[]} showOptions
-   */
-  showOptions: [],
-  /**
-   * @method
-   * @param {[]} otherOptions
-   */
-  setShowOptions,
-  /**
-   * @property {[]} period
-   */
-  period: [],
-  /**
-   * @method
-   * @param {[]} periods
-   */
-  setPeriods,
+function createSearchCoursesStore() {
+  const searchCoursesStore = {
+    /**
+     * @property {string} departmentCodeOrPrefix
+     */
+    departmentCodeOrPrefix: '',
+    /**
+     * @method
+     * @param {string} departmentCodeOrPrefix
+     */
+    setDepartmentCodeOrPrefix,
+    /**
+     * @property {string} textPattern
+     */
+    textPattern: '',
+    /**
+     * @method
+     * @param {string} textPattern
+     */
+    setPattern,
+    /**
+     * @property {string} programmeName
+     */
+    /**
+     * @property {[]} eduLevel
+     */
+    eduLevel: [],
+    /**
+     * @method
+     * @param {[]} eduLevels
+     */
+    setEduLevels,
+    /**
+     * @property {[]} showOptions
+     */
+    showOptions: [],
+    /**
+     * @method
+     * @param {[]} otherOptions
+     */
+    setShowOptions,
+    /**
+     * @property {[]} period
+     */
+    period: [],
+    /**
+     * @method
+     * @param {[]} periods
+     */
+    setPeriods,
 
-  /**
-   * @method
-   * @param {[]} schoolsWithDepartments
-   */
-  setSchoolsWithDepartments,
+    /**
+     * @method
+     * @param {[]} schoolsWithDepartments
+     */
+    setSchoolsWithDepartments,
 
-  /**
-   * @property {[]} schoolsWithDepartments
-   */
-  schoolsWithDepartments: [],
+    /**
+     * @property {[]} schoolsWithDepartments
+     */
+    schoolsWithDepartments: [],
 
-  /**
-   * @method
-   * @param {[]} currentSchoolsWithDepartments
-   */
-  setCurrentSchoolsWithDepartments,
+    /**
+     * @method
+     * @param {[]} currentSchoolsWithDepartments
+     */
+    setCurrentSchoolsWithDepartments,
 
-  /**
-   * @property {[]} currentSchoolsWithDepartments
-   */
-  currentSchoolsWithDepartments: [],
+    /**
+     * @property {[]} currentSchoolsWithDepartments
+     */
+    currentSchoolsWithDepartments: [],
 
-  /**
-   * @method
-   * @param {[]} deprecatedSchoolsWithDepartments
-   */
-  setDeprecatedSchoolsWithDepartments,
+    /**
+     * @method
+     * @param {[]} deprecatedSchoolsWithDepartments
+     */
+    setDeprecatedSchoolsWithDepartments,
 
-  /**
-   * @property {[]} deprecatedSchoolsWithDepartments
-   */
-  deprecatedSchoolsWithDepartments: [],
+    /**
+     * @property {[]} deprecatedSchoolsWithDepartments
+     */
+    deprecatedSchoolsWithDepartments: [],
+  }
+  return searchCoursesStore
 }
 
-export default searchCoursesStore
+export default createSearchCoursesStore

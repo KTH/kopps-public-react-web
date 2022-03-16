@@ -14,46 +14,48 @@ function setSchools(schools) {
   this.schools = [...schools]
 }
 
-const literatureStore = {
-  /**
-   * @property {string} selecetedSchoolCode
-   */
-  schoolCode: '',
-  /**
-   * @method
-   * @param {string} schoolCode
-   */
-  setSelectedSchoolCode,
-  /**
-   * @property {string} selectedTerm
-   */
-  selectedTerm: '',
-  /**
-   * @method
-   * @param {string} term
-   */
-  setSelectedTerm,
-  /**
-   * @property {[]} literature
-   */
-  literature: [],
-  /**
-   * @method
-   * @param {[]} literature
-   */
-  setLiterature,
+function createLiteratureStore() {
+  const literatureStore = {
+    /**
+     * @property {string} selecetedSchoolCode
+     */
+    schoolCode: '',
+    /**
+     * @method
+     * @param {string} schoolCode
+     */
+    setSelectedSchoolCode,
+    /**
+     * @property {string} selectedTerm
+     */
+    selectedTerm: '',
+    /**
+     * @method
+     * @param {string} term
+     */
+    setSelectedTerm,
+    /**
+     * @property {[]} literature
+     */
+    literature: [],
+    /**
+     * @method
+     * @param {[]} literature
+     */
+    setLiterature,
 
-  /**
-   * @method
-   * @param {[]} schools
-   *
-   */
-  setSchools,
+    /**
+     * @method
+     * @param {[]} schools
+     *
+     */
+    setSchools,
 
-  /**
-   * @property {[]} schools
-   */
-  schools: [],
+    /**
+     * @property {[]} schools
+     */
+    schools: [],
+  }
+  return literatureStore
 }
-
-export default literatureStore
+export default createLiteratureStore
