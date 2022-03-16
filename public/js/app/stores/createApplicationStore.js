@@ -6,7 +6,7 @@
 import { observable } from 'mobx'
 import commonStore from './commonStore'
 import curriculumStore from './curriculumStore'
-import studyProgrammeStore from './studyProgrammeStore'
+import createStudyProgrammeStore from './studyProgrammeStore'
 import searchCoursesStore from './searchCoursesStore'
 import createAppendix1Store from './appendix1Store'
 import createAppendix2Store from './appendix2Store'
@@ -144,18 +144,18 @@ function createApplicationStore(storeId) {
     case 'implementation':
       return {
         ...commonStore,
-        ...studyProgrammeStore,
+        ...createStudyProgrammeStore(),
       }
     case 'appendix1':
       return {
         ...commonStore,
-        ...studyProgrammeStore,
+        ...createStudyProgrammeStore(),
         ...createAppendix1Store(),
       }
     case 'appendix2':
       return {
         ...commonStore,
-        ...studyProgrammeStore,
+        ...createStudyProgrammeStore(),
         ...createAppendix2Store(),
       }
     case 'literatureList':
