@@ -41,73 +41,76 @@ function addSpecialization(specialization) {
   this.specializations.push(specialization)
 }
 
-const appendix1Store = {
-  /**
-   * @property {{}} studyYearCourses
-   */
-  studyYearCourses: {},
-  /**
-   * @method
-   * @param {[]} courses
-   * @param {string} electiveCondition
-   * @param {number} studyYear
-   * @param {string} code
-   */
-  addElectiveConditionCourse,
-  /**
-   * @property {{}} supplementaryInfo
-   */
-  supplementaryInfo: {},
-  /**
-   * @method
-   * @param {string} supplementaryInfo
-   * @param {number} studyYear
-   * @param {string} code
-   */
-  addSupplementaryInfo,
-  /**
-   * @property {{}} conditionallyElectiveCoursesInfo
-   */
-  conditionallyElectiveCoursesInfo: {},
-  /**
-   * @method
-   * @param {string} conditionallyElectiveCoursesInfo
-   * @param {number} studyYear
-   * @param {string} code
-   */
-  addConditionallyElectiveCoursesInfo,
-  /**
-   * @property {[]} studyYears
-   */
-  studyYears: [],
-  /**
-   * @method
-   * @param {number} studyYear
-   */
-  addStudyYear,
-  /**
-   * @property {[]} studyYears
-   */
-  creditUnitAbbr: '',
-  /**
-   * @method
-   * @param {string} creditUnitAbbr
-   */
-  setCreditUnitAbbr,
-  /**
-   * @property {[]} specializations
-   */
-  specializations: [],
-  /**
-   * @method
-   * @param {[]} specializations
-   */
-  setSpecializations,
-  /**
-   * @method
-   * @param {{}} specialization
-   */
-  addSpecialization,
+function createAppendix1Store() {
+  const appendix1Store = {
+    /**
+     * @property {{}} studyYearCourses
+     */
+    studyYearCourses: {},
+    /**
+     * @method
+     * @param {[]} courses
+     * @param {string} electiveCondition
+     * @param {number} studyYear
+     * @param {string} code
+     */
+    addElectiveConditionCourse,
+    /**
+     * @property {{}} supplementaryInfo
+     */
+    supplementaryInfo: {},
+    /**
+     * @method
+     * @param {string} supplementaryInfo
+     * @param {number} studyYear
+     * @param {string} code
+     */
+    addSupplementaryInfo,
+    /**
+     * @property {{}} conditionallyElectiveCoursesInfo
+     */
+    conditionallyElectiveCoursesInfo: {},
+    /**
+     * @method
+     * @param {string} conditionallyElectiveCoursesInfo
+     * @param {number} studyYear
+     * @param {string} code
+     */
+    addConditionallyElectiveCoursesInfo,
+    /**
+     * @property {[]} studyYears
+     */
+    studyYears: [],
+    /**
+     * @method
+     * @param {number} studyYear
+     */
+    addStudyYear,
+    /**
+     * @property {[]} studyYears
+     */
+    creditUnitAbbr: '',
+    /**
+     * @method
+     * @param {string} creditUnitAbbr
+     */
+    setCreditUnitAbbr,
+    /**
+     * @property {[]} specializations
+     */
+    specializations: [],
+    /**
+     * @method
+     * @param {[]} specializations
+     */
+    setSpecializations,
+    /**
+     * @method
+     * @param {{}} specialization
+     */
+    addSpecialization,
+  }
+  return appendix1Store
 }
 
-export default appendix1Store
+export default createAppendix1Store

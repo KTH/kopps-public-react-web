@@ -8,7 +8,7 @@ import commonStore from './commonStore'
 import curriculumStore from './curriculumStore'
 import studyProgrammeStore from './studyProgrammeStore'
 import searchCoursesStore from './searchCoursesStore'
-import appendix1Store from './appendix1Store'
+import createAppendix1Store from './appendix1Store'
 import appendix2Store from './appendix2Store'
 import literatureStore from './literatureStore'
 
@@ -150,7 +150,7 @@ function createApplicationStore(storeId) {
       return {
         ...commonStore,
         ...studyProgrammeStore,
-        ...appendix1Store,
+        ...createAppendix1Store(),
       }
     case 'appendix2':
       return {
