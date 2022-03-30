@@ -13,9 +13,7 @@ jest.setTimeout(1000)
 jest.mock('../mobx')
 jest.mock('../util/internApi')
 jest.mock('react-router-dom', () => ({
-  useHistory: () => ({
-    push: jest.fn(),
-  }),
+  useNavigate: jest.fn(),
 }))
 const periods = [
   'Spring 2021 period 3',

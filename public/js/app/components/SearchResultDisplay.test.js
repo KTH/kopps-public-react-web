@@ -18,9 +18,7 @@ jest.setTimeout(1000)
 jest.mock('../mobx')
 jest.mock('../util/internApi')
 jest.mock('react-router-dom', () => ({
-  useHistory: () => ({
-    push: jest.fn(),
-  }),
+  useNavigate: jest.fn(),
 }))
 
 describe('Component <SearchResultDisplay> and its warning messages', () => {
