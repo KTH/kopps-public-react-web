@@ -7,7 +7,7 @@ import { StaticRouter } from 'react-router-dom/server'
 import { MobxStoreProvider } from '../mobx'
 
 import StudyHandbook from './StudyHandbook'
-import RouteWrapper from '../components/RouteWrapper'
+import ElementWrapper from '../components/ElementWrapper'
 import PageLayout from '../layout/PageLayout'
 
 import createApplicationStore from '../stores/createApplicationStore'
@@ -26,7 +26,7 @@ const WrapperStudyHandbook = ({ lang, ...rest }) => {
   }
   return (
     <StaticRouter>
-      <RouteWrapper
+      <ElementWrapper
         exact
         path="/student/program/shb"
         component={StudyHandbook}

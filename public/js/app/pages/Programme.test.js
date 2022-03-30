@@ -8,7 +8,7 @@ import { StaticRouter } from 'react-router-dom/server'
 import { MobxStoreProvider } from '../mobx'
 
 import Programme from './Programme'
-import RouteWrapper from '../components/RouteWrapper'
+import ElementWrapper from '../components/ElementWrapper'
 import PageLayout from '../layout/PageLayout'
 
 import createApplicationStore from '../stores/createApplicationStore'
@@ -38,7 +38,7 @@ const WrapperProgramme = ({ lang }) => {
   }
   return (
     <StaticRouter>
-      <RouteWrapper
+      <ElementWrapper
         exact
         path="/student/kurser/program/CLGYM"
         createBreadcrumbs={() => ({ include: 'directory' })}

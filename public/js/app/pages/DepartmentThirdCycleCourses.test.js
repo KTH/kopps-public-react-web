@@ -8,7 +8,7 @@ import { StaticRouter } from 'react-router-dom/server'
 import { MobxStoreProvider } from '../mobx'
 
 import DepartmentCourses from './DepartmentCourses'
-import RouteWrapper from '../components/RouteWrapper'
+import ElementWrapper from '../components/ElementWrapper'
 import PageLayout from '../layout/PageLayout'
 
 import createApplicationStore from '../stores/createApplicationStore'
@@ -83,7 +83,7 @@ const WrapperDepartmentCourses = ({ lang }) => {
   }
   return (
     <StaticRouter>
-      <RouteWrapper
+      <ElementWrapper
         exact
         path="/utbildning/forskarutbildning/kurser/org/AFF"
         createBreadcrumbs={store => ({

@@ -8,7 +8,7 @@ import { StaticRouter } from 'react-router-dom/server'
 import { MobxStoreProvider } from '../mobx'
 
 import ThirdCycleDepartmentsList from './ThirdCycleDepartmentsList'
-import RouteWrapper from '../components/RouteWrapper'
+import ElementWrapper from '../components/ElementWrapper'
 import PageLayout from '../layout/PageLayout'
 import getThirdCycleMenuData from '../config/thirdCycleMenuData'
 import getThirdCycleBreadcrumbs from '../config/thirdCycleBreadcrumbs'
@@ -46,7 +46,7 @@ const WrapperThirdCycleDepartmentsList = ({ lang }) => {
   }
   return (
     <StaticRouter>
-      <RouteWrapper
+      <ElementWrapper
         exact
         path="/utbildning/forskarutbildning/kurser/avdelning"
         component={ThirdCycleDepartmentsList}
