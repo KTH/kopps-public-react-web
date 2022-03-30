@@ -1,0 +1,45 @@
+# https://artillery.io/docs/guides/getting-started/writing-your-first-test.html#Running-a-performance-test
+config:
+  target: 'https://app-r.referens.sys.kth.se'
+  http:
+    timeout: 15
+  phases:
+    - duration: 60
+      arrivalRate: 5
+      name: Warm up
+    - duration: 120
+      arrivalRate: 5
+      rampTo: 50
+      name: Ramp up loadc
+    - duration: 600
+      arrivalRate: 50
+      name: Sustained load
+scenarios:
+  - name: 'View a static page without calling kopps api'
+    flow:
+      - get:
+          url: '/student/program/shb'
+  - name: 'View list of courses for ADD program, one call to kopps api'
+    flow:
+      - get:
+          url: '/student/kurser/org/ADD'
+  - name: 'View programmes list, one call to kopps api'
+    flow:
+      - get:
+          url: '/student/kurser/org'
+  - name: 'View programmes, one call to kopps api'
+    flow:
+      - get:
+          url: '/student/kurser/kurser-inom-program'
+  - name: 'View Implementation of the education CTFYS'
+    flow:
+      - get:
+          url: '/student/kurser/program/CTFYS/20192/genomforande'
+  - name: 'View TIKED arskurs1'
+    flow:
+      - get:
+          url: '/student/kurser/program/TIKED/20222/arskurs1'
+  - name: 'View CMEDT arskurs1'
+    flow:
+      - get:
+          url: '/student/kurser/program/CMEDT/20222/arskurs1'

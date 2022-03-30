@@ -35,6 +35,6 @@ services:
       - redis
 
   artillery:
-    build: ./test/performance-artillery-prod
+    build: ./test/performance-artillery-prod-mode
     depends_on:
       - web
