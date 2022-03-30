@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import ReactDOM from 'react-dom'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import koppsCourseSearch from '../util/internApi'
 import { useStore } from '../mobx'
@@ -75,7 +75,7 @@ DisplayResult.defaultProps = {
 
 function SearchResultDisplay({ searchParameters, onlyPattern = false }) {
   const { browserConfig, language, languageIndex } = useStore()
-  const history = useHistory()
+  const navigate = useNavigate()
   const { pattern } = searchParameters
   const searchStr = stringifyUrlParams(searchParameters)
   const [loadStatus, setLoadStatus] = useState('firstLoad')
@@ -113,10 +113,10 @@ function SearchResultDisplay({ searchParameters, onlyPattern = false }) {
   }, [status])
 
   useEffect(() => {
-    if (!history) return
+    if (!navigate) return
     if ((onlyPattern && pattern) || !onlyPattern) {
       if (status === STATUS.pending) {
-        history.push({ search: searchStr })
+        navigate({ search: searchStr }, { replace: true })
       }
     }
   }, [status])
