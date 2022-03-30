@@ -4,7 +4,7 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Switch } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import { uncompressStoreInPlaceFromDocument } from './mobx'
 import createApplicationStore from './stores/createApplicationStore'
@@ -27,7 +27,7 @@ import Objectives from './pages/Objectives'
 import Programme from './pages/Programme'
 import ProgrammesList from './pages/ProgrammesList'
 import PageLayout from './layout/PageLayout'
-import RouteWrapper from './components/RouteWrapper'
+import ElementWrapper from './components/ElementWrapper'
 import StudyHandbook from './pages/StudyHandbook'
 import ThirdCycleDepartmentsList from './pages/ThirdCycleDepartmentsList'
 
@@ -79,235 +79,302 @@ function _renderOnClientSide() {
 
 function appFactory(serverSideApplicationStore = null) {
   return (
-    <Switch>
-      <RouteWrapper
-        key="example"
-        exact
-        path="/example"
-        component={Example}
-        createBreadcrumbs={() => ({ include: 'directory' })}
-        layout={PageLayout}
-        applicationStore={_initStore()}
-        createMenuData={store => ({ selectedId: 'example', ...getMenuDataExample(store) })}
-      />
-      <RouteWrapper
+    <Routes>
+      <Route key="example" exact path="/example">
+        {/* <ElementWrapper
+          component={Example}
+          createBreadcrumbs={() => ({ include: 'directory' })}
+          layout={PageLayout}
+          applicationStore={_initStore()}
+          createMenuData={store => ({ selectedId: 'example', ...getMenuDataExample(store) })}
+        /> */}
+      </Route>
+      <Route
         key="shb"
         exact
         path="/student/program/shb"
-        component={StudyHandbook}
-        createBreadcrumbs={() => ({ include: 'directory' })}
-        layout={PageLayout}
-        applicationStore={_initStore({ caller: 'StudyHandbook' })}
-        createMenuData={store => ({ selectedId: 'shb', ...getMenuData(store) })}
+        element={
+          <ElementWrapper
+            component={StudyHandbook}
+            createBreadcrumbs={() => ({ include: 'directory' })}
+            layout={PageLayout}
+            applicationStore={_initStore({ caller: 'StudyHandbook' })}
+            createMenuData={store => ({ selectedId: 'shb', ...getMenuData(store) })}
+          />
+        }
       />
-      <RouteWrapper
+      <Route
         key="programmes-list"
         exact
         path="/student/kurser/kurser-inom-program"
-        component={ProgrammesList}
-        createBreadcrumbs={() => ({ include: 'directory' })}
-        layout={PageLayout}
-        applicationStore={_initStore({ caller: 'ProgrammesList' })}
-        createMenuData={store => ({ selectedId: 'programmesList', ...getMenuData(store) })}
+        element={
+          <ElementWrapper
+            component={ProgrammesList}
+            createBreadcrumbs={() => ({ include: 'directory' })}
+            layout={PageLayout}
+            applicationStore={_initStore({ caller: 'ProgrammesList' })}
+            createMenuData={store => ({ selectedId: 'programmesList', ...getMenuData(store) })}
+          />
+        }
       />
-      <RouteWrapper
+      <Route
         key="search-course"
         exact
         path="/student/kurser/sokkurs"
-        createBreadcrumbs={() => ({ include: 'directory' })}
-        component={CourseSearch}
-        layout={PageLayout}
-        applicationStore={_initStore({ caller: 'CourseSearch' })}
-        createMenuData={store => ({ selectedId: 'searchAllCourses', ...getMenuData(store) })}
+        element={
+          <ElementWrapper
+            createBreadcrumbs={() => ({ include: 'directory' })}
+            component={CourseSearch}
+            layout={PageLayout}
+            applicationStore={_initStore({ caller: 'CourseSearch' })}
+            createMenuData={store => ({ selectedId: 'searchAllCourses', ...getMenuData(store) })}
+          />
+        }
       />
-      <RouteWrapper
+      <Route
         key="departments-list"
         exact
         path="/student/kurser/org"
-        createBreadcrumbs={() => ({ include: 'directory' })}
-        component={DepartmentsList}
-        layout={PageLayout}
-        applicationStore={_initStore({ caller: 'DepartmentsList', serverSideApplicationStore })}
-        createMenuData={store => ({
-          selectedId: 'departmentsList',
-          ...getMenuData(store),
-        })}
+        element={
+          <ElementWrapper
+            createBreadcrumbs={() => ({ include: 'directory' })}
+            component={DepartmentsList}
+            layout={PageLayout}
+            applicationStore={_initStore({ caller: 'DepartmentsList', serverSideApplicationStore })}
+            createMenuData={store => ({
+              selectedId: 'departmentsList',
+              ...getMenuData(store),
+            })}
+          />
+        }
       />
-      <RouteWrapper
+      <Route
         key="department-courses"
         exact
         path="/student/kurser/org/:departmentCode"
-        createBreadcrumbs={() => ({ include: 'directory' })}
-        component={DepartmentCourses}
-        layout={PageLayout}
-        applicationStore={_initStore({ caller: 'DepartmentCourses' })}
-        createMenuData={store => ({ selectedId: 'courses', ...getDepartmentMenuData(store) })}
+        element={
+          <ElementWrapper
+            createBreadcrumbs={() => ({ include: 'directory' })}
+            component={DepartmentCourses}
+            layout={PageLayout}
+            applicationStore={_initStore({ caller: 'DepartmentCourses' })}
+            createMenuData={store => ({ selectedId: 'courses', ...getDepartmentMenuData(store) })}
+          />
+        }
       />
-      <RouteWrapper
+      <Route
         key="programme-overview"
         exact
         path="/student/kurser/program/:programmeCode"
-        createBreadcrumbs={() => ({ include: 'directory' })}
-        component={Programme}
-        layout={PageLayout}
-        applicationStore={_initStore({ caller: 'Programme' })}
-        createMenuData={store => ({ selectedId: 'studyYears', ...getProgrammeMenuData(store) })}
+        element={
+          <ElementWrapper
+            createBreadcrumbs={() => ({ include: 'directory' })}
+            component={Programme}
+            layout={PageLayout}
+            applicationStore={_initStore({ caller: 'Programme' })}
+            createMenuData={store => ({ selectedId: 'studyYears', ...getProgrammeMenuData(store) })}
+          />
+        }
       />
-      <RouteWrapper
+      <Route
         key="third-cycle-departments-list"
         exact
         path="/utbildning/forskarutbildning/kurser/avdelning"
-        createBreadcrumbs={store => ({
-          include: 'university',
-          items: getThirdCycleBreadcrumbs(store),
-        })}
-        component={ThirdCycleDepartmentsList}
-        layout={PageLayout}
-        applicationStore={_initStore({ caller: 'ThirdCycleDepartmentsList' })}
-        createMenuData={store => ({
-          selectedId: 'thirdCycleDepartmentsList',
-          ...getThirdCycleMenuData(store),
-        })}
+        element={
+          <ElementWrapper
+            createBreadcrumbs={store => ({
+              include: 'university',
+              items: getThirdCycleBreadcrumbs(store),
+            })}
+            component={ThirdCycleDepartmentsList}
+            layout={PageLayout}
+            applicationStore={_initStore({ caller: 'ThirdCycleDepartmentsList' })}
+            createMenuData={store => ({
+              selectedId: 'thirdCycleDepartmentsList',
+              ...getThirdCycleMenuData(store),
+            })}
+          />
+        }
       />
-      <RouteWrapper
+      <Route
         key="third-cycle-department-courses"
         exact
         path="/utbildning/forskarutbildning/kurser/org/:departmentCode"
-        createBreadcrumbs={store => ({
-          include: 'university',
-          items: getThirdCycleBreadcrumbs(store),
-        })}
-        component={DepartmentCourses}
-        layout={PageLayout}
-        applicationStore={_initStore({ caller: 'DepartmentCourses' })}
-        createMenuData={store => ({
-          selectedId: 'courses',
-          ...getThirdCycleDepartmentMenuData(store),
-        })}
+        element={
+          <ElementWrapper
+            createBreadcrumbs={store => ({
+              include: 'university',
+              items: getThirdCycleBreadcrumbs(store),
+            })}
+            component={DepartmentCourses}
+            layout={PageLayout}
+            applicationStore={_initStore({ caller: 'DepartmentCourses' })}
+            createMenuData={store => ({
+              selectedId: 'courses',
+              ...getThirdCycleDepartmentMenuData(store),
+            })}
+          />
+        }
       />
-      <RouteWrapper
+      <Route
         key="third-cycle-search-courses"
         exact
         path="/utbildning/forskarutbildning/kurser/sok"
-        createBreadcrumbs={store => ({
-          include: 'university',
-          items: getThirdCycleBreadcrumbs(store),
-        })}
-        component={CourseSearchResearch}
-        layout={PageLayout}
-        applicationStore={_initStore({ storeId: 'searchCourses' })}
-        createMenuData={store => ({
-          selectedId: 'searchThirdCycleCourses',
-          ...getThirdCycleMenuData(store),
-        })}
+        element={
+          <ElementWrapper
+            createBreadcrumbs={store => ({
+              include: 'university',
+              items: getThirdCycleBreadcrumbs(store),
+            })}
+            component={CourseSearchResearch}
+            layout={PageLayout}
+            applicationStore={_initStore({ storeId: 'searchCourses' })}
+            createMenuData={store => ({
+              selectedId: 'searchThirdCycleCourses',
+              ...getThirdCycleMenuData(store),
+            })}
+          />
+        }
       />
-      <RouteWrapper
+      <Route
         key="programme-objectives"
         exact
         path="/student/kurser/program/:programmeCode/:term/mal"
-        createBreadcrumbs={() => ({ include: 'directory' })}
-        component={Objectives}
-        layout={PageLayout}
-        applicationStore={_initStore({ storeId: 'objective' })}
-        createMenuData={store => ({
-          selectedId: 'objectives',
-          ...getStudyProgrammeMenuData(store),
-        })}
+        element={
+          <ElementWrapper
+            createBreadcrumbs={() => ({ include: 'directory' })}
+            component={Objectives}
+            layout={PageLayout}
+            applicationStore={_initStore({ storeId: 'objective' })}
+            createMenuData={store => ({
+              selectedId: 'objectives',
+              ...getStudyProgrammeMenuData(store),
+            })}
+          />
+        }
       />
-      <RouteWrapper
+      <Route
         key="programme-extent"
         exact
         path="/student/kurser/program/:programmeCode/:term/omfattning"
-        createBreadcrumbs={() => ({ include: 'directory' })}
-        component={Extent}
-        layout={PageLayout}
-        applicationStore={_initStore({ storeId: 'extent' })}
-        createMenuData={store => ({
-          selectedId: 'extent',
-          ...getStudyProgrammeMenuData(store),
-        })}
+        element={
+          <ElementWrapper
+            createBreadcrumbs={() => ({ include: 'directory' })}
+            component={Extent}
+            layout={PageLayout}
+            applicationStore={_initStore({ storeId: 'extent' })}
+            createMenuData={store => ({
+              selectedId: 'extent',
+              ...getStudyProgrammeMenuData(store),
+            })}
+          />
+        }
       />
-      <RouteWrapper
+      <Route
         key="programme-eligibility"
         exact
         path="/student/kurser/program/:programmeCode/:term/behorighet"
-        createBreadcrumbs={() => ({ include: 'directory' })}
-        component={Eligibility}
-        layout={PageLayout}
-        applicationStore={_initStore({ storeId: 'eligibility' })}
-        createMenuData={store => ({
-          selectedId: 'eligibility',
-          ...getStudyProgrammeMenuData(store),
-        })}
+        element={
+          <ElementWrapper
+            createBreadcrumbs={() => ({ include: 'directory' })}
+            component={Eligibility}
+            layout={PageLayout}
+            applicationStore={_initStore({ storeId: 'eligibility' })}
+            createMenuData={store => ({
+              selectedId: 'eligibility',
+              ...getStudyProgrammeMenuData(store),
+            })}
+          />
+        }
       />
-      <RouteWrapper
+      <Route
         key="programme-implementation"
         exact
         path="/student/kurser/program/:programmeCode/:term/genomforande"
-        createBreadcrumbs={() => ({ include: 'directory' })}
-        component={Implementation}
-        layout={PageLayout}
-        applicationStore={_initStore({ storeId: 'implementation' })}
-        createMenuData={store => ({
-          selectedId: 'implementation',
-          ...getStudyProgrammeMenuData(store),
-        })}
+        element={
+          <ElementWrapper
+            createBreadcrumbs={() => ({ include: 'directory' })}
+            component={Implementation}
+            layout={PageLayout}
+            applicationStore={_initStore({ storeId: 'implementation' })}
+            createMenuData={store => ({
+              selectedId: 'implementation',
+              ...getStudyProgrammeMenuData(store),
+            })}
+          />
+        }
       />
-      <RouteWrapper
+      <Route
         key="programme-appendix1"
         exact
         path="/student/kurser/program/:programmeCode/:term/kurslista"
-        createBreadcrumbs={() => ({ include: 'directory' })}
-        component={Appendix1}
-        layout={PageLayout}
-        applicationStore={_initStore({ storeId: 'appendix1' })}
-        createMenuData={store => ({
-          selectedId: 'appendix1',
-          ...getStudyProgrammeMenuData(store),
-        })}
+        element={
+          <ElementWrapper
+            createBreadcrumbs={() => ({ include: 'directory' })}
+            component={Appendix1}
+            layout={PageLayout}
+            applicationStore={_initStore({ storeId: 'appendix1', serverSideApplicationStore })}
+            createMenuData={store => ({
+              selectedId: 'appendix1',
+              ...getStudyProgrammeMenuData(store),
+            })}
+          />
+        }
       />
-      <RouteWrapper
+      <Route
         key="programme-appendix2"
         exact
         path="/student/kurser/program/:programmeCode/:term/inriktningar"
-        createBreadcrumbs={() => ({ include: 'directory' })}
-        component={Appendix2}
-        layout={PageLayout}
-        applicationStore={_initStore({ storeId: 'appendix2' })}
-        createMenuData={store => ({
-          selectedId: 'appendix2',
-          ...getStudyProgrammeMenuData(store),
-        })}
+        element={
+          <ElementWrapper
+            createBreadcrumbs={() => ({ include: 'directory' })}
+            component={Appendix2}
+            layout={PageLayout}
+            applicationStore={_initStore({ storeId: 'appendix2' })}
+            createMenuData={store => ({
+              selectedId: 'appendix2',
+              ...getStudyProgrammeMenuData(store),
+            })}
+          />
+        }
       />
-      <RouteWrapper
+      <Route
         key="programme-curriculum"
         exact
         path="/student/kurser/program/:programmeCode/:term/:studyYear"
-        createBreadcrumbs={() => ({ include: 'directory' })}
-        component={Curriculum}
-        layout={PageLayout}
-        applicationStore={_initStore({ storeId: 'curriculum' })}
-        createMenuData={store => ({
-          selectedId: `year-${store.studyYear}`,
-          ...getCurriculumMenuData(store),
-        })}
+        element={
+          <ElementWrapper
+            createBreadcrumbs={() => ({ include: 'directory' })}
+            component={Curriculum}
+            layout={PageLayout}
+            applicationStore={_initStore({ storeId: 'curriculum' })}
+            createMenuData={store => ({
+              selectedId: `year-${store.studyYear}`,
+              ...getCurriculumMenuData(store),
+            })}
+          />
+        }
       />
-      <RouteWrapper
+      <Route
         key="literature-list"
         exact
         path="/student/kurser/lit/:term/:school"
-        createBreadcrumbs={store => ({
-          include: 'student',
-          items: getLiteratureListBreadcrumbs(store),
-        })}
-        component={LiteratureList}
-        layout={PageLayout}
-        applicationStore={_initStore({ storeId: 'literatureList' })}
-        createMenuData={store => ({
-          selectedId: store.selectedSchoolCode,
-          ...getLiteratureList(store),
-        })}
+        element={
+          <ElementWrapper
+            createBreadcrumbs={store => ({
+              include: 'student',
+              items: getLiteratureListBreadcrumbs(store),
+            })}
+            component={LiteratureList}
+            layout={PageLayout}
+            applicationStore={_initStore({ storeId: 'literatureList' })}
+            createMenuData={store => ({
+              selectedId: store.selectedSchoolCode,
+              ...getLiteratureList(store),
+            })}
+          />
+        }
       />
-    </Switch>
+    </Routes>
   )
 }
