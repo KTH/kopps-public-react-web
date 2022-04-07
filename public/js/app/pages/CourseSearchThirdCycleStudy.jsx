@@ -28,7 +28,7 @@ function getHelpText(langAbbr, langIndex) {
   return instructionsTexts
 }
 
-const CourseSearchResearch = () => {
+const CourseSearchThirdCycleStudy = () => {
   const { language: lang, languageIndex, textPattern: initialPattern } = useStore()
   const { thirdCycleSearch, thirdCycleSearchInstructions } = i18n.messages[languageIndex]
   const { searchHeading, leadIntro, linkToUsualSearch } = thirdCycleSearch
@@ -95,4 +95,4 @@ const CourseSearchResearch = () => {
   )
 }
 
-export default CourseSearchResearch
+export default CourseSearchThirdCycleStudy

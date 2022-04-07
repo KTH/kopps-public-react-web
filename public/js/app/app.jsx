@@ -14,7 +14,7 @@ import '../../css/node-web.scss'
 import Appendix1 from './pages/Appendix1'
 import Appendix2 from './pages/Appendix2'
 import CourseSearch from './pages/CourseSearch'
-import CourseSearchResearch from './pages/CourseSearchResearch'
+import CourseSearchThirdCycleStudy from './pages/CourseSearchThirdCycleStudy'
 import Curriculum from './pages/Curriculum'
 import DepartmentCourses from './pages/DepartmentCourses'
 import DepartmentsList from './pages/DepartmentsList'
@@ -226,7 +226,7 @@ function appFactory(serverSideApplicationStore = null) {
               include: 'university',
               items: getThirdCycleBreadcrumbs(store),
             })}
-            component={CourseSearchResearch}
+            component={CourseSearchThirdCycleStudy}
             layout={PageLayout}
             applicationStore={_initStore({ storeId: 'searchCourses' })}
             createMenuData={store => ({
