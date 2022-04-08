@@ -25,12 +25,15 @@ function SearchFormFields({ caption, openOptions, onSubmit }) {
 
   function handlePatternChange(e) {
     const { value } = e.target
-    const cleanTextPattern = value ? value.replace(/['"<>$]+/g, '').trim() : ''
+    const cleanTextPattern = value ? value.replace(/['"<>$]+/g, '') : ''
     setState({ pattern: cleanTextPattern })
   }
 
   function handleSubmit(e) {
     e.preventDefault()
+    const { pattern } = state
+
+    setState({ pattern: pattern.trim() })
 
     onSubmit(state)
   }
