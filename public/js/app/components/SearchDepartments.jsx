@@ -10,7 +10,6 @@ import { localeCompareDepartments } from '../../../../domain/departments'
 function SearchDepartments({ onChange }) {
   const store = useStore()
   const {
-    schoolsWithDepartments,
     currentSchoolsWithDepartments,
     deprecatedSchoolsWithDepartments,
     departmentCodeOrPrefix: initialDepartmentCode = '',

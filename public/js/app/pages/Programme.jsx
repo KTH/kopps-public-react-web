@@ -9,7 +9,7 @@ import FooterContent from '../components/FooterContent'
 import { useStore } from '../mobx'
 import translate from '../../../../domain/translate'
 import { programTermLink } from '../util/links'
-import { formatShortTerm, studyYear as calculateStudyYear, splitTerm } from '../../../../domain/term'
+import { formatShortTerm, studyYear as calculateStudyYear } from '../../../../domain/term'
 import { pageLink } from '../../../../domain/links'
 
 function programmeTermLinkText(term) {

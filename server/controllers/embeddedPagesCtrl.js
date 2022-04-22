@@ -1,13 +1,9 @@
 'use strict'
 
 const { searchFovCourses, listActiveMainFieldsOfStudy } = require('../kopps/koppsApi')
-const {
-  convertUserOptionsToKoppsApiParams,
-  constants,
-  searchOptionsTerms,
-  searchOptionStudyPaces,
-} = require('../../domain/fovsearch')
+const { convertUserOptionsToKoppsApiParams, constants, searchOptionsTerms } = require('../../domain/fovsearch')
 
+// eslint-disable-next-line no-unused-vars
 async function _fovSearch(req, res, next) {
   const { COURSE_TYPES, STUDY_PACES } = constants
 

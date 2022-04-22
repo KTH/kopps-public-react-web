@@ -6,7 +6,6 @@ const language = require('@kth/kth-node-web-common/lib/language')
 const { server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 
-const koppsApi = require('../kopps/koppsApi')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { programmeFullName } = require('../utils/programmeFullName')
 
@@ -56,7 +55,7 @@ async function getIndex(req, res, next) {
     log.info(`${storeId} store was filled in and compressed on server side`, { programmeCode })
 
     const { programme: proxyPrefix } = serverConfig.proxyPrefixPath
-    const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const view = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const { metaTitle: title, metaDescription: description } = _metaTitleAndDescription(
       lang,
       programmeCode,
@@ -66,7 +65,7 @@ async function getIndex(req, res, next) {
 
     res.render('app/index', {
       instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
-      html,
+      html: view,
       title,
       compressedStoreCode,
       description,

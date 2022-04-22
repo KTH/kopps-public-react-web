@@ -46,7 +46,7 @@ function LiteratureList() {
           text = <p>{missing}</p>
         }
         return (
-          <div id={`lit_${lit.courseCode}`}>
+          <div id={`lit_${lit.courseCode}`} key={`lit_${lit.courseCode}`}>
             <h2 style={{ fontSize: 1.5 + 'rem' }}>{`${lit.courseCode} ${lit.courseName}`}</h2>
             {text}
           </div>

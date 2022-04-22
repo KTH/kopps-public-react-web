@@ -79,7 +79,6 @@ const listActiveMainFieldsOfStudy = async () => {
 
 const listProgrammes = async lang => {
   const { client } = koppsApi.koppsApi
-  // const uri = `${config.koppsApi.proxyBasePath}course/${courseCode}/detailedinformation?l=${language}`
 
   const uri = `${slashEndedKoppsBase}programmes/all${lang ? `?l=${lang}` : ''}`
   try {
@@ -178,7 +177,6 @@ const getProgramme = async (programmeCode, lang) => {
 
 const getSearchResults = async (searchParamsStr, lang) => {
   const { client } = koppsApi.koppsApi
-  // const uri = `${slashEndedKoppsBase}courses/search?${searchParams}&l=${lang}`
   const uri = `${slashEndedKoppsBase}courses/search?${searchParamsStr}&l=${lang}`
 
   try {

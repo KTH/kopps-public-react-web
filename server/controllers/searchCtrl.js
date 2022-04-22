@@ -27,12 +27,12 @@ async function searchThirdCycleCourses(req, res, next) {
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
     const { thirdCycleCourseSearch: proxyPrefix } = serverConfig.proxyPrefixPath
-    const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const view = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('main_menu_third_cycle_courses_search', lang)
 
     res.render('app/index', {
       instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
-      html,
+      html: view,
       title,
       compressedStoreCode,
       description: '',
@@ -88,12 +88,12 @@ async function searchAllCourses(req, res, next) {
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
     const { courseSearch: proxyPrefix } = serverConfig.proxyPrefixPath
-    const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const view = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('main_menu_search_all', lang)
 
     res.render('app/index', {
       instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
-      html,
+      html: view,
       title,
       compressedStoreCode,
       description: '',

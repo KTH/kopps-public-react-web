@@ -5,15 +5,15 @@ import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import koppsCourseSearch from '../util/internApi'
 import { useStore } from '../mobx'
-import SearchTableView, { searchHitsPropsShape } from './SearchTableView'
 
 import i18n from '../../../../i18n'
 import { stringifyUrlParams } from '../../../../domain/searchParams'
 import { CLIENT_EDU_LEVELS } from '../../../../domain/eduLevels'
 import { CLIENT_SHOW_OPTIONS } from '../../../../domain/courseOptions'
 
-import { SearchAlert } from './index'
 import { STATUS, ERROR_ASYNC, useAsync } from '../hooks/searchUseAsync'
+import SearchTableView, { searchHitsPropsShape } from './SearchTableView'
+import { SearchAlert } from './index'
 
 function _getThisHost(thisHostBaseUrl) {
   return thisHostBaseUrl.slice(-1) === '/' ? thisHostBaseUrl.slice(0, -1) : thisHostBaseUrl
@@ -44,13 +44,13 @@ const errorItalicParagraph = (errorType, languageIndex) => {
   )
 }
 
-function DisplayResult({ languageIndex, status, errorType, searchResults }) {
-  if (status === STATUS.resolved) {
+function DisplayResult({ languageIndex, searchStatus, errorType, searchResults }) {
+  if (searchStatus === STATUS.resolved) {
     return <SearchTableView unsortedSearchResults={searchResults} />
   }
 
-  if (status === STATUS.idle) return null
-  if (status === STATUS.pending) {
+  if (searchStatus === STATUS.idle) return null
+  if (searchStatus === STATUS.pending) {
     const { searchLoading } = i18n.messages[languageIndex].generalSearch
     return <p>{searchLoading}</p>
   }
@@ -61,7 +61,7 @@ function DisplayResult({ languageIndex, status, errorType, searchResults }) {
 
 DisplayResult.propTypes = {
   languageIndex: PropTypes.oneOf([0, 1]),
-  status: PropTypes.oneOf([...Object.values(STATUS), null]),
+  searchStatus: PropTypes.oneOf([...Object.values(STATUS), null]),
   errorType: PropTypes.oneOf([...Object.values(ERROR_ASYNC), '']),
   searchResults: PropTypes.shape(searchHitsPropsShape),
 }
@@ -70,7 +70,7 @@ DisplayResult.defaultProps = {
   languageIndex: 0,
   errorType: '',
   searchResults: {},
-  status: null,
+  searchStatus: null,
 }
 
 function SearchResultDisplay({ searchParameters, onlyPattern = false }) {
@@ -100,7 +100,7 @@ function SearchResultDisplay({ searchParameters, onlyPattern = false }) {
 
   const state = useAsync(asyncCallback, initialStatus)
 
-  const { data: searchResults, status, error: errorType } = state
+  const { data: searchResults, status: searchStatus, error: errorType } = state
 
   useEffect(() => {
     let isMounted = true
@@ -110,22 +110,22 @@ function SearchResultDisplay({ searchParameters, onlyPattern = false }) {
       } else dismountTopAlert()
     }
     return () => (isMounted = false)
-  }, [status])
+  }, [searchStatus])
 
   useEffect(() => {
     if (!navigate) return
     if ((onlyPattern && pattern) || !onlyPattern) {
-      if (status === STATUS.pending) {
+      if (searchStatus === STATUS.pending) {
         navigate({ search: searchStr }, { replace: true })
       }
     }
-  }, [status])
+  }, [searchStatus])
 
   return (
     <>
-      {status !== STATUS.idle && <h2 id="results-heading">{resultsHeading}</h2>}
+      {searchStatus !== STATUS.idle && <h2 id="results-heading">{resultsHeading}</h2>}
       <DisplayResult
-        status={status}
+        searchStatus={searchStatus}
         errorType={errorType}
         languageIndex={languageIndex}
         searchResults={searchResults}
@@ -140,6 +140,7 @@ SearchResultDisplay.propTypes = {
     eduLevel: PropTypes.arrayOf(PropTypes.oneOf(CLIENT_EDU_LEVELS)),
     pattern: PropTypes.string,
     // eslint-disable-next-line consistent-return
+    // eslint-disable-next-line no-shadow
     period: PropTypes.arrayOf((propValue, key, componentName, location, propFullName) => {
       if (!/\b\d{5}\b:(\b\d)/.test(propValue[key]) && !/\b\d{4}\b:(summer)/.test(propValue[key])) {
         return new Error(
@@ -149,6 +150,7 @@ SearchResultDisplay.propTypes = {
     }),
     showOptions: PropTypes.arrayOf(PropTypes.oneOf(CLIENT_SHOW_OPTIONS)),
     // eslint-disable-next-line consistent-return
+    // eslint-disable-next-line no-shadow
     department: (propValue, key, componentName, location, propFullName) => {
       if (!/[A-Za-zÅÄÖåäö]{1,4}/.test(propValue[key])) {
         return new Error(

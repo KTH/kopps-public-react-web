@@ -3,7 +3,7 @@ const defaultProgrammeGroupHeading = 'OVRIGA'
 const preparatoryEducationalLevel = 'PREPARATORY'
 const preparatoryProgrammeGroupHeading = 'TBAS'
 
-function find(programme, degree = {}) {
+function findProgrammeGroupHeading(programme, degree = {}) {
   if (programmeGroupHeadings.includes(degree.code)) {
     return degree.code
   }
@@ -17,5 +17,5 @@ module.exports = {
   programmeGroupHeadings,
   defaultProgrammeGroupHeading,
   preparatoryEducationalLevel,
-  find,
+  findProgrammeGroupHeading,
 }

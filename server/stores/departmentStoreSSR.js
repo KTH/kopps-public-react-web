@@ -1,22 +1,15 @@
 const log = require('@kth/log')
 
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
-const i18n = require('../../i18n')
 const koppsApi = require('../kopps/koppsApi')
 const { departmentLink, thirdCycleDepartmentLink } = require('../../domain/links')
 
 // @ts-check
 
-module.exports = {
-  fillBreadcrumbsDynamicItems,
-  fillStoreWithBasicConfig,
-  fetchAndFillDepartmentCourses,
-  getOnlyThirdCycleCourses,
-}
 /**
  * add props to a MobX-stores on server side
- * studyType === all -> student/kurser/org/:departmentCode
- * studyType === third-cycle -> utbildning/forskarutbildning/kurser/org/:departmentCode
+ * studyLevel === all -> student/kurser/org/:departmentCode
+ * studyLevel === third-cycle -> utbildning/forskarutbildning/kurser/org/:departmentCode
  * so that its data can be used with the useStore() hook on client side
  *
  */
@@ -25,12 +18,12 @@ module.exports = {
  * @param {string} options.lang
  * @param {string} options.departmentCode
  * @param {string} departmentName
- * @param {string | undefined} studyType
+ * @param {string | undefined} studyLevel
  */
-function fillBreadcrumbsDynamicItems({ applicationStore, lang, departmentCode }, departmentName, studyType = 'all') {
+function fillBreadcrumbsDynamicItems({ applicationStore, lang, departmentCode }, departmentName, studyLevel = 'all') {
   const departmentBreadCrumbItem = {
     url:
-      studyType === 'third-cycle'
+      studyLevel === 'third-cycle'
         ? thirdCycleDepartmentLink(departmentCode, lang)
         : departmentLink(departmentCode, lang),
     label: departmentName,
@@ -59,10 +52,10 @@ function getOnlyThirdCycleCourses(courses, lang) {
  * @param {object} options.applicationStore
  * @param {string} options.lang
  * @param {string} options.departmentCode
- * @param {string | undefined} options.studyType
+ * @param {string | undefined} options.studyLevel
  * @returns {string}
  */
-async function fetchAndFillDepartmentCourses({ applicationStore, lang, departmentCode }, studyType = 'all') {
+async function fetchAndFillDepartmentCourses({ applicationStore, lang, departmentCode }, studyLevel = 'all') {
   log.info('Fetching department courses from KOPPs API', { departmentCode })
 
   const { departmentCourses, statusCode } = await koppsApi.getCourses({ departmentCode, lang })
@@ -76,9 +69,17 @@ async function fetchAndFillDepartmentCourses({ applicationStore, lang, departmen
   const { department: departmentName = '', courses } = departmentCourses
   applicationStore.setDepartmentName(departmentName)
 
-  const coursesByStudyType = studyType === 'third-cycle' ? await getOnlyThirdCycleCourses(courses, lang) : courses
+  const coursesByStudyLevel = studyLevel === 'third-cycle' ? await getOnlyThirdCycleCourses(courses, lang) : courses
 
-  applicationStore.setDepartmentCourses(coursesByStudyType)
+  applicationStore.setDepartmentCourses(coursesByStudyLevel)
 
+  // eslint-disable-next-line consistent-return
   return departmentName
+}
+
+module.exports = {
+  fillBreadcrumbsDynamicItems,
+  fillStoreWithBasicConfig,
+  fetchAndFillDepartmentCourses,
+  getOnlyThirdCycleCourses,
 }

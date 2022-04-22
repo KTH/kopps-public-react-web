@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint no-use-before-define: ["error", "nofunc"] */
 
 // @ts-check
@@ -19,7 +20,6 @@ import Curriculum from './pages/Curriculum'
 import DepartmentCourses from './pages/DepartmentCourses'
 import DepartmentsList from './pages/DepartmentsList'
 import Eligibility from './pages/Eligibility'
-import Example from './pages/Example'
 import Extent from './pages/Extent'
 import Implementation from './pages/Implementation'
 import LiteratureList from './pages/LiteratureList'
@@ -36,7 +36,6 @@ import getDepartmentMenuData from './config/departmentMenuData'
 import getLiteratureListBreadcrumbs from './config/literatureListBreadcrumbs'
 import getLiteratureList from './config/literatureListMenuData'
 import getMenuData from './config/menuData'
-import getMenuDataExample from './config/menuDataExample'
 import getProgrammeMenuData from './config/programmeMenuData'
 import getStudyProgrammeMenuData from './config/studyProgrammeMenuData'
 import getThirdCycleBreadcrumbs from './config/thirdCycleBreadcrumbs'
@@ -49,6 +48,7 @@ _renderOnClientSide()
 
 function _initStore(optionalStoreProps = {}) {
   // Server side application store, most likely created in controller
+  // eslint-disable-next-line no-unused-vars
   const { caller = '', storeId = '', serverSideApplicationStore = null } = optionalStoreProps
 
   if (serverSideApplicationStore) return serverSideApplicationStore
@@ -80,15 +80,6 @@ function _renderOnClientSide() {
 function appFactory(serverSideApplicationStore = null) {
   return (
     <Routes>
-      <Route key="example" exact path="/example">
-        {/* <ElementWrapper
-          component={Example}
-          createBreadcrumbs={() => ({ include: 'directory' })}
-          layout={PageLayout}
-          applicationStore={_initStore()}
-          createMenuData={store => ({ selectedId: 'example', ...getMenuDataExample(store) })}
-        /> */}
-      </Route>
       <Route
         key="shb"
         exact

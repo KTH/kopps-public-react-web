@@ -1,20 +1,10 @@
 const log = require('@kth/log')
 
-const { browser: browserConfig, server: serverConfig } = require('../configuration')
-const i18n = require('../../i18n')
+const { browser: browserConfig } = require('../configuration')
 const koppsApi = require('../kopps/koppsApi')
 const { programmeLink } = require('../../domain/links')
 
 // @ts-check
-
-module.exports = {
-  fillStoreWithQueryParams,
-  fetchAndFillProgrammeDetails,
-  fillBreadcrumbsDynamicItems,
-  fetchAndFillCurriculumList,
-  fetchAndFillSpecializations,
-  fetchAndFillStudyProgrammeVersion,
-}
 /**
  * add props to a MobX-stores on server side
  * Appendix1, Appendix2, Curriculum, Eligibility
@@ -70,6 +60,7 @@ async function fetchAndFillProgrammeDetails({ applicationStore, lang, programmeC
     applicationStore.setOwningSchoolCode(owningSchoolCode)
   }
 
+  // eslint-disable-next-line consistent-return
   return { programmeName, ...programme }
 }
 
@@ -280,4 +271,13 @@ async function fetchAndFillSpecializations(options) {
   const specializations = _parseSpecializations(curriculums)
   applicationStore.setSpecializations(specializations)
   return
+}
+
+module.exports = {
+  fillStoreWithQueryParams,
+  fetchAndFillProgrammeDetails,
+  fillBreadcrumbsDynamicItems,
+  fetchAndFillCurriculumList,
+  fetchAndFillSpecializations,
+  fetchAndFillStudyProgrammeVersion,
 }

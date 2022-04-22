@@ -10,7 +10,7 @@ const koppsApi = require('../kopps/koppsApi')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { compareSchools } = require('../../domain/schools')
-const { fillStoreWithBasicConfig, fetchAndFillSchoolsList } = require('../stores/schoolsListStoreSSR')
+const { fillStoreWithBasicConfig } = require('../stores/schoolsListStoreSSR')
 const { formatLongTerm } = require('../../domain/term')
 
 /**
@@ -65,16 +65,16 @@ async function getLiteratureList(req, res, next) {
 
     const { literatureList: proxyPrefix } = serverConfig.proxyPrefixPath
 
-    const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const view = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
 
     const langIndex = lang === 'en' ? 0 : 1
-    const { heading, subHeading, intro, missing } = i18n.messages[langIndex].literatureList
+    const { heading } = i18n.messages[langIndex].literatureList
 
     const title = `${heading} ${formatLongTerm(term, lang)} ${school}`
 
     res.render('app/index', {
       instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
-      html,
+      html: view,
       title,
       compressedStoreCode,
       description: title,

@@ -13,7 +13,6 @@ const { calculate: calculateStartTerm } = require('../../domain/academicYear')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { programmeFullName } = require('../utils/programmeFullName')
 
-const { programmeLink } = require('../../domain/links')
 const {
   fillStoreWithQueryParams,
   fetchAndFillProgrammeDetails,
@@ -138,7 +137,7 @@ async function getIndex(req, res, next) {
     const { programme: proxyPrefix } = serverConfig.proxyPrefixPath
     log.debug({ applicationStore })
 
-    const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const view = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const { metaTitle: title, metaDescription: description } = metaTitleAndDescription(
       lang,
       programmeCode,
@@ -148,7 +147,7 @@ async function getIndex(req, res, next) {
     )
     res.render('app/index', {
       instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
-      html,
+      html: view,
       title,
       compressedStoreCode,
       description,

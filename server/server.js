@@ -123,7 +123,7 @@ server.use(_addProxy('/static'), express.static('./dist', staticOption))
 
 server.use(_addProxy('/static/icon/favicon'), express.static('./public/favicon.ico', staticOption))
 
-/// Return 404 if static file isn't found so we don't go through the rest of the pipeline
+// / Return 404 if static file isn't found so we don't go through the rest of the pipeline
 server.use(_addProxy('/static'), (req, res, next) => {
   const error = new Error('File not found: ' + req.originalUrl)
   error.status = 404
@@ -269,7 +269,6 @@ appRoute.get('redirect.pdf_program_plan', _addProgramProxy('/:programmeCodeAndTe
 })
 
 appRoute.get('system.ready', _addProxy('/_ready'), Public.getReady)
-appRoute.get('example', _addProxy('/example'), Public.getIndex)
 appRoute.get('public.studyhandbook', proxyPrefixPath.studyHandbook, StudyHandBook.getStudyBook)
 appRoute.get('dev.fovkurser', _addProxy('/utbildning/kurser/fovkurser'), Public.getFovSearch)
 appRoute.get(

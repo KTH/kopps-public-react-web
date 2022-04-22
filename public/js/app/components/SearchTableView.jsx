@@ -4,7 +4,6 @@ import { Col, Row } from 'reactstrap'
 import PropTypes from 'prop-types'
 
 import { Link, SortableTable } from '@kth/kth-reactstrap/dist/components/studinfo'
-import Article from './Article'
 import { useStore } from '../mobx'
 
 import translate from '../../../../domain/translate'
@@ -12,6 +11,7 @@ import i18n from '../../../../i18n'
 
 import { courseLink } from '../util/links'
 import { formatShortTerm } from '../../../../domain/term'
+import Article from './Article'
 
 function codeCell(code, startTerm) {
   const { language } = useStore()

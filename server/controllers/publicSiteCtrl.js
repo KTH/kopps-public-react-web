@@ -14,10 +14,6 @@ const api = require('../api')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
-async function getIndex(req, res, next) {
-  return getFovSearch(req, res, next)
-}
-
 async function getFovSearch(req, res, next) {
   try {
     const lang = language.getLanguage(res)
@@ -32,11 +28,11 @@ async function getFovSearch(req, res, next) {
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
     const { uri: proxyPrefix } = serverConfig.proxyPrefixPath
-    const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const view = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('site_name', lang)
 
     res.render('sample/index', {
-      html,
+      html: view,
       title,
       compressedStoreCode,
       description: title,
@@ -87,7 +83,6 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, query }) {
 }
 
 module.exports = {
-  getIndex,
   getFovSearch,
   getReady,
 }

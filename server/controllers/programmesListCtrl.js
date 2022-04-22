@@ -9,7 +9,7 @@ const i18n = require('../../i18n')
 const koppsApi = require('../kopps/koppsApi')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
-const { programmeGroupHeadings, find: findProgrammeGroupHeading } = require('../../domain/programmeGroupHeading')
+const { programmeGroupHeadings, findProgrammeGroupHeading } = require('../../domain/programmeGroupHeading')
 
 function _compareProgrammes(a, b) {
   if (a.title.toLowerCase() < b.title.toLowerCase()) {
@@ -121,13 +121,13 @@ async function getProgrammesList(req, res, next) {
     log.info('Default store was filled in and compressed on server side, for programmesList controller')
 
     const { programmesList: proxyPrefix } = serverConfig.proxyPrefixPath
-    const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const view = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('courses_of_program', lang)
     const description = i18n.message('programmes_list_lead', lang)
 
     res.render('app/index', {
       instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
-      html,
+      html: view,
       title,
       compressedStoreCode,
       description,

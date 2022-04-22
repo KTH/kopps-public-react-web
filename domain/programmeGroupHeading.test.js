@@ -1,4 +1,8 @@
-const { defaultProgrammeGroupHeading, preparatoryEducationalLevel, find } = require('./programmeGroupHeading')
+const {
+  defaultProgrammeGroupHeading,
+  preparatoryEducationalLevel,
+  findProgrammeGroupHeading,
+} = require('./programmeGroupHeading')
 
 const tarkuDegree = { code: 'TARKU' }
 const expectedTarkuHeading = 'TARKU'
@@ -11,20 +15,20 @@ const nonPreparatoryProgramme = { educationalLevel: 'TEST' }
 
 describe('Find programme group heading', () => {
   test('by degree', done => {
-    let foundProgrammeGroupHeading = find(emptyProgramme, tarkuDegree)
+    let foundProgrammeGroupHeading = findProgrammeGroupHeading(emptyProgramme, tarkuDegree)
     expect(foundProgrammeGroupHeading).toEqual(expectedTarkuHeading)
-    foundProgrammeGroupHeading = find(emptyProgramme, nonExistantDegree)
+    foundProgrammeGroupHeading = findProgrammeGroupHeading(emptyProgramme, nonExistantDegree)
     expect(foundProgrammeGroupHeading).toEqual(expectedDefaultHeading)
-    foundProgrammeGroupHeading = find(emptyProgramme)
+    foundProgrammeGroupHeading = findProgrammeGroupHeading(emptyProgramme)
     expect(foundProgrammeGroupHeading).toEqual(expectedDefaultHeading)
     done()
   })
   test('by programme educational level', done => {
-    let foundProgrammeGroupHeading = find(preparatoryProgramme)
+    let foundProgrammeGroupHeading = findProgrammeGroupHeading(preparatoryProgramme)
     expect(foundProgrammeGroupHeading).toEqual(expectedTbasHeading)
-    foundProgrammeGroupHeading = find(nonPreparatoryProgramme)
+    foundProgrammeGroupHeading = findProgrammeGroupHeading(nonPreparatoryProgramme)
     expect(foundProgrammeGroupHeading).toEqual(expectedDefaultHeading)
-    foundProgrammeGroupHeading = find(emptyProgramme)
+    foundProgrammeGroupHeading = findProgrammeGroupHeading(emptyProgramme)
     expect(foundProgrammeGroupHeading).toEqual(expectedDefaultHeading)
     done()
   })
