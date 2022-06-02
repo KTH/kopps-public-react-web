@@ -26,6 +26,7 @@ const devRedis = devDefaults('redis://localhost:6379/')
 const devKoppsApi = devDefaults('https://api-r.referens.sys.kth.se/api/kopps/v2/?defaultTimeout=60000')
 // END DEFAULT SETTINGS
 const devProgramSyllabusPdfUrl = devDefaults('https://app-r.referens.sys.kth.se/kopps-public/student/kurser/program')
+const devProgramSyallabusPDFURL = devDefaults('http://localhost:7071/api/PDFRenderFunction')
 
 module.exports = {
   hostUrl: getEnv('SERVER_HOST_URL', devUrl),
@@ -103,6 +104,10 @@ module.exports = {
 
   programSyllabusPdfPath: {
     uri: getEnv('PDF_PROGRAM_SYLLABUS_URL', devProgramSyllabusPdfUrl),
+  },
+
+  programSyllabusForPDF: {
+    uri: getEnv('PROGRAM_SYLLABUS_PDF_URL', devProgramSyallabusPDFURL),
   },
 
   // APPLICATION INSIGHTS IN AZURE
