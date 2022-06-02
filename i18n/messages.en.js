@@ -57,6 +57,7 @@ const messages = {
     study_year: 'Study year',
 
     third_cycle_courses_by_school: 'Third-cycle courses by school',
+    swedish_translation_text: 'This is a translation of the Swedish, legally binding, programme syllabus.',
 
     general_number_as_word: {
       0: 'zero',
@@ -75,8 +76,6 @@ const messages = {
       1: 'Spring',
       2: 'Autumn',
     },
-
-    ///end///
     main_menu_aria_label: 'Sub menu',
     main_menu_student: 'Student at KTH',
     main_menu_study_at_kth: 'Study at KTH',
@@ -114,6 +113,9 @@ const messages = {
       TBAS: 'Technical Preparatory Education',
       OVRIGA: 'Other programmes',
     },
+    program_syllabus: 'Programme syllabus',
+    program_syllabus_link_text:
+      'An accessible version of the syllabus can be found in the Course and programme directory.',
     programmes_admitted: 'admitted/batch',
     programmes_admitted_until: 'admitted/batch until',
     programmes_admitted_from: 'admitted/batch from',
@@ -131,6 +133,10 @@ const messages = {
     programme_study_years_old_explanation:
       'Until the study year 2007/2008 the study handbook contained the programme syllabuses.',
     programme_admitted_year: 'Programme syllabus for studies starting in',
+    page_footer_pdf: 'Page " counter(page) " of " counter(pages)',
+    program_syllabus_semester_description: (semester, term) =>
+      `Valid for students admitted to the education from ${semester} ${term} (HT - Autumn term; VT - Spring term).`,
+    programme_syllabus_for: (programCode, term) => `Programme syllabus for ${programCode} batch ${term}`,
     curriculums_missing_admission: 'Programme syllabus missing',
     curriculums_missing_admission_text: school =>
       `The chosen programme syllabus could not be found. For further assistance, please contact the student office at the ${school} school.`,
@@ -175,6 +181,8 @@ const messages = {
     programme_implementation: 'Implementation of the education',
     programme_structure: 'Structure of the education',
     programme_implementation_courses_intro: 'The programme is course-based. Lists of courses are included in',
+    appendix1: 'Appendix 1',
+    appendix2: 'Appendix 2',
     programme_appendix1: 'Appendix 1: Course list',
     programme_appendix2: 'Appendix 2: Specialisations',
     programme_grading_system: 'Grading system',
