@@ -55,7 +55,7 @@ function _getNextTerm(term) {
 }
 
 function _getPreviousTerm(term) {
-  let t = parseInt(term)
+  const t = parseInt(term)
   if (_isFallTerm(term)) {
     return t - 1
   } else {
@@ -110,7 +110,7 @@ function _getNextTerms(fromTerm, numberOfTerms) {
 
 function _getPreviousTerms(fromTerm, numberOfPreviousTerms) {
   // previous terms in historical order (earlier term comes first). Current term is not included.
-  let terms = []
+  const terms = []
   let loopTerm = fromTerm
   for (let i = 0; i < numberOfPreviousTerms; i++) {
     loopTerm = _getPreviousTerm(loopTerm)
