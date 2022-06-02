@@ -43,6 +43,28 @@ function ArticleContent() {
   )
 }
 
+export function ExtentContentForPDF() {
+  const { language } = useStore()
+  const t = translate(language)
+  const pageHeading = t('programme_extent_and_content')
+  return (
+    <>
+      <Row>
+        <Col>
+          <PageHeading>{pageHeading}</PageHeading>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Article classNames={['paragraphs']}>
+            <ExtentContent />
+          </Article>
+        </Col>
+      </Row>
+    </>
+  )
+}
+
 function Extent() {
   const { language, programmeName, programmeCode, term } = useStore()
   const t = translate(language)

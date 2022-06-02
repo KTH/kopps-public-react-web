@@ -41,6 +41,7 @@ import getStudyProgrammeMenuData from './config/studyProgrammeMenuData'
 import getThirdCycleBreadcrumbs from './config/thirdCycleBreadcrumbs'
 import getThirdCycleDepartmentMenuData from './config/thirdCycleDepartmentMenuData'
 import getThirdCycleMenuData from './config/thirdCycleMenuData'
+import ProgramSyllabusExport from './pages/ProgramSyllabusExport'
 
 export default appFactory
 
@@ -365,6 +366,11 @@ function appFactory(serverSideApplicationStore = null) {
             })}
           />
         }
+      />
+      <Route
+        key="pdf"
+        path="/student/kurser/program/:programmeCode/:term/pdf"
+        element={<ProgramSyllabusExport applicationStore={_initStore({ storeId: 'pdfStore' })} />}
       />
     </Routes>
   )

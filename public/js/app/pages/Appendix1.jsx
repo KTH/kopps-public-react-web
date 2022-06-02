@@ -19,7 +19,6 @@ import Sidebar from '../components/Sidebar'
 import { courseLink } from '../util/links'
 
 function CourseListTableRow({ course }) {
-  const { term } = useStore()
   const { language } = useStore()
   const t = translate(language)
   const { code, name, comment, credits, creditAbbr, level } = course
@@ -91,8 +90,8 @@ CourseListTable.defaultProps = {
   courses: [],
 }
 
-function ElectiveCondition({ studyYear, electiveCondition, code }) {
-  const { language, studyYearCourses, creditUnitAbbr, term } = useStore()
+function ElectiveCondition({ studyYear, electiveCondition, code, isExport }) {
+  const { language, studyYearCourses, creditUnitAbbr } = useStore()
   const t = translate(language)
   if (!studyYearCourses[code] || !studyYearCourses[code][studyYear]) return null
   const electiveConditionCourses = studyYearCourses[code][studyYear]
@@ -108,6 +107,7 @@ function ElectiveCondition({ studyYear, electiveCondition, code }) {
   }`
   return (
     <Fragment key={electiveCondition}>
+      {isExport && <br />}
       <h4>{heading}</h4>
       <CourseListTable courses={electiveConditionCourses[electiveCondition]} />
     </Fragment>
@@ -118,13 +118,15 @@ ElectiveCondition.propTypes = {
   studyYear: PropTypes.number.isRequired,
   electiveCondition: PropTypes.string.isRequired,
   code: PropTypes.string.isRequired,
+  isExport: PropTypes.bool.isRequired,
 }
 
-function SupplementaryInfo({ studyYear, code }) {
+function SupplementaryInfo({ studyYear, code, isExport }) {
   const { language, supplementaryInfo } = useStore()
   const t = translate(language)
   return supplementaryInfo[code] && supplementaryInfo[code][studyYear] ? (
     <>
+      {isExport && <br />}
       <h4>{t('programme_supplementary_information')}</h4>
       <KoppsData html={supplementaryInfo[code][studyYear]} />
     </>
@@ -134,13 +136,15 @@ function SupplementaryInfo({ studyYear, code }) {
 SupplementaryInfo.propTypes = {
   studyYear: PropTypes.number.isRequired,
   code: PropTypes.string.isRequired,
+  isExport: PropTypes.bool.isRequired,
 }
 
-function ConditionallyElectiveCoursesInfo({ studyYear, code }) {
+function ConditionallyElectiveCoursesInfo({ studyYear, code, isExport }) {
   const { language, conditionallyElectiveCoursesInfo } = useStore()
   const t = translate(language)
   return conditionallyElectiveCoursesInfo[code] && conditionallyElectiveCoursesInfo[code][studyYear] ? (
     <>
+      {isExport && <br />}
       <h4>{t('programme_conditionally_elective_courses_info')}</h4>
       <KoppsData html={conditionallyElectiveCoursesInfo[code][studyYear]} />
     </>
@@ -150,9 +154,10 @@ function ConditionallyElectiveCoursesInfo({ studyYear, code }) {
 ConditionallyElectiveCoursesInfo.propTypes = {
   studyYear: PropTypes.number.isRequired,
   code: PropTypes.string.isRequired,
+  isExport: PropTypes.bool.isRequired,
 }
 
-function StudyYear({ studyYear, code }) {
+function StudyYear({ studyYear, code, isExport }) {
   const { language } = useStore()
   const t = translate(language)
 
@@ -166,10 +171,11 @@ function StudyYear({ studyYear, code }) {
           studyYear={studyYear}
           electiveCondition={electiveCondition}
           code={code}
+          isExport={isExport}
         />
       ))}
-      <SupplementaryInfo studyYear={studyYear} code={code} />
-      <ConditionallyElectiveCoursesInfo studyYear={studyYear} code={code} />
+      <SupplementaryInfo studyYear={studyYear} code={code} isExport={isExport} />
+      <ConditionallyElectiveCoursesInfo studyYear={studyYear} code={code} isExport={isExport} />
     </Fragment>
   )
 }
@@ -177,9 +183,10 @@ function StudyYear({ studyYear, code }) {
 StudyYear.propTypes = {
   studyYear: PropTypes.number.isRequired,
   code: PropTypes.string.isRequired,
+  isExport: PropTypes.bool.isRequired,
 }
 
-function CommonCourses() {
+function CommonCourses({ isExport }) {
   // TODO: Only get study years for common courses
   const { language, studyYears } = useStore()
   const t = translate(language)
@@ -187,13 +194,17 @@ function CommonCourses() {
     <>
       <h2>{t('curriculums_common_courses')}</h2>
       {studyYears.map(studyYear => (
-        <StudyYear key={studyYear} studyYear={studyYear} code="Common" />
+        <StudyYear key={studyYear} studyYear={studyYear} code="Common" isExport={isExport} />
       ))}
     </>
   ) : null
 }
 
-function Specialisations() {
+CommonCourses.propTypes = {
+  isExport: PropTypes.bool,
+}
+
+function Specialisations({ isExport }) {
   // TODO: Only get study years for specialisations
   const { specializations } = useStore()
   // TODO: Retrieve proper specialisations
@@ -203,10 +214,41 @@ function Specialisations() {
         <Fragment key={code}>
           <h2>{`${title} (${code})`}</h2>
           {studyYears.map(studyYear => (
-            <StudyYear key={studyYear} studyYear={studyYear} code={code} />
+            <StudyYear key={studyYear} studyYear={studyYear} code={code} isExport={isExport} />
           ))}
         </Fragment>
       ))}
+    </>
+  )
+}
+
+Specialisations.propTypes = {
+  isExport: PropTypes.bool,
+}
+
+export function Appendix1PDFExport() {
+  const { language, programmeName, programmeCode, term } = useStore()
+  const t = translate(language)
+  const pageHeading = t('programme_appendix1')
+  const subHeading = `${t('programme_admitted_year')} ${formatLongTerm(
+    term,
+    language
+  )}, ${programmeName} (${programmeCode})`
+  return (
+    <>
+      <Row>
+        <Col>
+          <PageHeading subHeading={subHeading}>{pageHeading}</PageHeading>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Article classNames={['paragraphs']}>
+            <CommonCourses isExport={true} />
+            <Specialisations isExport={true} />
+          </Article>
+        </Col>
+      </Row>
     </>
   )
 }

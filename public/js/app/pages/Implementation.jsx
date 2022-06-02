@@ -130,7 +130,7 @@ function ImplementationDegree() {
   ) : null
 }
 
-function ArticleContent() {
+export function ArticleContent() {
   return (
     <Article classNames={['paragraphs']}>
       <ImplementationDates />
@@ -143,6 +143,35 @@ function ArticleContent() {
       <ImplementationDegreeProject />
       <ImplementationDegree />
     </Article>
+  )
+}
+
+export function ImplementationContentForPDF() {
+  const { language } = useStore()
+  const t = translate(language)
+  const pageHeading = t('programme_implementation')
+  return (
+    <>
+      <Row>
+        <Col>
+          <PageHeading>{pageHeading}</PageHeading>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Article classNames={['paragraphs']}>
+            <ImplementationStructure />
+            <ImplementationCourses />
+            <ImplementationGradingSystem />
+            <ImplementationParticipation />
+            <ImplementationPreviousStudies />
+            <ImplementationStudiesAbroad />
+            <ImplementationDegreeProject />
+            <ImplementationDegree />
+          </Article>
+        </Col>
+      </Row>
+    </>
   )
 }
 
