@@ -140,7 +140,7 @@ export function getAppendixHTML(title, footerContentLeft, footerContentRight, la
             <div class=content" id="page">
                        <header>
                            <figure class="block figure defaultTheme mainLogo">
-                               <img id="logo" class="kth_logo" src="images/kth_logo_593.jpg" alt="KTH:s logotyp" height="70" width="70">
+                               <img id="logo" class="kth_logo" src="images/kth_logo_593.jpg" alt="KTH:s logotyp" height="100" width="100">
                            </figure>
                        </header>
                        <br/>
