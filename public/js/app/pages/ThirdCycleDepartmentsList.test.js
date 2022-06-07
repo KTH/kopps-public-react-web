@@ -170,7 +170,7 @@ describe('Render component ThirdCycleDepartmentsList and check its menu, content
     expect(links.length).toBe(6)
     // Menu links
     expect(links[0]).toHaveTextContent('Forskarutbildning')
-    expect(links[0].href).toStrictEqual('http://localhost/en/studies/phd/')
+    expect(links[0].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/')
     expect(links[1]).toHaveTextContent('Forskarkurser per skola')
     expect(links[1].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser/avdelning')
     expect(links[2]).toHaveTextContent('Sök forskarkurs')

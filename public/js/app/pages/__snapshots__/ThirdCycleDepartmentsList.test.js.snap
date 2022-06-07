@@ -176,7 +176,7 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
             class="parentLink"
           >
             <a
-              href="/en/studies/phd/"
+              href="/utbildning/forskarutbildning/"
             >
               Forskarutbildning
             </a>
