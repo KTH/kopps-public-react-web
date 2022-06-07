@@ -142,8 +142,8 @@ describe('Render component ThirdCycleDepartmentsList and check its menu, content
     const links = screen.getAllByRole('link')
     expect(links.length).toBe(6)
     // Menu links
-    expect(links[0]).toHaveTextContent('PhD studies')
-    expect(links[0].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/?l=en')
+    expect(links[0]).toHaveTextContent('Doctoral studies (PhD)')
+    expect(links[0].href).toStrictEqual('http://localhost/en/studies/phd/?l=en')
     expect(links[1]).toHaveTextContent('Third-cycle courses by school')
     expect(links[1].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser/avdelning?l=en')
     expect(links[2]).toHaveTextContent('Search third-cycle courses')
@@ -170,7 +170,7 @@ describe('Render component ThirdCycleDepartmentsList and check its menu, content
     expect(links.length).toBe(6)
     // Menu links
     expect(links[0]).toHaveTextContent('Forskarutbildning')
-    expect(links[0].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/')
+    expect(links[0].href).toStrictEqual('http://localhost/en/studies/phd/')
     expect(links[1]).toHaveTextContent('Forskarkurser per skola')
     expect(links[1].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser/avdelning')
     expect(links[2]).toHaveTextContent('Sök forskarkurs')

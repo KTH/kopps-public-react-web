@@ -9,7 +9,7 @@ function parentStudyLink(language) {
 }
 
 function parentThirdCycleStudyLink(language) {
-  return pageLink(`/utbildning/forskarutbildning/`, language)
+  return pageLink(`/en/studies/phd/`, language)
 }
 
 function courseLink(courseCode, language, { periods = undefined, term = undefined } = {}) {

@@ -84,7 +84,7 @@ const messages = {
     main_menu_page_example: 'Example',
     main_menu_shb: 'Study Handbook 00/01 to 07/08',
     main_menu_search_all: 'Search course',
-    main_menu_third_cycle_studies: 'PhD studies',
+    main_menu_third_cycle_studies: 'Doctoral studies (PhD)',
     main_menu_third_cycle_courses_search: 'Search third-cycle courses',
 
     main_page_header_example: 'Example',

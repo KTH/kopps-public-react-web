@@ -21,9 +21,9 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
             class="parentLink"
           >
             <a
-              href="/utbildning/forskarutbildning/?l=en"
+              href="/en/studies/phd/?l=en"
             >
-              PhD studies
+              Doctoral studies (PhD)
             </a>
           </li>
         </ul>
@@ -176,7 +176,7 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
             class="parentLink"
           >
             <a
-              href="/utbildning/forskarutbildning/"
+              href="/en/studies/phd/"
             >
               Forskarutbildning
             </a>
