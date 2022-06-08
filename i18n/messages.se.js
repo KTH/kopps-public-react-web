@@ -126,7 +126,8 @@ const messages = {
     page_footer_pdf: 'Sida " counter(page) " av " counter(pages)',
     program_syllabus_semester_description: (semester, year) =>
       `Gäller för antagna till utbildningen fr o m ${semester + year}`,
-    programme_syllabus_for: (programCode, term) => `Utbildningsplan för ${programCode} gällande antagning from ${term}`,
+    programme_syllabus_for: (programCode, term) =>
+      `Utbildningsplan för ${programCode} gällande antagning fr o m ${term}`,
     programme_study_years_explanation:
       'Välj utbildningsplan. Oftast överensstämmer kull med den termin då studierna påbörjades vid programmet.',
     programme_study_years_syllabus_missing: 'Utbildningsplan enligt 2007 års studieordning saknas.',
