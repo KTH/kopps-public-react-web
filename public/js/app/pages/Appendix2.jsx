@@ -37,21 +37,8 @@ function Specializations() {
 }
 
 export function Appendix2PDFExport() {
-  const { language, programmeName, programmeCode, term } = useStore()
-  const t = translate(language)
-  const pageHeading = t('programme_appendix2')
-  const subHeading = `${t('programme_admitted_year')} ${formatLongTerm(
-    term,
-    language
-  )}, ${programmeName} (${programmeCode})`
-
   return (
     <>
-      <Row key="page-heading-row-appendix-2">
-        <Col>
-          <PageHeading subHeading={subHeading}>{pageHeading}</PageHeading>
-        </Col>
-      </Row>
       <Row key="data-area-row">
         <Col key="article-specializations">
           <Article uiKey="article" classNames={['paragraphs', 'utbildningsplan']}>

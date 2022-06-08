@@ -5,18 +5,7 @@ function getHTMLHead(title, footerContentLeft, footerContentRight) {
   <meta http-equiv='X-UA-Compatible' content='IE=Edge'/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no,user-scalable=yes">
   <title>${title}</title>
-    
-<link rel="shortcut icon" href="https://www.kth.se/student/kurser/img/kth-style/icons/favicon.ico">
-<link type="text/css" href="koppspublic.css" rel="stylesheet" />
-<link type="text/css" href="koppspublic-pdf.css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="https://www.kth.se/social/static/css/personal_menu.38703eb3cd14.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
-<script src="https://www.kth.se/student/kurser/static/kth-style/js/klaro-no-css.js?v=2.0.0-NOT%20SET%20BY%20JENKINS"></script>
-<script src="https://www.kth.se/student/kurser/static/vendor.js?v=2.0.0-NOT%20SET%20BY%20JENKINS"></script>
-<script src="https://www.kth.se/student/kurser/static/browserConfig?v=2.0.0-NOT%20SET%20BY%20JENKINS"></script>
-<script src="https://www.kth.se/student/kurser/static/kth-style/js/menus.js?v=2.0.0-NOT%20SET%20BY%20JENKINS"></script>
-<script src="https://www.kth.se/student/kurser/static/kth-style/js/backtotop.js?v=2.0.0-NOT%20SET%20BY%20JENKINS"></script>
+  <link rel="stylesheet" type="text/css" href="https://www.kth.se/social/static/css/personal_menu.38703eb3cd14.css">
 <style type="text/css">
 @page {
   @bottom-left {
@@ -40,40 +29,35 @@ function getHTMLHead(title, footerContentLeft, footerContentRight) {
       white-space: nowrap;
       border-top: 2px solid #555555;
   }
-  size: landscape; 
 }
 .table .active-period {
-background-color: #e6ecf5;
-color: #333333;
-text-align: center;
-}
-.table b.course-comment {
-font-weight: normal;
-font-style: italic;
-display: block;
-}
-.table td.credits {
-white-space: nowrap;
-}
-.sidebar {
-background-color: #f6f6f6;
-padding: 20px;
-margin-bottom: 15px;
-}
-.sidebar p {
-font-family: 'Open Sans', Arial, 'Helvetica Neue', helvetica, sans-serif;
-font-size: 1rem;
-}
-.sidebar :last-child {
-margin-bottom: 0;
-}
-.sidebar-heading {
-font-size: 1.25rem;
-margin-bottom: 1rem;
-}
-.utbildningsplan.paragraphs > :first-child {
-margin-top: 0;
-}
+  background-color: #e6ecf5;
+  color: #333333;
+  text-align: center;
+  }
+
+  .table b.course-comment {
+  font-weight: normal;
+  font-style: italic;
+  display: block;
+  }
+
+  .table td.credits {
+  white-space: nowrap;
+  }
+
+  table, th, td {
+    border: 0.5px solid black;
+    border-collapse: collapse;
+  }
+  
+  table {
+      width: 100%;
+  }
+
+  .pdfBodyWrapper {
+    padding: 1.5em;
+  }
 </style>
   </head>`
 }
@@ -89,6 +73,8 @@ export function getCompleteHTMLForPDFForObjImpElibExtent(
   semesterDescription,
   swedish_translation_text,
   body,
+  appendix1Text,
+  appendix2Text,
   title,
   footerContentLeft,
   footerContentRight,
@@ -99,56 +85,73 @@ export function getCompleteHTMLForPDFForObjImpElibExtent(
         <body>
             <div class=content" id="page">
                        <header>
-                           <figure class="block figure defaultTheme mainLogo">
+                           <figure class="block figure defaultTheme mainLogo pdfBodyWrapper">
                                <img id="logo" class="kth_logo" src="images/kth_logo_593.jpg" alt="KTH:s logotyp" height="100" width="100">
                            </figure>
                        </header>
-                       <br/>
-                       <br/>
-                       <br/>
+                       <div class="pdfBodyWrapper">
                            <article id="mainContent" role="main" class="article standard" lang="${language}">
                                <header role="presentation" id="articleHeader">
                                    <h1 id="page-heading"
-                                       aria-labelledby="page-heading page-sub-heading">${pageHeading}</h1>
-                                       <a href="${pageSubHeadingLink}">${pageSubHeading}</a>
-                                       <br/>
-                                       <br/>
-                                       <h1>${programmeName + ' ' + credits + ' ' + creditsText}</h1>
-                                       </header>
-                                       <br/>
-                                       <h2>${programmeNameInOtherLanguage}</h2>
-                                       <br/>
-                                       <span style="font-style: italic">${semesterDescription}</span>
-                                       <br/>
-                                       <br/>
+                                       aria-labelledby="page-heading page-sub-heading" style="font-size : 3em">${pageHeading}</h1>
+                                       <p><a href="${pageSubHeadingLink}">${pageSubHeading}</a></p>
+                                       <h1 style="font-size : 3em">${
+                                         programmeName + ' ' + credits + ' ' + creditsText
+                                       }</h1>
+                                       <h2 id="page-sub-heading" aria-hidden="true">${programmeNameInOtherLanguage}</h2>
+                               </header>
+                                       <p><i>${semesterDescription}</i></p>
+                                       <div class="paragraphs">
                                        ${
                                          language === 'en'
                                            ? `
-                                       <span>${swedish_translation_text}</span> <br/><br/><br/>`
-                                           : '<br/>'
+                                       <span>${swedish_translation_text}</span>`
+                                           : ''
                                        }
                                        ${body}
-                    </article>
+                                       <br/>
+                                       <p>${appendix1Text}</p>
+                                       <p>${appendix2Text}</p>
+                                       </div>
+                            </article>
+                        </div>
+             </div>
         </body>
     </html>`
 }
 
-export function getAppendixHTML(title, footerContentLeft, footerContentRight, language, body) {
+export function getAppendixHTML(
+  title,
+  pageHeading,
+  programmeName,
+  programmeCode,
+  footerContentLeft,
+  footerContentRight,
+  language,
+  body
+) {
   return `<!DOCTYPE html>
     ${getHTMLHead(title, footerContentLeft, footerContentRight)}
         <body>
             <div class=content" id="page">
                        <header>
-                           <figure class="block figure defaultTheme mainLogo">
+                           <figure class="block figure defaultTheme mainLogo pdfBodyWrapper">
                                <img id="logo" class="kth_logo" src="images/kth_logo_593.jpg" alt="KTH:s logotyp" height="100" width="100">
                            </figure>
                        </header>
-                       <br/>
-                       <br/>
-                       <br/>
+                       <div class="pdfBodyWrapper">
                            <article id="mainContent" role="main" class="article standard" lang="${language}">
-                                       ${body}
-                    </article>
+                           <header role="presentation" id="articleHeader">
+                                       <h1 id="page-heading"
+                                       aria-labelledby="page-heading page-sub-heading" style="font-size : 3em">${pageHeading}</h1>
+                                       <h2 id="page-sub-heading" aria-hidden="true" style="font-size : 2em">${programmeName} (${programmeCode})</h2>
+                               </header>
+                           <div class="paragraphs">
+                           ${body}
+                           </div>
+                           </article>
+                      </div>
+              </div>
         </body>
     </html>`
 }

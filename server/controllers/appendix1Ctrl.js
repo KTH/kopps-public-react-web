@@ -13,6 +13,9 @@ const {
   fetchAndFillProgrammeDetails,
   fillBreadcrumbsDynamicItems,
   fetchAndFillCurriculumList,
+  fillBrowserConfigWithHostUrlAndPDFUrl,
+  fetchAndFillSpecializations,
+  fetchAndFillStudyProgrammeVersion,
 } = require('../stores/programmeStoreSSR')
 
 function _metaTitleAndDescription(lang, programmeCode, programmeName, term) {
@@ -41,6 +44,11 @@ async function getIndex(req, res, next) {
     fillStoreWithQueryParams(options)
     fillBreadcrumbsDynamicItems(options, programmeName)
     await fetchAndFillCurriculumList(options)
+    // need to fill details for pdf
+    fillBrowserConfigWithHostUrlAndPDFUrl(options)
+    await fetchAndFillCurriculumList(options)
+    await fetchAndFillSpecializations(options)
+    await fetchAndFillStudyProgrammeVersion({ ...options })
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
     log.info(`${storeId} store was filled in and compressed on server side`, { programmeCode })
 

@@ -1,15 +1,15 @@
-import React from 'react'
-import { Link } from '@kth/kth-reactstrap/dist/components/studinfo'
-import { programSyllabusLink } from '../util/links'
+import React, { useState } from 'react'
 import { formatLongTerm } from '../../../../domain/term'
 import { useStore } from '../mobx'
 
 import translate from '../../../../domain/translate'
+import ProgramSyllabusExport from '../pages/ProgramSyllabusExport'
 
 function Sidebar() {
-  const { language, programmeCode, term } = useStore()
+  const applicationStore = useStore()
+  const { language, programmeCode, term } = applicationStore
   const t = translate(language)
-  const syllabusLink = programSyllabusLink(programmeCode, term, language)
+  const [renderPDFContent, setRenderPDFContent] = useState(false)
 
   return (
     <div id="sidebarContainer">
@@ -18,9 +18,10 @@ function Sidebar() {
           {t('programme_plan_pdf_header')}
         </h2>
         <p>{t('programme_plan_pdf_text')}</p>
-        <Link href={syllabusLink} type="pdf-post-link" target="_blank">
+        <button onClick={() => setRenderPDFContent(true)} onBlur={() => setRenderPDFContent(false)} className="link">
           {t('programme_plan_pdf')(programmeCode, formatLongTerm(term, language))}
-        </Link>
+        </button>
+        {renderPDFContent && <ProgramSyllabusExport applicationStore={applicationStore} />}
       </aside>
     </div>
   )

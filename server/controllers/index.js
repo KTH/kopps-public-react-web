@@ -25,5 +25,4 @@ module.exports = {
   System: require('./systemCtrl'),
   ThirdCycleStudySchoolsList: require('./thirdCycleStudySchoolsListCtrl'),
   ThirdCycleStudyDepartment: require('./thirdCycleStudyDepartmentCtrl'),
-  PDFExport: require('./pdfExportCtrl'),
 }

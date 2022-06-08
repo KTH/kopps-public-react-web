@@ -6,7 +6,7 @@ async function generateProgramSyllabus(url, listOfHtmls, programmeCode, term, ba
     const requestBody = {
       pages: listOfHtmls,
       baseUrl: baseURl,
-      course: programmeCode + '-' + term,
+      course: programmeCode + '-' + term + '.pdf | KTH',
     }
     const result = await axios.post(url, requestBody, {
       responseType: 'blob',

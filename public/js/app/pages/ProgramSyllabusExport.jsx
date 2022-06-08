@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react'
 
 import PropTypes from 'prop-types'
-import { saveAs } from 'file-saver'
 import ElementWrapperForPDF from '../components/ElementWrapperForPDF'
 import { programLinkYear1, replacePathNameWithHref } from '../util/links'
 import translate from '../../../../domain/translate'
@@ -47,16 +46,17 @@ function ProgramSyllabusExport({ applicationStore }) {
     // get bottom right from translations and add appendix1 or appendix2 accordingly
     const appendix1 = t('appendix1')
     const appendix2 = t('appendix2')
-    // get bottom left text
-    const bottomLeftText = t('programme_syllabus_for')(programmeCode, term)
     const swedishTranslationText = t('swedish_translation_text')
     const semesterTranslatedObject = t('semester')
     const semester = _isSpringTerm(term) ? semesterTranslatedObject[1] : semesterTranslatedObject[2]
     const creditsText = t('course_credits')
-    const semesterDescription = t('program_syllabus_semester_description')(
-      semester.toLowerCase(),
-      term.toString().charAt(term.toString().length - 3) + term.toString().charAt(term.toString().length - 2)
-    )
+    const year = term.toString().charAt(term.toString().length - 3) + term.toString().charAt(term.toString().length - 2)
+    const semesterDescription = t('program_syllabus_semester_description')(semester.toLowerCase(), year)
+    // get bottom left text
+    const semesterText = language === 'sv' ? semester.toUpperCase() + year : semester.toLowerCase() + ' ' + year
+    const bottomLeftText = t('programme_syllabus_for')(programmeCode, semesterText)
+    const appendix1PageHeadingText = t('programme_appendix1')
+    const appendix2PageHeadingText = t('programme_appendix2')
     const completeHTMLForPdfObjExtElgbImlpContainer = getCompleteHTMLForPDFForObjImpElibExtent(
       headerTitle,
       subHeaderText,
@@ -68,14 +68,19 @@ function ProgramSyllabusExport({ applicationStore }) {
       semesterDescription,
       swedishTranslationText,
       pdfObjExtElgbImlpContainer.innerHTML,
-      programmeCode + '-' + term,
+      t('programme_appendix1'),
+      t('programme_appendix2'),
+      programmeCode + '-' + term + '.pdf | KTH',
       bottomLeftText,
       bottomRightText,
       language
     )
 
     const completeHTMLForPdfAppendix1Container = getAppendixHTML(
-      programmeCode + '-' + term,
+      programmeCode + '-' + term + '.pdf | KTH',
+      appendix1PageHeadingText,
+      programmeName,
+      programmeCode,
       bottomLeftText,
       appendix1 + ' , ' + bottomRightText,
       language,
@@ -83,7 +88,10 @@ function ProgramSyllabusExport({ applicationStore }) {
     )
 
     const completeHTMLForPdfAppendix2Container = getAppendixHTML(
-      programmeCode + '-' + term,
+      programmeCode + '-' + term + '.pdf | KTH',
+      appendix2PageHeadingText,
+      programmeName,
+      programmeCode,
       bottomLeftText,
       appendix2 + ' , ' + bottomRightText,
       language,
@@ -101,7 +109,9 @@ function ProgramSyllabusExport({ applicationStore }) {
       thisHostBaseUrl
     )
     pdfResponse.then(pdfData => {
-      saveAs(new Blob([pdfData], { type: 'application/pdf' }), programmeCode + '-' + term + '.pdf')
+      const file = new Blob([pdfData], { type: 'application/pdf' })
+      const fileURL = URL.createObjectURL(file)
+      window.open(fileURL)
     })
   }, [])
   return (

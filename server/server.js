@@ -184,7 +184,7 @@ server.use(
  * ******* SYSTEM ROUTES *******
  * **********************************
  */
-const { System, PDFExport } = require('./controllers')
+const { System } = require('./controllers')
 
 // System routes
 const systemRoute = AppRouter()
@@ -396,7 +396,6 @@ appRoute.get(
   }
 )
 
-appRoute.get('public.pdf', _addProgramProxy('/:programmeCode/:term([0-9]{4}[1-2])/pdf'), PDFExport.getPDFExport)
 appRoute.get(
   'public.appendix1_five_digit',
   _addProgramProxy('/:programmeCode/:term([0-9]{4}[1-2])/kurslista'),

@@ -28,10 +28,6 @@ function programTermLink(programmeCode, term, studyYear, language) {
   return pageLink(`/student/kurser/program/${programmeCode}/${term}/${studyYear}`, language)
 }
 
-function programSyllabusLink(programmeCode, term, language) {
-  return pageLink(`/student/kurser/program/${programmeCode}/${term}/pdf`, language)
-}
-
 function programmeWebLink(programmeCode, language) {
   return pageLink(`/social/program/${programmeCode}`, language)
 }
@@ -73,7 +69,6 @@ export {
   parentStudyLink,
   parentThirdCycleStudyLink,
   programTermLink,
-  programSyllabusLink,
   programmeWebLink,
   thirdCycleDepartmentLink,
   appendix1Link,
