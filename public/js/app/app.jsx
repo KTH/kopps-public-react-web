@@ -367,11 +367,6 @@ function appFactory(serverSideApplicationStore = null) {
           />
         }
       />
-      <Route
-        key="pdf"
-        path="/student/kurser/program/:programmeCode/:term/pdf"
-        element={<ProgramSyllabusExport applicationStore={_initStore({ storeId: 'pdfStore' })} />}
-      />
     </Routes>
   )
 }
