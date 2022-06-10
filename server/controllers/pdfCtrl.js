@@ -4,7 +4,6 @@ const log = require('@kth/log')
 const language = require('@kth/kth-node-web-common/lib/language')
 
 const { server: serverConfig } = require('../configuration')
-const i18n = require('../../i18n')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { programmeFullName } = require('../utils/programmeFullName')
@@ -12,8 +11,10 @@ const { programmeFullName } = require('../utils/programmeFullName')
 const {
   fillStoreWithQueryParams,
   fetchAndFillProgrammeDetails,
-  fillBreadcrumbsDynamicItems,
   fetchAndFillStudyProgrammeVersion,
+  fillBrowserConfigWithHostUrlAndPDFUrl,
+  fetchAndFillCurriculumList,
+  fetchAndFillSpecializations,
 } = require('../stores/programmeStoreSSR')
 
 /**
@@ -24,10 +25,7 @@ const {
  * @returns {object}
  */
 function _metaTitleAndDescription(lang, programmeCode, programmeName, term) {
-  const metaTitle = `${programmeFullName(lang, programmeCode, programmeName, term)}, ${i18n.message(
-    'programme_objectives',
-    lang
-  )}`
+  const metaTitle = `${programmeFullName(lang, programmeCode, programmeName, term)}`
 
   return { metaTitle, metaDescription: '' }
 }
@@ -39,18 +37,18 @@ async function getIndex(req, res, next) {
 
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
 
-    const storeId = 'objectives'
+    const storeId = 'pdfStore'
     log.info(`Creating an application store ${storeId} on server side`, { programmeCode })
     const applicationStore = createStore(storeId)
     const options = { applicationStore, lang, programmeCode, term }
     log.info(`Starting to fill in application store ${storeId} on server side `, { programmeCode })
 
     const { programmeName } = await fetchAndFillProgrammeDetails(options, storeId)
-
-    fillStoreWithQueryParams(options)
-    fillBreadcrumbsDynamicItems(options, programmeName)
     await fetchAndFillStudyProgrammeVersion({ ...options, storeId })
-
+    fillStoreWithQueryParams(options)
+    fillBrowserConfigWithHostUrlAndPDFUrl(options)
+    await fetchAndFillCurriculumList(options)
+    await fetchAndFillSpecializations(options)
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
     log.info(`${storeId} store was filled in and compressed on server side`, { programmeCode })
 

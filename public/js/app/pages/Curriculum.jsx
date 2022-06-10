@@ -1,9 +1,9 @@
 /* eslint-disable react/no-danger */
-import React, { Fragment, useState } from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Col, Row } from 'reactstrap'
 import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
-import { Heading, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
+import { Heading, Link, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 
 import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'
@@ -17,8 +17,7 @@ import { formatLongTerm, getCurrentTerm } from '../../../../domain/term'
 import { format as formatAcademicYear, calculate as calculateStartTerm } from '../../../../domain/academicYear'
 import { ELECTIVE_CONDITIONS } from '../../../../domain/curriculum'
 import { ORDINARY_PERIODS } from '../../../../domain/periods'
-import { courseLink, programmeWebLink } from '../util/links'
-import ProgramSyllabusExport from '../pages/ProgramSyllabusExport'
+import { courseLink, programSyllabusLink, programmeWebLink } from '../util/links'
 
 function CourseTablePeriodCols({ language, creditsPerPeriod, courseCode }) {
   return ORDINARY_PERIODS.map(period => {
@@ -220,11 +219,10 @@ function ArticleContent() {
 }
 
 function Sidebar() {
-  const applicationStore = useStore()
-  const { language, programmeCode, term } = applicationStore
+  const { language, programmeCode, term } = useStore()
   const t = translate(language)
+  const syllabusLink = programSyllabusLink(programmeCode, term, language)
   const webLink = programmeWebLink(programmeCode, language)
-  const [renderPDFContent, setRenderPDFContent] = useState(false)
 
   return (
     <div id="sidebarContainer">
@@ -233,10 +231,9 @@ function Sidebar() {
           {t('programme_plan_pdf_header')}
         </h2>
         <p>{t('programme_plan_pdf_text')}</p>
-        <button onClick={() => setRenderPDFContent(true)} onBlur={() => setRenderPDFContent(false)} className="link">
+        <Link href={syllabusLink} type="pdf-post-link" target="_blank">
           {t('programme_plan_pdf')(programmeCode, formatLongTerm(term, language))}
-        </button>
-        {renderPDFContent && <ProgramSyllabusExport applicationStore={applicationStore} />}
+        </Link>
       </aside>
       <aside id="programwebbSidebar" className="sidebar" aria-labelledby="programwebb-sidebar-heading">
         <h1 id="programwebb-sidebar-heading" className="sidebar-heading">

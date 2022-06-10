@@ -135,10 +135,6 @@ function createApplicationStore(storeId) {
       return {
         ...createCommonStore(),
         ...createCurriculumStore(),
-        ...createPdfStore(),
-        ...createStudyProgrammeStore(),
-        ...createAppendix1Store(),
-        ...createAppendix2Store(),
       }
     case 'searchCourses':
       return {
@@ -150,27 +146,28 @@ function createApplicationStore(storeId) {
     case 'eligibility':
     case 'implementation':
       return {
-        ...createPdfStore(),
         ...createCommonStore(),
         ...createStudyProgrammeStore(),
-        ...createAppendix1Store(),
-        ...createAppendix2Store(),
       }
     case 'appendix1':
       return {
-        ...createPdfStore(),
         ...createCommonStore(),
         ...createStudyProgrammeStore(),
         ...createAppendix1Store(),
-        ...createAppendix2Store(),
       }
     case 'appendix2':
       return {
-        ...createPdfStore(),
+        ...createCommonStore(),
+        ...createStudyProgrammeStore(),
+        ...createAppendix2Store(),
+      }
+    case 'pdfStore':
+      return {
         ...createCommonStore(),
         ...createStudyProgrammeStore(),
         ...createAppendix1Store(),
         ...createAppendix2Store(),
+        ...createPdfStore(),
       }
     case 'literatureList':
       return {

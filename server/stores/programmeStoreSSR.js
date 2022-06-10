@@ -67,27 +67,13 @@ async function fetchAndFillProgrammeDetails({ applicationStore, lang, programmeC
   } = programme
   applicationStore.setProgrammeName(programmeName)
   applicationStore.setLengthInStudyYears(lengthInStudyYears)
-  if (
-    storeId === 'appendix1' ||
-    storeId === 'eligibility' ||
-    storeId === 'extent' ||
-    storeId === 'implementation' ||
-    storeId === 'objectives'
-  ) {
+  if (storeId === 'appendix1' || storeId === 'pdfStore') {
     applicationStore.setCreditUnitAbbr(creditUnitAbbr)
   }
   if (storeId === 'curriculum') {
     applicationStore.setOwningSchoolCode(owningSchoolCode)
   }
-  if (
-    storeId === 'appendix1' ||
-    storeId === 'eligibility' ||
-    storeId === 'extent' ||
-    storeId === 'implementation' ||
-    storeId === 'objectives' ||
-    storeId === 'curriculum' ||
-    storeId === 'appendix2'
-  ) {
+  if (storeId === 'pdfStore') {
     applicationStore.setCredits(credits)
     applicationStore.setProgrammeNameInOtherLanguage(titleOtherLanguage)
   }
@@ -120,12 +106,22 @@ function fillBreadcrumbsDynamicItems({ applicationStore, lang, programmeCode }, 
  * @param {string} options.storeId
  * @returns {object}
  */
-async function fetchAndFillStudyProgrammeVersion({ applicationStore, lang, programmeCode, term }) {
+async function fetchAndFillStudyProgrammeVersion({ applicationStore, lang, programmeCode, term, storeId }) {
   const { studyProgramme, statusCode } = await koppsApi.getStudyProgrammeVersion(programmeCode, term, lang)
 
   applicationStore.setStatusCode(statusCode)
   if (statusCode !== 200) return { statusCode } // react NotFound
-  applicationStore.setStudyProgramme(studyProgramme)
+
+  if (
+    storeId === 'appendix1' ||
+    storeId === 'eligibility' ||
+    storeId === 'extent' ||
+    storeId === 'implementation' ||
+    storeId === 'objectives' ||
+    storeId === 'pdfStore'
+  ) {
+    applicationStore.setStudyProgramme(studyProgramme)
+  }
   const { id: studyProgrammeId } = studyProgramme
 
   return { studyProgrammeId, statusCode }

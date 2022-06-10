@@ -9,7 +9,9 @@ function parentStudyLink(language) {
 }
 
 function parentThirdCycleStudyLink(language) {
-  return pageLink(`/utbildning/forskarutbildning/`, language)
+  return language === 'en'
+    ? pageLink(`/en/studies/phd/`, language)
+    : pageLink(`/utbildning/forskarutbildning/`, language)
 }
 
 function courseLink(courseCode, language, { periods = undefined, term = undefined } = {}) {
@@ -26,6 +28,10 @@ function programLinkYear1(programmeCode, term, language) {
 
 function programTermLink(programmeCode, term, studyYear, language) {
   return pageLink(`/student/kurser/program/${programmeCode}/${term}/${studyYear}`, language)
+}
+
+function programSyllabusLink(programmeCode, term, language) {
+  return pageLink(`/student/kurser/program/${programmeCode}/${term}/pdf`, language)
 }
 
 function programmeWebLink(programmeCode, language) {
@@ -69,6 +75,7 @@ export {
   parentStudyLink,
   parentThirdCycleStudyLink,
   programTermLink,
+  programSyllabusLink,
   programmeWebLink,
   thirdCycleDepartmentLink,
   appendix1Link,

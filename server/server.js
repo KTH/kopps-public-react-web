@@ -236,6 +236,7 @@ const {
   Appendix1,
   Appendix2,
   LiteratureList,
+  PDFExport,
 } = require('./controllers')
 const { parseTerm } = require('../domain/term')
 
@@ -319,6 +320,8 @@ appRoute.get(
     res.redirect(301, _addProgramProxy(`/${programmeCode}/${parsedTerm}/mal`))
   }
 )
+
+appRoute.get('public.pdf', _addProgramProxy('/:programmeCode/:term([0-9]{4}[1-2])/pdf'), PDFExport.getIndex)
 appRoute.get(
   'public.objectives_five_digit',
   _addProgramProxy('/:programmeCode/:term([0-9]{4}[1-2])/mal'),

@@ -30,6 +30,7 @@ import PageLayout from './layout/PageLayout'
 import ElementWrapper from './components/ElementWrapper'
 import StudyHandbook from './pages/StudyHandbook'
 import ThirdCycleDepartmentsList from './pages/ThirdCycleDepartmentsList'
+import ProgramSyllabusExport from './pages/ProgramSyllabusExport'
 
 import getCurriculumMenuData from './config/curriculumMenuData'
 import getDepartmentMenuData from './config/departmentMenuData'
@@ -41,7 +42,6 @@ import getStudyProgrammeMenuData from './config/studyProgrammeMenuData'
 import getThirdCycleBreadcrumbs from './config/thirdCycleBreadcrumbs'
 import getThirdCycleDepartmentMenuData from './config/thirdCycleDepartmentMenuData'
 import getThirdCycleMenuData from './config/thirdCycleMenuData'
-import ProgramSyllabusExport from './pages/ProgramSyllabusExport'
 
 export default appFactory
 
@@ -366,6 +366,11 @@ function appFactory(serverSideApplicationStore = null) {
             })}
           />
         }
+      />
+      <Route
+        key="programme-pdf"
+        path="/student/kurser/program/:programmeCode/:term/pdf"
+        element={<ProgramSyllabusExport applicationStore={_initStore({ storeId: 'pdfStore' })} />}
       />
     </Routes>
   )

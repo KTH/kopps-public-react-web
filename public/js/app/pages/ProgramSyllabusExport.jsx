@@ -114,7 +114,7 @@ function ProgramSyllabusExport({ applicationStore }) {
     pdfResponse.then(pdfData => {
       const file = new Blob([pdfData], { type: 'application/pdf' })
       const fileURL = URL.createObjectURL(file)
-      window.open(fileURL)
+      window.location.href = fileURL
     })
   }, [])
   return (
@@ -125,6 +125,18 @@ function ProgramSyllabusExport({ applicationStore }) {
             component={ObjectivesForExport}
             applicationStore={applicationStore}
           ></ElementWrapperForPDF>
+          {applicationStore.language === 'sv' && (
+            <>
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+            </>
+          )}
           <ElementWrapperForPDF
             component={ExtentContentForPDF}
             applicationStore={applicationStore}
