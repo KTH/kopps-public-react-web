@@ -75,11 +75,21 @@ async function fetchAndFillProgrammeDetails({ applicationStore, lang, programmeC
     storeId === 'objectives'
   ) {
     applicationStore.setCreditUnitAbbr(creditUnitAbbr)
-    applicationStore.setCredits(credits)
-    applicationStore.setProgrammeNameInOtherLanguage(titleOtherLanguage)
   }
   if (storeId === 'curriculum') {
     applicationStore.setOwningSchoolCode(owningSchoolCode)
+  }
+  if (
+    storeId === 'appendix1' ||
+    storeId === 'eligibility' ||
+    storeId === 'extent' ||
+    storeId === 'implementation' ||
+    storeId === 'objectives' ||
+    storeId === 'curriculum' ||
+    storeId === 'appendix2'
+  ) {
+    applicationStore.setCredits(credits)
+    applicationStore.setProgrammeNameInOtherLanguage(titleOtherLanguage)
   }
   // eslint-disable-next-line consistent-return
   return { programmeName, ...programme }

@@ -49,9 +49,12 @@ function ProgramSyllabusExport({ applicationStore }) {
     const swedishTranslationText = t('swedish_translation_text')
     const semesterTranslatedObject = t('semester')
     const semester = _isSpringTerm(term) ? semesterTranslatedObject[1] : semesterTranslatedObject[2]
-    const creditsText = t('course_credits')
+    const creditsText = t('credits')
     const year = term.toString().charAt(term.toString().length - 3) + term.toString().charAt(term.toString().length - 2)
-    const semesterDescription = t('program_syllabus_semester_description')(semester.toLowerCase(), year)
+    const semesterDescription = t('program_syllabus_semester_description')(
+      language === 'en' ? semester.toLowerCase() : semester.toUpperCase(),
+      year
+    )
     // get bottom left text
     const semesterText = language === 'sv' ? semester.toUpperCase() + year : semester.toLowerCase() + ' ' + year
     const bottomLeftText = t('programme_syllabus_for')(programmeCode, semesterText)
@@ -64,7 +67,7 @@ function ProgramSyllabusExport({ applicationStore }) {
       programmeName,
       programmeNameInOtherLanguage,
       credits,
-      creditsText.toLowerCase(),
+      creditsText,
       semesterDescription,
       swedishTranslationText,
       pdfObjExtElgbImlpContainer.innerHTML,
