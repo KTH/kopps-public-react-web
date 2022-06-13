@@ -46,11 +46,15 @@ function ProgramSyllabusExport({ applicationStore }) {
     // get bottom right from translations and add appendix1 or appendix2 accordingly
     const appendix1 = t('appendix1')
     const appendix2 = t('appendix2')
+    // translation text in english only if current language is in English
     const swedishTranslationText = t('swedish_translation_text')
     const semesterTranslatedObject = t('semester')
     const semester = _isSpringTerm(term) ? semesterTranslatedObject[1] : semesterTranslatedObject[2]
+    // get credits translations
     const creditsText = t('credits')
+    // get years from term
     const year = term.toString().charAt(term.toString().length - 3) + term.toString().charAt(term.toString().length - 2)
+    // get program description
     const semesterDescription = t('program_syllabus_semester_description')(
       language === 'en' ? semester.toLowerCase() : semester.toUpperCase(),
       year
@@ -58,8 +62,10 @@ function ProgramSyllabusExport({ applicationStore }) {
     // get bottom left text
     const semesterText = language === 'sv' ? semester.toUpperCase() + year : semester.toLowerCase() + ' ' + year
     const bottomLeftText = t('programme_syllabus_for')(programmeCode, semesterText)
+    // get appendix translations
     const appendix1PageHeadingText = t('programme_appendix1')
     const appendix2PageHeadingText = t('programme_appendix2')
+    // get html for objective, implementation, Eligibilty, Implementation and extent
     const completeHTMLForPdfObjExtElgbImlpContainer = getCompleteHTMLForPDFForObjImpElibExtent(
       headerTitle,
       subHeaderText,
@@ -78,7 +84,7 @@ function ProgramSyllabusExport({ applicationStore }) {
       bottomRightText,
       language
     )
-
+    // get html for Appendix 1
     const completeHTMLForPdfAppendix1Container = getAppendixHTML(
       programmeCode + '-' + term + '.pdf | KTH',
       appendix1PageHeadingText,
@@ -89,7 +95,7 @@ function ProgramSyllabusExport({ applicationStore }) {
       language,
       pdfAppendix1Container.innerHTML
     )
-
+    // get html for Appendix 2
     const completeHTMLForPdfAppendix2Container = getAppendixHTML(
       programmeCode + '-' + term + '.pdf | KTH',
       appendix2PageHeadingText,
