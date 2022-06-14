@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react'
 
 import PropTypes from 'prop-types'
+import { Spinner } from '@kth/kth-reactstrap/dist/components/reactstrap'
 import ElementWrapperForPDF from '../components/ElementWrapperForPDF'
 import { programLinkYear1, replacePathNameWithHref } from '../util/links'
 import translate from '../../../../domain/translate'
@@ -118,13 +119,14 @@ function ProgramSyllabusExport({ applicationStore }) {
       thisHostBaseUrl
     )
     pdfResponse.then(pdfData => {
-      const file = new Blob([pdfData], { type: 'application/pdf' })
-      const fileURL = URL.createObjectURL(file)
+      const pdfContent = new Blob([pdfData], { type: 'application/pdf' })
+      const fileURL = URL.createObjectURL(pdfContent)
       window.location.href = fileURL
     })
   }, [])
   return (
     <>
+      <Spinner></Spinner>
       <div className="display-none">
         <div id="pdfObjExtElgbImlpContainer">
           <ElementWrapperForPDF
