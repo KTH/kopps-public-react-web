@@ -33,9 +33,8 @@ function fillStoreWithQueryParams({ applicationStore, lang, programmeCode, study
   return
 }
 
-function fillBrowserConfigWithHostUrlAndPDFUrl({ applicationStore }) {
+function fillBrowserConfigWithHostUrl({ applicationStore }) {
   applicationStore.setBrowserConfig(browserConfig, serverConfig.hostUrl)
-  applicationStore.setPdfFunctionURL(serverConfig.programSyllabusForPDF.uri)
 }
 
 /**
@@ -298,5 +297,5 @@ module.exports = {
   fetchAndFillCurriculumList,
   fetchAndFillSpecializations,
   fetchAndFillStudyProgrammeVersion,
-  fillBrowserConfigWithHostUrlAndPDFUrl,
+  fillBrowserConfigWithHostUrl,
 }
