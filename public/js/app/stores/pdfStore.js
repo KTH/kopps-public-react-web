@@ -6,21 +6,8 @@ function setCredits(credits) {
   this.credits = credits
 }
 
-function setPdfFunctionURL(pdfFunctionURL) {
-  this.pdfFunctionURL = pdfFunctionURL
-}
-
 function createPdfStore() {
   const pdfStore = {
-    /**
-     * @property {string} pdfFunctionURL
-     */
-    pdfFunctionURL: null,
-    /**
-     * @method
-     * @param {string} setPdfFunctionURL
-     */
-    setPdfFunctionURL,
     /**
      * @property {string} programmeNameInOtherLanguage
      */
