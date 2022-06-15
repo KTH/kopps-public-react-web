@@ -285,6 +285,7 @@ appRoute.get(
 appRoute.get('public.searchThirdCycleCourses', proxyPrefixPath.thirdCycleCourseSearch, Search.searchThirdCycleCourses)
 appRoute.get('public.searchAllCourses', proxyPrefixPath.courseSearch, Search.searchAllCourses)
 appRoute.get('api.searchCourses', proxyPrefixPath.courseSearchInternApi + '/:lang', Search.performCourseSearch)
+appRoute.post('api.programmeSyllabusPDF', proxyPrefixPath.programmeSyllabusPDF, PDFExport.performPDFRenderFunction)
 
 appRoute.get('redirect.departmentsListThirdCycleStudy', redirectProxyPath.thirdCycleRoot, (req, res) => {
   res.redirect(301, proxyPrefixPath.thirdCycleSchoolsAndDepartments)
