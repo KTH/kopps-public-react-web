@@ -12,10 +12,12 @@ const {
   fillStoreWithQueryParams,
   fetchAndFillProgrammeDetails,
   fetchAndFillStudyProgrammeVersion,
-  fillBrowserConfigWithHostUrlAndPDFUrl,
+  fillBrowserConfigWithHostUrl,
   fetchAndFillCurriculumList,
   fetchAndFillSpecializations,
 } = require('../stores/programmeStoreSSR')
+
+const pdfApi = require('../pdf/pdfApi')
 
 /**
  * @param {string} lang
@@ -46,7 +48,7 @@ async function getIndex(req, res, next) {
     const { programmeName } = await fetchAndFillProgrammeDetails(options, storeId)
     await fetchAndFillStudyProgrammeVersion({ ...options, storeId })
     fillStoreWithQueryParams(options)
-    fillBrowserConfigWithHostUrlAndPDFUrl(options)
+    fillBrowserConfigWithHostUrl(options)
     await fetchAndFillCurriculumList(options)
     await fetchAndFillSpecializations(options)
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
@@ -77,6 +79,23 @@ async function getIndex(req, res, next) {
   }
 }
 
+// eslint-disable-next-line consistent-return
+async function performPDFRenderFunction(req, res, next) {
+  const { body } = req
+
+  try {
+    log.debug('trying to perform a call for pdf render azure function to render pdf for programme syllabus')
+
+    const apiResponse = await pdfApi.getPDFContent(body)
+    log.debug('PDF Render response: ', apiResponse)
+    res.send(apiResponse)
+  } catch (error) {
+    log.error(' Exception from PDF Render function', { error })
+    next(error)
+  }
+}
+
 module.exports = {
   getIndex,
+  performPDFRenderFunction,
 }

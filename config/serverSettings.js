@@ -107,7 +107,11 @@ module.exports = {
   },
 
   programSyllabusForPDF: {
-    uri: getEnv('PROGRAM_SYLLABUS_PDF_URL', devProgramSyallabusPDFURL),
+    uri: getEnv('PDF_RENDER_FUNCTION', devProgramSyallabusPDFURL),
+  },
+
+  programSyallbusKeyForPDF: {
+    key: getEnv('PDF_RENDER_FUNCTION_SUBSCRIPTION_KEY', ''),
   },
 
   // APPLICATION INSIGHTS IN AZURE

@@ -16,6 +16,9 @@ import { ImplementationContentForPDF } from './Implementation'
 import { Appendix1PDFExport } from './Appendix1'
 import { Appendix2PDFExport } from './Appendix2'
 
+function _getThisHost(thisHostBaseUrl) {
+  return thisHostBaseUrl.slice(-1) === '/' ? thisHostBaseUrl.slice(0, -1) : thisHostBaseUrl
+}
 // eslint-disable-next-line react/prop-types
 function ProgramSyllabusExport({ applicationStore }) {
   useEffect(() => {
@@ -25,16 +28,8 @@ function ProgramSyllabusExport({ applicationStore }) {
     replacePathNameWithHref(pdfObjExtElgbImlpContainer)
     replacePathNameWithHref(pdfAppendix1Container)
     replacePathNameWithHref(pdfAppendix2Container)
-    const {
-      language,
-      programmeCode,
-      programmeName,
-      programmeNameInOtherLanguage,
-      credits,
-      term,
-      thisHostBaseUrl,
-      pdfFunctionURL,
-    } = applicationStore
+    const { language, programmeCode, programmeName, programmeNameInOtherLanguage, credits, term, thisHostBaseUrl } =
+      applicationStore
     const t = translate(language)
     // get bottom left from translation and put program name and batch and term
     const bottomRightText = t('page_footer_pdf')
@@ -107,17 +102,16 @@ function ProgramSyllabusExport({ applicationStore }) {
       language,
       pdfAppendix2Container.innerHTML
     )
-    const pdfResponse = generateProgramSyllabus(
-      pdfFunctionURL,
-      [
+
+    const pdfResponse = generateProgramSyllabus(_getThisHost(thisHostBaseUrl), {
+      pages: [
         completeHTMLForPdfObjExtElgbImlpContainer,
         completeHTMLForPdfAppendix1Container,
         completeHTMLForPdfAppendix2Container,
       ],
-      programmeCode,
-      term,
-      thisHostBaseUrl
-    )
+      baseUrl: thisHostBaseUrl,
+      course: programmeCode + '-' + term + '.pdf | KTH',
+    })
     pdfResponse.then(pdfData => {
       const pdfContent = new Blob([pdfData], { type: 'application/pdf' })
       const fileURL = URL.createObjectURL(pdfContent)

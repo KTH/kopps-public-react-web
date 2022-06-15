@@ -26,6 +26,7 @@ module.exports = {
     thirdCycleSchoolsAndDepartments: `${thirdCycleRoot}/avdelning`,
     thirdCycleCoursesPerDepartment: `${thirdCycleRoot}/org`,
     literatureList: `${studentRoot}/lit`,
+    programmeSyllabusPDF: `${studentRoot}/intern-api/PDFRenderFunction`,
   },
   // Don't contain any content
   // is just immedately redirected.

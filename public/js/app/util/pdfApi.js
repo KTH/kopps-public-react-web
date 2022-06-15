@@ -1,15 +1,10 @@
 import axios from 'axios'
 
 // eslint-disable-next-line consistent-return
-async function generateProgramSyllabus(url, listOfHtmls, programmeCode, term, baseURl) {
+async function generateProgramSyllabus(proxyUrl, requestBody) {
   try {
-    const requestBody = {
-      pages: listOfHtmls,
-      baseUrl: baseURl,
-      course: programmeCode + '-' + term + '.pdf | KTH',
-    }
-    const result = await axios.post(url, requestBody, {
-      responseType: 'blob',
+    const result = await axios.post(`${proxyUrl}/student/kurser/intern-api/PDFRenderFunction`, requestBody, {
+      responseType: 'arraybuffer',
     })
     if (result) {
       if (result.status >= 400) {
