@@ -79,7 +79,6 @@ async function getIndex(req, res, next) {
   }
 }
 
-// eslint-disable-next-line consistent-return
 async function performPDFRenderFunction(req, res, next) {
   const { body } = req
 
