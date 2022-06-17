@@ -32,20 +32,6 @@ function _metaTitleAndDescription(lang, programmeCode, programmeName, term) {
   return { metaTitle, metaDescription: '' }
 }
 
-async function checkPDFFunction() {
-  const body = {
-    pages: ['test pdf function'],
-    baseURL: 'https://www.kth.se',
-    course: 'ARKIT-20222',
-  }
-  try {
-    log.info('trying to perform a call for pdf render azure function to render pdf for programme syllabus')
-    return await pdfApi.getPDFContent(body)
-  } catch (error) {
-    log.info(' Exception from PDF Render function', { error })
-  }
-}
-
 async function getIndex(req, res, next) {
   try {
     const lang = language.getLanguage(res)
@@ -64,7 +50,6 @@ async function getIndex(req, res, next) {
     const applicationStore = createStore(storeId)
     const options = { applicationStore, lang, programmeCode, term }
     log.info(`Starting to fill in application store ${storeId} on server side `, { programmeCode })
-    await checkPDFFunction()
     log.info('PDF Response Success')
     const { programmeName } = await fetchAndFillProgrammeDetails(options, storeId)
     await fetchAndFillStudyProgrammeVersion({ ...options, storeId })
@@ -111,7 +96,6 @@ async function performPDFRenderFunction(req, res, next) {
     res.send(apiResponse)
   } catch (error) {
     log.error(' Exception from PDF Render function', { error })
-    log.info(' Exception from PDF Render function', { error })
     next(error)
   }
 }

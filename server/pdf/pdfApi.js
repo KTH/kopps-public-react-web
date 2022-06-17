@@ -5,8 +5,6 @@ const { server: serverConfig } = require('../configuration')
 const getPDFContent = async body => {
   const { uri } = serverConfig.programSyllabusForPDF
   const { key } = serverConfig.programSyallbusKeyForPDF
-  log.info('PDF URL: ' + uri)
-  log.info('Key: ' + key)
   try {
     const response = await axios.post(uri, body, {
       headers: {
