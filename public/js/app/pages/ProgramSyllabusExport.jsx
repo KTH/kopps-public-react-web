@@ -124,7 +124,8 @@ function ProgramSyllabusExport({ applicationStore }) {
         const fileURL = URL.createObjectURL(pdfContent)
         window.location.href = fileURL
       },
-      () => {
+      error => {
+        console.error(error)
         setShowError(true)
         setShowLoader(false)
         setErrorHeader(t('pdf_error').heading)
