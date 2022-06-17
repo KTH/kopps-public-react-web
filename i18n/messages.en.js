@@ -158,6 +158,11 @@ const messages = {
       R: 'Recommended',
       V: 'Optional',
     },
+    pdf_error: {
+      heading: 'Retrieve Course Content',
+      error: 'An unknown error occurred - failed to retrieve course pdf',
+      help: 'If you have questions or feedback on the pdf, please contact <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
+    },
     coursesbyprogramme_labels_course: 'Course code and name',
     coursesbyprogramme_labels_code: 'Application code',
     coursesbyprogramme_labels_code_abbr: 'Appl.code',
