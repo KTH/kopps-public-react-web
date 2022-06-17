@@ -89,13 +89,14 @@ async function performPDFRenderFunction(req, res, next) {
   const { body } = req
 
   try {
-    log.debug('trying to perform a call for pdf render azure function to render pdf for programme syllabus')
+    log.info('trying to perform a call for pdf render azure function to render pdf for programme syllabus')
 
     const apiResponse = await pdfApi.getPDFContent(body)
     log.debug('PDF Render response: ', apiResponse)
     res.send(apiResponse)
   } catch (error) {
     log.error(' Exception from PDF Render function', { error })
+    log.info(' Exception from PDF Render function', { error })
     next(error)
   }
 }

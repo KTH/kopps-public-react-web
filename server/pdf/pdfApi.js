@@ -17,6 +17,7 @@ const getPDFContent = async body => {
     return data
   } catch (error) {
     log.error('Exception calling Azure Function for PDF in pdfApi.getPDFContent', { error })
+    log.info('Exception calling Azure Function for PDF in pdfApi.getPDFContent', { error })
     throw error
   }
 }
