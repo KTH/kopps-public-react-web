@@ -43,6 +43,28 @@ function ArticleContent() {
   )
 }
 
+export function EligilbiltyContentForPDF() {
+  const { language } = useStore()
+  const t = translate(language)
+  const pageHeading = t('programme_eligibility_and_selection')
+  return (
+    <>
+      <Row>
+        <Col>
+          <PageHeading>{pageHeading}</PageHeading>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Article classNames={['paragraphs']}>
+            <EligibilityContent />
+          </Article>
+        </Col>
+      </Row>
+    </>
+  )
+}
+
 function Eligibility() {
   const { language, programmeName, programmeCode, term } = useStore()
   const t = translate(language)

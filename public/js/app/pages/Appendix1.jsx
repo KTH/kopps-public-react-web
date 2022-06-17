@@ -19,7 +19,6 @@ import Sidebar from '../components/Sidebar'
 import { courseLink } from '../util/links'
 
 function CourseListTableRow({ course }) {
-  const { term } = useStore()
   const { language } = useStore()
   const t = translate(language)
   const { code, name, comment, credits, creditAbbr, level } = course
@@ -92,7 +91,7 @@ CourseListTable.defaultProps = {
 }
 
 function ElectiveCondition({ studyYear, electiveCondition, code }) {
-  const { language, studyYearCourses, creditUnitAbbr, term } = useStore()
+  const { language, studyYearCourses, creditUnitAbbr } = useStore()
   const t = translate(language)
   if (!studyYearCourses[code] || !studyYearCourses[code][studyYear]) return null
   const electiveConditionCourses = studyYearCourses[code][studyYear]
@@ -207,6 +206,21 @@ function Specialisations() {
           ))}
         </Fragment>
       ))}
+    </>
+  )
+}
+
+export function Appendix1PDFExport() {
+  return (
+    <>
+      <Row>
+        <Col>
+          <Article classNames={['paragraphs']}>
+            <CommonCourses />
+            <Specialisations />
+          </Article>
+        </Col>
+      </Row>
     </>
   )
 }

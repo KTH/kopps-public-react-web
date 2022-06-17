@@ -22,6 +22,10 @@ function courseLink(courseCode, language, { periods = undefined, term = undefine
   return pageLink(`/student/kurser/kurs/${courseCode}${startSign}${period}${bindSign}${startTerm}`, language) // outside link
 }
 
+function programLinkYear1(programmeCode, term, language) {
+  return pageLink(`/student/kurser/program/${programmeCode}/${term}/arskurs1`, language)
+}
+
 function programTermLink(programmeCode, term, studyYear, language) {
   return pageLink(`/student/kurser/program/${programmeCode}/${term}/${studyYear}`, language)
 }
@@ -52,6 +56,14 @@ function literatureListLink(schoolCode, term, lang) {
   return pageLink(`/student/kurser/lit/${term}/${schoolCode}`, lang)
 }
 
+function replacePathNameWithHref(element) {
+  const aEl = element.getElementsByTagName('a')
+  for (let i = 0; i < aEl.length; i++) {
+    const a = aEl[i]
+    a.outerHTML = a.outerHTML.replace(a.pathname, a.href)
+  }
+}
+
 export {
   parentLink,
   pageLink,
@@ -68,4 +80,6 @@ export {
   thirdCycleDepartmentLink,
   appendix1Link,
   literatureListLink,
+  replacePathNameWithHref,
+  programLinkYear1,
 }

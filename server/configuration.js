@@ -6,7 +6,6 @@ const { generateConfig } = require('kth-node-configuration')
 const serverConfig = generateConfig([require('../config/commonSettings'), require('../config/serverSettings')])
 
 module.exports.server = serverConfig
-
 // These settings are passed to the browser
 const browserConfig = generateConfig([require('../config/commonSettings'), require('../config/browserSettings')])
 

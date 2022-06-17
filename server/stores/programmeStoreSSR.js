@@ -1,6 +1,6 @@
 const log = require('@kth/log')
 
-const { browser: browserConfig } = require('../configuration')
+const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const koppsApi = require('../kopps/koppsApi')
 const { programmeLink } = require('../../domain/links')
 
@@ -33,6 +33,10 @@ function fillStoreWithQueryParams({ applicationStore, lang, programmeCode, study
   return
 }
 
+function fillBrowserConfigWithHostUrl({ applicationStore }) {
+  applicationStore.setBrowserConfig(browserConfig, serverConfig.hostUrl)
+}
+
 /**
  * @param {object} options.applicationStore
  * @param {string} options.lang
@@ -52,14 +56,26 @@ async function fetchAndFillProgrammeDetails({ applicationStore, lang, programmeC
 
   log.info('Successfully fetched programme from KOPPs API, programmeCode:', programmeCode)
 
-  const { title: programmeName, lengthInStudyYears, creditUnitAbbr, owningSchoolCode } = programme
+  const {
+    title: programmeName,
+    lengthInStudyYears,
+    creditUnitAbbr,
+    owningSchoolCode,
+    credits,
+    titleOtherLanguage,
+  } = programme
   applicationStore.setProgrammeName(programmeName)
   applicationStore.setLengthInStudyYears(lengthInStudyYears)
-  if (storeId === 'appendix1') applicationStore.setCreditUnitAbbr(creditUnitAbbr)
+  if (storeId === 'appendix1' || storeId === 'pdfStore') {
+    applicationStore.setCreditUnitAbbr(creditUnitAbbr)
+  }
   if (storeId === 'curriculum') {
     applicationStore.setOwningSchoolCode(owningSchoolCode)
   }
-
+  if (storeId === 'pdfStore') {
+    applicationStore.setCredits(credits)
+    applicationStore.setProgrammeNameInOtherLanguage(titleOtherLanguage)
+  }
   // eslint-disable-next-line consistent-return
   return { programmeName, ...programme }
 }
@@ -100,7 +116,8 @@ async function fetchAndFillStudyProgrammeVersion({ applicationStore, lang, progr
     storeId === 'eligibility' ||
     storeId === 'extent' ||
     storeId === 'implementation' ||
-    storeId === 'objectives'
+    storeId === 'objectives' ||
+    storeId === 'pdfStore'
   ) {
     applicationStore.setStudyProgramme(studyProgramme)
   }
@@ -280,4 +297,5 @@ module.exports = {
   fetchAndFillCurriculumList,
   fetchAndFillSpecializations,
   fetchAndFillStudyProgrammeVersion,
+  fillBrowserConfigWithHostUrl,
 }

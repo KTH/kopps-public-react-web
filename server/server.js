@@ -236,6 +236,7 @@ const {
   Appendix1,
   Appendix2,
   LiteratureList,
+  PDFExport,
 } = require('./controllers')
 const { parseTerm } = require('../domain/term')
 
@@ -256,17 +257,7 @@ server.use('/', embeddedPageRoute.getRouter())
 // App routes
 const appRoute = AppRouter()
 
-appRoute.get('redirect.pdf_program_plan', _addProgramProxy('/:programmeCodeAndTertm.pdf'), (req, res) => {
-  const { programmeCodeAndTertm } = req.params
-  const { l: language } = req.query
-  const { programSyllabusPdfPath } = config
-  if (!programmeCodeAndTertm) {
-    const error = new Error('Malformed programme code and term: ', programmeCodeAndTertm)
-    error.statusCode = 404
-    throw error
-  }
-  res.redirect(301, `${programSyllabusPdfPath.uri}/${programmeCodeAndTertm}.pdf${language === 'en' ? '?l=en' : ''}`)
-})
+appRoute.get('redirect.pdf_program_plan', _addProgramProxy('/:programmeCodeAndTerm.pdf'), PDFExport.getIndex)
 
 appRoute.get('system.ready', _addProxy('/_ready'), Public.getReady)
 appRoute.get('public.studyhandbook', proxyPrefixPath.studyHandbook, StudyHandBook.getStudyBook)
@@ -284,6 +275,7 @@ appRoute.get(
 appRoute.get('public.searchThirdCycleCourses', proxyPrefixPath.thirdCycleCourseSearch, Search.searchThirdCycleCourses)
 appRoute.get('public.searchAllCourses', proxyPrefixPath.courseSearch, Search.searchAllCourses)
 appRoute.get('api.searchCourses', proxyPrefixPath.courseSearchInternApi + '/:lang', Search.performCourseSearch)
+appRoute.post('api.programmeSyllabusPDF', proxyPrefixPath.programmeSyllabusPDF, PDFExport.performPDFRenderFunction)
 
 appRoute.get('redirect.departmentsListThirdCycleStudy', redirectProxyPath.thirdCycleRoot, (req, res) => {
   res.redirect(301, proxyPrefixPath.thirdCycleSchoolsAndDepartments)
@@ -319,6 +311,7 @@ appRoute.get(
     res.redirect(301, _addProgramProxy(`/${programmeCode}/${parsedTerm}/mal`))
   }
 )
+
 appRoute.get(
   'public.objectives_five_digit',
   _addProgramProxy('/:programmeCode/:term([0-9]{4}[1-2])/mal'),
@@ -395,6 +388,7 @@ appRoute.get(
     res.redirect(301, _addProgramProxy(`/${programmeCode}/${parsedTerm}/kurslista`))
   }
 )
+
 appRoute.get(
   'public.appendix1_five_digit',
   _addProgramProxy('/:programmeCode/:term([0-9]{4}[1-2])/kurslista'),

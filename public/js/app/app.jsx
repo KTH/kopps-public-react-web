@@ -30,6 +30,7 @@ import PageLayout from './layout/PageLayout'
 import ElementWrapper from './components/ElementWrapper'
 import StudyHandbook from './pages/StudyHandbook'
 import ThirdCycleDepartmentsList from './pages/ThirdCycleDepartmentsList'
+import ProgramSyllabusExport from './pages/ProgramSyllabusExport'
 
 import getCurriculumMenuData from './config/curriculumMenuData'
 import getDepartmentMenuData from './config/departmentMenuData'
@@ -365,6 +366,11 @@ function appFactory(serverSideApplicationStore = null) {
             })}
           />
         }
+      />
+      <Route
+        key="programme-pdf"
+        path="/student/kurser/program/:programmeCodeAndTertm.pdf"
+        element={<ProgramSyllabusExport applicationStore={_initStore({ storeId: 'pdfStore' })} />}
       />
     </Routes>
   )

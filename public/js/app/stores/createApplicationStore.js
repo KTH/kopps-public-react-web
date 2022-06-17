@@ -11,6 +11,7 @@ import createSearchCoursesStore from './searchCoursesStore'
 import createAppendix1Store from './appendix1Store'
 import createAppendix2Store from './appendix2Store'
 import createLiteratureStore from './literatureStore'
+import createPdfStore from './pdfStore'
 
 export default createApplicationStore
 
@@ -159,6 +160,14 @@ function createApplicationStore(storeId) {
         ...createCommonStore(),
         ...createStudyProgrammeStore(),
         ...createAppendix2Store(),
+      }
+    case 'pdfStore':
+      return {
+        ...createCommonStore(),
+        ...createStudyProgrammeStore(),
+        ...createAppendix1Store(),
+        ...createAppendix2Store(),
+        ...createPdfStore(),
       }
     case 'literatureList':
       return {

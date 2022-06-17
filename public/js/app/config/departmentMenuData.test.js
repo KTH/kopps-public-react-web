@@ -9,7 +9,7 @@ describe('Throw an error if getMenuData is missing data', () => {
       })
     expect(menuData).toThrow(TypeError)
     expect(menuData).toThrow(
-      'Error while generating meny or breadcrumbs: browserConfig is not defined, check if store was passed in or it was filled in on server-side'
+      'Error while generating menu or breadcrumbs: browserConfig is not defined, check if store was passed in or it was filled in on server-side'
     )
     done()
   })

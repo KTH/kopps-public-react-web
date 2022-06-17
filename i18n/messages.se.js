@@ -43,6 +43,7 @@ const messages = {
     course_credits: 'Omfattning',
     course_scope: 'Omfattning',
     course_scope_abbr: 'Omf.',
+    credits: 'hp',
 
     courses: 'Kurser',
     courses_of_program: 'Kurser inom program',
@@ -75,7 +76,6 @@ const messages = {
       1: 'VT',
       2: 'HT',
     },
-    ///end///
     main_menu_aria_label: 'Undermeny',
     main_menu_student: 'Student på KTH',
     main_menu_study_at_kth: 'Utbildning',
@@ -111,6 +111,9 @@ const messages = {
       TBAS: 'Teknisk basutbildning',
       OVRIGA: 'Övriga utbildningsprogram',
     },
+    program_syllabus: 'Utbildningsplan',
+    program_syllabus_link_text:
+      'En tillgänglighetsanpassad version av utbildningsplanen finns i Kurs- och programkatalogen.',
     programmes_admitted: 'antagna/kull',
     programmes_admitted_until: 'antagna/kull t.o.m.',
     programmes_admitted_from: 'antagna/kull fr.o.m.',
@@ -121,6 +124,11 @@ const messages = {
     departments_deprecated_schools_collapsible: 'Kurser äldre skolor',
     department_period_abbr: 'Perioder',
     programme_study_years: 'Utbildningsplaner',
+    page_footer_pdf: 'Sida " counter(page) " av " counter(pages)',
+    program_syllabus_semester_description: (semester, year) =>
+      `Gäller för antagna till utbildningen fr o m ${semester + year}`,
+    programme_syllabus_for: (programCode, term) =>
+      `Utbildningsplan för ${programCode} gällande antagning fr o m ${term}`,
     programme_study_years_explanation:
       'Välj utbildningsplan. Oftast överensstämmer kull med den termin då studierna påbörjades vid programmet.',
     programme_study_years_syllabus_missing: 'Utbildningsplan enligt 2007 års studieordning saknas.',
@@ -146,6 +154,11 @@ const messages = {
       R: 'Rekommenderade',
       V: 'Valfria',
     },
+    pdf_error: {
+      heading: 'Hämta kursinnehåll',
+      error: 'Ett okänt fel inträffade - det gick inte att hämta kurs pdf',
+      help: 'Om du har frågor eller synpunkter på pdf:en, vänligen kontakta <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
+    },
     coursesbyprogramme_labels_course: 'Kursens kod och namn',
     coursesbyprogramme_labels_code: 'Anmälningskod',
     coursesbyprogramme_labels_code_abbr: 'Anm.\u00A0kod',
@@ -169,6 +182,8 @@ const messages = {
     programme_implementation: 'Utbildningens genomförande',
     programme_structure: 'Utbildningens upplägg',
     programme_implementation_courses_intro: 'Utbildningen sker i kursform. Kurslistor finns i',
+    appendix1: 'Bilaga 1',
+    appendix2: 'Bilaga 2',
     programme_appendix1: 'Bilaga 1: Kurslista',
     programme_appendix2: 'Bilaga 2: Inriktningar',
     programme_grading_system: 'Betygssystem',

@@ -36,6 +36,20 @@ function Specializations() {
   })
 }
 
+export function Appendix2PDFExport() {
+  return (
+    <>
+      <Row key="data-area-row">
+        <Col key="article-specializations">
+          <Article uiKey="article" classNames={['paragraphs', 'utbildningsplan']}>
+            <Specializations key="specializations-appendix-2" />
+          </Article>
+        </Col>
+      </Row>
+    </>
+  )
+}
+
 function Appendix2() {
   const { language, programmeName, programmeCode, term } = useStore()
   const t = translate(language)

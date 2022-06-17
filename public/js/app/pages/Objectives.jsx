@@ -82,6 +82,31 @@ function ArticleContent() {
   )
 }
 
+export function ObjectivesForExport() {
+  const { language } = useStore()
+  const t = translate(language)
+  const pageHeading = t('programme_objectives')
+  return (
+    <>
+      <Row>
+        <Col>
+          <PageHeading>{pageHeading}</PageHeading>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Article classNames={['paragraphs']}>
+            <ProgrammeObjectives />
+            <KnowledgeObjectives />
+            <SkillsObjectives />
+            <AbilityObjectives />
+          </Article>
+        </Col>
+      </Row>
+    </>
+  )
+}
+
 function Objectives() {
   const { language, programmeName, programmeCode, term } = useStore()
   const t = translate(language)

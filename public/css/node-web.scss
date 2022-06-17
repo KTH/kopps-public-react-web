@@ -86,3 +86,32 @@ body #gradientBorder {
 .block.megaMenu.navbar.navbar-light ul.menu.navbar-nav#megaMenu li.item.nav-item .menuItemContent .megaMenuBody {
   border-bottom: 5px solid #65656c;
 }
+
+.display-none {
+  display: none;
+}
+
+.link {
+  background: transparent;
+  text-decoration: underline;
+  color: #006cb7;
+  border: none;
+  padding: 0px;
+}
+
+@keyframes spinner-border {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner-border {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  vertical-align: -0.125em;
+  border: 0.25em solid rgb(33, 37, 41);
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: 0.75s linear infinite spinner-border;
+}
