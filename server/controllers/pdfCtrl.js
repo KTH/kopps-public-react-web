@@ -50,7 +50,6 @@ async function getIndex(req, res, next) {
     const applicationStore = createStore(storeId)
     const options = { applicationStore, lang, programmeCode, term }
     log.info(`Starting to fill in application store ${storeId} on server side `, { programmeCode })
-    log.info('PDF Response Success')
     const { programmeName } = await fetchAndFillProgrammeDetails(options, storeId)
     await fetchAndFillStudyProgrammeVersion({ ...options, storeId })
     fillStoreWithQueryParams(options)
