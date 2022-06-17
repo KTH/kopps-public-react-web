@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react'
-
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Spinner } from '@kth/kth-reactstrap/dist/components/reactstrap'
+import { Alert } from '@kth/kth-reactstrap/dist/components/studinfo'
 import ElementWrapperForPDF from '../components/ElementWrapperForPDF'
 import { programLinkYear1, replacePathNameWithHref } from '../util/links'
 import translate from '../../../../domain/translate'
@@ -19,8 +19,15 @@ import { Appendix2PDFExport } from './Appendix2'
 function _getThisHost(thisHostBaseUrl) {
   return thisHostBaseUrl.slice(-1) === '/' ? thisHostBaseUrl.slice(0, -1) : thisHostBaseUrl
 }
+
 // eslint-disable-next-line react/prop-types
 function ProgramSyllabusExport({ applicationStore }) {
+  const [showError, setShowError] = useState(false)
+  const [showLoader, setShowLoader] = useState(true)
+  const [error, setError] = useState('')
+  const [helpText, setHelpText] = useState('')
+  const [errorHeader, setErrorHeader] = useState('')
+
   useEffect(() => {
     const pdfObjExtElgbImlpContainer = document.getElementById('pdfObjExtElgbImlpContainer')
     const pdfAppendix1Container = document.getElementById('pdfAppendix1Container')
@@ -112,15 +119,31 @@ function ProgramSyllabusExport({ applicationStore }) {
       baseUrl: thisHostBaseUrl,
       course: programmeCode + '-' + term + '.pdf | KTH',
     })
-    pdfResponse.then(pdfData => {
-      const pdfContent = new Blob([pdfData], { type: 'application/pdf' })
-      const fileURL = URL.createObjectURL(pdfContent)
-      window.location.href = fileURL
-    })
+    pdfResponse.then(
+      pdfData => {
+        const pdfContent = new Blob([pdfData], { type: 'application/pdf' })
+        const fileURL = URL.createObjectURL(pdfContent)
+        window.location.href = fileURL
+      },
+      () => {
+        setShowError(true)
+        setShowLoader(false)
+        setErrorHeader(t('pdf_error').heading)
+        setError(t('pdf_error').error)
+        setHelpText(t('pdf_error').help)
+      }
+    )
   }, [])
   return (
     <>
-      <Spinner></Spinner>
+      {showError && (
+        <Alert type="warning">
+          <h5>{errorHeader}</h5>
+          <p>{error}</p>
+          <p>{helpText}</p>
+        </Alert>
+      )}
+      {showLoader && <Spinner></Spinner>}
       <div className="display-none">
         <div id="pdfObjExtElgbImlpContainer">
           <ElementWrapperForPDF
@@ -129,12 +152,6 @@ function ProgramSyllabusExport({ applicationStore }) {
           ></ElementWrapperForPDF>
           {applicationStore.language === 'sv' && (
             <>
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
               <br />
               <br />
             </>
