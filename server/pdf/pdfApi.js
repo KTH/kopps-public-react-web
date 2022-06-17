@@ -1,10 +1,12 @@
 const axios = require('axios')
 const log = require('@kth/log')
-const serverSettings = require('../../config/serverSettings')
+const { server: serverConfig } = require('../configuration')
 
 const getPDFContent = async body => {
-  const { uri } = serverSettings.programSyllabusForPDF
-  const { key } = serverSettings.programSyallbusKeyForPDF
+  const { uri } = serverConfig.programSyllabusForPDF
+  const { key } = serverConfig.programSyallbusKeyForPDF
+  log.info('PDF URL: ' + uri)
+  log.info('Key: ' + key)
   try {
     const response = await axios.post(uri, body, {
       headers: {
@@ -17,7 +19,6 @@ const getPDFContent = async body => {
     return data
   } catch (error) {
     log.error('Exception calling Azure Function for PDF in pdfApi.getPDFContent', { error })
-    log.info('Exception calling Azure Function for PDF in pdfApi.getPDFContent', { error })
     throw error
   }
 }
