@@ -369,7 +369,7 @@ function appFactory(serverSideApplicationStore = null) {
       />
       <Route
         key="programme-pdf"
-        path="/student/kurser/program/:programmeCode/:term/pdf"
+        path="/student/kurser/program/:programmeCodeAndTertm.pdf"
         element={<ProgramSyllabusExport applicationStore={_initStore({ storeId: 'pdfStore' })} />}
       />
     </Routes>

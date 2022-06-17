@@ -31,7 +31,7 @@ function programTermLink(programmeCode, term, studyYear, language) {
 }
 
 function programSyllabusLink(programmeCode, term, language) {
-  return pageLink(`/student/kurser/program/${programmeCode}/${term}/pdf`, language)
+  return pageLink(`/student/kurser/program/${programmeCode}-${term}.pdf`, language)
 }
 
 function programmeWebLink(programmeCode, language) {

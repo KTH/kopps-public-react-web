@@ -35,7 +35,13 @@ function _metaTitleAndDescription(lang, programmeCode, programmeName, term) {
 async function getIndex(req, res, next) {
   try {
     const lang = language.getLanguage(res)
-    const { programmeCode, term } = req.params
+    const { programmeCodeAndTerm } = req.params
+    if (!programmeCodeAndTerm) {
+      const error = new Error(`Malformed programme code and term:  ${programmeCodeAndTerm}`)
+      error.statusCode = 404
+      throw error
+    }
+    const [programmeCode, term] = programmeCodeAndTerm.split('-')
 
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
 

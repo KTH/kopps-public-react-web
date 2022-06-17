@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Spinner } from '@kth/kth-reactstrap/dist/components/reactstrap'
 import { Alert } from '@kth/kth-reactstrap/dist/components/studinfo'
 import ElementWrapperForPDF from '../components/ElementWrapperForPDF'
 import { programLinkYear1, replacePathNameWithHref } from '../util/links'
@@ -143,7 +142,11 @@ function ProgramSyllabusExport({ applicationStore }) {
           <p>{helpText}</p>
         </Alert>
       )}
-      {showLoader && <Spinner></Spinner>}
+      {showLoader && (
+        <div role="status" className="spinner-border">
+          <span className="sr-only">laddar...</span>
+        </div>
+      )}
       <div className="display-none">
         <div id="pdfObjExtElgbImlpContainer">
           <ElementWrapperForPDF
