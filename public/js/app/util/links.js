@@ -56,14 +56,6 @@ function literatureListLink(schoolCode, term, lang) {
   return pageLink(`/student/kurser/lit/${term}/${schoolCode}`, lang)
 }
 
-function replacePathNameWithHref(element) {
-  const aEl = element.getElementsByTagName('a')
-  for (let i = 0; i < aEl.length; i++) {
-    const a = aEl[i]
-    a.outerHTML = a.outerHTML.replace(a.pathname, a.href)
-  }
-}
-
 export {
   parentLink,
   pageLink,
@@ -80,6 +72,5 @@ export {
   thirdCycleDepartmentLink,
   appendix1Link,
   literatureListLink,
-  replacePathNameWithHref,
   programLinkYear1,
 }
