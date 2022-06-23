@@ -155,9 +155,10 @@ const messages = {
       V: 'Valfria',
     },
     pdf_error: {
-      heading: 'Hämta kursinnehåll',
-      error: 'Ett okänt fel inträffade - det gick inte att hämta kurs pdf',
-      help: 'Om du har frågor eller synpunkter på pdf:en, vänligen kontakta <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
+      heading: 'Något har gått fel - Prova att ladda om sidan',
+      error:
+        'Tyvärr har något gått fel. Systemet har inte lyckats hämta kursplanen som PDF. Försök att ladda om sidan.',
+      help: 'Kontakta IT-support ifall du har några frågor. ',
     },
     coursesbyprogramme_labels_course: 'Kursens kod och namn',
     coursesbyprogramme_labels_code: 'Anmälningskod',

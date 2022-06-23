@@ -159,9 +159,10 @@ const messages = {
       V: 'Optional',
     },
     pdf_error: {
-      heading: 'Retrieve Course Content',
-      error: 'An unknown error occurred - failed to retrieve course pdf',
-      help: 'If you have questions or feedback on the pdf, please contact <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
+      heading: 'Something has gone wrong - Try to reload the page',
+      error:
+        'Unfortunately an unknown error occurred. The System failed to retrieve the course syllabus pdf. Try to reload the page.',
+      help: 'Please contact IT-support if you have questions. ',
     },
     coursesbyprogramme_labels_course: 'Course code and name',
     coursesbyprogramme_labels_code: 'Application code',
