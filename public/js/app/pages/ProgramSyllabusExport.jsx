@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Alert } from '@kth/kth-reactstrap/dist/components/studinfo'
 import ElementWrapperForPDF from '../components/ElementWrapperForPDF'
-import { programLinkYear1, replacePathNameWithHref } from '../util/links'
+import { programLinkYear1 } from '../util/links'
+import { replacePathNameWithHref, getCurrentHost } from '../util/stringUtil'
 import translate from '../../../../domain/translate'
 import generateProgramSyllabus from '../util/pdfApi'
 import { getCompleteHTMLForPDFForObjImpElibExtent, getAppendixHTML } from '../config/pdfHtml/pdfHtmlForExport'
@@ -14,10 +15,6 @@ import { EligilbiltyContentForPDF } from './Eligibility'
 import { ImplementationContentForPDF } from './Implementation'
 import { Appendix1PDFExport } from './Appendix1'
 import { Appendix2PDFExport } from './Appendix2'
-
-function _getThisHost(thisHostBaseUrl) {
-  return thisHostBaseUrl.slice(-1) === '/' ? thisHostBaseUrl.slice(0, -1) : thisHostBaseUrl
-}
 
 // eslint-disable-next-line react/prop-types
 function ProgramSyllabusExport({ applicationStore }) {
@@ -109,13 +106,13 @@ function ProgramSyllabusExport({ applicationStore }) {
       pdfAppendix2Container.innerHTML
     )
 
-    const pdfResponse = generateProgramSyllabus(_getThisHost(thisHostBaseUrl), {
+    const pdfResponse = generateProgramSyllabus(getCurrentHost(thisHostBaseUrl), {
       pages: [
         completeHTMLForPdfObjExtElgbImlpContainer,
         completeHTMLForPdfAppendix1Container,
         completeHTMLForPdfAppendix2Container,
       ],
-      baseUrl: thisHostBaseUrl,
+      baseUrl: getCurrentHost(thisHostBaseUrl),
       course: programmeCode + '-' + term + '.pdf | KTH',
     })
     pdfResponse.then(
@@ -136,10 +133,13 @@ function ProgramSyllabusExport({ applicationStore }) {
   return (
     <>
       {showError && (
-        <Alert type="warning">
+        <Alert type="danger">
           <h5>{errorHeader}</h5>
           <p>{error}</p>
-          <p>{helpText}</p>
+          <p>
+            {helpText}
+            <a href="mailto:it-support@kth.se">it-support@kth.se</a>
+          </p>
         </Alert>
       )}
       {showLoader && (
