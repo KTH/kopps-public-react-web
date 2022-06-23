@@ -1,8 +1,7 @@
 const log = require('@kth/log')
 const axios = require('axios')
-const { getPDFContent } = require('../pdf/pdfApi')
+const { getPDFContent } = require('./pdfApi')
 
-jest.setTimeout(10000)
 jest.mock('@kth/log')
 jest.mock('axios')
 log.info = jest.fn()
