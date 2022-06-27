@@ -47,7 +47,7 @@ function getHTMLHead(title, footerContentLeft, footerContentRight) {
   }
 
   table, th, td {
-    border: 0.5px solid black;
+    border: 0.5px solid grey;
     border-collapse: collapse;
   }
   
