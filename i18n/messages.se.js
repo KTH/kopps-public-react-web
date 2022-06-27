@@ -44,6 +44,7 @@ const messages = {
     course_scope: 'Omfattning',
     course_scope_abbr: 'Omf.',
     credits: 'hp',
+    creditUnitAbbr: 'högskolepoäng',
 
     courses: 'Kurser',
     courses_of_program: 'Kurser inom program',
