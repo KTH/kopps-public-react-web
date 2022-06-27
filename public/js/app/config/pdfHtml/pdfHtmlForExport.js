@@ -10,7 +10,7 @@ function getHTMLHead(title, footerContentLeft, footerContentRight) {
 @page {
   @bottom-left {
       content: "${footerContentLeft}";
-      font-family: Open Sans, Arial, Helvetica Neue, helvetica, sans-serif;
+      font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;
       font-size: 12pt;
       line-height: 1.4;
       vertical-align: top;
@@ -20,7 +20,7 @@ function getHTMLHead(title, footerContentLeft, footerContentRight) {
   }
   @bottom-right {
       content: "${footerContentRight};
-      font-family: Open Sans, Arial, Helvetica Neue, helvetica, sans-serif;
+      font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;
       font-size: 12pt;
       line-height: 1.4;
       vertical-align: top;
@@ -55,9 +55,33 @@ function getHTMLHead(title, footerContentLeft, footerContentRight) {
       width: 100%;
   }
 
-  .pdfBodyWrapper {
-    padding: 1.5em;
+  .appendix-container {
+    page-break-inside : avoid;
   }
+
+  .pdfBodyWrapper {
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+  }
+  
+  h1, h2, h3 {
+    font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+    font-weight: 100;
+    page-break-inside: avoid;
+  }
+
+  .extent-container {
+    page-break-after: always;
+  }
+
+  .eligibilty-container {
+    page-break-after: always;
+  }
+
+  body {
+    margin-top: 2em;
+  }
+
 </style>
   </head>`
 }
@@ -84,11 +108,13 @@ export function getCompleteHTMLForPDFForObjImpElibExtent(
     ${getHTMLHead(title, footerContentLeft, footerContentRight)}
         <body>
             <div class=content" id="page">
-                       <header>
-                           <figure class="block figure defaultTheme mainLogo pdfBodyWrapper">
-                               <img id="logo" class="kth_logo" src="images/kth_logo_593.jpg" alt="KTH:s logotyp" height="100" width="100">
-                           </figure>
-                       </header>
+                        <header>
+                          <div class="pdfBodyWrapper">
+                              <figure>
+                                  <img id="logo" class="kth_logo" src="images/kth_logo_593.jpg" alt="KTH:s logotyp" height="100" width="100">
+                              </figure>
+                          </div>
+                         </header>
                        <div class="pdfBodyWrapper">
                            <article id="mainContent" role="main" class="article standard" lang="${language}">
                                <header role="presentation" id="articleHeader">
@@ -101,7 +127,6 @@ export function getCompleteHTMLForPDFForObjImpElibExtent(
                                        <h2 id="page-sub-heading" aria-hidden="true">${programmeNameInOtherLanguage}</h2>
                                </header>
                                        <p><i>${semesterDescription}</i></p>
-                                       <div class="paragraphs">
                                        ${
                                          language === 'en'
                                            ? `
@@ -109,10 +134,8 @@ export function getCompleteHTMLForPDFForObjImpElibExtent(
                                            : ''
                                        }
                                        ${body}
-                                       <br/>
                                        <p>${appendix1Text}</p>
                                        <p>${appendix2Text}</p>
-                                       </div>
                             </article>
                         </div>
              </div>
@@ -128,27 +151,34 @@ export function getAppendixHTML(
   footerContentLeft,
   footerContentRight,
   language,
-  body
+  body,
+  type
 ) {
   return `<!DOCTYPE html>
     ${getHTMLHead(title, footerContentLeft, footerContentRight)}
         <body>
             <div class=content" id="page">
-                       <header>
-                           <figure class="block figure defaultTheme mainLogo pdfBodyWrapper">
-                               <img id="logo" class="kth_logo" src="images/kth_logo_593.jpg" alt="KTH:s logotyp" height="100" width="100">
-                           </figure>
-                       </header>
+                      <header>
+                        <div class="pdfBodyWrapper">
+                            <figure>
+                                <img id="logo" class="kth_logo" src="images/kth_logo_593.jpg" alt="KTH:s logotyp" height="100" width="100">
+                            </figure>
+                        </div>
+                      </header>
                        <div class="pdfBodyWrapper">
                            <article id="mainContent" role="main" class="article standard" lang="${language}">
                            <header role="presentation" id="articleHeader">
                                        <h1 id="page-heading"
                                        aria-labelledby="page-heading page-sub-heading" style="font-size : 3em">${pageHeading}</h1>
                                        <h2 id="page-sub-heading" aria-hidden="true" style="font-size : 2em">${programmeName} (${programmeCode})</h2>
-                               </header>
-                           <div class="paragraphs">
-                           ${body}
-                           </div>
+                          </header>
+                          ${
+                            type === 'appendix1'
+                              ? `<div class="appendix-container">
+                          ${body}
+                          </div>`
+                              : body
+                          }   
                            </article>
                       </div>
               </div>
