@@ -14,7 +14,6 @@ const {
   fetchAndFillStudyProgrammeVersion,
   fillBrowserConfigWithHostUrl,
   fetchAndFillCurriculumList,
-  fetchAndFillSpecializations,
 } = require('../stores/programmeStoreSSR')
 
 const pdfApi = require('../pdf/pdfApi')
