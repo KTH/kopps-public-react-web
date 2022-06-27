@@ -92,7 +92,8 @@ function ProgramSyllabusExport({ applicationStore }) {
       bottomLeftText,
       appendix1 + ' , ' + bottomRightText,
       language,
-      pdfAppendix1Container.innerHTML
+      pdfAppendix1Container.innerHTML,
+      'appendix1'
     )
     // get html for Appendix 2
     const completeHTMLForPdfAppendix2Container = getAppendixHTML(
@@ -103,7 +104,8 @@ function ProgramSyllabusExport({ applicationStore }) {
       bottomLeftText,
       appendix2 + ' , ' + bottomRightText,
       language,
-      pdfAppendix2Container.innerHTML
+      pdfAppendix2Container.innerHTML,
+      'appendix2'
     )
 
     const pdfResponse = generateProgramSyllabus(getCurrentHost(thisHostBaseUrl), {
@@ -153,20 +155,18 @@ function ProgramSyllabusExport({ applicationStore }) {
             component={ObjectivesForExport}
             applicationStore={applicationStore}
           ></ElementWrapperForPDF>
-          {applicationStore.language === 'sv' && (
-            <>
-              <br />
-              <br />
-            </>
-          )}
-          <ElementWrapperForPDF
-            component={ExtentContentForPDF}
-            applicationStore={applicationStore}
-          ></ElementWrapperForPDF>
-          <ElementWrapperForPDF
-            component={EligilbiltyContentForPDF}
-            applicationStore={applicationStore}
-          ></ElementWrapperForPDF>
+          <div className="extent-container">
+            <ElementWrapperForPDF
+              component={ExtentContentForPDF}
+              applicationStore={applicationStore}
+            ></ElementWrapperForPDF>
+          </div>
+          <div className="eligibilty-container">
+            <ElementWrapperForPDF
+              component={EligilbiltyContentForPDF}
+              applicationStore={applicationStore}
+            ></ElementWrapperForPDF>
+          </div>
           <ElementWrapperForPDF
             component={ImplementationContentForPDF}
             applicationStore={applicationStore}
