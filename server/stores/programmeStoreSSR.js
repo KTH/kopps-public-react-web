@@ -141,6 +141,7 @@ function _parseCurriculumsAndFillStore(applicationStore, curriculums) {
       applicationStore.addSpecialization({
         code,
         title,
+        description: programmeSpecialization.description,
         studyYears: studyYears.reduce((years, studyYear) => {
           if (studyYear.courses.length) {
             years.push(studyYear.yearNumber)
