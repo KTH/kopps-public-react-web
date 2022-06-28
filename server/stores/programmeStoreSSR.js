@@ -34,6 +34,11 @@ function fillStoreWithQueryParams({ applicationStore, lang, programmeCode, study
 }
 
 function fillBrowserConfigWithHostUrl({ applicationStore }) {
+  if (serverConfig.hostUrl.includes('app-')) {
+    log.warn(
+      'This host { uri : ' + serverConfig.hostUrl + ' } needs KTH VPN. Make sure you are connected with KTH VPN.'
+    )
+  }
   applicationStore.setBrowserConfig(browserConfig, serverConfig.hostUrl)
 }
 
@@ -137,10 +142,11 @@ function _parseCurriculumsAndFillStore(applicationStore, curriculums) {
     if (curriculum.programmeSpecialization) {
       // Specialization
       const { programmeSpecialization, studyYears } = curriculum
-      const { programmeSpecializationCode: code, title } = programmeSpecialization
+      const { programmeSpecializationCode: code, title, description } = programmeSpecialization
       applicationStore.addSpecialization({
         code,
         title,
+        description,
         studyYears: studyYears.reduce((years, studyYear) => {
           if (studyYear.courses.length) {
             years.push(studyYear.yearNumber)

@@ -1,6 +1,7 @@
 const log = require('@kth/log')
 
 const koppsApi = require('../kopps/koppsApi')
+const { TEST_API_ANSWER_ALGEBRA } = require('../mocks/mockKoppsApi')
 const { performCourseSearch } = require('./searchCtrl')
 
 jest.mock('../configuration', () => ({ server: {} }))
@@ -11,7 +12,6 @@ log.debug = jest.fn()
 log.error = jest.fn()
 
 const { getSearchResults } = koppsApi
-const { TEST_API_ANSWER_ALGEBRA } = require('../mocks/mockKoppsApi')
 
 const langSv = 'sv'
 const langEn = 'en'

@@ -14,7 +14,6 @@ const {
   fetchAndFillStudyProgrammeVersion,
   fillBrowserConfigWithHostUrl,
   fetchAndFillCurriculumList,
-  fetchAndFillSpecializations,
 } = require('../stores/programmeStoreSSR')
 
 const pdfApi = require('../pdf/pdfApi')
@@ -55,7 +54,6 @@ async function getIndex(req, res, next) {
     fillStoreWithQueryParams(options)
     fillBrowserConfigWithHostUrl(options)
     await fetchAndFillCurriculumList(options)
-    await fetchAndFillSpecializations(options)
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
     log.info(`${storeId} store was filled in and compressed on server side`, { programmeCode })
 

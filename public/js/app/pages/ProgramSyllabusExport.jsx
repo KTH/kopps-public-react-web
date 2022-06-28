@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Alert } from '@kth/kth-reactstrap/dist/components/studinfo'
 import ElementWrapperForPDF from '../components/ElementWrapperForPDF'
-import { programLinkYear1, replacePathNameWithHref } from '../util/links'
+import { programLinkYear1 } from '../util/links'
+import { replacePathNameWithHref, getCurrentHost } from '../util/stringUtil'
 import translate from '../../../../domain/translate'
 import generateProgramSyllabus from '../util/pdfApi'
 import { getCompleteHTMLForPDFForObjImpElibExtent, getAppendixHTML } from '../config/pdfHtml/pdfHtmlForExport'
@@ -14,10 +15,6 @@ import { EligilbiltyContentForPDF } from './Eligibility'
 import { ImplementationContentForPDF } from './Implementation'
 import { Appendix1PDFExport } from './Appendix1'
 import { Appendix2PDFExport } from './Appendix2'
-
-function _getThisHost(thisHostBaseUrl) {
-  return thisHostBaseUrl.slice(-1) === '/' ? thisHostBaseUrl.slice(0, -1) : thisHostBaseUrl
-}
 
 // eslint-disable-next-line react/prop-types
 function ProgramSyllabusExport({ applicationStore }) {
@@ -95,7 +92,8 @@ function ProgramSyllabusExport({ applicationStore }) {
       bottomLeftText,
       appendix1 + ' , ' + bottomRightText,
       language,
-      pdfAppendix1Container.innerHTML
+      pdfAppendix1Container.innerHTML,
+      'appendix1'
     )
     // get html for Appendix 2
     const completeHTMLForPdfAppendix2Container = getAppendixHTML(
@@ -106,16 +104,17 @@ function ProgramSyllabusExport({ applicationStore }) {
       bottomLeftText,
       appendix2 + ' , ' + bottomRightText,
       language,
-      pdfAppendix2Container.innerHTML
+      pdfAppendix2Container.innerHTML,
+      'appendix2'
     )
 
-    const pdfResponse = generateProgramSyllabus(_getThisHost(thisHostBaseUrl), {
+    const pdfResponse = generateProgramSyllabus(getCurrentHost(thisHostBaseUrl), {
       pages: [
         completeHTMLForPdfObjExtElgbImlpContainer,
         completeHTMLForPdfAppendix1Container,
         completeHTMLForPdfAppendix2Container,
       ],
-      baseUrl: thisHostBaseUrl,
+      baseUrl: getCurrentHost(thisHostBaseUrl),
       course: programmeCode + '-' + term + '.pdf | KTH',
     })
     pdfResponse.then(
@@ -123,6 +122,7 @@ function ProgramSyllabusExport({ applicationStore }) {
         const pdfContent = new Blob([pdfData], { type: 'application/pdf' })
         const fileURL = URL.createObjectURL(pdfContent)
         window.location.href = fileURL
+        setShowLoader(false)
       },
       () => {
         setShowError(true)
@@ -136,10 +136,13 @@ function ProgramSyllabusExport({ applicationStore }) {
   return (
     <>
       {showError && (
-        <Alert type="warning">
+        <Alert type="danger">
           <h5>{errorHeader}</h5>
           <p>{error}</p>
-          <p>{helpText}</p>
+          <p>
+            {helpText}
+            <a href="mailto:it-support@kth.se">it-support@kth.se</a>
+          </p>
         </Alert>
       )}
       {showLoader && (
@@ -153,20 +156,18 @@ function ProgramSyllabusExport({ applicationStore }) {
             component={ObjectivesForExport}
             applicationStore={applicationStore}
           ></ElementWrapperForPDF>
-          {applicationStore.language === 'sv' && (
-            <>
-              <br />
-              <br />
-            </>
-          )}
-          <ElementWrapperForPDF
-            component={ExtentContentForPDF}
-            applicationStore={applicationStore}
-          ></ElementWrapperForPDF>
-          <ElementWrapperForPDF
-            component={EligilbiltyContentForPDF}
-            applicationStore={applicationStore}
-          ></ElementWrapperForPDF>
+          <div className="extent-container">
+            <ElementWrapperForPDF
+              component={ExtentContentForPDF}
+              applicationStore={applicationStore}
+            ></ElementWrapperForPDF>
+          </div>
+          <div className="eligibilty-container">
+            <ElementWrapperForPDF
+              component={EligilbiltyContentForPDF}
+              applicationStore={applicationStore}
+            ></ElementWrapperForPDF>
+          </div>
           <ElementWrapperForPDF
             component={ImplementationContentForPDF}
             applicationStore={applicationStore}
