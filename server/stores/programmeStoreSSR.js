@@ -137,11 +137,11 @@ function _parseCurriculumsAndFillStore(applicationStore, curriculums) {
     if (curriculum.programmeSpecialization) {
       // Specialization
       const { programmeSpecialization, studyYears } = curriculum
-      const { programmeSpecializationCode: code, title } = programmeSpecialization
+      const { programmeSpecializationCode: code, title, description } = programmeSpecialization
       applicationStore.addSpecialization({
         code,
         title,
-        description: programmeSpecialization.description,
+        description,
         studyYears: studyYears.reduce((years, studyYear) => {
           if (studyYear.courses.length) {
             years.push(studyYear.yearNumber)
