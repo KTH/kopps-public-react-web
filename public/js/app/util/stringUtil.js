@@ -1,11 +1,11 @@
 function replacePathNameWithHref(element) {
-  const aEl = element.getElementsByTagName('a')
+  /* const aEl = element.getElementsByTagName('a')
   for (let i = 0; i < aEl.length; i++) {
     const a = aEl[i]
     if (!String(a.outerHTML).includes(a.href)) {
       a.outerHTML = a.outerHTML.replace(a.pathname, a.href)
     }
-  }
+  } */
 }
 
 function getCurrentHost(thisHostBaseUrl) {
