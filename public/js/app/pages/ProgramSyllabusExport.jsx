@@ -122,6 +122,7 @@ function ProgramSyllabusExport({ applicationStore }) {
         const pdfContent = new Blob([pdfData], { type: 'application/pdf' })
         const fileURL = URL.createObjectURL(pdfContent)
         window.location.href = fileURL
+        setShowLoader(false)
       },
       () => {
         setShowError(true)
