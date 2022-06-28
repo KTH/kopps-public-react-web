@@ -34,6 +34,11 @@ function fillStoreWithQueryParams({ applicationStore, lang, programmeCode, study
 }
 
 function fillBrowserConfigWithHostUrl({ applicationStore }) {
+  if (serverConfig.hostUrl.includes('app-')) {
+    log.warn(
+      'This host { uri : ' + serverConfig.hostUrl + ' } needs KTH VPN. Make sure you are connected with KTH VPN.'
+    )
+  }
   applicationStore.setBrowserConfig(browserConfig, serverConfig.hostUrl)
 }
 
