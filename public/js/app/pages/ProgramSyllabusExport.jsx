@@ -115,7 +115,7 @@ function ProgramSyllabusExport({ applicationStore }) {
         completeHTMLForPdfAppendix2Container,
       ],
       baseUrl: getCurrentHost(thisHostBaseUrl),
-      course: programmeCode + '-' + term + '.pdf | KTH',
+      course: programmeCode + '-' + term + '.pdf',
     })
     pdfResponse.then(
       pdfData => {
@@ -130,7 +130,7 @@ function ProgramSyllabusExport({ applicationStore }) {
             const blobAsDataUrl = reader.result
             const iframe = `<iframe width="100%" height="100%" src=" ${blobAsDataUrl} "></iframe>`
             document.write(iframe)
-            document.title = programmeCode + '-' + term + '.pdf'
+            document.title = programmeCode + '-' + term + '.pdf | KTH'
             document.body.style.setProperty('margin', '-2px')
           }
           reader.readAsDataURL(recoveredBlob)
