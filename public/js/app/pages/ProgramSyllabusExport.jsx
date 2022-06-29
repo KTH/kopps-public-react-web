@@ -119,9 +119,24 @@ function ProgramSyllabusExport({ applicationStore }) {
     })
     pdfResponse.then(
       pdfData => {
-        const pdfContent = new Blob([pdfData], { type: 'application/pdf' })
+        const pdfContent = new File([pdfData], programmeCode + '-' + term + '.pdf', { type: 'application/pdf' })
         const fileURL = URL.createObjectURL(pdfContent)
-        window.location.href = fileURL
+        const xhr = new XMLHttpRequest()
+        xhr.responseType = 'blob'
+        xhr.onload = () => {
+          const recoveredBlob = xhr.response
+          const reader = new FileReader()
+          reader.onload = () => {
+            const blobAsDataUrl = reader.result
+            const iframe = `<iframe width="100%" height="100%" src=" ${blobAsDataUrl} "></iframe>`
+            document.write(iframe)
+            document.title = programmeCode + '-' + term + '.pdf'
+            document.body.style.setProperty('margin', '-2px')
+          }
+          reader.readAsDataURL(recoveredBlob)
+        }
+        xhr.open('GET', fileURL)
+        xhr.send()
         setShowLoader(false)
       },
       () => {
