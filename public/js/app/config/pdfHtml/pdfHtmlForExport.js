@@ -74,6 +74,14 @@ function getHTMLHead(title, footerContentLeft, footerContentRight) {
     page-break-after: always;
   }
 
+  .supplementary-container {
+    page-break-inside: avoid;
+  }
+
+  .elective-container {
+    page-break-inside: avoid;
+  }
+
   .eligibilty-container {
     page-break-after: always;
   }

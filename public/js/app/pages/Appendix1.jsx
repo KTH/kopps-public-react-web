@@ -107,8 +107,10 @@ function ElectiveCondition({ studyYear, electiveCondition, code, isExport }) {
   }`
   return (
     <Fragment key={electiveCondition}>
-      <h4>{heading}</h4>
-      <CourseListTable courses={electiveConditionCourses[electiveCondition]} />
+      <div className="elective-container">
+        <h4>{heading}</h4>
+        <CourseListTable courses={electiveConditionCourses[electiveCondition]} />
+      </div>
     </Fragment>
   )
 }
@@ -125,8 +127,10 @@ function SupplementaryInfo({ studyYear, code }) {
   const t = translate(language)
   return supplementaryInfo[code] && supplementaryInfo[code][studyYear] ? (
     <>
-      <h4>{t('programme_supplementary_information')}</h4>
-      <KoppsData html={supplementaryInfo[code][studyYear]} />
+      <div className="supplementary-container">
+        <h4>{t('programme_supplementary_information')}</h4>
+        <KoppsData html={supplementaryInfo[code][studyYear]} />
+      </div>
     </>
   ) : null
 }
