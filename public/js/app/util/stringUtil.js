@@ -16,6 +16,8 @@ function getCurrentHost(thisHostBaseUrl, replaceAppWithWWW = true) {
   let hostURL = thisHostBaseUrl
   if (origin.includes('app-') && replaceAppWithWWW) {
     hostURL = String(thisHostBaseUrl).replace('app-', 'www-')
+    // eslint-disable-next-line no-console
+    console.warn('This host { uri : ' + hostURL + ' } needs KTH VPN. Make sure you are connected with KTH VPN.')
   }
   return hostURL.slice(-1) === '/' ? hostURL.slice(0, -1) : hostURL
 }
