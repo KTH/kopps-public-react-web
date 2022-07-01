@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.8",
-    "@kth/api-call": "^4.0.37",
+    "@kth/api-call": "^4.0.38",
     "@kth/kth-node-web-common": "^7.0.9",
     "@kth/kth-reactstrap": "^0.4.53",
     "@kth/log": "^4.0.4",
@@ -86,7 +86,7 @@
     "@testing-library/react": "^12.1.4",
     "@types/jest": "^27.4.1",
     "babel-loader": "^8.2.4",
-    "concurrently": "^7.0.0",
+    "concurrently": "^7.2.2",
     "css-loader": "^6.7.1",
     "decache": "^4.6.1",
     "eslint": "^8.12.0",
