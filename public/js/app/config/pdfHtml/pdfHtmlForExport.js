@@ -64,14 +64,13 @@ function getHTMLHead(title, footerContentLeft, footerContentRight) {
     padding-right: 1.5em;
   }
   
-  h1, h2, h3 {
+  h1, h2, h3, h4 {
     font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;
     font-weight: 100;
-    page-break-inside: avoid;
   }
 
   .extent-container {
-    page-break-after: always;
+    page-break-inside: avoid;
   }
 
   .supplementary-container {
@@ -83,7 +82,12 @@ function getHTMLHead(title, footerContentLeft, footerContentRight) {
   }
 
   .eligibilty-container {
+    page-break-inside: avoid;
     page-break-after: always;
+  }
+
+  .implementation-container {
+    page-break-inside: avoid;
   }
 
   body {
@@ -105,8 +109,6 @@ export function getCompleteHTMLForPDFForObjImpElibExtent(
   semesterDescription,
   swedish_translation_text,
   body,
-  appendix1Text,
-  appendix2Text,
   title,
   footerContentLeft,
   footerContentRight,
@@ -142,8 +144,6 @@ export function getCompleteHTMLForPDFForObjImpElibExtent(
                                            : ''
                                        }
                                        ${body}
-                                       <p>${appendix1Text}</p>
-                                       <p>${appendix2Text}</p>
                             </article>
                         </div>
              </div>

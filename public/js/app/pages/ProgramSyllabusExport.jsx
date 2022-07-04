@@ -76,8 +76,6 @@ function ProgramSyllabusExport({ applicationStore }) {
       semesterDescription,
       swedishTranslationText,
       pdfObjExtElgbImlpContainer.innerHTML,
-      t('programme_appendix1'),
-      t('programme_appendix2'),
       programmeCode + '-' + term + '.pdf | KTH',
       bottomLeftText,
       bottomRightText,

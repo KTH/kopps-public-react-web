@@ -150,6 +150,8 @@ export function ImplementationContentForPDF() {
   const { language } = useStore()
   const t = translate(language)
   const pageHeading = t('programme_implementation')
+  const appendix1 = t('programme_appendix1')
+  const appendix2 = t('programme_appendix2')
   return (
     <>
       <Row>
@@ -160,14 +162,34 @@ export function ImplementationContentForPDF() {
       <Row>
         <Col>
           <Article classNames={['paragraphs']}>
-            <ImplementationStructure />
-            <ImplementationCourses />
-            <ImplementationGradingSystem />
-            <ImplementationParticipation />
-            <ImplementationPreviousStudies />
-            <ImplementationStudiesAbroad />
-            <ImplementationDegreeProject />
-            <ImplementationDegree />
+            <div className="implementation-container">
+              <ImplementationStructure />
+            </div>
+            <div className="implementation-container">
+              <ImplementationCourses />
+            </div>
+            <div className="implementation-container">
+              <ImplementationGradingSystem />
+            </div>
+            <div className="implementation-container">
+              <ImplementationParticipation />
+            </div>
+            <div className="implementation-container">
+              <ImplementationPreviousStudies />
+            </div>
+            <div className="implementation-container">
+              <ImplementationStudiesAbroad />
+            </div>
+            <div className="implementation-container">
+              <ImplementationDegreeProject />
+            </div>
+            <div className="implementation-container">
+              <ImplementationDegree />
+            </div>
+            <div className="implementation-container">
+              <p>{appendix1}</p>
+              <p>{appendix2}</p>
+            </div>
           </Article>
         </Col>
       </Row>
