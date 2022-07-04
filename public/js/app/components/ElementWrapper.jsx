@@ -4,17 +4,23 @@ import PropTypes from 'prop-types'
 import { MobxStoreProvider } from '../mobx'
 import NotFound from '../pages/NotFound'
 
-function ElementWrapper({
-  createBreadcrumbs,
-  component: Component,
-  layout: Layout,
-  applicationStore,
-  createMenuData,
-  ...rest
-}) {
+function ElementWrapper({ createBreadcrumbs, component: Component, layout: Layout, applicationStore, createMenuData }) {
   const menuData = createMenuData(applicationStore)
   const breadcrumbs = createBreadcrumbs(applicationStore)
   const { statusCode } = applicationStore
+
+  React.useEffect(() => {
+    let isMounted = true
+    if (isMounted) {
+      const siteNameElement = document.querySelector('.block.siteName a')
+      if (siteNameElement) {
+        const rawHref = siteNameElement.href
+        siteNameElement.href = rawHref.replace('.se//', '.se/')
+      }
+    }
+    return () => (isMounted = false)
+  }, [])
+
   return (
     <MobxStoreProvider initCallback={() => applicationStore}>
       <Layout breadcrumbs={breadcrumbs} menuData={menuData}>
