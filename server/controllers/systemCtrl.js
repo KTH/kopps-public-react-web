@@ -15,7 +15,6 @@ const version = require('../../config/version')
 const i18n = require('../../i18n')
 const packageFile = require('../../package.json')
 
-const api = require('../api')
 const { server: config } = require('../configuration')
 
 /**

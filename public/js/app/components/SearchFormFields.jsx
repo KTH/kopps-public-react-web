@@ -31,7 +31,6 @@ function SearchFormFields({ caption, openOptions, onSubmit }) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    const { pattern } = state
 
     setState({ pattern: pattern.trim() })
 

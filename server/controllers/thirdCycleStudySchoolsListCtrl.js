@@ -8,9 +8,6 @@ const i18n = require('../../i18n')
 const koppsApi = require('../kopps/koppsApi')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
-const { compareSchools, filterOutDeprecatedSchools } = require('../../domain/schools')
-const { thirdCycleDepartmentLink } = require('../../domain/links')
-const { metaTitleAndDescriptionByDepartment } = require('../utils/titles')
 const { fillStoreWithBasicConfig, fetchAndFillSchoolsList } = require('../stores/schoolsListStoreSSR')
 
 async function _fillApplicationStoreWithAllSchoolsInThirdCycleStudy({ applicationStore, lang }) {
@@ -41,12 +38,12 @@ async function getAllSchoolsAndDepartmentsInThirdCycleStudy(req, res, next) {
     log.info(`Default store was filled in and compressed on server side, for schools which have third-cycle courses`)
 
     const { thirdCycleSchoolsAndDepartments: proxyPrefix } = serverConfig.proxyPrefixPath
-    const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const view = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('third_cycle_courses_by_school', lang)
 
     res.render('app/index', {
       instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
-      html,
+      html: view,
       title,
       compressedStoreCode,
       description: '',

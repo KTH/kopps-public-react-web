@@ -4,11 +4,8 @@ const log = require('@kth/log')
 const language = require('@kth/kth-node-web-common/lib/language')
 
 const { server: serverConfig } = require('../configuration')
-const i18n = require('../../i18n')
-const koppsApi = require('../kopps/koppsApi')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
-const { compareSchools, filterOutDeprecatedSchools } = require('../../domain/schools')
 const { departmentTabTitle } = require('../utils/titles')
 const {
   fillBreadcrumbsDynamicItems,
@@ -36,13 +33,13 @@ async function getCoursesPerDepartment(req, res, next) {
     log.info(`Default store was filled in and compressed on server side`, { departmentCode })
 
     const { thirdCycleCoursesPerDepartment: proxyPrefix } = serverConfig.proxyPrefixPath
-    const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const view = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
 
     const title = departmentTabTitle(departmentName, lang)
 
     res.render('app/index', {
       instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
-      html,
+      html: view,
       title,
       compressedStoreCode,
       description: '',
