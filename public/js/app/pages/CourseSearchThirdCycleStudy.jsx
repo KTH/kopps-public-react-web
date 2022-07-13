@@ -10,6 +10,7 @@ import FooterContent from '../components/FooterContent'
 
 import { SearchInputField } from '../components/index'
 import SearchResultDisplay from '../components/SearchResultDisplay'
+import { replaceSiteLinkForThirdCyclePages } from '../util/links'
 
 function getHelpText(langAbbr, langIndex) {
   const { thirdCycleSearchInstructions } = i18n.messages[langIndex]
@@ -30,7 +31,7 @@ function getHelpText(langAbbr, langIndex) {
 
 const CourseSearchThirdCycleStudy = () => {
   const { language: lang, languageIndex, textPattern: initialPattern } = useStore()
-  const { thirdCycleSearch, thirdCycleSearchInstructions } = i18n.messages[languageIndex]
+  const { thirdCycleSearch, thirdCycleSearchInstructions, messages } = i18n.messages[languageIndex]
   const { searchHeading, leadIntro, linkToUsualSearch } = thirdCycleSearch
   const { search_help_collapse_header: collapseHeader, search_research_help_9: lastInstruction } =
     thirdCycleSearchInstructions
@@ -42,6 +43,15 @@ const CourseSearchThirdCycleStudy = () => {
   function handleSubmit(patternValue) {
     setPattern(patternValue)
   }
+
+  React.useEffect(() => {
+    let isMounted = true
+    if (isMounted) {
+      const { third_cycle_courses_by_school: siteName } = messages
+      replaceSiteLinkForThirdCyclePages(siteName, lang)
+    }
+    return () => (isMounted = false)
+  })
 
   return (
     <>

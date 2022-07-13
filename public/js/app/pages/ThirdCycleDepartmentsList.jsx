@@ -10,7 +10,7 @@ import FooterContent from '../components/FooterContent'
 import { useStore } from '../mobx'
 import translate from '../../../../domain/translate'
 import { localeCompareDepartments } from '../../../../domain/departments'
-import { thirdCycleDepartmentLink } from '../util/links'
+import { replaceSiteLinkForThirdCyclePages, thirdCycleDepartmentLink } from '../util/links'
 
 function DepartmentsLinkListResearch({ departments }) {
   const { language } = useStore()
@@ -62,11 +62,19 @@ function DeprecatedSchools() {
 function ThirdCycleDepartmentsList() {
   const { language } = useStore()
   const t = translate(language)
+  const pageName = t('third_cycle_courses_by_school')
+
+  React.useEffect(() => {
+    let isMounted = true
+    if (isMounted) replaceSiteLinkForThirdCyclePages(pageName, language)
+    return () => (isMounted = false)
+  })
+
   return (
     <>
       <Row>
         <Col>
-          <PageHeading>{t('third_cycle_courses_by_school')}</PageHeading>
+          <PageHeading>{pageName}</PageHeading>
         </Col>
       </Row>
       <Row>

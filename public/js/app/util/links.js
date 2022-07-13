@@ -56,6 +56,23 @@ function literatureListLink(schoolCode, term, lang) {
   return pageLink(`/student/kurser/lit/${term}/${schoolCode}`, lang)
 }
 
+function thirdCycleStudyCatalogLink(language) {
+  return pageLink(`/utbildning/forskarutbildning/kurser/avdelning`, language)
+}
+
+function replaceSiteLink(siteName, siteUrl) {
+  const siteNameElement = document.querySelector('.block.siteName a')
+  if (siteNameElement) {
+    siteNameElement.textContent = siteName
+    siteNameElement.href = siteUrl
+  }
+}
+
+function replaceSiteLinkForThirdCyclePages(siteName, language) {
+  const siteUrl = thirdCycleStudyCatalogLink(language)
+  return replaceSiteLink(siteName, siteUrl)
+}
+
 export {
   parentLink,
   pageLink,
@@ -73,4 +90,6 @@ export {
   appendix1Link,
   literatureListLink,
   programLinkYear1,
+  replaceSiteLink,
+  replaceSiteLinkForThirdCyclePages,
 }
