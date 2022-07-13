@@ -30,20 +30,20 @@ function getHTMLHead(title, footerContentLeft, footerContentRight) {
       border-top: 2px solid #555555;
   }
 }
-.table .active-period {
-  background-color: #e6ecf5;
-  color: #333333;
-  text-align: center;
+  .table .active-period {
+   background-color: #e6ecf5;
+   color: #333333;
+   text-align: center;
   }
 
   .table b.course-comment {
-  font-weight: normal;
-  font-style: italic;
-  display: block;
+   font-weight: normal;
+   font-style: italic;
+   display: block;
   }
 
   .table td.credits {
-  white-space: nowrap;
+   white-space: nowrap;
   }
 
   table, th, td {
@@ -64,9 +64,13 @@ function getHTMLHead(title, footerContentLeft, footerContentRight) {
     padding-right: 1.5em;
   }
   
-  h1, h2, h3, h4 {
+  h1, h2, h3 {
     font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;
     font-weight: 100;
+  }
+
+  h4 {
+    font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;
   }
 
   .extent-container {

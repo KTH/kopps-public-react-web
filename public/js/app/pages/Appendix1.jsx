@@ -145,8 +145,10 @@ function ConditionallyElectiveCoursesInfo({ studyYear, code }) {
   const t = translate(language)
   return conditionallyElectiveCoursesInfo[code] && conditionallyElectiveCoursesInfo[code][studyYear] ? (
     <>
-      <h4>{t('programme_conditionally_elective_courses_info')}</h4>
-      <KoppsData html={conditionallyElectiveCoursesInfo[code][studyYear]} />
+      <div className="conditionally-elective-course-info-container">
+        <h4>{t('programme_conditionally_elective_courses_info')}</h4>
+        <KoppsData html={conditionallyElectiveCoursesInfo[code][studyYear]} />
+      </div>
     </>
   ) : null
 }
