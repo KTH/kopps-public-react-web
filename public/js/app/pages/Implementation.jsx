@@ -162,31 +162,31 @@ export function ImplementationContentForPDF() {
       <Row>
         <Col>
           <Article classNames={['paragraphs']}>
-            <div className="implementation-container">
+            <div className="page-break-inside">
               <ImplementationStructure />
             </div>
-            <div className="implementation-container">
+            <div className="page-break-inside">
               <ImplementationCourses />
             </div>
-            <div className="implementation-container">
+            <div className="page-break-inside">
               <ImplementationGradingSystem />
             </div>
-            <div className="implementation-container">
+            <div className="page-break-inside">
               <ImplementationParticipation />
             </div>
-            <div className="implementation-container">
+            <div className="page-break-inside">
               <ImplementationPreviousStudies />
             </div>
-            <div className="implementation-container">
+            <div className="page-break-inside">
               <ImplementationStudiesAbroad />
             </div>
-            <div className="implementation-container">
+            <div className="page-break-inside">
               <ImplementationDegreeProject />
             </div>
-            <div className="implementation-container">
+            <div className="page-break-inside">
               <ImplementationDegree />
             </div>
-            <div className="implementation-container">
+            <div className="page-break-inside">
               {appendix1}
               <br />
               <br />

@@ -106,12 +106,12 @@ function ElectiveCondition({ studyYear, electiveCondition, code, isExport }) {
     electiveCondition === 'O' ? formattedCredits : ''
   }`
   return (
-    <Fragment key={electiveCondition}>
-      <div className="elective-container">
+    <div className="page-break-inside">
+      <Fragment key={electiveCondition}>
         <h4>{heading}</h4>
         <CourseListTable courses={electiveConditionCourses[electiveCondition]} />
-      </div>
-    </Fragment>
+      </Fragment>
+    </div>
   )
 }
 
@@ -127,7 +127,7 @@ function SupplementaryInfo({ studyYear, code }) {
   const t = translate(language)
   return supplementaryInfo[code] && supplementaryInfo[code][studyYear] ? (
     <>
-      <div className="supplementary-container">
+      <div className="page-break-inside">
         <h4>{t('programme_supplementary_information')}</h4>
         <KoppsData html={supplementaryInfo[code][studyYear]} />
       </div>
@@ -165,16 +165,18 @@ function StudyYear({ studyYear, code, isExport }) {
   const studyYearHeader = `${t('study_year')} ${studyYear}`
   return (
     <Fragment key={studyYear}>
-      <h3>{studyYearHeader}</h3>
-      {ELECTIVE_CONDITIONS.map(electiveCondition => (
-        <ElectiveCondition
-          key={electiveCondition}
-          studyYear={studyYear}
-          electiveCondition={electiveCondition}
-          isExport={isExport}
-          code={code}
-        />
-      ))}
+      <div className="page-break-inside">
+        <h3>{studyYearHeader}</h3>
+        {ELECTIVE_CONDITIONS.map(electiveCondition => (
+          <ElectiveCondition
+            key={electiveCondition}
+            studyYear={studyYear}
+            electiveCondition={electiveCondition}
+            isExport={isExport}
+            code={code}
+          />
+        ))}
+      </div>
       <SupplementaryInfo studyYear={studyYear} code={code} />
       <ConditionallyElectiveCoursesInfo studyYear={studyYear} code={code} />
     </Fragment>

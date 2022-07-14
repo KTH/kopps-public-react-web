@@ -169,7 +169,7 @@ function ProgramSyllabusExport({ applicationStore }) {
             component={ObjectivesForExport}
             applicationStore={applicationStore}
           ></ElementWrapperForPDF>
-          <div className="extent-container">
+          <div className="page-break-inside">
             <ElementWrapperForPDF
               component={ExtentContentForPDF}
               applicationStore={applicationStore}

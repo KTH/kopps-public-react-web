@@ -55,10 +55,6 @@ function getHTMLHead(title, footerContentLeft, footerContentRight) {
       width: 100%;
   }
 
-  .appendix-container {
-    page-break-inside : avoid;
-  }
-
   .pdfBodyWrapper {
     padding-left: 1.5em;
     padding-right: 1.5em;
@@ -73,24 +69,12 @@ function getHTMLHead(title, footerContentLeft, footerContentRight) {
     font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;
   }
 
-  .extent-container {
-    page-break-inside: avoid;
-  }
-
-  .supplementary-container {
-    page-break-inside: avoid;
-  }
-
-  .elective-container {
-    page-break-inside: avoid;
-  }
-
   .eligibilty-container {
     page-break-inside: avoid;
     page-break-after: always;
   }
 
-  .implementation-container {
+  .page-break-inside {
     page-break-inside: avoid;
   }
 
@@ -186,7 +170,7 @@ export function getAppendixHTML(
                           </header>
                           ${
                             type === 'appendix1'
-                              ? `<div class="appendix-container">
+                              ? `<div class="page-break-inside">
                           ${body}
                           </div>`
                               : body

@@ -22,7 +22,7 @@ function Specializations() {
   return specializations.map(({ code, title, description }) => {
     const heading = `${title} (${code})`
     return (
-      <div key={`div-${heading}`}>
+      <div key={`div-${heading}`} className="page-break-inside">
         <h2 key={heading}>{heading}</h2>
         {description ? (
           <KoppsData key={`kopps-data-${heading}`} html={description} />
