@@ -187,8 +187,10 @@ export function ImplementationContentForPDF() {
               <ImplementationDegree />
             </div>
             <div className="implementation-container">
-              <p>{appendix1}</p>
-              <p>{appendix2}</p>
+              {appendix1}
+              <br />
+              <br />
+              {appendix2}
             </div>
           </Article>
         </Col>
