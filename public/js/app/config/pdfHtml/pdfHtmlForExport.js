@@ -78,6 +78,10 @@ function getHTMLHead(title, footerContentLeft, footerContentRight) {
     page-break-inside: avoid;
   }
 
+  p {
+    page-break-inside: auto;
+  }
+
   body {
     margin-top: 2em;
   }
