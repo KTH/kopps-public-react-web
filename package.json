@@ -41,7 +41,7 @@
     "test:watch": "NODE_ENV=test jest --watch"
   },
   "dependencies": {
-    "@babel/runtime": "^7.17.8",
+    "@babel/runtime": "^7.18.9",
     "@kth/api-call": "^4.0.38",
     "@kth/kth-node-web-common": "^7.0.11",
     "@kth/kth-reactstrap": "^0.4.54",
