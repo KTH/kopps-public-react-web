@@ -41,9 +41,9 @@
     "test:watch": "NODE_ENV=test jest --watch"
   },
   "dependencies": {
-    "@babel/runtime": "^7.17.8",
+    "@babel/runtime": "^7.18.9",
     "@kth/api-call": "^4.0.38",
-    "@kth/kth-node-web-common": "^7.0.11",
+    "@kth/kth-node-web-common": "^7.0.12",
     "@kth/kth-reactstrap": "^0.4.54",
     "@kth/log": "^4.0.4",
     "@kth/monitor": "^3.0.24",
@@ -63,7 +63,7 @@
     "kth-node-i18n": "^1.0.14",
     "kth-node-redis": "^3.1.38",
     "kth-style": "^8.0.36",
-    "mobx": "^6.3.13",
+    "mobx": "^6.6.1",
     "mobx-react": "^7.2.1",
     "moment-timezone": "^0.5.34",
     "prop-types": "^15.8.1",
