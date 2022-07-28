@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.18.9",
-    "@kth/api-call": "^4.0.38",
+    "@kth/api-call": "^4.0.39",
     "@kth/kth-node-web-common": "^7.0.12",
     "@kth/kth-reactstrap": "^0.4.54",
     "@kth/log": "^4.0.4",
@@ -57,7 +57,7 @@
     "dotenv": "^16.0.1",
     "express": "^4.17.3",
     "express-handlebars": "^6.0.6",
-    "kth-node-access-log": "^0.2.7",
+    "kth-node-access-log": "^0.2.9",
     "kth-node-configuration": "^2.0.11",
     "kth-node-express-routing": "^2.0.15",
     "kth-node-i18n": "^1.0.14",
