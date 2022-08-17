@@ -140,7 +140,7 @@ server.set('case sensitive routing', true)
  */
 const bodyParser = require('body-parser')
 
-server.use(bodyParser.json({ limit: '200kb' }))
+server.use(bodyParser.json({ limit: '400kb' }))
 const cookieParser = require('cookie-parser')
 
 server.use(bodyParser.json())
