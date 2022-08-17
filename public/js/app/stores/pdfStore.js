@@ -6,6 +6,10 @@ function setCredits(credits) {
   this.credits = credits
 }
 
+function setEducationalLevel(educationalLevel) {
+  this.educationalLevel = educationalLevel
+}
+
 function createPdfStore() {
   const pdfStore = {
     /**
@@ -26,6 +30,15 @@ function createPdfStore() {
      * @param {number} setCredits
      */
     setCredits,
+    /**
+     * @property {string} credits
+     */
+    educationalLevel: null,
+    /**
+     * @method
+     * @param {string} setEducationalLevel
+     */
+    setEducationalLevel,
   }
   return pdfStore
 }

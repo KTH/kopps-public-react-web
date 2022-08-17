@@ -31,8 +31,17 @@ function ProgramSyllabusExport({ applicationStore }) {
     replacePathNameWithHref(pdfObjExtElgbImlpContainer)
     replacePathNameWithHref(pdfAppendix1Container)
     replacePathNameWithHref(pdfAppendix2Container)
-    const { language, programmeCode, programmeName, programmeNameInOtherLanguage, credits, term, thisHostBaseUrl } =
-      applicationStore
+    const {
+      language,
+      programmeCode,
+      programmeName,
+      programmeNameInOtherLanguage,
+      credits,
+      term,
+      thisHostBaseUrl,
+      educationalLevel,
+      creditUnitAbbr,
+    } = applicationStore
     const t = translate(language)
     // get bottom left from translation and put program name and batch and term
     const bottomRightText = t('page_footer_pdf')
@@ -50,7 +59,7 @@ function ProgramSyllabusExport({ applicationStore }) {
     const semesterTranslatedObject = t('semester')
     const semester = _isSpringTerm(term) ? semesterTranslatedObject[1] : semesterTranslatedObject[2]
     // get credits translations
-    const creditsText = t('credits')
+    const creditsText = educationalLevel === 'BASIC' ? t('credits') : creditUnitAbbr
     // get years from term
     const year = term.toString().charAt(term.toString().length - 3) + term.toString().charAt(term.toString().length - 2)
     // get program description

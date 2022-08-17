@@ -63,6 +63,7 @@ async function fetchAndFillProgrammeDetails({ applicationStore, lang, programmeC
     owningSchoolCode,
     credits,
     titleOtherLanguage,
+    educationalLevel,
   } = programme
   applicationStore.setProgrammeName(programmeName)
   applicationStore.setLengthInStudyYears(lengthInStudyYears)
@@ -75,6 +76,7 @@ async function fetchAndFillProgrammeDetails({ applicationStore, lang, programmeC
   if (storeId === 'pdfStore') {
     applicationStore.setCredits(credits)
     applicationStore.setProgrammeNameInOtherLanguage(titleOtherLanguage)
+    applicationStore.setEducationalLevel(educationalLevel)
   }
   // eslint-disable-next-line consistent-return
   return { programmeName, ...programme }
