@@ -551,7 +551,7 @@ const applicationStores = [
       env: 'dev',
     },
     setBrowserConfig: function setBrowserConfig(config) {
-      var thisHostBaseUrl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null
+      const thisHostBaseUrl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null
       this.browserConfig = config
       this.thisHostBaseUrl = thisHostBaseUrl
     },
@@ -572,10 +572,6 @@ const applicationStores = [
       },
     ],
     setBreadcrumbsDynamicItems: function setBreadcrumbsDynamicItems(items) {
-      // Example: [{
-      //   url: 'https://www.kth.se/student/kurser/program/A/20042/arskurs5',
-      //   label: 'Degree Programme in Architecture',
-      // }],
       this.breadcrumbsDynamicItems = items
     },
     studyProgramme: {
