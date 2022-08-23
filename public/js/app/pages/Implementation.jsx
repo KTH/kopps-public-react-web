@@ -57,6 +57,22 @@ function ImplementationCourses() {
   )
 }
 
+function ImplementationCoursesForExport() {
+  const { language, studyProgramme } = useStore()
+  const t = translate(language)
+  const { courseRules } = studyProgramme
+  return (
+    <>
+      <Heading size="h2" text={t('courses')} />
+      <p>
+        {`${t('programme_implementation_courses_intro')} `}
+        {String(t('appendix1')).toLowerCase()}.
+      </p>
+      <KoppsData html={courseRules} />
+    </>
+  )
+}
+
 function ImplementationGradingSystem() {
   const { language, studyProgramme } = useStore()
   const t = translate(language)
@@ -166,7 +182,7 @@ export function ImplementationContentForPDF() {
               <ImplementationStructure />
             </div>
             <div className="page-break-inside">
-              <ImplementationCourses />
+              <ImplementationCoursesForExport />
             </div>
             <div className="page-break-inside">
               <ImplementationGradingSystem />
