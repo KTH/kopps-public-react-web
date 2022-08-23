@@ -46,7 +46,6 @@ const messages = {
     course_scope_abbr: 'Scope',
     credits: 'credits',
     creditUnitAbbr: 'Credits',
-    pre_education_credits: 'Pre-education credits',
 
     courses: 'Courses',
     courses_of_program: 'Courses Part of Programme',
