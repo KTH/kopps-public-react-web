@@ -101,7 +101,9 @@ function ElectiveCondition({ studyYear, electiveCondition, code, isExport }) {
     0
   )
 
-  const formattedCredits = ` (${formatCredits(language, credits)} ${isExport ? t('creditUnitAbbr') : creditUnitAbbr})`
+  const formattedCredits = ` (${formatCredits(language, credits)} ${
+    isExport ? (creditUnitAbbr === 'fup' ? t('pre_education_credits') : t('creditUnitAbbr')) : creditUnitAbbr
+  })`
   const heading = `${t('elective_condition')[electiveCondition]} ${t('courses').toLowerCase()}${
     electiveCondition === 'O' ? formattedCredits : ''
   }`
