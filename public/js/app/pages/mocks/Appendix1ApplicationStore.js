@@ -3517,6 +3517,186 @@ const applicationStores = [
     },
     thisHostBaseUrl: null,
   },
+  {
+    browserConfig: {
+      proxyPrefixPath: {
+        uri: '/student/kurser',
+        courseSearch: '/student/kurser/sokkurs',
+        courseSearchInternApi: '/student/kurser/intern-api/sok',
+        department: '/student/kurser/org',
+        programme: '/student/kurser/program',
+        programmesList: '/student/kurser/kurser-inom-program',
+        schoolsList: '/student/kurser/program',
+        studyHandbook: '/student/program/shb',
+        thirdCycleCourseSearch: '/utbildning/forskarutbildning/kurser/sok',
+        thirdCycleSchoolsAndDepartments: '/utbildning/forskarutbildning/kurser/avdelning',
+        thirdCycleCoursesPerDepartment: '/utbildning/forskarutbildning/kurser/org',
+        literatureList: '/student/kurser/lit',
+        programmeSyllabusPDF: '/student/kurser/intern-api/PDFRenderFunction',
+      },
+      redirectProxyPath: {
+        studentRoot: '/student/kurser',
+        thirdCycleRoot: '/utbildning/forskarutbildning/kurser',
+        coursesPerDepartment: '/student/kurser/kurser-per-avdelning',
+        departmentCourses: '/student/kurser/avdelning/:departmentCode/kurser/',
+      },
+      markHtmlFromKopps: true,
+      env: 'dev',
+    },
+    setBrowserConfig: function setBrowserConfig(config) {
+      const thisHostBaseUrl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null
+      this.browserConfig = config
+      this.thisHostBaseUrl = thisHostBaseUrl
+    },
+    statusCode: 200,
+    setStatusCode: function setStatusCode(statusCode) {
+      this.statusCode = statusCode
+    },
+    language: 'en',
+    languageIndex: 0,
+    setLanguage: function setLanguage(lang) {
+      this.language = lang
+      this.languageIndex = lang === 'en' ? 0 : 1
+    },
+    breadcrumbsDynamicItems: [
+      {
+        url: '/student/kurser/program/TBTMD?l=en',
+        label: 'Technical Preparatory Semester',
+      },
+    ],
+    setBreadcrumbsDynamicItems: function setBreadcrumbsDynamicItems(items) {
+      // Example: [{
+      //   url: 'https://www.kth.se/student/kurser/program/A/20042/arskurs5',
+      //   label: 'Degree Programme in Architecture',
+      // }],
+      this.breadcrumbsDynamicItems = items
+    },
+    studyProgramme: {
+      id: 8779,
+      validFromTerm: '20201',
+      programmeObjectives:
+        '<p>The purpose of education is to broaden the skills of students who left secondary school without the special permission required for technical and scientific education.</p><p>The technical preparatory semester training adapted to the subsequent training and, in addition to the widening of the subject-specific skills also train the students ability for universities and higher education and also increase thenumber of women inmathematics, science and technicaleducation.</p><p><strong>After the completion of professional education, the student should be able to:</strong></p>',
+      knowledgeObjectives:
+        '<ul><li>demonstrate knowledge in the scientific fields of mathematics and physics</li></ul>',
+      skillsObjectives:
+        '<ul><li>demonstrate the capacity for team work and collaboration in groups with different composition</li><li>demonstrate the ability to verbally and in writing to explain and discuss the basic science, problems and solutions</li></ul>',
+      abilityObjectives: '<ul><li>show the ability of independent and critical thinking</li></ul>',
+      extent:
+        '<p>The program includes 1 semester, 30 credits.<br />The program is at a preliminary level.<br />The programme is given in Swedish.</p><p>The program follows the secondary school curriculum to a large extent. The content and depth of knowledge is customized to prepare the student for higher education.</p><p>The&#160;program provides guaranteed seat at the KTH Bachelor and Master of Science in Engineering programs. The student is not guaranteed a place at their first choice.</p><p>Note thatachievedcreditson theTechnical Preparatory semester&#160;can not beincluded ina degree in engineering.</p>',
+      eligibility:
+        '<p><strong>Upper secondary school before 1 July 2011 and upper secondary education before July 1, 2012.</strong></p><p>General admission requirements and specific admission requirements corresponding to Mathematics C, Chemistry A and Physics A with a grade of Pass or 3.</p><p><strong>Upper secondary school from 1 July 2011 and upper secondary education as of July 1, 2012 (Gy2011).</strong></p><p>General admission requirements and specific admission requirements corresponding to Mathematics 3b or 3c, Chemistry 1 and Physics 1a or 1b1 and1b2 with a grade of E</p><p>For admission, eligibility and selection principles, see KTH&#8217;s admissions policy. www.kth.se</p>',
+      structure: '<p>The academic year is&#160;described in the regulations of KTH, www.kth.se.</p>',
+      approvedAt: '2019-05-16',
+      changedAt: '2019-05-16',
+      programme: {
+        programmeCode: 'TBTMD',
+        title: 'Technical Preparatory Semester',
+        titleOtherLanguage: 'Tekniskt basår, termin 2, KTH Campus',
+        firstAdmissionTerm: '20111',
+        credits: 30,
+        creditUnitLabel: 'Pre-education credits',
+        creditUnitAbbr: 'fup',
+        educationalLevel: 'PREPARATORY',
+        lengthInStudyYears: 1,
+        owningSchoolCode: 'Kemi, bioteknologi och hälsa',
+        degrees: [],
+      },
+    },
+    setStudyProgramme: function setStudyProgramme(studyProgramme) {
+      this.studyProgramme = studyProgramme
+    },
+    programmeCode: 'TBTMD',
+    setProgrammeCode: function setProgrammeCode(programmeCode) {
+      this.programmeCode = programmeCode
+    },
+    programmeName: 'Technical Preparatory Semester',
+    setProgrammeName: function setProgrammeName(programmeName) {
+      this.programmeName = programmeName
+    },
+    term: '20201',
+    setTerm: function setTerm(term) {
+      this.term = term
+    },
+    lengthInStudyYears: 1,
+    setLengthInStudyYears: function setLengthInStudyYears(lengthInStudyYears) {
+      this.lengthInStudyYears = lengthInStudyYears
+    },
+    studyYearCourses: {
+      Common: {
+        1: {
+          O: [
+            {
+              code: 'KH0024',
+              name: 'Mathematics for Technical Preparatory Year II',
+              comment: undefined,
+              credits: 12,
+              creditAbbr: 'fup',
+              level: 'PREPARATORY',
+            },
+            {
+              code: 'KH0025',
+              name: 'Physics for Technical Preparatory Year II',
+              comment: undefined,
+              credits: 18,
+              creditAbbr: 'fup',
+              level: 'PREPARATORY',
+            },
+          ],
+        },
+      },
+    },
+    addElectiveConditionCourse: function addElectiveConditionCourse(courses, electiveCondition, studyYear, code) {
+      if (!this.studyYearCourses[code]) {
+        this.studyYearCourses[code] = null
+      }
+
+      if (!this.studyYearCourses[code][studyYear]) {
+        this.studyYearCourses[code][studyYear] = null
+      }
+
+      if (!this.studyYearCourses[code][studyYear][electiveCondition]) {
+        this.studyYearCourses[code][studyYear][electiveCondition] = []
+      }
+
+      this.studyYearCourses[code][studyYear][electiveCondition].push(courses)
+    },
+    supplementaryInfo: {},
+    addSupplementaryInfo: function addSupplementaryInfo(supplementaryInfo, studyYear, code) {
+      if (!this.supplementaryInfo[code]) {
+        this.supplementaryInfo[code] = null
+      }
+
+      this.supplementaryInfo[code][studyYear] = supplementaryInfo
+    },
+    conditionallyElectiveCoursesInfo: {},
+    addConditionallyElectiveCoursesInfo: function addConditionallyElectiveCoursesInfo(
+      conditionallyElectiveCoursesInfo,
+      studyYear,
+      code
+    ) {
+      if (!this.conditionallyElectiveCoursesInfo[code]) {
+        this.conditionallyElectiveCoursesInfo[code] = null
+      }
+
+      this.conditionallyElectiveCoursesInfo[code][studyYear] = conditionallyElectiveCoursesInfo
+    },
+    studyYears: [1],
+    addStudyYear: function addStudyYear(studyYear) {
+      this.studyYears.push(studyYear)
+    },
+    creditUnitAbbr: 'fup',
+    setCreditUnitAbbr: function setCreditUnitAbbr(creditUnitAbbr) {
+      this.creditUnitAbbr = creditUnitAbbr
+    },
+    specializations: [],
+    setSpecializations: function setSpecializations(specializations) {
+      this.specializations = specializations
+    },
+    addSpecialization: function addSpecialization(specialization) {
+      this.specializations.push(specialization)
+    },
+    thisHostBaseUrl: null,
+  },
 ]
 
 export { applicationStores }

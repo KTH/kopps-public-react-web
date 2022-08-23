@@ -79,4 +79,23 @@ describe('Component <Appendix1>', () => {
     expect(screen.getByText('Spår, Hållfasthetsteknik (TEMB)')).toBeInTheDocument()
     expect(screen.getByText('Spår, Ljud och vibrationer (TEMC)')).toBeInTheDocument()
   })
+
+  test('Use TBTMD Program Application Store to test Appendix1 Content', async () => {
+    useStore.mockReturnValue(applicationStores[2])
+
+    render(<Appendix1 />)
+    expect(screen.getByText('Appendix 1: Course list')).toBeInTheDocument()
+    expect(
+      screen.getByText('Programme syllabus for studies starting in Spring 2020, Technical Preparatory Semester (TBTMD)')
+    ).toBeInTheDocument()
+    expect(screen.getByText('General Courses')).toBeInTheDocument()
+    expect(screen.getByText('Study year 1')).toBeInTheDocument()
+    expect(screen.getByText('Mandatory courses (30.0 fup)')).toBeInTheDocument()
+    expect(screen.getByText('KH0024')).toBeInTheDocument()
+    expect(screen.getByText('KH0025')).toBeInTheDocument()
+    expect(screen.getByText('Mathematics for Technical Preparatory Year II')).toBeInTheDocument()
+    expect(screen.getByText('Physics for Technical Preparatory Year II')).toBeInTheDocument()
+    expect(screen.getByText('12.0 fup')).toBeInTheDocument()
+    expect(screen.getByText('18.0 fup')).toBeInTheDocument()
+  })
 })
