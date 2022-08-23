@@ -189,7 +189,9 @@ function _parseCurriculumsAndFillStore(applicationStore, curriculums) {
       // Common
       const { studyYears } = curriculum
       studyYears.forEach(studyYear => {
-        applicationStore.addStudyYear(studyYear.yearNumber)
+        if (studyYear.courses.length || studyYear.supplementaryInfo || studyYear.conditionallyElectiveCoursesInfo) {
+          applicationStore.addStudyYear(studyYear.yearNumber)
+        }
         if (studyYear.supplementaryInfo) {
           applicationStore.addSupplementaryInfo(studyYear.supplementaryInfo, studyYear.yearNumber, 'Common')
         }
