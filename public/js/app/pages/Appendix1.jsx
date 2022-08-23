@@ -90,7 +90,7 @@ CourseListTable.defaultProps = {
   courses: [],
 }
 
-function ElectiveCondition({ studyYear, electiveCondition, code, isExport }) {
+function ElectiveCondition({ studyYear, electiveCondition, code }) {
   const { language, studyYearCourses, creditUnitAbbr } = useStore()
   const t = translate(language)
   if (!studyYearCourses[code] || !studyYearCourses[code][studyYear]) return null
@@ -101,9 +101,7 @@ function ElectiveCondition({ studyYear, electiveCondition, code, isExport }) {
     0
   )
 
-  const formattedCredits = ` (${formatCredits(language, credits)} ${
-    isExport ? (creditUnitAbbr === 'fup' ? t('pre_education_credits') : t('creditUnitAbbr')) : creditUnitAbbr
-  })`
+  const formattedCredits = ` (${formatCredits(language, credits)} ${creditUnitAbbr})`
   const heading = `${t('elective_condition')[electiveCondition]} ${t('courses').toLowerCase()}${
     electiveCondition === 'O' ? formattedCredits : ''
   }`
@@ -121,7 +119,6 @@ ElectiveCondition.propTypes = {
   studyYear: PropTypes.number.isRequired,
   electiveCondition: PropTypes.string.isRequired,
   code: PropTypes.string.isRequired,
-  isExport: PropTypes.boolean,
 }
 
 function SupplementaryInfo({ studyYear, code }) {
@@ -160,7 +157,7 @@ ConditionallyElectiveCoursesInfo.propTypes = {
   code: PropTypes.string.isRequired,
 }
 
-function StudyYear({ studyYear, code, isExport }) {
+function StudyYear({ studyYear, code }) {
   const { language } = useStore()
   const t = translate(language)
 
@@ -174,7 +171,6 @@ function StudyYear({ studyYear, code, isExport }) {
             key={electiveCondition}
             studyYear={studyYear}
             electiveCondition={electiveCondition}
-            isExport={isExport}
             code={code}
           />
         ))}
@@ -188,10 +184,9 @@ function StudyYear({ studyYear, code, isExport }) {
 StudyYear.propTypes = {
   studyYear: PropTypes.number.isRequired,
   code: PropTypes.string.isRequired,
-  isExport: PropTypes.boolean,
 }
 
-function CommonCourses({ isExport }) {
+function CommonCourses() {
   // TODO: Only get study years for common courses
   const { language, studyYears } = useStore()
   const t = translate(language)
@@ -199,17 +194,13 @@ function CommonCourses({ isExport }) {
     <>
       <h2>{t('curriculums_common_courses')}</h2>
       {studyYears.map(studyYear => (
-        <StudyYear key={studyYear} studyYear={studyYear} code="Common" isExport={isExport} />
+        <StudyYear key={studyYear} studyYear={studyYear} code="Common" />
       ))}
     </>
   ) : null
 }
 
-CommonCourses.propTypes = {
-  isExport: PropTypes.boolean,
-}
-
-function Specialisations({ isExport }) {
+function Specialisations() {
   // TODO: Only get study years for specialisations
   const { specializations } = useStore()
   // TODO: Retrieve proper specialisations
@@ -219,16 +210,12 @@ function Specialisations({ isExport }) {
         <Fragment key={code}>
           <h2>{`${title} (${code})`}</h2>
           {studyYears.map(studyYear => (
-            <StudyYear key={studyYear} studyYear={studyYear} code={code} isExport={isExport} />
+            <StudyYear key={studyYear} studyYear={studyYear} code={code} />
           ))}
         </Fragment>
       ))}
     </>
   )
-}
-
-Specialisations.propTypes = {
-  isExport: PropTypes.boolean,
 }
 
 export function Appendix1PDFExport() {
@@ -237,8 +224,8 @@ export function Appendix1PDFExport() {
       <Row>
         <Col>
           <Article classNames={['paragraphs']}>
-            <CommonCourses isExport={true} />
-            <Specialisations isExport={true} />
+            <CommonCourses />
+            <Specialisations />
           </Article>
         </Col>
       </Row>
