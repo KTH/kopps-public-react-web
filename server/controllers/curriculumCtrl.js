@@ -135,7 +135,6 @@ async function getIndex(req, res, next) {
     log.info(`${storeId} store was filled in and compressed`, { programmeCode })
 
     const { programme: proxyPrefix } = serverConfig.proxyPrefixPath
-    log.debug({ applicationStore })
 
     const view = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const { metaTitle: title, metaDescription: description } = metaTitleAndDescription(
