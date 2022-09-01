@@ -84,7 +84,7 @@ function ProgramSyllabusExport({ applicationStore }) {
       creditsText,
       semesterDescription,
       swedishTranslationText,
-      pdfObjExtElgbImlpContainer.innerHTML.replace(
+      pdfObjExtElgbImlpContainer.innerHTML.replaceAll(
         language === 'en' ? '?l=en?l=en' : '?l=sv?l=sv',
         language === 'en' ? '?l=en' : '?l=sv'
       ),
@@ -102,7 +102,7 @@ function ProgramSyllabusExport({ applicationStore }) {
       bottomLeftText,
       appendix1 + ' , ' + bottomRightText,
       language,
-      pdfAppendix1Container.innerHTML.replace(
+      pdfAppendix1Container.innerHTML.replaceAll(
         language === 'en' ? '?l=en?l=en' : '?l=sv?l=sv',
         language === 'en' ? '?l=en' : '?l=sv'
       ),
@@ -117,7 +117,7 @@ function ProgramSyllabusExport({ applicationStore }) {
       bottomLeftText,
       appendix2 + ' , ' + bottomRightText,
       language,
-      pdfAppendix2Container.innerHTML.replace(
+      pdfAppendix2Container.innerHTML.replaceAll(
         language === 'en' ? '?l=en?l=en' : '?l=sv?l=sv',
         language === 'en' ? '?l=en' : '?l=sv'
       ),
