@@ -84,7 +84,10 @@ function ProgramSyllabusExport({ applicationStore }) {
       creditsText,
       semesterDescription,
       swedishTranslationText,
-      pdfObjExtElgbImlpContainer.innerHTML,
+      pdfObjExtElgbImlpContainer.innerHTML.replace(
+        language === 'en' ? '?l=en?l=en' : '?l=sv?l=sv',
+        language === 'en' ? '?l=en' : '?l=sv'
+      ),
       programmeCode + '-' + term + '.pdf | KTH',
       bottomLeftText,
       bottomRightText,
@@ -99,7 +102,10 @@ function ProgramSyllabusExport({ applicationStore }) {
       bottomLeftText,
       appendix1 + ' , ' + bottomRightText,
       language,
-      pdfAppendix1Container.innerHTML,
+      pdfAppendix1Container.innerHTML.replace(
+        language === 'en' ? '?l=en?l=en' : '?l=sv?l=sv',
+        language === 'en' ? '?l=en' : '?l=sv'
+      ),
       'appendix1'
     )
     // get html for Appendix 2
@@ -111,7 +117,10 @@ function ProgramSyllabusExport({ applicationStore }) {
       bottomLeftText,
       appendix2 + ' , ' + bottomRightText,
       language,
-      pdfAppendix2Container.innerHTML,
+      pdfAppendix2Container.innerHTML.replace(
+        language === 'en' ? '?l=en?l=en' : '?l=sv?l=sv',
+        language === 'en' ? '?l=en' : '?l=sv'
+      ),
       'appendix2'
     )
 
