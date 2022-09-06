@@ -6,7 +6,10 @@ function replacePathNameWithHref(element) {
       if (a.outerHTML.includes('#')) {
         a.outerHTML = a.outerHTML.replace('#', a.href)
       } else {
-        a.outerHTML = a.outerHTML.replace(a.pathname, a.href)
+        // If path is already fully defined then no need to contruct full path
+        if (!String(a.href).startsWith('http', 0)) {
+          a.outerHTML = a.outerHTML.replace(a.pathname, a.href)
+        }
       }
     }
   }
