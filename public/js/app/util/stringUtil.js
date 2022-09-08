@@ -2,14 +2,14 @@ function replacePathNameWithHref(element) {
   const aEl = element.getElementsByTagName('a')
   for (let i = 0; i < aEl.length; i++) {
     const a = aEl[i]
-    if (!String(a.outerHTML).includes(a.href)) {
-      if (a.outerHTML.includes('#')) {
+    const outerHTMLLinks = String(a.outerHTML).split('<a href="')
+    const link = outerHTMLLinks && outerHTMLLinks.length > 1 ? outerHTMLLinks[1].trim() : ''
+    if (!link.startsWith('http://') && !link.startsWith('https://')) {
+      // Need to replace '#' if only there in the outerHTML as a href
+      if (link.includes('#') && link.split('#').length === 2) {
         a.outerHTML = a.outerHTML.replace('#', a.href)
       } else {
-        // If path is already fully defined then no need to contruct full path
-        if (!String(a.href).startsWith('http', 0)) {
-          a.outerHTML = a.outerHTML.replace(a.pathname, a.href)
-        }
+        a.outerHTML = a.outerHTML.replace(a.pathname, a.href)
       }
     }
   }
