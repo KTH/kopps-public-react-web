@@ -144,7 +144,7 @@ function ProgramSyllabusExport({ applicationStore }) {
           const reader = new FileReader()
           reader.onload = () => {
             const blobAsDataUrl = reader.result
-            const iframe = `<iframe width="100%" height="100%" src=" ${blobAsDataUrl} "></iframe>`
+            const iframe = `<iframe width="100%" height="100%" src="${blobAsDataUrl}#view=fitH" allowfullscreen></iframe>`
             document.write(iframe)
             document.title = programmeCode + '-' + term + '.pdf | KTH'
             document.body.style.setProperty('margin', '-2px')
