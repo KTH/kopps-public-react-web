@@ -145,8 +145,8 @@ function ProgramSyllabusExport({ applicationStore }) {
           reader.onload = () => {
             const blobAsDataUrl = reader.result
             const iframe = `<object style="position:absolute; left: 0; top: 0;" width="100%" height="100%" scrolling="auto" data="${blobAsDataUrl}" type="application/pdf">
-            This browser does not support PDFs. Please download the PDF to view it: 
-            <a href="${fileURL}">Download PDF</a>
+            <iframe style="position:absolute; left: 0; top: 0;" width="100%" height="100%" scrolling="auto" src="https://docs.google.com/viewer?url=${fileURL}&embedded=true" type="application/pdf">
+            </iframe>
             </object>`
             document.write(iframe)
             document.title = programmeCode + '-' + term + '.pdf | KTH'
