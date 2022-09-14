@@ -51,11 +51,6 @@
 </head>
 
 <body>
-  <script type="text/javascript">
-    document.getElementById('theFrame').contentWindow.onload = () => {
-      document.getElementsByTagName('img')[0].style.width = '100%'
-    }
-  </script>
   <a class="skipToMainContent" href="#mainContent" tabindex="1">{{i18n 'skip_to_main_content' lang}}</a>
   {{#if studentWeb}}
   {{> studentHeader }}
