@@ -144,12 +144,10 @@ function ProgramSyllabusExport({ applicationStore }) {
           const reader = new FileReader()
           reader.onload = () => {
             const blobAsDataUrl = reader.result
-            const iframe = `<object style="position:absolute; left: 0; top: 0;" width="100%" height="100%" scrolling="auto" data="${blobAsDataUrl}" type="application/pdf">
-            <iframe style="position:absolute; left: 0; top: 0;" width="100%" height="100%" scrolling="auto" src="https://docs.google.com/viewer?url=${fileURL}&embedded=true" type="application/pdf">
-            </iframe>
-            </object>`
-            document.write(iframe)
-            document.title = programmeCode + '-' + term + '.pdf | KTH'
+            const fileName = programmeCode + '-' + term
+            const embed = `<embed style="position:absolute; left: 0; top: 0;" width="100%" height="100%" src="${blobAsDataUrl}#nameddest=${fileName}" type="application/pdf"></embed>`
+            document.write(embed)
+            document.title = fileName + '.pdf | KTH'
           }
           reader.readAsDataURL(recoveredBlob)
         }
