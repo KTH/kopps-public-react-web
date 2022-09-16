@@ -142,10 +142,10 @@ function ProgramSyllabusExport({ applicationStore }) {
         xhr.onload = () => {
           const recoveredBlob = xhr.response
           const reader = new FileReader()
-          reader.onloadend = () => {
+          reader.onload = () => {
             const blobAsDataUrl = reader.result
             const fileName = programmeCode + '-' + term
-            const embed = `<embed style="width="100%" height="100%" src="${blobAsDataUrl}#nameddest=${fileName}" type="application/pdf"></embed>`
+            const embed = `<embed style="position:absolute; left: 0; top: 0;" width="100%" height="100%" src="${blobAsDataUrl}#nameddest=${fileName}" type="application/pdf"></embed>`
             document.write(embed)
             document.title = fileName + '.pdf | KTH'
             console.log('blobAsDataUrl', blobAsDataUrl)
