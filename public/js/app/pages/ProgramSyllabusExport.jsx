@@ -148,7 +148,6 @@ function ProgramSyllabusExport({ applicationStore }) {
             const embed = `<embed style="position:absolute; left: 0; top: 0;" width="100%" height="100%" src="${blobAsDataUrl}#nameddest=${fileName}" type="application/pdf"></embed>`
             document.write(embed)
             document.title = fileName + '.pdf | KTH'
-            console.log('blobAsDataUrl', blobAsDataUrl)
           }
           reader.readAsDataURL(recoveredBlob)
         }
