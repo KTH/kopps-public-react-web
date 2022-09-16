@@ -145,7 +145,10 @@ function ProgramSyllabusExport({ applicationStore }) {
           reader.onload = () => {
             const blobAsDataUrl = reader.result
             const fileName = programmeCode + '-' + term
-            const embed = `<embed style="position:absolute; left: 0; top: 0;" width="100%" height="100%" src="${blobAsDataUrl}#nameddest=${fileName}" type="application/pdf"></embed>`
+            const embed = `<object data=${blobAsDataUrl} type="application/pdf" style="position:absolute; left: 0; top: 0;" width="100%" height="100%">
+            <p><b>Example fallback content</b>: This browser does not support PDFs. Please download the PDF to view it: 
+            <a href=${blobAsDataUrl}>Download PDF</a>.</p>
+            </object>`
             document.write(embed)
             document.title = fileName + '.pdf | KTH'
           }
