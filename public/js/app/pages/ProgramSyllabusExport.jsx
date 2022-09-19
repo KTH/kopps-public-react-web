@@ -144,7 +144,10 @@ function ProgramSyllabusExport({ applicationStore }) {
         const pdfContent = new File([pdfData], fileName + '.pdf', { type: 'application/pdf' })
         const fileURL = URL.createObjectURL(pdfContent)
         if (detectMobOrTablet()) {
-          window.open(fileURL)
+          const windowReference = window.open()
+          setTimeout(() => {
+            windowReference.location = fileURL
+          })
         } else {
           const xhr = new XMLHttpRequest()
           xhr.responseType = 'blob'
