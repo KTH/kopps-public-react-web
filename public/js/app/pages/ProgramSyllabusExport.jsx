@@ -24,6 +24,11 @@ function ProgramSyllabusExport({ applicationStore }) {
   const [helpText, setHelpText] = useState('')
   const [errorHeader, setErrorHeader] = useState('')
 
+  function detectMobOrTablet() {
+    const toMatch = [/Android/i, /webOS/i, /iPhone/i, /iPad/i, /iPod/i, /BlackBerry/i, /Windows Phone/i]
+    return toMatch.some(toMatchItem => navigator.userAgent.match(toMatchItem))
+  }
+
   useEffect(() => {
     const pdfObjExtElgbImlpContainer = document.getElementById('pdfObjExtElgbImlpContainer')
     const pdfAppendix1Container = document.getElementById('pdfAppendix1Container')
@@ -135,27 +140,29 @@ function ProgramSyllabusExport({ applicationStore }) {
     })
     pdfResponse.then(
       pdfData => {
-        const pdfContent = new File([pdfData], programmeCode + '-' + term + '.pdf', { type: 'application/pdf' })
+        const fileName = programmeCode + '-' + term
+        const pdfContent = new File([pdfData], fileName + '.pdf', { type: 'application/pdf' })
         const fileURL = URL.createObjectURL(pdfContent)
-        const xhr = new XMLHttpRequest()
-        xhr.responseType = 'blob'
-        xhr.onload = () => {
-          const recoveredBlob = xhr.response
-          const reader = new FileReader()
-          reader.onload = () => {
-            const blobAsDataUrl = reader.result
-            const fileName = programmeCode + '-' + term
-            const embed = `<object data=${blobAsDataUrl} type="application/pdf" style="position:absolute; left: 0; top: 0;" width="100%" height="100%">
-            <p><b>Example fallback content</b>: This browser does not support PDFs. Please download the PDF to view it: 
-            <a href=${blobAsDataUrl}>Download PDF</a>.</p>
-            </object>`
-            document.write(embed)
-            document.title = fileName + '.pdf | KTH'
+        if (detectMobOrTablet()) {
+          window.open(fileURL)
+        } else {
+          const xhr = new XMLHttpRequest()
+          xhr.responseType = 'blob'
+          xhr.onload = () => {
+            const recoveredBlob = xhr.response
+            const reader = new FileReader()
+            reader.onload = () => {
+              const blobAsDataUrl = reader.result
+              const title = fileName + '.pdf | KTH'
+              const embed = `<iframe src=${blobAsDataUrl} type="application/pdf" style="position:absolute; left: 0; top: 0;" width="100%" height="100%" title="${title}"></iframe>`
+              document.write(embed)
+              document.title = title
+            }
+            reader.readAsDataURL(recoveredBlob)
           }
-          reader.readAsDataURL(recoveredBlob)
+          xhr.open('GET', fileURL)
+          xhr.send()
         }
-        xhr.open('GET', fileURL)
-        xhr.send()
         setShowLoader(false)
       },
       () => {
