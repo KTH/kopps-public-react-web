@@ -161,6 +161,11 @@ const messages = {
         'Tyvärr har något gått fel. Systemet har inte lyckats hämta kursplanen som PDF. Försök att ladda om sidan.',
       help: 'Kontakta IT-support ifall du har några frågor. ',
     },
+    pdf_popup_warnings: {
+      popup_block_heading: 'Tillåt popup-fönster för att se PDF-filen - Pröva sedan att ladda sedan om sidan',
+      popup_block_warning:
+        'Du behöver tillåta pop up-fönster i dina webbläsarinställningar för att se PDF-filen. Ladda om sidan efter att du har ändrat dina inställningar.',
+    },
     coursesbyprogramme_labels_course: 'Kursens kod och namn',
     coursesbyprogramme_labels_code: 'Anmälningskod',
     coursesbyprogramme_labels_code_abbr: 'Anm.\u00A0kod',

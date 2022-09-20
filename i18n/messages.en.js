@@ -165,6 +165,11 @@ const messages = {
         'Unfortunately an unknown error occurred. The System failed to retrieve the course syllabus pdf. Try to reload the page.',
       help: 'Please contact IT-support if you have questions. ',
     },
+    pdf_popup_warnings: {
+      popup_block_heading: 'Allow pop-up windows to see the PDF - Then try to reload the page',
+      popup_block_warning:
+        'You need to allow pop-windows from your browser settings to view the PDF. Reload the page after you have changed your settings.',
+    },
     coursesbyprogramme_labels_course: 'Course code and name',
     coursesbyprogramme_labels_code: 'Application code',
     coursesbyprogramme_labels_code_abbr: 'Appl.code',

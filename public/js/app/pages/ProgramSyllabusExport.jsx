@@ -23,7 +23,9 @@ function ProgramSyllabusExport({ applicationStore }) {
   const [error, setError] = useState('')
   const [helpText, setHelpText] = useState('')
   const [errorHeader, setErrorHeader] = useState('')
-
+  const [showPopupBlockWarning, setShowPopupBlockWarning] = useState(false)
+  const [popupWarningHeader, setPopupWarningHeader] = useState('')
+  const [popupWarning, setPopupWarning] = useState('')
   function detectMobOrTablet() {
     const toMatch = [/Android/i, /webOS/i, /iPhone/i, /iPad/i, /iPod/i, /BlackBerry/i, /Windows Phone/i]
     return toMatch.some(toMatchItem => navigator.userAgent.match(toMatchItem))
@@ -144,7 +146,13 @@ function ProgramSyllabusExport({ applicationStore }) {
         const pdfContent = new File([pdfData], fileName + '.pdf', { type: 'application/pdf' })
         const fileURL = URL.createObjectURL(pdfContent)
         if (detectMobOrTablet()) {
-          window.open(fileURL, '_blank')
+          const newWindow = window.open(fileURL)
+          if (newWindow == null) {
+            setShowPopupBlockWarning(true)
+            setPopupWarningHeader(t('pdf_popup_warnings').popup_block_heading)
+            setPopupWarning(t('pdf_popup_warnings').popup_block_warning)
+            setHelpText(t('pdf_error').help)
+          }
         } else {
           const xhr = new XMLHttpRequest()
           xhr.responseType = 'blob'
@@ -180,6 +188,16 @@ function ProgramSyllabusExport({ applicationStore }) {
         <Alert type="danger">
           <h5>{errorHeader}</h5>
           <p>{error}</p>
+          <p>
+            {helpText}
+            <a href="mailto:it-support@kth.se">it-support@kth.se</a>
+          </p>
+        </Alert>
+      )}
+      {showPopupBlockWarning && (
+        <Alert type="info">
+          <h5>{popupWarningHeader}</h5>
+          <p>{popupWarning}</p>
           <p>
             {helpText}
             <a href="mailto:it-support@kth.se">it-support@kth.se</a>
