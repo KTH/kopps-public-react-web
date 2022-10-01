@@ -32,7 +32,7 @@ function getCurrentTerm(overrideDate) {
   return `${currentYear * 10 + currentSemester}`
 }
 
-function _isSpringTerm(term) {
+function isSpringTerm(term) {
   if (typeof term === 'number') {
     return term % 2 === 1
   }
@@ -48,7 +48,7 @@ function _isFallTerm(term) {
 
 function _getNextTerm(term) {
   const t = Math.abs(term)
-  if (_isSpringTerm(t)) {
+  if (isSpringTerm(t)) {
     return t + 1
   }
   return t + 10 - 1
@@ -145,7 +145,7 @@ function parseTerm(formattedTerm) {
 module.exports = {
   termConstants: _constants,
   getCurrentTerm,
-  _isSpringTerm,
+  isSpringTerm,
   _isFallTerm,
   getNextTerm: _getNextTerm,
   getPreviousTerm: _getPreviousTerm,

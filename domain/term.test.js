@@ -1,6 +1,6 @@
 const {
   getCurrentTerm,
-  _isSpringTerm: isSpringTerm,
+  isSpringTerm: isSpringTerm,
   _isFallTerm: isAutumnTerm,
   getNextTerm,
   _nTermsAgo: nTermsAgo,

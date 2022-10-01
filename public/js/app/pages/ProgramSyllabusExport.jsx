@@ -8,7 +8,7 @@ import { replacePathNameWithHref, getCurrentHost } from '../util/stringUtil'
 import translate from '../../../../domain/translate'
 import generateProgramSyllabus from '../util/pdfApi'
 import { getCompleteHTMLForPDFForObjImpElibExtent, getAppendixHTML } from '../config/pdfHtml/pdfHtmlForExport'
-import { _isSpringTerm } from '../../../../domain/term'
+import { isSpringTerm } from '../../../../domain/term'
 import { ObjectivesForExport } from './Objectives'
 import { ExtentContentForPDF } from './Extent'
 import { EligilbiltyContentForPDF } from './Eligibility'
@@ -64,7 +64,7 @@ function ProgramSyllabusExport({ applicationStore }) {
     // translation text in english only if current language is in English
     const swedishTranslationText = t('swedish_translation_text')
     const semesterTranslatedObject = t('semester')
-    const semester = _isSpringTerm(term) ? semesterTranslatedObject[1] : semesterTranslatedObject[2]
+    const semester = isSpringTerm(term) ? semesterTranslatedObject[1] : semesterTranslatedObject[2]
     // get credits translations
     const creditsText = educationalLevel === 'BASIC' ? t('credits') : creditUnitAbbr
     // get years from term

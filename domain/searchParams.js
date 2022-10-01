@@ -1,6 +1,6 @@
 const querystring = require('querystring')
 const i18n = require('../i18n')
-const { formatLongTerm, getRelevantTerms, _isSpringTerm } = require('./term')
+const { formatLongTerm, getRelevantTerms, isSpringTerm } = require('./term')
 const { getSummerPeriodsList, groupedPeriodsBySeasonInCorrectOrder } = require('./periods')
 const { CLIENT_EDU_LEVELS, educationalLevel } = require('./eduLevels')
 const { CLIENT_SHOW_OPTIONS, getShowOptions } = require('./courseOptions')
@@ -106,10 +106,10 @@ function _periodConfigForOneYear({ year, terms }, langIndex) {
   const resultPeriodsConfig = []
   terms.forEach(term => {
     if (hasOnlyOneTerm)
-      periodsForThisTerm = _isSpringTerm(term)
+      periodsForThisTerm = isSpringTerm(term)
         ? [...springPeriods, [summerGroup[0]]]
         : [[summerGroup[1]], ...autumnPeriods]
-    else periodsForThisTerm = _isSpringTerm(term) ? [...springPeriods, summerGroup] : [...autumnPeriods]
+    else periodsForThisTerm = isSpringTerm(term) ? [...springPeriods, summerGroup] : [...autumnPeriods]
 
     periodsForThisTerm.forEach(periodNum => {
       if (typeof periodNum === 'object') {
