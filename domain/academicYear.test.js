@@ -1,4 +1,4 @@
-const { format } = require('./academicYear')
+const { formatAcademicYear } = require('./academicYear')
 
 const testStringSpringTerm = '20191'
 const testStringAutumnTerm = '20192'
@@ -10,15 +10,15 @@ const expectedFormattedAcadeicYearAutumnStart = '2019/2020'
 
 describe('Format academic year', () => {
   test('starting with spring term', () => {
-    let formattedAcademicYear = format(testStringSpringTerm)
+    let formattedAcademicYear = formatAcademicYear(testStringSpringTerm)
     expect(formattedAcademicYear).toEqual(expectedFormattedAcadeicYearSpringStart)
-    formattedAcademicYear = format(testNumberSpringTerm)
+    formattedAcademicYear = formatAcademicYear(testNumberSpringTerm)
     expect(formattedAcademicYear).toEqual(expectedFormattedAcadeicYearSpringStart)
   })
   test('starting with autumn term', () => {
-    let formattedAcademicYear = format(testStringAutumnTerm)
+    let formattedAcademicYear = formatAcademicYear(testStringAutumnTerm)
     expect(formattedAcademicYear).toEqual(expectedFormattedAcadeicYearAutumnStart)
-    formattedAcademicYear = format(testNumberAutumnTerm)
+    formattedAcademicYear = formatAcademicYear(testNumberAutumnTerm)
     expect(formattedAcademicYear).toEqual(expectedFormattedAcadeicYearAutumnStart)
   })
 })
