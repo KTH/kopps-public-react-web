@@ -8,7 +8,7 @@ const i18n = require('../../i18n')
 
 const koppsApi = require('../kopps/koppsApi')
 const { curriculumInfo, setFirstSpec } = require('../../domain/curriculum')
-const { calculate: calculateStartTerm } = require('../../domain/academicYear')
+const { calculateStartTerm } = require('../../domain/academicYear')
 
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { programmeFullName } = require('../utils/programmeFullName')
@@ -95,7 +95,7 @@ async function _fetchAndFillCurriculumByStudyYear(options, storeId) {
   const curriculumsWithCourseRounds = await _addCourseRounds(curriculums, programmeCode, term, studyYear, lang)
   applicationStore.setCurriculums(curriculumsWithCourseRounds)
   const curriculumInfos = curriculumsWithCourseRounds
-    .map(curriculum => curriculumInfo({ programmeTermYear: { studyYear }, curriculum }))
+    .map(curriculum => curriculumInfo({ programmeTermYear: { programStartTerm: term, studyYear }, curriculum }))
     .filter(ci => ci.hasInfo)
   curriculumInfos.sort(_compareCurriculum)
   setFirstSpec(curriculumInfos)

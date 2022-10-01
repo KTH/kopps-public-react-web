@@ -1,4 +1,4 @@
-const { curriculumInfo, setFirstSpec } = require('./curriculum')
+const { curriculumInfo, filterCourseRoundsForNthYear, setFirstSpec } = require('./curriculum')
 
 const firstYear = 1
 const secondYear = 2
@@ -122,5 +122,126 @@ describe('Create curriculum info', () => {
     expect(infosWithoutCode).toEqual(refInfosWithoutCode)
     setFirstSpec(infosWithCode)
     expect(infosWithCode).toEqual(infosWithFirstSpec)
+  })
+})
+
+describe('Get relevant course rounds for exact study year of a program', () => {
+  test('study year 2, program starts spring 2022', () => {
+    const programFirstTerm = '20221'
+    const expectedRound = [
+      {
+        term: '20231',
+        creditsPerPeriod: [0, 0, 0, 4.5, 0, 0],
+        creditUnitLabel: 'Högskolepoäng',
+        creditUnitAbbr: 'hp',
+      },
+    ]
+    const courseRoundTerms = [
+      {
+        term: '20222',
+        creditsPerPeriod: [0, 7, 0.5, 0, 0, 0],
+        creditUnitLabel: 'Högskolepoäng',
+        creditUnitAbbr: 'hp',
+      },
+      ...expectedRound,
+    ]
+    const studyYear = 2
+    const rounds = filterCourseRoundsForNthYear(courseRoundTerms, programFirstTerm, studyYear)
+    expect(rounds.length).toBe(1)
+    expect(rounds).toMatchObject(expectedRound)
+  })
+
+  test('study year 3, program starts spring 2021', () => {
+    const programFirstTerm = '20211'
+    const expectedRound = [
+      {
+        term: '20231',
+        creditsPerPeriod: [0, 0, 0, 4.5, 0, 0],
+        creditUnitLabel: 'Högskolepoäng',
+        creditUnitAbbr: 'hp',
+      },
+      {
+        term: '20232',
+        creditsPerPeriod: [0, 7, 0.5, 0, 0, 0],
+        creditUnitLabel: 'Högskolepoäng',
+        creditUnitAbbr: 'hp',
+      },
+    ]
+    const courseRoundTerms = [...expectedRound]
+
+    const studyYear = 3
+    const rounds = filterCourseRoundsForNthYear(courseRoundTerms, programFirstTerm, studyYear)
+    expect(rounds.length).toBe(2)
+    expect(rounds).toMatchObject(expectedRound)
+  })
+
+  test('study year 1, program starts autumn 2021', () => {
+    const programFirstTerm = '20212'
+    const expectedRound = [
+      {
+        term: '20212',
+        creditsPerPeriod: [0, 7, 0.5, 0, 0, 0],
+        creditUnitLabel: 'Högskolepoäng',
+        creditUnitAbbr: 'hp',
+      },
+    ]
+    const courseRoundTerms = [
+      {
+        term: '20211',
+        creditsPerPeriod: [0, 0, 0, 4.5, 0, 0],
+        creditUnitLabel: 'Högskolepoäng',
+        creditUnitAbbr: 'hp',
+      },
+      ...expectedRound,
+    ]
+    const studyYear = 1
+    const rounds = filterCourseRoundsForNthYear(courseRoundTerms, programFirstTerm, studyYear)
+    expect(rounds.length).toBe(1)
+    expect(rounds).toMatchObject(expectedRound)
+  })
+
+  test('study year 4, program starts autumn 2021', () => {
+    const programFirstTerm = '20212'
+    const expectedRound = [
+      {
+        term: '20242',
+        creditsPerPeriod: [0, 7, 0.5, 0, 0, 0],
+        creditUnitLabel: 'Högskolepoäng',
+        creditUnitAbbr: 'hp',
+      },
+      {
+        term: '20251',
+        creditsPerPeriod: [0, 0, 0, 4.5, 0, 0],
+        creditUnitLabel: 'Högskolepoäng',
+        creditUnitAbbr: 'hp',
+      },
+    ]
+    const courseRoundTerms = [...expectedRound]
+    const studyYear = 4
+    const rounds = filterCourseRoundsForNthYear(courseRoundTerms, programFirstTerm, studyYear)
+    expect(rounds.length).toBe(2)
+    expect(rounds).toMatchObject(expectedRound)
+  })
+
+  test('study year 4, program starts autumn 2021, has no actual course rounds', () => {
+    const programFirstTerm = '20212'
+    const courseRoundTerms = [
+      {
+        term: '20242',
+        creditsPerPeriod: [0, 7, 0.5, 0, 0, 0],
+        creditUnitLabel: 'Högskolepoäng',
+        creditUnitAbbr: 'hp',
+      },
+      {
+        term: '20251',
+        creditsPerPeriod: [0, 0, 0, 4.5, 0, 0],
+        creditUnitLabel: 'Högskolepoäng',
+        creditUnitAbbr: 'hp',
+      },
+    ]
+    const studyYear = 3
+    const rounds = filterCourseRoundsForNthYear(courseRoundTerms, programFirstTerm, studyYear)
+    expect(rounds.length).toBe(0)
+    expect(rounds).toMatchObject([])
   })
 })

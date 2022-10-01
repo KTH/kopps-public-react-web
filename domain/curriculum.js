@@ -1,4 +1,5 @@
-const { getNextTerm } = require('./term')
+const { isSpringTerm, splitTerm, termConstants } = require('./term')
+const { academicYearStartAndEnd } = require('./academicYear')
 
 function _compareParticipations(a, b) {
   let aFirstIndex = Number.MAX_SAFE_INTEGER
@@ -27,32 +28,71 @@ function _compareParticipations(a, b) {
   return 0
 }
 
-function _term(courseRoundTerms) {
-  if (Array.isArray(courseRoundTerms) && courseRoundTerms.length) {
-    return courseRoundTerms[0].term
+function _term(yearTerms) {
+  if (Array.isArray(yearTerms) && yearTerms.length) {
+    return yearTerms[0].term
   }
   return ''
 }
-
-function _creditsPerPeriod(courseRoundTerms, currentTerm) {
-  // TODO: Decide on string or number, le sigh.
-  const nextTerm = getNextTerm(currentTerm).toString()
+/**
+ * @param {array} yearTerms
+ * @returns {array}
+ */
+function _creditsPerPeriod(yearTerms) {
   const mergedCreditsPerPeriod = []
-  courseRoundTerms.forEach(courseRoundTerm => {
-    const { term, creditsPerPeriod } = courseRoundTerm
-    // TODO: Really is an academic year, and should probably be managed as one
-    if (term === currentTerm || term === nextTerm) {
-      creditsPerPeriod.forEach((credits, index) => {
-        if (!mergedCreditsPerPeriod[index]) {
-          mergedCreditsPerPeriod[index] = credits
-        }
-      })
-    }
+  yearTerms.forEach(yearTerm => {
+    const { creditsPerPeriod } = yearTerm
+
+    creditsPerPeriod.forEach((credits, index) => {
+      if (!mergedCreditsPerPeriod[index]) {
+        mergedCreditsPerPeriod[index] = credits
+      }
+    })
   })
   return mergedCreditsPerPeriod
 }
 
-function curriculumInfo({ programmeTermYear, curriculum }) {
+const calculateProgramYear = (programFirstYear, programNthYear) =>
+  Math.abs(programNthYear) - 1 + Math.abs(programFirstYear)
+
+/**
+ * @param {string} programStartTerm
+ * @param {array} courseRoundTerms
+ * @param {string} programNthYear // 1,2,3,4,5
+ * @returns {array}
+ */
+
+function filterCourseRoundsForNthYear(courseRoundTerms, programStartTerm, programNthYear) {
+  if (!programStartTerm || !programNthYear || !courseRoundTerms) return []
+  const [programFirstYear, programStartSeason] = splitTerm(programStartTerm)
+
+  const programYear = calculateProgramYear(programFirstYear, programNthYear)
+  const { startYear: startAcademicYear, endYear: endAcademicYear } = academicYearStartAndEnd(
+    `${programYear}${programStartSeason}`
+  )
+
+  let expectedStudyTerms
+  if (isSpringTerm(programStartTerm))
+    expectedStudyTerms = [
+      Math.abs(`${startAcademicYear}${termConstants.SPRING_TERM_NUMBER}`),
+      Math.abs(`${startAcademicYear}${termConstants.AUTUMN_TERM_NUMBER}`),
+    ]
+  else
+    expectedStudyTerms = [
+      Math.abs(`${startAcademicYear}${termConstants.AUTUMN_TERM_NUMBER}`),
+      Math.abs(`${endAcademicYear}${termConstants.SPRING_TERM_NUMBER}`),
+    ]
+
+  const yearCourseRoundTerms = courseRoundTerms.filter(({ term }) => expectedStudyTerms.includes(Math.abs(term)))
+  return yearCourseRoundTerms
+}
+
+/**
+ * @param {object} options.programmeTermYear
+ * @param {object} options.curriculum
+ * @returns {object}
+ */
+function curriculumInfo({ programmeTermYear = {}, curriculum }) {
   let code = ''
   let specializationName = null
   let isCommon = true
@@ -63,6 +103,7 @@ function curriculumInfo({ programmeTermYear, curriculum }) {
   const isFirstSpec = false
 
   const { programmeSpecialization, studyYears } = curriculum
+  const { programStartTerm, studyYear } = programmeTermYear
 
   if (programmeSpecialization) {
     code = programmeSpecialization.programmeSpecializationCode
@@ -70,7 +111,8 @@ function curriculumInfo({ programmeTermYear, curriculum }) {
     isCommon = false
   }
 
-  const [curriculumStudyYear] = studyYears.filter(s => Math.abs(s.yearNumber) === Math.abs(programmeTermYear.studyYear))
+  const [curriculumStudyYear] = studyYears.filter(s => Math.abs(s.yearNumber) === Math.abs(studyYear))
+
   if (curriculumStudyYear) {
     supplementaryInformation = curriculumStudyYear.supplementaryInfo
     conditionallyELectiveCoursesInformation = curriculumStudyYear.conditionallyElectiveCoursesInfo
@@ -78,13 +120,17 @@ function curriculumInfo({ programmeTermYear, curriculum }) {
     for (const course of curriculumStudyYear.courses) {
       if (!participations[course.electiveCondition]) participations[course.electiveCondition] = []
       const round = curriculum.courseRounds.find(courseRound => courseRound.courseCode === course.courseCode) || {}
+
       const { applicationCodes = [], courseRoundTerms = [] } = round
-      const term = _term(courseRoundTerms)
+
+      const courseRoundsForNthYear = filterCourseRoundsForNthYear(courseRoundTerms, programStartTerm, studyYear)
+
+      const term = _term(courseRoundsForNthYear) // ???
       participations[course.electiveCondition].push({
         course,
         applicationCodes,
         term,
-        creditsPerPeriod: _creditsPerPeriod(courseRoundTerms, term, course.courseCode),
+        creditsPerPeriod: _creditsPerPeriod(courseRoundsForNthYear),
       })
       participations[course.electiveCondition].sort(_compareParticipations)
     }
@@ -119,5 +165,6 @@ const ELECTIVE_CONDITIONS = ['ALL', 'O', 'VV', 'R', 'V']
 module.exports = {
   curriculumInfo,
   setFirstSpec,
+  filterCourseRoundsForNthYear,
   ELECTIVE_CONDITIONS,
 }
