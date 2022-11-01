@@ -109,6 +109,17 @@ async function getProgrammesList(req, res, next) {
   try {
     const lang = language.getLanguage(res)
 
+    let klaroConsentCookie = false
+    if (req.cookies.klaro) {
+      const consentCookiesArray = req.cookies.klaro.slice(1, -1).split(',')
+      // eslint-disable-next-line prefer-destructuring
+      const analyticsConsentCookieString = consentCookiesArray
+        .find(cookie => cookie.includes('analytics-consent'))
+        .split(':')[1]
+      // eslint-disable-next-line no-const-assign
+      klaroConsentCookie = analyticsConsentCookieString === 'true'
+    }
+
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
 
     log.info(`Creating a default application store for programmesList controller`)
@@ -134,6 +145,7 @@ async function getProgrammesList(req, res, next) {
       lang,
       proxyPrefix,
       studentWeb: true,
+      cookies: klaroConsentCookie,
     })
   } catch (err) {
     log.error('Error', { error: err })

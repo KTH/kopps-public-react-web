@@ -51,6 +51,17 @@ async function getLiteratureList(req, res, next) {
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
     const { term, school } = req.params
 
+    let klaroConsentCookie = false
+    if (req.cookies.klaro) {
+      const consentCookiesArray = req.cookies.klaro.slice(1, -1).split(',')
+      // eslint-disable-next-line prefer-destructuring
+      const analyticsConsentCookieString = consentCookiesArray
+        .find(cookie => cookie.includes('analytics-consent'))
+        .split(':')[1]
+      // eslint-disable-next-line no-const-assign
+      klaroConsentCookie = Boolean(analyticsConsentCookieString)
+    }
+
     const storeId = 'literatureList'
 
     log.info(` Creating an application store ${storeId} on server side `, { term, school })
@@ -81,6 +92,7 @@ async function getLiteratureList(req, res, next) {
       lang,
       proxyPrefix,
       studentWeb: true,
+      cookies: klaroConsentCookie,
     })
   } catch (err) {
     log.error('Error', { error: err })

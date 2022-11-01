@@ -18,6 +18,17 @@ async function getFovSearch(req, res, next) {
   try {
     const lang = language.getLanguage(res)
 
+    let klaroConsentCookie = false
+    if (req.cookies.klaro) {
+      const consentCookiesArray = req.cookies.klaro.slice(1, -1).split(',')
+      // eslint-disable-next-line prefer-destructuring
+      const analyticsConsentCookieString = consentCookiesArray
+        .find(cookie => cookie.includes('analytics-consent'))
+        .split(':')[1]
+      // eslint-disable-next-line no-const-assign
+      klaroConsentCookie = Boolean(analyticsConsentCookieString)
+    }
+
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
 
     const applicationStore = createStore()
@@ -39,6 +50,7 @@ async function getFovSearch(req, res, next) {
       lang,
       proxyPrefix,
       studentWeb: true,
+      cookies: klaroConsentCookie,
     })
   } catch (err) {
     log.error('Error', { error: err })
@@ -53,6 +65,17 @@ async function getReady(req, res, next) {
     const title = i18n.message('site_name', lang)
     const pageHeader = i18n.message('ready_paths', lang)
     const redirectHeader = i18n.message('redirect_paths', lang)
+
+    let klaroConsentCookie = false
+    if (req.cookies.klaro) {
+      const consentCookiesArray = req.cookies.klaro.slice(1, -1).split(',')
+      // eslint-disable-next-line prefer-destructuring
+      const analyticsConsentCookieString = consentCookiesArray
+        .find(cookie => cookie.includes('analytics-consent'))
+        .split(':')[1]
+      // eslint-disable-next-line no-const-assign
+      klaroConsentCookie = Boolean(analyticsConsentCookieString)
+    }
 
     const { public: publicPaths, redirect: redirectPaths } = getPaths()
     const publicPathsList = `${Object.keys(publicPaths)
@@ -69,6 +92,7 @@ async function getReady(req, res, next) {
       description: title,
       lang,
       proxyPrefix,
+      cookies: klaroConsentCookie,
     })
   } catch (err) {
     log.error('Error', { error: err })
