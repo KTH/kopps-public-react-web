@@ -18,7 +18,7 @@ async function getFovSearch(req, res, next) {
   try {
     const lang = language.getLanguage(res)
 
-    let klaroConsentCookie = false
+    let klaroAnalyticsConsentCookie = false
     if (req.cookies.klaro) {
       const consentCookiesArray = req.cookies.klaro.slice(1, -1).split(',')
       // eslint-disable-next-line prefer-destructuring
@@ -26,7 +26,7 @@ async function getFovSearch(req, res, next) {
         .find(cookie => cookie.includes('analytics-consent'))
         .split(':')[1]
       // eslint-disable-next-line no-const-assign
-      klaroConsentCookie = Boolean(analyticsConsentCookieString)
+      klaroAnalyticsConsentCookie = analyticsConsentCookieString === 'true'
     }
 
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
@@ -50,7 +50,7 @@ async function getFovSearch(req, res, next) {
       lang,
       proxyPrefix,
       studentWeb: true,
-      cookies: klaroConsentCookie,
+      klaroAnalyticsConsentCookie,
     })
   } catch (err) {
     log.error('Error', { error: err })
@@ -66,7 +66,7 @@ async function getReady(req, res, next) {
     const pageHeader = i18n.message('ready_paths', lang)
     const redirectHeader = i18n.message('redirect_paths', lang)
 
-    let klaroConsentCookie = false
+    let klaroAnalyticsConsentCookie = false
     if (req.cookies.klaro) {
       const consentCookiesArray = req.cookies.klaro.slice(1, -1).split(',')
       // eslint-disable-next-line prefer-destructuring
@@ -74,7 +74,7 @@ async function getReady(req, res, next) {
         .find(cookie => cookie.includes('analytics-consent'))
         .split(':')[1]
       // eslint-disable-next-line no-const-assign
-      klaroConsentCookie = Boolean(analyticsConsentCookieString)
+      klaroAnalyticsConsentCookie = analyticsConsentCookieString === 'true'
     }
 
     const { public: publicPaths, redirect: redirectPaths } = getPaths()
@@ -92,7 +92,7 @@ async function getReady(req, res, next) {
       description: title,
       lang,
       proxyPrefix,
-      cookies: klaroConsentCookie,
+      klaroAnalyticsConsentCookie,
     })
   } catch (err) {
     log.error('Error', { error: err })

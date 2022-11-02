@@ -47,7 +47,7 @@ async function getIndex(req, res, next) {
     const lang = language.getLanguage(res)
     const { programmeCode } = req.params
 
-    let klaroConsentCookie = false
+    let klaroAnalyticsConsentCookie = false
     if (req.cookies.klaro) {
       const consentCookiesArray = req.cookies.klaro.slice(1, -1).split(',')
       // eslint-disable-next-line prefer-destructuring
@@ -55,7 +55,7 @@ async function getIndex(req, res, next) {
         .find(cookie => cookie.includes('analytics-consent'))
         .split(':')[1]
       // eslint-disable-next-line no-const-assign
-      klaroConsentCookie = Boolean(analyticsConsentCookieString)
+      klaroAnalyticsConsentCookie = analyticsConsentCookieString === 'true'
     }
 
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
@@ -93,7 +93,7 @@ async function getIndex(req, res, next) {
       lang,
       proxyPrefix,
       studentWeb: true,
-      cookies: klaroConsentCookie,
+      klaroAnalyticsConsentCookie,
     })
   } catch (err) {
     log.error('Error', { error: err })

@@ -14,7 +14,7 @@ async function _fovSearch(req, res, next) {
   queryParams.mainsubject = queryParams.mainsubject || ''
   queryParams.studypace = queryParams.studypace || ''
 
-  let klaroConsentCookie = false
+  let klaroAnalyticsConsentCookie = false
   if (req.cookies.klaro) {
     const consentCookiesArray = req.cookies.klaro.slice(1, -1).split(',')
     // eslint-disable-next-line prefer-destructuring
@@ -22,7 +22,7 @@ async function _fovSearch(req, res, next) {
       .find(cookie => cookie.includes('analytics-consent'))
       .split(':')[1]
     // eslint-disable-next-line no-const-assign
-    klaroConsentCookie = Boolean(analyticsConsentCookieString)
+    klaroAnalyticsConsentCookie = analyticsConsentCookieString === 'true'
   }
 
   const fovCoursesResults = await searchFovCourses(convertUserOptionsToKoppsApiParams(queryParams))
@@ -40,7 +40,7 @@ async function _fovSearch(req, res, next) {
     termOptions: searchOptionsTerms(),
     studyPaceOptions: STUDY_PACES,
     queryParams,
-    cookies: klaroConsentCookie,
+    klaroAnalyticsConsentCookie,
   })
 }
 
