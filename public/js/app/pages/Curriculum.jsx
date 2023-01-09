@@ -232,7 +232,7 @@ function Sidebar() {
           {t('programme_plan_pdf_header')}
         </h2>
         <p>{t('programme_plan_pdf_text')}</p>
-        <Link href={syllabusLink} type="pdf-post-link" target="_blank">
+        <Link href={syllabusLink} type="pdf-link" target="_blank">
           {t('programme_plan_pdf')(programmeCode, formatLongTerm(term, language))}
         </Link>
       </aside>
