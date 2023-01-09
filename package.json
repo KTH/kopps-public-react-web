@@ -96,7 +96,7 @@
     "jest-axe": "^6.0.0",
     "jest-environment-jsdom": "29.3.1",
     "jest-extended": "^3.0.2",
-    "mini-css-extract-plugin": "^2.7.2",
+    "mini-css-extract-plugin": "^2.6.1",
     "node-notifier": "^10.0.1",
     "nodemon": "^2.0.19",
     "null-loader": "^4.0.1",
