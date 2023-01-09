@@ -44,7 +44,7 @@
     "@babel/runtime": "^7.18.9",
     "@kth/api-call": "^4.0.39",
     "@kth/kth-node-web-common": "^7.0.12",
-    "@kth/kth-reactstrap": "^0.4.54",
+    "@kth/kth-reactstrap": "^0.4.62",
     "@kth/log": "^4.0.5",
     "@kth/monitor": "^3.0.29",
     "@kth/server": "^4.0.3",
