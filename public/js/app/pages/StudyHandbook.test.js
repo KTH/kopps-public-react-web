@@ -163,7 +163,7 @@ describe('Render component StudyHandbook and check its menu, content and links',
   test('get page content in English', () => {
     render(<StudyHandbookWithLayout lang="en" />)
     const content = screen.getByText(
-      'Until the study year 2007/2008 the study handbook contained program and course information.'
+      'Until the academic year 2007/2008, information on programmes and courses was available in the study handbook. Study Handbook 00/01 to 07/08'
     )
     expect(content).toBeInTheDocument()
   })
@@ -171,7 +171,7 @@ describe('Render component StudyHandbook and check its menu, content and links',
   test('get page content in Swedish', () => {
     render(<StudyHandbookWithLayout lang="sv" />)
     const content = screen.getByText(
-      'Fram till läsåret 2007/2008 fanns information om program och kurser i studiehandboken.'
+      'Fram till läsåret 2007/2008 fanns information om program och kurser i studiehandboken. Studiehandboken 00/01 tom 07/08'
     )
     expect(content).toBeInTheDocument()
   })

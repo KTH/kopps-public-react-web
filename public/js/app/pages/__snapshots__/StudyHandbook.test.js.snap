@@ -111,7 +111,7 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Engli
               class="article paragraphs"
             >
               <p>
-                Until the study year 2007/2008 the study handbook contained program and course information.
+                Until the academic year 2007/2008, information on programmes and courses was available in the study handbook. Study Handbook 00/01 to 07/08
               </p>
               <p>
                 <a
@@ -268,7 +268,7 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Swedi
               class="article paragraphs"
             >
               <p>
-                Fram till läsåret 2007/2008 fanns information om program och kurser i studiehandboken.
+                Fram till läsåret 2007/2008 fanns information om program och kurser i studiehandboken. Studiehandboken 00/01 tom 07/08
               </p>
               <p>
                 <a

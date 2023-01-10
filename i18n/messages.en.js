@@ -103,7 +103,7 @@ const messages = {
       'You have given a web address or clicked on a link to a webpage that do not exist on the KTH website. Please contact the person responsible for the website if you followed a broken link from a page that belongs to KTH. Add the website address to the page with the broken link and the broken url.',
 
     programmes_list_lead:
-      'Choose a programme below to get an overview of courses and study years forming the programme.',
+      'This is where you will find all programme syllabuses at KTH. Each year group within a programme has its own study plan. The programme syllabus contains, among other things, information about which courses are included in the programme and what applies for selection and admission.',
     programme_type: {
       TARKU: 'Master of Architecture',
       CING: 'Master of Science in Engineering',
@@ -123,7 +123,7 @@ const messages = {
     programmes_admitted_from: 'admitted/batch from',
     programmes_older: 'Programmes without new admission',
     departments_list_lead:
-      'All active courses on all educational levels given at KTH, listed according to the organization of each school.',
+      "Here you will find information about courses at KTH. You will access information regarding course selection, preparing and taking the course, and course development. The courses are sorted according to KTH's schools. Information about which courses are included in a programme can be accessed via the menu item Programme syllabuses. To search for current courses, use the menu option Search courses and filter by start date.",
     departments_deprecated_schools: 'Older Schools',
     departments_deprecated_schools_collapsible: 'Courses older schools',
     department_period_abbr: 'Periods',
@@ -220,7 +220,8 @@ const messages = {
   shb: {
     pageHeading: 'Studies before 2007/2008',
     shbLink: 'Study Handbook 00/01 to 07/08',
-    content: 'Until the study year 2007/2008 the study handbook contained program and course information.',
+    content:
+      'Until the academic year 2007/2008, information on programmes and courses was available in the study handbook. Study Handbook 00/01 to 07/08',
   },
   thirdCycleSearch: {
     searchHeading: 'Search third-cycle courses',
@@ -232,9 +233,8 @@ const messages = {
   bigSearch: {
     searchHeading: 'Search courses',
     searchButton: 'Search course',
-    leadIntro: `This is the official course information at KTH. 
-    The courses may be searched by course name, part of name or course code. 
-    Courses included in your programme are available using the menu on the left.`,
+    leadIntro:
+      'This is where you will find course information at KTH. You will access information regarding course selection, preparing and taking the course, and course development. Search for the course name, part of the course name, or course code. Information about which courses are included in a programme can be accessed via the menu item Programme syllabuses.',
     eduLevel: 'Educational level:',
     PREPARATORY: 'Pre-university level',
     BASIC: 'First cycle',

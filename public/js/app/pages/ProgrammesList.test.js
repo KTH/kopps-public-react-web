@@ -231,14 +231,14 @@ describe('Render component ProgrammesList and check its menu, content and links'
   test('get page content in English', () => {
     render(<ProgrammesListWithLayout lang="en" />)
     const content = screen.getByText(
-      'Choose a programme below to get an overview of courses and study years forming the programme.'
+      'This is where you will find all programme syllabuses at KTH. Each year group within a programme has its own study plan. The programme syllabus contains, among other things, information about which courses are included in the programme and what applies for selection and admission.'
     )
     expect(content).toBeInTheDocument()
   })
   test('get page content in Swedish', () => {
     render(<ProgrammesListWithLayout lang="sv" />)
     const content = screen.getByText(
-      'Välj program nedan för att få en översikt av de kurser och årskursindelning som utgör programmet.'
+      'Här hittar du alla utbildningsplaner på KTH. Varje årskull inom ett program har en egen utbildningsplan. I utbildningsplanen finns information om bland annat vilka kurser som ingår i programmet och vad som gäller för urval och behörighet.'
     )
     expect(content).toBeInTheDocument()
   })

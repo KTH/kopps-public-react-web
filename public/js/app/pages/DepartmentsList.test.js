@@ -179,7 +179,7 @@ describe('Render component DepartmentsList and check its menu, content and links
   test('get page content in English', () => {
     render(<DepartmentsListWithLayout lang="en" />)
     const content = screen.getByText(
-      'All active courses on all educational levels given at KTH, listed according to the organization of each school.'
+      "Here you will find information about courses at KTH. You will access information regarding course selection, preparing and taking the course, and course development. The courses are sorted according to KTH's schools. Information about which courses are included in a programme can be accessed via the menu item Programme syllabuses. To search for current courses, use the menu option Search courses and filter by start date."
     )
     expect(content).toBeInTheDocument()
   })
@@ -187,7 +187,7 @@ describe('Render component DepartmentsList and check its menu, content and links
   test('get page content in Swedish', () => {
     render(<DepartmentsListWithLayout lang="sv" />)
     const content = screen.getByText(
-      'Här listas alla KTH:s aktiva kurser på samtliga utbildningsnivåer, uppdelat enligt respektive skolas organisation.'
+      'Här hittar du information om kurser på KTH. Du får tillgång till information inför kursval, inför att gå kursen samt om kursens utveckling. Kurserna är sorterade utifrån KTH:s skolor. Information om vilka kurser som ingår i ett program når du via menyvalet utbildningsplaner. För att söka fram enbart aktuella kurser, använd menyvalet Sök kurser och filtrera på starttermin.'
     )
     expect(content).toBeInTheDocument()
   })
