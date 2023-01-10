@@ -82,7 +82,7 @@ const messages = {
     main_menu_study_at_kth: 'Utbildning',
     main_menu_directory: 'Kurs- och programkatalogen',
     main_menu_page_example: 'Exempel',
-    main_menu_shb: 'Studiehandboken 00/01 tom 07/08',
+    main_menu_shb: 'Studier före 07/08',
     main_menu_search_all: 'Sök kurser',
     main_menu_third_cycle_studies: 'Forskarutbildning',
     main_menu_third_cycle_courses_search: 'Sök forskarkurs',
@@ -213,7 +213,8 @@ const messages = {
     programme_appendix2_empty_description: 'Ingen information inlagd.',
   },
   shb: {
-    pageHeading: 'Studiehandboken 00/01 tom 07/08',
+    pageHeading: 'Studier före 07/08',
+    shbLink: 'Studiehandboken 00/01 tom 07/08',
     content: 'Fram till läsåret 2007/2008 fanns information om program och kurser i studiehandboken.',
   },
   thirdCycleSearch: {

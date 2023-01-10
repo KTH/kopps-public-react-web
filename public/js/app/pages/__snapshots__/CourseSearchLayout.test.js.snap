@@ -74,7 +74,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
               class="nav-link"
               href="/student/program/shb"
             >
-              Study Handbook 00/01 to 07/08
+              Studies before 2007/2008
             </a>
           </li>
         </ul>
@@ -721,7 +721,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
               class="nav-link"
               href="/student/program/shb"
             >
-              Studiehandboken 00/01 tom 07/08
+              Studier före 07/08
             </a>
           </li>
         </ul>

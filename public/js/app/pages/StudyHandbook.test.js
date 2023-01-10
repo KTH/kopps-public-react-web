@@ -77,13 +77,13 @@ describe('Render component StudyHandbook within Layout', () => {
   test('get page header in English', () => {
     render(<StudyHandbookWithLayout lang="en" />)
     const h1Header = screen.getByRole('heading', { level: 1 })
-    expect(h1Header).toHaveTextContent('Study Handbook 00/01 to 07/08')
+    expect(h1Header).toHaveTextContent('Studies before 2007/2008')
   })
 
   test('get page header in Swedish', () => {
     render(<StudyHandbookWithLayout lang="sv" />)
     const h1Header = screen.getByRole('heading', { level: 1 })
-    expect(h1Header).toHaveTextContent('Studiehandboken 00/01 tom 07/08')
+    expect(h1Header).toHaveTextContent('Studier före 07/08')
   })
 
   test('match to snapshot in English', done => {
@@ -118,7 +118,7 @@ describe('Render component StudyHandbook and check its menu, content and links',
     expect(links[3]).toHaveTextContent('Courses by school')
     expect(links[3].href).toStrictEqual('http://localhost/student/kurser/org')
 
-    expect(links[4]).toHaveTextContent('Study Handbook 00/01 to 07/08') // menu link
+    expect(links[4]).toHaveTextContent('Studies before 2007/2008') // menu link
     expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
 
     expect(links[5]).toHaveTextContent('Study Handbook 00/01 to 07/08') // content link
@@ -147,7 +147,7 @@ describe('Render component StudyHandbook and check its menu, content and links',
     expect(links[3]).toHaveTextContent('Kurser per skola')
     expect(links[3].href).toStrictEqual('http://localhost/student/kurser/org')
 
-    expect(links[4]).toHaveTextContent('Studiehandboken 00/01 tom 07/08') // menu link
+    expect(links[4]).toHaveTextContent('Studier före 07/08') // menu link
     expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
 
     expect(links[5]).toHaveTextContent('Studiehandboken 00/01 tom 07/08') // content link

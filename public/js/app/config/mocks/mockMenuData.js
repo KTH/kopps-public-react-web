@@ -35,7 +35,7 @@ function mockGetMenuData(language) {
           {
             id: 'shb',
             type: 'leaf',
-            text: 'Study Handbook 00/01 to 07/08',
+            text: 'Studies before 2007/2008',
             url: '/student/program/shb',
           },
         ],
@@ -76,7 +76,7 @@ function mockGetMenuData(language) {
           {
             id: 'shb',
             type: 'leaf',
-            text: 'Studiehandboken 00/01 tom 07/08',
+            text: 'Studier före 07/08',
             url: '/student/program/shb',
           },
         ],

@@ -135,7 +135,7 @@ describe('Render component DepartmentsList and check its menu, content and links
     expect(links[2].href).toStrictEqual('http://localhost/student/kurser/sokkurs')
     expect(links[3]).toHaveTextContent('Courses by school')
     expect(links[3].href).toStrictEqual('http://localhost/student/kurser/org')
-    expect(links[4]).toHaveTextContent('Study Handbook 00/01 to 07/08')
+    expect(links[4]).toHaveTextContent('Studies before 2007/2008')
     expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
     // Main content links
     expect(links[5]).toHaveTextContent('Department')
@@ -164,7 +164,7 @@ describe('Render component DepartmentsList and check its menu, content and links
     expect(links[2].href).toStrictEqual('http://localhost/student/kurser/sokkurs')
     expect(links[3]).toHaveTextContent('Kurser per skola')
     expect(links[3].href).toStrictEqual('http://localhost/student/kurser/org')
-    expect(links[4]).toHaveTextContent('Studiehandboken 00/01 tom 07/08')
+    expect(links[4]).toHaveTextContent('Studier före 07/08')
     expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
     // Main content links
     expect(links[5]).toHaveTextContent('Avdelning')
