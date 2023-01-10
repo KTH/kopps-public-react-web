@@ -17,7 +17,7 @@ function mockGetMenuData(language) {
           {
             id: 'programmesList',
             type: 'leaf',
-            text: 'Courses Part of Programme',
+            text: 'Programme Syllabuses',
             url: '/student/kurser/kurser-inom-program',
           },
           {
@@ -58,7 +58,7 @@ function mockGetMenuData(language) {
           {
             id: 'programmesList',
             type: 'leaf',
-            text: 'Kurser inom program',
+            text: 'Utbildningsplaner',
             url: '/student/kurser/kurser-inom-program',
           },
           {

@@ -48,7 +48,7 @@ const messages = {
     creditUnitAbbr: 'Credits',
 
     courses: 'Courses',
-    courses_of_program: 'Courses Part of Programme',
+    courses_of_program: 'Programme Syllabuses',
     courses_by_school: 'Courses by school',
 
     course_code: 'Course code',

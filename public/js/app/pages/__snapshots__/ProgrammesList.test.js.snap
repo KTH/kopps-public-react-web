@@ -44,7 +44,7 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Engl
               class="nav-link"
               href="/student/kurser/kurser-inom-program"
             >
-              Courses Part of Programme
+              Programme Syllabuses
             </a>
           </li>
           <li
@@ -96,7 +96,7 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Engl
               role="presentation"
             >
               <h1>
-                Courses Part of Programme
+                Programme Syllabuses
               </h1>
             </header>
             <div
@@ -244,7 +244,7 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Swed
               class="nav-link"
               href="/student/kurser/kurser-inom-program"
             >
-              Kurser inom program
+              Utbildningsplaner
             </a>
           </li>
           <li
@@ -296,7 +296,7 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Swed
               role="presentation"
             >
               <h1>
-                Kurser inom program
+                Utbildningsplaner
               </h1>
             </header>
             <div

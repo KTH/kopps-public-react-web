@@ -47,7 +47,7 @@ const messages = {
     creditUnitAbbr: 'högskolepoäng',
 
     courses: 'Kurser',
-    courses_of_program: 'Kurser inom program',
+    courses_of_program: 'Utbildningsplaner',
     courses_by_school: 'Kurser per skola',
 
     course_code: 'Kurskod',
