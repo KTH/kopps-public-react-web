@@ -84,7 +84,7 @@ const messages = {
     main_menu_directory: 'Course and programme directory',
     main_menu_page_example: 'Example',
     main_menu_shb: 'Study Handbook 00/01 to 07/08',
-    main_menu_search_all: 'Search course',
+    main_menu_search_all: 'Search courses',
     main_menu_third_cycle_studies: 'Doctoral studies (PhD)',
     main_menu_third_cycle_courses_search: 'Search third-cycle courses',
 
@@ -229,7 +229,8 @@ const messages = {
       'At the Search course page you can search for all courses at KTH, including third cycle courses, by using search criteria.',
   },
   bigSearch: {
-    searchHeading: 'Search course',
+    searchHeading: 'Search courses',
+    searchButton: 'Search course',
     leadIntro: `This is the official course information at KTH. 
     The courses may be searched by course name, part of name or course code. 
     Courses included in your programme are available using the menu on the left.`,

@@ -54,7 +54,7 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Engli
               class="nav-link"
               href="/student/kurser/sokkurs"
             >
-              Search course
+              Search courses
             </a>
           </li>
           <li
@@ -211,7 +211,7 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Swedi
               class="nav-link"
               href="/student/kurser/sokkurs"
             >
-              Sök kurs
+              Sök kurser
             </a>
           </li>
           <li

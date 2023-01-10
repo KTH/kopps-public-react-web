@@ -22,7 +22,7 @@ function mockGetMenuData(language) {
           },
           {
             id: 'searchAllCourses',
-            text: 'Search course',
+            text: 'Search courses',
             type: 'leaf',
             url: '/student/kurser/sokkurs',
           },
@@ -63,7 +63,7 @@ function mockGetMenuData(language) {
           },
           {
             id: 'searchAllCourses',
-            text: 'Sök kurs',
+            text: 'Sök kurser',
             type: 'leaf',
             url: '/student/kurser/sokkurs',
           },

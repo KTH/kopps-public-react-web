@@ -112,7 +112,7 @@ describe('Render component StudyHandbook and check its menu, content and links',
     expect(links[1]).toHaveTextContent('Programme Syllabuses')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurser-inom-program')
 
-    expect(links[2]).toHaveTextContent('Search course')
+    expect(links[2]).toHaveTextContent('Search courses')
     expect(links[2].href).toStrictEqual('http://localhost/student/kurser/sokkurs')
 
     expect(links[3]).toHaveTextContent('Courses by school')
@@ -141,7 +141,7 @@ describe('Render component StudyHandbook and check its menu, content and links',
     expect(links[1]).toHaveTextContent('Utbildningsplaner')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurser-inom-program')
 
-    expect(links[2]).toHaveTextContent('Sök kurs')
+    expect(links[2]).toHaveTextContent('Sök kurser')
     expect(links[2].href).toStrictEqual('http://localhost/student/kurser/sokkurs')
 
     expect(links[3]).toHaveTextContent('Kurser per skola')

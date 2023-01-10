@@ -83,7 +83,7 @@ const messages = {
     main_menu_directory: 'Kurs- och programkatalogen',
     main_menu_page_example: 'Exempel',
     main_menu_shb: 'Studiehandboken 00/01 tom 07/08',
-    main_menu_search_all: 'Sök kurs',
+    main_menu_search_all: 'Sök kurser',
     main_menu_third_cycle_studies: 'Forskarutbildning',
     main_menu_third_cycle_courses_search: 'Sök forskarkurs',
 
@@ -220,10 +220,11 @@ const messages = {
     searchHeading: 'Sök forskarkurs',
     leadIntro: 'Här kan du söka bland KTHs forskarutbildningskurser.',
     linkToUsualSearch:
-      'På sidan Sök kurs kan du med hjälp av sökkriterier söka bland KTHs samtliga kurser inklusive forskarkurser.',
+      'På sidan Sök kurser kan du med hjälp av sökkriterier söka bland KTHs samtliga kurser inklusive forskarkurser.',
   },
   bigSearch: {
-    searchHeading: 'Sök kurs',
+    searchHeading: 'Sök kurser',
+    searchButton: 'Sök kurs',
     leadIntro: `Här hittar du KTHs officiella kursinformation. 
     Du kan söka bland alla kurser som ges vid KTH genom att ange hela eller delar av kursnamnet eller kurskoden. 
     Information om vilka kurser som ingår i ett program nås via menyn till vänster.`,

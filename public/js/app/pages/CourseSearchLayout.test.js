@@ -81,13 +81,13 @@ describe('Render component CourseSearch within Layout', () => {
   test('get page header in English', () => {
     render(<CourseSearchWithLayout lang="en" />)
     const h1Header = screen.getByRole('heading', { level: 1 })
-    expect(h1Header).toHaveTextContent('Search course')
+    expect(h1Header).toHaveTextContent('Search courses')
   })
 
   test('get page header in Swedish', () => {
     render(<CourseSearchWithLayout lang="sv" />)
     const h1Header = screen.getByRole('heading', { level: 1 })
-    expect(h1Header).toHaveTextContent('Sök kurs')
+    expect(h1Header).toHaveTextContent('Sök kurser')
   })
 
   test('match to snapshot in English', async () => {
@@ -123,7 +123,7 @@ describe('Render component CourseSearch and check its menu, content and links', 
     expect(links[1]).toHaveTextContent('Programme Syllabuses')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurser-inom-program')
 
-    expect(links[2]).toHaveTextContent('Search course')
+    expect(links[2]).toHaveTextContent('Search courses')
     expect(links[2].href).toStrictEqual('http://localhost/student/kurser/sokkurs')
 
     expect(links[3]).toHaveTextContent('Courses by school')
@@ -152,7 +152,7 @@ describe('Render component CourseSearch and check its menu, content and links', 
     expect(links[1]).toHaveTextContent('Utbildningsplaner')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurser-inom-program')
 
-    expect(links[2]).toHaveTextContent('Sök kurs')
+    expect(links[2]).toHaveTextContent('Sök kurser')
     expect(links[2].href).toStrictEqual('http://localhost/student/kurser/sokkurs')
 
     expect(links[3]).toHaveTextContent('Kurser per skola')
