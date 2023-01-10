@@ -231,7 +231,7 @@ describe('Render component ProgrammesList and check its menu, content and links'
   test('get page content in English', () => {
     render(<ProgrammesListWithLayout lang="en" />)
     const content = screen.getByText(
-      'This is where you will find all programme syllabuses at KTH. Each year group within a programme has its own study plan. The programme syllabus contains, among other things, information about which courses are included in the programme and what applies for selection and admission.'
+      'This is where you will find all programme syllabuses at KTH. Each year group within a programme has its own programme syllabus. The programme syllabus contains, among other things, information about which courses are included in the programme and what applies for selection and admission.'
     )
     expect(content).toBeInTheDocument()
   })

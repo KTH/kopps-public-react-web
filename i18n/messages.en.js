@@ -103,7 +103,7 @@ const messages = {
       'You have given a web address or clicked on a link to a webpage that do not exist on the KTH website. Please contact the person responsible for the website if you followed a broken link from a page that belongs to KTH. Add the website address to the page with the broken link and the broken url.',
 
     programmes_list_lead:
-      'This is where you will find all programme syllabuses at KTH. Each year group within a programme has its own study plan. The programme syllabus contains, among other things, information about which courses are included in the programme and what applies for selection and admission.',
+      'This is where you will find all programme syllabuses at KTH. Each year group within a programme has its own programme syllabus. The programme syllabus contains, among other things, information about which courses are included in the programme and what applies for selection and admission.',
     programme_type: {
       TARKU: 'Master of Architecture',
       CING: 'Master of Science in Engineering',

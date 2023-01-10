@@ -103,7 +103,7 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Engl
               class="lead"
             >
               <p>
-                This is where you will find all programme syllabuses at KTH. Each year group within a programme has its own study plan. The programme syllabus contains, among other things, information about which courses are included in the programme and what applies for selection and admission.
+                This is where you will find all programme syllabuses at KTH. Each year group within a programme has its own programme syllabus. The programme syllabus contains, among other things, information about which courses are included in the programme and what applies for selection and admission.
               </p>
             </div>
           </div>
