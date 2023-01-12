@@ -35,7 +35,7 @@ function mockGetMenuData(language) {
           {
             id: 'shb',
             type: 'leaf',
-            text: 'Studies before 2007/2008',
+            text: 'Studies before 07/08',
             url: '/student/program/shb',
           },
         ],

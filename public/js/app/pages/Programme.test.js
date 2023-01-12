@@ -157,7 +157,7 @@ describe('Render component Programme and check its menu, content and links', () 
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/program/ARKIT/20192/arskurs2?l=en')
     expect(links[2]).toHaveTextContent('Programme syllabus for studies starting in Spring 21')
     expect(links[2].href).toStrictEqual('http://localhost/student/kurser/program/ARKIT/20211/arskurs1?l=en')
-    expect(links[3]).toHaveTextContent('Studies before 2007/2008')
+    expect(links[3]).toHaveTextContent('Studies before 07/08')
     expect(links[3].href).toStrictEqual('http://localhost/student/program/shb?l=en')
     // Footer links
     expect(links[4]).toHaveTextContent('Central study counseling')

@@ -120,7 +120,7 @@ const messages = {
     programmes_admitted_from: 'antagna/kull fr.o.m.',
     programmes_older: 'Program utan nyantagning',
     departments_list_lead:
-      'Här hittar du information om kurser på KTH. Du får tillgång till information inför kursval, inför att gå kursen samt om kursens utveckling. Kurserna är sorterade utifrån KTH:s skolor. Information om vilka kurser som ingår i ett program når du via menyvalet utbildningsplaner. För att söka fram enbart aktuella kurser, använd menyvalet Sök kurser och filtrera på starttermin.',
+      'Här hittar du information om kurser på KTH. Du får tillgång till information inför kursval, inför att gå kursen samt om kursens utveckling. Kurserna är sorterade utifrån KTH:s skolor. Information om vilka kurser som ingår i ett program når du via menyvalet Utbildningsplaner. För att söka fram enbart aktuella kurser, använd menyvalet Sök kurser och filtrera på starttermin.',
     departments_deprecated_schools: 'Äldre skolor',
     departments_deprecated_schools_collapsible: 'Kurser äldre skolor',
     department_period_abbr: 'Perioder',
@@ -215,8 +215,7 @@ const messages = {
   shb: {
     pageHeading: 'Studier före 07/08',
     shbLink: 'Studiehandboken 00/01 tom 07/08',
-    content:
-      'Fram till läsåret 2007/2008 fanns information om program och kurser i studiehandboken. Studiehandboken 00/01 tom 07/08',
+    content: 'Fram till läsåret 2007/2008 fanns information om program och kurser i studiehandboken.',
   },
   thirdCycleSearch: {
     searchHeading: 'Sök forskarkurs',
@@ -228,7 +227,7 @@ const messages = {
     searchHeading: 'Sök kurser',
     searchButton: 'Sök kurs',
     leadIntro:
-      'Här hittar du information om kurser på KTH. Du får tillgång till information inför kursval, inför att gå kursen samt om kursens utveckling. Sök på hela eller delar av kursnamnet eller kurskoden. Information om vilka kurser som ingår i ett program når du via menyvalet utbildningsplaner.',
+      'Här hittar du information om kurser på KTH. Du får tillgång till information inför kursval, inför att gå kursen samt om kursens utveckling. Sök på hela eller delar av kursnamnet eller kurskoden. Information om vilka kurser som ingår i ett program når du via menyvalet Utbildningsplaner.',
     eduLevel: 'Utbildningsnivå:',
     PREPARATORY: 'Förberedande nivå',
     BASIC: 'Grundnivå',

@@ -74,7 +74,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
               class="nav-link"
               href="/student/program/shb"
             >
-              Studies before 2007/2008
+              Studies before 07/08
             </a>
           </li>
         </ul>
@@ -103,7 +103,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
               class="lead"
             >
               <p>
-                This is where you will find course information at KTH. You will access information regarding course selection, preparing and taking the course, and course development. Search for the course name, part of the course name, or course code. Information about which courses are included in a programme can be accessed via the menu item Programme syllabuses.
+                This is where you will find course information at KTH. You will access information regarding course selection, preparing and taking the course, and course development. Search for the course name, part of the course name, or course code. Information about which courses are included in a programme can be accessed via the menu item Programme Syllabuses.
               </p>
             </div>
           </div>
@@ -748,7 +748,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
               class="lead"
             >
               <p>
-                Här hittar du information om kurser på KTH. Du får tillgång till information inför kursval, inför att gå kursen samt om kursens utveckling. Sök på hela eller delar av kursnamnet eller kurskoden. Information om vilka kurser som ingår i ett program når du via menyvalet utbildningsplaner.
+                Här hittar du information om kurser på KTH. Du får tillgång till information inför kursval, inför att gå kursen samt om kursens utveckling. Sök på hela eller delar av kursnamnet eller kurskoden. Information om vilka kurser som ingår i ett program når du via menyvalet Utbildningsplaner.
               </p>
             </div>
           </div>

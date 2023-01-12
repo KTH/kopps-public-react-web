@@ -77,7 +77,7 @@ describe('Render component StudyHandbook within Layout', () => {
   test('get page header in English', () => {
     render(<StudyHandbookWithLayout lang="en" />)
     const h1Header = screen.getByRole('heading', { level: 1 })
-    expect(h1Header).toHaveTextContent('Studies before 2007/2008')
+    expect(h1Header).toHaveTextContent('Studies before 07/08')
   })
 
   test('get page header in Swedish', () => {
@@ -118,7 +118,7 @@ describe('Render component StudyHandbook and check its menu, content and links',
     expect(links[3]).toHaveTextContent('Courses by school')
     expect(links[3].href).toStrictEqual('http://localhost/student/kurser/org')
 
-    expect(links[4]).toHaveTextContent('Studies before 2007/2008') // menu link
+    expect(links[4]).toHaveTextContent('Studies before 07/08') // menu link
     expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
 
     expect(links[5]).toHaveTextContent('Study Handbook 00/01 to 07/08') // content link
@@ -163,7 +163,7 @@ describe('Render component StudyHandbook and check its menu, content and links',
   test('get page content in English', () => {
     render(<StudyHandbookWithLayout lang="en" />)
     const content = screen.getByText(
-      'Until the academic year 2007/2008, information on programmes and courses was available in the study handbook. Study Handbook 00/01 to 07/08'
+      'Until the academic year 2007/2008, information on programmes and courses was available in the study handbook.'
     )
     expect(content).toBeInTheDocument()
   })
@@ -171,7 +171,7 @@ describe('Render component StudyHandbook and check its menu, content and links',
   test('get page content in Swedish', () => {
     render(<StudyHandbookWithLayout lang="sv" />)
     const content = screen.getByText(
-      'Fram till läsåret 2007/2008 fanns information om program och kurser i studiehandboken. Studiehandboken 00/01 tom 07/08'
+      'Fram till läsåret 2007/2008 fanns information om program och kurser i studiehandboken.'
     )
     expect(content).toBeInTheDocument()
   })

@@ -74,7 +74,7 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Engl
               class="nav-link"
               href="/student/program/shb"
             >
-              Studies before 2007/2008
+              Studies before 07/08
             </a>
           </li>
         </ul>

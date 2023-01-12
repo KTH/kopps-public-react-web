@@ -83,7 +83,7 @@ const messages = {
     main_menu_study_at_kth: 'Study at KTH',
     main_menu_directory: 'Course and programme directory',
     main_menu_page_example: 'Example',
-    main_menu_shb: 'Studies before 2007/2008',
+    main_menu_shb: 'Studies before 07/08',
     main_menu_search_all: 'Search courses',
     main_menu_third_cycle_studies: 'Doctoral studies (PhD)',
     main_menu_third_cycle_courses_search: 'Search third-cycle courses',
@@ -123,7 +123,7 @@ const messages = {
     programmes_admitted_from: 'admitted/batch from',
     programmes_older: 'Programmes without new admission',
     departments_list_lead:
-      "Here you will find information about courses at KTH. You will access information regarding course selection, preparing and taking the course, and course development. The courses are sorted according to KTH's schools. Information about which courses are included in a programme can be accessed via the menu item Programme syllabuses. To search for current courses, use the menu option Search courses and filter by start date.",
+      "Here you will find information about courses at KTH. You will access information regarding course selection, preparing and taking the course, and course development. The courses are sorted according to KTH's schools. Information about which courses are included in a programme can be accessed via the menu item Programme Syllabuses. To search for current courses, use the menu option Search courses and filter by start date.",
     departments_deprecated_schools: 'Older Schools',
     departments_deprecated_schools_collapsible: 'Courses older schools',
     department_period_abbr: 'Periods',
@@ -218,10 +218,10 @@ const messages = {
     programme_appendix2_empty_description: 'No information entered.',
   },
   shb: {
-    pageHeading: 'Studies before 2007/2008',
+    pageHeading: 'Studies before 07/08',
     shbLink: 'Study Handbook 00/01 to 07/08',
     content:
-      'Until the academic year 2007/2008, information on programmes and courses was available in the study handbook. Study Handbook 00/01 to 07/08',
+      'Until the academic year 2007/2008, information on programmes and courses was available in the study handbook.',
   },
   thirdCycleSearch: {
     searchHeading: 'Search third-cycle courses',
@@ -234,7 +234,7 @@ const messages = {
     searchHeading: 'Search courses',
     searchButton: 'Search course',
     leadIntro:
-      'This is where you will find course information at KTH. You will access information regarding course selection, preparing and taking the course, and course development. Search for the course name, part of the course name, or course code. Information about which courses are included in a programme can be accessed via the menu item Programme syllabuses.',
+      'This is where you will find course information at KTH. You will access information regarding course selection, preparing and taking the course, and course development. Search for the course name, part of the course name, or course code. Information about which courses are included in a programme can be accessed via the menu item Programme Syllabuses.',
     eduLevel: 'Educational level:',
     PREPARATORY: 'Pre-university level',
     BASIC: 'First cycle',

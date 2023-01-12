@@ -74,7 +74,7 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Engli
               class="nav-link"
               href="/student/program/shb"
             >
-              Studies before 2007/2008
+              Studies before 07/08
             </a>
           </li>
         </ul>
@@ -96,7 +96,7 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Engli
               role="presentation"
             >
               <h1>
-                Studies before 2007/2008
+                Studies before 07/08
               </h1>
             </header>
           </div>
@@ -111,7 +111,7 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Engli
               class="article paragraphs"
             >
               <p>
-                Until the academic year 2007/2008, information on programmes and courses was available in the study handbook. Study Handbook 00/01 to 07/08
+                Until the academic year 2007/2008, information on programmes and courses was available in the study handbook.
               </p>
               <p>
                 <a
@@ -268,7 +268,7 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Swedi
               class="article paragraphs"
             >
               <p>
-                Fram till läsåret 2007/2008 fanns information om program och kurser i studiehandboken. Studiehandboken 00/01 tom 07/08
+                Fram till läsåret 2007/2008 fanns information om program och kurser i studiehandboken.
               </p>
               <p>
                 <a

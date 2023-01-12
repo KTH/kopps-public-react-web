@@ -129,7 +129,7 @@ describe('Render component CourseSearch and check its menu, content and links', 
     expect(links[3]).toHaveTextContent('Courses by school')
     expect(links[3].href).toStrictEqual('http://localhost/student/kurser/org')
 
-    expect(links[4]).toHaveTextContent('Studies before 2007/2008') // menu link
+    expect(links[4]).toHaveTextContent('Studies before 07/08') // menu link
     expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
 
     expect(links[5]).toHaveTextContent('kopps@kth.se') // address in search instructions, link
@@ -174,7 +174,7 @@ describe('Render component CourseSearch and check its menu, content and links', 
   test('get page introduction in English', () => {
     render(<CourseSearchWithLayout lang="en" />)
     const content = screen.getByText(
-      'This is where you will find course information at KTH. You will access information regarding course selection, preparing and taking the course, and course development. Search for the course name, part of the course name, or course code. Information about which courses are included in a programme can be accessed via the menu item Programme syllabuses.'
+      'This is where you will find course information at KTH. You will access information regarding course selection, preparing and taking the course, and course development. Search for the course name, part of the course name, or course code. Information about which courses are included in a programme can be accessed via the menu item Programme Syllabuses.'
     )
     expect(content).toBeInTheDocument()
   })
@@ -182,7 +182,7 @@ describe('Render component CourseSearch and check its menu, content and links', 
   test('get page introduction in Swedish', () => {
     render(<CourseSearchWithLayout lang="sv" />)
     const content = screen.getByText(
-      'Här hittar du information om kurser på KTH. Du får tillgång till information inför kursval, inför att gå kursen samt om kursens utveckling. Sök på hela eller delar av kursnamnet eller kurskoden. Information om vilka kurser som ingår i ett program når du via menyvalet utbildningsplaner.'
+      'Här hittar du information om kurser på KTH. Du får tillgång till information inför kursval, inför att gå kursen samt om kursens utveckling. Sök på hela eller delar av kursnamnet eller kurskoden. Information om vilka kurser som ingår i ett program når du via menyvalet Utbildningsplaner.'
     )
     expect(content).toBeInTheDocument()
   })
