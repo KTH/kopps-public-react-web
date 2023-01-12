@@ -77,13 +77,13 @@ describe('Render component StudyHandbook within Layout', () => {
   test('get page header in English', () => {
     render(<StudyHandbookWithLayout lang="en" />)
     const h1Header = screen.getByRole('heading', { level: 1 })
-    expect(h1Header).toHaveTextContent('Study Handbook 00/01 to 07/08')
+    expect(h1Header).toHaveTextContent('Studies before 07/08')
   })
 
   test('get page header in Swedish', () => {
     render(<StudyHandbookWithLayout lang="sv" />)
     const h1Header = screen.getByRole('heading', { level: 1 })
-    expect(h1Header).toHaveTextContent('Studiehandboken 00/01 tom 07/08')
+    expect(h1Header).toHaveTextContent('Studier före 07/08')
   })
 
   test('match to snapshot in English', done => {
@@ -109,16 +109,16 @@ describe('Render component StudyHandbook and check its menu, content and links',
     expect(links[0]).toHaveTextContent('Student at KTH')
     expect(links[0].href).toStrictEqual('http://localhost/student/?l=en')
 
-    expect(links[1]).toHaveTextContent('Courses Part of Programme')
+    expect(links[1]).toHaveTextContent('Programme Syllabuses')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurser-inom-program')
 
-    expect(links[2]).toHaveTextContent('Search course')
+    expect(links[2]).toHaveTextContent('Search courses')
     expect(links[2].href).toStrictEqual('http://localhost/student/kurser/sokkurs')
 
     expect(links[3]).toHaveTextContent('Courses by school')
     expect(links[3].href).toStrictEqual('http://localhost/student/kurser/org')
 
-    expect(links[4]).toHaveTextContent('Study Handbook 00/01 to 07/08') // menu link
+    expect(links[4]).toHaveTextContent('Studies before 07/08') // menu link
     expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
 
     expect(links[5]).toHaveTextContent('Study Handbook 00/01 to 07/08') // content link
@@ -138,16 +138,16 @@ describe('Render component StudyHandbook and check its menu, content and links',
     expect(links[0]).toHaveTextContent('Student på KTH')
     expect(links[0].href).toStrictEqual('http://localhost/student/')
 
-    expect(links[1]).toHaveTextContent('Kurser inom program')
+    expect(links[1]).toHaveTextContent('Utbildningsplaner')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurser-inom-program')
 
-    expect(links[2]).toHaveTextContent('Sök kurs')
+    expect(links[2]).toHaveTextContent('Sök kurser')
     expect(links[2].href).toStrictEqual('http://localhost/student/kurser/sokkurs')
 
     expect(links[3]).toHaveTextContent('Kurser per skola')
     expect(links[3].href).toStrictEqual('http://localhost/student/kurser/org')
 
-    expect(links[4]).toHaveTextContent('Studiehandboken 00/01 tom 07/08') // menu link
+    expect(links[4]).toHaveTextContent('Studier före 07/08') // menu link
     expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
 
     expect(links[5]).toHaveTextContent('Studiehandboken 00/01 tom 07/08') // content link
@@ -163,7 +163,7 @@ describe('Render component StudyHandbook and check its menu, content and links',
   test('get page content in English', () => {
     render(<StudyHandbookWithLayout lang="en" />)
     const content = screen.getByText(
-      'Until the study year 2007/2008 the study handbook contained program and course information.'
+      'Until the academic year 2007/2008, information on programmes and courses was available in the study handbook.'
     )
     expect(content).toBeInTheDocument()
   })

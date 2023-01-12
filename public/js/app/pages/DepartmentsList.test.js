@@ -129,13 +129,13 @@ describe('Render component DepartmentsList and check its menu, content and links
     // Menu links
     expect(links[0]).toHaveTextContent('Student at KTH')
     expect(links[0].href).toStrictEqual('http://localhost/student/?l=en')
-    expect(links[1]).toHaveTextContent('Courses Part of Programme')
+    expect(links[1]).toHaveTextContent('Programme Syllabuses')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurser-inom-program')
-    expect(links[2]).toHaveTextContent('Search course')
+    expect(links[2]).toHaveTextContent('Search courses')
     expect(links[2].href).toStrictEqual('http://localhost/student/kurser/sokkurs')
     expect(links[3]).toHaveTextContent('Courses by school')
     expect(links[3].href).toStrictEqual('http://localhost/student/kurser/org')
-    expect(links[4]).toHaveTextContent('Study Handbook 00/01 to 07/08')
+    expect(links[4]).toHaveTextContent('Studies before 07/08')
     expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
     // Main content links
     expect(links[5]).toHaveTextContent('Department')
@@ -158,13 +158,13 @@ describe('Render component DepartmentsList and check its menu, content and links
     // Menu links
     expect(links[0]).toHaveTextContent('Student på KTH')
     expect(links[0].href).toStrictEqual('http://localhost/student/')
-    expect(links[1]).toHaveTextContent('Kurser inom program')
+    expect(links[1]).toHaveTextContent('Utbildningsplaner')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurser-inom-program')
-    expect(links[2]).toHaveTextContent('Sök kurs')
+    expect(links[2]).toHaveTextContent('Sök kurser')
     expect(links[2].href).toStrictEqual('http://localhost/student/kurser/sokkurs')
     expect(links[3]).toHaveTextContent('Kurser per skola')
     expect(links[3].href).toStrictEqual('http://localhost/student/kurser/org')
-    expect(links[4]).toHaveTextContent('Studiehandboken 00/01 tom 07/08')
+    expect(links[4]).toHaveTextContent('Studier före 07/08')
     expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
     // Main content links
     expect(links[5]).toHaveTextContent('Avdelning')
@@ -179,7 +179,7 @@ describe('Render component DepartmentsList and check its menu, content and links
   test('get page content in English', () => {
     render(<DepartmentsListWithLayout lang="en" />)
     const content = screen.getByText(
-      'All active courses on all educational levels given at KTH, listed according to the organization of each school.'
+      "Here you will find information about courses at KTH. You will access information regarding course selection, preparing and taking the course, and course development. The courses are sorted according to KTH's schools. Information about which courses are included in a programme can be accessed via the menu item Programme Syllabuses. To search for current courses, use the menu option Search courses and filter by start date."
     )
     expect(content).toBeInTheDocument()
   })
@@ -187,7 +187,7 @@ describe('Render component DepartmentsList and check its menu, content and links
   test('get page content in Swedish', () => {
     render(<DepartmentsListWithLayout lang="sv" />)
     const content = screen.getByText(
-      'Här listas alla KTH:s aktiva kurser på samtliga utbildningsnivåer, uppdelat enligt respektive skolas organisation.'
+      'Här hittar du information om kurser på KTH. Du får tillgång till information inför kursval, inför att gå kursen samt om kursens utveckling. Kurserna är sorterade utifrån KTH:s skolor. Information om vilka kurser som ingår i ett program når du via menyvalet Utbildningsplaner. För att söka fram enbart aktuella kurser, använd menyvalet Sök kurser och filtrera på starttermin.'
     )
     expect(content).toBeInTheDocument()
   })

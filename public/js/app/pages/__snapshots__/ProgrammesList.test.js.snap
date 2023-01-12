@@ -44,7 +44,7 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Engl
               class="nav-link"
               href="/student/kurser/kurser-inom-program"
             >
-              Courses Part of Programme
+              Programme Syllabuses
             </a>
           </li>
           <li
@@ -54,7 +54,7 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Engl
               class="nav-link"
               href="/student/kurser/sokkurs"
             >
-              Search course
+              Search courses
             </a>
           </li>
           <li
@@ -74,7 +74,7 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Engl
               class="nav-link"
               href="/student/program/shb"
             >
-              Study Handbook 00/01 to 07/08
+              Studies before 07/08
             </a>
           </li>
         </ul>
@@ -96,14 +96,14 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Engl
               role="presentation"
             >
               <h1>
-                Courses Part of Programme
+                Programme Syllabuses
               </h1>
             </header>
             <div
               class="lead"
             >
               <p>
-                Choose a programme below to get an overview of courses and study years forming the programme.
+                This is where you will find all programme syllabuses at KTH. Each year group within a programme has its own programme syllabus. The programme syllabus contains, among other things, information about which courses are included in the programme and what applies for selection and admission.
               </p>
             </div>
           </div>
@@ -244,7 +244,7 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Swed
               class="nav-link"
               href="/student/kurser/kurser-inom-program"
             >
-              Kurser inom program
+              Utbildningsplaner
             </a>
           </li>
           <li
@@ -254,7 +254,7 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Swed
               class="nav-link"
               href="/student/kurser/sokkurs"
             >
-              Sök kurs
+              Sök kurser
             </a>
           </li>
           <li
@@ -274,7 +274,7 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Swed
               class="nav-link"
               href="/student/program/shb"
             >
-              Studiehandboken 00/01 tom 07/08
+              Studier före 07/08
             </a>
           </li>
         </ul>
@@ -296,14 +296,14 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Swed
               role="presentation"
             >
               <h1>
-                Kurser inom program
+                Utbildningsplaner
               </h1>
             </header>
             <div
               class="lead"
             >
               <p>
-                Välj program nedan för att få en översikt av de kurser och årskursindelning som utgör programmet.
+                Här hittar du alla utbildningsplaner på KTH. Varje årskull inom ett program har en egen utbildningsplan. I utbildningsplanen finns information om bland annat vilka kurser som ingår i programmet och vad som gäller för urval och behörighet.
               </p>
             </div>
           </div>

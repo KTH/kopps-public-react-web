@@ -44,7 +44,7 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Engli
               class="nav-link"
               href="/student/kurser/kurser-inom-program"
             >
-              Courses Part of Programme
+              Programme Syllabuses
             </a>
           </li>
           <li
@@ -54,7 +54,7 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Engli
               class="nav-link"
               href="/student/kurser/sokkurs"
             >
-              Search course
+              Search courses
             </a>
           </li>
           <li
@@ -74,7 +74,7 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Engli
               class="nav-link"
               href="/student/program/shb"
             >
-              Study Handbook 00/01 to 07/08
+              Studies before 07/08
             </a>
           </li>
         </ul>
@@ -96,7 +96,7 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Engli
               role="presentation"
             >
               <h1>
-                Study Handbook 00/01 to 07/08
+                Studies before 07/08
               </h1>
             </header>
           </div>
@@ -111,7 +111,7 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Engli
               class="article paragraphs"
             >
               <p>
-                Until the study year 2007/2008 the study handbook contained program and course information.
+                Until the academic year 2007/2008, information on programmes and courses was available in the study handbook.
               </p>
               <p>
                 <a
@@ -201,7 +201,7 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Swedi
               class="nav-link"
               href="/student/kurser/kurser-inom-program"
             >
-              Kurser inom program
+              Utbildningsplaner
             </a>
           </li>
           <li
@@ -211,7 +211,7 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Swedi
               class="nav-link"
               href="/student/kurser/sokkurs"
             >
-              Sök kurs
+              Sök kurser
             </a>
           </li>
           <li
@@ -231,7 +231,7 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Swedi
               class="nav-link"
               href="/student/program/shb"
             >
-              Studiehandboken 00/01 tom 07/08
+              Studier före 07/08
             </a>
           </li>
         </ul>
@@ -253,7 +253,7 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Swedi
               role="presentation"
             >
               <h1>
-                Studiehandboken 00/01 tom 07/08
+                Studier före 07/08
               </h1>
             </header>
           </div>

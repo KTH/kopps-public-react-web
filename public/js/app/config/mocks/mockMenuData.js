@@ -17,12 +17,12 @@ function mockGetMenuData(language) {
           {
             id: 'programmesList',
             type: 'leaf',
-            text: 'Courses Part of Programme',
+            text: 'Programme Syllabuses',
             url: '/student/kurser/kurser-inom-program',
           },
           {
             id: 'searchAllCourses',
-            text: 'Search course',
+            text: 'Search courses',
             type: 'leaf',
             url: '/student/kurser/sokkurs',
           },
@@ -35,7 +35,7 @@ function mockGetMenuData(language) {
           {
             id: 'shb',
             type: 'leaf',
-            text: 'Study Handbook 00/01 to 07/08',
+            text: 'Studies before 07/08',
             url: '/student/program/shb',
           },
         ],
@@ -58,12 +58,12 @@ function mockGetMenuData(language) {
           {
             id: 'programmesList',
             type: 'leaf',
-            text: 'Kurser inom program',
+            text: 'Utbildningsplaner',
             url: '/student/kurser/kurser-inom-program',
           },
           {
             id: 'searchAllCourses',
-            text: 'Sök kurs',
+            text: 'Sök kurser',
             type: 'leaf',
             url: '/student/kurser/sokkurs',
           },
@@ -76,7 +76,7 @@ function mockGetMenuData(language) {
           {
             id: 'shb',
             type: 'leaf',
-            text: 'Studiehandboken 00/01 tom 07/08',
+            text: 'Studier före 07/08',
             url: '/student/program/shb',
           },
         ],
