@@ -129,7 +129,7 @@ const messages = {
     department_period_abbr: 'Periods',
     programme_study_years: 'Programme Syllabuses',
     programme_study_years_explanation:
-      'Choose programme syllabus. Batch most often equals first registration term at programme.',
+      'Choose programme syllabus. Each year group within a programme has its own programme syllabus. The programme syllabus contains, among other things, information about which courses are included in the programme. ',
     programme_study_years_syllabus_missing: 'Programme syllabus according to study regulation of 2007 is missing.',
     programme_study_years_old: 'Older programme syllabuses',
     programme_study_years_old_explanation:
