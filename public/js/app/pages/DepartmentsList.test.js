@@ -179,7 +179,7 @@ describe('Render component DepartmentsList and check its menu, content and links
   test('get page content in English', () => {
     render(<DepartmentsListWithLayout lang="en" />)
     const content = screen.getByText(
-      "Here you will find information about courses at KTH. You will access information regarding course selection, preparing and taking the course, and course development. The courses are sorted according to KTH's schools. Information about which courses are included in a programme can be accessed via the menu item Programme Syllabuses. To search for current courses, use the menu option Search courses and filter by start date."
+      "This is where you will find information about courses at KTH. You will access information regarding course selection, preparing and taking the course, and course development. The courses are sorted according to KTH's schools. Information about which courses are included in a programme can be accessed via the menu item Programme Syllabuses. To search for current courses, use the menu option Search courses and filter by start date."
     )
     expect(content).toBeInTheDocument()
   })

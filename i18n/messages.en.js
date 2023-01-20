@@ -123,13 +123,13 @@ const messages = {
     programmes_admitted_from: 'admitted/batch from',
     programmes_older: 'Programmes without new admission',
     departments_list_lead:
-      "Here you will find information about courses at KTH. You will access information regarding course selection, preparing and taking the course, and course development. The courses are sorted according to KTH's schools. Information about which courses are included in a programme can be accessed via the menu item Programme Syllabuses. To search for current courses, use the menu option Search courses and filter by start date.",
+      "This is where you will find information about courses at KTH. You will access information regarding course selection, preparing and taking the course, and course development. The courses are sorted according to KTH's schools. Information about which courses are included in a programme can be accessed via the menu item Programme Syllabuses. To search for current courses, use the menu option Search courses and filter by start date.",
     departments_deprecated_schools: 'Older Schools',
     departments_deprecated_schools_collapsible: 'Courses older schools',
     department_period_abbr: 'Periods',
     programme_study_years: 'Programme Syllabuses',
     programme_study_years_explanation:
-      'Choose programme syllabus. Batch most often equals first registration term at programme.',
+      'Choose programme syllabus. Each year group within a programme has its own programme syllabus. The programme syllabus contains, among other things, information about which courses are included in the programme. ',
     programme_study_years_syllabus_missing: 'Programme syllabus according to study regulation of 2007 is missing.',
     programme_study_years_old: 'Older programme syllabuses',
     programme_study_years_old_explanation:

@@ -131,7 +131,7 @@ const messages = {
     programme_syllabus_for: (programCode, term) =>
       `Utbildningsplan för ${programCode} gällande antagning fr o m ${term}`,
     programme_study_years_explanation:
-      'Välj utbildningsplan. Oftast överensstämmer kull med den termin då studierna påbörjades vid programmet.',
+      'Välj utbildningsplan. Varje årskull inom ett program har en egen utbildningsplan. I utbildningsplanen finns information om bland annat vilka kurser som ingår i programmet. ',
     programme_study_years_syllabus_missing: 'Utbildningsplan enligt 2007 års studieordning saknas.',
     programme_study_years_old: 'Äldre utbildningsplaner',
     programme_study_years_old_explanation: 'Fram till läsåret 2007/2008 fanns utbildningsplanerna i studiehandboken.',

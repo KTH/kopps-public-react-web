@@ -90,7 +90,7 @@ exports[`Render component Programme within Layout match to snapshot in English 1
               class="article "
             >
               <p>
-                Choose programme syllabus. Batch most often equals first registration term at programme.
+                Choose programme syllabus. Each year group within a programme has its own programme syllabus. The programme syllabus contains, among other things, information about which courses are included in the programme. 
               </p>
               <ul
                 class="link-list"
@@ -237,7 +237,7 @@ exports[`Render component Programme within Layout match to snapshot in Swedish 1
               class="article "
             >
               <p>
-                Välj utbildningsplan. Oftast överensstämmer kull med den termin då studierna påbörjades vid programmet.
+                Välj utbildningsplan. Varje årskull inom ett program har en egen utbildningsplan. I utbildningsplanen finns information om bland annat vilka kurser som ingår i programmet. 
               </p>
               <ul
                 class="link-list"
