@@ -158,7 +158,7 @@ const messages = {
     pdf_error: {
       heading: 'Något har gått fel - Prova att ladda om sidan',
       error:
-        'Tyvärr har något gått fel. Systemet har inte lyckats hämta kursplanen som PDF. Försök att ladda om sidan.',
+        'Tyvärr har något gått fel. Systemet har inte lyckats hämta utbildningsplanen som PDF. Försök att ladda om sidan.',
       help: 'Kontakta IT-support ifall du har några frågor. ',
     },
     pdf_popup_warnings: {
