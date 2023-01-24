@@ -162,7 +162,7 @@ const messages = {
     pdf_error: {
       heading: 'Something has gone wrong - Try to reload the page',
       error:
-        'Unfortunately an unknown error occurred. The System failed to retrieve the course syllabus pdf. Try to reload the page.',
+        'Unfortunately an unknown error occurred. The System failed to retrieve the programme syllabus pdf. Try to reload the page.',
       help: 'Please contact IT-support if you have questions. ',
     },
     pdf_popup_warnings: {
