@@ -44,7 +44,7 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Eng
               class="nav-link"
               href="/student/kurser/kurser-inom-program"
             >
-              Courses Part of Programme
+              Programme Syllabuses
             </a>
           </li>
           <li
@@ -54,7 +54,7 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Eng
               class="nav-link"
               href="/student/kurser/sokkurs"
             >
-              Search course
+              Search courses
             </a>
           </li>
           <li
@@ -74,7 +74,7 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Eng
               class="nav-link"
               href="/student/program/shb"
             >
-              Study Handbook 00/01 to 07/08
+              Studies before 07/08
             </a>
           </li>
         </ul>
@@ -103,7 +103,7 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Eng
               class="lead"
             >
               <p>
-                All active courses on all educational levels given at KTH, listed according to the organization of each school.
+                This is where you will find information about courses at KTH. You will access information regarding course selection, preparing and taking the course, and course development. The courses are sorted according to KTH's schools. Information about which courses are included in a programme can be accessed via the menu item Programme Syllabuses. To search for current courses, use the menu option Search courses and filter by start date.
               </p>
             </div>
           </div>
@@ -212,7 +212,7 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Swe
               class="nav-link"
               href="/student/kurser/kurser-inom-program"
             >
-              Kurser inom program
+              Utbildningsplaner
             </a>
           </li>
           <li
@@ -222,7 +222,7 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Swe
               class="nav-link"
               href="/student/kurser/sokkurs"
             >
-              Sök kurs
+              Sök kurser
             </a>
           </li>
           <li
@@ -242,7 +242,7 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Swe
               class="nav-link"
               href="/student/program/shb"
             >
-              Studiehandboken 00/01 tom 07/08
+              Studier före 07/08
             </a>
           </li>
         </ul>
@@ -271,7 +271,7 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Swe
               class="lead"
             >
               <p>
-                Här listas alla KTH:s aktiva kurser på samtliga utbildningsnivåer, uppdelat enligt respektive skolas organisation.
+                Här hittar du information om kurser på KTH. Du får tillgång till information inför kursval, inför att gå kursen samt om kursens utveckling. Kurserna är sorterade utifrån KTH:s skolor. Information om vilka kurser som ingår i ett program når du via menyvalet Utbildningsplaner. För att söka fram enbart aktuella kurser, använd menyvalet Sök kurser och filtrera på starttermin.
               </p>
             </div>
           </div>

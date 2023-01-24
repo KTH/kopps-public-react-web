@@ -67,7 +67,7 @@ const CourseSearch = () => {
     showOptions: storeShowOptions,
   } = useStore()
   const { bigSearch, searchInstructions } = i18n.messages[languageIndex]
-  const { searchHeading, leadIntro } = bigSearch
+  const { searchHeading, leadIntro, searchButton } = bigSearch
   const { search_help_collapse_header: collapseHeader, search_help_10: lastInstruction } = searchInstructions
   // const [loadStatus, setLoadStatus] = useState('firstLoad')
   const [params, setParams] = useState(
@@ -122,7 +122,7 @@ const CourseSearch = () => {
       </Row>
       <Row>
         <Col>
-          <SearchFormFields openOptions={_openOptionsInCollapse()} caption={searchHeading} onSubmit={handleSubmit} />
+          <SearchFormFields openOptions={_openOptionsInCollapse()} caption={searchButton} onSubmit={handleSubmit} />
         </Col>
       </Row>
       <Row>

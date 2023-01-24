@@ -81,13 +81,13 @@ describe('Render component CourseSearch within Layout', () => {
   test('get page header in English', () => {
     render(<CourseSearchWithLayout lang="en" />)
     const h1Header = screen.getByRole('heading', { level: 1 })
-    expect(h1Header).toHaveTextContent('Search course')
+    expect(h1Header).toHaveTextContent('Search courses')
   })
 
   test('get page header in Swedish', () => {
     render(<CourseSearchWithLayout lang="sv" />)
     const h1Header = screen.getByRole('heading', { level: 1 })
-    expect(h1Header).toHaveTextContent('Sök kurs')
+    expect(h1Header).toHaveTextContent('Sök kurser')
   })
 
   test('match to snapshot in English', async () => {
@@ -120,16 +120,16 @@ describe('Render component CourseSearch and check its menu, content and links', 
     expect(links[0]).toHaveTextContent('Student at KTH')
     expect(links[0].href).toStrictEqual('http://localhost/student/?l=en')
 
-    expect(links[1]).toHaveTextContent('Courses Part of Programme')
+    expect(links[1]).toHaveTextContent('Programme Syllabuses')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurser-inom-program')
 
-    expect(links[2]).toHaveTextContent('Search course')
+    expect(links[2]).toHaveTextContent('Search courses')
     expect(links[2].href).toStrictEqual('http://localhost/student/kurser/sokkurs')
 
     expect(links[3]).toHaveTextContent('Courses by school')
     expect(links[3].href).toStrictEqual('http://localhost/student/kurser/org')
 
-    expect(links[4]).toHaveTextContent('Study Handbook 00/01 to 07/08') // menu link
+    expect(links[4]).toHaveTextContent('Studies before 07/08') // menu link
     expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
 
     expect(links[5]).toHaveTextContent('kopps@kth.se') // address in search instructions, link
@@ -149,16 +149,16 @@ describe('Render component CourseSearch and check its menu, content and links', 
     expect(links[0]).toHaveTextContent('Student på KTH')
     expect(links[0].href).toStrictEqual('http://localhost/student/')
 
-    expect(links[1]).toHaveTextContent('Kurser inom program')
+    expect(links[1]).toHaveTextContent('Utbildningsplaner')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurser-inom-program')
 
-    expect(links[2]).toHaveTextContent('Sök kurs')
+    expect(links[2]).toHaveTextContent('Sök kurser')
     expect(links[2].href).toStrictEqual('http://localhost/student/kurser/sokkurs')
 
     expect(links[3]).toHaveTextContent('Kurser per skola')
     expect(links[3].href).toStrictEqual('http://localhost/student/kurser/org')
 
-    expect(links[4]).toHaveTextContent('Studiehandboken 00/01 tom 07/08') // menu link
+    expect(links[4]).toHaveTextContent('Studier före 07/08') // menu link
     expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
 
     expect(links[5]).toHaveTextContent('kopps@kth.se') // address in search instructions, link
@@ -174,7 +174,7 @@ describe('Render component CourseSearch and check its menu, content and links', 
   test('get page introduction in English', () => {
     render(<CourseSearchWithLayout lang="en" />)
     const content = screen.getByText(
-      'This is the official course information at KTH. The courses may be searched by course name, part of name or course code. Courses included in your programme are available using the menu on the left.'
+      'This is where you will find course information at KTH. You will access information regarding course selection, preparing and taking the course, and course development. Search for the course name, part of the course name, or course code. Information about which courses are included in a programme can be accessed via the menu item Programme Syllabuses.'
     )
     expect(content).toBeInTheDocument()
   })
@@ -182,7 +182,7 @@ describe('Render component CourseSearch and check its menu, content and links', 
   test('get page introduction in Swedish', () => {
     render(<CourseSearchWithLayout lang="sv" />)
     const content = screen.getByText(
-      `Här hittar du KTHs officiella kursinformation. Du kan söka bland alla kurser som ges vid KTH genom att ange hela eller delar av kursnamnet eller kurskoden. Information om vilka kurser som ingår i ett program nås via menyn till vänster.`
+      'Här hittar du information om kurser på KTH. Du får tillgång till information inför kursval, inför att gå kursen samt om kursens utveckling. Sök på hela eller delar av kursnamnet eller kurskoden. Information om vilka kurser som ingår i ett program når du via menyvalet Utbildningsplaner.'
     )
     expect(content).toBeInTheDocument()
   })

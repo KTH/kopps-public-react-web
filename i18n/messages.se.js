@@ -47,7 +47,7 @@ const messages = {
     creditUnitAbbr: 'högskolepoäng',
 
     courses: 'Kurser',
-    courses_of_program: 'Kurser inom program',
+    courses_of_program: 'Utbildningsplaner',
     courses_by_school: 'Kurser per skola',
 
     course_code: 'Kurskod',
@@ -82,8 +82,8 @@ const messages = {
     main_menu_study_at_kth: 'Utbildning',
     main_menu_directory: 'Kurs- och programkatalogen',
     main_menu_page_example: 'Exempel',
-    main_menu_shb: 'Studiehandboken 00/01 tom 07/08',
-    main_menu_search_all: 'Sök kurs',
+    main_menu_shb: 'Studier före 07/08',
+    main_menu_search_all: 'Sök kurser',
     main_menu_third_cycle_studies: 'Forskarutbildning',
     main_menu_third_cycle_courses_search: 'Sök forskarkurs',
 
@@ -100,7 +100,7 @@ const messages = {
     main_page_not_found_page_paragraph:
       'Du har angivit en adress eller klickat på en länk till en webbsida som inte finns på KTHs webbplats. Kontakta KTHs webbansvariga om du följde en felaktig länk från någon av KTHs webbsidor. Ange webbadress för sidan med den felaktiga länken och till vilken adress länken pekar.',
     programmes_list_lead:
-      'Välj program nedan för att få en översikt av de kurser och årskursindelning som utgör programmet.',
+      'Här hittar du alla utbildningsplaner på KTH. Varje årskull inom ett program har en egen utbildningsplan. I utbildningsplanen finns information om bland annat vilka kurser som ingår i programmet och vad som gäller för urval och behörighet.',
     programme_type: {
       TARKU: 'Arkitektutbildning',
       CING: 'Civilingenjörsutbildning',
@@ -120,7 +120,7 @@ const messages = {
     programmes_admitted_from: 'antagna/kull fr.o.m.',
     programmes_older: 'Program utan nyantagning',
     departments_list_lead:
-      'Här listas alla KTH:s aktiva kurser på samtliga utbildningsnivåer, uppdelat enligt respektive skolas organisation.',
+      'Här hittar du information om kurser på KTH. Du får tillgång till information inför kursval, inför att gå kursen samt om kursens utveckling. Kurserna är sorterade utifrån KTH:s skolor. Information om vilka kurser som ingår i ett program når du via menyvalet Utbildningsplaner. För att söka fram enbart aktuella kurser, använd menyvalet Sök kurser och filtrera på starttermin.',
     departments_deprecated_schools: 'Äldre skolor',
     departments_deprecated_schools_collapsible: 'Kurser äldre skolor',
     department_period_abbr: 'Perioder',
@@ -131,7 +131,7 @@ const messages = {
     programme_syllabus_for: (programCode, term) =>
       `Utbildningsplan för ${programCode} gällande antagning fr o m ${term}`,
     programme_study_years_explanation:
-      'Välj utbildningsplan. Oftast överensstämmer kull med den termin då studierna påbörjades vid programmet.',
+      'Välj utbildningsplan. Varje årskull inom ett program har en egen utbildningsplan. I utbildningsplanen finns information om bland annat vilka kurser som ingår i programmet. ',
     programme_study_years_syllabus_missing: 'Utbildningsplan enligt 2007 års studieordning saknas.',
     programme_study_years_old: 'Äldre utbildningsplaner',
     programme_study_years_old_explanation: 'Fram till läsåret 2007/2008 fanns utbildningsplanerna i studiehandboken.',
@@ -213,20 +213,21 @@ const messages = {
     programme_appendix2_empty_description: 'Ingen information inlagd.',
   },
   shb: {
-    pageHeading: 'Studiehandboken 00/01 tom 07/08',
+    pageHeading: 'Studier före 07/08',
+    shbLink: 'Studiehandboken 00/01 tom 07/08',
     content: 'Fram till läsåret 2007/2008 fanns information om program och kurser i studiehandboken.',
   },
   thirdCycleSearch: {
     searchHeading: 'Sök forskarkurs',
     leadIntro: 'Här kan du söka bland KTHs forskarutbildningskurser.',
     linkToUsualSearch:
-      'På sidan Sök kurs kan du med hjälp av sökkriterier söka bland KTHs samtliga kurser inklusive forskarkurser.',
+      'På sidan Sök kurser kan du med hjälp av sökkriterier söka bland KTHs samtliga kurser inklusive forskarkurser.',
   },
   bigSearch: {
-    searchHeading: 'Sök kurs',
-    leadIntro: `Här hittar du KTHs officiella kursinformation. 
-    Du kan söka bland alla kurser som ges vid KTH genom att ange hela eller delar av kursnamnet eller kurskoden. 
-    Information om vilka kurser som ingår i ett program nås via menyn till vänster.`,
+    searchHeading: 'Sök kurser',
+    searchButton: 'Sök kurs',
+    leadIntro:
+      'Här hittar du information om kurser på KTH. Du får tillgång till information inför kursval, inför att gå kursen samt om kursens utveckling. Sök på hela eller delar av kursnamnet eller kurskoden. Information om vilka kurser som ingår i ett program når du via menyvalet Utbildningsplaner.',
     eduLevel: 'Utbildningsnivå:',
     PREPARATORY: 'Förberedande nivå',
     BASIC: 'Grundnivå',

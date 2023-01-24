@@ -11,7 +11,7 @@ import i18n from '../../../../i18n'
 
 function StudyHandbook() {
   const { languageIndex } = useStore()
-  const { pageHeading, content } = i18n.messages[languageIndex].shb
+  const { pageHeading, shbLink, content } = i18n.messages[languageIndex].shb
 
   return (
     <>
@@ -25,7 +25,7 @@ function StudyHandbook() {
           <Article classNames={['paragraphs']}>
             <p>{content}</p>
             <p>
-              <a href="https://intra.kth.se/utbildning/utbildningsadministr/kopps/shb">{pageHeading}</a>
+              <a href="https://intra.kth.se/utbildning/utbildningsadministr/kopps/shb">{shbLink}</a>
             </p>
           </Article>
         </Col>

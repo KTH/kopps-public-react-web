@@ -152,12 +152,12 @@ describe('Render component ProgrammesList within Layout', () => {
   test('get page header in English', () => {
     render(<ProgrammesListWithLayout lang="en" />)
     const h1Header = screen.getByRole('heading', { level: 1 })
-    expect(h1Header).toHaveTextContent('Courses Part of Programme')
+    expect(h1Header).toHaveTextContent('Programme Syllabuses')
   })
   test('get page header in Swedish', () => {
     render(<ProgrammesListWithLayout lang="sv" />)
     const h1Header = screen.getByRole('heading', { level: 1 })
-    expect(h1Header).toHaveTextContent('Kurser inom program')
+    expect(h1Header).toHaveTextContent('Utbildningsplaner')
   })
   test('match to snapshot in English', done => {
     const { asFragment } = render(<ProgrammesListWithLayout lang="en" />)
@@ -181,13 +181,13 @@ describe('Render component ProgrammesList and check its menu, content and links'
     // Menu links
     expect(links[0]).toHaveTextContent('Student at KTH')
     expect(links[0].href).toStrictEqual('http://localhost/student/?l=en')
-    expect(links[1]).toHaveTextContent('Courses Part of Programme')
+    expect(links[1]).toHaveTextContent('Programme Syllabuses')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurser-inom-program')
-    expect(links[2]).toHaveTextContent('Search course')
+    expect(links[2]).toHaveTextContent('Search courses')
     expect(links[2].href).toStrictEqual('http://localhost/student/kurser/sokkurs')
     expect(links[3]).toHaveTextContent('Courses by school')
     expect(links[3].href).toStrictEqual('http://localhost/student/kurser/org')
-    expect(links[4]).toHaveTextContent('Study Handbook 00/01 to 07/08')
+    expect(links[4]).toHaveTextContent('Studies before 07/08')
     expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
     // Main content links
     expect(links[5]).toHaveTextContent('Degree Programme in Architecture (ARKIT)')
@@ -209,13 +209,13 @@ describe('Render component ProgrammesList and check its menu, content and links'
     // Menu links
     expect(links[0]).toHaveTextContent('Student på KTH')
     expect(links[0].href).toStrictEqual('http://localhost/student/')
-    expect(links[1]).toHaveTextContent('Kurser inom program')
+    expect(links[1]).toHaveTextContent('Utbildningsplaner')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurser-inom-program')
-    expect(links[2]).toHaveTextContent('Sök kurs')
+    expect(links[2]).toHaveTextContent('Sök kurser')
     expect(links[2].href).toStrictEqual('http://localhost/student/kurser/sokkurs')
     expect(links[3]).toHaveTextContent('Kurser per skola')
     expect(links[3].href).toStrictEqual('http://localhost/student/kurser/org')
-    expect(links[4]).toHaveTextContent('Studiehandboken 00/01 tom 07/08')
+    expect(links[4]).toHaveTextContent('Studier före 07/08')
     expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
     // Main content links
     expect(links[5]).toHaveTextContent('Arkitektutbildning (ARKIT)')
@@ -231,14 +231,14 @@ describe('Render component ProgrammesList and check its menu, content and links'
   test('get page content in English', () => {
     render(<ProgrammesListWithLayout lang="en" />)
     const content = screen.getByText(
-      'Choose a programme below to get an overview of courses and study years forming the programme.'
+      'This is where you will find all programme syllabuses at KTH. Each year group within a programme has its own programme syllabus. The programme syllabus contains, among other things, information about which courses are included in the programme and what applies for selection and admission.'
     )
     expect(content).toBeInTheDocument()
   })
   test('get page content in Swedish', () => {
     render(<ProgrammesListWithLayout lang="sv" />)
     const content = screen.getByText(
-      'Välj program nedan för att få en översikt av de kurser och årskursindelning som utgör programmet.'
+      'Här hittar du alla utbildningsplaner på KTH. Varje årskull inom ett program har en egen utbildningsplan. I utbildningsplanen finns information om bland annat vilka kurser som ingår i programmet och vad som gäller för urval och behörighet.'
     )
     expect(content).toBeInTheDocument()
   })

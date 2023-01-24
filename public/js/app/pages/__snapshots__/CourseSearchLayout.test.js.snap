@@ -44,7 +44,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
               class="nav-link"
               href="/student/kurser/kurser-inom-program"
             >
-              Courses Part of Programme
+              Programme Syllabuses
             </a>
           </li>
           <li
@@ -54,7 +54,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
               class="nav-link"
               href="/student/kurser/sokkurs"
             >
-              Search course
+              Search courses
             </a>
           </li>
           <li
@@ -74,7 +74,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
               class="nav-link"
               href="/student/program/shb"
             >
-              Study Handbook 00/01 to 07/08
+              Studies before 07/08
             </a>
           </li>
         </ul>
@@ -96,16 +96,14 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
               role="presentation"
             >
               <h1>
-                Search course
+                Search courses
               </h1>
             </header>
             <div
               class="lead"
             >
               <p>
-                This is the official course information at KTH. 
-    The courses may be searched by course name, part of name or course code. 
-    Courses included in your programme are available using the menu on the left.
+                This is where you will find course information at KTH. You will access information regarding course selection, preparing and taking the course, and course development. Search for the course name, part of the course name, or course code. Information about which courses are included in a programme can be accessed via the menu item Programme Syllabuses.
               </p>
             </div>
           </div>
@@ -691,7 +689,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
               class="nav-link"
               href="/student/kurser/kurser-inom-program"
             >
-              Kurser inom program
+              Utbildningsplaner
             </a>
           </li>
           <li
@@ -701,7 +699,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
               class="nav-link"
               href="/student/kurser/sokkurs"
             >
-              Sök kurs
+              Sök kurser
             </a>
           </li>
           <li
@@ -721,7 +719,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
               class="nav-link"
               href="/student/program/shb"
             >
-              Studiehandboken 00/01 tom 07/08
+              Studier före 07/08
             </a>
           </li>
         </ul>
@@ -743,16 +741,14 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
               role="presentation"
             >
               <h1>
-                Sök kurs
+                Sök kurser
               </h1>
             </header>
             <div
               class="lead"
             >
               <p>
-                Här hittar du KTHs officiella kursinformation. 
-    Du kan söka bland alla kurser som ges vid KTH genom att ange hela eller delar av kursnamnet eller kurskoden. 
-    Information om vilka kurser som ingår i ett program nås via menyn till vänster.
+                Här hittar du information om kurser på KTH. Du får tillgång till information inför kursval, inför att gå kursen samt om kursens utveckling. Sök på hela eller delar av kursnamnet eller kurskoden. Information om vilka kurser som ingår i ett program når du via menyvalet Utbildningsplaner.
               </p>
             </div>
           </div>

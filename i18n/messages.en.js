@@ -48,7 +48,7 @@ const messages = {
     creditUnitAbbr: 'Credits',
 
     courses: 'Courses',
-    courses_of_program: 'Courses Part of Programme',
+    courses_of_program: 'Programme Syllabuses',
     courses_by_school: 'Courses by school',
 
     course_code: 'Course code',
@@ -83,8 +83,8 @@ const messages = {
     main_menu_study_at_kth: 'Study at KTH',
     main_menu_directory: 'Course and programme directory',
     main_menu_page_example: 'Example',
-    main_menu_shb: 'Study Handbook 00/01 to 07/08',
-    main_menu_search_all: 'Search course',
+    main_menu_shb: 'Studies before 07/08',
+    main_menu_search_all: 'Search courses',
     main_menu_third_cycle_studies: 'Doctoral studies (PhD)',
     main_menu_third_cycle_courses_search: 'Search third-cycle courses',
 
@@ -103,7 +103,7 @@ const messages = {
       'You have given a web address or clicked on a link to a webpage that do not exist on the KTH website. Please contact the person responsible for the website if you followed a broken link from a page that belongs to KTH. Add the website address to the page with the broken link and the broken url.',
 
     programmes_list_lead:
-      'Choose a programme below to get an overview of courses and study years forming the programme.',
+      'This is where you will find all programme syllabuses at KTH. Each year group within a programme has its own programme syllabus. The programme syllabus contains, among other things, information about which courses are included in the programme and what applies for selection and admission.',
     programme_type: {
       TARKU: 'Master of Architecture',
       CING: 'Master of Science in Engineering',
@@ -123,13 +123,13 @@ const messages = {
     programmes_admitted_from: 'admitted/batch from',
     programmes_older: 'Programmes without new admission',
     departments_list_lead:
-      'All active courses on all educational levels given at KTH, listed according to the organization of each school.',
+      "This is where you will find information about courses at KTH. You will access information regarding course selection, preparing and taking the course, and course development. The courses are sorted according to KTH's schools. Information about which courses are included in a programme can be accessed via the menu item Programme Syllabuses. To search for current courses, use the menu option Search courses and filter by start date.",
     departments_deprecated_schools: 'Older Schools',
     departments_deprecated_schools_collapsible: 'Courses older schools',
     department_period_abbr: 'Periods',
     programme_study_years: 'Programme Syllabuses',
     programme_study_years_explanation:
-      'Choose programme syllabus. Batch most often equals first registration term at programme.',
+      'Choose programme syllabus. Each year group within a programme has its own programme syllabus. The programme syllabus contains, among other things, information about which courses are included in the programme. ',
     programme_study_years_syllabus_missing: 'Programme syllabus according to study regulation of 2007 is missing.',
     programme_study_years_old: 'Older programme syllabuses',
     programme_study_years_old_explanation:
@@ -218,8 +218,10 @@ const messages = {
     programme_appendix2_empty_description: 'No information entered.',
   },
   shb: {
-    pageHeading: 'Study Handbook 00/01 to 07/08',
-    content: 'Until the study year 2007/2008 the study handbook contained program and course information.',
+    pageHeading: 'Studies before 07/08',
+    shbLink: 'Study Handbook 00/01 to 07/08',
+    content:
+      'Until the academic year 2007/2008, information on programmes and courses was available in the study handbook.',
   },
   thirdCycleSearch: {
     searchHeading: 'Search third-cycle courses',
@@ -229,10 +231,10 @@ const messages = {
       'At the Search course page you can search for all courses at KTH, including third cycle courses, by using search criteria.',
   },
   bigSearch: {
-    searchHeading: 'Search course',
-    leadIntro: `This is the official course information at KTH. 
-    The courses may be searched by course name, part of name or course code. 
-    Courses included in your programme are available using the menu on the left.`,
+    searchHeading: 'Search courses',
+    searchButton: 'Search course',
+    leadIntro:
+      'This is where you will find course information at KTH. You will access information regarding course selection, preparing and taking the course, and course development. Search for the course name, part of the course name, or course code. Information about which courses are included in a programme can be accessed via the menu item Programme Syllabuses.',
     eduLevel: 'Educational level:',
     PREPARATORY: 'Pre-university level',
     BASIC: 'First cycle',
