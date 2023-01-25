@@ -36,7 +36,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
     await performCourseSearch(mReq({ pattern: 'Algebra' }, langEn), mRes, mockNext())
 
     expect(koppsApi.getSearchResults).toHaveBeenCalledWith('text_pattern=Algebra', langEn)
-    expect(mRes.status().json).toBeCalledWith({})
+    expect(mRes.status().json).toBeCalledWith(TEST_API_ANSWER_ALGEBRA)
   })
 
   test('search by pattern in swedish', async () => {
