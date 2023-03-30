@@ -25,7 +25,6 @@ const devSessionUseRedis = devDefaults(true)
 const devRedis = devDefaults('redis://localhost:6379/')
 const devKoppsApi = devDefaults('https://api-r.referens.sys.kth.se/api/kopps/v2/?defaultTimeout=60000')
 // END DEFAULT SETTINGS
-const devProgramSyllabusPdfUrl = devDefaults('https://app-r.referens.sys.kth.se/kopps-public/student/kurser/program')
 const devProgramSyallabusPDFURL = devDefaults('http://localhost:7071/api/PDFRenderFunction')
 
 module.exports = {
@@ -100,10 +99,6 @@ module.exports = {
       proxy: String(getEnv('SESSION_TRUST_PROXY', true)).toLowerCase() === 'true',
     },
     redisOptions: unpackRedisConfig('REDIS_URI', devRedis),
-  },
-
-  programSyllabusPdfPath: {
-    uri: getEnv('PDF_PROGRAM_SYLLABUS_URL', devProgramSyllabusPdfUrl),
   },
 
   programSyllabusForPDF: {
