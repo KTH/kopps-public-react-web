@@ -44,7 +44,6 @@ if (config.appInsights && config.appInsights.instrumentationKey) {
 }
 
 const { proxyPrefixPath, redirectProxyPath } = config
-const _addAppEmbeddedPageEndpointsPrefix = uri => `/kp-react${uri}`
 const _addDepartmentProxy = (uri = '') => `${proxyPrefixPath.department}${uri}`
 const _addProxy = uri => `${proxyPrefixPath.uri}${uri}`
 const _addProgramProxy = (uri = '') => `${proxyPrefixPath.programme}${uri}`
@@ -192,8 +191,6 @@ const { System } = require('./controllers')
 const systemRoute = AppRouter()
 // TODO: change systemroutes back to same place as static resources, after kp migration is done.
 systemRoute.get('system.monitor', _addProxy('/_monitor'), System.monitor)
-systemRoute.get('system.monitor_prefix', _addAppEmbeddedPageEndpointsPrefix('/_monitor'), System.monitor)
-
 systemRoute.get('system.about', _addProxy('/_about'), System.about)
 systemRoute.get('system.paths', _addProxy('/_paths'), System.paths)
 systemRoute.get('system.robots', '/robots.txt', System.robotsTxt)
@@ -224,7 +221,6 @@ const {
   ThirdCycleStudyDepartment,
   ThirdCycleStudySchoolsList,
   Public,
-  EmbeddedPage,
   ProgrammesList,
   SchoolsList,
   Department,
@@ -242,20 +238,6 @@ const {
 } = require('./controllers')
 const { parseTerm } = require('../domain/term')
 
-// Embedded page (html-based api) routes
-const embeddedPageRoute = AppRouter()
-embeddedPageRoute.get(
-  'EmbeddedPage.emptyFovSearch',
-  _addAppEmbeddedPageEndpointsPrefix('/embedded/fovsearch'),
-  EmbeddedPage.emptyFovSearch
-)
-embeddedPageRoute.post(
-  'EmbeddedPage.fovSearch',
-  _addAppEmbeddedPageEndpointsPrefix('/embedded/fovsearch'),
-  EmbeddedPage.fovSearch
-)
-server.use('/', embeddedPageRoute.getRouter())
-
 // App routes
 const appRoute = AppRouter()
 
@@ -263,7 +245,6 @@ appRoute.get('redirect.pdf_program_plan', _addProgramProxy('/:programmeCodeAndTe
 
 appRoute.get('system.ready', _addProxy('/_ready'), Public.getReady)
 appRoute.get('public.studyhandbook', proxyPrefixPath.studyHandbook, StudyHandBook.getStudyBook)
-appRoute.get('dev.fovkurser', _addProxy('/utbildning/kurser/fovkurser'), Public.getFovSearch)
 appRoute.get(
   'public.departmentsListThirdCycleStudy',
   proxyPrefixPath.thirdCycleSchoolsAndDepartments,

@@ -12,52 +12,6 @@ const i18n = require('../../i18n')
 // eslint-disable-next-line no-unused-vars
 const api = require('../api')
 
-const { getServerSideFunctions } = require('../utils/serverSideRendering')
-
-async function getFovSearch(req, res, next) {
-  try {
-    const lang = language.getLanguage(res)
-
-    let klaroAnalyticsConsentCookie = false
-    if (req.cookies.klaro) {
-      const consentCookiesArray = req.cookies.klaro.slice(1, -1).split(',')
-      // eslint-disable-next-line prefer-destructuring
-      const analyticsConsentCookieString = consentCookiesArray
-        .find(cookie => cookie.includes('analytics-consent'))
-        .split(':')[1]
-      // eslint-disable-next-line no-const-assign
-      klaroAnalyticsConsentCookie = analyticsConsentCookieString === 'true'
-    }
-
-    const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
-
-    const applicationStore = createStore()
-    applicationStore.setLanguage(lang)
-
-    await _fillApplicationStoreOnServerSide({ applicationStore, query: req.query })
-
-    const compressedStoreCode = getCompressedStoreCode(applicationStore)
-
-    const { uri: proxyPrefix } = serverConfig.proxyPrefixPath
-    const view = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
-    const title = i18n.message('site_name', lang)
-
-    res.render('sample/index', {
-      html: view,
-      title,
-      compressedStoreCode,
-      description: title,
-      lang,
-      proxyPrefix,
-      studentWeb: true,
-      klaroAnalyticsConsentCookie,
-    })
-  } catch (err) {
-    log.error('Error', { error: err })
-    next(err)
-  }
-}
-
 async function getReady(req, res, next) {
   try {
     const lang = language.getLanguage(res)
@@ -107,6 +61,5 @@ async function _fillApplicationStoreOnServerSide({ applicationStore, query }) {
 }
 
 module.exports = {
-  getFovSearch,
   getReady,
 }
