@@ -180,8 +180,8 @@ const messages = {
       'The pdf is not fully adap\u00ADted for ac\u00ADces\u00ADsi\u00ADbil\u00ADi\u00ADty, but all con\u00ADtent is also avai\u00ADlable on these web pages.',
     programme_plan_pdf: (programmeCode, term) =>
       `Pro\u00ADgram\u00ADme syl\u00ADla\u00ADbus ${programmeCode} for studies starting in ${term}`,
-    programme_programwebb_heading: programmeCode => `Student at ${programmeCode}`,
-    programme_programwebb_text: `Admitted students can find information and communicate about their programme on`,
+    programme_programwebb_heading: `For you who study at the programme`,
+    programme_programwebb_text: `Once you have registered on the first course in your programme you will find a link to your programme room in Canvas in the Personal meny.`,
     programme_programwebb_linktext: programmeCode => `Programme web ${programmeCode}`,
     programme_objectives: 'Programme objectives',
     programme_objectives_changed: 'Last edit',

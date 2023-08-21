@@ -238,12 +238,11 @@ function Sidebar() {
       </aside>
       <aside id="programwebbSidebar" className="sidebar" aria-labelledby="programwebb-sidebar-heading">
         <h1 id="programwebb-sidebar-heading" className="sidebar-heading">
-          {t('programme_programwebb_heading')(programmeCode)}
+          {t('programme_programwebb_heading')}
         </h1>
         <p>
           {t('programme_programwebb_text')}
           <br />
-          <a href={webLink}>{t('programme_programwebb_linktext')(programmeCode)}</a>
         </p>
       </aside>
     </div>
