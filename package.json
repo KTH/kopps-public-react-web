@@ -64,7 +64,7 @@
     "kth-node-redis": "^3.1.47",
     "kth-style": "^8.0.59",
     "mobx": "^6.10.0",
-    "mobx-react": "^7.6.0",
+    "mobx-react": "^9.0.1",
     "moment-timezone": "^0.5.43",
     "prop-types": "^15.8.1",
     "querystring": "^0.2.1",
