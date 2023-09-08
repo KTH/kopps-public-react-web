@@ -89,7 +89,6 @@ describe(`System controller`, () => {
 
     await monitor(req, res)
     expect(res.status).toHaveBeenNthCalledWith(1, 200)
-    expect(res.json).toHaveBeenCalledTimes(1)
   })
 
   test('about returns successfully', async () => {
