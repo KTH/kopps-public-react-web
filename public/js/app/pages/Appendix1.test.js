@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
+import '@testing-library/jest-dom'
 import { useStore } from '../mobx'
 import Appendix1 from './Appendix1'
 import { applicationStores } from './mocks/Appendix1ApplicationStore'

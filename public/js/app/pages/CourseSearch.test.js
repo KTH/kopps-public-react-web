@@ -1,6 +1,6 @@
 import React from 'react'
 import { fireEvent, render, screen, act, waitFor, waitForElementToBeRemoved, within } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
+import '@testing-library/jest-dom'
 import koppsCourseSearch from '../util/internApi'
 import CourseSearch from './CourseSearch'
 import { useStore } from '../mobx'

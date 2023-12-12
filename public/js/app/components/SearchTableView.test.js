@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen, within } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
+import '@testing-library/jest-dom'
 import SearchTableView from './SearchTableView'
 import { useStore } from '../mobx'
 import {
