@@ -206,7 +206,7 @@ function ProgramSyllabusExport({ applicationStore }) {
       )}
       {showLoader && (
         <div role="status" className="spinner-border">
-          <span className="sr-only">laddar...</span>
+          <span className="visually-hidden">laddar...</span>
         </div>
       )}
       <div className="display-none">
