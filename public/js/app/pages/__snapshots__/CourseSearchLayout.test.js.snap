@@ -594,7 +594,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
                 >
                   <button
                     class="btn btn-primary"
-                    style="float: right;"
+                    style="float: end;"
                     type="submit"
                   >
                     Search course
@@ -1239,7 +1239,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
                 >
                   <button
                     class="btn btn-primary"
-                    style="float: right;"
+                    style="float: end;"
                     type="submit"
                   >
                     Sök kurs

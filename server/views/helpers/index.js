@@ -35,12 +35,6 @@ registerHeaderContentHelper({
  * packaged helpers in https://github.com/KTH/@kth/kth-node-web-common/tree/master/lib/handlebars/helpers
  * Those only need to be required. Docs embedded in source.
  */
-require('@kth/kth-node-web-common/lib/handlebars/helpers/breadcrumbs')(
-  config.hostUrl,
-  'host_name',
-  config.proxyPrefixPath.uri,
-  'site_name'
-)
 require('@kth/kth-node-web-common/lib/handlebars/helpers/contentedit')
 
 const i18n = require('../../../i18n')
