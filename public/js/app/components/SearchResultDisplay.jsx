@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import koppsCourseSearch from '../util/internApi'
@@ -21,13 +20,19 @@ function _getThisHost(thisHostBaseUrl) {
 
 function renderAlertToTop(errorType, languageIndex) {
   const alertContainer = document.getElementById('alert-placeholder')
+
   if (alertContainer) {
-    ReactDOM.render(<SearchAlert alertType={errorType} languageIndex={languageIndex} />, alertContainer)
+    const root = createRoot(alertContainer)
+    root.render(<SearchAlert alertType={errorType} languageIndex={languageIndex} />)
   }
 }
 function dismountTopAlert() {
   const alertContainer = document.getElementById('alert-placeholder')
-  if (alertContainer) ReactDOM.unmountComponentAtNode(alertContainer)
+
+  if (alertContainer) {
+    const root = createRoot(alertContainer)
+    root.unmount()
+  }
 }
 
 const errorItalicParagraph = (errorType, languageIndex) => {

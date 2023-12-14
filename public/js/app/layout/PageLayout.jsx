@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import PropTypes from 'prop-types'
 
 import { Col, Row } from 'reactstrap'
@@ -14,13 +14,14 @@ function renderBreadcrumbsIntoKthHeader(breadcrumbs, language) {
   const breadcrumbsEnd = [...items, ...breadcrumbsDynamicItems]
 
   const breadcrumbContainer = document.getElementById('breadcrumbs-header')
+
   if (breadcrumbContainer) {
-    ReactDOM.render(
+    const root = createRoot(breadcrumbContainer)
+    root.render(
       <>
         <Breadcrumbs include={include} items={breadcrumbsEnd} language={language} />
         <LanguageControl language={language} />
-      </>,
-      breadcrumbContainer
+      </>
     )
   }
 }

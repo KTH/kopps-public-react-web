@@ -4,8 +4,7 @@
 // @ts-check
 
 import React from 'react'
-import ReactDOM from 'react-dom'
-import { hydrateRoot } from 'react-dom/client'
+import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import { uncompressStoreInPlaceFromDocument } from './mobx'
@@ -76,7 +75,8 @@ function _renderOnClientSide() {
   const app = <BrowserRouter>{appFactory()}</BrowserRouter>
 
   const domElement = document.getElementById('app')
-  hydrateRoot(domElement, app)
+  const root = createRoot(domElement)
+  root.render(app)
 }
 
 function appFactory(serverSideApplicationStore = null) {
