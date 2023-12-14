@@ -110,7 +110,7 @@ describe('Component <CourseSearch>, events', () => {
       showOptions: ['onlyEnglish', 'onlyMHU', 'showCancelled'],
     })
     expect(screen.getByTestId('number-of-results')).toHaveTextContent('Your search returned 2 result(s).')
-  })
+  }, 5000)
 
   // search options
   test('get periods checkboxes checked and then test uncheck it', async () => {
