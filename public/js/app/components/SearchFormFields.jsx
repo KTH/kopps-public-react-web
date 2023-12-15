@@ -15,7 +15,7 @@ function SearchFormFields({ caption, openOptions, onSubmit }) {
   const { languageIndex, textPattern: initialPattern = '' } = useStore()
 
   const { generalSearch } = i18n.messages[languageIndex]
-  const { searchLabel, searchStartPeriodPrefix, searchText, collapseHeaderOtherSearchOptions } = generalSearch
+  const { searchLabel, searchStartPeriodPrefix, collapseHeaderOtherSearchOptions } = generalSearch
   const [state, setState] = useReducer(paramsReducer, { pattern: initialPattern })
   const { pattern } = state
 
@@ -52,12 +52,7 @@ function SearchFormFields({ caption, openOptions, onSubmit }) {
       }}
     >
       <div className="form-group">
-        <label htmlFor="pattern">
-          {searchLabel}
-          <span id="searchfield-help-text" style={{ fontWeight: 'normal', display: 'block' }}>
-            {searchText}
-          </span>
-        </label>
+        <label htmlFor="pattern">{searchLabel}</label>
         <input
           id="pattern"
           type="text"

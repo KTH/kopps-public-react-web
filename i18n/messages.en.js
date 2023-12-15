@@ -234,7 +234,7 @@ const messages = {
     searchHeading: 'Search courses',
     searchButton: 'Search course',
     leadIntro:
-      'This is where you will find course information at KTH. You will access information regarding course selection, preparing and taking the course, and course development. Search for the course name, part of the course name, or course code. Information about which courses are included in a programme can be accessed via the menu item Programme Syllabuses.',
+      'Find info on KTH courses: course syllabus, course memo, and course analyses. Search by course name or course code, you can also filter by semester and period. Which courses are included in a program can be found under Programme syllabuses.',
     eduLevel: 'Educational level:',
     PREPARATORY: 'Pre-university level',
     BASIC: 'First cycle',
@@ -289,11 +289,10 @@ const messages = {
       'If you have questions or feedback on the course search, please contact <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
   },
   generalSearch: {
-    collapseHeaderOtherSearchOptions: 'Choose from other search criteria',
+    collapseHeaderOtherSearchOptions: 'Filter your search choices',
     searchStartPeriodPrefix: 'Course Start',
     resultsHeading: 'Search results',
-    searchLabel: 'Search by writing in a course code or course name:',
-    searchText: 'Example of course code: SF1624',
+    searchLabel: 'Search by course name or course code:',
     searchLoading: 'Searching ...',
     errorUnknown: 'An unknown error occurred - failed to retrieve course data.',
     errorEmpty: 'Your search returned no results.',

@@ -103,7 +103,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
               class="lead"
             >
               <p>
-                This is where you will find course information at KTH. You will access information regarding course selection, preparing and taking the course, and course development. Search for the course name, part of the course name, or course code. Information about which courses are included in a programme can be accessed via the menu item Programme Syllabuses.
+                Find info on KTH courses: course syllabus, course memo, and course analyses. Search by course name or course code, you can also filter by semester and period. Which courses are included in a program can be found under Programme syllabuses.
               </p>
             </div>
           </div>
@@ -197,13 +197,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
                 <label
                   for="pattern"
                 >
-                  Search by writing in a course code or course name:
-                  <span
-                    id="searchfield-help-text"
-                    style="font-weight: normal; display: block;"
-                  >
-                    Example of course code: SF1624
-                  </span>
+                  Search by course name or course code:
                 </label>
                 <input
                   id="pattern"
@@ -221,7 +215,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
                   aria-label=""
                   class="white"
                 >
-                  Choose from other search criteria
+                  Filter your search choices
                 </summary>
                 <div>
                   <div
@@ -748,7 +742,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
               class="lead"
             >
               <p>
-                Här hittar du information om kurser på KTH. Du får tillgång till information inför kursval, inför att gå kursen samt om kursens utveckling. Sök på hela eller delar av kursnamnet eller kurskoden. Information om vilka kurser som ingår i ett program når du via menyvalet Utbildningsplaner.
+                Här finns info om kurser på KTH: kursplan, kurs-PM och kursanalyser. Sök på kursnamn eller kurskod, du kan även filtrera på termin och läsperiod. Vilka kurser som ingår i ett program finns under Utbildningsplaner.
               </p>
             </div>
           </div>
@@ -842,13 +836,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
                 <label
                   for="pattern"
                 >
-                  Ange del av kursnamn eller kurskod:
-                  <span
-                    id="searchfield-help-text"
-                    style="font-weight: normal; display: block;"
-                  >
-                    Exempel på kurskod: SF1624
-                  </span>
+                  Sök på kursnamn eller kurskod:
                 </label>
                 <input
                   id="pattern"
@@ -866,7 +854,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
                   aria-label=""
                   class="white"
                 >
-                  Välj bland andra sökkriterier
+                  Filtrera dina sökval
                 </summary>
                 <div>
                   <div
