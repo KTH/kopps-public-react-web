@@ -125,66 +125,6 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
           <div
             class="col"
           >
-            <details
-              class=""
-            >
-              <summary
-                aria-label=""
-                class="white"
-              >
-                Instructions for searching
-              </summary>
-              <div>
-                <ul
-                  class="search-instructions"
-                >
-                  <li>
-                    You can search using part of the course name or code. Searching for "data" will return "Data Storage Paradigms" as well as "Database Techniques" and "Algorithms, Data Structures and Complexity".
-                  </li>
-                  <li>
-                    Searching for more than one word will return courses containing all of the words. Searching for "part 1" will return courses with both part and 1 in course name or code, for example "SI2610 Many Particle Physics" and "DD1343 Computer Science and Numerical Methods, part 1".
-                  </li>
-                  <li>
-                    Both the English and the Swedish course names are searched. Searching for "metod" will return the course "Computer Science Methods" with the Swedish name "Datalogisk metod".
-                  </li>
-                  <li>
-                    At most 250 hits will be displayed. If you get too many hits, try to narrow the search conditions.
-                  </li>
-                  <li>
-                    The search does not distinguish between upper and lower case characters.
-                  </li>
-                  <li>
-                    It is not possible to use special characters, like quotes, in the search. These characters will be removed before the search is performed.
-                  </li>
-                  <li>
-                    Your search may be restricted to courses starting in a specific term. By default, course are found without regard for when the course is offered.
-                  </li>
-                  <li>
-                    Your search may be restricted to courses taught in English. By default, courses are found without regard for tutoring language.
-                  </li>
-                  <li>
-                    You may select to show courses that are no longer offered or dormant at KTH (terminated courses). By default, these are not shown.
-                  </li>
-                  <li>
-                    If you have questions or feedback on the course search, please contact 
-                    <a
-                      href="mailto:kopps@kth.se"
-                    >
-                      kopps@kth.se
-                    </a>
-                    .
-                  </li>
-                </ul>
-              </div>
-            </details>
-          </div>
-        </div>
-        <div
-          class="row"
-        >
-          <div
-            class="col"
-          >
             <form
               aria-label="Search course"
               name="searchForm"
@@ -585,6 +525,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
               >
                 <div
                   class="col"
+                  style="display: flex; justify-content: flex-end;"
                 >
                   <button
                     class="btn btn-primary"
@@ -604,6 +545,66 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
           <div
             class="col"
           />
+        </div>
+        <div
+          class="row"
+        >
+          <div
+            class="col"
+          >
+            <details
+              class=""
+            >
+              <summary
+                aria-label=""
+                class="white"
+              >
+                Instructions for searching
+              </summary>
+              <div>
+                <ul
+                  class="search-instructions"
+                >
+                  <li>
+                    You can search using part of the course name or code. Searching for "data" will return "Data Storage Paradigms" as well as "Database Techniques" and "Algorithms, Data Structures and Complexity".
+                  </li>
+                  <li>
+                    Searching for more than one word will return courses containing all of the words. Searching for "part 1" will return courses with both part and 1 in course name or code, for example "SI2610 Many Particle Physics" and "DD1343 Computer Science and Numerical Methods, part 1".
+                  </li>
+                  <li>
+                    Both the English and the Swedish course names are searched. Searching for "metod" will return the course "Computer Science Methods" with the Swedish name "Datalogisk metod".
+                  </li>
+                  <li>
+                    At most 250 hits will be displayed. If you get too many hits, try to narrow the search conditions.
+                  </li>
+                  <li>
+                    The search does not distinguish between upper and lower case characters.
+                  </li>
+                  <li>
+                    It is not possible to use special characters, like quotes, in the search. These characters will be removed before the search is performed.
+                  </li>
+                  <li>
+                    Your search may be restricted to courses starting in a specific term. By default, course are found without regard for when the course is offered.
+                  </li>
+                  <li>
+                    Your search may be restricted to courses taught in English. By default, courses are found without regard for tutoring language.
+                  </li>
+                  <li>
+                    You may select to show courses that are no longer offered or dormant at KTH (terminated courses). By default, these are not shown.
+                  </li>
+                  <li>
+                    If you have questions or feedback on the course search, please contact 
+                    <a
+                      href="mailto:kopps@kth.se"
+                    >
+                      kopps@kth.se
+                    </a>
+                    .
+                  </li>
+                </ul>
+              </div>
+            </details>
+          </div>
         </div>
         <div
           class="row"
@@ -756,66 +757,6 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
             <div
               id="alert-placeholder"
             />
-          </div>
-        </div>
-        <div
-          class="row"
-        >
-          <div
-            class="col"
-          >
-            <details
-              class=""
-            >
-              <summary
-                aria-label=""
-                class="white"
-              >
-                Få hjälp med sökningen
-              </summary>
-              <div>
-                <ul
-                  class="search-instructions"
-                >
-                  <li>
-                    Du kan söka på del av kursnamn eller kurskod. En sökning efter "data" hittar exempelvis såväl "Databasteknik", "Datalogi" som "Algoritmer, datastrukturer och komplexitet".
-                  </li>
-                  <li>
-                    Skriver du flera ord i fältet hittas kurser som innehåller samtliga ord.
-                  </li>
-                  <li>
-                    Du kan även söka på kursens engelska namn.
-                  </li>
-                  <li>
-                    Sökningen visar max 250 träffar. Får du för många träffar, försök att förfina sökvillkoren.
-                  </li>
-                  <li>
-                    Sökningen gör ingen skillnad på versaler och gemener (stora och små bokstäver).
-                  </li>
-                  <li>
-                    Det går inte att använda specialtecken (t.ex. citationstecken). Dessa tas bort innan sökningen utförs.
-                  </li>
-                  <li>
-                    Du kan avgränsa sökningen till att endast visa kurser som startar en specifik termin. Standardinställningen är att hitta kurser oavsett när de går.
-                  </li>
-                  <li>
-                    Du kan avgränsa sökningen till att endast visa kurser med engelska som undervisningsspråk. Standardinställningen är att hitta kurser oavsett undervisningsspråk.
-                  </li>
-                  <li>
-                    Du kan välja att även visa kurser som ej längre ges på KTH. Standardinställning är att dessa inte visas.
-                  </li>
-                  <li>
-                    Om du har synpunkter eller frågor gällande kurssökningen, kontakta 
-                    <a
-                      href="mailto:kopps@kth.se"
-                    >
-                      kopps@kth.se
-                    </a>
-                    .
-                  </li>
-                </ul>
-              </div>
-            </details>
           </div>
         </div>
         <div
@@ -1224,6 +1165,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
               >
                 <div
                   class="col"
+                  style="display: flex; justify-content: flex-end;"
                 >
                   <button
                     class="btn btn-primary"
@@ -1243,6 +1185,66 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
           <div
             class="col"
           />
+        </div>
+        <div
+          class="row"
+        >
+          <div
+            class="col"
+          >
+            <details
+              class=""
+            >
+              <summary
+                aria-label=""
+                class="white"
+              >
+                Få hjälp med sökningen
+              </summary>
+              <div>
+                <ul
+                  class="search-instructions"
+                >
+                  <li>
+                    Du kan söka på del av kursnamn eller kurskod. En sökning efter "data" hittar exempelvis såväl "Databasteknik", "Datalogi" som "Algoritmer, datastrukturer och komplexitet".
+                  </li>
+                  <li>
+                    Skriver du flera ord i fältet hittas kurser som innehåller samtliga ord.
+                  </li>
+                  <li>
+                    Du kan även söka på kursens engelska namn.
+                  </li>
+                  <li>
+                    Sökningen visar max 250 träffar. Får du för många träffar, försök att förfina sökvillkoren.
+                  </li>
+                  <li>
+                    Sökningen gör ingen skillnad på versaler och gemener (stora och små bokstäver).
+                  </li>
+                  <li>
+                    Det går inte att använda specialtecken (t.ex. citationstecken). Dessa tas bort innan sökningen utförs.
+                  </li>
+                  <li>
+                    Du kan avgränsa sökningen till att endast visa kurser som startar en specifik termin. Standardinställningen är att hitta kurser oavsett när de går.
+                  </li>
+                  <li>
+                    Du kan avgränsa sökningen till att endast visa kurser med engelska som undervisningsspråk. Standardinställningen är att hitta kurser oavsett undervisningsspråk.
+                  </li>
+                  <li>
+                    Du kan välja att även visa kurser som ej längre ges på KTH. Standardinställning är att dessa inte visas.
+                  </li>
+                  <li>
+                    Om du har synpunkter eller frågor gällande kurssökningen, kontakta 
+                    <a
+                      href="mailto:kopps@kth.se"
+                    >
+                      kopps@kth.se
+                    </a>
+                    .
+                  </li>
+                </ul>
+              </div>
+            </details>
+          </div>
         </div>
         <div
           class="row"
