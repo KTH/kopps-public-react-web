@@ -58,6 +58,8 @@ const messages = {
     study_year: 'Årskurs',
 
     third_cycle_courses_by_school: 'Forskarkurser per skola',
+    third_cycle_courses_by_school_description:
+      'Här hittar du information om forskarkurser på KTH. Kurserna är sorterade efter KTH:s skolor och deras organisationer',
 
     // TODO: MOVE TO kth-course-program-vocabulary
 
