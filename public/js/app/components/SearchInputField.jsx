@@ -38,12 +38,7 @@ function SearchInputField({ caption = 'N/A', pattern: externalPattern, onSubmit 
       }}
     >
       <div className="form-group">
-        <label htmlFor="pattern">
-          {searchLabel}
-          <span id="searchfield-help-text" style={{ fontWeight: 'normal', display: 'block' }}>
-            {searchText}
-          </span>
-        </label>
+        <label htmlFor="pattern">{searchLabel}</label>
         <input
           id="pattern"
           type="text"
