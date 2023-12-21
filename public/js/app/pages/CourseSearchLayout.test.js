@@ -189,13 +189,13 @@ describe('Render component CourseSearch and check its menu, content and links', 
 
   test('get a label of a text pattern input in English', () => {
     render(<CourseSearchWithLayout lang="en" />)
-    const content = screen.getByText('Search by writing in a course code or course name:')
+    const content = screen.getByText('Search by course name or course code:')
     expect(content).toBeInTheDocument()
   })
 
   test('get a label of a text pattern input in Swedish', () => {
     render(<CourseSearchWithLayout lang="sv" />)
-    const content = screen.getByText(`Ange del av kursnamn eller kurskod:`)
+    const content = screen.getByText(`Sök på kursnamn eller kurskod:`)
     expect(content).toBeInTheDocument()
   })
 

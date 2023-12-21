@@ -197,7 +197,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
                 <label
                   for="pattern"
                 >
-                  Search by writing in a course code or course name:
+                  Search by course name or course code:
                   <span
                     id="searchfield-help-text"
                     style="font-weight: normal; display: block;"
@@ -842,7 +842,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
                 <label
                   for="pattern"
                 >
-                  Ange del av kursnamn eller kurskod:
+                  Sök på kursnamn eller kurskod:
                   <span
                     id="searchfield-help-text"
                     style="font-weight: normal; display: block;"

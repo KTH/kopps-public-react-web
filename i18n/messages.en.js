@@ -292,7 +292,7 @@ const messages = {
     collapseHeaderOtherSearchOptions: 'Choose from other search criteria',
     searchStartPeriodPrefix: 'Course Start',
     resultsHeading: 'Search results',
-    searchLabel: 'Search by writing in a course code or course name:',
+    searchLabel: 'Search by course name or course code:',
     searchText: 'Example of course code: SF1624',
     searchLoading: 'Searching ...',
     errorUnknown: 'An unknown error occurred - failed to retrieve course data.',
