@@ -120,7 +120,7 @@ const messages = {
     programmes_admitted_from: 'antagna/kull fr.o.m.',
     programmes_older: 'Program utan nyantagning',
     departments_list_lead:
-      'Här hittar du information om kurser på KTH. Du får tillgång till information inför kursval, inför att gå kursen samt om kursens utveckling. Kurserna är sorterade utifrån KTH:s skolor. Information om vilka kurser som ingår i ett program når du via menyvalet Utbildningsplaner. För att söka fram enbart aktuella kurser, använd menyvalet Sök kurser och filtrera på starttermin.',
+      'Här finns info om kurser på KTH. Kurserna är sorterade efter KTH:s skolor och deras organisationer. För att söka fram enbart aktuella kurser, använd menyalternativet Sök kurser och filtrera på termin och läsperiod. Vilka kurser som ingår i ett program finns under menyalternativet Utbildningsplaner.',
     departments_deprecated_schools: 'Äldre skolor',
     departments_deprecated_schools_collapsible: 'Kurser äldre skolor',
     department_period_abbr: 'Perioder',
