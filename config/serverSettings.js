@@ -54,12 +54,12 @@ module.exports = {
   blockApi: {
     blockUrl: getEnv('CM_HOST_URL', devDefaults('https://www.kth.se/cm/')),
     addBlocks: {
-      secondaryMenu: '1.1066515',
+      studentSecondaryMenu: '1.1066515',
       studentMegaMenu: '1.1066510',
       studentSearch: '1.1066521',
       studentFooter: '1.1066523',
     },
-    globalLink: false,
+    globalLink: true,
   },
 
   // Logging
