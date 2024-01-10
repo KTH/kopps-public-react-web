@@ -227,7 +227,7 @@ const messages = {
     searchHeading: 'Sök kurser',
     searchButton: 'Sök kurs',
     leadIntro:
-      'Här hittar du information om kurser på KTH. Du får tillgång till information inför kursval, inför att gå kursen samt om kursens utveckling. Sök på hela eller delar av kursnamnet eller kurskoden. Information om vilka kurser som ingår i ett program når du via menyvalet Utbildningsplaner.',
+      'Här finns info om kurser på KTH: kursplan, kurs-PM och kursanalyser. Sök på kursnamn eller kurskod, du kan även filtrera på termin och läsperiod. Vilka kurser som ingår i ett program finns under Utbildningsplaner.',
     eduLevel: 'Utbildningsnivå:',
     PREPARATORY: 'Förberedande nivå',
     BASIC: 'Grundnivå',
@@ -277,11 +277,10 @@ const messages = {
       'Om du har synpunkter eller frågor gällande kurssökningen, kontakta <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
   },
   generalSearch: {
-    collapseHeaderOtherSearchOptions: 'Välj bland andra sökkriterier',
+    collapseHeaderOtherSearchOptions: 'Filtrera dina sökval',
     searchStartPeriodPrefix: 'Kursstart',
     resultsHeading: 'Resultat från sökningen',
-    searchLabel: 'Ange del av kursnamn eller kurskod:',
-    searchText: 'Exempel på kurskod: SF1624',
+    searchLabel: 'Sök på kursnamn eller kurskod:',
     searchLoading: 'Söker ...',
     errorUnknown: 'Ett okänt fel inträffade - misslyckad hämtning av kursdata.',
     errorEmpty: 'Din sökning gav inga träffar.',
