@@ -174,7 +174,7 @@ describe('Render component CourseSearch and check its menu, content and links', 
   test('get page introduction in English', () => {
     render(<CourseSearchWithLayout lang="en" />)
     const content = screen.getByText(
-      'This is where you will find course information at KTH. You will access information regarding course selection, preparing and taking the course, and course development. Search for the course name, part of the course name, or course code. Information about which courses are included in a programme can be accessed via the menu item Programme Syllabuses.'
+      'Find info on KTH courses: course syllabus, course memo, and course analyses. Search by course name or course code, you can also filter by semester and period. Which courses are included in a program can be found under Programme syllabuses.'
     )
     expect(content).toBeInTheDocument()
   })
@@ -182,7 +182,7 @@ describe('Render component CourseSearch and check its menu, content and links', 
   test('get page introduction in Swedish', () => {
     render(<CourseSearchWithLayout lang="sv" />)
     const content = screen.getByText(
-      'Här hittar du information om kurser på KTH. Du får tillgång till information inför kursval, inför att gå kursen samt om kursens utveckling. Sök på hela eller delar av kursnamnet eller kurskoden. Information om vilka kurser som ingår i ett program når du via menyvalet Utbildningsplaner.'
+      'Här finns info om kurser på KTH: kursplan, kurs-PM och kursanalyser. Sök på kursnamn eller kurskod, du kan även filtrera på termin och läsperiod. Vilka kurser som ingår i ett program finns under Utbildningsplaner.'
     )
     expect(content).toBeInTheDocument()
   })
@@ -201,13 +201,13 @@ describe('Render component CourseSearch and check its menu, content and links', 
 
   test('get a label of the collapse with other options in English', () => {
     render(<CourseSearchWithLayout lang="en" />)
-    const content = screen.getByText('Choose from other search criteria')
+    const content = screen.getByText('Filter your search choices')
     expect(content).toBeInTheDocument()
   })
 
   test('get a label of the collapse with other options in Swedish', () => {
     render(<CourseSearchWithLayout lang="sv" />)
-    const content = screen.getByText(`Välj bland andra sökkriterier`)
+    const content = screen.getByText(`Filtrera dina sökval`)
     expect(content).toBeInTheDocument()
   })
 

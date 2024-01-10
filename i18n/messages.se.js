@@ -58,6 +58,8 @@ const messages = {
     study_year: 'Årskurs',
 
     third_cycle_courses_by_school: 'Forskarkurser per skola',
+    third_cycle_courses_by_school_description:
+      'Här hittar du information om forskarkurser på KTH. Kurserna är sorterade efter KTH:s skolor och deras organisationer',
 
     // TODO: MOVE TO kth-course-program-vocabulary
 
@@ -120,7 +122,7 @@ const messages = {
     programmes_admitted_from: 'antagna/kull fr.o.m.',
     programmes_older: 'Program utan nyantagning',
     departments_list_lead:
-      'Här hittar du information om kurser på KTH. Du får tillgång till information inför kursval, inför att gå kursen samt om kursens utveckling. Kurserna är sorterade utifrån KTH:s skolor. Information om vilka kurser som ingår i ett program når du via menyvalet Utbildningsplaner. För att söka fram enbart aktuella kurser, använd menyvalet Sök kurser och filtrera på starttermin.',
+      'Här finns info om kurser på KTH. Kurserna är sorterade efter KTH:s skolor och deras organisationer. För att söka fram enbart aktuella kurser, använd menyalternativet Sök kurser och filtrera på termin och läsperiod. Vilka kurser som ingår i ett program finns under menyalternativet Utbildningsplaner.',
     departments_deprecated_schools: 'Äldre skolor',
     departments_deprecated_schools_collapsible: 'Kurser äldre skolor',
     department_period_abbr: 'Perioder',
@@ -227,7 +229,7 @@ const messages = {
     searchHeading: 'Sök kurser',
     searchButton: 'Sök kurs',
     leadIntro:
-      'Här hittar du information om kurser på KTH. Du får tillgång till information inför kursval, inför att gå kursen samt om kursens utveckling. Sök på hela eller delar av kursnamnet eller kurskoden. Information om vilka kurser som ingår i ett program når du via menyvalet Utbildningsplaner.',
+      'Här finns info om kurser på KTH: kursplan, kurs-PM och kursanalyser. Sök på kursnamn eller kurskod, du kan även filtrera på termin och läsperiod. Vilka kurser som ingår i ett program finns under Utbildningsplaner.',
     eduLevel: 'Utbildningsnivå:',
     PREPARATORY: 'Förberedande nivå',
     BASIC: 'Grundnivå',
@@ -277,7 +279,7 @@ const messages = {
       'Om du har synpunkter eller frågor gällande kurssökningen, kontakta <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
   },
   generalSearch: {
-    collapseHeaderOtherSearchOptions: 'Välj bland andra sökkriterier',
+    collapseHeaderOtherSearchOptions: 'Filtrera dina sökval',
     searchStartPeriodPrefix: 'Kursstart',
     resultsHeading: 'Resultat från sökningen',
     searchLabel: 'Sök på kursnamn eller kurskod:',

@@ -59,6 +59,8 @@ const messages = {
     study_year: 'Study year',
 
     third_cycle_courses_by_school: 'Third-cycle courses by school',
+    third_cycle_courses_by_school_description:
+      'Here is information about KTH courses at the doctoral level. The courses are sorted by KTH schools and their respective organizations.',
     swedish_translation_text: 'This is a translation of the Swedish, legally binding, programme syllabus.',
 
     general_number_as_word: {
@@ -123,7 +125,7 @@ const messages = {
     programmes_admitted_from: 'admitted/batch from',
     programmes_older: 'Programmes without new admission',
     departments_list_lead:
-      "This is where you will find information about courses at KTH. You will access information regarding course selection, preparing and taking the course, and course development. The courses are sorted according to KTH's schools. Information about which courses are included in a programme can be accessed via the menu item Programme Syllabuses. To search for current courses, use the menu option Search courses and filter by start date.",
+      'Find info on KTH courses. The courses are sorted by KTH schools and their respective organizations. To search for current courses only, use the menu option Search courses and filter by semester and period. Which courses are included in a programme can be found under the menu option Programme Syllabuses.',
     departments_deprecated_schools: 'Older Schools',
     departments_deprecated_schools_collapsible: 'Courses older schools',
     department_period_abbr: 'Periods',
@@ -234,7 +236,7 @@ const messages = {
     searchHeading: 'Search courses',
     searchButton: 'Search course',
     leadIntro:
-      'This is where you will find course information at KTH. You will access information regarding course selection, preparing and taking the course, and course development. Search for the course name, part of the course name, or course code. Information about which courses are included in a programme can be accessed via the menu item Programme Syllabuses.',
+      'Find info on KTH courses: course syllabus, course memo, and course analyses. Search by course name or course code, you can also filter by semester and period. Which courses are included in a program can be found under Programme syllabuses.',
     eduLevel: 'Educational level:',
     PREPARATORY: 'Pre-university level',
     BASIC: 'First cycle',
@@ -289,7 +291,7 @@ const messages = {
       'If you have questions or feedback on the course search, please contact <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
   },
   generalSearch: {
-    collapseHeaderOtherSearchOptions: 'Choose from other search criteria',
+    collapseHeaderOtherSearchOptions: 'Filter your search choices',
     searchStartPeriodPrefix: 'Course Start',
     resultsHeading: 'Search results',
     searchLabel: 'Search by course name or course code:',

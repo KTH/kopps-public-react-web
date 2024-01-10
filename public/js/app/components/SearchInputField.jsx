@@ -9,7 +9,7 @@ function SearchInputField({ caption = 'N/A', pattern: externalPattern, onSubmit 
   const [pattern, setPattern] = useState(externalPattern || '')
 
   const { generalSearch } = i18n.messages[languageIndex]
-  const { searchLabel, searchText } = generalSearch
+  const { searchLabel } = generalSearch
 
   useEffect(() => {
     let isMounted = true

@@ -107,6 +107,17 @@ const CourseSearch = () => {
           <div id="alert-placeholder" />
         </Col>
       </Row>
+
+      <Row>
+        <Col>
+          <SearchFormFields openOptions={_openOptionsInCollapse()} caption={searchButton} onSubmit={handleSubmit} />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <SearchResultDisplay searchParameters={params} />
+        </Col>
+      </Row>
       <Row>
         <Col>
           <CollapseDetails title={collapseHeader}>
@@ -118,16 +129,6 @@ const CourseSearch = () => {
               <li key="lastInstruction" dangerouslySetInnerHTML={{ __html: lastInstruction }} />
             </ul>
           </CollapseDetails>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <SearchFormFields openOptions={_openOptionsInCollapse()} caption={searchButton} onSubmit={handleSubmit} />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <SearchResultDisplay searchParameters={params} />
         </Col>
       </Row>
       <Row>

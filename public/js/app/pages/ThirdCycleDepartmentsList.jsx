@@ -63,6 +63,7 @@ function ThirdCycleDepartmentsList() {
   const { language } = useStore()
   const t = translate(language)
   const pageName = t('third_cycle_courses_by_school')
+  const pageDescription = t('third_cycle_courses_by_school_description')
 
   React.useEffect(() => {
     let isMounted = true
@@ -75,6 +76,11 @@ function ThirdCycleDepartmentsList() {
       <Row>
         <Col>
           <PageHeading>{pageName}</PageHeading>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <p>{pageDescription}</p>
         </Col>
       </Row>
       <Row>
