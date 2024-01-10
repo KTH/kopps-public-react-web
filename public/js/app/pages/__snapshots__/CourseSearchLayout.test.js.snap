@@ -138,12 +138,6 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
                   for="pattern"
                 >
                   Search by course name or course code:
-                  <span
-                    id="searchfield-help-text"
-                    style="font-weight: normal; display: block;"
-                  >
-                    Example of course code: SF1624
-                  </span>
                 </label>
                 <input
                   id="pattern"
@@ -784,12 +778,6 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
                   for="pattern"
                 >
                   Sök på kursnamn eller kurskod:
-                  <span
-                    id="searchfield-help-text"
-                    style="font-weight: normal; display: block;"
-                  >
-                    Exempel på kurskod: SF1624
-                  </span>
                 </label>
                 <input
                   id="pattern"
