@@ -125,7 +125,7 @@ const messages = {
     programmes_admitted_from: 'admitted/batch from',
     programmes_older: 'Programmes without new admission',
     departments_list_lead:
-      "This is where you will find information about courses at KTH. You will access information regarding course selection, preparing and taking the course, and course development. The courses are sorted according to KTH's schools. Information about which courses are included in a programme can be accessed via the menu item Programme Syllabuses. To search for current courses, use the menu option Search courses and filter by start date.",
+      'Find info on KTH courses. The courses are sorted by KTH schools and their respective organizations. To search for current courses only, use the menu option Search courses and filter by semester and period. Which courses are included in a programme can be found under the menu option Programme Syllabuses.',
     departments_deprecated_schools: 'Older Schools',
     departments_deprecated_schools_collapsible: 'Courses older schools',
     department_period_abbr: 'Periods',
