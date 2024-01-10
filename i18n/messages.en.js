@@ -59,6 +59,8 @@ const messages = {
     study_year: 'Study year',
 
     third_cycle_courses_by_school: 'Third-cycle courses by school',
+    third_cycle_courses_by_school_description:
+      'Here is information about KTH courses at the doctoral level. The courses are sorted by KTH schools and their respective organizations.',
     swedish_translation_text: 'This is a translation of the Swedish, legally binding, programme syllabus.',
 
     general_number_as_word: {
