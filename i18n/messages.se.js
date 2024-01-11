@@ -59,7 +59,7 @@ const messages = {
 
     third_cycle_courses_by_school: 'Forskarkurser per skola',
     third_cycle_courses_by_school_description:
-      'Här hittar du information om forskarkurser på KTH. Kurserna är sorterade efter KTH:s skolor och deras organisationer',
+      'Här hittar du information om forskarkurser på KTH. Kurserna är sorterade efter KTH:s skolor och deras organisationer.',
 
     // TODO: MOVE TO kth-course-program-vocabulary
 
@@ -282,7 +282,7 @@ const messages = {
     collapseHeaderOtherSearchOptions: 'Filtrera dina sökval',
     searchStartPeriodPrefix: 'Kursstart',
     resultsHeading: 'Resultat från sökningen',
-    searchLabel: 'Sök på kursnamn eller kurskod:',
+    searchLabel: 'Sök på kursnamn eller kurskod',
     searchText: 'Exempel på kurskod: SF1624',
     searchLoading: 'Söker ...',
     errorUnknown: 'Ett okänt fel inträffade - misslyckad hämtning av kursdata.',

@@ -60,7 +60,7 @@ const messages = {
 
     third_cycle_courses_by_school: 'Third-cycle courses by school',
     third_cycle_courses_by_school_description:
-      'Here is information about KTH courses at the doctoral level. The courses are sorted by KTH schools and their respective organizations.',
+      'Here is information about KTH courses at doctoral level. The courses are sorted by KTH schools and their respective organizations.',
     swedish_translation_text: 'This is a translation of the Swedish, legally binding, programme syllabus.',
 
     general_number_as_word: {
@@ -294,7 +294,7 @@ const messages = {
     collapseHeaderOtherSearchOptions: 'Filter your search choices',
     searchStartPeriodPrefix: 'Course Start',
     resultsHeading: 'Search results',
-    searchLabel: 'Search by course name or course code:',
+    searchLabel: 'Search by course name or course code',
     searchText: 'Example of course code: SF1624',
     searchLoading: 'Searching ...',
     errorUnknown: 'An unknown error occurred - failed to retrieve course data.',

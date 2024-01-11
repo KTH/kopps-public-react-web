@@ -34,7 +34,8 @@ function SearchInputField({ caption = 'N/A', pattern: externalPattern, onSubmit 
       name="searchForm"
       role="search"
       style={{
-        display: 'block',
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
       <div className="form-group">
@@ -49,7 +50,7 @@ function SearchInputField({ caption = 'N/A', pattern: externalPattern, onSubmit 
           name="pattern"
         />
       </div>
-      <button className="btn btn-primary" type="submit" style={{ float: 'end' }}>
+      <button className="btn btn-primary" type="submit" style={{ alignSelf: 'flex-end' }}>
         {caption}
       </button>
     </form>

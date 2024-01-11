@@ -137,7 +137,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
                 <label
                   for="pattern"
                 >
-                  Search by course name or course code:
+                  Search by course name or course code
                 </label>
                 <input
                   id="pattern"
@@ -777,7 +777,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
                 <label
                   for="pattern"
                 >
-                  Sök på kursnamn eller kurskod:
+                  Sök på kursnamn eller kurskod
                 </label>
                 <input
                   id="pattern"
