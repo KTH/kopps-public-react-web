@@ -282,7 +282,7 @@ const messages = {
     collapseHeaderOtherSearchOptions: 'Filtrera dina sökval',
     searchStartPeriodPrefix: 'Kursstart',
     resultsHeading: 'Resultat från sökningen',
-    searchLabel: 'Sök på kursnamn eller kurskod:',
+    searchLabel: 'Sök på kursnamn eller kurskod',
     searchText: 'Exempel på kurskod: SF1624',
     searchLoading: 'Söker ...',
     errorUnknown: 'Ett okänt fel inträffade - misslyckad hämtning av kursdata.',
