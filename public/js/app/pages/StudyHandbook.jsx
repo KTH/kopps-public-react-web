@@ -25,7 +25,7 @@ function StudyHandbook() {
           <Article classNames={['paragraphs']}>
             <p>{content}</p>
             <p>
-              <a href="https://intra.kth.se/utbildning/utbildningsadministr/kopps/shb">{shbLink}</a>
+              <a href="https://intra.kth.se/utbildning/systemstod/kopps/shb">{shbLink}</a>
             </p>
           </Article>
         </Col>
