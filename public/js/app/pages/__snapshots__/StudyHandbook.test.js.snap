@@ -115,7 +115,7 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Engli
               </p>
               <p>
                 <a
-                  href="https://intra.kth.se/utbildning/utbildningsadministr/kopps/shb"
+                  href="https://intra.kth.se/utbildning/systemstod/kopps/shb"
                 >
                   Study Handbook 00/01 to 07/08
                 </a>
@@ -272,7 +272,7 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Swedi
               </p>
               <p>
                 <a
-                  href="https://intra.kth.se/utbildning/utbildningsadministr/kopps/shb"
+                  href="https://intra.kth.se/utbildning/systemstod/kopps/shb"
                 >
                   Studiehandboken 00/01 tom 07/08
                 </a>

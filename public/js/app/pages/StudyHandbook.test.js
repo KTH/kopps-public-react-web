@@ -122,7 +122,7 @@ describe('Render component StudyHandbook and check its menu, content and links',
     expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
 
     expect(links[5]).toHaveTextContent('Study Handbook 00/01 to 07/08') // content link
-    expect(links[5].href).toStrictEqual('https://intra.kth.se/utbildning/utbildningsadministr/kopps/shb')
+    expect(links[5].href).toStrictEqual('https://intra.kth.se/utbildning/systemstod/kopps/shb')
 
     expect(links[6]).toHaveTextContent('Central study counseling')
     expect(links[6].href).toStrictEqual('https://www.kth.se/en/studies/master/general-study-counselling-1.621634')
@@ -151,7 +151,7 @@ describe('Render component StudyHandbook and check its menu, content and links',
     expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
 
     expect(links[5]).toHaveTextContent('Studiehandboken 00/01 tom 07/08') // content link
-    expect(links[5].href).toStrictEqual('https://intra.kth.se/utbildning/utbildningsadministr/kopps/shb')
+    expect(links[5].href).toStrictEqual('https://intra.kth.se/utbildning/systemstod/kopps/shb')
 
     expect(links[6]).toHaveTextContent('Central studievägledning')
     expect(links[6].href).toStrictEqual('https://www.kth.se/studievagledning')
