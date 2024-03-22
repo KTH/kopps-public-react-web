@@ -6,6 +6,7 @@ const language = require('@kth/kth-node-web-common/lib/language')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 
+const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
 async function getStudyBook(req, res, next) {
@@ -34,6 +35,8 @@ async function getStudyBook(req, res, next) {
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('main_menu_shb', lang)
 
+    const breadcrumbsList = createBreadcrumbs(lang)
+
     res.render('app/index', {
       instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
       html,
@@ -44,6 +47,7 @@ async function getStudyBook(req, res, next) {
       proxyPrefix,
       studentWeb: true,
       klaroAnalyticsConsentCookie,
+      breadcrumbsList,
     })
   } catch (err) {
     log.error('Error', { error: err })
