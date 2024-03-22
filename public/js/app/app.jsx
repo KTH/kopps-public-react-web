@@ -217,7 +217,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/student/kurser/program/:programmeCode/:term/mal"
         element={
           <ElementWrapper
-            createBreadcrumbs={() => ({ include: 'directory' })}
             component={Objectives}
             layout={PageLayout}
             applicationStore={_initStore({ storeId: 'objective' })}
@@ -234,7 +233,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/student/kurser/program/:programmeCode/:term/omfattning"
         element={
           <ElementWrapper
-            createBreadcrumbs={() => ({ include: 'directory' })}
             component={Extent}
             layout={PageLayout}
             applicationStore={_initStore({ storeId: 'extent' })}
@@ -251,7 +249,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/student/kurser/program/:programmeCode/:term/behorighet"
         element={
           <ElementWrapper
-            createBreadcrumbs={() => ({ include: 'directory' })}
             component={Eligibility}
             layout={PageLayout}
             applicationStore={_initStore({ storeId: 'eligibility' })}
@@ -268,7 +265,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/student/kurser/program/:programmeCode/:term/genomforande"
         element={
           <ElementWrapper
-            createBreadcrumbs={() => ({ include: 'directory' })}
             component={Implementation}
             layout={PageLayout}
             applicationStore={_initStore({ storeId: 'implementation' })}
@@ -285,7 +281,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/student/kurser/program/:programmeCode/:term/kurslista"
         element={
           <ElementWrapper
-            createBreadcrumbs={() => ({ include: 'directory' })}
             component={Appendix1}
             layout={PageLayout}
             applicationStore={_initStore({ storeId: 'appendix1', serverSideApplicationStore })}
@@ -302,7 +297,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/student/kurser/program/:programmeCode/:term/inriktningar"
         element={
           <ElementWrapper
-            createBreadcrumbs={() => ({ include: 'directory' })}
             component={Appendix2}
             layout={PageLayout}
             applicationStore={_initStore({ storeId: 'appendix2' })}

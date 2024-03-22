@@ -6,12 +6,12 @@ const language = require('@kth/kth-node-web-common/lib/language')
 const { server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 
+const { createProgrammeBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { programmeFullName } = require('../utils/programmeFullName')
 const {
   fillStoreWithQueryParams,
   fetchAndFillProgrammeDetails,
-  fillBreadcrumbsDynamicItems,
   fetchAndFillCurriculumList,
 } = require('../stores/programmeStoreSSR')
 
@@ -50,7 +50,6 @@ async function getIndex(req, res, next) {
     const { programmeName } = await fetchAndFillProgrammeDetails(options, storeId)
 
     fillStoreWithQueryParams(options)
-    fillBreadcrumbsDynamicItems(options, programmeName)
     await fetchAndFillCurriculumList(options)
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
     log.info(`${storeId} store was filled in and compressed on server side`, { programmeCode })
@@ -63,6 +62,7 @@ async function getIndex(req, res, next) {
       programmeName,
       term
     )
+    const breadcrumbsList = createProgrammeBreadcrumbs(lang, programmeName, programmeCode)
 
     res.render('app/index', {
       instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
@@ -74,6 +74,7 @@ async function getIndex(req, res, next) {
       proxyPrefix,
       studentWeb: true,
       klaroAnalyticsConsentCookie,
+      breadcrumbsList,
     })
   } catch (err) {
     log.error('Error', { error: err })
