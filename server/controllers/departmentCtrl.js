@@ -3,11 +3,9 @@
 const log = require('@kth/log')
 const language = require('@kth/kth-node-web-common/lib/language')
 
-const { browser: browserConfig, server: serverConfig } = require('../configuration')
-const i18n = require('../../i18n')
+const { server: serverConfig } = require('../configuration')
 
-const koppsApi = require('../kopps/koppsApi')
-
+const { createDepartmentBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
 const { departmentTabTitle } = require('../utils/titles')
@@ -43,15 +41,14 @@ async function getIndex(req, res, next) {
     log.debug(`Starting to fill a default application store, for department controller`, { departmentCode })
     const departmentName = await fetchAndFillDepartmentCourses(options)
     await fillStoreWithBasicConfig(options)
-    await fillBreadcrumbsDynamicItems(options, departmentName)
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
     log.info(`Default store was filled in and compressed on server side`, { departmentCode })
 
     const { department: proxyPrefix } = serverConfig.proxyPrefixPath
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
-
     const title = departmentTabTitle(departmentName, lang)
+    const breadcrumbsList = createDepartmentBreadcrumbs(lang, departmentName, departmentCode)
 
     res.render('app/index', {
       instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
@@ -63,6 +60,7 @@ async function getIndex(req, res, next) {
       proxyPrefix,
       studentWeb: true,
       klaroAnalyticsConsentCookie,
+      breadcrumbsList,
     })
   } catch (err) {
     log.error('Error', { error: err })
