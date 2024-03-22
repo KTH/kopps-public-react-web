@@ -102,7 +102,6 @@ function appFactory(serverSideApplicationStore = null) {
         element={
           <ElementWrapper
             component={ProgrammesList}
-            createBreadcrumbs={() => ({ include: 'directory' })}
             layout={PageLayout}
             applicationStore={_initStore({ caller: 'ProgrammesList' })}
             createMenuData={store => ({ selectedId: 'programmesList', ...getMenuData(store) })}
