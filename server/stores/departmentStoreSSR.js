@@ -2,7 +2,6 @@ const log = require('@kth/log')
 
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const koppsApi = require('../kopps/koppsApi')
-const { departmentLink, thirdCycleDepartmentLink } = require('../../domain/links')
 
 // @ts-check
 
@@ -78,7 +77,6 @@ async function fetchAndFillDepartmentCourses({ applicationStore, lang, departmen
 }
 
 module.exports = {
-  fillBreadcrumbsDynamicItems,
   fillStoreWithBasicConfig,
   fetchAndFillDepartmentCourses,
   getOnlyThirdCycleCourses,
