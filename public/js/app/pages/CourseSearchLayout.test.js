@@ -33,7 +33,6 @@ const WrappedCourseSearch = ({ lang, ...rest }) => {
         path="/student/kurser/kurssok"
         component={CourseSearch}
         applicationStore={updatedApplicationStore}
-        createBreadcrumbs={() => ({ include: 'directory' })}
         layout={PageLayout}
         createMenuData={store => ({ selectedId: 'searchAllCourses', ...getMenuData(store) })}
         // eslint-disable-next-line react/jsx-props-no-spreading
@@ -54,7 +53,7 @@ const CourseSearchWithLayout = ({ lang }) => {
   return (
     <StaticRouter>
       <MobxStoreProvider initCallback={() => updatedApplicationStore}>
-        <PageLayout breadcrumbs={{ include: 'directory' }} menuData={{ searchAllCourses: 'shb', ...menuData }}>
+        <PageLayout menuData={{ searchAllCourses: 'shb', ...menuData }}>
           <CourseSearch />
         </PageLayout>
       </MobxStoreProvider>

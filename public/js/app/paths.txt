@@ -1,0 +1,38 @@
+/student/program/shb                                            klar    directory   
+/student/kurser/kurser-inom-program                             klar    directory   
+/student/kurser/sokkurs                                         klar    directory   
+/student/kurser/org                                             klar    directory   
+/student/kurser/org/:departmentCode                                     directory+  ny createDepartmentBreadcrumbs, gör nåt åt kommatecken? http://localhost:3000/student/kurser/org/ADD?l=sv
+/student/kurser/program/:programmeCode                          klar    directory   http://localhost:3000/student/kurser/program/CLGYM
+/utbildning/forskarutbildning/kurser/avdelning                  klar    university+getThirdCycleBreadcrumbs
+/utbildning/forskarutbildning/kurser/org/:departmentCode        klar    university+getThirdCycleBreadcrumbs http://localhost:3000/utbildning/forskarutbildning/kurser/org/AFF
+/utbildning/forskarutbildning/kurser/sok                        klar    university+getThirdCycleBreadcrumbs
+/student/kurser/program/:programmeCode/:term/mal                klar    directory+
+/student/kurser/program/:programmeCode/:term/omfattning         klar    directory+
+/student/kurser/program/:programmeCode/:term/behorighet         klar    directory+
+/student/kurser/program/:programmeCode/:term/genomforande       klar    directory+
+/student/kurser/program/:programmeCode/:term/kurslista          klar    directory+
+/student/kurser/program/:programmeCode/:term/inriktningar       klar    directory+
+/student/kurser/program/:programmeCode/:term/:studyYear         klar    directory
+/student/kurser/lit/:term/:school                               klar    student+getLiteratureListBreadcrumbs
+/student/kurser/program/:programmeCodeAndTertm.pdf              klar    ingen breadcrumb
+
+
+http://localhost:3000/student/program/shb
+http://localhost:3000/student/kurser/kurser-inom-program
+http://localhost:3000/student/kurser/sokkurs
+http://localhost:3000/student/kurser/org
+http://localhost:3000/student/kurser/org/:departmentCode
+http://localhost:3000/student/kurser/program/:programmeCode
+http://localhost:3000/utbildning/forskarutbildning/kurser/avdelning
+http://localhost:3000/utbildning/forskarutbildning/kurser/org/:departmentCode
+http://localhost:3000/utbildning/forskarutbildning/kurser/sok
+http://localhost:3000/student/kurser/program/:programmeCode/:term/mal
+http://localhost:3000/student/kurser/program/:programmeCode/:term/omfattning
+http://localhost:3000/student/kurser/program/:programmeCode/:term/behorighet
+http://localhost:3000/student/kurser/program/:programmeCode/:term/genomforande
+http://localhost:3000/student/kurser/program/:programmeCode/:term/kurslista
+http://localhost:3000/student/kurser/program/:programmeCode/:term/inriktningar
+http://localhost:3000/student/kurser/program/:programmeCode/:term/:studyYear
+http://localhost:3000/student/kurser/lit/:term/:school
+http://localhost:3000/student/kurser/program/:programmeCodeAndTertm.pdf

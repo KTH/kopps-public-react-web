@@ -11,7 +11,6 @@ import ThirdCycleDepartmentsList from './ThirdCycleDepartmentsList'
 import ElementWrapper from '../components/ElementWrapper'
 import PageLayout from '../layout/PageLayout'
 import getThirdCycleMenuData from '../config/thirdCycleMenuData'
-import getThirdCycleBreadcrumbs from '../config/thirdCycleBreadcrumbs'
 
 import createApplicationStore from '../stores/createApplicationStore'
 
@@ -52,10 +51,6 @@ const WrapperThirdCycleDepartmentsList = ({ lang }) => {
         component={ThirdCycleDepartmentsList}
         layout={PageLayout}
         applicationStore={updatedApplicationStore}
-        createBreadcrumbs={store => ({
-          include: 'university',
-          items: getThirdCycleBreadcrumbs(store),
-        })}
         createMenuData={store => ({
           selectedId: 'thirdCycleDepartmentsList',
           ...getThirdCycleMenuData(store),
@@ -70,7 +65,6 @@ const ThirdCycleDepartmentsListWithLayout = ({ lang }) => {
   applicationStore.setBrowserConfig(commonSettings)
   applicationStore.setCurrentSchoolsWithDepartments(testCurrentSchoolsWithDepartments[lang])
   const menuData = getThirdCycleMenuData(applicationStore)
-  const breadcrumbs = getThirdCycleBreadcrumbs(applicationStore)
 
   const updatedApplicationStore = {
     ...applicationStore,
@@ -78,13 +72,7 @@ const ThirdCycleDepartmentsListWithLayout = ({ lang }) => {
   return (
     <StaticRouter>
       <MobxStoreProvider initCallback={() => updatedApplicationStore}>
-        <PageLayout
-          breadcrumbs={{
-            include: 'university',
-            items: breadcrumbs,
-          }}
-          menuData={{ selectedId: 'thirdCycleDepartmentsList', ...menuData }}
-        >
+        <PageLayout menuData={{ selectedId: 'thirdCycleDepartmentsList', ...menuData }}>
           <ThirdCycleDepartmentsList />
         </PageLayout>
       </MobxStoreProvider>
