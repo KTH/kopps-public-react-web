@@ -8,6 +8,7 @@ const i18n = require('../../i18n')
 
 const koppsApi = require('../kopps/koppsApi')
 
+const { createLiteratureBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { compareSchools } = require('../../domain/schools')
 const { fillStoreWithBasicConfig } = require('../stores/schoolsListStoreSSR')
@@ -82,6 +83,7 @@ async function getLiteratureList(req, res, next) {
     const { heading } = i18n.messages[langIndex].literatureList
 
     const title = `${heading} ${formatLongTerm(term, lang)} ${school}`
+    const breadcrumbsList = createLiteratureBreadcrumbs(lang, school, term)
 
     res.render('app/index', {
       instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
@@ -93,6 +95,7 @@ async function getLiteratureList(req, res, next) {
       proxyPrefix,
       studentWeb: true,
       klaroAnalyticsConsentCookie,
+      breadcrumbsList,
     })
   } catch (err) {
     log.error('Error', { error: err })
