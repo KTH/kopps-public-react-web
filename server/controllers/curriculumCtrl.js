@@ -10,13 +10,13 @@ const koppsApi = require('../kopps/koppsApi')
 const { curriculumInfo, setFirstSpec } = require('../../domain/curriculum')
 const { calculateStartTerm } = require('../../domain/academicYear')
 
+const { createProgrammeBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { programmeFullName } = require('../utils/programmeFullName')
 
 const {
   fillStoreWithQueryParams,
   fetchAndFillProgrammeDetails,
-  fillBreadcrumbsDynamicItems,
   fetchAndFillStudyProgrammeVersion,
 } = require('../stores/programmeStoreSSR')
 
@@ -139,7 +139,6 @@ async function getIndex(req, res, next) {
     const { programmeName } = await fetchAndFillProgrammeDetails(options, storeId)
 
     fillStoreWithQueryParams(options)
-    fillBreadcrumbsDynamicItems(options, programmeName)
     await _fetchAndFillCurriculumByStudyYear(options, storeId)
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
@@ -155,6 +154,8 @@ async function getIndex(req, res, next) {
       studyYear,
       term
     )
+    const breadcrumbsList = createProgrammeBreadcrumbs(lang, programmeName, programmeCode)
+
     res.render('app/index', {
       instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
       html: view,
@@ -165,6 +166,7 @@ async function getIndex(req, res, next) {
       proxyPrefix,
       studentWeb: true,
       klaroAnalyticsConsentCookie,
+      breadcrumbsList,
     })
   } catch (err) {
     log.error('Error', { error: err })

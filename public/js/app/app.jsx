@@ -313,7 +313,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/student/kurser/program/:programmeCode/:term/:studyYear"
         element={
           <ElementWrapper
-            createBreadcrumbs={() => ({ include: 'directory' })}
             component={Curriculum}
             layout={PageLayout}
             applicationStore={_initStore({ storeId: 'curriculum' })}
