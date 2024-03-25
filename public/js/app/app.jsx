@@ -34,12 +34,10 @@ import ProgramSyllabusExport from './pages/ProgramSyllabusExport'
 
 import getCurriculumMenuData from './config/curriculumMenuData'
 import getDepartmentMenuData from './config/departmentMenuData'
-import getLiteratureListBreadcrumbs from './config/literatureListBreadcrumbs'
 import getLiteratureList from './config/literatureListMenuData'
 import getMenuData from './config/menuData'
 import getProgrammeMenuData from './config/programmeMenuData'
 import getStudyProgrammeMenuData from './config/studyProgrammeMenuData'
-import getThirdCycleBreadcrumbs from './config/thirdCycleBreadcrumbs'
 import getThirdCycleDepartmentMenuData from './config/thirdCycleDepartmentMenuData'
 import getThirdCycleMenuData from './config/thirdCycleMenuData'
 

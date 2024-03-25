@@ -83,22 +83,6 @@ async function fetchAndFillProgrammeDetails({ applicationStore, lang, programmeC
 }
 
 /**
- * @param {object} options.applicationStore
- * @param {string} options.lang
- * @param {string} options.programmeCode
- * @param {string} programmeName
- */
-function fillBreadcrumbsDynamicItems({ applicationStore, lang, programmeCode }, programmeName) {
-  const programmeCodeUpperCase = programmeCode?.toUpperCase()
-
-  const departmentBreadCrumbItem = {
-    url: programmeLink(programmeCodeUpperCase, lang),
-    label: programmeName,
-  }
-  applicationStore.setBreadcrumbsDynamicItems([departmentBreadCrumbItem])
-}
-
-/**
  *
  * @param {object} options.applicationStore
  * @param {string} options.lang
@@ -296,7 +280,6 @@ async function fetchAndFillSpecializations(options) {
 module.exports = {
   fillStoreWithQueryParams,
   fetchAndFillProgrammeDetails,
-  fillBreadcrumbsDynamicItems,
   fetchAndFillCurriculumList,
   fetchAndFillSpecializations,
   fetchAndFillStudyProgrammeVersion,

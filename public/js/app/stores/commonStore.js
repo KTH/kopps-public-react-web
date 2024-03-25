@@ -8,14 +8,6 @@ function setLanguage(lang) {
   this.languageIndex = lang === 'en' ? 0 : 1
 }
 
-function setBreadcrumbsDynamicItems(items) {
-  // Example: [{
-  //   url: 'https://www.kth.se/student/kurser/program/A/20042/arskurs5',
-  //   label: 'Degree Programme in Architecture',
-  // }],
-  this.breadcrumbsDynamicItems = items
-}
-
 function setStatusCode(statusCode) {
   this.statusCode = statusCode
 }
@@ -51,16 +43,6 @@ function createCommonStore() {
      * @param {string} lang
      */
     setLanguage,
-    /**
-     * @property {array<map<string, string>>} breadcrumbsDynamicItems
-     */
-    /* Use only if breadcrumbs ending depends on f.e., api */
-    breadcrumbsDynamicItems: [],
-    /**
-     * @method
-     * @param {array<map<string, string>>} items
-     */
-    setBreadcrumbsDynamicItems,
   }
   return commonStore
 }

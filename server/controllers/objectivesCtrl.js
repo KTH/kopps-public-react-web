@@ -13,7 +13,6 @@ const { programmeFullName } = require('../utils/programmeFullName')
 const {
   fillStoreWithQueryParams,
   fetchAndFillProgrammeDetails,
-  fillBreadcrumbsDynamicItems,
   fetchAndFillStudyProgrammeVersion,
 } = require('../stores/programmeStoreSSR')
 

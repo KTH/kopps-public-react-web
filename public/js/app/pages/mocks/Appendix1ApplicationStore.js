@@ -40,15 +40,6 @@ const applicationStores = [
       this.language = lang
       this.languageIndex = lang === 'en' ? 0 : 1
     },
-    breadcrumbsDynamicItems: [
-      {
-        url: '/student/kurser/program/CMETE',
-        label: 'Civilingenjörsutbildning i medieteknik',
-      },
-    ],
-    setBreadcrumbsDynamicItems: function setBreadcrumbsDynamicItems(items) {
-      this.breadcrumbsDynamicItems = items
-    },
     studyProgramme: {
       id: 10097,
       validFromTerm: '20222',
@@ -564,15 +555,6 @@ const applicationStores = [
     setLanguage: function setLanguage(lang) {
       this.language = lang
       this.languageIndex = lang === 'en' ? 0 : 1
-    },
-    breadcrumbsDynamicItems: [
-      {
-        url: '/student/kurser/program/CMAST',
-        label: 'Civilingenjörsutbildning i maskinteknik',
-      },
-    ],
-    setBreadcrumbsDynamicItems: function setBreadcrumbsDynamicItems(items) {
-      this.breadcrumbsDynamicItems = items
     },
     studyProgramme: {
       id: 10451,
@@ -3557,19 +3539,6 @@ const applicationStores = [
     setLanguage: function setLanguage(lang) {
       this.language = lang
       this.languageIndex = lang === 'en' ? 0 : 1
-    },
-    breadcrumbsDynamicItems: [
-      {
-        url: '/student/kurser/program/TBTMD?l=en',
-        label: 'Technical Preparatory Semester',
-      },
-    ],
-    setBreadcrumbsDynamicItems: function setBreadcrumbsDynamicItems(items) {
-      // Example: [{
-      //   url: 'https://www.kth.se/student/kurser/program/A/20042/arskurs5',
-      //   label: 'Degree Programme in Architecture',
-      // }],
-      this.breadcrumbsDynamicItems = items
     },
     studyProgramme: {
       id: 8779,

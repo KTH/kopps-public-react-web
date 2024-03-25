@@ -9,11 +9,7 @@ const { createDepartmentBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
 const { departmentTabTitle } = require('../utils/titles')
-const {
-  fillBreadcrumbsDynamicItems,
-  fillStoreWithBasicConfig,
-  fetchAndFillDepartmentCourses,
-} = require('../stores/departmentStoreSSR')
+const { fillStoreWithBasicConfig, fetchAndFillDepartmentCourses } = require('../stores/departmentStoreSSR')
 
 async function getIndex(req, res, next) {
   try {
