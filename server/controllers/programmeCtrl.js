@@ -3,15 +3,13 @@
 const log = require('@kth/log')
 const language = require('@kth/kth-node-web-common/lib/language')
 
-const { browser: browserConfig, server: serverConfig } = require('../configuration')
+const { server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 
-const koppsApi = require('../kopps/koppsApi')
-
+const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { filterOutInvalidTerms } = require('../../domain/programmes')
 const { fillStoreWithQueryParams, fetchAndFillProgrammeDetails } = require('../stores/programmeStoreSSR')
-const { programmeFullName } = require('../utils/programmeFullName')
 
 /**
  * @param {string} lang
@@ -83,6 +81,7 @@ async function getIndex(req, res, next) {
       programmeCode,
       programmeName
     )
+    const breadcrumbsList = createBreadcrumbs(lang)
 
     res.render('app/index', {
       instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
@@ -94,6 +93,7 @@ async function getIndex(req, res, next) {
       proxyPrefix,
       studentWeb: true,
       klaroAnalyticsConsentCookie,
+      breadcrumbsList,
     })
   } catch (err) {
     log.error('Error', { error: err })

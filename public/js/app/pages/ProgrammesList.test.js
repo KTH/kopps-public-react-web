@@ -107,7 +107,6 @@ const WrapperProgrammesList = ({ lang }) => {
       <ElementWrapper
         exact
         path="/student/kurser/org"
-        createBreadcrumbs={() => ({ include: 'directory' })}
         component={ProgrammesList}
         layout={PageLayout}
         applicationStore={updatedApplicationStore}
@@ -129,7 +128,7 @@ const ProgrammesListWithLayout = ({ lang }) => {
   return (
     <StaticRouter>
       <MobxStoreProvider initCallback={() => updatedApplicationStore}>
-        <PageLayout breadcrumbs={{ include: 'directory' }} menuData={{ selectedId: 'ProgrammesList', ...menuData }}>
+        <PageLayout menuData={{ selectedId: 'ProgrammesList', ...menuData }}>
           <ProgrammesList />
         </PageLayout>
       </MobxStoreProvider>

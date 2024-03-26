@@ -65,7 +65,6 @@ const WrapperDepartmentCourses = ({ lang }) => {
       <ElementWrapper
         exact
         path="/student/kurser/org/ADD"
-        createBreadcrumbs={() => ({ include: 'directory' })}
         component={DepartmentCourses}
         layout={PageLayout}
         applicationStore={updatedApplicationStore}
@@ -88,7 +87,7 @@ const DepartmentCoursesWithLayout = ({ lang }) => {
   return (
     <StaticRouter>
       <MobxStoreProvider initCallback={() => updatedApplicationStore}>
-        <PageLayout breadcrumbs={{ include: 'directory' }} menuData={{ selectedId: 'courses', ...departmentMenuData }}>
+        <PageLayout menuData={{ selectedId: 'courses', ...departmentMenuData }}>
           <DepartmentCourses />
         </PageLayout>
       </MobxStoreProvider>

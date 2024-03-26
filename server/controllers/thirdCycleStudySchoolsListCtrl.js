@@ -7,6 +7,7 @@ const { server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 const koppsApi = require('../kopps/koppsApi')
 
+const { createThirdCycleBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { fillStoreWithBasicConfig, fetchAndFillSchoolsList } = require('../stores/schoolsListStoreSSR')
 
@@ -40,6 +41,7 @@ async function getAllSchoolsAndDepartmentsInThirdCycleStudy(req, res, next) {
     const { thirdCycleSchoolsAndDepartments: proxyPrefix } = serverConfig.proxyPrefixPath
     const view = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('third_cycle_courses_by_school', lang)
+    const breadcrumbsList = createThirdCycleBreadcrumbs(lang)
 
     res.render('app/index', {
       instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
@@ -50,6 +52,7 @@ async function getAllSchoolsAndDepartmentsInThirdCycleStudy(req, res, next) {
       lang,
       proxyPrefix,
       studentWeb: true,
+      breadcrumbsList,
     })
   } catch (err) {
     log.error('Error', { error: err })

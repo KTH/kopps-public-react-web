@@ -12,7 +12,6 @@ import ElementWrapper from '../components/ElementWrapper'
 import PageLayout from '../layout/PageLayout'
 
 import createApplicationStore from '../stores/createApplicationStore'
-import getThirdCycleBreadcrumbs from '../config/thirdCycleBreadcrumbs'
 import getThirdCycleDepartmentMenuData from '../config/thirdCycleDepartmentMenuData'
 
 import commonSettings from '../config/mocks/mockCommonSettings'
@@ -86,10 +85,6 @@ const WrapperDepartmentCourses = ({ lang }) => {
       <ElementWrapper
         exact
         path="/utbildning/forskarutbildning/kurser/org/AFF"
-        createBreadcrumbs={store => ({
-          include: 'university',
-          items: getThirdCycleBreadcrumbs(store),
-        })}
         applicationStore={updatedApplicationStore}
         component={DepartmentCourses}
         layout={PageLayout}
@@ -108,7 +103,6 @@ const DepartmentCoursesWithLayout = ({ lang }) => {
   applicationStore.setDepartmentName(testDepartmentName[lang])
   applicationStore.setDepartmentCourses(testDepartmentCourses[lang])
   const departmentMenuData = getThirdCycleDepartmentMenuData(applicationStore)
-  const breadcrumbsItems = getThirdCycleBreadcrumbs(applicationStore)
 
   const updatedApplicationStore = {
     ...applicationStore,
@@ -117,10 +111,6 @@ const DepartmentCoursesWithLayout = ({ lang }) => {
     <StaticRouter>
       <MobxStoreProvider initCallback={() => updatedApplicationStore}>
         <PageLayout
-          breadcrumbs={{
-            include: 'university',
-            items: breadcrumbsItems,
-          }}
           menuData={{
             selectedId: 'courses',
             ...departmentMenuData,

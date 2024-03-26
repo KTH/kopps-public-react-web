@@ -31,7 +31,6 @@ const WrapperStudyHandbook = ({ lang, ...rest }) => {
         path="/student/program/shb"
         component={StudyHandbook}
         applicationStore={updatedApplicationStore}
-        createBreadcrumbs={() => ({ include: 'directory' })}
         layout={PageLayout}
         createMenuData={store => ({ selectedId: 'shb', ...getMenuData(store) })}
         {...rest}
@@ -51,7 +50,7 @@ const StudyHandbookWithLayout = ({ lang }) => {
   return (
     <StaticRouter>
       <MobxStoreProvider initCallback={() => updatedApplicationStore}>
-        <PageLayout breadcrumbs={{ include: 'directory' }} menuData={{ selectedId: 'shb', ...menuData }}>
+        <PageLayout menuData={{ selectedId: 'shb', ...menuData }}>
           <StudyHandbook />
         </PageLayout>
       </MobxStoreProvider>

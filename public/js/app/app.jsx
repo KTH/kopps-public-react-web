@@ -34,12 +34,10 @@ import ProgramSyllabusExport from './pages/ProgramSyllabusExport'
 
 import getCurriculumMenuData from './config/curriculumMenuData'
 import getDepartmentMenuData from './config/departmentMenuData'
-import getLiteratureListBreadcrumbs from './config/literatureListBreadcrumbs'
 import getLiteratureList from './config/literatureListMenuData'
 import getMenuData from './config/menuData'
 import getProgrammeMenuData from './config/programmeMenuData'
 import getStudyProgrammeMenuData from './config/studyProgrammeMenuData'
-import getThirdCycleBreadcrumbs from './config/thirdCycleBreadcrumbs'
 import getThirdCycleDepartmentMenuData from './config/thirdCycleDepartmentMenuData'
 import getThirdCycleMenuData from './config/thirdCycleMenuData'
 
@@ -89,7 +87,6 @@ function appFactory(serverSideApplicationStore = null) {
         element={
           <ElementWrapper
             component={StudyHandbook}
-            createBreadcrumbs={() => ({ include: 'directory' })}
             layout={PageLayout}
             applicationStore={_initStore({ caller: 'StudyHandbook' })}
             createMenuData={store => ({ selectedId: 'shb', ...getMenuData(store) })}
@@ -103,7 +100,6 @@ function appFactory(serverSideApplicationStore = null) {
         element={
           <ElementWrapper
             component={ProgrammesList}
-            createBreadcrumbs={() => ({ include: 'directory' })}
             layout={PageLayout}
             applicationStore={_initStore({ caller: 'ProgrammesList' })}
             createMenuData={store => ({ selectedId: 'programmesList', ...getMenuData(store) })}
@@ -116,7 +112,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/student/kurser/sokkurs"
         element={
           <ElementWrapper
-            createBreadcrumbs={() => ({ include: 'directory' })}
             component={CourseSearch}
             layout={PageLayout}
             applicationStore={_initStore({ caller: 'CourseSearch' })}
@@ -130,7 +125,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/student/kurser/org"
         element={
           <ElementWrapper
-            createBreadcrumbs={() => ({ include: 'directory' })}
             component={DepartmentsList}
             layout={PageLayout}
             applicationStore={_initStore({ caller: 'DepartmentsList', serverSideApplicationStore })}
@@ -147,7 +141,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/student/kurser/org/:departmentCode"
         element={
           <ElementWrapper
-            createBreadcrumbs={() => ({ include: 'directory' })}
             component={DepartmentCourses}
             layout={PageLayout}
             applicationStore={_initStore({ caller: 'DepartmentCourses' })}
@@ -161,7 +154,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/student/kurser/program/:programmeCode"
         element={
           <ElementWrapper
-            createBreadcrumbs={() => ({ include: 'directory' })}
             component={Programme}
             layout={PageLayout}
             applicationStore={_initStore({ caller: 'Programme' })}
@@ -175,10 +167,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/utbildning/forskarutbildning/kurser/avdelning"
         element={
           <ElementWrapper
-            createBreadcrumbs={store => ({
-              include: 'university',
-              items: getThirdCycleBreadcrumbs(store),
-            })}
             component={ThirdCycleDepartmentsList}
             layout={PageLayout}
             applicationStore={_initStore({ caller: 'ThirdCycleDepartmentsList' })}
@@ -195,10 +183,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/utbildning/forskarutbildning/kurser/org/:departmentCode"
         element={
           <ElementWrapper
-            createBreadcrumbs={store => ({
-              include: 'university',
-              items: getThirdCycleBreadcrumbs(store),
-            })}
             component={DepartmentCourses}
             layout={PageLayout}
             applicationStore={_initStore({ caller: 'DepartmentCourses' })}
@@ -215,10 +199,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/utbildning/forskarutbildning/kurser/sok"
         element={
           <ElementWrapper
-            createBreadcrumbs={store => ({
-              include: 'university',
-              items: getThirdCycleBreadcrumbs(store),
-            })}
             component={CourseSearchThirdCycleStudy}
             layout={PageLayout}
             applicationStore={_initStore({ storeId: 'searchCourses' })}
@@ -235,7 +215,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/student/kurser/program/:programmeCode/:term/mal"
         element={
           <ElementWrapper
-            createBreadcrumbs={() => ({ include: 'directory' })}
             component={Objectives}
             layout={PageLayout}
             applicationStore={_initStore({ storeId: 'objective' })}
@@ -252,7 +231,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/student/kurser/program/:programmeCode/:term/omfattning"
         element={
           <ElementWrapper
-            createBreadcrumbs={() => ({ include: 'directory' })}
             component={Extent}
             layout={PageLayout}
             applicationStore={_initStore({ storeId: 'extent' })}
@@ -269,7 +247,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/student/kurser/program/:programmeCode/:term/behorighet"
         element={
           <ElementWrapper
-            createBreadcrumbs={() => ({ include: 'directory' })}
             component={Eligibility}
             layout={PageLayout}
             applicationStore={_initStore({ storeId: 'eligibility' })}
@@ -286,7 +263,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/student/kurser/program/:programmeCode/:term/genomforande"
         element={
           <ElementWrapper
-            createBreadcrumbs={() => ({ include: 'directory' })}
             component={Implementation}
             layout={PageLayout}
             applicationStore={_initStore({ storeId: 'implementation' })}
@@ -303,7 +279,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/student/kurser/program/:programmeCode/:term/kurslista"
         element={
           <ElementWrapper
-            createBreadcrumbs={() => ({ include: 'directory' })}
             component={Appendix1}
             layout={PageLayout}
             applicationStore={_initStore({ storeId: 'appendix1', serverSideApplicationStore })}
@@ -320,7 +295,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/student/kurser/program/:programmeCode/:term/inriktningar"
         element={
           <ElementWrapper
-            createBreadcrumbs={() => ({ include: 'directory' })}
             component={Appendix2}
             layout={PageLayout}
             applicationStore={_initStore({ storeId: 'appendix2' })}
@@ -337,7 +311,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/student/kurser/program/:programmeCode/:term/:studyYear"
         element={
           <ElementWrapper
-            createBreadcrumbs={() => ({ include: 'directory' })}
             component={Curriculum}
             layout={PageLayout}
             applicationStore={_initStore({ storeId: 'curriculum' })}
@@ -354,10 +327,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/student/kurser/lit/:term/:school"
         element={
           <ElementWrapper
-            createBreadcrumbs={store => ({
-              include: 'student',
-              items: getLiteratureListBreadcrumbs(store),
-            })}
             component={LiteratureList}
             layout={PageLayout}
             applicationStore={_initStore({ storeId: 'literatureList' })}

@@ -8,6 +8,7 @@ const i18n = require('../../i18n')
 
 const koppsApi = require('../kopps/koppsApi')
 
+const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { programmeGroupHeadings, findProgrammeGroupHeading } = require('../../domain/programmeGroupHeading')
 
@@ -135,6 +136,7 @@ async function getProgrammesList(req, res, next) {
     const view = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('courses_of_program', lang)
     const description = i18n.message('programmes_list_lead', lang)
+    const breadcrumbsList = createBreadcrumbs(lang)
 
     res.render('app/index', {
       instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
@@ -146,6 +148,7 @@ async function getProgrammesList(req, res, next) {
       proxyPrefix,
       studentWeb: true,
       klaroAnalyticsConsentCookie,
+      breadcrumbsList,
     })
   } catch (err) {
     log.error('Error', { error: err })

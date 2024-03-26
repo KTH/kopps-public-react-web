@@ -43,7 +43,6 @@ async function getIndex(req, res, next) {
       title: 'TODO',
       compressedStoreCode,
       description: 'TODO',
-      breadcrumbsPath: [],
       lang,
       proxyPrefix,
       studentWeb: true,
@@ -58,12 +57,6 @@ async function getIndex(req, res, next) {
 // eslint-disable-next-line no-unused-vars
 async function _fillApplicationStoreOnServerSide({ applicationStore, query }) {
   applicationStore.setMessage('Tjena!')
-  applicationStore.setBreadcrumbsDynamicItems([
-    {
-      url: 'https://www.kth.se/student/kurser/program/A/20042/arskurs5',
-      label: 'Degree Programme in Architecture',
-    },
-  ])
 }
 
 module.exports = {

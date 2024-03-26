@@ -6,6 +6,8 @@ const language = require('@kth/kth-node-web-common/lib/language')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 
+const { createBreadcrumbs, createThirdCycleBreadcrumbs } = require('../utils/breadcrumbUtil')
+
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
 const koppsApi = require('../kopps/koppsApi')
@@ -41,6 +43,7 @@ async function searchThirdCycleCourses(req, res, next) {
     const { thirdCycleCourseSearch: proxyPrefix } = serverConfig.proxyPrefixPath
     const view = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('main_menu_third_cycle_courses_search', lang)
+    const breadcrumbsList = createThirdCycleBreadcrumbs(lang)
 
     res.render('app/index', {
       instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
@@ -52,6 +55,7 @@ async function searchThirdCycleCourses(req, res, next) {
       proxyPrefix,
       studentWeb: true,
       klaroAnalyticsConsentCookie,
+      breadcrumbsList,
     })
   } catch (err) {
     log.error('Error', { error: err })
@@ -114,6 +118,7 @@ async function searchAllCourses(req, res, next) {
     const { courseSearch: proxyPrefix } = serverConfig.proxyPrefixPath
     const view = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('main_menu_search_all', lang)
+    const breadcrumbsList = createBreadcrumbs(lang)
 
     res.render('app/index', {
       instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
@@ -125,6 +130,7 @@ async function searchAllCourses(req, res, next) {
       proxyPrefix,
       studentWeb: true,
       klaroAnalyticsConsentCookie,
+      breadcrumbsList,
     })
   } catch (err) {
     log.error('Error', { error: err })

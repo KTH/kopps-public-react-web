@@ -8,6 +8,7 @@ const i18n = require('../../i18n')
 
 const koppsApi = require('../kopps/koppsApi')
 
+const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { fillStoreWithBasicConfig, fetchAndFillSchoolsList } = require('../stores/schoolsListStoreSSR')
 
@@ -53,6 +54,7 @@ async function getSchoolsList(req, res, next) {
     const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
     const title = i18n.message('courses_by_school', lang)
     const description = i18n.message('departments_list_lead', lang)
+    const breadcrumbsList = createBreadcrumbs(lang)
 
     res.render('app/index', {
       instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
@@ -64,6 +66,7 @@ async function getSchoolsList(req, res, next) {
       proxyPrefix,
       studentWeb: true,
       klaroAnalyticsConsentCookie,
+      breadcrumbsList,
     })
   } catch (err) {
     log.error('Error', { error: err })
