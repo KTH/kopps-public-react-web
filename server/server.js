@@ -115,8 +115,12 @@ server.use(
 
 // Expose browser configurations
 server.use(_addProxy('/static/browserConfig'), browserConfigHandler)
+
 // Files/statics routes
 server.use(_addProxy('/static/kth-style'), express.static('./node_modules/kth-style/dist', staticOption))
+server.use(_addProxy('/assets'), express.static('./node_modules/@kth/style/assets', staticOption))
+server.use(_addProxy('/assets/js'), express.static('./node_modules/@kth/style/dist/esm', staticOption))
+
 // Map static content like images, css and js.
 server.use(_addProxy('/static'), express.static('./dist', staticOption))
 
