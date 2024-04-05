@@ -25,6 +25,7 @@ const messages = {
     lang_block_id: '1.77273',
     locale_text: 'International website',
     other_lang: 'This page in English',
+    language_link_lang_sv: 'Svenska',
 
     site_name: 'Course and programme directory',
     host_name: 'KTH',
