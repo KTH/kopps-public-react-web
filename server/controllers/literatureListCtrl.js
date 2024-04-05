@@ -75,9 +75,9 @@ async function getLiteratureList(req, res, next) {
 
     log.info(` ${storeId} store was filled in and compressed on server side `, { term, school })
 
-    const { literatureList: proxyPrefix } = serverConfig.proxyPrefixPath
+    const { literatureList: basename, uri: proxyPrefix } = serverConfig.proxyPrefixPath
 
-    const view = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const view = renderStaticPage({ applicationStore, location: req.url, basename: basename })
 
     const langIndex = lang === 'en' ? 0 : 1
     const { heading } = i18n.messages[langIndex].literatureList
@@ -95,6 +95,7 @@ async function getLiteratureList(req, res, next) {
       proxyPrefix,
       toolbarUrl: serverConfig.toolbar.url,
       studentWeb: true,
+      theme: 'student-web',
       klaroAnalyticsConsentCookie,
       breadcrumbsList,
     })

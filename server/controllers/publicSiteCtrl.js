@@ -48,6 +48,8 @@ async function getReady(req, res, next) {
       proxyPrefix,
       toolbarUrl: serverConfig.toolbar.url,
       klaroAnalyticsConsentCookie,
+      // TODO: KTH-style-10: Vilket tema ska det vara här? Fanns inte "studentWeb: true" innan
+      theme: 'external',
     })
   } catch (err) {
     log.error('Error', { error: err })

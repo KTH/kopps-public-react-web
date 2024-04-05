@@ -54,8 +54,8 @@ async function getIndex(req, res, next) {
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
     log.info(`${storeId} store was filled in and compressed on server side`, { programmeCode })
 
-    const { programme: proxyPrefix } = serverConfig.proxyPrefixPath
-    const view = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const { programme: basename, uri: proxyPrefix } = serverConfig.proxyPrefixPath
+    const view = renderStaticPage({ applicationStore, location: req.url, basename: basename })
     const { metaTitle: title, metaDescription: description } = _metaTitleAndDescription(
       lang,
       programmeCode,
@@ -74,6 +74,7 @@ async function getIndex(req, res, next) {
       proxyPrefix,
       toolbarUrl: serverConfig.toolbar.url,
       studentWeb: true,
+      theme: 'student-web',
       klaroAnalyticsConsentCookie,
       breadcrumbsList,
     })

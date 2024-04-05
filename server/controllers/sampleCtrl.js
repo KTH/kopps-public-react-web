@@ -1,3 +1,4 @@
+// TODO: KTH-style-10: Ta bort denna?
 /* eslint no-use-before-define: ["error", "nofunc"] */
 
 // @ts-check
@@ -35,8 +36,8 @@ async function getIndex(req, res, next) {
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
-    const { uri: proxyPrefix } = serverConfig.proxyPrefixPath
-    const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const { uri: basename, uri: proxyPrefix } = serverConfig.proxyPrefixPath
+    const html = renderStaticPage({ applicationStore, location: req.url, basename: basename })
 
     res.render('sample/index', {
       html,
@@ -47,6 +48,7 @@ async function getIndex(req, res, next) {
       proxyPrefix,
       toolbarUrl: serverConfig.toolbar.url,
       studentWeb: true,
+      theme: 'student-web',
       klaroAnalyticsConsentCookie,
     })
   } catch (err) {

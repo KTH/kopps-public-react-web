@@ -31,8 +31,8 @@ async function getStudyBook(req, res, next) {
     applicationStore.setBrowserConfig(browserConfig)
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
-    const { studyHandbook: proxyPrefix } = serverConfig.proxyPrefixPath
-    const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const { studyHandbook: basename, uri: proxyPrefix } = serverConfig.proxyPrefixPath
+    const html = renderStaticPage({ applicationStore, location: req.url, basename: basename })
     const title = i18n.message('main_menu_shb', lang)
 
     const breadcrumbsList = createBreadcrumbs(lang)
@@ -47,6 +47,7 @@ async function getStudyBook(req, res, next) {
       proxyPrefix,
       toolbarUrl: serverConfig.toolbar.url,
       studentWeb: true,
+      theme: 'student-web',
       klaroAnalyticsConsentCookie,
       breadcrumbsList,
     })
