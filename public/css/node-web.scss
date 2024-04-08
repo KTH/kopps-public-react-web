@@ -13,25 +13,29 @@
 @use '~@kth/style/scss/components/content.scss';
 @use '~@kth/style/scss/components/local-navigation.scss';
 
+@use '~@kth/style/scss/tokens/colors.scss' as colors;
+
 @import 'shared';
 
-*[data-from-kopps]:hover {
-  background-color: #fcf8e3;
-}
+// Style for mark data from Kopps (enabled by default in localhost only)
+*[data-from-kopps] {
+  &:hover {
+    background-color: colors.$color-green-light;
+  }
 
-*[data-from-kopps]:hover:before {
-  content: 'KOPPS';
-  float: right;
-  margin-top: -1.5em;
-  padding: 0 0.75em;
-  background-color: #fab919;
-  color: white;
-  border-radius: 0.75em 0.75em 0 0;
+  &:hover:before {
+    content: 'KOPPS';
+    float: right;
+    margin-top: -1.5em;
+    padding: 0 0.75em;
+    background-color: colors.$color-green;
+    color: white;
+    border-radius: 0.75em 0.75em 0 0;
+  }
 }
 
 .table .active-period {
-  background-color: #e6ecf5; /*cortina: @ligthBlueGray */
-  color: #333333; /* slightly darker than default, compensating for background color. */
+  background-color: colors.$color-blue-light;
   text-align: center;
 }
 
@@ -46,7 +50,7 @@
 }
 
 .sidebar {
-  background-color: #f6f6f6;
+  background-color: var(--color-background-alt);
   padding: 20px;
   margin-bottom: 15px;
 }
@@ -68,29 +72,8 @@
   margin-top: 0;
 }
 
-body #gradientBorder {
-  background-image: none;
-  background-color: #65656c;
-}
-
-.block.megaMenu.navbar.navbar-light ul.menu.navbar-nav#megaMenu li.item.nav-item .headerItem.active a.nav-link {
-  border-bottom: 5px solid #65656c;
-}
-
-.block.megaMenu.navbar.navbar-light ul.menu.navbar-nav#megaMenu li.item.nav-item .menuItemContent .megaMenuBody {
-  border-bottom: 5px solid #65656c;
-}
-
 .display-none {
   display: none;
-}
-
-.link {
-  background: transparent;
-  text-decoration: underline;
-  color: #006cb7;
-  border: none;
-  padding: 0px;
 }
 
 @keyframes spinner-border {
@@ -104,7 +87,7 @@ body #gradientBorder {
   width: 2rem;
   height: 2rem;
   vertical-align: -0.125em;
-  border: 0.25em solid rgb(33, 37, 41);
+  border: 0.25em solid colors.$color-blue-kth-dark;
   border-right-color: transparent;
   border-radius: 50%;
   animation: 0.75s linear infinite spinner-border;
