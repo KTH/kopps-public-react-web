@@ -1,0 +1,20 @@
+// This file contains style shared between the four public facing Om kursen apps (kopps-public-react-web, kursinfo-web, kurs-pm-web and kursutveckling-web)
+@use '~@kth/style/scss/tokens/typography.scss' as typography;
+
+#app {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+#mainContent {
+  @media (min-width: 992px) {
+    padding: 0;
+  }
+}
+
+.kth-content {
+  & > .row {
+    padding: 0;
+    margin: 0;
+  }
+}
