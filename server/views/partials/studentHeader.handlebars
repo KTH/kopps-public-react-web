@@ -1,44 +1,60 @@
 <!--indexOff: all-->
-<header>
-  <div class='container-fluid'>
-    <div class='container'>
-      <div class='header-container__top'>
-        {{{blocks.image}}}
-        {{{blocks.title}}}
-        <div id='mobileMenuWrapper'>
-          <button
-            id='nav-icon'
-            class='navbar-toggler nav-icon'
-            type='button'
-            title='{{i18n "button_mobile_menu_label" lang}}'
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-          <nav
-            id='mobileMenu'
-            aria-label='{{i18n "mobile_menu_aria_label" lang}}'
-            class='block navbar navbar-expand-lg navbar-light'
-          >
-            <div id='mobileMenuContent' class='navbar-collapse collapse'>
-              <ul id='mobileMenuList' class='menu navbar-nav mr-auto'></ul>
+<header class="kth-header {{{theme}}}">
+      <div class="kth-header__container">
+        <a href="/" class="kth-logotype">
+          <figure>
+            <img class="blue" alt="Till KTH:s startsida" width="64" height="64" src="{{{proxyPrefix}}}/assets/logotype/logotype-blue.svg">
+            <img class="white" alt="Till KTH:s startsida" width="64" height="64" src="{{{proxyPrefix}}}/assets/logotype/logotype-white.svg">
+          </figure>
+        </a>
+    {{{blocks.studentMegaMenu}}}
+    <ul class="kth-header__tools">
+      <li>
+        {{!-- TODO: kth-style-10: Ersätt sök-blocket. Det skulle komma ny helper för söket väl? --}}
+        <button class="kth-menu-item search">
+          <span>Search</span>
+        </button>
+        <dialog class="kth-menu-panel">
+          <div class="kth-menu-panel__container">
+            <button class="kth-icon-button close">
+              <span class="kth-visually-hidden">Close</span>
+            </button>
+            <div class="kth-menu-panel__content search">
+              <form action="https://kth.se/search" method="get">
+                <div class="kth-search">
+                  <label for="search-input">Search the KTH intranet</label>
+                  <input type="hidden" name="urlFilter" value="intra.kth.se">
+                  <input type="hidden" name="filterLabel" value="Sök på intranät">
+                  <input type="hidden" name="l" value="sv">
+                  <input type="text" id="search-input" name="q" autocomplete="off" autofocus="">
+                  <button type="submit">
+                    <span class="kth-visually-hidden">Search</span>
+                  </button>
+                </div>
+              </form>
             </div>
-          </nav>
-        </div>
-        {{{blocks.studentSecondaryMenu}}}
-      </div>
-      <div class='header-container__bottom'>{{{blocks.studentMegaMenu}}} {{{blocks.studentSearch}}}</div>
-    </div>
-  </div>
-  <div id='gradientBorder'></div>
-
-  <div class='container articleNavigation'>
-    <div id='breadcrumbs-header' class='row justify-content-between'>
-      {{breadcrumbs breadcrumbsList lang}}
-      {{languageControl lang}}
-    </div>
+          </div>
+      </dialog>
+    </li>
+      <li>
+          {{{languageLink lang}}}
+      </li>
+      <li>
+        <nav class="kth-mega-menu--collapsable">
+          <button class="kth-menu-item">
+            <span>Menu in mobile</span>
+          </button>
+        </nav>
+      </li>
+    </ul>
   </div>
 </header>
+
+{{!-- TODO: kth-style-10: Uppdatera breadcrumb-style --}}
+<div class='container articleNavigation'>
+  <div id='breadcrumbs-header' class='row justify-content-between'>
+    {{breadcrumbs breadcrumbsList lang}}
+    {{languageControl lang}}
+  </div>
+</div>
 <!--indexOn: all-->
