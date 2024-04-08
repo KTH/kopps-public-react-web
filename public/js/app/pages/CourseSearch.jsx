@@ -121,7 +121,7 @@ const CourseSearch = () => {
       <Row>
         <Col>
           <CollapseDetails title={collapseHeader}>
-            <ul className="search-instructions">
+            <ul>
               {helptexts.map(value => (
                 <li key={value}>{value}</li>
               ))}

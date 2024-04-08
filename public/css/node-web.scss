@@ -15,15 +15,6 @@
 
 @import 'shared';
 
-%long-text-font-style {
-  font-family: Georgia, 'garamond pro', garamond, 'times new roman', times, serif;
-  word-break: break-word;
-}
-
-.search-instructions {
-  @extend %long-text-font-style;
-}
-
 *[data-from-kopps]:hover {
   background-color: #fcf8e3;
 }
@@ -36,9 +27,6 @@
   background-color: #fab919;
   color: white;
   border-radius: 0.75em 0.75em 0 0;
-  font-family: 'Open Sans', sans-serif;
-  font-size: smaller;
-  font-weight: 600;
 }
 
 .table .active-period {
@@ -64,7 +52,6 @@
 }
 
 .sidebar p {
-  font-family: 'Open Sans', Arial, 'Helvetica Neue', helvetica, sans-serif;
   font-size: 1rem;
 }
 
