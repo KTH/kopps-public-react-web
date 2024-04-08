@@ -13,14 +13,10 @@ function getDepartmentMenuData(applicationStore) {
       text: t('main_menu_directory'),
       url: pageLink(browserConfig.proxyPrefixPath.uri, language),
     },
+    title: departmentName,
     navList: {
       type: 'expandable',
       items: [
-        {
-          id: 'directory',
-          type: 'ancestor',
-          text: departmentName,
-        },
         {
           id: 'courses',
           type: 'leaf',

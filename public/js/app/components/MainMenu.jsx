@@ -4,32 +4,25 @@ import React from 'react'
 
 function ParentLink({ url, text }) {
   return (
-    <ul className="nav">
-      <li className="parentLink">
-        <a href={url}>{text}</a>
-      </li>
-    </ul>
+    <a className="kth-button back" href={url}>
+      {text}
+    </a>
   )
 }
 
-function NavItem({ type, text, url, selected }) {
-  return type === 'ancestor' ? (
-    <li className="nav-item ancestor">
-      <div>{text}</div>
-    </li>
-  ) : (
-    <li className={`nav-item leaf${selected ? ' selected' : ''}`}>
-      <a className="nav-link" href={url}>
+function NavItem({ text, url, selected }) {
+  return (
+    <li>
+      <a href={url} {...(selected ? { 'aria-current': 'page' } : {})}>
         {text}
       </a>
     </li>
   )
 }
 
-function NavList({ type, items, selectedId }) {
-  const navListClasses = `nav nav-list${type ? ` ${type}` : ''}`
+function NavList({ items, selectedId }) {
   return (
-    <ul className={navListClasses}>
+    <ul>
       {items.map((item, index) => (
         <NavItem key={index} selected={item.id === selectedId} {...item} />
       ))}
@@ -39,13 +32,13 @@ function NavList({ type, items, selectedId }) {
 
 function MainMenu(props) {
   const { menuData } = props
-  const { ariaLabel, parentLink, navList, selectedId } = menuData
+  const { parentLink, title, navList, selectedId } = menuData
   return (
-    <nav id="mainMenu" aria-label={ariaLabel} className="col navbar navbar-expand-lg navbar-light">
-      <div className="collapse navbar-collapse" id="navbarNav">
-        <ParentLink {...parentLink} />
-        <NavList selectedId={selectedId} {...navList} />
-      </div>
+    <nav id="mainMenu" className="kth-local-navigation col" aria-labelledby="local-navigation-title">
+      <ParentLink {...parentLink} />
+      <h2 id="local-navigation-title">{title}</h2>
+
+      <NavList selectedId={selectedId} {...navList} />
     </nav>
   )
 }

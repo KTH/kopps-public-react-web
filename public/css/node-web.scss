@@ -11,18 +11,13 @@
 @use '~@kth/style/scss/components/menu-item.scss';
 @use '~@kth/style/scss/components/menu-panel.scss';
 @use '~@kth/style/scss/components/content.scss';
+@use '~@kth/style/scss/components/local-navigation.scss';
 
 @import 'shared';
 
 %long-text-font-style {
   font-family: Georgia, 'garamond pro', garamond, 'times new roman', times, serif;
   word-break: break-word;
-}
-
-.nav-item.leaf.selected {
-  .nav-link {
-    padding: 7px 15px 7px 0;
-  }
 }
 
 .search-instructions {

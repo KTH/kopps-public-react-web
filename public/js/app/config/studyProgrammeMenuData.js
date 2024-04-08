@@ -29,11 +29,6 @@ function getStudyProgrammeMenuData(applicationStore) {
   const t = translate(language)
   const directoryText = `${t('programme_admitted_year')} ${formatShortTerm(term, language)}`
   const navListItems = [
-    {
-      id: 'directory',
-      type: 'ancestor',
-      text: directoryText,
-    },
     ..._studyYearItems(applicationStore),
     {
       id: 'objectives',
@@ -78,6 +73,7 @@ function getStudyProgrammeMenuData(applicationStore) {
       text: programmeName,
       url: pageLink(`${pageRoot}/${programmeCode}`, language),
     },
+    title: directoryText,
     navList: {
       type: 'expandable',
       items: navListItems,

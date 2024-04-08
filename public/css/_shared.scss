@@ -4,11 +4,28 @@
 #app {
   padding-top: 30px;
   padding-bottom: 30px;
+  & > .row {
+    margin: 0;
+  }
 }
 
 #mainContent {
   @media (min-width: 992px) {
     padding: 0;
+  }
+}
+
+#mainMenu + #mainContent {
+  @media (min-width: 992px) {
+    padding-left: 30px;
+  }
+}
+
+#mainMenu.kth-local-navigation {
+  padding: 0 20px 15px 0;
+
+  & > * {
+    max-width: 15rem;
   }
 }
 

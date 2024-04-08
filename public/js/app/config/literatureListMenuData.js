@@ -12,7 +12,7 @@ function getLiteratureList(applicationStore) {
 
   const { literatureList: pageRoot } = browserConfig.proxyPrefixPath
 
-  const schoolEntries = schools.map(school => ({
+  const navListItems = schools.map(school => ({
     id: school.code,
     type: 'leaf',
     text: school.name,
@@ -20,20 +20,13 @@ function getLiteratureList(applicationStore) {
   }))
   schoolEntries.find(schoolEntry => schoolEntry.id === 'XXX').text = departmentsOtherUni
 
-  const navListItems = [
-    {
-      id: 'directory',
-      type: 'ancestor',
-      text: navHeading,
-    },
-    ...schoolEntries,
-  ]
   return {
     ariaLabel: main_menu_aria_label,
     parentLink: {
       text: main_menu_student,
       url: parentLink(language),
     },
+    title: navHeading,
     navList: {
       type: 'expandable',
       items: navListItems,

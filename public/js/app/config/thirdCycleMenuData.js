@@ -14,14 +14,10 @@ function getThirdCycleMenuData(applicationStore) {
       text: t('main_menu_third_cycle_studies'),
       url: parentThirdCycleStudyLink(language),
     },
+    title: t('courses'),
     navList: {
       type: 'expandable',
       items: [
-        {
-          id: 'directory',
-          type: 'ancestor',
-          text: t('courses'),
-        },
         {
           id: 'thirdCycleDepartmentsList',
           type: 'leaf',

@@ -13,14 +13,10 @@ function getProgrammeMenuData(applicationStore) {
       text: t('main_menu_directory'),
       url: pageLink(browserConfig.proxyPrefixPath.uri, language),
     },
+    title: programmeName,
     navList: {
       type: 'expandable',
       items: [
-        {
-          id: 'directory',
-          type: 'ancestor',
-          text: programmeName,
-        },
         {
           id: 'studyYears',
           type: 'leaf',
