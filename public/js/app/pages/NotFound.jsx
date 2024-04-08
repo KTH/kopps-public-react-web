@@ -20,7 +20,7 @@ function NotFound() {
       </Row>
       <Row>
         <Col>
-          <Article classNames={['paragraphs']}>
+          <Article>
             <p>{t('main_page_not_found_page_paragraph')}</p>
           </Article>
         </Col>

@@ -69,13 +69,15 @@ const CourseSearchThirdCycleStudy = () => {
       <Row>
         <Col>
           <CollapseDetails title={collapseHeader}>
-            <ul>
-              {helptexts.map(value => (
-                <li key={value}>{value}</li>
-              ))}
-              {/* eslint-disable-next-line react/no-danger */}
-              <li key="lastInstruction" dangerouslySetInnerHTML={{ __html: lastInstruction }} />
-            </ul>
+            <div className="article">
+              <ul>
+                {helptexts.map(value => (
+                  <li key={value}>{value}</li>
+                ))}
+                {/* eslint-disable-next-line react/no-danger */}
+                <li key="lastInstruction" dangerouslySetInnerHTML={{ __html: lastInstruction }} />
+              </ul>
+            </div>
           </CollapseDetails>
         </Col>
       </Row>

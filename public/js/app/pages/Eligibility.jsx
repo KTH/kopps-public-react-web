@@ -36,7 +36,7 @@ function EligibilityContent() {
 
 function ArticleContent() {
   return (
-    <Article classNames={['paragraphs']}>
+    <Article>
       <EligibilityDates />
       <EligibilityContent />
     </Article>
@@ -56,7 +56,7 @@ export function EligilbiltyContentForPDF() {
       </Row>
       <Row>
         <Col>
-          <Article classNames={['paragraphs']}>
+          <Article>
             <EligibilityContent />
           </Article>
         </Col>

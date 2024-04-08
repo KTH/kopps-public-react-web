@@ -1,5 +1,7 @@
 @use '~@kth/style/scss/utils/reset.scss';
 @use '~@kth/style/scss/utils/mixins.scss';
+@use '~@kth/style/scss/utils/prose.scss';
+
 @use '~@kth/style/scss/components/logotype.scss';
 @use '~@kth/style/scss/components/search.scss';
 @use '~@kth/style/scss/components/alert.scss';
@@ -13,9 +15,34 @@
 @use '~@kth/style/scss/components/content.scss';
 @use '~@kth/style/scss/components/local-navigation.scss';
 
-@use '~@kth/style/scss/tokens/colors.scss' as colors;
+@use '~@kth/style/scss/tokens/colors.scss';
+@use '~@kth/style/scss/tokens/typography.scss' as t;
 
 @import 'shared';
+
+header[role='presentation'] {
+  margin-bottom: 1.5rem;
+}
+
+.lead {
+  p {
+    @include t.font-lead-fluid;
+  }
+}
+
+.article {
+  @include prose.prose;
+  ul.link-list {
+    padding-inline-start: 0;
+    li {
+      padding-inline-start: 0;
+      max-width: unset;
+    }
+  }
+  & > :first-child {
+    margin-block-start: 0;
+  }
+}
 
 // Style for mark data from Kopps (enabled by default in localhost only)
 *[data-from-kopps] {
@@ -68,9 +95,6 @@
   margin-bottom: 1rem;
 }
 
-.utbildningsplan.paragraphs > :first-child {
-  margin-top: 0;
-}
 
 .display-none {
   display: none;
@@ -97,6 +121,7 @@
   margin: 0;
 }
 
+// TODO: kth-style-10: Alert
 .alert.alert-info:before {
   top: 18px;
 }

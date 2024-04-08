@@ -223,7 +223,7 @@ export function Appendix1PDFExport() {
     <>
       <Row>
         <Col>
-          <Article classNames={['paragraphs']}>
+          <Article>
             <CommonCourses />
             <Specialisations />
           </Article>
@@ -251,7 +251,7 @@ function Appendix1() {
       </Row>
       <Row>
         <Col>
-          <Article classNames={['paragraphs']}>
+          <Article>
             <CommonCourses />
             <Specialisations />
           </Article>

@@ -50,6 +50,7 @@ function SearchInputField({ caption = 'N/A', pattern: externalPattern, onSubmit 
           name="pattern"
         />
       </div>
+      {/* TODO: KTH-style-10: button */}
       <button className="btn btn-primary" type="submit" style={{ alignSelf: 'flex-end' }}>
         {caption}
       </button>

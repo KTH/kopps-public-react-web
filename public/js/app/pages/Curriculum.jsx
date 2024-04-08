@@ -211,7 +211,7 @@ function ArticleContent() {
       <p>{t('curriculums_missing_admission_text')(owningSchoolCode)}</p>
     </Article>
   ) : (
-    <Article classNames={['paragraphs']}>
+    <Article>
       <p>{t('curriculums_studyyear_explanation_1')(studyYear)}</p>
       <p dangerouslySetInnerHTML={{ __html: t('curriculums_studyyear_explanation_2')(formattedAcademicYear) }} />
       <CurriculumInfo />

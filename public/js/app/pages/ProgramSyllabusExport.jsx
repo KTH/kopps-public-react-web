@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Alert } from '@kth/kth-reactstrap/dist/components/studinfo'
+import { Alert } from '@kth/kth-reactstrap/dist/components/studinfo' // TODO: kth-style-10: Alert
 import ElementWrapperForPDF from '../components/ElementWrapperForPDF'
 import { programLinkYear1 } from '../util/links'
 import { replacePathNameWithHref, getCurrentHost } from '../util/stringUtil'

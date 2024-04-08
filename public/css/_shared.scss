@@ -44,3 +44,19 @@
     }
   }
 }
+
+// TODO: KTH-style-10: Hur bör page-sub-heading, kanske ska ligga i _fix egentligen
+p {
+  &#page-sub-heading {
+    font-weight: 600;
+    line-height: 1.375;
+    margin-bottom: 14px;
+    margin-top: 0.325rem;
+
+    font-size: 1.25rem;
+
+    @media (max-width: 767.98px) {
+      font-size: 1rem;
+    }
+  }
+}
