@@ -1,5 +1,5 @@
 import React from 'react'
-import { Alert } from '@kth/kth-reactstrap/dist/components/studinfo' // TODO: kth-style-10: Alert
+import Alert from '../components-shared/Alert'
 import PropTypes from 'prop-types'
 import i18n from '../../../../i18n'
 import { ERROR_ASYNC } from '../hooks/searchUseAsync'
@@ -9,8 +9,7 @@ const SearchAlert = ({ alertType: externalAlertType, languageIndex }) => {
   const { header, help, text } = searchAlarms[externalAlertType]
 
   return (
-    <Alert type="info">
-      {header && <h5>{header}</h5>}
+    <Alert type="info" header={header}>
       {text && <p>{text}</p>}
       {help && <p>{help}</p>}
     </Alert>
