@@ -98,7 +98,7 @@ function SearchFormFields({ caption, openOptions, onSubmit }) {
       </CollapseDetails>
       <Row>
         <Col style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <button className="btn btn-primary" type="submit" style={{ float: 'end' }}>
+          <button className="kth-button primary" type="submit" style={{ float: 'end' }}>
             {caption}
           </button>
         </Col>
