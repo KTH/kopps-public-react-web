@@ -12,9 +12,18 @@
   }
 }
 
-.kth-content {
-  & > .row {
-    padding: 0;
-    margin: 0;
+.kth-content.articleNavigation {
+  padding-top: 15px;
+  padding-bottom: 0px;
+
+  #breadcrumbs {
+    ol {
+      margin: 0;
+    }
+
+    display: none;
+    @media (min-width: 992px) {
+      display: flex;
+    }
   }
 }
