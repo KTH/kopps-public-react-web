@@ -46,6 +46,7 @@ async function getReady(req, res, next) {
       description: title,
       lang,
       proxyPrefix,
+      toolbarUrl: serverConfig.toolbar.url,
       klaroAnalyticsConsentCookie,
     })
   } catch (err) {

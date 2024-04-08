@@ -102,6 +102,10 @@ module.exports = {
     redisOptions: unpackRedisConfig('REDIS_URI', devRedis),
   },
 
+  toolbar: {
+    url: getEnv('TOOLBAR_URL', devDefaults('https://www-r.referens.sys.kth.se/social/toolbar/widget.js')),
+  },
+
   programSyllabusForPDF: {
     uri: getEnv('PDF_RENDER_FUNCTION', devProgramSyallabusPDFURL),
   },

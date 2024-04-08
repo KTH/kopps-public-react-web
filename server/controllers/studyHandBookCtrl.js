@@ -45,6 +45,7 @@ async function getStudyBook(req, res, next) {
       description: '',
       lang,
       proxyPrefix,
+      toolbarUrl: serverConfig.toolbar.url,
       studentWeb: true,
       klaroAnalyticsConsentCookie,
       breadcrumbsList,

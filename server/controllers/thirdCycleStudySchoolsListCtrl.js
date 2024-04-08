@@ -51,6 +51,7 @@ async function getAllSchoolsAndDepartmentsInThirdCycleStudy(req, res, next) {
       description: '',
       lang,
       proxyPrefix,
+      toolbarUrl: serverConfig.toolbar.url,
       studentWeb: true,
       breadcrumbsList,
     })

@@ -86,6 +86,7 @@ async function getIndex(req, res, next) {
       description,
       lang,
       proxyPrefix,
+      toolbarUrl: serverConfig.toolbar.url,
       studentWeb: true,
       klaroAnalyticsConsentCookie,
     })

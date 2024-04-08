@@ -93,6 +93,7 @@ async function getLiteratureList(req, res, next) {
       description: title,
       lang,
       proxyPrefix,
+      toolbarUrl: serverConfig.toolbar.url,
       studentWeb: true,
       klaroAnalyticsConsentCookie,
       breadcrumbsList,

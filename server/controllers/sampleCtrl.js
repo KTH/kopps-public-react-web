@@ -45,6 +45,7 @@ async function getIndex(req, res, next) {
       description: 'TODO',
       lang,
       proxyPrefix,
+      toolbarUrl: serverConfig.toolbar.url,
       studentWeb: true,
       klaroAnalyticsConsentCookie,
     })
