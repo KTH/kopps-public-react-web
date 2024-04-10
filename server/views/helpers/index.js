@@ -67,14 +67,3 @@ handlebars.registerHelper('getQueryParams', (queryParams, course) => {
     ? `?startterm=${queryParams.start}`
     : `?startterm=${nextTerm}`
 })
-handlebars.registerHelper('languageControl', lang => {
-  const otherLang = lang === 'sv' ? 'en' : 'sv'
-  const label = translate(otherLang)('other_lang')
-  return new Handlebars.SafeString(`
-    <div class="col-auto text-right">
-      <a href="?l=${otherLang}" hrefLang=${otherLang}>
-        ${label}
-      </a>
-    </div>
-  `)
-})
