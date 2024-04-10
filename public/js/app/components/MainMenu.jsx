@@ -30,8 +30,31 @@ function NavList({ items, selectedId }) {
   )
 }
 
-function MainMenu(props) {
-  const { menuData } = props
+export function MainMenuMobile({ menuData }) {
+  const { parentLink, title, navList, selectedId } = menuData
+
+  return (
+    <nav className="kth-local-navigation--mobile" aria-labelledby="kth-local-navigation-title--mobile">
+      <button className="kth-button menu" id="kth-local-navigation-title--mobile">
+        <span>{title}</span>
+      </button>
+      <dialog className="kth-mobile-menu left">
+        <div className="kth-mobile-menu__navigation">
+          <button className="kth-icon-button close">
+            <span className="kth-visually-hidden">Close</span>
+          </button>
+        </div>
+        <div className="mobile-menu__content">
+          <ParentLink {...parentLink} />
+          <span>{title}</span>
+          <NavList selectedId={selectedId} {...navList} />
+        </div>
+      </dialog>
+    </nav>
+  )
+}
+
+export function MainMenuDesktop({ menuData }) {
   const { parentLink, title, navList, selectedId } = menuData
   return (
     <nav id="mainMenu" className="kth-local-navigation col" aria-labelledby="local-navigation-title">
@@ -40,6 +63,16 @@ function MainMenu(props) {
 
       <NavList selectedId={selectedId} {...navList} />
     </nav>
+  )
+}
+
+function MainMenu(props) {
+  const { menuData } = props
+  return (
+    <>
+      <MainMenuMobile menuData={menuData} />
+      <MainMenuDesktop menuData={menuData} />
+    </>
   )
 }
 

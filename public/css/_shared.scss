@@ -6,13 +6,20 @@
   padding-bottom: 30px;
   & > .row {
     margin: 0;
+
+    &:has(> .kth-local-navigation--mobile) {
+      display: block;
+    }
+    @media (min-width: 992px) {
+      &:has(> .kth-local-navigation--mobile) {
+        display: flex;
+      }
+    }
   }
 }
 
 #mainContent {
-  @media (min-width: 992px) {
-    padding: 0;
-  }
+  padding: 0;
 }
 
 #mainMenu + #mainContent {
@@ -30,10 +37,8 @@
 }
 
 .kth-content.articleNavigation {
-  padding-top: 15px;
-  padding-bottom: 0px;
-
   #breadcrumbs {
+    margin-top: 15px;
     ol {
       margin: 0;
     }

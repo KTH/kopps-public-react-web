@@ -1,3 +1,4 @@
+@use '~@kth/style/scss/utils/layers.scss';
 @use '~@kth/style/scss/utils/reset.scss';
 @use '~@kth/style/scss/utils/mixins.scss';
 @use '~@kth/style/scss/utils/prose.scss';
@@ -10,6 +11,7 @@
 @use '~@kth/style/scss/components/visually-hidden.scss';
 @use '~@kth/style/scss/components/button.scss';
 @use '~@kth/style/scss/components/header.scss';
+@use '~@kth/style/scss/components/mobile-menu.scss';
 @use '~@kth/style/scss/components/menu-item.scss';
 @use '~@kth/style/scss/components/menu-panel.scss';
 @use '~@kth/style/scss/components/content.scss';

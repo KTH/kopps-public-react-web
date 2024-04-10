@@ -42,6 +42,10 @@
       document.querySelector(".kth-menu-item.language"),
       document.querySelector(".kth-translation")
     )
+    MenuPanel.initModal(
+      document.querySelector(".kth-local-navigation--mobile .kth-button.menu"),
+      document.querySelector(".kth-local-navigation--mobile .kth-mobile-menu"),
+    );
   </script>
   {{#if instrumentationKey}}
     {{#if klaroAnalyticsConsentCookie}}
