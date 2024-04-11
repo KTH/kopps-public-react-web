@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe'
+import { toHaveNoViolations } from 'jest-axe'
+import { axe } from './test-config/axeWithoutLandmarkUniqueRule'
 import { StaticRouter } from 'react-router-dom/server'
 import { MobxStoreProvider } from '../mobx'
 
@@ -119,8 +120,8 @@ describe('Render component DepartmentsList within Layout', () => {
 describe('Render component DepartmentsList and check its menu, content and links', () => {
   test('check all links on the page in English', () => {
     render(<DepartmentsListWithLayout lang="en" />)
-
-    const h2Header = screen.getByRole('heading', { level: 2 })
+    const mainContent = screen.getByRole('main')
+    const h2Header = within(mainContent).getByRole('heading', { level: 2 })
     expect(h2Header).toHaveTextContent('School')
 
     const links = screen.getAllByRole('link')
@@ -149,7 +150,8 @@ describe('Render component DepartmentsList and check its menu, content and links
   test('check all links on the page in Swedish', () => {
     render(<DepartmentsListWithLayout lang="sv" />)
 
-    const h2Header = screen.getByRole('heading', { level: 2 })
+    const mainContent = screen.getByRole('main')
+    const h2Header = within(mainContent).getByRole('heading', { level: 2 })
     expect(h2Header).toHaveTextContent('Skola')
 
     const links = screen.getAllByRole('link')

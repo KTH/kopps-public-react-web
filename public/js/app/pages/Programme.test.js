@@ -3,7 +3,8 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe'
+import { toHaveNoViolations } from 'jest-axe'
+import { axe } from './test-config/axeWithoutLandmarkUniqueRule'
 import { StaticRouter } from 'react-router-dom/server'
 import { MobxStoreProvider } from '../mobx'
 

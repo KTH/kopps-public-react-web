@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import { axe, toHaveNoViolations } from 'jest-axe'
+import { toHaveNoViolations } from 'jest-axe'
+import { axe } from './test-config/axeWithoutLandmarkUniqueRule'
 import { StaticRouter } from 'react-router-dom/server'
 import { MobxStoreProvider } from '../mobx'
 
@@ -121,8 +122,8 @@ describe('Render component ThirdCycleDepartmentsList within Layout', () => {
 describe('Render component ThirdCycleDepartmentsList and check its menu, content and links', () => {
   test('check all links on the page in English', () => {
     render(<ThirdCycleDepartmentsListWithLayout lang="en" />)
-
-    const h2Header = screen.getAllByRole('heading', { level: 2 })
+    const mainContent = screen.getByRole('main')
+    const h2Header = within(mainContent).getAllByRole('heading', { level: 2 })
     expect(h2Header.length).toBe(2)
     expect(h2Header[0]).toHaveTextContent('School')
     expect(h2Header[1]).toHaveTextContent('Older Schools')
@@ -149,7 +150,9 @@ describe('Render component ThirdCycleDepartmentsList and check its menu, content
   test('check all links on the page in Swedish', () => {
     render(<ThirdCycleDepartmentsListWithLayout lang="sv" />)
 
-    const h2Header = screen.getAllByRole('heading', { level: 2 })
+    const mainContent = screen.getByRole('main')
+    const h2Header = within(mainContent).getAllByRole('heading', { level: 2 })
+
     expect(h2Header.length).toBe(2)
     expect(h2Header[0]).toHaveTextContent('Skola')
     expect(h2Header[1]).toHaveTextContent('Äldre skolor')

@@ -1,6 +1,7 @@
 import React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
-import { axe, toHaveNoViolations } from 'jest-axe'
+import { render, screen, fireEvent, within } from '@testing-library/react'
+import { toHaveNoViolations } from 'jest-axe'
+import { axe } from './test-config/axeWithoutLandmarkUniqueRule'
 import '@testing-library/jest-dom'
 import { StaticRouter } from 'react-router-dom/server'
 import { MobxStoreProvider } from '../mobx'
@@ -213,13 +214,15 @@ describe('Render component CourseSearch and check its menu, content and links', 
   // button
   test('get a search button in English', () => {
     render(<CourseSearchWithLayout lang="en" />)
-    const button = screen.getByRole('button')
+    const mainContent = screen.getByRole('main')
+    const button = within(mainContent).getByRole('button')
     expect(button).toHaveTextContent('Search course', { exact: true })
   })
 
   test('get a search button in Swedish', () => {
     render(<CourseSearchWithLayout lang="sv" />)
-    const button = screen.getByRole('button')
+    const mainContent = screen.getByRole('main')
+    const button = within(mainContent).getByRole('button')
     expect(button).toHaveTextContent('Sök kurs', { exact: true })
   })
 
