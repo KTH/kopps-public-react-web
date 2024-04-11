@@ -19,10 +19,10 @@
 
   {{{render 'styles'}}}
 
-  {{#if blocks.klaroConfig}}
+  {{!-- {{#if blocks.klaroConfig}}
     {{{blocks.klaroConfig}}}
     {{prefixScript '/static/kth-style/js/klaro-no-css.js' 'head-scripts'}}
-  {{/if}}
+  {{/if}} --}}
 
   {{prefixScript '/static/vendor.js' 'head-scripts'}}
   {{prefixModuleScript '/assets/js/index.js' 'head-scripts'}}
@@ -33,7 +33,6 @@
   <script src="{{toolbarUrl}}"></script>
   <script type="module">
     import { MenuPanel } from '{{proxyPrefix}}/assets/js/index.js'
-    MenuPanel.init(document.querySelector('.kth-header'), document.querySelectorAll('.kth-menu-item.search'))
     MenuPanel.initModal(
       document.querySelector('.kth-menu-item.collapsable'),
       document.querySelector('.kth-menu-panel--modal')
@@ -73,21 +72,13 @@
 
 <body>
   <a class="skipToMainContent" href="#mainContent" tabindex="1">{{i18n 'skip_to_main_content' lang}}</a>
-  {{#if studentWeb}}
-  {{> studentHeader }}
-  {{else}}
   {{> kthHeader }}
-  {{/if}}
   <div class="kth-content">
     <div class="row">
         {{{body}}}
     </div>
   </div>
-  {{#if studentWeb}}
-  {{> studentFooter}}
-  {{else}}
   {{> kthFooter }}
-  {{/if}}
   {{{render 'scripts'}}}
 </body>
 
