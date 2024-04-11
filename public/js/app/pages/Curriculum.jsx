@@ -227,19 +227,15 @@ function Sidebar() {
 
   return (
     <div id="sidebarContainer">
-      <aside id="pdfSidebar" className="sidebar" aria-labelledby="pdf-sidebar-heading">
-        <h2 id="pdf-sidebar-heading" className="sidebar-heading mb-2 mt-0">
-          {t('programme_plan_pdf_header')}
-        </h2>
+      <aside id="pdfSidebar" className="info-box" aria-labelledby="pdf-sidebar-heading">
+        <h2 id="pdf-sidebar-heading">{t('programme_plan_pdf_header')}</h2>
         <p>{t('programme_plan_pdf_text')}</p>
         <Link href={syllabusLink} type="pdf-link" target="_blank">
           {t('programme_plan_pdf')(programmeCode, formatLongTerm(term, language))}
         </Link>
       </aside>
-      <aside id="programwebbSidebar" className="sidebar" aria-labelledby="programwebb-sidebar-heading">
-        <h1 id="programwebb-sidebar-heading" className="sidebar-heading">
-          {t('programme_programwebb_heading')}
-        </h1>
+      <aside id="programwebbSidebar" className="info-box" aria-labelledby="programwebb-sidebar-heading">
+        <h2 id="programwebb-sidebar-heading">{t('programme_programwebb_heading')}</h2>
         <p>
           {t('programme_programwebb_text')}
           <br />

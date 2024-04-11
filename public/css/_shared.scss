@@ -65,3 +65,28 @@ p {
     }
   }
 }
+
+.info-box {
+  $space-between: 14px;
+  padding: 20px;
+  margin-bottom: 30px;
+  background-color: var(--color-background-alt);
+  display: block;
+  word-wrap: break-word;
+
+  h2,
+  h3 {
+    @include typography.font-heading-s;
+    margin-top: 16px;
+    margin-bottom: 14px;
+  }
+  p {
+    margin-bottom: 14px;
+  }
+  & > :first-child {
+    margin-top: 0;
+  }
+  & > :last-child {
+    margin-bottom: 0;
+  }
+}
