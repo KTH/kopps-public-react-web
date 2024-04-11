@@ -22,13 +22,14 @@
 
 @import 'shared';
 
-header[role='presentation'] {
-  margin-bottom: 1.5rem;
-}
-
-.lead {
-  p {
-    @include t.font-lead-fluid;
+#mainContent {
+  header {
+    margin-bottom: 1.5rem;
+  }
+  .lead {
+    p {
+      @include t.font-lead-fluid;
+    }
   }
 }
 
@@ -77,8 +78,6 @@ header[role='presentation'] {
 .table td.credits {
   white-space: nowrap;
 }
-
-
 
 .display-none {
   display: none;
