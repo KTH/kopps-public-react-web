@@ -6,552 +6,191 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
     class="row"
   >
     <nav
-      aria-label="Sub menu"
-      class="col navbar navbar-expand-lg navbar-light"
+      aria-labelledby="kth-local-navigation-title--mobile"
+      class="kth-local-navigation--mobile"
+    >
+      <button
+        class="kth-button menu"
+        id="kth-local-navigation-title--mobile"
+      >
+        <span>
+          Course and programme directory
+        </span>
+      </button>
+      <dialog
+        class="kth-mobile-menu left"
+      >
+        <div
+          class="kth-mobile-menu__navigation"
+        >
+          <button
+            class="kth-icon-button close"
+          >
+            <span
+              class="kth-visually-hidden"
+            >
+              Close
+            </span>
+          </button>
+        </div>
+        <div
+          class="mobile-menu__content"
+        >
+          <a
+            class="kth-button back"
+            href="/student/?l=en"
+          >
+            Student at KTH
+          </a>
+          <span>
+            Course and programme directory
+          </span>
+          <ul>
+            <li>
+              <a
+                href="/student/kurser/kurser-inom-program"
+              >
+                Programme Syllabuses
+              </a>
+            </li>
+            <li>
+              <a
+                href="/student/kurser/sokkurs"
+              >
+                Search courses
+              </a>
+            </li>
+            <li>
+              <a
+                href="/student/kurser/org"
+              >
+                Courses by school
+              </a>
+            </li>
+            <li>
+              <a
+                href="/student/program/shb"
+              >
+                Studies before 07/08
+              </a>
+            </li>
+          </ul>
+        </div>
+      </dialog>
+    </nav>
+    <nav
+      aria-labelledby="local-navigation-title"
+      class="kth-local-navigation col"
       id="mainMenu"
     >
-      <div
-        class="collapse navbar-collapse"
-        id="navbarNav"
+      <a
+        class="kth-button back"
+        href="/student/?l=en"
       >
-        <ul
-          class="nav"
-        >
-          <li
-            class="parentLink"
+        Student at KTH
+      </a>
+      <h2
+        id="local-navigation-title"
+      >
+        Course and programme directory
+      </h2>
+      <ul>
+        <li>
+          <a
+            href="/student/kurser/kurser-inom-program"
           >
-            <a
-              href="/student/?l=en"
-            >
-              Student at KTH
-            </a>
-          </li>
-        </ul>
-        <ul
-          class="nav nav-list expandable"
-        >
-          <li
-            class="nav-item ancestor"
+            Programme Syllabuses
+          </a>
+        </li>
+        <li>
+          <a
+            href="/student/kurser/sokkurs"
           >
-            <div>
-              Course and programme directory
-            </div>
-          </li>
-          <li
-            class="nav-item leaf"
+            Search courses
+          </a>
+        </li>
+        <li>
+          <a
+            href="/student/kurser/org"
           >
-            <a
-              class="nav-link"
-              href="/student/kurser/kurser-inom-program"
-            >
-              Programme Syllabuses
-            </a>
-          </li>
-          <li
-            class="nav-item leaf"
+            Courses by school
+          </a>
+        </li>
+        <li>
+          <a
+            href="/student/program/shb"
           >
-            <a
-              class="nav-link"
-              href="/student/kurser/sokkurs"
-            >
-              Search courses
-            </a>
-          </li>
-          <li
-            class="nav-item leaf"
-          >
-            <a
-              class="nav-link"
-              href="/student/kurser/org"
-            >
-              Courses by school
-            </a>
-          </li>
-          <li
-            class="nav-item leaf"
-          >
-            <a
-              class="nav-link"
-              href="/student/program/shb"
-            >
-              Studies before 07/08
-            </a>
-          </li>
-        </ul>
-      </div>
+            Studies before 07/08
+          </a>
+        </li>
+      </ul>
     </nav>
-    <div
+    <main
       class="col"
+      id="mainContent"
     >
-      <main
-        id="mainContent"
+      <div
+        class="row"
       >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <header
+            role="presentation"
           >
-            <header
-              role="presentation"
-            >
-              <h1>
-                Search courses
-              </h1>
-            </header>
-            <div
-              class="lead"
-            >
-              <p>
-                Find info on KTH courses: course syllabus, course memo, and course analyses. Search by course name or course code, you can also filter by semester and period. Which courses are included in a program can be found under Programme syllabuses.
-              </p>
-            </div>
+            <h1>
+              Search courses
+            </h1>
+          </header>
+          <div
+            class="lead"
+          >
+            <p>
+              Find info on KTH courses: course syllabus, course memo, and course analyses. Search by course name or course code, you can also filter by semester and period. Which courses are included in a program can be found under Programme syllabuses.
+            </p>
           </div>
         </div>
+      </div>
+      <div
+        class="row"
+      >
         <div
-          class="row"
+          class="col"
         >
           <div
-            class="col"
-          >
-            <div
-              id="alert-placeholder"
-            />
-          </div>
-        </div>
-        <div
-          class="row"
-        >
-          <div
-            class="col"
-          >
-            <form
-              aria-label="Search course"
-              name="searchForm"
-              role="search"
-              style="display: block;"
-            >
-              <div
-                class="form-group"
-              >
-                <label
-                  for="pattern"
-                >
-                  Search by course name or course code
-                </label>
-                <input
-                  id="pattern"
-                  maxlength="80"
-                  name="pattern"
-                  size="50"
-                  type="text"
-                  value=""
-                />
-              </div>
-              <details
-                class=""
-              >
-                <summary
-                  aria-label=""
-                  class="white"
-                >
-                  Filter your search choices
-                </summary>
-                <div>
-                  <div
-                    class="row"
-                  >
-                    <div
-                      class="col"
-                    >
-                      <div
-                        class="form-group"
-                      >
-                        <fieldset>
-                          <legend
-                            class="form-control-label"
-                          >
-                            Course Start 2021
-                          </legend>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="20211:3"
-                              name="currentYear"
-                              type="checkbox"
-                              value="20211:3"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="20211:3"
-                            >
-                              Spring 2021 period 3
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="20211:4"
-                              name="currentYear"
-                              type="checkbox"
-                              value="20211:4"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="20211:4"
-                            >
-                              Spring 2021 period 4
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="2021:summer"
-                              name="currentYear"
-                              type="checkbox"
-                              value="2021:summer"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="2021:summer"
-                            >
-                              2021 summer
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="20212:1"
-                              name="currentYear"
-                              type="checkbox"
-                              value="20212:1"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="20212:1"
-                            >
-                              Autumn 2021 period 1
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="20212:2"
-                              name="currentYear"
-                              type="checkbox"
-                              value="20212:2"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="20212:2"
-                            >
-                              Autumn 2021 period 2
-                            </label>
-                          </div>
-                        </fieldset>
-                      </div>
-                    </div>
-                    <div
-                      class="col"
-                    >
-                      <div
-                        class="form-group"
-                      >
-                        <fieldset>
-                          <legend
-                            class="form-control-label"
-                          >
-                            Course Start 2022
-                          </legend>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="20221:3"
-                              name="nextYear"
-                              type="checkbox"
-                              value="20221:3"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="20221:3"
-                            >
-                              Spring 2022 period 3
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="20221:4"
-                              name="nextYear"
-                              type="checkbox"
-                              value="20221:4"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="20221:4"
-                            >
-                              Spring 2022 period 4
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="2022:summer"
-                              name="nextYear"
-                              type="checkbox"
-                              value="2022:summer"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="2022:summer"
-                            >
-                              2022 summer
-                            </label>
-                          </div>
-                        </fieldset>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="row"
-                  >
-                    <div
-                      class="col"
-                    >
-                      <div
-                        class="form-group"
-                      >
-                        <fieldset>
-                          <legend
-                            class="form-control-label"
-                          >
-                            Educational level:
-                          </legend>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="PREPARATORY"
-                              name="eduLevel"
-                              type="checkbox"
-                              value="0"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="PREPARATORY"
-                            >
-                              Pre-university level
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="BASIC"
-                              name="eduLevel"
-                              type="checkbox"
-                              value="1"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="BASIC"
-                            >
-                              First cycle
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="ADVANCED"
-                              name="eduLevel"
-                              type="checkbox"
-                              value="2"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="ADVANCED"
-                            >
-                              Second cycle
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="RESEARCH"
-                              name="eduLevel"
-                              type="checkbox"
-                              value="3"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="RESEARCH"
-                            >
-                              Third cycle
-                            </label>
-                          </div>
-                        </fieldset>
-                      </div>
-                    </div>
-                    <div
-                      class="col"
-                    >
-                      <div
-                        class="form-group"
-                      >
-                        <fieldset>
-                          <legend
-                            class="form-control-label"
-                          >
-                            Other options:
-                          </legend>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="onlyEnglish"
-                              name="showOptions"
-                              type="checkbox"
-                              value="onlyEnglish"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="onlyEnglish"
-                            >
-                              Courses taught in English
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="onlyMHU"
-                              name="showOptions"
-                              type="checkbox"
-                              value="onlyMHU"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="onlyMHU"
-                            >
-                              Courses that deal with environment, environmental technology or sustainable development
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="showCancelled"
-                              name="showOptions"
-                              type="checkbox"
-                              value="showCancelled"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="showCancelled"
-                            >
-                              Dormant/Terminated course
-                            </label>
-                          </div>
-                        </fieldset>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="row"
-                  >
-                    <div
-                      class="col"
-                    >
-                      <div
-                        class="form-group"
-                      >
-                        <fieldset>
-                          <legend
-                            class="form-control-label"
-                          >
-                            School, department, etc
-                          </legend>
-                          <select
-                            aria-label="School, department, etc"
-                            class="form-control"
-                            id="department"
-                            name="department"
-                          >
-                            <option
-                              selected=""
-                              value=""
-                            >
-                              All schools
-                            </option>
-                            <option
-                              class="form-control-label"
-                            >
-                              Older Schools
-                            </option>
-                          </select>
-                        </fieldset>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </details>
-              <div
-                class="row"
-              >
-                <div
-                  class="col"
-                  style="display: flex; justify-content: flex-end;"
-                >
-                  <button
-                    class="btn btn-primary"
-                    style="float: end;"
-                    type="submit"
-                  >
-                    Search course
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div
-          class="row"
-        >
-          <div
-            class="col"
+            id="alert-placeholder"
           />
         </div>
+      </div>
+      <div
+        class="row"
+      >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <form
+            aria-label="Search course"
+            name="searchForm"
+            role="search"
+            style="display: block;"
           >
+            <div
+              class="form-group"
+            >
+              <label
+                for="pattern"
+              >
+                Search by course name or course code
+              </label>
+              <input
+                id="pattern"
+                maxlength="80"
+                name="pattern"
+                size="50"
+                type="text"
+                value=""
+              />
+            </div>
             <details
               class=""
             >
@@ -559,12 +198,417 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
                 aria-label=""
                 class="white"
               >
-                Instructions for searching
+                Filter your search choices
               </summary>
               <div>
-                <ul
-                  class="search-instructions"
+                <div
+                  class="row"
                 >
+                  <div
+                    class="col"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <fieldset>
+                        <legend
+                          class="form-control-label"
+                        >
+                          Course Start 2021
+                        </legend>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="20211:3"
+                            name="currentYear"
+                            type="checkbox"
+                            value="20211:3"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="20211:3"
+                          >
+                            Spring 2021 period 3
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="20211:4"
+                            name="currentYear"
+                            type="checkbox"
+                            value="20211:4"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="20211:4"
+                          >
+                            Spring 2021 period 4
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="2021:summer"
+                            name="currentYear"
+                            type="checkbox"
+                            value="2021:summer"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="2021:summer"
+                          >
+                            2021 summer
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="20212:1"
+                            name="currentYear"
+                            type="checkbox"
+                            value="20212:1"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="20212:1"
+                          >
+                            Autumn 2021 period 1
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="20212:2"
+                            name="currentYear"
+                            type="checkbox"
+                            value="20212:2"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="20212:2"
+                          >
+                            Autumn 2021 period 2
+                          </label>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <div
+                    class="col"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <fieldset>
+                        <legend
+                          class="form-control-label"
+                        >
+                          Course Start 2022
+                        </legend>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="20221:3"
+                            name="nextYear"
+                            type="checkbox"
+                            value="20221:3"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="20221:3"
+                          >
+                            Spring 2022 period 3
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="20221:4"
+                            name="nextYear"
+                            type="checkbox"
+                            value="20221:4"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="20221:4"
+                          >
+                            Spring 2022 period 4
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="2022:summer"
+                            name="nextYear"
+                            type="checkbox"
+                            value="2022:summer"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="2022:summer"
+                          >
+                            2022 summer
+                          </label>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="row"
+                >
+                  <div
+                    class="col"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <fieldset>
+                        <legend
+                          class="form-control-label"
+                        >
+                          Educational level:
+                        </legend>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="PREPARATORY"
+                            name="eduLevel"
+                            type="checkbox"
+                            value="0"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="PREPARATORY"
+                          >
+                            Pre-university level
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="BASIC"
+                            name="eduLevel"
+                            type="checkbox"
+                            value="1"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="BASIC"
+                          >
+                            First cycle
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="ADVANCED"
+                            name="eduLevel"
+                            type="checkbox"
+                            value="2"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="ADVANCED"
+                          >
+                            Second cycle
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="RESEARCH"
+                            name="eduLevel"
+                            type="checkbox"
+                            value="3"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="RESEARCH"
+                          >
+                            Third cycle
+                          </label>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <div
+                    class="col"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <fieldset>
+                        <legend
+                          class="form-control-label"
+                        >
+                          Other options:
+                        </legend>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="onlyEnglish"
+                            name="showOptions"
+                            type="checkbox"
+                            value="onlyEnglish"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="onlyEnglish"
+                          >
+                            Courses taught in English
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="onlyMHU"
+                            name="showOptions"
+                            type="checkbox"
+                            value="onlyMHU"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="onlyMHU"
+                          >
+                            Courses that deal with environment, environmental technology or sustainable development
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="showCancelled"
+                            name="showOptions"
+                            type="checkbox"
+                            value="showCancelled"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="showCancelled"
+                          >
+                            Dormant/Terminated course
+                          </label>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="row"
+                >
+                  <div
+                    class="col"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <fieldset>
+                        <legend
+                          class="form-control-label"
+                        >
+                          School, department, etc
+                        </legend>
+                        <select
+                          aria-label="School, department, etc"
+                          class="form-control"
+                          id="department"
+                          name="department"
+                        >
+                          <option
+                            selected=""
+                            value=""
+                          >
+                            All schools
+                          </option>
+                          <option
+                            class="form-control-label"
+                          >
+                            Older Schools
+                          </option>
+                        </select>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </details>
+            <div
+              class="row"
+            >
+              <div
+                class="col"
+                style="display: flex; justify-content: flex-end;"
+              >
+                <button
+                  class="kth-button primary"
+                  style="float: end;"
+                  type="submit"
+                >
+                  Search course
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col"
+        />
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col"
+        >
+          <details
+            class=""
+          >
+            <summary
+              aria-label=""
+              class="white"
+            >
+              Instructions for searching
+            </summary>
+            <div>
+              <div
+                class="article"
+              >
+                <ul>
                   <li>
                     You can search using part of the course name or code. Searching for "data" will return "Data Storage Paradigms" as well as "Database Techniques" and "Algorithms, Data Structures and Complexity".
                   </li>
@@ -603,39 +647,39 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
                   </li>
                 </ul>
               </div>
-            </details>
-          </div>
+            </div>
+          </details>
         </div>
+      </div>
+      <div
+        class="row"
+      >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <footer
+            class="border-top mt-4 pt-1"
+            id="articleFooter"
           >
-            <footer
-              class="border-top mt-4 pt-1"
-              id="articleFooter"
-            >
-              <address>
-                Contact for questions regarding education at KTH: 
-                <a
-                  href="https://www.kth.se/en/studies/master/general-study-counselling-1.621634"
-                >
-                  Central study counseling
-                </a>
-                <br />
-                Contact regarding technical matters on this page: 
-                <a
-                  href="mailto:kopps@kth.se"
-                >
-                  kopps@kth.se
-                </a>
-              </address>
-            </footer>
-          </div>
+            <address>
+              Contact for questions regarding education at KTH: 
+              <a
+                href="https://www.kth.se/en/studies/master/general-study-counselling-1.621634"
+              >
+                Central study counseling
+              </a>
+              <br />
+              Contact regarding technical matters on this page: 
+              <a
+                href="mailto:kopps@kth.se"
+              >
+                kopps@kth.se
+              </a>
+            </address>
+          </footer>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   </div>
 </DocumentFragment>
 `;
@@ -646,552 +690,191 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
     class="row"
   >
     <nav
-      aria-label="Undermeny"
-      class="col navbar navbar-expand-lg navbar-light"
+      aria-labelledby="kth-local-navigation-title--mobile"
+      class="kth-local-navigation--mobile"
+    >
+      <button
+        class="kth-button menu"
+        id="kth-local-navigation-title--mobile"
+      >
+        <span>
+          Kurs- och programkatalogen
+        </span>
+      </button>
+      <dialog
+        class="kth-mobile-menu left"
+      >
+        <div
+          class="kth-mobile-menu__navigation"
+        >
+          <button
+            class="kth-icon-button close"
+          >
+            <span
+              class="kth-visually-hidden"
+            >
+              Close
+            </span>
+          </button>
+        </div>
+        <div
+          class="mobile-menu__content"
+        >
+          <a
+            class="kth-button back"
+            href="/student/"
+          >
+            Student på KTH
+          </a>
+          <span>
+            Kurs- och programkatalogen
+          </span>
+          <ul>
+            <li>
+              <a
+                href="/student/kurser/kurser-inom-program"
+              >
+                Utbildningsplaner
+              </a>
+            </li>
+            <li>
+              <a
+                href="/student/kurser/sokkurs"
+              >
+                Sök kurser
+              </a>
+            </li>
+            <li>
+              <a
+                href="/student/kurser/org"
+              >
+                Kurser per skola
+              </a>
+            </li>
+            <li>
+              <a
+                href="/student/program/shb"
+              >
+                Studier före 07/08
+              </a>
+            </li>
+          </ul>
+        </div>
+      </dialog>
+    </nav>
+    <nav
+      aria-labelledby="local-navigation-title"
+      class="kth-local-navigation col"
       id="mainMenu"
     >
-      <div
-        class="collapse navbar-collapse"
-        id="navbarNav"
+      <a
+        class="kth-button back"
+        href="/student/"
       >
-        <ul
-          class="nav"
-        >
-          <li
-            class="parentLink"
+        Student på KTH
+      </a>
+      <h2
+        id="local-navigation-title"
+      >
+        Kurs- och programkatalogen
+      </h2>
+      <ul>
+        <li>
+          <a
+            href="/student/kurser/kurser-inom-program"
           >
-            <a
-              href="/student/"
-            >
-              Student på KTH
-            </a>
-          </li>
-        </ul>
-        <ul
-          class="nav nav-list expandable"
-        >
-          <li
-            class="nav-item ancestor"
+            Utbildningsplaner
+          </a>
+        </li>
+        <li>
+          <a
+            href="/student/kurser/sokkurs"
           >
-            <div>
-              Kurs- och programkatalogen
-            </div>
-          </li>
-          <li
-            class="nav-item leaf"
+            Sök kurser
+          </a>
+        </li>
+        <li>
+          <a
+            href="/student/kurser/org"
           >
-            <a
-              class="nav-link"
-              href="/student/kurser/kurser-inom-program"
-            >
-              Utbildningsplaner
-            </a>
-          </li>
-          <li
-            class="nav-item leaf"
+            Kurser per skola
+          </a>
+        </li>
+        <li>
+          <a
+            href="/student/program/shb"
           >
-            <a
-              class="nav-link"
-              href="/student/kurser/sokkurs"
-            >
-              Sök kurser
-            </a>
-          </li>
-          <li
-            class="nav-item leaf"
-          >
-            <a
-              class="nav-link"
-              href="/student/kurser/org"
-            >
-              Kurser per skola
-            </a>
-          </li>
-          <li
-            class="nav-item leaf"
-          >
-            <a
-              class="nav-link"
-              href="/student/program/shb"
-            >
-              Studier före 07/08
-            </a>
-          </li>
-        </ul>
-      </div>
+            Studier före 07/08
+          </a>
+        </li>
+      </ul>
     </nav>
-    <div
+    <main
       class="col"
+      id="mainContent"
     >
-      <main
-        id="mainContent"
+      <div
+        class="row"
       >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <header
+            role="presentation"
           >
-            <header
-              role="presentation"
-            >
-              <h1>
-                Sök kurser
-              </h1>
-            </header>
-            <div
-              class="lead"
-            >
-              <p>
-                Här finns info om kurser på KTH: kursplan, kurs-PM och kursanalyser. Sök på kursnamn eller kurskod, du kan även filtrera på termin och läsperiod. Vilka kurser som ingår i ett program finns under Utbildningsplaner.
-              </p>
-            </div>
+            <h1>
+              Sök kurser
+            </h1>
+          </header>
+          <div
+            class="lead"
+          >
+            <p>
+              Här finns info om kurser på KTH: kursplan, kurs-PM och kursanalyser. Sök på kursnamn eller kurskod, du kan även filtrera på termin och läsperiod. Vilka kurser som ingår i ett program finns under Utbildningsplaner.
+            </p>
           </div>
         </div>
+      </div>
+      <div
+        class="row"
+      >
         <div
-          class="row"
+          class="col"
         >
           <div
-            class="col"
-          >
-            <div
-              id="alert-placeholder"
-            />
-          </div>
-        </div>
-        <div
-          class="row"
-        >
-          <div
-            class="col"
-          >
-            <form
-              aria-label="Sök kurs"
-              name="searchForm"
-              role="search"
-              style="display: block;"
-            >
-              <div
-                class="form-group"
-              >
-                <label
-                  for="pattern"
-                >
-                  Sök på kursnamn eller kurskod
-                </label>
-                <input
-                  id="pattern"
-                  maxlength="80"
-                  name="pattern"
-                  size="50"
-                  type="text"
-                  value=""
-                />
-              </div>
-              <details
-                class=""
-              >
-                <summary
-                  aria-label=""
-                  class="white"
-                >
-                  Filtrera dina sökval
-                </summary>
-                <div>
-                  <div
-                    class="row"
-                  >
-                    <div
-                      class="col"
-                    >
-                      <div
-                        class="form-group"
-                      >
-                        <fieldset>
-                          <legend
-                            class="form-control-label"
-                          >
-                            Kursstart 2021
-                          </legend>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="20211:3"
-                              name="currentYear"
-                              type="checkbox"
-                              value="20211:3"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="20211:3"
-                            >
-                              VT2021 period 3
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="20211:4"
-                              name="currentYear"
-                              type="checkbox"
-                              value="20211:4"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="20211:4"
-                            >
-                              VT2021 period 4
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="2021:summer"
-                              name="currentYear"
-                              type="checkbox"
-                              value="2021:summer"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="2021:summer"
-                            >
-                              2021 sommar
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="20212:1"
-                              name="currentYear"
-                              type="checkbox"
-                              value="20212:1"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="20212:1"
-                            >
-                              HT2021 period 1
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="20212:2"
-                              name="currentYear"
-                              type="checkbox"
-                              value="20212:2"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="20212:2"
-                            >
-                              HT2021 period 2
-                            </label>
-                          </div>
-                        </fieldset>
-                      </div>
-                    </div>
-                    <div
-                      class="col"
-                    >
-                      <div
-                        class="form-group"
-                      >
-                        <fieldset>
-                          <legend
-                            class="form-control-label"
-                          >
-                            Kursstart 2022
-                          </legend>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="20221:3"
-                              name="nextYear"
-                              type="checkbox"
-                              value="20221:3"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="20221:3"
-                            >
-                              VT2022 period 3
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="20221:4"
-                              name="nextYear"
-                              type="checkbox"
-                              value="20221:4"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="20221:4"
-                            >
-                              VT2022 period 4
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="2022:summer"
-                              name="nextYear"
-                              type="checkbox"
-                              value="2022:summer"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="2022:summer"
-                            >
-                              2022 sommar
-                            </label>
-                          </div>
-                        </fieldset>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="row"
-                  >
-                    <div
-                      class="col"
-                    >
-                      <div
-                        class="form-group"
-                      >
-                        <fieldset>
-                          <legend
-                            class="form-control-label"
-                          >
-                            Utbildningsnivå:
-                          </legend>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="PREPARATORY"
-                              name="eduLevel"
-                              type="checkbox"
-                              value="0"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="PREPARATORY"
-                            >
-                              Förberedande nivå
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="BASIC"
-                              name="eduLevel"
-                              type="checkbox"
-                              value="1"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="BASIC"
-                            >
-                              Grundnivå
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="ADVANCED"
-                              name="eduLevel"
-                              type="checkbox"
-                              value="2"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="ADVANCED"
-                            >
-                              Avancerad nivå
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="RESEARCH"
-                              name="eduLevel"
-                              type="checkbox"
-                              value="3"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="RESEARCH"
-                            >
-                              Forskarnivå
-                            </label>
-                          </div>
-                        </fieldset>
-                      </div>
-                    </div>
-                    <div
-                      class="col"
-                    >
-                      <div
-                        class="form-group"
-                      >
-                        <fieldset>
-                          <legend
-                            class="form-control-label"
-                          >
-                            Övrigt:
-                          </legend>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="onlyEnglish"
-                              name="showOptions"
-                              type="checkbox"
-                              value="onlyEnglish"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="onlyEnglish"
-                            >
-                              Ges på engelska
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="onlyMHU"
-                              name="showOptions"
-                              type="checkbox"
-                              value="onlyMHU"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="onlyMHU"
-                            >
-                              Behandlar miljö, miljöteknik eller hållbar utveckling
-                            </label>
-                          </div>
-                          <div
-                            class="form-check form-group"
-                          >
-                            <input
-                              class="form-check-input"
-                              id="showCancelled"
-                              name="showOptions"
-                              type="checkbox"
-                              value="showCancelled"
-                            />
-                            <label
-                              class="form-control-label"
-                              for="showCancelled"
-                            >
-                              Nedlagd kurs
-                            </label>
-                          </div>
-                        </fieldset>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="row"
-                  >
-                    <div
-                      class="col"
-                    >
-                      <div
-                        class="form-group"
-                      >
-                        <fieldset>
-                          <legend
-                            class="form-control-label"
-                          >
-                            Skola, avdelning, etc
-                          </legend>
-                          <select
-                            aria-label="Skola, avdelning, etc"
-                            class="form-control"
-                            id="department"
-                            name="department"
-                          >
-                            <option
-                              selected=""
-                              value=""
-                            >
-                              Samtliga skolor
-                            </option>
-                            <option
-                              class="form-control-label"
-                            >
-                              Äldre skolor
-                            </option>
-                          </select>
-                        </fieldset>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </details>
-              <div
-                class="row"
-              >
-                <div
-                  class="col"
-                  style="display: flex; justify-content: flex-end;"
-                >
-                  <button
-                    class="btn btn-primary"
-                    style="float: end;"
-                    type="submit"
-                  >
-                    Sök kurs
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div
-          class="row"
-        >
-          <div
-            class="col"
+            id="alert-placeholder"
           />
         </div>
+      </div>
+      <div
+        class="row"
+      >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <form
+            aria-label="Sök kurs"
+            name="searchForm"
+            role="search"
+            style="display: block;"
           >
+            <div
+              class="form-group"
+            >
+              <label
+                for="pattern"
+              >
+                Sök på kursnamn eller kurskod
+              </label>
+              <input
+                id="pattern"
+                maxlength="80"
+                name="pattern"
+                size="50"
+                type="text"
+                value=""
+              />
+            </div>
             <details
               class=""
             >
@@ -1199,12 +882,417 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
                 aria-label=""
                 class="white"
               >
-                Få hjälp med sökningen
+                Filtrera dina sökval
               </summary>
               <div>
-                <ul
-                  class="search-instructions"
+                <div
+                  class="row"
                 >
+                  <div
+                    class="col"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <fieldset>
+                        <legend
+                          class="form-control-label"
+                        >
+                          Kursstart 2021
+                        </legend>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="20211:3"
+                            name="currentYear"
+                            type="checkbox"
+                            value="20211:3"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="20211:3"
+                          >
+                            VT2021 period 3
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="20211:4"
+                            name="currentYear"
+                            type="checkbox"
+                            value="20211:4"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="20211:4"
+                          >
+                            VT2021 period 4
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="2021:summer"
+                            name="currentYear"
+                            type="checkbox"
+                            value="2021:summer"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="2021:summer"
+                          >
+                            2021 sommar
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="20212:1"
+                            name="currentYear"
+                            type="checkbox"
+                            value="20212:1"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="20212:1"
+                          >
+                            HT2021 period 1
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="20212:2"
+                            name="currentYear"
+                            type="checkbox"
+                            value="20212:2"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="20212:2"
+                          >
+                            HT2021 period 2
+                          </label>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <div
+                    class="col"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <fieldset>
+                        <legend
+                          class="form-control-label"
+                        >
+                          Kursstart 2022
+                        </legend>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="20221:3"
+                            name="nextYear"
+                            type="checkbox"
+                            value="20221:3"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="20221:3"
+                          >
+                            VT2022 period 3
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="20221:4"
+                            name="nextYear"
+                            type="checkbox"
+                            value="20221:4"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="20221:4"
+                          >
+                            VT2022 period 4
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="2022:summer"
+                            name="nextYear"
+                            type="checkbox"
+                            value="2022:summer"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="2022:summer"
+                          >
+                            2022 sommar
+                          </label>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="row"
+                >
+                  <div
+                    class="col"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <fieldset>
+                        <legend
+                          class="form-control-label"
+                        >
+                          Utbildningsnivå:
+                        </legend>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="PREPARATORY"
+                            name="eduLevel"
+                            type="checkbox"
+                            value="0"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="PREPARATORY"
+                          >
+                            Förberedande nivå
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="BASIC"
+                            name="eduLevel"
+                            type="checkbox"
+                            value="1"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="BASIC"
+                          >
+                            Grundnivå
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="ADVANCED"
+                            name="eduLevel"
+                            type="checkbox"
+                            value="2"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="ADVANCED"
+                          >
+                            Avancerad nivå
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="RESEARCH"
+                            name="eduLevel"
+                            type="checkbox"
+                            value="3"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="RESEARCH"
+                          >
+                            Forskarnivå
+                          </label>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <div
+                    class="col"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <fieldset>
+                        <legend
+                          class="form-control-label"
+                        >
+                          Övrigt:
+                        </legend>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="onlyEnglish"
+                            name="showOptions"
+                            type="checkbox"
+                            value="onlyEnglish"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="onlyEnglish"
+                          >
+                            Ges på engelska
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="onlyMHU"
+                            name="showOptions"
+                            type="checkbox"
+                            value="onlyMHU"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="onlyMHU"
+                          >
+                            Behandlar miljö, miljöteknik eller hållbar utveckling
+                          </label>
+                        </div>
+                        <div
+                          class="form-check form-group"
+                        >
+                          <input
+                            class="form-check-input"
+                            id="showCancelled"
+                            name="showOptions"
+                            type="checkbox"
+                            value="showCancelled"
+                          />
+                          <label
+                            class="form-control-label"
+                            for="showCancelled"
+                          >
+                            Nedlagd kurs
+                          </label>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="row"
+                >
+                  <div
+                    class="col"
+                  >
+                    <div
+                      class="form-group"
+                    >
+                      <fieldset>
+                        <legend
+                          class="form-control-label"
+                        >
+                          Skola, avdelning, etc
+                        </legend>
+                        <select
+                          aria-label="Skola, avdelning, etc"
+                          class="form-control"
+                          id="department"
+                          name="department"
+                        >
+                          <option
+                            selected=""
+                            value=""
+                          >
+                            Samtliga skolor
+                          </option>
+                          <option
+                            class="form-control-label"
+                          >
+                            Äldre skolor
+                          </option>
+                        </select>
+                      </fieldset>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </details>
+            <div
+              class="row"
+            >
+              <div
+                class="col"
+                style="display: flex; justify-content: flex-end;"
+              >
+                <button
+                  class="kth-button primary"
+                  style="float: end;"
+                  type="submit"
+                >
+                  Sök kurs
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col"
+        />
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col"
+        >
+          <details
+            class=""
+          >
+            <summary
+              aria-label=""
+              class="white"
+            >
+              Få hjälp med sökningen
+            </summary>
+            <div>
+              <div
+                class="article"
+              >
+                <ul>
                   <li>
                     Du kan söka på del av kursnamn eller kurskod. En sökning efter "data" hittar exempelvis såväl "Databasteknik", "Datalogi" som "Algoritmer, datastrukturer och komplexitet".
                   </li>
@@ -1243,39 +1331,39 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
                   </li>
                 </ul>
               </div>
-            </details>
-          </div>
+            </div>
+          </details>
         </div>
+      </div>
+      <div
+        class="row"
+      >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <footer
+            class="border-top mt-4 pt-1"
+            id="articleFooter"
           >
-            <footer
-              class="border-top mt-4 pt-1"
-              id="articleFooter"
-            >
-              <address>
-                Kontakt för frågor om utbildning på KTH: 
-                <a
-                  href="https://www.kth.se/studievagledning"
-                >
-                  Central studievägledning
-                </a>
-                <br />
-                Teknisk kontakt om denna sida: 
-                <a
-                  href="mailto:kopps@kth.se"
-                >
-                  kopps@kth.se
-                </a>
-              </address>
-            </footer>
-          </div>
+            <address>
+              Kontakt för frågor om utbildning på KTH: 
+              <a
+                href="https://www.kth.se/studievagledning"
+              >
+                Central studievägledning
+              </a>
+              <br />
+              Teknisk kontakt om denna sida: 
+              <a
+                href="mailto:kopps@kth.se"
+              >
+                kopps@kth.se
+              </a>
+            </address>
+          </footer>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   </div>
 </DocumentFragment>
 `;

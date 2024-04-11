@@ -6,164 +6,208 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Eng
     class="row"
   >
     <nav
-      aria-label="Sub menu"
-      class="col navbar navbar-expand-lg navbar-light"
+      aria-labelledby="kth-local-navigation-title--mobile"
+      class="kth-local-navigation--mobile"
+    >
+      <button
+        class="kth-button menu"
+        id="kth-local-navigation-title--mobile"
+      >
+        <span>
+          Course and programme directory
+        </span>
+      </button>
+      <dialog
+        class="kth-mobile-menu left"
+      >
+        <div
+          class="kth-mobile-menu__navigation"
+        >
+          <button
+            class="kth-icon-button close"
+          >
+            <span
+              class="kth-visually-hidden"
+            >
+              Close
+            </span>
+          </button>
+        </div>
+        <div
+          class="mobile-menu__content"
+        >
+          <a
+            class="kth-button back"
+            href="/student/?l=en"
+          >
+            Student at KTH
+          </a>
+          <span>
+            Course and programme directory
+          </span>
+          <ul>
+            <li>
+              <a
+                href="/student/kurser/kurser-inom-program"
+              >
+                Programme Syllabuses
+              </a>
+            </li>
+            <li>
+              <a
+                href="/student/kurser/sokkurs"
+              >
+                Search courses
+              </a>
+            </li>
+            <li>
+              <a
+                aria-current="page"
+                href="/student/kurser/org"
+              >
+                Courses by school
+              </a>
+            </li>
+            <li>
+              <a
+                href="/student/program/shb"
+              >
+                Studies before 07/08
+              </a>
+            </li>
+          </ul>
+        </div>
+      </dialog>
+    </nav>
+    <nav
+      aria-labelledby="local-navigation-title"
+      class="kth-local-navigation col"
       id="mainMenu"
     >
-      <div
-        class="collapse navbar-collapse"
-        id="navbarNav"
+      <a
+        class="kth-button back"
+        href="/student/?l=en"
       >
-        <ul
-          class="nav"
-        >
-          <li
-            class="parentLink"
+        Student at KTH
+      </a>
+      <h2
+        id="local-navigation-title"
+      >
+        Course and programme directory
+      </h2>
+      <ul>
+        <li>
+          <a
+            href="/student/kurser/kurser-inom-program"
           >
-            <a
-              href="/student/?l=en"
-            >
-              Student at KTH
-            </a>
-          </li>
-        </ul>
-        <ul
-          class="nav nav-list expandable"
-        >
-          <li
-            class="nav-item ancestor"
+            Programme Syllabuses
+          </a>
+        </li>
+        <li>
+          <a
+            href="/student/kurser/sokkurs"
           >
-            <div>
-              Course and programme directory
-            </div>
-          </li>
-          <li
-            class="nav-item leaf"
+            Search courses
+          </a>
+        </li>
+        <li>
+          <a
+            aria-current="page"
+            href="/student/kurser/org"
           >
-            <a
-              class="nav-link"
-              href="/student/kurser/kurser-inom-program"
-            >
-              Programme Syllabuses
-            </a>
-          </li>
-          <li
-            class="nav-item leaf"
+            Courses by school
+          </a>
+        </li>
+        <li>
+          <a
+            href="/student/program/shb"
           >
-            <a
-              class="nav-link"
-              href="/student/kurser/sokkurs"
-            >
-              Search courses
-            </a>
-          </li>
-          <li
-            class="nav-item leaf selected"
-          >
-            <a
-              class="nav-link"
-              href="/student/kurser/org"
-            >
-              Courses by school
-            </a>
-          </li>
-          <li
-            class="nav-item leaf"
-          >
-            <a
-              class="nav-link"
-              href="/student/program/shb"
-            >
-              Studies before 07/08
-            </a>
-          </li>
-        </ul>
-      </div>
+            Studies before 07/08
+          </a>
+        </li>
+      </ul>
     </nav>
-    <div
+    <main
       class="col"
+      id="mainContent"
     >
-      <main
-        id="mainContent"
+      <div
+        class="row"
       >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <header
+            role="presentation"
           >
-            <header
-              role="presentation"
-            >
-              <h1>
-                Courses by school
-              </h1>
-            </header>
-            <div
-              class="lead"
-            >
-              <p>
-                Find info on KTH courses. The courses are sorted by KTH schools and their respective organizations. To search for current courses only, use the menu option Search courses and filter by semester and period. Which courses are included in a programme can be found under the menu option Programme Syllabuses.
-              </p>
-            </div>
+            <h1>
+              Courses by school
+            </h1>
+          </header>
+          <div
+            class="lead"
+          >
+            <p>
+              Find info on KTH courses. The courses are sorted by KTH schools and their respective organizations. To search for current courses only, use the menu option Search courses and filter by semester and period. Which courses are included in a programme can be found under the menu option Programme Syllabuses.
+            </p>
           </div>
         </div>
+      </div>
+      <div
+        class="row"
+      >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <article
+            class="article "
           >
-            <article
-              class="article paragraphs"
+            <h2>
+              School
+            </h2>
+            <ul
+              class="link-list"
             >
-              <h2>
-                School
-              </h2>
-              <ul
-                class="link-list"
+              <li>
+                <a
+                  href="/student/kurser/org/BB?l=en"
+                >
+                  Department
+                </a>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col"
+        >
+          <footer
+            class="border-top mt-4 pt-1"
+            id="articleFooter"
+          >
+            <address>
+              Contact for questions regarding education at KTH: 
+              <a
+                href="https://www.kth.se/en/studies/master/general-study-counselling-1.621634"
               >
-                <li>
-                  <a
-                    href="/student/kurser/org/BB?l=en"
-                  >
-                    Department
-                  </a>
-                </li>
-              </ul>
-            </article>
-          </div>
+                Central study counseling
+              </a>
+              <br />
+              Contact regarding technical matters on this page: 
+              <a
+                href="mailto:kopps@kth.se"
+              >
+                kopps@kth.se
+              </a>
+            </address>
+          </footer>
         </div>
-        <div
-          class="row"
-        >
-          <div
-            class="col"
-          >
-            <footer
-              class="border-top mt-4 pt-1"
-              id="articleFooter"
-            >
-              <address>
-                Contact for questions regarding education at KTH: 
-                <a
-                  href="https://www.kth.se/en/studies/master/general-study-counselling-1.621634"
-                >
-                  Central study counseling
-                </a>
-                <br />
-                Contact regarding technical matters on this page: 
-                <a
-                  href="mailto:kopps@kth.se"
-                >
-                  kopps@kth.se
-                </a>
-              </address>
-            </footer>
-          </div>
-        </div>
-      </main>
-    </div>
+      </div>
+    </main>
   </div>
 </DocumentFragment>
 `;
@@ -174,164 +218,208 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Swe
     class="row"
   >
     <nav
-      aria-label="Undermeny"
-      class="col navbar navbar-expand-lg navbar-light"
+      aria-labelledby="kth-local-navigation-title--mobile"
+      class="kth-local-navigation--mobile"
+    >
+      <button
+        class="kth-button menu"
+        id="kth-local-navigation-title--mobile"
+      >
+        <span>
+          Kurs- och programkatalogen
+        </span>
+      </button>
+      <dialog
+        class="kth-mobile-menu left"
+      >
+        <div
+          class="kth-mobile-menu__navigation"
+        >
+          <button
+            class="kth-icon-button close"
+          >
+            <span
+              class="kth-visually-hidden"
+            >
+              Close
+            </span>
+          </button>
+        </div>
+        <div
+          class="mobile-menu__content"
+        >
+          <a
+            class="kth-button back"
+            href="/student/"
+          >
+            Student på KTH
+          </a>
+          <span>
+            Kurs- och programkatalogen
+          </span>
+          <ul>
+            <li>
+              <a
+                href="/student/kurser/kurser-inom-program"
+              >
+                Utbildningsplaner
+              </a>
+            </li>
+            <li>
+              <a
+                href="/student/kurser/sokkurs"
+              >
+                Sök kurser
+              </a>
+            </li>
+            <li>
+              <a
+                aria-current="page"
+                href="/student/kurser/org"
+              >
+                Kurser per skola
+              </a>
+            </li>
+            <li>
+              <a
+                href="/student/program/shb"
+              >
+                Studier före 07/08
+              </a>
+            </li>
+          </ul>
+        </div>
+      </dialog>
+    </nav>
+    <nav
+      aria-labelledby="local-navigation-title"
+      class="kth-local-navigation col"
       id="mainMenu"
     >
-      <div
-        class="collapse navbar-collapse"
-        id="navbarNav"
+      <a
+        class="kth-button back"
+        href="/student/"
       >
-        <ul
-          class="nav"
-        >
-          <li
-            class="parentLink"
+        Student på KTH
+      </a>
+      <h2
+        id="local-navigation-title"
+      >
+        Kurs- och programkatalogen
+      </h2>
+      <ul>
+        <li>
+          <a
+            href="/student/kurser/kurser-inom-program"
           >
-            <a
-              href="/student/"
-            >
-              Student på KTH
-            </a>
-          </li>
-        </ul>
-        <ul
-          class="nav nav-list expandable"
-        >
-          <li
-            class="nav-item ancestor"
+            Utbildningsplaner
+          </a>
+        </li>
+        <li>
+          <a
+            href="/student/kurser/sokkurs"
           >
-            <div>
-              Kurs- och programkatalogen
-            </div>
-          </li>
-          <li
-            class="nav-item leaf"
+            Sök kurser
+          </a>
+        </li>
+        <li>
+          <a
+            aria-current="page"
+            href="/student/kurser/org"
           >
-            <a
-              class="nav-link"
-              href="/student/kurser/kurser-inom-program"
-            >
-              Utbildningsplaner
-            </a>
-          </li>
-          <li
-            class="nav-item leaf"
+            Kurser per skola
+          </a>
+        </li>
+        <li>
+          <a
+            href="/student/program/shb"
           >
-            <a
-              class="nav-link"
-              href="/student/kurser/sokkurs"
-            >
-              Sök kurser
-            </a>
-          </li>
-          <li
-            class="nav-item leaf selected"
-          >
-            <a
-              class="nav-link"
-              href="/student/kurser/org"
-            >
-              Kurser per skola
-            </a>
-          </li>
-          <li
-            class="nav-item leaf"
-          >
-            <a
-              class="nav-link"
-              href="/student/program/shb"
-            >
-              Studier före 07/08
-            </a>
-          </li>
-        </ul>
-      </div>
+            Studier före 07/08
+          </a>
+        </li>
+      </ul>
     </nav>
-    <div
+    <main
       class="col"
+      id="mainContent"
     >
-      <main
-        id="mainContent"
+      <div
+        class="row"
       >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <header
+            role="presentation"
           >
-            <header
-              role="presentation"
-            >
-              <h1>
-                Kurser per skola
-              </h1>
-            </header>
-            <div
-              class="lead"
-            >
-              <p>
-                Här finns info om kurser på KTH. Kurserna är sorterade efter KTH:s skolor och deras organisationer. För att söka fram enbart aktuella kurser, använd menyalternativet Sök kurser och filtrera på termin och läsperiod. Vilka kurser som ingår i ett program finns under menyalternativet Utbildningsplaner.
-              </p>
-            </div>
+            <h1>
+              Kurser per skola
+            </h1>
+          </header>
+          <div
+            class="lead"
+          >
+            <p>
+              Här finns info om kurser på KTH. Kurserna är sorterade efter KTH:s skolor och deras organisationer. För att söka fram enbart aktuella kurser, använd menyalternativet Sök kurser och filtrera på termin och läsperiod. Vilka kurser som ingår i ett program finns under menyalternativet Utbildningsplaner.
+            </p>
           </div>
         </div>
+      </div>
+      <div
+        class="row"
+      >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <article
+            class="article "
           >
-            <article
-              class="article paragraphs"
+            <h2>
+              Skola
+            </h2>
+            <ul
+              class="link-list"
             >
-              <h2>
-                Skola
-              </h2>
-              <ul
-                class="link-list"
+              <li>
+                <a
+                  href="/student/kurser/org/BB"
+                >
+                  Avdelning
+                </a>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col"
+        >
+          <footer
+            class="border-top mt-4 pt-1"
+            id="articleFooter"
+          >
+            <address>
+              Kontakt för frågor om utbildning på KTH: 
+              <a
+                href="https://www.kth.se/studievagledning"
               >
-                <li>
-                  <a
-                    href="/student/kurser/org/BB"
-                  >
-                    Avdelning
-                  </a>
-                </li>
-              </ul>
-            </article>
-          </div>
+                Central studievägledning
+              </a>
+              <br />
+              Teknisk kontakt om denna sida: 
+              <a
+                href="mailto:kopps@kth.se"
+              >
+                kopps@kth.se
+              </a>
+            </address>
+          </footer>
         </div>
-        <div
-          class="row"
-        >
-          <div
-            class="col"
-          >
-            <footer
-              class="border-top mt-4 pt-1"
-              id="articleFooter"
-            >
-              <address>
-                Kontakt för frågor om utbildning på KTH: 
-                <a
-                  href="https://www.kth.se/studievagledning"
-                >
-                  Central studievägledning
-                </a>
-                <br />
-                Teknisk kontakt om denna sida: 
-                <a
-                  href="mailto:kopps@kth.se"
-                >
-                  kopps@kth.se
-                </a>
-              </address>
-            </footer>
-          </div>
-        </div>
-      </main>
-    </div>
+      </div>
+    </main>
   </div>
 </DocumentFragment>
 `;

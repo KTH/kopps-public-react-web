@@ -6,143 +6,174 @@ exports[`Render component Programme within Layout match to snapshot in English 1
     class="row"
   >
     <nav
-      aria-label="Sub menu"
-      class="col navbar navbar-expand-lg navbar-light"
-      id="mainMenu"
+      aria-labelledby="kth-local-navigation-title--mobile"
+      class="kth-local-navigation--mobile"
     >
-      <div
-        class="collapse navbar-collapse"
-        id="navbarNav"
+      <button
+        class="kth-button menu"
+        id="kth-local-navigation-title--mobile"
       >
-        <ul
-          class="nav"
-        >
-          <li
-            class="parentLink"
-          >
-            <a
-              href="/student/kurser?l=en"
-            >
-              Course and programme directory
-            </a>
-          </li>
-        </ul>
-        <ul
-          class="nav nav-list expandable"
-        >
-          <li
-            class="nav-item ancestor"
-          >
-            <div>
-              Degree Programme in Architecture
-            </div>
-          </li>
-          <li
-            class="nav-item leaf selected"
-          >
-            <a
-              class="nav-link"
-            >
-              Programme Syllabuses
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div
-      class="col"
-    >
-      <main
-        id="mainContent"
+        <span>
+          Degree Programme in Architecture
+        </span>
+      </button>
+      <dialog
+        class="kth-mobile-menu left"
       >
         <div
-          class="row"
+          class="kth-mobile-menu__navigation"
         >
-          <div
-            class="col"
+          <button
+            class="kth-icon-button close"
           >
-            <header
-              role="presentation"
+            <span
+              class="kth-visually-hidden"
             >
-              <h1
-                aria-labelledby="page-heading page-sub-heading"
-                id="page-heading"
+              Close
+            </span>
+          </button>
+        </div>
+        <div
+          class="mobile-menu__content"
+        >
+          <a
+            class="kth-button back"
+            href="/student/kurser?l=en"
+          >
+            Course and programme directory
+          </a>
+          <span>
+            Degree Programme in Architecture
+          </span>
+          <ul>
+            <li>
+              <a
+                aria-current="page"
               >
                 Programme Syllabuses
-              </h1>
-              <p
-                aria-hidden="true"
-                class="page-sub-heading"
-                id="page-sub-heading"
-              >
-                Degree Programme in Architecture (ARKIT)
-              </p>
-            </header>
-          </div>
+              </a>
+            </li>
+          </ul>
         </div>
-        <div
-          class="row"
-        >
-          <div
-            class="col"
+      </dialog>
+    </nav>
+    <nav
+      aria-labelledby="local-navigation-title"
+      class="kth-local-navigation col"
+      id="mainMenu"
+    >
+      <a
+        class="kth-button back"
+        href="/student/kurser?l=en"
+      >
+        Course and programme directory
+      </a>
+      <h2
+        id="local-navigation-title"
+      >
+        Degree Programme in Architecture
+      </h2>
+      <ul>
+        <li>
+          <a
+            aria-current="page"
           >
-            <article
-              class="article "
-            >
-              <p>
-                Choose programme syllabus. Each year group within a programme has its own programme syllabus. The programme syllabus contains, among other things, information about which courses are included in the programme. 
-              </p>
-              <ul
-                class="link-list"
-              >
-                <li>
-                  <a
-                    href="/student/kurser/program/ARKIT/20192/arskurs2?l=en"
-                  >
-                    Programme syllabus for studies starting in Autumn 19
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/student/kurser/program/ARKIT/20211/arskurs1?l=en"
-                  >
-                    Programme syllabus for studies starting in Spring 21
-                  </a>
-                </li>
-              </ul>
-            </article>
-          </div>
-        </div>
+            Programme Syllabuses
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <main
+      class="col"
+      id="mainContent"
+    >
+      <div
+        class="row"
+      >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <header
+            role="presentation"
           >
-            <footer
-              class="border-top mt-4 pt-1"
-              id="articleFooter"
+            <h1
+              aria-labelledby="page-heading page-sub-heading"
+              id="page-heading"
             >
-              <address>
-                Contact for questions regarding education at KTH: 
-                <a
-                  href="https://www.kth.se/en/studies/master/general-study-counselling-1.621634"
-                >
-                  Central study counseling
-                </a>
-                <br />
-                Contact regarding technical matters on this page: 
-                <a
-                  href="mailto:kopps@kth.se"
-                >
-                  kopps@kth.se
-                </a>
-              </address>
-            </footer>
-          </div>
+              Programme Syllabuses
+            </h1>
+            <p
+              aria-hidden="true"
+              class="page-sub-heading"
+              id="page-sub-heading"
+            >
+              Degree Programme in Architecture (ARKIT)
+            </p>
+          </header>
         </div>
-      </main>
-    </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col"
+        >
+          <article
+            class="article "
+          >
+            <p>
+              Choose programme syllabus. Each year group within a programme has its own programme syllabus. The programme syllabus contains, among other things, information about which courses are included in the programme. 
+            </p>
+            <ul
+              class="link-list"
+            >
+              <li>
+                <a
+                  href="/student/kurser/program/ARKIT/20192/arskurs2?l=en"
+                >
+                  Programme syllabus for studies starting in Autumn 19
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/student/kurser/program/ARKIT/20211/arskurs1?l=en"
+                >
+                  Programme syllabus for studies starting in Spring 21
+                </a>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col"
+        >
+          <footer
+            class="border-top mt-4 pt-1"
+            id="articleFooter"
+          >
+            <address>
+              Contact for questions regarding education at KTH: 
+              <a
+                href="https://www.kth.se/en/studies/master/general-study-counselling-1.621634"
+              >
+                Central study counseling
+              </a>
+              <br />
+              Contact regarding technical matters on this page: 
+              <a
+                href="mailto:kopps@kth.se"
+              >
+                kopps@kth.se
+              </a>
+            </address>
+          </footer>
+        </div>
+      </div>
+    </main>
   </div>
 </DocumentFragment>
 `;
@@ -153,143 +184,174 @@ exports[`Render component Programme within Layout match to snapshot in Swedish 1
     class="row"
   >
     <nav
-      aria-label="Undermeny"
-      class="col navbar navbar-expand-lg navbar-light"
-      id="mainMenu"
+      aria-labelledby="kth-local-navigation-title--mobile"
+      class="kth-local-navigation--mobile"
     >
-      <div
-        class="collapse navbar-collapse"
-        id="navbarNav"
+      <button
+        class="kth-button menu"
+        id="kth-local-navigation-title--mobile"
       >
-        <ul
-          class="nav"
-        >
-          <li
-            class="parentLink"
-          >
-            <a
-              href="/student/kurser"
-            >
-              Kurs- och programkatalogen
-            </a>
-          </li>
-        </ul>
-        <ul
-          class="nav nav-list expandable"
-        >
-          <li
-            class="nav-item ancestor"
-          >
-            <div>
-              Arkitektutbildning
-            </div>
-          </li>
-          <li
-            class="nav-item leaf selected"
-          >
-            <a
-              class="nav-link"
-            >
-              Utbildningsplaner
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div
-      class="col"
-    >
-      <main
-        id="mainContent"
+        <span>
+          Arkitektutbildning
+        </span>
+      </button>
+      <dialog
+        class="kth-mobile-menu left"
       >
         <div
-          class="row"
+          class="kth-mobile-menu__navigation"
         >
-          <div
-            class="col"
+          <button
+            class="kth-icon-button close"
           >
-            <header
-              role="presentation"
+            <span
+              class="kth-visually-hidden"
             >
-              <h1
-                aria-labelledby="page-heading page-sub-heading"
-                id="page-heading"
+              Close
+            </span>
+          </button>
+        </div>
+        <div
+          class="mobile-menu__content"
+        >
+          <a
+            class="kth-button back"
+            href="/student/kurser"
+          >
+            Kurs- och programkatalogen
+          </a>
+          <span>
+            Arkitektutbildning
+          </span>
+          <ul>
+            <li>
+              <a
+                aria-current="page"
               >
                 Utbildningsplaner
-              </h1>
-              <p
-                aria-hidden="true"
-                class="page-sub-heading"
-                id="page-sub-heading"
-              >
-                Arkitektutbildning (ARKIT)
-              </p>
-            </header>
-          </div>
+              </a>
+            </li>
+          </ul>
         </div>
-        <div
-          class="row"
-        >
-          <div
-            class="col"
+      </dialog>
+    </nav>
+    <nav
+      aria-labelledby="local-navigation-title"
+      class="kth-local-navigation col"
+      id="mainMenu"
+    >
+      <a
+        class="kth-button back"
+        href="/student/kurser"
+      >
+        Kurs- och programkatalogen
+      </a>
+      <h2
+        id="local-navigation-title"
+      >
+        Arkitektutbildning
+      </h2>
+      <ul>
+        <li>
+          <a
+            aria-current="page"
           >
-            <article
-              class="article "
-            >
-              <p>
-                Välj utbildningsplan. Varje årskull inom ett program har en egen utbildningsplan. I utbildningsplanen finns information om bland annat vilka kurser som ingår i programmet. 
-              </p>
-              <ul
-                class="link-list"
-              >
-                <li>
-                  <a
-                    href="/student/kurser/program/ARKIT/20192/arskurs2"
-                  >
-                    Utbildningsplan kull HT19
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/student/kurser/program/ARKIT/20211/arskurs1"
-                  >
-                    Utbildningsplan kull VT21
-                  </a>
-                </li>
-              </ul>
-            </article>
-          </div>
-        </div>
+            Utbildningsplaner
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <main
+      class="col"
+      id="mainContent"
+    >
+      <div
+        class="row"
+      >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <header
+            role="presentation"
           >
-            <footer
-              class="border-top mt-4 pt-1"
-              id="articleFooter"
+            <h1
+              aria-labelledby="page-heading page-sub-heading"
+              id="page-heading"
             >
-              <address>
-                Kontakt för frågor om utbildning på KTH: 
-                <a
-                  href="https://www.kth.se/studievagledning"
-                >
-                  Central studievägledning
-                </a>
-                <br />
-                Teknisk kontakt om denna sida: 
-                <a
-                  href="mailto:kopps@kth.se"
-                >
-                  kopps@kth.se
-                </a>
-              </address>
-            </footer>
-          </div>
+              Utbildningsplaner
+            </h1>
+            <p
+              aria-hidden="true"
+              class="page-sub-heading"
+              id="page-sub-heading"
+            >
+              Arkitektutbildning (ARKIT)
+            </p>
+          </header>
         </div>
-      </main>
-    </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col"
+        >
+          <article
+            class="article "
+          >
+            <p>
+              Välj utbildningsplan. Varje årskull inom ett program har en egen utbildningsplan. I utbildningsplanen finns information om bland annat vilka kurser som ingår i programmet. 
+            </p>
+            <ul
+              class="link-list"
+            >
+              <li>
+                <a
+                  href="/student/kurser/program/ARKIT/20192/arskurs2"
+                >
+                  Utbildningsplan kull HT19
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/student/kurser/program/ARKIT/20211/arskurs1"
+                >
+                  Utbildningsplan kull VT21
+                </a>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col"
+        >
+          <footer
+            class="border-top mt-4 pt-1"
+            id="articleFooter"
+          >
+            <address>
+              Kontakt för frågor om utbildning på KTH: 
+              <a
+                href="https://www.kth.se/studievagledning"
+              >
+                Central studievägledning
+              </a>
+              <br />
+              Teknisk kontakt om denna sida: 
+              <a
+                href="mailto:kopps@kth.se"
+              >
+                kopps@kth.se
+              </a>
+            </address>
+          </footer>
+        </div>
+      </div>
+    </main>
   </div>
 </DocumentFragment>
 `;

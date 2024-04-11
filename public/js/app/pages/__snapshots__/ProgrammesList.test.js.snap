@@ -6,196 +6,238 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Engl
     class="row"
   >
     <nav
-      aria-label="Sub menu"
-      class="col navbar navbar-expand-lg navbar-light"
+      aria-labelledby="kth-local-navigation-title--mobile"
+      class="kth-local-navigation--mobile"
+    >
+      <button
+        class="kth-button menu"
+        id="kth-local-navigation-title--mobile"
+      >
+        <span>
+          Course and programme directory
+        </span>
+      </button>
+      <dialog
+        class="kth-mobile-menu left"
+      >
+        <div
+          class="kth-mobile-menu__navigation"
+        >
+          <button
+            class="kth-icon-button close"
+          >
+            <span
+              class="kth-visually-hidden"
+            >
+              Close
+            </span>
+          </button>
+        </div>
+        <div
+          class="mobile-menu__content"
+        >
+          <a
+            class="kth-button back"
+            href="/student/?l=en"
+          >
+            Student at KTH
+          </a>
+          <span>
+            Course and programme directory
+          </span>
+          <ul>
+            <li>
+              <a
+                href="/student/kurser/kurser-inom-program"
+              >
+                Programme Syllabuses
+              </a>
+            </li>
+            <li>
+              <a
+                href="/student/kurser/sokkurs"
+              >
+                Search courses
+              </a>
+            </li>
+            <li>
+              <a
+                href="/student/kurser/org"
+              >
+                Courses by school
+              </a>
+            </li>
+            <li>
+              <a
+                href="/student/program/shb"
+              >
+                Studies before 07/08
+              </a>
+            </li>
+          </ul>
+        </div>
+      </dialog>
+    </nav>
+    <nav
+      aria-labelledby="local-navigation-title"
+      class="kth-local-navigation col"
       id="mainMenu"
     >
-      <div
-        class="collapse navbar-collapse"
-        id="navbarNav"
+      <a
+        class="kth-button back"
+        href="/student/?l=en"
       >
-        <ul
-          class="nav"
-        >
-          <li
-            class="parentLink"
+        Student at KTH
+      </a>
+      <h2
+        id="local-navigation-title"
+      >
+        Course and programme directory
+      </h2>
+      <ul>
+        <li>
+          <a
+            href="/student/kurser/kurser-inom-program"
           >
-            <a
-              href="/student/?l=en"
-            >
-              Student at KTH
-            </a>
-          </li>
-        </ul>
-        <ul
-          class="nav nav-list expandable"
-        >
-          <li
-            class="nav-item ancestor"
+            Programme Syllabuses
+          </a>
+        </li>
+        <li>
+          <a
+            href="/student/kurser/sokkurs"
           >
-            <div>
-              Course and programme directory
-            </div>
-          </li>
-          <li
-            class="nav-item leaf"
+            Search courses
+          </a>
+        </li>
+        <li>
+          <a
+            href="/student/kurser/org"
           >
-            <a
-              class="nav-link"
-              href="/student/kurser/kurser-inom-program"
-            >
-              Programme Syllabuses
-            </a>
-          </li>
-          <li
-            class="nav-item leaf"
+            Courses by school
+          </a>
+        </li>
+        <li>
+          <a
+            href="/student/program/shb"
           >
-            <a
-              class="nav-link"
-              href="/student/kurser/sokkurs"
-            >
-              Search courses
-            </a>
-          </li>
-          <li
-            class="nav-item leaf"
-          >
-            <a
-              class="nav-link"
-              href="/student/kurser/org"
-            >
-              Courses by school
-            </a>
-          </li>
-          <li
-            class="nav-item leaf"
-          >
-            <a
-              class="nav-link"
-              href="/student/program/shb"
-            >
-              Studies before 07/08
-            </a>
-          </li>
-        </ul>
-      </div>
+            Studies before 07/08
+          </a>
+        </li>
+      </ul>
     </nav>
-    <div
+    <main
       class="col"
+      id="mainContent"
     >
-      <main
-        id="mainContent"
+      <div
+        class="row"
       >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <header
+            role="presentation"
           >
-            <header
-              role="presentation"
-            >
-              <h1>
-                Programme Syllabuses
-              </h1>
-            </header>
-            <div
-              class="lead"
-            >
-              <p>
-                This is where you will find all programme syllabuses at KTH. Each year group within a programme has its own programme syllabus. The programme syllabus contains, among other things, information about which courses are included in the programme and what applies for selection and admission.
-              </p>
-            </div>
+            <h1>
+              Programme Syllabuses
+            </h1>
+          </header>
+          <div
+            class="lead"
+          >
+            <p>
+              This is where you will find all programme syllabuses at KTH. Each year group within a programme has its own programme syllabus. The programme syllabus contains, among other things, information about which courses are included in the programme and what applies for selection and admission.
+            </p>
           </div>
         </div>
+      </div>
+      <div
+        class="row"
+      >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <article
+            class="article "
           >
-            <article
-              class="article paragraphs"
+            <section
+              aria-labelledby="heading-TARKU"
+              id="progGroupTARKU"
             >
-              <section
-                aria-labelledby="heading-TARKU"
-                id="progGroupTARKU"
+              <h2
+                id="heading-TARKU"
               >
-                <h2
-                  id="heading-TARKU"
-                >
-                  Master of Architecture
-                </h2>
-                <ul
-                  class="link-list"
-                >
-                  <li>
-                    <a
-                      href="/student/kurser/program/ARKIT?l=en"
-                    >
-                      Degree Programme in Architecture (ARKIT)
-                    </a>
-                    , 300 hp, admitted/batch from Autumn 07
-                  </li>
-                </ul>
-                <details
-                  class=""
-                >
-                  <summary
-                    aria-label=""
-                    class="white"
+                Master of Architecture
+              </h2>
+              <ul
+                class="link-list"
+              >
+                <li>
+                  <a
+                    href="/student/kurser/program/ARKIT?l=en"
                   >
-                    Programmes without new admission (Master of Architecture)
-                  </summary>
-                  <div>
-                    <ul
-                      class="link-list"
-                    >
-                      <li>
-                        <a
-                          href="/student/kurser/program/A?l=en"
-                        >
-                          Degree Programme in Architecture (A)
-                        </a>
-                        , 270 hp, admitted/batch until Spring 07
-                      </li>
-                    </ul>
-                  </div>
-                </details>
-              </section>
-            </article>
-          </div>
+                    Degree Programme in Architecture (ARKIT)
+                  </a>
+                  , 300 hp, admitted/batch from Autumn 07
+                </li>
+              </ul>
+              <details
+                class=""
+              >
+                <summary
+                  aria-label=""
+                  class="white"
+                >
+                  Programmes without new admission (Master of Architecture)
+                </summary>
+                <div>
+                  <ul
+                    class="link-list"
+                  >
+                    <li>
+                      <a
+                        href="/student/kurser/program/A?l=en"
+                      >
+                        Degree Programme in Architecture (A)
+                      </a>
+                      , 270 hp, admitted/batch until Spring 07
+                    </li>
+                  </ul>
+                </div>
+              </details>
+            </section>
+          </article>
         </div>
+      </div>
+      <div
+        class="row"
+      >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <footer
+            class="border-top mt-4 pt-1"
+            id="articleFooter"
           >
-            <footer
-              class="border-top mt-4 pt-1"
-              id="articleFooter"
-            >
-              <address>
-                Contact for questions regarding education at KTH: 
-                <a
-                  href="https://www.kth.se/en/studies/master/general-study-counselling-1.621634"
-                >
-                  Central study counseling
-                </a>
-                <br />
-                Contact regarding technical matters on this page: 
-                <a
-                  href="mailto:kopps@kth.se"
-                >
-                  kopps@kth.se
-                </a>
-              </address>
-            </footer>
-          </div>
+            <address>
+              Contact for questions regarding education at KTH: 
+              <a
+                href="https://www.kth.se/en/studies/master/general-study-counselling-1.621634"
+              >
+                Central study counseling
+              </a>
+              <br />
+              Contact regarding technical matters on this page: 
+              <a
+                href="mailto:kopps@kth.se"
+              >
+                kopps@kth.se
+              </a>
+            </address>
+          </footer>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   </div>
 </DocumentFragment>
 `;
@@ -206,196 +248,238 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Swed
     class="row"
   >
     <nav
-      aria-label="Undermeny"
-      class="col navbar navbar-expand-lg navbar-light"
+      aria-labelledby="kth-local-navigation-title--mobile"
+      class="kth-local-navigation--mobile"
+    >
+      <button
+        class="kth-button menu"
+        id="kth-local-navigation-title--mobile"
+      >
+        <span>
+          Kurs- och programkatalogen
+        </span>
+      </button>
+      <dialog
+        class="kth-mobile-menu left"
+      >
+        <div
+          class="kth-mobile-menu__navigation"
+        >
+          <button
+            class="kth-icon-button close"
+          >
+            <span
+              class="kth-visually-hidden"
+            >
+              Close
+            </span>
+          </button>
+        </div>
+        <div
+          class="mobile-menu__content"
+        >
+          <a
+            class="kth-button back"
+            href="/student/"
+          >
+            Student på KTH
+          </a>
+          <span>
+            Kurs- och programkatalogen
+          </span>
+          <ul>
+            <li>
+              <a
+                href="/student/kurser/kurser-inom-program"
+              >
+                Utbildningsplaner
+              </a>
+            </li>
+            <li>
+              <a
+                href="/student/kurser/sokkurs"
+              >
+                Sök kurser
+              </a>
+            </li>
+            <li>
+              <a
+                href="/student/kurser/org"
+              >
+                Kurser per skola
+              </a>
+            </li>
+            <li>
+              <a
+                href="/student/program/shb"
+              >
+                Studier före 07/08
+              </a>
+            </li>
+          </ul>
+        </div>
+      </dialog>
+    </nav>
+    <nav
+      aria-labelledby="local-navigation-title"
+      class="kth-local-navigation col"
       id="mainMenu"
     >
-      <div
-        class="collapse navbar-collapse"
-        id="navbarNav"
+      <a
+        class="kth-button back"
+        href="/student/"
       >
-        <ul
-          class="nav"
-        >
-          <li
-            class="parentLink"
+        Student på KTH
+      </a>
+      <h2
+        id="local-navigation-title"
+      >
+        Kurs- och programkatalogen
+      </h2>
+      <ul>
+        <li>
+          <a
+            href="/student/kurser/kurser-inom-program"
           >
-            <a
-              href="/student/"
-            >
-              Student på KTH
-            </a>
-          </li>
-        </ul>
-        <ul
-          class="nav nav-list expandable"
-        >
-          <li
-            class="nav-item ancestor"
+            Utbildningsplaner
+          </a>
+        </li>
+        <li>
+          <a
+            href="/student/kurser/sokkurs"
           >
-            <div>
-              Kurs- och programkatalogen
-            </div>
-          </li>
-          <li
-            class="nav-item leaf"
+            Sök kurser
+          </a>
+        </li>
+        <li>
+          <a
+            href="/student/kurser/org"
           >
-            <a
-              class="nav-link"
-              href="/student/kurser/kurser-inom-program"
-            >
-              Utbildningsplaner
-            </a>
-          </li>
-          <li
-            class="nav-item leaf"
+            Kurser per skola
+          </a>
+        </li>
+        <li>
+          <a
+            href="/student/program/shb"
           >
-            <a
-              class="nav-link"
-              href="/student/kurser/sokkurs"
-            >
-              Sök kurser
-            </a>
-          </li>
-          <li
-            class="nav-item leaf"
-          >
-            <a
-              class="nav-link"
-              href="/student/kurser/org"
-            >
-              Kurser per skola
-            </a>
-          </li>
-          <li
-            class="nav-item leaf"
-          >
-            <a
-              class="nav-link"
-              href="/student/program/shb"
-            >
-              Studier före 07/08
-            </a>
-          </li>
-        </ul>
-      </div>
+            Studier före 07/08
+          </a>
+        </li>
+      </ul>
     </nav>
-    <div
+    <main
       class="col"
+      id="mainContent"
     >
-      <main
-        id="mainContent"
+      <div
+        class="row"
       >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <header
+            role="presentation"
           >
-            <header
-              role="presentation"
-            >
-              <h1>
-                Utbildningsplaner
-              </h1>
-            </header>
-            <div
-              class="lead"
-            >
-              <p>
-                Här hittar du alla utbildningsplaner på KTH. Varje årskull inom ett program har en egen utbildningsplan. I utbildningsplanen finns information om bland annat vilka kurser som ingår i programmet och vad som gäller för urval och behörighet.
-              </p>
-            </div>
+            <h1>
+              Utbildningsplaner
+            </h1>
+          </header>
+          <div
+            class="lead"
+          >
+            <p>
+              Här hittar du alla utbildningsplaner på KTH. Varje årskull inom ett program har en egen utbildningsplan. I utbildningsplanen finns information om bland annat vilka kurser som ingår i programmet och vad som gäller för urval och behörighet.
+            </p>
           </div>
         </div>
+      </div>
+      <div
+        class="row"
+      >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <article
+            class="article "
           >
-            <article
-              class="article paragraphs"
+            <section
+              aria-labelledby="heading-TARKU"
+              id="progGroupTARKU"
             >
-              <section
-                aria-labelledby="heading-TARKU"
-                id="progGroupTARKU"
+              <h2
+                id="heading-TARKU"
               >
-                <h2
-                  id="heading-TARKU"
-                >
-                  Arkitektutbildning
-                </h2>
-                <ul
-                  class="link-list"
-                >
-                  <li>
-                    <a
-                      href="/student/kurser/program/ARKIT"
-                    >
-                      Arkitektutbildning (ARKIT)
-                    </a>
-                    , 300 hp, antagna/kull fr.o.m. HT07
-                  </li>
-                </ul>
-                <details
-                  class=""
-                >
-                  <summary
-                    aria-label=""
-                    class="white"
+                Arkitektutbildning
+              </h2>
+              <ul
+                class="link-list"
+              >
+                <li>
+                  <a
+                    href="/student/kurser/program/ARKIT"
                   >
-                    Program utan nyantagning (Arkitektutbildning)
-                  </summary>
-                  <div>
-                    <ul
-                      class="link-list"
-                    >
-                      <li>
-                        <a
-                          href="/student/kurser/program/A"
-                        >
-                          Arkitektutbildning (A)
-                        </a>
-                        , 270 hp, antagna/kull t.o.m. VT07
-                      </li>
-                    </ul>
-                  </div>
-                </details>
-              </section>
-            </article>
-          </div>
+                    Arkitektutbildning (ARKIT)
+                  </a>
+                  , 300 hp, antagna/kull fr.o.m. HT07
+                </li>
+              </ul>
+              <details
+                class=""
+              >
+                <summary
+                  aria-label=""
+                  class="white"
+                >
+                  Program utan nyantagning (Arkitektutbildning)
+                </summary>
+                <div>
+                  <ul
+                    class="link-list"
+                  >
+                    <li>
+                      <a
+                        href="/student/kurser/program/A"
+                      >
+                        Arkitektutbildning (A)
+                      </a>
+                      , 270 hp, antagna/kull t.o.m. VT07
+                    </li>
+                  </ul>
+                </div>
+              </details>
+            </section>
+          </article>
         </div>
+      </div>
+      <div
+        class="row"
+      >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <footer
+            class="border-top mt-4 pt-1"
+            id="articleFooter"
           >
-            <footer
-              class="border-top mt-4 pt-1"
-              id="articleFooter"
-            >
-              <address>
-                Kontakt för frågor om utbildning på KTH: 
-                <a
-                  href="https://www.kth.se/studievagledning"
-                >
-                  Central studievägledning
-                </a>
-                <br />
-                Teknisk kontakt om denna sida: 
-                <a
-                  href="mailto:kopps@kth.se"
-                >
-                  kopps@kth.se
-                </a>
-              </address>
-            </footer>
-          </div>
+            <address>
+              Kontakt för frågor om utbildning på KTH: 
+              <a
+                href="https://www.kth.se/studievagledning"
+              >
+                Central studievägledning
+              </a>
+              <br />
+              Teknisk kontakt om denna sida: 
+              <a
+                href="mailto:kopps@kth.se"
+              >
+                kopps@kth.se
+              </a>
+            </address>
+          </footer>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   </div>
 </DocumentFragment>
 `;
