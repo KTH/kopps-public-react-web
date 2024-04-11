@@ -42,9 +42,9 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
           >
             Doctoral studies (PhD)
           </a>
-          <span>
+          <h2>
             Courses
-          </span>
+          </h2>
           <ul>
             <li>
               <a
@@ -244,9 +244,9 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
           >
             Forskarutbildning
           </a>
-          <span>
+          <h2>
             Kurser
-          </span>
+          </h2>
           <ul>
             <li>
               <a

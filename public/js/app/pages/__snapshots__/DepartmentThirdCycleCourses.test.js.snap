@@ -42,9 +42,9 @@ exports[`Render component DepartmentCourses within Layout for third cycle studie
           >
             Courses
           </a>
-          <span>
+          <h2>
             ABE/Concrete Structures
-          </span>
+          </h2>
           <ul>
             <li>
               <a
@@ -297,9 +297,9 @@ exports[`Render component DepartmentCourses within Layout for third cycle studie
           >
             Kurser
           </a>
-          <span>
+          <h2>
             ABE/Betongbyggnad
-          </span>
+          </h2>
           <ul>
             <li>
               <a

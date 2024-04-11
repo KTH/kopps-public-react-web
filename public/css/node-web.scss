@@ -23,9 +23,6 @@
 @import 'shared';
 
 #mainContent {
-  header {
-    margin-bottom: 1.5rem;
-  }
   .lead {
     p {
       @include t.font-lead-fluid;
@@ -98,8 +95,4 @@
   border-right-color: transparent;
   border-radius: 50%;
   animation: 0.75s linear infinite spinner-border;
-}
-
-.pdf-link {
-  margin: 0;
 }

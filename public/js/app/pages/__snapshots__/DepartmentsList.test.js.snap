@@ -42,9 +42,9 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Eng
           >
             Student at KTH
           </a>
-          <span>
+          <h2>
             Course and programme directory
-          </span>
+          </h2>
           <ul>
             <li>
               <a
@@ -254,9 +254,9 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Swe
           >
             Student på KTH
           </a>
-          <span>
+          <h2>
             Kurs- och programkatalogen
-          </span>
+          </h2>
           <ul>
             <li>
               <a

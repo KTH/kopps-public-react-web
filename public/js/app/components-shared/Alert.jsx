@@ -3,14 +3,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Alert = ({ type, header, children }) => {
-  return (
-    <div className={`kth-alert ${type}`} role="alert">
-      {header && <h4>{header}</h4>}
-      <div>{children}</div>
-    </div>
-  )
-}
+const Alert = ({ type, header, children }) => (
+  <div className={`kth-alert ${type}`} role="alert">
+    {header && <h4>{header}</h4>}
+    <div>{children}</div>
+  </div>
+)
 
 Alert.propTypes = {
   children: PropTypes.node.isRequired,
