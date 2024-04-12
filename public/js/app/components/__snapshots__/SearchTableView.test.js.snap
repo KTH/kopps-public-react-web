@@ -9,7 +9,7 @@ exports[`Component <SearchTableView> for MIXED types of courses creates a table 
       class="col"
     >
       <article
-        class="article "
+        class="article article--no-start-margin "
       >
         <p
           data-testid="number-of-results"
@@ -221,7 +221,7 @@ exports[`Component <SearchTableView> for MIXED types of courses creates a table 
       class="col"
     >
       <article
-        class="article "
+        class="article article--no-start-margin "
       >
         <p
           data-testid="number-of-results"
@@ -433,7 +433,7 @@ exports[`Component <SearchTableView> for RESEARCH courses creates a table with 4
       class="col"
     >
       <article
-        class="article "
+        class="article article--no-start-margin "
       >
         <p
           data-testid="number-of-results"
@@ -579,7 +579,7 @@ exports[`Component <SearchTableView> for RESEARCH courses creates a table with 4
       class="col"
     >
       <article
-        class="article "
+        class="article article--no-start-margin "
       >
         <p
           data-testid="number-of-results"
@@ -725,7 +725,7 @@ exports[`Component <SearchTableView> for RESEARCH courses creates a table with 5
       class="col"
     >
       <article
-        class="article "
+        class="article article--no-start-margin "
       >
         <p
           data-testid="number-of-results"

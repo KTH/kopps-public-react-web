@@ -122,7 +122,7 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
         class="row"
       >
         <div
-          class="col"
+          class="article article--no-start-margin col"
         >
           <p>
             Here is information about KTH courses at doctoral level. The courses are sorted by KTH schools and their respective organizations.
@@ -136,7 +136,7 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
           class="col"
         >
           <article
-            class="article "
+            class="article article--no-start-margin "
           >
             <h2>
               School
@@ -324,7 +324,7 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
         class="row"
       >
         <div
-          class="col"
+          class="article article--no-start-margin col"
         >
           <p>
             Här hittar du information om forskarkurser på KTH. Kurserna är sorterade efter KTH:s skolor och deras organisationer.
@@ -338,7 +338,7 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
           class="col"
         >
           <article
-            class="article "
+            class="article article--no-start-margin "
           >
             <h2>
               Skola

@@ -119,7 +119,7 @@ exports[`Render component DepartmentCourses within Layout match to snapshot in E
           class="col"
         >
           <article
-            class="article "
+            class="article article--no-start-margin "
           >
             <table
               class="table table-responsive"
@@ -352,7 +352,7 @@ exports[`Render component DepartmentCourses within Layout match to snapshot in S
           class="col"
         >
           <article
-            class="article "
+            class="article article--no-start-margin "
           >
             <table
               class="table table-responsive"

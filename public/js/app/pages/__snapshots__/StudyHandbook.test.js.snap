@@ -153,7 +153,7 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Engli
           class="col"
         >
           <article
-            class="article "
+            class="article article--no-start-margin "
           >
             <p>
               Until the academic year 2007/2008, information on programmes and courses was available in the study handbook.
@@ -354,7 +354,7 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Swedi
           class="col"
         >
           <article
-            class="article "
+            class="article article--no-start-margin "
           >
             <p>
               Fram till läsåret 2007/2008 fanns information om program och kurser i studiehandboken.

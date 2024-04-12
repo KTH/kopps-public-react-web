@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 function Article({ classNames, children, uiKey = '' }) {
   return (
-    <article className={`article ${classNames ? classNames.join(' ') : ''}`} key={uiKey}>
+    <article className={`article article--no-start-margin ${classNames ? classNames.join(' ') : ''}`} key={uiKey}>
       {children}
     </article>
   )

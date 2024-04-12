@@ -119,7 +119,7 @@ exports[`Render component Programme within Layout match to snapshot in English 1
           class="col"
         >
           <article
-            class="article "
+            class="article article--no-start-margin "
           >
             <p>
               Choose programme syllabus. Each year group within a programme has its own programme syllabus. The programme syllabus contains, among other things, information about which courses are included in the programme. 
@@ -297,7 +297,7 @@ exports[`Render component Programme within Layout match to snapshot in Swedish 1
           class="col"
         >
           <article
-            class="article "
+            class="article article--no-start-margin "
           >
             <p>
               Välj utbildningsplan. Varje årskull inom ett program har en egen utbildningsplan. I utbildningsplanen finns information om bland annat vilka kurser som ingår i programmet. 

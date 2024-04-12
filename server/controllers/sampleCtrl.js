@@ -1,4 +1,3 @@
-// TODO: KTH-style-10: Ta bort denna?
 /* eslint no-use-before-define: ["error", "nofunc"] */
 
 // @ts-check

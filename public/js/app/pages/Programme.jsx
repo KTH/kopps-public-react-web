@@ -56,7 +56,7 @@ function Programme() {
       </Row>
       {lastAdmissionTerm && (
         <Row key="programme-syllabus-old">
-          <Col>
+          <Col className="article">
             <h2>{t('programme_study_years_old')}</h2>
             <p>{t('programme_study_years_old_explanation')}</p>
             <p>

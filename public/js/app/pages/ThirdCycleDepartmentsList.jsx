@@ -79,7 +79,7 @@ function ThirdCycleDepartmentsList() {
         </Col>
       </Row>
       <Row>
-        <Col>
+        <Col className="article article--no-start-margin">
           <p>{pageDescription}</p>
         </Col>
       </Row>

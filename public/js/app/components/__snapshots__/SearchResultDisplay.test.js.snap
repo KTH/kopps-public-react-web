@@ -106,7 +106,7 @@ exports[`Component <SearchResultDisplay> and resolved cases double search: by de
       class="col"
     >
       <article
-        class="article "
+        class="article article--no-start-margin "
       >
         <p
           data-testid="number-of-results"
@@ -235,7 +235,7 @@ exports[`Component <SearchResultDisplay> and resolved cases double search: by de
       class="col"
     >
       <article
-        class="article "
+        class="article article--no-start-margin "
       >
         <p
           data-testid="number-of-results"
@@ -379,7 +379,7 @@ exports[`Component <SearchResultDisplay> and resolved cases search by a text pat
       class="col"
     >
       <article
-        class="article "
+        class="article article--no-start-margin "
       >
         <p
           data-testid="number-of-results"

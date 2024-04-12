@@ -160,7 +160,7 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Eng
           class="col"
         >
           <article
-            class="article "
+            class="article article--no-start-margin "
           >
             <h2>
               School
@@ -372,7 +372,7 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Swe
           class="col"
         >
           <article
-            class="article "
+            class="article article--no-start-margin "
           >
             <h2>
               Skola

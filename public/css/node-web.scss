@@ -39,8 +39,19 @@
       max-width: unset;
     }
   }
-  & > :first-child {
+
+  // make sure margin reset from prose is applied even when we need to wrap content/paragraphs in divs
+  h1 + .page-break-inside > :first-child,
+  h2 + .page-break-inside > :first-child,
+  h3 + .page-break-inside > :first-child {
     margin-block-start: 0;
+  }
+
+  &.article--no-start-margin {
+    & > .page-break-inside > :first-child,
+    & > :first-child {
+      margin-block-start: 0;
+    }
   }
 }
 
@@ -95,4 +106,14 @@
   border-right-color: transparent;
   border-radius: 50%;
   animation: 0.75s linear infinite spinner-border;
+}
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+#results-heading {
+  margin-block-start: 2rem;
 }
