@@ -3,8 +3,9 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Col, Row } from 'reactstrap'
 import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
-import { Heading, Link, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
+import { Link, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 
+import Alert from '../components-shared/Alert'
 import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'
 import KoppsData from '../components/KoppsData'
@@ -194,10 +195,9 @@ function CurriculumInfo() {
       )}
     </>
   ) : (
-    <div className="alert alert-info" role="alert" aria-live="polite">
-      <Heading size="h3" text={t('coursesbyprogramme_studyyear_noinfofound_header')} />
+    <Alert header={t('coursesbyprogramme_studyyear_noinfofound_header')}>
       <p>{t('coursesbyprogramme_studyyear_noinfofound')(owningSchoolCode)}</p>
-    </div>
+    </Alert>
   )
 }
 
