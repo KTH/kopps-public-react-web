@@ -29,6 +29,7 @@ const messages = {
     language_link_lang_sv: 'Svenska',
     menu_panel_search: 'Search',
     menu_panel_close: 'Close',
+    menu_panel_menu: 'Menu',
 
     site_name: 'Course and programme directory',
     host_name: 'KTH',
