@@ -74,8 +74,8 @@ async function getIndex(req, res, next) {
       ', for programme controller'
     )
 
-    const { programme: proxyPrefix } = serverConfig.proxyPrefixPath
-    const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const { programme: basename, uri: proxyPrefix } = serverConfig.proxyPrefixPath
+    const html = renderStaticPage({ applicationStore, location: req.url, basename: basename })
     const { metaTitle: title, metaDescription: description } = _metaTitleAndDescription(
       lang,
       programmeCode,
@@ -91,7 +91,9 @@ async function getIndex(req, res, next) {
       description,
       lang,
       proxyPrefix,
+      toolbarUrl: serverConfig.toolbar.url,
       studentWeb: true,
+      theme: 'student-web',
       klaroAnalyticsConsentCookie,
       breadcrumbsList,
     })

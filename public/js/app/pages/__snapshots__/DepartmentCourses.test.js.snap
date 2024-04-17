@@ -6,198 +6,229 @@ exports[`Render component DepartmentCourses within Layout match to snapshot in E
     class="row"
   >
     <nav
-      aria-label="Sub menu"
-      class="col navbar navbar-expand-lg navbar-light"
-      id="mainMenu"
+      aria-labelledby="kth-local-navigation-title--mobile"
+      class="kth-local-navigation--mobile"
     >
-      <div
-        class="collapse navbar-collapse"
-        id="navbarNav"
+      <button
+        class="kth-button menu"
+        id="kth-local-navigation-title--mobile"
       >
-        <ul
-          class="nav"
-        >
-          <li
-            class="parentLink"
-          >
-            <a
-              href="/student/kurser?l=en"
-            >
-              Course and programme directory
-            </a>
-          </li>
-        </ul>
-        <ul
-          class="nav nav-list expandable"
-        >
-          <li
-            class="nav-item ancestor"
-          >
-            <div>
-              ABE/Architecture
-            </div>
-          </li>
-          <li
-            class="nav-item leaf selected"
-          >
-            <a
-              class="nav-link"
-            >
-              Courses
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div
-      class="col"
-    >
-      <main
-        id="mainContent"
+        <span>
+          ABE/Architecture
+        </span>
+      </button>
+      <dialog
+        class="kth-mobile-menu left"
       >
         <div
-          class="row"
+          class="kth-mobile-menu__navigation"
         >
-          <div
-            class="col"
+          <button
+            class="kth-icon-button close"
           >
-            <header
-              role="presentation"
+            <span
+              class="kth-visually-hidden"
             >
-              <h1
-                aria-labelledby="page-heading page-sub-heading"
-                id="page-heading"
+              Close
+            </span>
+          </button>
+        </div>
+        <div
+          class="mobile-menu__content"
+        >
+          <a
+            class="kth-button back"
+            href="/student/kurser?l=en"
+          >
+            Course and programme directory
+          </a>
+          <h2>
+            ABE/Architecture
+          </h2>
+          <ul>
+            <li>
+              <a
+                aria-current="page"
               >
                 Courses
-              </h1>
-              <p
-                aria-hidden="true"
-                class="page-sub-heading"
-                id="page-sub-heading"
-              >
-                ABE/Architecture
-              </p>
-            </header>
-          </div>
+              </a>
+            </li>
+          </ul>
         </div>
-        <div
-          class="row"
-        >
-          <div
-            class="col"
+      </dialog>
+    </nav>
+    <nav
+      aria-labelledby="local-navigation-title"
+      class="kth-local-navigation col"
+      id="mainMenu"
+    >
+      <a
+        class="kth-button back"
+        href="/student/kurser?l=en"
+      >
+        Course and programme directory
+      </a>
+      <h2
+        id="local-navigation-title"
+      >
+        ABE/Architecture
+      </h2>
+      <ul>
+        <li>
+          <a
+            aria-current="page"
           >
-            <article
-              class="article "
-            >
-              <table
-                class="table table-responsive"
-              >
-                <thead>
-                  <tr>
-                    <th
-                      style="cursor: pointer; user-select: none;"
-                    >
-                      Course code
-                      <span
-                        aria-hidden="true"
-                        style="opacity: 0; margin-left: .25em;"
-                      >
-                        ▼
-                      </span>
-                    </th>
-                    <th
-                      style="cursor: pointer; user-select: none;"
-                    >
-                      Course name
-                      <span
-                        aria-hidden="true"
-                        style="opacity: 0; margin-left: .25em;"
-                      >
-                        ▼
-                      </span>
-                    </th>
-                    <th
-                      style="cursor: pointer; user-select: none;"
-                    >
-                      Scope
-                      <span
-                        aria-hidden="true"
-                        style="opacity: 0; margin-left: .25em;"
-                      >
-                        ▼
-                      </span>
-                    </th>
-                    <th
-                      style="cursor: pointer; user-select: none;"
-                    >
-                      Educational level
-                      <span
-                        aria-hidden="true"
-                        style="opacity: 0; margin-left: .25em;"
-                      >
-                        ▼
-                      </span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <a
-                        href="/student/kurser/kurs/AD12DA?l=en"
-                      >
-                        AD12DA
-                      </a>
-                    </td>
-                    <td>
-                      <a
-                        href="/student/kurser/kurs/AD12DA?l=en"
-                      >
-                        2DAutoCAD Focus on the Drawing as a Communicative Tool
-                      </a>
-                    </td>
-                    <td>
-                      6.0 hp
-                    </td>
-                    <td>
-                      First cycle
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </article>
-          </div>
-        </div>
+            Courses
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <main
+      class="col"
+      id="mainContent"
+    >
+      <div
+        class="row"
+      >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <header
+            role="presentation"
           >
-            <footer
-              class="border-top mt-4 pt-1"
-              id="articleFooter"
+            <h1
+              aria-labelledby="page-heading page-sub-heading"
+              id="page-heading"
             >
-              <address>
-                Contact for questions regarding education at KTH: 
-                <a
-                  href="https://www.kth.se/en/studies/master/general-study-counselling-1.621634"
-                >
-                  Central study counseling
-                </a>
-                <br />
-                Contact regarding technical matters on this page: 
-                <a
-                  href="mailto:kopps@kth.se"
-                >
-                  kopps@kth.se
-                </a>
-              </address>
-            </footer>
-          </div>
+              Courses
+            </h1>
+            <p
+              aria-hidden="true"
+              class="page-sub-heading"
+              id="page-sub-heading"
+            >
+              ABE/Architecture
+            </p>
+          </header>
         </div>
-      </main>
-    </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col"
+        >
+          <article
+            class="article article--no-start-margin "
+          >
+            <table
+              class="table table-responsive"
+            >
+              <thead>
+                <tr>
+                  <th
+                    style="cursor: pointer; user-select: none;"
+                  >
+                    Course code
+                    <span
+                      aria-hidden="true"
+                      style="opacity: 0; margin-left: .25em;"
+                    >
+                      ▼
+                    </span>
+                  </th>
+                  <th
+                    style="cursor: pointer; user-select: none;"
+                  >
+                    Course name
+                    <span
+                      aria-hidden="true"
+                      style="opacity: 0; margin-left: .25em;"
+                    >
+                      ▼
+                    </span>
+                  </th>
+                  <th
+                    style="cursor: pointer; user-select: none;"
+                  >
+                    Scope
+                    <span
+                      aria-hidden="true"
+                      style="opacity: 0; margin-left: .25em;"
+                    >
+                      ▼
+                    </span>
+                  </th>
+                  <th
+                    style="cursor: pointer; user-select: none;"
+                  >
+                    Educational level
+                    <span
+                      aria-hidden="true"
+                      style="opacity: 0; margin-left: .25em;"
+                    >
+                      ▼
+                    </span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <a
+                      href="/student/kurser/kurs/AD12DA?l=en"
+                    >
+                      AD12DA
+                    </a>
+                  </td>
+                  <td>
+                    <a
+                      href="/student/kurser/kurs/AD12DA?l=en"
+                    >
+                      2DAutoCAD Focus on the Drawing as a Communicative Tool
+                    </a>
+                  </td>
+                  <td>
+                    6.0 hp
+                  </td>
+                  <td>
+                    First cycle
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+        </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col"
+        >
+          <footer
+            class="border-top mt-4 pt-1"
+            id="articleFooter"
+          >
+            <address>
+              Contact for questions regarding education at KTH: 
+              <a
+                href="https://www.kth.se/en/studies/master/general-study-counselling-1.621634"
+              >
+                Central study counseling
+              </a>
+              <br />
+              Contact regarding technical matters on this page: 
+              <a
+                href="mailto:kopps@kth.se"
+              >
+                kopps@kth.se
+              </a>
+            </address>
+          </footer>
+        </div>
+      </div>
+    </main>
   </div>
 </DocumentFragment>
 `;
@@ -208,198 +239,229 @@ exports[`Render component DepartmentCourses within Layout match to snapshot in S
     class="row"
   >
     <nav
-      aria-label="Undermeny"
-      class="col navbar navbar-expand-lg navbar-light"
-      id="mainMenu"
+      aria-labelledby="kth-local-navigation-title--mobile"
+      class="kth-local-navigation--mobile"
     >
-      <div
-        class="collapse navbar-collapse"
-        id="navbarNav"
+      <button
+        class="kth-button menu"
+        id="kth-local-navigation-title--mobile"
       >
-        <ul
-          class="nav"
-        >
-          <li
-            class="parentLink"
-          >
-            <a
-              href="/student/kurser"
-            >
-              Kurs- och programkatalogen
-            </a>
-          </li>
-        </ul>
-        <ul
-          class="nav nav-list expandable"
-        >
-          <li
-            class="nav-item ancestor"
-          >
-            <div>
-              ABE/Arkitektur, Fex övr utbildning
-            </div>
-          </li>
-          <li
-            class="nav-item leaf selected"
-          >
-            <a
-              class="nav-link"
-            >
-              Kurser
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div
-      class="col"
-    >
-      <main
-        id="mainContent"
+        <span>
+          ABE/Arkitektur, Fex övr utbildning
+        </span>
+      </button>
+      <dialog
+        class="kth-mobile-menu left"
       >
         <div
-          class="row"
+          class="kth-mobile-menu__navigation"
         >
-          <div
-            class="col"
+          <button
+            class="kth-icon-button close"
           >
-            <header
-              role="presentation"
+            <span
+              class="kth-visually-hidden"
             >
-              <h1
-                aria-labelledby="page-heading page-sub-heading"
-                id="page-heading"
+              Close
+            </span>
+          </button>
+        </div>
+        <div
+          class="mobile-menu__content"
+        >
+          <a
+            class="kth-button back"
+            href="/student/kurser"
+          >
+            Kurs- och programkatalogen
+          </a>
+          <h2>
+            ABE/Arkitektur, Fex övr utbildning
+          </h2>
+          <ul>
+            <li>
+              <a
+                aria-current="page"
               >
                 Kurser
-              </h1>
-              <p
-                aria-hidden="true"
-                class="page-sub-heading"
-                id="page-sub-heading"
-              >
-                ABE/Arkitektur, Fex övr utbildning
-              </p>
-            </header>
-          </div>
+              </a>
+            </li>
+          </ul>
         </div>
-        <div
-          class="row"
-        >
-          <div
-            class="col"
+      </dialog>
+    </nav>
+    <nav
+      aria-labelledby="local-navigation-title"
+      class="kth-local-navigation col"
+      id="mainMenu"
+    >
+      <a
+        class="kth-button back"
+        href="/student/kurser"
+      >
+        Kurs- och programkatalogen
+      </a>
+      <h2
+        id="local-navigation-title"
+      >
+        ABE/Arkitektur, Fex övr utbildning
+      </h2>
+      <ul>
+        <li>
+          <a
+            aria-current="page"
           >
-            <article
-              class="article "
-            >
-              <table
-                class="table table-responsive"
-              >
-                <thead>
-                  <tr>
-                    <th
-                      style="cursor: pointer; user-select: none;"
-                    >
-                      Kurskod
-                      <span
-                        aria-hidden="true"
-                        style="opacity: 0; margin-left: .25em;"
-                      >
-                        ▼
-                      </span>
-                    </th>
-                    <th
-                      style="cursor: pointer; user-select: none;"
-                    >
-                      Kursnamn
-                      <span
-                        aria-hidden="true"
-                        style="opacity: 0; margin-left: .25em;"
-                      >
-                        ▼
-                      </span>
-                    </th>
-                    <th
-                      style="cursor: pointer; user-select: none;"
-                    >
-                      Omfattning
-                      <span
-                        aria-hidden="true"
-                        style="opacity: 0; margin-left: .25em;"
-                      >
-                        ▼
-                      </span>
-                    </th>
-                    <th
-                      style="cursor: pointer; user-select: none;"
-                    >
-                      Utbildningsnivå
-                      <span
-                        aria-hidden="true"
-                        style="opacity: 0; margin-left: .25em;"
-                      >
-                        ▼
-                      </span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <a
-                        href="/student/kurser/kurs/AD12DA"
-                      >
-                        AD12DA
-                      </a>
-                    </td>
-                    <td>
-                      <a
-                        href="/student/kurser/kurs/AD12DA"
-                      >
-                        2DAutoCAD Fokus på ritningen som kommunikationsredskap
-                      </a>
-                    </td>
-                    <td>
-                      6,0 hp
-                    </td>
-                    <td>
-                      Grundnivå
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </article>
-          </div>
-        </div>
+            Kurser
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <main
+      class="col"
+      id="mainContent"
+    >
+      <div
+        class="row"
+      >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <header
+            role="presentation"
           >
-            <footer
-              class="border-top mt-4 pt-1"
-              id="articleFooter"
+            <h1
+              aria-labelledby="page-heading page-sub-heading"
+              id="page-heading"
             >
-              <address>
-                Kontakt för frågor om utbildning på KTH: 
-                <a
-                  href="https://www.kth.se/studievagledning"
-                >
-                  Central studievägledning
-                </a>
-                <br />
-                Teknisk kontakt om denna sida: 
-                <a
-                  href="mailto:kopps@kth.se"
-                >
-                  kopps@kth.se
-                </a>
-              </address>
-            </footer>
-          </div>
+              Kurser
+            </h1>
+            <p
+              aria-hidden="true"
+              class="page-sub-heading"
+              id="page-sub-heading"
+            >
+              ABE/Arkitektur, Fex övr utbildning
+            </p>
+          </header>
         </div>
-      </main>
-    </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col"
+        >
+          <article
+            class="article article--no-start-margin "
+          >
+            <table
+              class="table table-responsive"
+            >
+              <thead>
+                <tr>
+                  <th
+                    style="cursor: pointer; user-select: none;"
+                  >
+                    Kurskod
+                    <span
+                      aria-hidden="true"
+                      style="opacity: 0; margin-left: .25em;"
+                    >
+                      ▼
+                    </span>
+                  </th>
+                  <th
+                    style="cursor: pointer; user-select: none;"
+                  >
+                    Kursnamn
+                    <span
+                      aria-hidden="true"
+                      style="opacity: 0; margin-left: .25em;"
+                    >
+                      ▼
+                    </span>
+                  </th>
+                  <th
+                    style="cursor: pointer; user-select: none;"
+                  >
+                    Omfattning
+                    <span
+                      aria-hidden="true"
+                      style="opacity: 0; margin-left: .25em;"
+                    >
+                      ▼
+                    </span>
+                  </th>
+                  <th
+                    style="cursor: pointer; user-select: none;"
+                  >
+                    Utbildningsnivå
+                    <span
+                      aria-hidden="true"
+                      style="opacity: 0; margin-left: .25em;"
+                    >
+                      ▼
+                    </span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <a
+                      href="/student/kurser/kurs/AD12DA"
+                    >
+                      AD12DA
+                    </a>
+                  </td>
+                  <td>
+                    <a
+                      href="/student/kurser/kurs/AD12DA"
+                    >
+                      2DAutoCAD Fokus på ritningen som kommunikationsredskap
+                    </a>
+                  </td>
+                  <td>
+                    6,0 hp
+                  </td>
+                  <td>
+                    Grundnivå
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+        </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col"
+        >
+          <footer
+            class="border-top mt-4 pt-1"
+            id="articleFooter"
+          >
+            <address>
+              Kontakt för frågor om utbildning på KTH: 
+              <a
+                href="https://www.kth.se/studievagledning"
+              >
+                Central studievägledning
+              </a>
+              <br />
+              Teknisk kontakt om denna sida: 
+              <a
+                href="mailto:kopps@kth.se"
+              >
+                kopps@kth.se
+              </a>
+            </address>
+          </footer>
+        </div>
+      </div>
+    </main>
   </div>
 </DocumentFragment>
 `;

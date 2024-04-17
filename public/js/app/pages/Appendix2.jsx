@@ -41,7 +41,7 @@ export function Appendix2PDFExport() {
     <>
       <Row key="data-area-row">
         <Col key="article-specializations">
-          <Article uiKey="article" classNames={['paragraphs', 'utbildningsplan']}>
+          <Article uiKey="article">
             <Specializations key="specializations-appendix-2" />
           </Article>
         </Col>
@@ -68,7 +68,7 @@ function Appendix2() {
       </Row>
       <Row key="data-area-row">
         <Col key="article-specializations">
-          <Article uiKey="article" classNames={['paragraphs', 'utbildningsplan']}>
+          <Article uiKey="article">
             <Specializations key="specializations-appendix-2" />
           </Article>
         </Col>

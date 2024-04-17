@@ -6,162 +6,198 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
     class="row"
   >
     <nav
-      aria-label="Sub menu"
-      class="col navbar navbar-expand-lg navbar-light"
+      aria-labelledby="kth-local-navigation-title--mobile"
+      class="kth-local-navigation--mobile"
+    >
+      <button
+        class="kth-button menu"
+        id="kth-local-navigation-title--mobile"
+      >
+        <span>
+          Courses
+        </span>
+      </button>
+      <dialog
+        class="kth-mobile-menu left"
+      >
+        <div
+          class="kth-mobile-menu__navigation"
+        >
+          <button
+            class="kth-icon-button close"
+          >
+            <span
+              class="kth-visually-hidden"
+            >
+              Close
+            </span>
+          </button>
+        </div>
+        <div
+          class="mobile-menu__content"
+        >
+          <a
+            class="kth-button back"
+            href="/en/studies/phd/?l=en"
+          >
+            Doctoral studies (PhD)
+          </a>
+          <h2>
+            Courses
+          </h2>
+          <ul>
+            <li>
+              <a
+                aria-current="page"
+                href="/utbildning/forskarutbildning/kurser/avdelning?l=en"
+              >
+                Third-cycle courses by school
+              </a>
+            </li>
+            <li>
+              <a
+                href="/utbildning/forskarutbildning/kurser/sok?l=en"
+              >
+                Search third-cycle courses
+              </a>
+            </li>
+          </ul>
+        </div>
+      </dialog>
+    </nav>
+    <nav
+      aria-labelledby="local-navigation-title"
+      class="kth-local-navigation col"
       id="mainMenu"
     >
-      <div
-        class="collapse navbar-collapse"
-        id="navbarNav"
+      <a
+        class="kth-button back"
+        href="/en/studies/phd/?l=en"
       >
-        <ul
-          class="nav"
-        >
-          <li
-            class="parentLink"
+        Doctoral studies (PhD)
+      </a>
+      <h2
+        id="local-navigation-title"
+      >
+        Courses
+      </h2>
+      <ul>
+        <li>
+          <a
+            aria-current="page"
+            href="/utbildning/forskarutbildning/kurser/avdelning?l=en"
           >
-            <a
-              href="/en/studies/phd/?l=en"
-            >
-              Doctoral studies (PhD)
-            </a>
-          </li>
-        </ul>
-        <ul
-          class="nav nav-list expandable"
-        >
-          <li
-            class="nav-item ancestor"
+            Third-cycle courses by school
+          </a>
+        </li>
+        <li>
+          <a
+            href="/utbildning/forskarutbildning/kurser/sok?l=en"
           >
-            <div>
-              Courses
-            </div>
-          </li>
-          <li
-            class="nav-item leaf selected"
-          >
-            <a
-              class="nav-link"
-              href="/utbildning/forskarutbildning/kurser/avdelning?l=en"
-            >
-              Third-cycle courses by school
-            </a>
-          </li>
-          <li
-            class="nav-item leaf"
-          >
-            <a
-              class="nav-link"
-              href="/utbildning/forskarutbildning/kurser/sok?l=en"
-            >
-              Search third-cycle courses
-            </a>
-          </li>
-        </ul>
-      </div>
+            Search third-cycle courses
+          </a>
+        </li>
+      </ul>
     </nav>
-    <div
+    <main
       class="col"
+      id="mainContent"
     >
-      <main
-        id="mainContent"
+      <div
+        class="row"
       >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <header
+            role="presentation"
           >
-            <header
-              role="presentation"
-            >
-              <h1>
-                Third-cycle courses by school
-              </h1>
-            </header>
-          </div>
+            <h1>
+              Third-cycle courses by school
+            </h1>
+          </header>
         </div>
+      </div>
+      <div
+        class="row"
+      >
         <div
-          class="row"
+          class="article article--no-start-margin col"
         >
-          <div
-            class="col"
-          >
-            <p>
-              Here is information about KTH courses at doctoral level. The courses are sorted by KTH schools and their respective organizations.
-            </p>
-          </div>
+          <p>
+            Here is information about KTH courses at doctoral level. The courses are sorted by KTH schools and their respective organizations.
+          </p>
         </div>
+      </div>
+      <div
+        class="row"
+      >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <article
+            class="article article--no-start-margin "
           >
-            <article
-              class="article paragraphs"
+            <h2>
+              School
+            </h2>
+            <ul
+              class="link-list"
             >
-              <h2>
-                School
-              </h2>
-              <ul
-                class="link-list"
-              >
-                <li>
-                  <a
-                    href="/utbildning/forskarutbildning/kurser/org/BB?l=en"
-                  >
-                    Department
-                  </a>
-                </li>
-              </ul>
-              <h2>
-                Older Schools
-              </h2>
-              <details
-                class=""
-              >
-                <summary
-                  aria-label=""
-                  class="white"
-                >
-                  Courses older schools
-                </summary>
-                <div />
-              </details>
-            </article>
-          </div>
-        </div>
-        <div
-          class="row"
-        >
-          <div
-            class="col"
-          >
-            <footer
-              class="border-top mt-4 pt-1"
-              id="articleFooter"
-            >
-              <address>
-                Contact for questions regarding education at KTH: 
+              <li>
                 <a
-                  href="https://www.kth.se/en/studies/master/general-study-counselling-1.621634"
+                  href="/utbildning/forskarutbildning/kurser/org/BB?l=en"
                 >
-                  Central study counseling
+                  Department
                 </a>
-                <br />
-                Contact regarding technical matters on this page: 
-                <a
-                  href="mailto:kopps@kth.se"
-                >
-                  kopps@kth.se
-                </a>
-              </address>
-            </footer>
-          </div>
+              </li>
+            </ul>
+            <h2>
+              Older Schools
+            </h2>
+            <details
+              class=""
+            >
+              <summary
+                aria-label=""
+                class="white"
+              >
+                Courses older schools
+              </summary>
+              <div />
+            </details>
+          </article>
         </div>
-      </main>
-    </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col"
+        >
+          <footer
+            class="border-top mt-4 pt-1"
+            id="articleFooter"
+          >
+            <address>
+              Contact for questions regarding education at KTH: 
+              <a
+                href="https://www.kth.se/en/studies/master/general-study-counselling-1.621634"
+              >
+                Central study counseling
+              </a>
+              <br />
+              Contact regarding technical matters on this page: 
+              <a
+                href="mailto:kopps@kth.se"
+              >
+                kopps@kth.se
+              </a>
+            </address>
+          </footer>
+        </div>
+      </div>
+    </main>
   </div>
 </DocumentFragment>
 `;
@@ -172,162 +208,198 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
     class="row"
   >
     <nav
-      aria-label="Undermeny"
-      class="col navbar navbar-expand-lg navbar-light"
+      aria-labelledby="kth-local-navigation-title--mobile"
+      class="kth-local-navigation--mobile"
+    >
+      <button
+        class="kth-button menu"
+        id="kth-local-navigation-title--mobile"
+      >
+        <span>
+          Kurser
+        </span>
+      </button>
+      <dialog
+        class="kth-mobile-menu left"
+      >
+        <div
+          class="kth-mobile-menu__navigation"
+        >
+          <button
+            class="kth-icon-button close"
+          >
+            <span
+              class="kth-visually-hidden"
+            >
+              Close
+            </span>
+          </button>
+        </div>
+        <div
+          class="mobile-menu__content"
+        >
+          <a
+            class="kth-button back"
+            href="/utbildning/forskarutbildning/"
+          >
+            Forskarutbildning
+          </a>
+          <h2>
+            Kurser
+          </h2>
+          <ul>
+            <li>
+              <a
+                aria-current="page"
+                href="/utbildning/forskarutbildning/kurser/avdelning"
+              >
+                Forskarkurser per skola
+              </a>
+            </li>
+            <li>
+              <a
+                href="/utbildning/forskarutbildning/kurser/sok"
+              >
+                Sök forskarkurs
+              </a>
+            </li>
+          </ul>
+        </div>
+      </dialog>
+    </nav>
+    <nav
+      aria-labelledby="local-navigation-title"
+      class="kth-local-navigation col"
       id="mainMenu"
     >
-      <div
-        class="collapse navbar-collapse"
-        id="navbarNav"
+      <a
+        class="kth-button back"
+        href="/utbildning/forskarutbildning/"
       >
-        <ul
-          class="nav"
-        >
-          <li
-            class="parentLink"
+        Forskarutbildning
+      </a>
+      <h2
+        id="local-navigation-title"
+      >
+        Kurser
+      </h2>
+      <ul>
+        <li>
+          <a
+            aria-current="page"
+            href="/utbildning/forskarutbildning/kurser/avdelning"
           >
-            <a
-              href="/utbildning/forskarutbildning/"
-            >
-              Forskarutbildning
-            </a>
-          </li>
-        </ul>
-        <ul
-          class="nav nav-list expandable"
-        >
-          <li
-            class="nav-item ancestor"
+            Forskarkurser per skola
+          </a>
+        </li>
+        <li>
+          <a
+            href="/utbildning/forskarutbildning/kurser/sok"
           >
-            <div>
-              Kurser
-            </div>
-          </li>
-          <li
-            class="nav-item leaf selected"
-          >
-            <a
-              class="nav-link"
-              href="/utbildning/forskarutbildning/kurser/avdelning"
-            >
-              Forskarkurser per skola
-            </a>
-          </li>
-          <li
-            class="nav-item leaf"
-          >
-            <a
-              class="nav-link"
-              href="/utbildning/forskarutbildning/kurser/sok"
-            >
-              Sök forskarkurs
-            </a>
-          </li>
-        </ul>
-      </div>
+            Sök forskarkurs
+          </a>
+        </li>
+      </ul>
     </nav>
-    <div
+    <main
       class="col"
+      id="mainContent"
     >
-      <main
-        id="mainContent"
+      <div
+        class="row"
       >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <header
+            role="presentation"
           >
-            <header
-              role="presentation"
-            >
-              <h1>
-                Forskarkurser per skola
-              </h1>
-            </header>
-          </div>
+            <h1>
+              Forskarkurser per skola
+            </h1>
+          </header>
         </div>
+      </div>
+      <div
+        class="row"
+      >
         <div
-          class="row"
+          class="article article--no-start-margin col"
         >
-          <div
-            class="col"
-          >
-            <p>
-              Här hittar du information om forskarkurser på KTH. Kurserna är sorterade efter KTH:s skolor och deras organisationer.
-            </p>
-          </div>
+          <p>
+            Här hittar du information om forskarkurser på KTH. Kurserna är sorterade efter KTH:s skolor och deras organisationer.
+          </p>
         </div>
+      </div>
+      <div
+        class="row"
+      >
         <div
-          class="row"
+          class="col"
         >
-          <div
-            class="col"
+          <article
+            class="article article--no-start-margin "
           >
-            <article
-              class="article paragraphs"
+            <h2>
+              Skola
+            </h2>
+            <ul
+              class="link-list"
             >
-              <h2>
-                Skola
-              </h2>
-              <ul
-                class="link-list"
-              >
-                <li>
-                  <a
-                    href="/utbildning/forskarutbildning/kurser/org/BB"
-                  >
-                    Avdelning
-                  </a>
-                </li>
-              </ul>
-              <h2>
-                Äldre skolor
-              </h2>
-              <details
-                class=""
-              >
-                <summary
-                  aria-label=""
-                  class="white"
-                >
-                  Kurser äldre skolor
-                </summary>
-                <div />
-              </details>
-            </article>
-          </div>
-        </div>
-        <div
-          class="row"
-        >
-          <div
-            class="col"
-          >
-            <footer
-              class="border-top mt-4 pt-1"
-              id="articleFooter"
-            >
-              <address>
-                Kontakt för frågor om utbildning på KTH: 
+              <li>
                 <a
-                  href="https://www.kth.se/studievagledning"
+                  href="/utbildning/forskarutbildning/kurser/org/BB"
                 >
-                  Central studievägledning
+                  Avdelning
                 </a>
-                <br />
-                Teknisk kontakt om denna sida: 
-                <a
-                  href="mailto:kopps@kth.se"
-                >
-                  kopps@kth.se
-                </a>
-              </address>
-            </footer>
-          </div>
+              </li>
+            </ul>
+            <h2>
+              Äldre skolor
+            </h2>
+            <details
+              class=""
+            >
+              <summary
+                aria-label=""
+                class="white"
+              >
+                Kurser äldre skolor
+              </summary>
+              <div />
+            </details>
+          </article>
         </div>
-      </main>
-    </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col"
+        >
+          <footer
+            class="border-top mt-4 pt-1"
+            id="articleFooter"
+          >
+            <address>
+              Kontakt för frågor om utbildning på KTH: 
+              <a
+                href="https://www.kth.se/studievagledning"
+              >
+                Central studievägledning
+              </a>
+              <br />
+              Teknisk kontakt om denna sida: 
+              <a
+                href="mailto:kopps@kth.se"
+              >
+                kopps@kth.se
+              </a>
+            </address>
+          </footer>
+        </div>
+      </div>
+    </main>
   </div>
 </DocumentFragment>
 `;

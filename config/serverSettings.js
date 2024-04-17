@@ -52,7 +52,7 @@ module.exports = {
 
   // Cortina
   blockApi: {
-    blockUrl: getEnv('CM_HOST_URL', devDefaults('https://www.kth.se/cm/')),
+    blockUrl: getEnv('CM_HOST_URL', devDefaults('https://www-r.referens.sys.kth.se/cm/')),
     addBlocks: {
       studentSecondaryMenu: '1.1066515',
       studentMegaMenu: '1.1066510',
@@ -100,6 +100,10 @@ module.exports = {
       proxy: String(getEnv('SESSION_TRUST_PROXY', true)).toLowerCase() === 'true',
     },
     redisOptions: unpackRedisConfig('REDIS_URI', devRedis),
+  },
+
+  toolbar: {
+    url: getEnv('TOOLBAR_URL', devDefaults('https://www-r.referens.sys.kth.se/social/toolbar/widget.js')),
   },
 
   programSyllabusForPDF: {

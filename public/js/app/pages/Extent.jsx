@@ -36,7 +36,7 @@ function ExtentContent() {
 
 function ArticleContent() {
   return (
-    <Article classNames={['paragraphs']}>
+    <Article>
       <ExtentDates />
       <ExtentContent />
     </Article>
@@ -56,7 +56,7 @@ export function ExtentContentForPDF() {
       </Row>
       <Row>
         <Col>
-          <Article classNames={['paragraphs']}>
+          <Article>
             <ExtentContent />
           </Article>
         </Col>

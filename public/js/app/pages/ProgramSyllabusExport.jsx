@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Alert } from '@kth/kth-reactstrap/dist/components/studinfo'
+import Alert from '../components-shared/Alert'
 import ElementWrapperForPDF from '../components/ElementWrapperForPDF'
 import { programLinkYear1 } from '../util/links'
 import { replacePathNameWithHref, getCurrentHost } from '../util/stringUtil'
@@ -185,8 +185,7 @@ function ProgramSyllabusExport({ applicationStore }) {
   return (
     <>
       {showError && (
-        <Alert type="danger">
-          <h5>{errorHeader}</h5>
+        <Alert type="warning" header={errorHeader}>
           <p>{error}</p>
           <p>
             {helpText}
@@ -195,8 +194,7 @@ function ProgramSyllabusExport({ applicationStore }) {
         </Alert>
       )}
       {showPopupBlockWarning && (
-        <Alert type="info">
-          <h5>{popupWarningHeader}</h5>
+        <Alert type="info" header={popupWarningHeader}>
           <p>{popupWarning}</p>
           <p>
             {helpText}

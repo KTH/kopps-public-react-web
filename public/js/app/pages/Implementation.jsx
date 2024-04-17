@@ -148,7 +148,7 @@ function ImplementationDegree() {
 
 export function ArticleContent() {
   return (
-    <Article classNames={['paragraphs']}>
+    <Article>
       <ImplementationDates />
       <ImplementationStructure />
       <ImplementationCourses />
@@ -177,7 +177,7 @@ export function ImplementationContentForPDF() {
       </Row>
       <Row>
         <Col>
-          <Article classNames={['paragraphs']}>
+          <Article>
             <div className="page-break-inside">
               <ImplementationStructure />
             </div>

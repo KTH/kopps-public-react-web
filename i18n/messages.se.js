@@ -26,6 +26,11 @@ const messages = {
     locale_text: 'KTH på svenska',
     other_lang: 'Denna sida på svenska',
 
+    language_link_lang_en: 'English',
+    menu_panel_search: 'Sök',
+    menu_panel_close: 'Stäng',
+    menu_panel_menu: 'Meny',
+
     site_name: 'Kurs- och programkatalogen',
     host_name: 'KTH',
 

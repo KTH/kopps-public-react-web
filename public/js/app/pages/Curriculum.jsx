@@ -3,8 +3,9 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Col, Row } from 'reactstrap'
 import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
-import { Heading, Link, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
+import { Link, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 
+import Alert from '../components-shared/Alert'
 import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'
 import KoppsData from '../components/KoppsData'
@@ -194,10 +195,9 @@ function CurriculumInfo() {
       )}
     </>
   ) : (
-    <div className="alert alert-info" role="alert" aria-live="polite">
-      <Heading size="h3" text={t('coursesbyprogramme_studyyear_noinfofound_header')} />
+    <Alert header={t('coursesbyprogramme_studyyear_noinfofound_header')}>
       <p>{t('coursesbyprogramme_studyyear_noinfofound')(owningSchoolCode)}</p>
-    </div>
+    </Alert>
   )
 }
 
@@ -211,7 +211,7 @@ function ArticleContent() {
       <p>{t('curriculums_missing_admission_text')(owningSchoolCode)}</p>
     </Article>
   ) : (
-    <Article classNames={['paragraphs']}>
+    <Article>
       <p>{t('curriculums_studyyear_explanation_1')(studyYear)}</p>
       <p dangerouslySetInnerHTML={{ __html: t('curriculums_studyyear_explanation_2')(formattedAcademicYear) }} />
       <CurriculumInfo />
@@ -227,19 +227,15 @@ function Sidebar() {
 
   return (
     <div id="sidebarContainer">
-      <aside id="pdfSidebar" className="sidebar" aria-labelledby="pdf-sidebar-heading">
-        <h2 id="pdf-sidebar-heading" className="sidebar-heading mb-2 mt-0">
-          {t('programme_plan_pdf_header')}
-        </h2>
+      <aside id="pdfSidebar" className="info-box" aria-labelledby="pdf-sidebar-heading">
+        <h2 id="pdf-sidebar-heading">{t('programme_plan_pdf_header')}</h2>
         <p>{t('programme_plan_pdf_text')}</p>
         <Link href={syllabusLink} type="pdf-link" target="_blank">
           {t('programme_plan_pdf')(programmeCode, formatLongTerm(term, language))}
         </Link>
       </aside>
-      <aside id="programwebbSidebar" className="sidebar" aria-labelledby="programwebb-sidebar-heading">
-        <h1 id="programwebb-sidebar-heading" className="sidebar-heading">
-          {t('programme_programwebb_heading')}
-        </h1>
+      <aside id="programwebbSidebar" className="info-box" aria-labelledby="programwebb-sidebar-heading">
+        <h2 id="programwebb-sidebar-heading">{t('programme_programwebb_heading')}</h2>
         <p>
           {t('programme_programwebb_text')}
           <br />

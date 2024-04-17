@@ -132,8 +132,8 @@ async function getProgrammesList(req, res, next) {
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
     log.info('Default store was filled in and compressed on server side, for programmesList controller')
 
-    const { programmesList: proxyPrefix } = serverConfig.proxyPrefixPath
-    const view = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const { programmesList: basename, uri: proxyPrefix } = serverConfig.proxyPrefixPath
+    const view = renderStaticPage({ applicationStore, location: req.url, basename: basename })
     const title = i18n.message('courses_of_program', lang)
     const description = i18n.message('programmes_list_lead', lang)
     const breadcrumbsList = createBreadcrumbs(lang)
@@ -146,7 +146,9 @@ async function getProgrammesList(req, res, next) {
       description,
       lang,
       proxyPrefix,
+      toolbarUrl: serverConfig.toolbar.url,
       studentWeb: true,
+      theme: 'student-web',
       klaroAnalyticsConsentCookie,
       breadcrumbsList,
     })

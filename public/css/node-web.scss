@@ -1,42 +1,79 @@
-%long-text-font-style {
-  font-family: Georgia, 'garamond pro', garamond, 'times new roman', times, serif;
-  word-break: break-word;
-}
+@use '~@kth/style/scss/utils/layers.scss';
+@use '~@kth/style/scss/utils/reset.scss';
+@use '~@kth/style/scss/utils/mixins.scss';
+@use '~@kth/style/scss/utils/prose.scss';
 
-#app {
-  padding: 30px 0;
-}
+@use '~@kth/style/scss/components/logotype.scss';
+@use '~@kth/style/scss/components/search.scss';
+@use '~@kth/style/scss/components/alert.scss';
+@use '~@kth/style/scss/components/footer.scss';
+@use '~@kth/style/scss/components/mega-menu.scss';
+@use '~@kth/style/scss/components/visually-hidden.scss';
+@use '~@kth/style/scss/components/button.scss';
+@use '~@kth/style/scss/components/header.scss';
+@use '~@kth/style/scss/components/mobile-menu.scss';
+@use '~@kth/style/scss/components/menu-item.scss';
+@use '~@kth/style/scss/components/menu-panel.scss';
+@use '~@kth/style/scss/components/content.scss';
+@use '~@kth/style/scss/components/local-navigation.scss';
 
-.nav-item.leaf.selected {
-  .nav-link {
-    padding: 7px 15px 7px 0;
+@use '~@kth/style/scss/tokens/colors.scss';
+@use '~@kth/style/scss/tokens/typography.scss' as t;
+
+@import 'shared';
+
+#mainContent {
+  .lead {
+    p {
+      @include t.font-lead-fluid;
+    }
   }
 }
 
-.search-instructions {
-  @extend %long-text-font-style;
+.article {
+  @include prose.prose;
+  ul.link-list {
+    padding-inline-start: 0;
+    li {
+      padding-inline-start: 0;
+      max-width: unset;
+    }
+  }
+
+  // make sure margin reset from prose is applied even when we need to wrap content/paragraphs in divs
+  h1 + .page-break-inside > :first-child,
+  h2 + .page-break-inside > :first-child,
+  h3 + .page-break-inside > :first-child {
+    margin-block-start: 0;
+  }
+
+  &.article--no-start-margin {
+    & > .page-break-inside > :first-child,
+    & > :first-child {
+      margin-block-start: 0;
+    }
+  }
 }
 
-*[data-from-kopps]:hover {
-  background-color: #fcf8e3;
-}
+// Style for mark data from Kopps (enabled by default in localhost only)
+*[data-from-kopps] {
+  &:hover {
+    background-color: colors.$color-green-light;
+  }
 
-*[data-from-kopps]:hover:before {
-  content: 'KOPPS';
-  float: right;
-  margin-top: -1.5em;
-  padding: 0 0.75em;
-  background-color: #fab919;
-  color: white;
-  border-radius: 0.75em 0.75em 0 0;
-  font-family: 'Open Sans', sans-serif;
-  font-size: smaller;
-  font-weight: 600;
+  &:hover:before {
+    content: 'KOPPS';
+    float: right;
+    margin-top: -1.5em;
+    padding: 0 0.75em;
+    background-color: colors.$color-green;
+    color: white;
+    border-radius: 0.75em 0.75em 0 0;
+  }
 }
 
 .table .active-period {
-  background-color: #e6ecf5; /*cortina: @ligthBlueGray */
-  color: #333333; /* slightly darker than default, compensating for background color. */
+  background-color: colors.$color-blue-light;
   text-align: center;
 }
 
@@ -50,53 +87,8 @@
   white-space: nowrap;
 }
 
-.sidebar {
-  background-color: #f6f6f6;
-  padding: 20px;
-  margin-bottom: 15px;
-}
-
-.sidebar p {
-  font-family: 'Open Sans', Arial, 'Helvetica Neue', helvetica, sans-serif;
-  font-size: 1rem;
-}
-
-.sidebar :last-child {
-  margin-bottom: 0;
-}
-
-.sidebar-heading {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-}
-
-.utbildningsplan.paragraphs > :first-child {
-  margin-top: 0;
-}
-
-body #gradientBorder {
-  background-image: none;
-  background-color: #65656c;
-}
-
-.block.megaMenu.navbar.navbar-light ul.menu.navbar-nav#megaMenu li.item.nav-item .headerItem.active a.nav-link {
-  border-bottom: 5px solid #65656c;
-}
-
-.block.megaMenu.navbar.navbar-light ul.menu.navbar-nav#megaMenu li.item.nav-item .menuItemContent .megaMenuBody {
-  border-bottom: 5px solid #65656c;
-}
-
 .display-none {
   display: none;
-}
-
-.link {
-  background: transparent;
-  text-decoration: underline;
-  color: #006cb7;
-  border: none;
-  padding: 0px;
 }
 
 @keyframes spinner-border {
@@ -110,20 +102,18 @@ body #gradientBorder {
   width: 2rem;
   height: 2rem;
   vertical-align: -0.125em;
-  border: 0.25em solid rgb(33, 37, 41);
+  border: 0.25em solid colors.$color-blue-kth-dark;
   border-right-color: transparent;
   border-radius: 50%;
   animation: 0.75s linear infinite spinner-border;
 }
 
-.pdf-link {
+fieldset {
+  padding: 0;
   margin: 0;
+  border: 0;
 }
 
-.alert.alert-info:before {
-  top: 18px;
-}
-
-.alert.alert-danger:before {
-  top: 18px;
+#results-heading {
+  margin-block-start: 2rem;
 }

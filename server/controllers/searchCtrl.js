@@ -40,8 +40,8 @@ async function searchThirdCycleCourses(req, res, next) {
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
-    const { thirdCycleCourseSearch: proxyPrefix } = serverConfig.proxyPrefixPath
-    const view = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const { thirdCycleCourseSearch: basename, uri: proxyPrefix } = serverConfig.proxyPrefixPath
+    const view = renderStaticPage({ applicationStore, location: req.url, basename: basename })
     const title = i18n.message('main_menu_third_cycle_courses_search', lang)
     const breadcrumbsList = createThirdCycleBreadcrumbs(lang)
 
@@ -53,7 +53,9 @@ async function searchThirdCycleCourses(req, res, next) {
       description: '',
       lang,
       proxyPrefix,
+      toolbarUrl: serverConfig.toolbar.url,
       studentWeb: true,
+      theme: 'student-web',
       klaroAnalyticsConsentCookie,
       breadcrumbsList,
     })
@@ -115,8 +117,8 @@ async function searchAllCourses(req, res, next) {
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
-    const { courseSearch: proxyPrefix } = serverConfig.proxyPrefixPath
-    const view = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const { courseSearch: basename, uri: proxyPrefix } = serverConfig.proxyPrefixPath
+    const view = renderStaticPage({ applicationStore, location: req.url, basename: basename })
     const title = i18n.message('main_menu_search_all', lang)
     const breadcrumbsList = createBreadcrumbs(lang)
 
@@ -128,7 +130,9 @@ async function searchAllCourses(req, res, next) {
       description: '',
       lang,
       proxyPrefix,
+      toolbarUrl: serverConfig.toolbar.url,
       studentWeb: true,
+      theme: 'student-web',
       klaroAnalyticsConsentCookie,
       breadcrumbsList,
     })

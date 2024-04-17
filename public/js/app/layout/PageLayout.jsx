@@ -7,8 +7,8 @@ import MainMenu from '../components/MainMenu'
 
 function MainContent({ children }) {
   return (
-    <Col>
-      <main id="mainContent">{children}</main>
+    <Col tag="main" id="mainContent">
+      {children}
     </Col>
   )
 }

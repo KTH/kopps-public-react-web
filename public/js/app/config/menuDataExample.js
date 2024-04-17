@@ -18,14 +18,10 @@ function getMenuDataExample(applicationStore) {
       text: t('main_menu_student'),
       url: parentLink(language),
     },
+    title: t('main_menu_directory'),
     navList: {
       type: 'expandable',
       items: [
-        {
-          id: 'directory',
-          type: 'ancestor',
-          text: t('main_menu_directory'),
-        },
         {
           id: 'example',
           type: 'leaf',

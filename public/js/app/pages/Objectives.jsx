@@ -72,7 +72,7 @@ function AbilityObjectives() {
 
 function ArticleContent() {
   return (
-    <Article classNames={['paragraphs']}>
+    <Article>
       <ObjectivesDates />
       <ProgrammeObjectives />
       <KnowledgeObjectives />
@@ -95,7 +95,7 @@ export function ObjectivesForExport() {
       </Row>
       <Row>
         <Col>
-          <Article classNames={['paragraphs']}>
+          <Article>
             <ProgrammeObjectives />
             <KnowledgeObjectives />
             <SkillsObjectives />

@@ -6,14 +6,10 @@ function mockGetMenuData(language) {
         text: 'Student at KTH',
         url: '/student/?l=en',
       },
+      title: 'Course and programme directory',
       navList: {
         type: 'expandable',
         items: [
-          {
-            id: 'directory',
-            type: 'ancestor',
-            text: 'Course and programme directory',
-          },
           {
             id: 'programmesList',
             type: 'leaf',
@@ -47,14 +43,10 @@ function mockGetMenuData(language) {
         text: 'Student på KTH',
         url: '/student/',
       },
+      title: 'Kurs- och programkatalogen',
       navList: {
         type: 'expandable',
         items: [
-          {
-            id: 'directory',
-            type: 'ancestor',
-            text: 'Kurs- och programkatalogen',
-          },
           {
             id: 'programmesList',
             type: 'leaf',

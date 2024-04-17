@@ -38,8 +38,8 @@ async function getAllSchoolsAndDepartmentsInThirdCycleStudy(req, res, next) {
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
     log.info(`Default store was filled in and compressed on server side, for schools which have third-cycle courses`)
 
-    const { thirdCycleSchoolsAndDepartments: proxyPrefix } = serverConfig.proxyPrefixPath
-    const view = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const { thirdCycleSchoolsAndDepartments: basename, uri: proxyPrefix } = serverConfig.proxyPrefixPath
+    const view = renderStaticPage({ applicationStore, location: req.url, basename: basename })
     const title = i18n.message('third_cycle_courses_by_school', lang)
     const breadcrumbsList = createThirdCycleBreadcrumbs(lang)
 
@@ -51,7 +51,9 @@ async function getAllSchoolsAndDepartmentsInThirdCycleStudy(req, res, next) {
       description: '',
       lang,
       proxyPrefix,
+      toolbarUrl: serverConfig.toolbar.url,
       studentWeb: true,
+      theme: 'student-web',
       breadcrumbsList,
     })
   } catch (err) {

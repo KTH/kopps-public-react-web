@@ -15,14 +15,10 @@ function getThirdCycleDepartmentMenuData(applicationStore) {
       text: t('courses'),
       url: pageLink(thirdCycleRoot, language),
     },
+    title: departmentName,
     navList: {
       type: 'expandable',
       items: [
-        {
-          id: 'directory',
-          type: 'ancestor',
-          text: departmentName,
-        },
         {
           id: 'courses',
           type: 'leaf',

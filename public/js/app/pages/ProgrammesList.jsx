@@ -117,7 +117,7 @@ function ProgrammesList() {
       </Row>
       <Row>
         <Col>
-          <Article classNames={['paragraphs']}>
+          <Article>
             {programmes.map(programme => {
               const currentProgrammes = programme[1].first
               const obsoleteProgrammes = programme[1].second

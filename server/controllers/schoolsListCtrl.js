@@ -50,8 +50,8 @@ async function getSchoolsList(req, res, next) {
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
     log.info(`Default store was filled in and compressed on server side, for schools with all-type courses`)
 
-    const { schoolsList: proxyPrefix } = serverConfig.proxyPrefixPath
-    const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const { schoolsList: basename, uri: proxyPrefix } = serverConfig.proxyPrefixPath
+    const html = renderStaticPage({ applicationStore, location: req.url, basename: basename })
     const title = i18n.message('courses_by_school', lang)
     const description = i18n.message('departments_list_lead', lang)
     const breadcrumbsList = createBreadcrumbs(lang)
@@ -64,7 +64,9 @@ async function getSchoolsList(req, res, next) {
       description,
       lang,
       proxyPrefix,
+      toolbarUrl: serverConfig.toolbar.url,
       studentWeb: true,
+      theme: 'student-web',
       klaroAnalyticsConsentCookie,
       breadcrumbsList,
     })

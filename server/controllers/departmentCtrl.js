@@ -41,8 +41,8 @@ async function getIndex(req, res, next) {
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
     log.info(`Default store was filled in and compressed on server side`, { departmentCode })
 
-    const { department: proxyPrefix } = serverConfig.proxyPrefixPath
-    const html = renderStaticPage({ applicationStore, location: req.url, basename: proxyPrefix })
+    const { department: basename, uri: proxyPrefix } = serverConfig.proxyPrefixPath
+    const html = renderStaticPage({ applicationStore, location: req.url, basename: basename })
     const title = departmentTabTitle(departmentName, lang)
     const breadcrumbsList = createDepartmentBreadcrumbs(lang, departmentName, departmentCode)
 
@@ -54,7 +54,9 @@ async function getIndex(req, res, next) {
       description: '',
       lang,
       proxyPrefix,
+      toolbarUrl: serverConfig.toolbar.url,
       studentWeb: true,
+      theme: 'student-web',
       klaroAnalyticsConsentCookie,
       breadcrumbsList,
     })
