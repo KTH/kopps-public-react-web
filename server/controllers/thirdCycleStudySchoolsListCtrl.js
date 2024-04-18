@@ -52,8 +52,7 @@ async function getAllSchoolsAndDepartmentsInThirdCycleStudy(req, res, next) {
       lang,
       proxyPrefix,
       toolbarUrl: serverConfig.toolbar.url,
-      studentWeb: true,
-      theme: 'student-web',
+      theme: 'external',
       breadcrumbsList,
     })
   } catch (err) {

@@ -53,8 +53,7 @@ async function getCoursesPerDepartment(req, res, next) {
       lang,
       proxyPrefix,
       toolbarUrl: serverConfig.toolbar.url,
-      studentWeb: true,
-      theme: 'student-web',
+      theme: 'external',
       klaroAnalyticsConsentCookie,
       breadcrumbsList,
     })
