@@ -21,6 +21,7 @@ function getProgrammeMenuData(applicationStore) {
           id: 'studyYears',
           type: 'leaf',
           text: t('programme_study_years'),
+          url: '',
         },
       ],
     },
