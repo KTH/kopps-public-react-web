@@ -49,6 +49,7 @@ exports[`Render component Programme within Layout match to snapshot in English 1
             <li>
               <a
                 aria-current="page"
+                href=""
               >
                 Programme Syllabuses
               </a>
@@ -77,6 +78,7 @@ exports[`Render component Programme within Layout match to snapshot in English 1
         <li>
           <a
             aria-current="page"
+            href=""
           >
             Programme Syllabuses
           </a>
@@ -227,6 +229,7 @@ exports[`Render component Programme within Layout match to snapshot in Swedish 1
             <li>
               <a
                 aria-current="page"
+                href=""
               >
                 Utbildningsplaner
               </a>
@@ -255,6 +258,7 @@ exports[`Render component Programme within Layout match to snapshot in Swedish 1
         <li>
           <a
             aria-current="page"
+            href=""
           >
             Utbildningsplaner
           </a>

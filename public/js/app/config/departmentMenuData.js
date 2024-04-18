@@ -21,6 +21,7 @@ function getDepartmentMenuData(applicationStore) {
           id: 'courses',
           type: 'leaf',
           text: t('courses'),
+          url: '',
         },
       ],
     },

@@ -49,6 +49,7 @@ exports[`Render component DepartmentCourses within Layout for third cycle studie
             <li>
               <a
                 aria-current="page"
+                href=""
               >
                 Courses
               </a>
@@ -77,6 +78,7 @@ exports[`Render component DepartmentCourses within Layout for third cycle studie
         <li>
           <a
             aria-current="page"
+            href=""
           >
             Courses
           </a>
@@ -304,6 +306,7 @@ exports[`Render component DepartmentCourses within Layout for third cycle studie
             <li>
               <a
                 aria-current="page"
+                href=""
               >
                 Kurser
               </a>
@@ -332,6 +335,7 @@ exports[`Render component DepartmentCourses within Layout for third cycle studie
         <li>
           <a
             aria-current="page"
+            href=""
           >
             Kurser
           </a>

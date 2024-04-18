@@ -49,6 +49,7 @@ exports[`Render component DepartmentCourses within Layout match to snapshot in E
             <li>
               <a
                 aria-current="page"
+                href=""
               >
                 Courses
               </a>
@@ -77,6 +78,7 @@ exports[`Render component DepartmentCourses within Layout match to snapshot in E
         <li>
           <a
             aria-current="page"
+            href=""
           >
             Courses
           </a>
@@ -282,6 +284,7 @@ exports[`Render component DepartmentCourses within Layout match to snapshot in S
             <li>
               <a
                 aria-current="page"
+                href=""
               >
                 Kurser
               </a>
@@ -310,6 +313,7 @@ exports[`Render component DepartmentCourses within Layout match to snapshot in S
         <li>
           <a
             aria-current="page"
+            href=""
           >
             Kurser
           </a>
