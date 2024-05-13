@@ -84,7 +84,6 @@ async function getIndex(req, res, next) {
     const breadcrumbsList = createBreadcrumbs(lang)
 
     res.render('app/index', {
-      instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
       html,
       title,
       compressedStoreCode,

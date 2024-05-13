@@ -86,7 +86,6 @@ async function getLiteratureList(req, res, next) {
     const breadcrumbsList = createLiteratureBreadcrumbs(lang, school, term)
 
     res.render('app/index', {
-      instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
       html: view,
       title,
       compressedStoreCode,

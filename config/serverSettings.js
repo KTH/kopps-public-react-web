@@ -113,9 +113,4 @@ module.exports = {
   programSyallbusKeyForPDF: {
     key: getEnv('PDF_RENDER_FUNCTION_SUBSCRIPTION_KEY', ''),
   },
-
-  // APPLICATION INSIGHTS IN AZURE
-  appInsights: {
-    instrumentationKey: getEnv('APPINSIGHTS_INSTRUMENTATIONKEY', ''),
-  },
 }
