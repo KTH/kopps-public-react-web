@@ -46,7 +46,6 @@ async function searchThirdCycleCourses(req, res, next) {
     const breadcrumbsList = createThirdCycleBreadcrumbs(lang)
 
     res.render('app/index', {
-      instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
       html: view,
       title,
       compressedStoreCode,
@@ -122,7 +121,6 @@ async function searchAllCourses(req, res, next) {
     const breadcrumbsList = createBreadcrumbs(lang)
 
     res.render('app/index', {
-      instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
       html: view,
       title,
       compressedStoreCode,

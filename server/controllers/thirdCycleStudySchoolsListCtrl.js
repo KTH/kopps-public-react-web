@@ -44,7 +44,6 @@ async function getAllSchoolsAndDepartmentsInThirdCycleStudy(req, res, next) {
     const breadcrumbsList = createThirdCycleBreadcrumbs(lang)
 
     res.render('app/index', {
-      instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
       html: view,
       title,
       compressedStoreCode,

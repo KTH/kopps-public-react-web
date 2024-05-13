@@ -139,7 +139,6 @@ async function getProgrammesList(req, res, next) {
     const breadcrumbsList = createBreadcrumbs(lang)
 
     res.render('app/index', {
-      instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
       html: view,
       title,
       compressedStoreCode,

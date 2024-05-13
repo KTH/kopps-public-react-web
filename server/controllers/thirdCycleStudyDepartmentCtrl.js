@@ -45,7 +45,6 @@ async function getCoursesPerDepartment(req, res, next) {
     const breadcrumbsList = createThirdCycleBreadcrumbs(lang, departmentName, departmentCode)
 
     res.render('app/index', {
-      instrumentationKey: serverConfig?.appInsights?.instrumentationKey,
       html: view,
       title,
       compressedStoreCode,
