@@ -43,7 +43,7 @@
     "@kth/api-call": "^4.1.0",
     "@kth/appinsights": "^0.3.1",
     "@kth/kth-node-web-common": "^9.3.0",
-    "@kth/kth-reactstrap": "^0.4.78",
+    "@kth/kth-reactstrap": "^0.4.81",
     "@kth/log": "^4.0.7",
     "@kth/monitor": "^4.2.1",
     "@kth/server": "^4.1.0",
