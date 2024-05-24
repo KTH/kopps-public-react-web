@@ -18,7 +18,7 @@ function getLiteratureList(applicationStore) {
     text: school.name,
     url: pageLink(`${pageRoot}/${selectedTerm}/${school.code}`, language),
   }))
-  schoolEntries.find(schoolEntry => schoolEntry.id === 'XXX').text = departmentsOtherUni
+  navListItems.find(schoolEntry => schoolEntry.id === 'XXX').text = departmentsOtherUni
 
   return {
     ariaLabel: main_menu_aria_label,
