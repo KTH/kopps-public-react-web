@@ -339,6 +339,12 @@ const messages = {
     centralStudyCounseling: 'Central study counseling',
     koppsEmailText: 'kopps@kth.se',
   },
+  breadCrumbs: {
+    student: 'Student web',
+    studies: 'Studies',
+    directory: 'Course and programme directory',
+    university: 'KTH',
+  },
 }
 
 module.exports = messages

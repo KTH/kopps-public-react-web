@@ -16,19 +16,28 @@ const {
 const translate = require('../../domain/translate')
 const i18n = require('../../i18n')
 
-const baseItems = {
-  university: {
-    en: { url: '/en', label: 'KTH' },
-    sv: { url: '/', label: 'KTH' },
-  },
-  student: {
-    en: { url: '/en/student', label: 'Student at KTH' },
-    sv: { url: '/student', label: 'Student på KTH' },
-  },
-  directory: {
-    en: { url: '/student/kurser/kurser-inom-program?l=en', label: 'Course and programme directory' },
-    sv: { url: '/student/kurser/kurser-inom-program', label: 'Kurs- och programkatalogen' },
-  },
+const createBaseItems = language => {
+  const langIndex = language === 'en' ? 0 : 1
+  const { breadCrumbs } = i18n.messages[langIndex]
+
+  return {
+    university: {
+      url: `/${language === 'en' ? 'en' : ''}`,
+      label: breadCrumbs.university,
+    },
+    student: {
+      url: `${language === 'en' ? '/en' : ''}/student`,
+      label: breadCrumbs.student,
+    },
+    studies: {
+      url: `${language === 'en' ? '/en' : ''}/student/studier`,
+      label: breadCrumbs.studies,
+    },
+    directory: {
+      url: `/student/kurser/kurser-inom-program${language === 'en' ? '?l=en' : ''}`,
+      label: breadCrumbs.directory,
+    },
+  }
 }
 
 function createAboutCourseItem(language, courseCode) {
@@ -40,7 +49,8 @@ function createAboutCourseItem(language, courseCode) {
 }
 
 function createBreadcrumbs(language, courseCode) {
-  const items = [baseItems.university[language], baseItems.student[language], baseItems.directory[language]]
+  const baseItems = createBaseItems(language)
+  const items = [baseItems.student, baseItems.studies, baseItems.directory]
   if (courseCode) {
     items.push(createAboutCourseItem(language, courseCode))
   }
@@ -76,8 +86,9 @@ function createDepartmentBreadcrumbs(language, departmentName, departmentCode) {
 function createThirdCycleBreadcrumbs(language, departmentName, departmentCode) {
   const t = translate(language)
   const { thirdCycleRoot } = commonSettings.redirectProxyPath
+  const baseItems = createBaseItems(language)
   const items = [
-    baseItems.university[language],
+    baseItems.university,
     {
       url: pageLink(`/utbildning/`, language),
       label: t('main_menu_study_at_kth'),
@@ -106,9 +117,10 @@ function createThirdCycleBreadcrumbs(language, departmentName, departmentCode) {
 function createLiteratureBreadcrumbs(language, selectedSchoolCode, selectedTerm) {
   const langIndex = language === 'en' ? 0 : 1
   const { breadcrumb } = i18n.messages[langIndex].literatureList
+  const baseItems = createBaseItems(language)
   return [
-    baseItems.university[language],
-    baseItems.student[language],
+    baseItems.university,
+    baseItems.student,
     {
       url: literatureListLink(selectedSchoolCode, selectedTerm, language),
       label: breadcrumb,
