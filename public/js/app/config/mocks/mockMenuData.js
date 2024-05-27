@@ -3,8 +3,8 @@ function mockGetMenuData(language) {
     en: {
       ariaLabel: 'Sub menu',
       parentLink: {
-        text: 'Student at KTH',
-        url: '/student/?l=en',
+        text: 'Studies',
+        url: '/student/studier/?l=en',
       },
       title: 'Course and programme directory',
       navList: {
@@ -40,8 +40,8 @@ function mockGetMenuData(language) {
     sv: {
       ariaLabel: 'Undermeny',
       parentLink: {
-        text: 'Student på KTH',
-        url: '/student/',
+        text: 'Studier',
+        url: '/student/studier/',
       },
       title: 'Kurs- och programkatalogen',
       navList: {

@@ -180,8 +180,8 @@ describe('Render component ProgrammesList and check its menu, content and links'
     const links = screen.getAllByRole('link')
     expect(links.length).toBe(9)
     // Menu links
-    expect(links[0]).toHaveTextContent('Student at KTH')
-    expect(links[0].href).toStrictEqual('http://localhost/student/?l=en')
+    expect(links[0]).toHaveTextContent('Studies')
+    expect(links[0].href).toStrictEqual('http://localhost/student/studier?l=en')
     expect(links[1]).toHaveTextContent('Programme Syllabuses')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurser-inom-program')
     expect(links[2]).toHaveTextContent('Search courses')
@@ -209,8 +209,8 @@ describe('Render component ProgrammesList and check its menu, content and links'
     const links = screen.getAllByRole('link')
     expect(links.length).toBe(9)
     // Menu links
-    expect(links[0]).toHaveTextContent('Student på KTH')
-    expect(links[0].href).toStrictEqual('http://localhost/student/')
+    expect(links[0]).toHaveTextContent('Studier')
+    expect(links[0].href).toStrictEqual('http://localhost/student/studier')
     expect(links[1]).toHaveTextContent('Utbildningsplaner')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurser-inom-program')
     expect(links[2]).toHaveTextContent('Sök kurser')
