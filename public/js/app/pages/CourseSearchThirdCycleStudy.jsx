@@ -21,10 +21,7 @@ function getHelpText(langAbbr, langIndex) {
     'search_research_help_4',
     'search_research_help_5',
     'search_research_help_6',
-    'search_research_help_7',
   ].map(s => thirdCycleSearchInstructions[s])
-
-  if (langAbbr === 'en') instructionsTexts.push(thirdCycleSearchInstructions.search_research_help_8)
 
   return instructionsTexts
 }
@@ -33,8 +30,7 @@ const CourseSearchThirdCycleStudy = () => {
   const { language: lang, languageIndex, textPattern: initialPattern } = useStore()
   const { thirdCycleSearch, thirdCycleSearchInstructions, messages } = i18n.messages[languageIndex]
   const { searchHeading, leadIntro, linkToUsualSearch } = thirdCycleSearch
-  const { search_help_collapse_header: collapseHeader, search_research_help_9: lastInstruction } =
-    thirdCycleSearchInstructions
+  const { search_help_collapse_header: collapseHeader } = thirdCycleSearchInstructions
 
   const [pattern, setPattern] = useState(initialPattern)
 
@@ -74,8 +70,6 @@ const CourseSearchThirdCycleStudy = () => {
                 {helptexts.map(value => (
                   <li key={value}>{value}</li>
                 ))}
-                {/* eslint-disable-next-line react/no-danger */}
-                <li key="lastInstruction" dangerouslySetInnerHTML={{ __html: lastInstruction }} />
               </ul>
             </div>
           </CollapseDetails>

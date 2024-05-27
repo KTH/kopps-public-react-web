@@ -64,7 +64,7 @@ const messages = {
 
     third_cycle_courses_by_school: 'Forskarkurser per skola',
     third_cycle_courses_by_school_description:
-      'Här hittar du information om forskarkurser på KTH. Kurserna är sorterade efter KTH:s skolor och deras organisationer.',
+      'Här hittar du information om forskarkurser på KTH. Kurserna är sorterade efter KTH:s skolor och deras organisationer. Använd menyalternativet Sök forskarkurs för att söka fram en kurs eller filtrera på kurser som behandlar miljö, miljöteknik eller hållbar utveckling.',
 
     // TODO: MOVE TO kth-course-program-vocabulary
 
@@ -226,9 +226,9 @@ const messages = {
   },
   thirdCycleSearch: {
     searchHeading: 'Sök forskarkurs',
-    leadIntro: 'Här kan du söka bland KTHs forskarutbildningskurser.',
-    linkToUsualSearch:
-      'På sidan Sök kurser kan du med hjälp av sökkriterier söka bland KTHs samtliga kurser inklusive forskarkurser.',
+    leadIntro:
+      'Här kan du söka bland KTHs forskarutbildningskurser. Sök på kursnamn, del av kursnamn eller kurskod. Du kan även filtrera på skola och kurser som behandlar miljö, miljöteknik eller hållbar utveckling.',
+    linkToUsualSearch: 'Sök bland KTHs samtliga kurser inklusive forskarkurser.',
   },
   bigSearch: {
     searchHeading: 'Sök kurser',
@@ -270,18 +270,13 @@ const messages = {
   },
   thirdCycleSearchInstructions: {
     search_help_collapse_header: 'Få hjälp med sökningen',
-    search_research_help_1:
-      'Du kan söka på del av kursnamn eller kurskod. En sökning efter "data" hittar exempelvis såväl "Databasteknik", "Datalogi" som "Algoritmer, datastrukturer och komplexitet".',
+    search_research_help_1: 'Du kan söka på del av kursnamn eller kurskod.',
     search_research_help_2: 'Skriver du flera ord i fältet hittas kurser som innehåller samtliga ord.',
     search_research_help_3: 'Du kan även söka på kursens engelska namn.',
     search_research_help_4:
       'Sökningen visar max 250 träffar. Får du för många träffar, försök att förfina sökvillkoren.',
-    search_research_help_5: 'Sökningen gör ingen skillnad på versaler och gemener (stora och små bokstäver).',
-    search_research_help_6:
-      'Det går inte att använda specialtecken (t.ex. citationstecken). Dessa tas bort innan sökningen utförs.',
-    search_research_help_7: 'Forskarkurser som ej längre ges på KTH visas inte.',
-    search_research_help_9:
-      'Om du har synpunkter eller frågor gällande kurssökningen, kontakta <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
+    search_research_help_5: 'Forskarkurser som ej längre ges på KTH visas inte.',
+    search_research_help_6: 'Du kan filtrera på kurser som behandlar miljö, miljöteknik eller hållbar utveckling.',
   },
   generalSearch: {
     collapseHeaderOtherSearchOptions: 'Filtrera dina sökval',
