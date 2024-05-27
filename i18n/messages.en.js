@@ -86,7 +86,7 @@ const messages = {
       2: 'Autumn',
     },
     main_menu_aria_label: 'Sub menu',
-    main_menu_student: 'Student at KTH',
+    main_menu_studies: 'Studies',
     main_menu_study_at_kth: 'Study at KTH',
     main_menu_directory: 'Course and programme directory',
     main_menu_page_example: 'Example',

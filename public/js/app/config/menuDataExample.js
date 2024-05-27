@@ -15,7 +15,7 @@ function getMenuDataExample(applicationStore) {
   return {
     ariaLabel: t('main_menu_aria_label'),
     parentLink: {
-      text: t('main_menu_student'),
+      text: t('main_menu_studies'),
       url: parentLink(language),
     },
     title: t('main_menu_directory'),

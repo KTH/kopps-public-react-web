@@ -7,7 +7,7 @@ function getLiteratureList(applicationStore) {
   const { language, languageIndex, browserConfig, schools, selectedTerm } = applicationStore
   throwErrorIfNoBrowserConfig(browserConfig)
 
-  const { main_menu_aria_label, main_menu_student } = i18n.messages[languageIndex].messages
+  const { main_menu_aria_label, main_menu_studies } = i18n.messages[languageIndex].messages
   const { navHeading, departmentsOtherUni } = i18n.messages[languageIndex].literatureList
 
   const { literatureList: pageRoot } = browserConfig.proxyPrefixPath
@@ -23,7 +23,7 @@ function getLiteratureList(applicationStore) {
   return {
     ariaLabel: main_menu_aria_label,
     parentLink: {
-      text: main_menu_student,
+      text: main_menu_studies,
       url: parentLink(language),
     },
     title: navHeading,
