@@ -119,8 +119,8 @@ function createLiteratureBreadcrumbs(language, selectedSchoolCode, selectedTerm)
   const { breadcrumb } = i18n.messages[langIndex].literatureList
   const baseItems = createBaseItems(language)
   return [
-    baseItems.university,
     baseItems.student,
+    baseItems.studies,
     {
       url: literatureListLink(selectedSchoolCode, selectedTerm, language),
       label: breadcrumb,
