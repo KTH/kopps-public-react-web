@@ -3,7 +3,7 @@ const i18n = require('../i18n')
 const { formatLongTerm, getRelevantTerms, isSpringTerm } = require('./term')
 const { getSummerPeriodsList, groupedPeriodsBySeasonInCorrectOrder } = require('./periods')
 const { CLIENT_EDU_LEVELS, educationalLevel } = require('./eduLevels')
-const { CLIENT_SHOW_OPTIONS, getShowOptions } = require('./courseOptions')
+const { CLIENT_SHOW_OPTIONS, ONLY_MHU, getShowOptions } = require('./courseOptions')
 
 function _transformIfSummerOrEmptyPeriods(initialPeriods) {
   const transformedPeriods = []
@@ -60,6 +60,14 @@ const showOptionsConfig = langIndex => {
 
     return { label, id: option, value: option }
   })
+}
+
+const showOnlyMHUConfig = langIndex => {
+  const { bigSearch } = i18n.messages[langIndex]
+
+  const label = bigSearch[ONLY_MHU]
+
+  return [{ label, id: ONLY_MHU, value: ONLY_MHU }]
 }
 
 function _separateYearAndPeriod(relevantTerms) {
@@ -155,6 +163,8 @@ function getParamConfig(paramName, langIndex) {
       return _periodConfigByYearType('nextYear', langIndex)
     case 'showOptions':
       return showOptionsConfig(langIndex)
+    case 'onlyMHU':
+      return showOnlyMHUConfig(langIndex)
     default: {
       if (typeof paramName !== 'string')
         throw new Error(`Check the type of parameter name: ${paramName} has the type ${typeof paramName}`)

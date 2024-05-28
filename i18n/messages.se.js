@@ -243,6 +243,7 @@ const messages = {
     showOptions: 'Övrigt:',
     onlyEnglish: 'Ges på engelska',
     onlyMHU: 'Behandlar miljö, miljöteknik eller hållbar utveckling',
+    onlyMHULabel: 'Miljö',
     showCancelled: 'Nedlagd kurs',
     summer: 'sommar',
     department: 'Skola, avdelning, etc',

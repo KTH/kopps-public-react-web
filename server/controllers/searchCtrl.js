@@ -29,14 +29,17 @@ async function searchThirdCycleCourses(req, res, next) {
       klaroAnalyticsConsentCookie = analyticsConsentCookieString === 'true'
     }
 
-    const { pattern } = req.query
+    const { pattern, showOptions, department } = req.query
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
 
     const applicationStore = createStore('searchCourses')
+    await _fillApplicationStoreWithAllSchools({ applicationStore, lang })
     applicationStore.setLanguage(lang)
     applicationStore.setBrowserConfig(browserConfig, serverConfig.hostUrl)
 
     applicationStore.setPattern(pattern)
+    applicationStore.setShowOptions(showOptions)
+    applicationStore.setDepartmentCodeOrPrefix(department)
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 

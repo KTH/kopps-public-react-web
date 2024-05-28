@@ -32,5 +32,6 @@ function getShowOptions(option) {
 
 module.exports = {
   CLIENT_SHOW_OPTIONS,
+  ONLY_MHU,
   getShowOptions,
 }

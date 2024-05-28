@@ -249,6 +249,7 @@ const messages = {
     showOptions: 'Other options:',
     onlyEnglish: 'Courses taught in English',
     onlyMHU: 'Courses that deal with environment, environmental technology or sustainable development',
+    onlyMHULabel: 'Environment',
     showCancelled: 'Dormant/Terminated course',
     summer: 'summer',
     department: 'School, department, etc',
