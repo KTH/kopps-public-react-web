@@ -1,7 +1,7 @@
 import { departmentLink, pageLink, programmeLink, thirdCycleDepartmentLink } from '../../../../domain/links'
 
 function parentLink(language) {
-  return pageLink(`/student/`, language)
+  return pageLink(`/student/studier/`, language)
 }
 
 function parentStudyLink(language) {

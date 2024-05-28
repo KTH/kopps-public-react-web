@@ -85,7 +85,7 @@ const messages = {
       2: 'HT',
     },
     main_menu_aria_label: 'Undermeny',
-    main_menu_student: 'Student på KTH',
+    main_menu_studies: 'Studier',
     main_menu_study_at_kth: 'Utbildning',
     main_menu_directory: 'Kurs- och programkatalogen',
     main_menu_page_example: 'Exempel',

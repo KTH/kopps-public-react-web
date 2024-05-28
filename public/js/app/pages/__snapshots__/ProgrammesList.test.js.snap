@@ -38,9 +38,9 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Engl
         >
           <a
             class="kth-button back"
-            href="/student/?l=en"
+            href="/student/studier/?l=en"
           >
-            Student at KTH
+            Studies
           </a>
           <h2>
             Course and programme directory
@@ -85,9 +85,9 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Engl
     >
       <a
         class="kth-button back"
-        href="/student/?l=en"
+        href="/student/studier/?l=en"
       >
-        Student at KTH
+        Studies
       </a>
       <h2
         id="local-navigation-title"
@@ -280,9 +280,9 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Swed
         >
           <a
             class="kth-button back"
-            href="/student/"
+            href="/student/studier/"
           >
-            Student på KTH
+            Studier
           </a>
           <h2>
             Kurs- och programkatalogen
@@ -327,9 +327,9 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Swed
     >
       <a
         class="kth-button back"
-        href="/student/"
+        href="/student/studier/"
       >
-        Student på KTH
+        Studier
       </a>
       <h2
         id="local-navigation-title"
