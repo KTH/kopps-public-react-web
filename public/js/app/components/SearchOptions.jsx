@@ -84,7 +84,7 @@ function SearchOptions({ overrideSearchHead = '', paramAliasName = '', paramName
 
 SearchOptions.propTypes = {
   overrideSearchHead: PropTypes.string,
-  paramAliasName: PropTypes.oneOf(['currentYear', 'nextYear', '']),
+  paramAliasName: PropTypes.oneOf(['currentYear', 'nextYear', 'onlyMHU', '']),
   paramName: PropTypes.oneOf(['eduLevel', 'period', 'showOptions']).isRequired,
   onChange: PropTypes.func.isRequired,
 }

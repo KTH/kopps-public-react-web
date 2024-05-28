@@ -8,8 +8,9 @@ import i18n from '../../../../i18n'
 import Lead from '../components/Lead'
 import FooterContent from '../components/FooterContent'
 
-import { SearchInputField } from '../components/index'
 import SearchResultDisplay from '../components/SearchResultDisplay'
+import ThirdCycleStudySearchFormFields from '../components/ThirdCycleStudySearchFormFields'
+
 import { replaceSiteLinkForThirdCyclePages } from '../util/links'
 
 function getHelpText(langAbbr, langIndex) {
@@ -26,18 +27,67 @@ function getHelpText(langAbbr, langIndex) {
   return instructionsTexts
 }
 
+function hasValue(param) {
+  if (!param || param === null || param === '') return false
+  if (typeof param === 'object' && param.length === 0) return false
+  if (typeof param === 'string' && param.trim().length === 0) return false
+  return true
+}
+
+function _checkAndGetOtherOptions({ department, showOptions }) {
+  // clean params
+
+  const optionsValues = {}
+
+  if (hasValue(showOptions)) optionsValues.showOptions = showOptions
+  if (hasValue(department)) optionsValues.department = department
+
+  return optionsValues
+}
+
+function _checkAndGetResultValues({ department, pattern, showOptions }) {
+  // clean params
+  const optionsInCollapse = _checkAndGetOtherOptions({ department, showOptions })
+
+  const resultValues = optionsInCollapse
+  if (hasValue(pattern)) resultValues.pattern = pattern
+  if (hasValue(pattern) || Object.keys(optionsInCollapse).length !== 0) resultValues.eduLevel = ['3']
+
+  return resultValues
+}
+
 const CourseSearchThirdCycleStudy = () => {
-  const { language: lang, languageIndex, textPattern: initialPattern } = useStore()
+  const {
+    language: lang,
+    languageIndex,
+    textPattern: storePattern,
+    departmentCodeOrPrefix: storeDepartment,
+    showOptions: storeShowOptions,
+  } = useStore()
   const { thirdCycleSearch, thirdCycleSearchInstructions, messages } = i18n.messages[languageIndex]
   const { searchHeading, leadIntro, linkToUsualSearch } = thirdCycleSearch
   const { search_help_collapse_header: collapseHeader } = thirdCycleSearchInstructions
 
-  const [pattern, setPattern] = useState(initialPattern)
+  const [params, setParams] = useState(
+    _checkAndGetResultValues({
+      department: storeDepartment,
+      pattern: storePattern,
+      showOptions: storeShowOptions,
+    })
+  )
 
   const helptexts = getHelpText(lang, languageIndex)
 
-  function handleSubmit(patternValue) {
-    setPattern(patternValue)
+  function handleSubmit(props) {
+    const finalSearchParams = _checkAndGetResultValues(props)
+
+    setParams(finalSearchParams)
+  }
+
+  function _openOptionsInCollapse() {
+    const hasChosenOptions = _checkAndGetOtherOptions(params)
+    if (Object.values(hasChosenOptions).length === 0) return false
+    return true
   }
 
   React.useEffect(() => {
@@ -64,6 +114,20 @@ const CourseSearchThirdCycleStudy = () => {
       </Row>
       <Row>
         <Col>
+          <ThirdCycleStudySearchFormFields
+            openOptions={_openOptionsInCollapse()}
+            caption={searchHeading}
+            onSubmit={handleSubmit}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <SearchResultDisplay searchParameters={params} />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
           <CollapseDetails title={collapseHeader}>
             <div className="article">
               <ul>
@@ -77,19 +141,9 @@ const CourseSearchThirdCycleStudy = () => {
       </Row>
       <Row>
         <Col>
-          <SearchInputField caption={searchHeading} pattern={pattern} onSubmit={handleSubmit} />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <p style={{ marginTop: '50px' }}>
+          <p>
             <a href={`/student/kurser/sokkurs?l=${lang}`}>{linkToUsualSearch}</a>
           </p>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <SearchResultDisplay searchParameters={{ pattern, eduLevel: ['3'] }} onlyPattern />
         </Col>
       </Row>
       <Row>
