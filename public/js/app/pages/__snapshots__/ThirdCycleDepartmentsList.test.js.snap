@@ -122,11 +122,15 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
         class="row"
       >
         <div
-          class="article article--no-start-margin col"
+          class="col"
         >
-          <p>
-            Here is information about third-cycle courses at KTH. The courses are sorted by KTH schools and their respective organizations. Use the menu option Search third-cycle courses to search for a course or filter on courses that deal with environment, environmental technology, or sustainable development.
-          </p>
+          <article
+            class="article article--no-start-margin "
+          >
+            <p>
+              Here is information about third-cycle courses at KTH. The courses are sorted by KTH schools and their respective organizations. Use the menu option Search third-cycle courses to search for a course or filter on courses that deal with environment, environmental technology, or sustainable development.
+            </p>
+          </article>
         </div>
       </div>
       <div
@@ -324,11 +328,15 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
         class="row"
       >
         <div
-          class="article article--no-start-margin col"
+          class="col"
         >
-          <p>
-            Här hittar du information om forskarkurser på KTH. Kurserna är sorterade efter KTH:s skolor och deras organisationer. Använd menyalternativet Sök forskarkurs för att söka fram en kurs eller filtrera på kurser som behandlar miljö, miljöteknik eller hållbar utveckling.
-          </p>
+          <article
+            class="article article--no-start-margin "
+          >
+            <p>
+              Här hittar du information om forskarkurser på KTH. Kurserna är sorterade efter KTH:s skolor och deras organisationer. Använd menyalternativet Sök forskarkurs för att söka fram en kurs eller filtrera på kurser som behandlar miljö, miljöteknik eller hållbar utveckling.
+            </p>
+          </article>
         </div>
       </div>
       <div
