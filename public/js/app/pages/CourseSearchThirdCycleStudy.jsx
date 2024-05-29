@@ -1,40 +1,16 @@
 import React, { useState } from 'react'
 import { Col, Row } from 'reactstrap'
 import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
-import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
+import { PageHeading, Link } from '@kth/kth-reactstrap/dist/components/studinfo'
 
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
-import Lead from '../components/Lead'
-import FooterContent from '../components/FooterContent'
+import { Lead, HelpTexts, FooterContent, SearchResultDisplay, ThirdCycleStudySearchFormFields } from '../components'
 
-import SearchResultDisplay from '../components/SearchResultDisplay'
-import ThirdCycleStudySearchFormFields from '../components/ThirdCycleStudySearchFormFields'
+import { replaceSiteLinkForThirdCyclePages, courseSearchLiink } from '../util/links'
+import { getHelpText, hasValue } from '../util/searchHelper'
 
-import { replaceSiteLinkForThirdCyclePages } from '../util/links'
-
-function getHelpText(langAbbr, langIndex) {
-  const { thirdCycleSearchInstructions } = i18n.messages[langIndex]
-  const instructionsTexts = [
-    'search_research_help_1',
-    'search_research_help_2',
-    'search_research_help_3',
-    'search_research_help_4',
-    'search_research_help_5',
-    'search_research_help_6',
-  ].map(s => thirdCycleSearchInstructions[s])
-
-  return instructionsTexts
-}
-
-function hasValue(param) {
-  if (!param || param === null || param === '') return false
-  if (typeof param === 'object' && param.length === 0) return false
-  if (typeof param === 'string' && param.trim().length === 0) return false
-  return true
-}
-
-function _checkAndGetOtherOptions({ department, showOptions }) {
+function _checkAndGetCollapseOptions({ department, showOptions }) {
   // clean params
 
   const optionsValues = {}
@@ -47,7 +23,7 @@ function _checkAndGetOtherOptions({ department, showOptions }) {
 
 function _checkAndGetResultValues({ department, pattern, showOptions }) {
   // clean params
-  const optionsInCollapse = _checkAndGetOtherOptions({ department, showOptions })
+  const optionsInCollapse = _checkAndGetCollapseOptions({ department, showOptions })
 
   const resultValues = optionsInCollapse
   if (hasValue(pattern)) resultValues.pattern = pattern
@@ -76,7 +52,14 @@ const CourseSearchThirdCycleStudy = () => {
     })
   )
 
-  const helptexts = getHelpText(lang, languageIndex)
+  const helptexts = getHelpText(languageIndex, 'thirdCycleSearchInstructions', [
+    'search_research_help_1',
+    'search_research_help_2',
+    'search_research_help_3',
+    'search_research_help_4',
+    'search_research_help_5',
+    'search_research_help_6',
+  ])
 
   function handleSubmit(props) {
     const finalSearchParams = _checkAndGetResultValues(props)
@@ -85,7 +68,7 @@ const CourseSearchThirdCycleStudy = () => {
   }
 
   function _openOptionsInCollapse() {
-    const hasChosenOptions = _checkAndGetOtherOptions(params)
+    const hasChosenOptions = _checkAndGetCollapseOptions(params)
     if (Object.values(hasChosenOptions).length === 0) return false
     return true
   }
@@ -129,21 +112,13 @@ const CourseSearchThirdCycleStudy = () => {
       <Row>
         <Col>
           <CollapseDetails title={collapseHeader}>
-            <div className="article">
-              <ul>
-                {helptexts.map(value => (
-                  <li key={value}>{value}</li>
-                ))}
-              </ul>
-            </div>
+            <HelpTexts helptexts={helptexts} />
           </CollapseDetails>
         </Col>
       </Row>
       <Row>
         <Col>
-          <p>
-            <a href={`/student/kurser/sokkurs?l=${lang}`}>{linkToUsualSearch}</a>
-          </p>
+          <Link href={courseSearchLiink('sokkurs', lang)}>{linkToUsualSearch}</Link>
         </Col>
       </Row>
       <Row>

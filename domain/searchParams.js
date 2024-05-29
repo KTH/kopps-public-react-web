@@ -62,7 +62,7 @@ const showOptionsConfig = langIndex => {
   })
 }
 
-const showOnlyMHUConfig = langIndex => {
+const onlyMHUConfig = langIndex => {
   const { bigSearch } = i18n.messages[langIndex]
 
   const label = bigSearch[ONLY_MHU]
@@ -164,7 +164,7 @@ function getParamConfig(paramName, langIndex) {
     case 'showOptions':
       return showOptionsConfig(langIndex)
     case 'onlyMHU':
-      return showOnlyMHUConfig(langIndex)
+      return onlyMHUConfig(langIndex)
     default: {
       if (typeof paramName !== 'string')
         throw new Error(`Check the type of parameter name: ${paramName} has the type ${typeof paramName}`)
