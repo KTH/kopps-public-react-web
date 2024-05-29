@@ -5,7 +5,7 @@ import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
-import { Lead, FooterContent, SearchResultDisplay, SearchFormFields, HelpTexts } from '../components/Lead'
+import { Lead, FooterContent, SearchResultDisplay, SearchFormFields, HelpTexts } from '../components'
 
 import { getHelpText, hasValue } from '../util/searchHelper'
 
@@ -43,7 +43,7 @@ const CourseSearch = () => {
   } = useStore()
   const { bigSearch, searchInstructions } = i18n.messages[languageIndex]
   const { searchHeading, leadIntro, searchButton } = bigSearch
-  const { search_help_collapse_header: collapseHeader, search_help_10: lastInstruction } = searchInstructions
+  const { search_help_collapse_header: collapseHeader } = searchInstructions
   // const [loadStatus, setLoadStatus] = useState('firstLoad')
   const [params, setParams] = useState(
     _checkAndGetResultValues({
@@ -65,6 +65,7 @@ const CourseSearch = () => {
     'search_help_7',
     'search_help_8',
     'search_help_9',
+    'search_help_10',
   ])
 
   function handleSubmit(props) {
@@ -106,7 +107,7 @@ const CourseSearch = () => {
       <Row>
         <Col>
           <CollapseDetails title={collapseHeader}>
-            <HelpTexts helptexts={helptexts} />
+            <HelpTexts helptexts={helptexts} htmlIndexes={[9]} />
           </CollapseDetails>
         </Col>
       </Row>
