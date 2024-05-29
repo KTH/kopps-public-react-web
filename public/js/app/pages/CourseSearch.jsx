@@ -5,36 +5,11 @@ import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
-import Lead from '../components/Lead'
-import FooterContent from '../components/FooterContent'
+import { Lead, FooterContent, SearchResultDisplay, SearchFormFields, HelpTexts } from '../components/Lead'
 
-import SearchResultDisplay from '../components/SearchResultDisplay'
-import SearchFormFields from '../components/SearchFormFields'
+import { getHelpText, hasValue } from '../util/searchHelper'
 
-function getHelpText(langIndex) {
-  const { searchInstructions } = i18n.messages[langIndex]
-
-  return [
-    'search_help_1',
-    'search_help_2',
-    'search_help_3',
-    'search_help_4',
-    'search_help_5',
-    'search_help_6',
-    'search_help_7',
-    'search_help_8',
-    'search_help_9',
-  ].map(s => searchInstructions[s])
-}
-
-function hasValue(param) {
-  if (!param || param === null || param === '') return false
-  if (typeof param === 'object' && param.length === 0) return false
-  if (typeof param === 'string' && param.trim().length === 0) return false
-  return true
-}
-
-function _checkAndGetOtherOptions({ department, eduLevel, period, showOptions }) {
+function _checkAndGetCollapseOptions({ department, eduLevel, period, showOptions }) {
   // clean params
 
   const optionsValues = {}
@@ -49,7 +24,7 @@ function _checkAndGetOtherOptions({ department, eduLevel, period, showOptions })
 
 function _checkAndGetResultValues({ department, eduLevel, pattern, period, showOptions }) {
   // clean params
-  const optionsInCollapse = _checkAndGetOtherOptions({ department, eduLevel, period, showOptions })
+  const optionsInCollapse = _checkAndGetCollapseOptions({ department, eduLevel, period, showOptions })
 
   const resultValues = optionsInCollapse
   if (hasValue(pattern)) resultValues.pattern = pattern
@@ -80,7 +55,17 @@ const CourseSearch = () => {
     })
   )
 
-  const helptexts = getHelpText(languageIndex)
+  const helptexts = getHelpText(languageIndex, 'searchInstructions', [
+    'search_help_1',
+    'search_help_2',
+    'search_help_3',
+    'search_help_4',
+    'search_help_5',
+    'search_help_6',
+    'search_help_7',
+    'search_help_8',
+    'search_help_9',
+  ])
 
   function handleSubmit(props) {
     const finalSearchParams = _checkAndGetResultValues(props)
@@ -89,7 +74,7 @@ const CourseSearch = () => {
   }
 
   function _openOptionsInCollapse() {
-    const hasChosenOptions = _checkAndGetOtherOptions(params)
+    const hasChosenOptions = _checkAndGetCollapseOptions(params)
     if (Object.values(hasChosenOptions).length === 0) return false
     return true
   }
@@ -121,15 +106,7 @@ const CourseSearch = () => {
       <Row>
         <Col>
           <CollapseDetails title={collapseHeader}>
-            <div className="article">
-              <ul>
-                {helptexts.map(value => (
-                  <li key={value}>{value}</li>
-                ))}
-                {/* eslint-disable-next-line react/no-danger */}
-                <li key="lastInstruction" dangerouslySetInnerHTML={{ __html: lastInstruction }} />
-              </ul>
-            </div>
+            <HelpTexts helptexts={helptexts} />
           </CollapseDetails>
         </Col>
       </Row>
