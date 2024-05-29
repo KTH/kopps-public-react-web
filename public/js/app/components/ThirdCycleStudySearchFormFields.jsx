@@ -32,7 +32,6 @@ function SearchFormFields({ caption, openOptions, onSubmit }) {
     setState({ pattern: pattern.trim() })
 
     onSubmit(state)
-    console.log('state', state)
   }
 
   function handleParamChange(params) {
