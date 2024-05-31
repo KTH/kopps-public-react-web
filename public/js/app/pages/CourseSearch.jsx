@@ -7,7 +7,7 @@ import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 import { Lead, FooterContent, SearchResultDisplay, SearchFormFields, HelpTexts } from '../components'
 
-import { getHelpText, hasValue } from '../util/searchHelper'
+import { getHelpText, hasValue, openOptionsInCollapse } from '../util/searchHelper'
 
 function _checkAndGetCollapseOptions({ department, eduLevel, period, showOptions }) {
   // clean params
@@ -74,12 +74,6 @@ const CourseSearch = () => {
     setParams(finalSearchParams)
   }
 
-  function _openOptionsInCollapse() {
-    const hasChosenOptions = _checkAndGetCollapseOptions(params)
-    if (Object.values(hasChosenOptions).length === 0) return false
-    return true
-  }
-
   return (
     <>
       <Row>
@@ -96,7 +90,11 @@ const CourseSearch = () => {
 
       <Row>
         <Col>
-          <SearchFormFields openOptions={_openOptionsInCollapse()} caption={searchButton} onSubmit={handleSubmit} />
+          <SearchFormFields
+            openOptions={openOptionsInCollapse(_checkAndGetCollapseOptions(params))}
+            caption={searchButton}
+            onSubmit={handleSubmit}
+          />
         </Col>
       </Row>
       <Row>

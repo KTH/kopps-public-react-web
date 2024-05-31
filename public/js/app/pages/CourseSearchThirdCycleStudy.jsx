@@ -7,8 +7,8 @@ import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 import { Lead, HelpTexts, FooterContent, SearchResultDisplay, ThirdCycleStudySearchFormFields } from '../components'
 
-import { replaceSiteLinkForThirdCyclePages, courseSearchLiink } from '../util/links'
-import { getHelpText, hasValue } from '../util/searchHelper'
+import { replaceSiteLinkForThirdCyclePages, courseSearchLink } from '../util/links'
+import { getHelpText, hasValue, openOptionsInCollapse } from '../util/searchHelper'
 
 function _checkAndGetCollapseOptions({ department, showOptions }) {
   // clean params
@@ -67,12 +67,6 @@ const CourseSearchThirdCycleStudy = () => {
     setParams(finalSearchParams)
   }
 
-  function _openOptionsInCollapse() {
-    const hasChosenOptions = _checkAndGetCollapseOptions(params)
-    if (Object.values(hasChosenOptions).length === 0) return false
-    return true
-  }
-
   React.useEffect(() => {
     let isMounted = true
     if (isMounted) {
@@ -98,7 +92,7 @@ const CourseSearchThirdCycleStudy = () => {
       <Row>
         <Col>
           <ThirdCycleStudySearchFormFields
-            openOptions={_openOptionsInCollapse()}
+            openOptions={openOptionsInCollapse(_checkAndGetCollapseOptions(params))}
             caption={searchHeading}
             onSubmit={handleSubmit}
           />
@@ -118,7 +112,7 @@ const CourseSearchThirdCycleStudy = () => {
       </Row>
       <Row>
         <Col>
-          <Link href={courseSearchLiink('sokkurs', lang)}>{linkToUsualSearch}</Link>
+          <Link href={courseSearchLink('sokkurs', lang)}>{linkToUsualSearch}</Link>
         </Col>
       </Row>
       <Row>

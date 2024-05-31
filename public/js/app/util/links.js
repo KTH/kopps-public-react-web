@@ -22,7 +22,7 @@ function courseLink(courseCode, language, { periods = undefined, term = undefine
   return pageLink(`/student/kurser/kurs/${courseCode}${startSign}${period}${bindSign}${startTerm}`, language) // outside link
 }
 
-function courseSearchLiink(courseCode, language) {
+function courseSearchLink(courseCode, language) {
   return pageLink('/student/kurser/sokkurs', language)
 }
 
@@ -83,7 +83,7 @@ export {
   programmeLink,
   departmentLink,
   courseLink,
-  courseSearchLiink,
+  courseSearchLink,
   centralStudyCounselingUrl,
   koppsEmail,
   parentStudyLink,
