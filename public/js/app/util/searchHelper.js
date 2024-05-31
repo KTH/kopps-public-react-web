@@ -1,10 +1,10 @@
 import i18n from '../../../../i18n'
 
-function getHelpText(langIndex, nameOfInstruction, listOfInstructions) {
+function getHelpText(langIndex, nameOfInstruction, instructionKeys) {
   const messages = i18n.messages[langIndex]
   const instructions = messages[nameOfInstruction]
 
-  const instructionsTexts = listOfInstructions.map(s => instructions[s])
+  const instructionsTexts = instructionKeys.map(s => instructions[s])
 
   return instructionsTexts
 }
@@ -16,4 +16,9 @@ function hasValue(param) {
   return true
 }
 
-export { getHelpText, hasValue }
+function openOptionsInCollapse(hasChosenOptions) {
+  if (Object.values(hasChosenOptions).length === 0) return false
+  return true
+}
+
+export { getHelpText, hasValue, openOptionsInCollapse }

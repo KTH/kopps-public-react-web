@@ -7,7 +7,8 @@ import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 
 // eslint-disable-next-line import/no-cycle
-import { SearchDepartments, SearchOptions } from './index'
+import SearchDepartments from './SearchDepartments'
+import SearchOptions from './SearchOptions'
 
 const paramsReducer = (state, action) => ({ ...state, ...action })
 
