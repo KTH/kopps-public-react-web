@@ -14,12 +14,10 @@ function parentThirdCycleStudyLink(language) {
     : pageLink(`/utbildning/forskarutbildning/`, language)
 }
 
-function courseLink(courseCode, language, { periods = undefined, term = undefined } = {}) {
-  const startSign = (term !== undefined && term !== '') || periods !== undefined ? '?' : ''
-  const bindSign = term !== undefined && term !== '' && periods !== undefined ? '&' : ''
+function courseLink(courseCode, language, { term = undefined } = {}) {
+  const startSign = term !== undefined && term !== '' ? '?' : ''
   const startTerm = term !== undefined && term !== '' ? `startterm=${term}` : ''
-  const period = periods !== undefined ? `periods=${periods}` : ''
-  return pageLink(`/student/kurser/kurs/${courseCode}${startSign}${period}${bindSign}${startTerm}`, language) // outside link
+  return pageLink(`/student/kurser/kurs/${courseCode}${startSign}${startTerm}`, language) // outside link
 }
 
 function courseSearchLink(courseCode, language) {
