@@ -7,6 +7,10 @@
 
 ## Start development
 
+### Secrets for Development
+
+Secrets during local development are stored in a gitignored `.env` file (`env.in` can be used as template for your `.env` file). More details about environment variable setup and secrets can be found in [confluence](https://confluence.sys.kth.se/confluence/x/OYKBDQ).
+
 ### Install
 
 First time you might need to use options `--ignore-scripts` because of npm resolutions:
