@@ -15,9 +15,8 @@ function parentThirdCycleStudyLink(language) {
 }
 
 function courseLink(courseCode, language, { term = undefined } = {}) {
-  const startSign = term !== undefined && term !== '' ? '?' : ''
-  const startTerm = term !== undefined && term !== '' ? `startterm=${term}` : ''
-  return pageLink(`/student/kurser/kurs/${courseCode}${startSign}${startTerm}`, language) // outside link
+  const startTerm = term !== undefined && term !== '' ? `?startterm=${term}` : ''
+  return pageLink(`/student/kurser/kurs/${courseCode}${startTerm}`, language) // outside link
 }
 
 function courseSearchLink(courseCode, language) {
