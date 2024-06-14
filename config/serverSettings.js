@@ -25,7 +25,7 @@ const devSessionUseRedis = devDefaults(true)
 const devRedis = devDefaults('redis://localhost:6379/')
 const devKoppsApi = devDefaults('https://api-r.referens.sys.kth.se/api/kopps/v2/?defaultTimeout=60000')
 const devProgramSyallabusPDFURL = devDefaults('https://integral-api.sys.kth.se/test/PDFRenderFunction')
-const devServicePublish = '/student/kurser'
+const servicePublish = '/student/kurser'
 // END DEFAULT SETTINGS
 
 module.exports = {
@@ -95,7 +95,7 @@ module.exports = {
       // do not set session secret here!!
       cookie: {
         secure: String(getEnv('SESSION_SECURE_COOKIE', false)).toLowerCase() === 'true',
-        path: getEnv('SERVICE_PUBLISH', devServicePublish),
+        path: getEnv('SERVICE_PUBLISH', servicePublish),
         sameSite: getEnv('SESSION_SAME_SITE_COOKIE', 'Lax'),
       },
       proxy: String(getEnv('SESSION_TRUST_PROXY', true)).toLowerCase() === 'true',
