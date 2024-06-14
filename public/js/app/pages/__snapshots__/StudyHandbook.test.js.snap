@@ -165,6 +165,9 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Engli
                 Study Handbook 00/01 to 07/08
               </a>
             </p>
+            <pre>
+              debug: -
+            </pre>
           </article>
         </div>
       </div>
@@ -366,6 +369,9 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Swedi
                 Studiehandboken 00/01 tom 07/08
               </a>
             </p>
+            <pre>
+              debug: -
+            </pre>
           </article>
         </div>
       </div>

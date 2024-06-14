@@ -10,7 +10,7 @@ import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 
 function StudyHandbook() {
-  const { languageIndex } = useStore()
+  const { languageIndex, debug } = useStore()
   const { pageHeading, shbLink, content } = i18n.messages[languageIndex].shb
 
   return (
@@ -27,6 +27,7 @@ function StudyHandbook() {
             <p>
               <a href="https://intra.kth.se/utbildning/systemstod/kopps/shb">{shbLink}</a>
             </p>
+            <pre>debug: {debug}</pre>
           </Article>
         </Col>
       </Row>

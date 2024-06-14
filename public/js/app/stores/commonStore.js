@@ -14,6 +14,7 @@ function setStatusCode(statusCode) {
 
 function createCommonStore() {
   const commonStore = {
+    debug: '-',
     /**
      * @property {object} browserConfig
      */

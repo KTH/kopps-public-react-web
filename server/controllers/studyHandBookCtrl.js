@@ -29,13 +29,18 @@ async function getStudyBook(req, res, next) {
     const applicationStore = createStore()
     applicationStore.setLanguage(lang)
     applicationStore.setBrowserConfig(browserConfig)
+
+    const requestHost = req.host
+    const forwardedHost = req.header('x-forwarded-host')
+    const serverHost = serverConfig.hostUrl
+    applicationStore.debug = JSON.stringify({ requestHost, forwardedHost, serverHost }, null, 2)
+    const breadcrumbsList = createBreadcrumbs(lang)
+
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
     const { studyHandbook: basename, uri: proxyPrefix } = serverConfig.proxyPrefixPath
     const html = renderStaticPage({ applicationStore, location: req.url, basename: basename })
     const title = i18n.message('main_menu_shb', lang)
-
-    const breadcrumbsList = createBreadcrumbs(lang)
 
     res.render('app/index', {
       html,
