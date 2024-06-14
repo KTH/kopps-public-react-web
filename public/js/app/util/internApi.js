@@ -21,4 +21,24 @@ async function koppsCourseSearch(language, proxyUrl, params) {
   }
 }
 
-export default koppsCourseSearch
+const courseSearch = async (language, proxyUrl, params) => {
+  try {
+    const result = await axios.get(`${proxyUrl}/intern-api/sok-ladok/${language}`, {
+      params,
+    })
+    if (result) {
+      if (result.status >= 400) {
+        return 'ERROR-courseSearch-' + result.status
+      }
+      const { data } = result
+      return data
+    }
+  } catch (error) {
+    if (error.response) {
+      throw new Error('Unexpected error from courseSearch-' + error.message)
+    }
+    throw error
+  }
+}
+
+export { courseSearch, koppsCourseSearch }

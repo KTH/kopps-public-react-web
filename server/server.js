@@ -232,6 +232,7 @@ const {
   Appendix2,
   LiteratureList,
   PDFExport,
+  SearchLadok,
 } = require('./controllers')
 const { parseTerm } = require('../domain/term')
 
@@ -255,6 +256,12 @@ appRoute.get(
 appRoute.get('public.searchThirdCycleCourses', proxyPrefixPath.thirdCycleCourseSearch, Search.searchThirdCycleCourses)
 appRoute.get('public.searchAllCourses', proxyPrefixPath.courseSearch, Search.searchAllCourses)
 appRoute.get('api.searchCourses', proxyPrefixPath.courseSearchInternApi + '/:lang', Search.performCourseSearch)
+appRoute.get(
+  'api.searchCoursesLadok',
+  '/student/kurser/intern-api/sok-ladok' + '/:lang',
+  SearchLadok.performCourseSearch
+)
+
 appRoute.post('api.programmeSyllabusPDF', proxyPrefixPath.programmeSyllabusPDF, PDFExport.performPDFRenderFunction)
 
 appRoute.get('redirect.departmentsListThirdCycleStudy', redirectProxyPath.thirdCycleRoot, (req, res) => {

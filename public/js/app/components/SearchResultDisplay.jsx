@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import koppsCourseSearch from '../util/internApi'
+import { courseSearch, koppsCourseSearch } from '../util/internApi'
 import { useStore } from '../mobx'
 
 import i18n from '../../../../i18n'
@@ -96,7 +96,8 @@ function SearchResultDisplay({ searchParameters, onlyPattern = false }) {
 
     const proxyUrl = _getThisHost(browserConfig.proxyPrefixPath.uri)
     // eslint-disable-next-line consistent-return
-    return koppsCourseSearch(language, proxyUrl, searchParameters)
+    // return koppsCourseSearch(language, proxyUrl, searchParameters)
+    return courseSearch(language, proxyUrl, searchParameters)
   }, [searchParameters])
 
   const initialStatus = onlyPattern
@@ -105,7 +106,10 @@ function SearchResultDisplay({ searchParameters, onlyPattern = false }) {
 
   const state = useAsync(asyncCallback, initialStatus)
 
+  console.log(state)
+
   const { data: searchResults, status: searchStatus, error: errorType } = state
+  console.log(searchResults)
 
   useEffect(() => {
     let isMounted = true

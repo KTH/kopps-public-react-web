@@ -26,4 +26,5 @@ module.exports = {
   ThirdCycleStudySchoolsList: require('./thirdCycleStudySchoolsListCtrl'),
   ThirdCycleStudyDepartment: require('./thirdCycleStudyDepartmentCtrl'),
   PDFExport: require('./pdfCtrl'),
+  SearchLadok: require('./ladokSearchCtrl'),
 }

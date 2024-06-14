@@ -38,7 +38,23 @@ function educationalLevel(levelNumberAsStr) {
   }
 }
 
+const translateEducationalLevelType = ladok => {
+  switch (ladok) {
+    case 'FUPKURS':
+      return PREPARATORY_EDU_LEVEL
+    case '2007GKURS':
+      return BASIC_EDU_LEVEL
+    case '2007AKURS':
+      return ADVANCED_EDU_LEVEL
+    case '2007FKURS':
+      return RESEARCH_EDU_LEVEL
+    default:
+      return ''
+  }
+}
+
 module.exports = {
   CLIENT_EDU_LEVELS,
   educationalLevel,
+  translateEducationalLevelType,
 }
