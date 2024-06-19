@@ -131,13 +131,13 @@ function ProgramSyllabusExport({ applicationStore }) {
       'appendix2'
     )
 
-    const pdfResponse = generateProgramSyllabus(getCurrentHost(thisHostBaseUrl, false), {
+    const pdfResponse = generateProgramSyllabus(getCurrentHost(thisHostBaseUrl), {
       pages: [
         completeHTMLForPdfObjExtElgbImlpContainer,
         completeHTMLForPdfAppendix1Container,
         completeHTMLForPdfAppendix2Container,
       ],
-      baseUrl: getCurrentHost(thisHostBaseUrl, false),
+      baseUrl: getCurrentHost(thisHostBaseUrl),
       course: programmeCode + '-' + term + '.pdf',
     })
     pdfResponse.then(
