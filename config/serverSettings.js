@@ -51,6 +51,18 @@ module.exports = {
     // nodeApi: unpackNodeApiConfig('NODE_API_URI', devNodeApi),
   },
 
+  ladokAuth: {
+    clientId: getEnv('LADOK_AUTH_CLIENT_ID', null),
+    clientSecret: getEnv('LADOK_AUTH_CLIENT_SECRET', null),
+    tokenUrl: getEnv('LADOK_AUTH_TOKEN_URL', null),
+    scope: getEnv('LADOK_AUTH_SCOPE', null),
+  },
+
+  ladokApi: {
+    baseUrl: getEnv('LADOK_BASE_URL'),
+    ocpApimSupscriptionKey: getEnv('LADOK_OCP_APIM_SUBSCRIPTION_KEY'),
+  },
+
   // Cortina
   blockApi: {
     blockUrl: getEnv('CM_HOST_URL', devDefaults('https://www-r.referens.sys.kth.se/cm/')),

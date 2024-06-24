@@ -1,40 +1,10 @@
 const { translateEducationalLevelType } = require('../../domain/eduLevels')
 const { extractFromGroupDataType } = require('./util/extractLocalValue')
+const { getAccessToken } = require('./util/getAccessToken')
+const { server: serverConfig } = require('../configuration')
 
-const GRANT_TYPE = 'client_credentials'
-const clientId = process.env.LADOK_CLIENT_ID
-const clientSecret = process.env.LADOK_CLIENT_SECRET
-const scope = process.env.LADOK_SCOPE
-const tokenUrl = process.env.LADOK_TOKEN_URL
-const ocpApimSupscriptionKey = process.env.LADOK_OCP_APIM_SUBSCRIPTION_KEY
-const ladokBaseUrl = process.env.LADOK_BASE_URL
-
-const getAccessToken = async () => {
-  const data = {
-    grant_type: GRANT_TYPE,
-    client_id: clientId,
-    client_secret: clientSecret,
-    scope,
-  }
-
-  const urlEncodedData = new URLSearchParams(Object.entries(data)).toString()
-  const jwtTokenResponse = await fetch(tokenUrl, {
-    method: 'POST',
-    body: urlEncodedData,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-  })
-
-  const jwtToken = await jwtTokenResponse.json()
-
-  return jwtToken.access_token
-}
-
-const callLadok = async searchTerm => {
-  const accessToken = await getAccessToken()
-
-  const searchUrl = `${ladokBaseUrl}/sokKurs?kodEllerBenamning=`
+const doSearch = async ({ baseUrl, ocpApimSupscriptionKey }, accessToken, searchTerm) => {
+  const searchUrl = `${baseUrl}/sokKurs?kodEllerBenamning=`
 
   // TODO Benni - should we exclude postdoctoral courses from here?
   const searchResultsResponse = await fetch(searchUrl + searchTerm, {
@@ -45,6 +15,12 @@ const callLadok = async searchTerm => {
   })
 
   return await searchResultsResponse.json()
+}
+
+const callLadok = async searchTerm => {
+  const accessToken = await getAccessToken(serverConfig.ladokAuth)
+
+  return await doSearch(serverConfig.ladokApi, accessToken, searchTerm)
 }
 
 const filterOutDuplicateCourses = searchResults =>
