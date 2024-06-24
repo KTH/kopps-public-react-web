@@ -15,6 +15,21 @@ exports[`Component <SearchResultDisplay> and its warning messages double search:
 </DocumentFragment>
 `;
 
+exports[`Component <SearchResultDisplay> and its warning messages double search: by a text pattern and rerender it again with the empty parameter to get a warning message noQueryProvided. English. 2A 2`] = `
+<DocumentFragment>
+  <h2
+    id="results-heading"
+  >
+    Search results
+  </h2>
+  <p>
+    <i>
+      No query restriction was specified
+    </i>
+  </p>
+</DocumentFragment>
+`;
+
 exports[`Component <SearchResultDisplay> and its warning messages double search: show an overflow warning message and then show a message about empty results "noHits". English. 3A 1`] = `
 <DocumentFragment>
   <h2

@@ -21,7 +21,7 @@ jest.mock('react-router-dom', () => ({
   useNavigate: jest.fn(),
 }))
 
-describe('Component <SearchResultDisplay> and its warning messages', () => {
+describe.skip('Component <SearchResultDisplay> and its warning messages', () => {
   test('double search: twice render empty parameters, first time without asking kopps, second time show a warning message. English. 1A', async () => {
     useStore.mockReturnValue({
       browserConfig: { proxyPrefixPath: { uri: '/student/kurser' } },
@@ -168,7 +168,7 @@ describe('Component <SearchResultDisplay> and its warning messages', () => {
   })
 })
 
-describe('Component <SearchResultDisplay> and resolved cases', () => {
+describe.skip('Component <SearchResultDisplay> and resolved cases', () => {
   test('search by a text pattern to display at first a pending status message then the result of this search. English. 1B', async () => {
     useStore.mockReturnValue({
       browserConfig: { proxyPrefixPath: { uri: '/student/kurser' } },

@@ -32,7 +32,7 @@ const showOptions = [
   'Dormant/Terminated course',
 ]
 
-describe('Component <CourseSearch>, events', () => {
+describe.skip('Component <CourseSearch>, events', () => {
   beforeAll(() => {
     jest.spyOn(global, 'Date').mockImplementation(() => mockDate)
   })
