@@ -67,7 +67,6 @@ const getNewToken = async ({ tokenUrl, clientId, clientSecret, scope }) => {
 }
 
 const getAccessToken = async tokenConfig => {
-  log.debug('token', token)
   if (isTokenExpired()) {
     log.debug('Token expired. Requesting new token.')
     token = await getNewToken(tokenConfig)
