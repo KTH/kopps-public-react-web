@@ -15,12 +15,25 @@ function replacePathNameWithHref(element) {
   }
 }
 
-function getCurrentHost(thisHostBaseUrl, keepAppOrigin = true) {
-  let hostURL = thisHostBaseUrl
-  if (origin.includes('app') && keepAppOrigin) {
-    hostURL = String(thisHostBaseUrl).replace('www', 'app')
+const possiblyKeepApp = (baseUrl, keepAppOrigin) => {
+  if (window.origin.includes('app') && keepAppOrigin) {
+    return baseUrl.replace('www', 'app')
   }
-  return hostURL.slice(-1) === '/' ? hostURL.slice(0, -1) : hostURL
+  return baseUrl
+}
+
+const ensureNoTrailingSlash = currentHost => {
+  if (currentHost.endsWith('/')) {
+    return currentHost.slice(0, -1)
+  }
+
+  return currentHost
+}
+
+function getCurrentHost(baseUrl, keepAppOrigin = true) {
+  const currentHost = possiblyKeepApp(baseUrl, keepAppOrigin)
+
+  return ensureNoTrailingSlash(currentHost)
 }
 
 export { replacePathNameWithHref, getCurrentHost }
