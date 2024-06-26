@@ -120,86 +120,93 @@ exports[`Render component DepartmentCourses within Layout match to snapshot in E
         <div
           class="col"
         >
-          <article
-            class="article article--no-start-margin "
-          >
-            <table
-              class="table table-responsive"
+          <div>
+            <p
+              class="typescript-component"
             >
-              <thead>
-                <tr>
-                  <th
-                    style="cursor: pointer; user-select: none;"
-                  >
-                    Course code
-                    <span
-                      aria-hidden="true"
-                      style="opacity: 0; margin-left: .25em;"
+              I'M A TYPESCRIPT COMPONENT
+            </p>
+            <article
+              class="article article--no-start-margin "
+            >
+              <table
+                class="table table-responsive"
+              >
+                <thead>
+                  <tr>
+                    <th
+                      style="cursor: pointer; user-select: none;"
                     >
-                      ▼
-                    </span>
-                  </th>
-                  <th
-                    style="cursor: pointer; user-select: none;"
-                  >
-                    Course name
-                    <span
-                      aria-hidden="true"
-                      style="opacity: 0; margin-left: .25em;"
+                      Course code
+                      <span
+                        aria-hidden="true"
+                        style="opacity: 0; margin-left: .25em;"
+                      >
+                        ▼
+                      </span>
+                    </th>
+                    <th
+                      style="cursor: pointer; user-select: none;"
                     >
-                      ▼
-                    </span>
-                  </th>
-                  <th
-                    style="cursor: pointer; user-select: none;"
-                  >
-                    Scope
-                    <span
-                      aria-hidden="true"
-                      style="opacity: 0; margin-left: .25em;"
+                      Course name
+                      <span
+                        aria-hidden="true"
+                        style="opacity: 0; margin-left: .25em;"
+                      >
+                        ▼
+                      </span>
+                    </th>
+                    <th
+                      style="cursor: pointer; user-select: none;"
                     >
-                      ▼
-                    </span>
-                  </th>
-                  <th
-                    style="cursor: pointer; user-select: none;"
-                  >
-                    Educational level
-                    <span
-                      aria-hidden="true"
-                      style="opacity: 0; margin-left: .25em;"
+                      Scope
+                      <span
+                        aria-hidden="true"
+                        style="opacity: 0; margin-left: .25em;"
+                      >
+                        ▼
+                      </span>
+                    </th>
+                    <th
+                      style="cursor: pointer; user-select: none;"
                     >
-                      ▼
-                    </span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <a
-                      href="/student/kurser/kurs/AD12DA?l=en"
-                    >
-                      AD12DA
-                    </a>
-                  </td>
-                  <td>
-                    <a
-                      href="/student/kurser/kurs/AD12DA?l=en"
-                    >
-                      2DAutoCAD Focus on the Drawing as a Communicative Tool
-                    </a>
-                  </td>
-                  <td>
-                    6.0 hp
-                  </td>
-                  <td>
-                    First cycle
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </article>
+                      Educational level
+                      <span
+                        aria-hidden="true"
+                        style="opacity: 0; margin-left: .25em;"
+                      >
+                        ▼
+                      </span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <a
+                        href="/student/kurser/kurs/AD12DA?l=en"
+                      >
+                        AD12DA
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="/student/kurser/kurs/AD12DA?l=en"
+                      >
+                        2DAutoCAD Focus on the Drawing as a Communicative Tool
+                      </a>
+                    </td>
+                    <td>
+                      6.0 hp
+                    </td>
+                    <td>
+                      First cycle
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </article>
+          </div>
         </div>
       </div>
       <div
@@ -355,86 +362,93 @@ exports[`Render component DepartmentCourses within Layout match to snapshot in S
         <div
           class="col"
         >
-          <article
-            class="article article--no-start-margin "
-          >
-            <table
-              class="table table-responsive"
+          <div>
+            <p
+              class="typescript-component"
             >
-              <thead>
-                <tr>
-                  <th
-                    style="cursor: pointer; user-select: none;"
-                  >
-                    Kurskod
-                    <span
-                      aria-hidden="true"
-                      style="opacity: 0; margin-left: .25em;"
+              I'M A TYPESCRIPT COMPONENT
+            </p>
+            <article
+              class="article article--no-start-margin "
+            >
+              <table
+                class="table table-responsive"
+              >
+                <thead>
+                  <tr>
+                    <th
+                      style="cursor: pointer; user-select: none;"
                     >
-                      ▼
-                    </span>
-                  </th>
-                  <th
-                    style="cursor: pointer; user-select: none;"
-                  >
-                    Kursnamn
-                    <span
-                      aria-hidden="true"
-                      style="opacity: 0; margin-left: .25em;"
+                      Kurskod
+                      <span
+                        aria-hidden="true"
+                        style="opacity: 0; margin-left: .25em;"
+                      >
+                        ▼
+                      </span>
+                    </th>
+                    <th
+                      style="cursor: pointer; user-select: none;"
                     >
-                      ▼
-                    </span>
-                  </th>
-                  <th
-                    style="cursor: pointer; user-select: none;"
-                  >
-                    Omfattning
-                    <span
-                      aria-hidden="true"
-                      style="opacity: 0; margin-left: .25em;"
+                      Kursnamn
+                      <span
+                        aria-hidden="true"
+                        style="opacity: 0; margin-left: .25em;"
+                      >
+                        ▼
+                      </span>
+                    </th>
+                    <th
+                      style="cursor: pointer; user-select: none;"
                     >
-                      ▼
-                    </span>
-                  </th>
-                  <th
-                    style="cursor: pointer; user-select: none;"
-                  >
-                    Utbildningsnivå
-                    <span
-                      aria-hidden="true"
-                      style="opacity: 0; margin-left: .25em;"
+                      Omfattning
+                      <span
+                        aria-hidden="true"
+                        style="opacity: 0; margin-left: .25em;"
+                      >
+                        ▼
+                      </span>
+                    </th>
+                    <th
+                      style="cursor: pointer; user-select: none;"
                     >
-                      ▼
-                    </span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <a
-                      href="/student/kurser/kurs/AD12DA"
-                    >
-                      AD12DA
-                    </a>
-                  </td>
-                  <td>
-                    <a
-                      href="/student/kurser/kurs/AD12DA"
-                    >
-                      2DAutoCAD Fokus på ritningen som kommunikationsredskap
-                    </a>
-                  </td>
-                  <td>
-                    6,0 hp
-                  </td>
-                  <td>
-                    Grundnivå
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </article>
+                      Utbildningsnivå
+                      <span
+                        aria-hidden="true"
+                        style="opacity: 0; margin-left: .25em;"
+                      >
+                        ▼
+                      </span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <a
+                        href="/student/kurser/kurs/AD12DA"
+                      >
+                        AD12DA
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="/student/kurser/kurs/AD12DA"
+                      >
+                        2DAutoCAD Fokus på ritningen som kommunikationsredskap
+                      </a>
+                    </td>
+                    <td>
+                      6,0 hp
+                    </td>
+                    <td>
+                      Grundnivå
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </article>
+          </div>
         </div>
       </div>
       <div

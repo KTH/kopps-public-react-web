@@ -105,117 +105,124 @@ exports[`Component <SearchResultDisplay> and resolved cases double search: by de
     <div
       class="col"
     >
-      <article
-        class="article article--no-start-margin "
-      >
+      <div>
         <p
-          data-testid="number-of-results"
+          class="typescript-component"
         >
-          Your search returned 
-          <b>
-            2
-          </b>
-           result(s).
+          I'M A TYPESCRIPT COMPONENT
         </p>
-        <table
-          class="table table-responsive"
+        <article
+          class="article article--no-start-margin "
         >
-          <thead>
-            <tr>
-              <th
-                style="cursor: pointer; user-select: none;"
-              >
-                Course code
-                <span
-                  aria-hidden="true"
-                  style="opacity: 0; margin-left: .25em;"
+          <p
+            data-testid="number-of-results"
+          >
+            Your search returned 
+            <b>
+              2
+            </b>
+             result(s).
+          </p>
+          <table
+            class="table table-responsive"
+          >
+            <thead>
+              <tr>
+                <th
+                  style="cursor: pointer; user-select: none;"
                 >
-                  ▼
-                </span>
-              </th>
-              <th
-                style="cursor: pointer; user-select: none;"
-              >
-                Course name
-                <span
-                  aria-hidden="true"
-                  style="opacity: 0; margin-left: .25em;"
+                  Course code
+                  <span
+                    aria-hidden="true"
+                    style="opacity: 0; margin-left: .25em;"
+                  >
+                    ▼
+                  </span>
+                </th>
+                <th
+                  style="cursor: pointer; user-select: none;"
                 >
-                  ▼
-                </span>
-              </th>
-              <th
-                style="cursor: pointer; user-select: none;"
-              >
-                Scope
-                <span
-                  aria-hidden="true"
-                  style="opacity: 0; margin-left: .25em;"
+                  Course name
+                  <span
+                    aria-hidden="true"
+                    style="opacity: 0; margin-left: .25em;"
+                  >
+                    ▼
+                  </span>
+                </th>
+                <th
+                  style="cursor: pointer; user-select: none;"
                 >
-                  ▼
-                </span>
-              </th>
-              <th
-                style="cursor: pointer; user-select: none;"
-              >
-                Educational level
-                <span
-                  aria-hidden="true"
-                  style="opacity: 0; margin-left: .25em;"
+                  Scope
+                  <span
+                    aria-hidden="true"
+                    style="opacity: 0; margin-left: .25em;"
+                  >
+                    ▼
+                  </span>
+                </th>
+                <th
+                  style="cursor: pointer; user-select: none;"
                 >
-                  ▼
-                </span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <a
-                  href="/student/kurser/kurs/IX1303?l=en"
-                >
-                  IX1303
-                </a>
-              </td>
-              <td>
-                <a
-                  href="/student/kurser/kurs/IX1303?l=en"
-                >
-                  Algebra och geometri
-                </a>
-              </td>
-              <td>
-                7.5 hp
-              </td>
-              <td>
-                First cycle
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a
-                  href="/student/kurser/kurs/SF1624?l=en"
-                >
-                  SF1624
-                </a>
-              </td>
-              <td>
-                <a
-                  href="/student/kurser/kurs/SF1624?l=en"
-                >
-                  Algebra och geometri
-                </a>
-              </td>
-              <td>
-                7.5 hp
-              </td>
-              <td>
-                First cycle
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </article>
+                  Educational level
+                  <span
+                    aria-hidden="true"
+                    style="opacity: 0; margin-left: .25em;"
+                  >
+                    ▼
+                  </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <a
+                    href="/student/kurser/kurs/IX1303?l=en"
+                  >
+                    IX1303
+                  </a>
+                </td>
+                <td>
+                  <a
+                    href="/student/kurser/kurs/IX1303?l=en"
+                  >
+                    Algebra och geometri
+                  </a>
+                </td>
+                <td>
+                  7.5 hp
+                </td>
+                <td>
+                  First cycle
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a
+                    href="/student/kurser/kurs/SF1624?l=en"
+                  >
+                    SF1624
+                  </a>
+                </td>
+                <td>
+                  <a
+                    href="/student/kurser/kurs/SF1624?l=en"
+                  >
+                    Algebra och geometri
+                  </a>
+                </td>
+                <td>
+                  7.5 hp
+                </td>
+                <td>
+                  First cycle
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+      </div>
     </div>
   </div>
 </DocumentFragment>
@@ -234,132 +241,139 @@ exports[`Component <SearchResultDisplay> and resolved cases double search: by de
     <div
       class="col"
     >
-      <article
-        class="article article--no-start-margin "
-      >
+      <div>
         <p
-          data-testid="number-of-results"
+          class="typescript-component"
         >
-          Your search returned 
-          <b>
-            2
-          </b>
-           result(s).
+          I'M A TYPESCRIPT COMPONENT
         </p>
-        <table
-          class="table table-responsive"
+        <article
+          class="article article--no-start-margin "
         >
-          <thead>
-            <tr>
-              <th
-                style="cursor: pointer; user-select: none;"
-              >
-                Course code
-                <span
-                  aria-hidden="true"
-                  style="opacity: 0; margin-left: .25em;"
+          <p
+            data-testid="number-of-results"
+          >
+            Your search returned 
+            <b>
+              2
+            </b>
+             result(s).
+          </p>
+          <table
+            class="table table-responsive"
+          >
+            <thead>
+              <tr>
+                <th
+                  style="cursor: pointer; user-select: none;"
                 >
-                  ▼
-                </span>
-              </th>
-              <th
-                style="cursor: pointer; user-select: none;"
-              >
-                Course name
-                <span
-                  aria-hidden="true"
-                  style="opacity: 0; margin-left: .25em;"
+                  Course code
+                  <span
+                    aria-hidden="true"
+                    style="opacity: 0; margin-left: .25em;"
+                  >
+                    ▼
+                  </span>
+                </th>
+                <th
+                  style="cursor: pointer; user-select: none;"
                 >
-                  ▼
-                </span>
-              </th>
-              <th
-                style="cursor: pointer; user-select: none;"
-              >
-                Scope
-                <span
-                  aria-hidden="true"
-                  style="opacity: 0; margin-left: .25em;"
+                  Course name
+                  <span
+                    aria-hidden="true"
+                    style="opacity: 0; margin-left: .25em;"
+                  >
+                    ▼
+                  </span>
+                </th>
+                <th
+                  style="cursor: pointer; user-select: none;"
                 >
-                  ▼
-                </span>
-              </th>
-              <th
-                style="cursor: pointer; user-select: none;"
-              >
-                Educational level
-                <span
-                  aria-hidden="true"
-                  style="opacity: 0; margin-left: .25em;"
+                  Scope
+                  <span
+                    aria-hidden="true"
+                    style="opacity: 0; margin-left: .25em;"
+                  >
+                    ▼
+                  </span>
+                </th>
+                <th
+                  style="cursor: pointer; user-select: none;"
                 >
-                  ▼
-                </span>
-              </th>
-              <th
-                style="cursor: pointer; user-select: none;"
-              >
-                Periods
-                <span
-                  aria-hidden="true"
-                  style="opacity: 0; margin-left: .25em;"
+                  Educational level
+                  <span
+                    aria-hidden="true"
+                    style="opacity: 0; margin-left: .25em;"
+                  >
+                    ▼
+                  </span>
+                </th>
+                <th
+                  style="cursor: pointer; user-select: none;"
                 >
-                  ▼
-                </span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <a
-                  href="/student/kurser/kurs/AF2402?startterm=20212&l=en"
-                >
-                  AF2402
-                </a>
-              </td>
-              <td>
-                <a
-                  href="/student/kurser/kurs/AF2402?startterm=20212&l=en"
-                >
-                  Acoustics and Fire
-                </a>
-              </td>
-              <td>
-                7.5 hp
-              </td>
-              <td>
-                First cycle
-              </td>
-              <td>
-                P1 Autumn 21 - P3 Spring 22
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a
-                  href="/student/kurser/kurs/AH2905?startterm=20212&l=en"
-                >
-                  AH2905
-                </a>
-              </td>
-              <td>
-                <a
-                  href="/student/kurser/kurs/AH2905?startterm=20212&l=en"
-                >
-                  Advanced Pavement Engineering Analysis and Design
-                </a>
-              </td>
-              <td>
-                7.5 hp
-              </td>
-              <td />
-              <td>
-                P1 Autumn 21
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </article>
+                  Periods
+                  <span
+                    aria-hidden="true"
+                    style="opacity: 0; margin-left: .25em;"
+                  >
+                    ▼
+                  </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <a
+                    href="/student/kurser/kurs/AF2402?startterm=20212&l=en"
+                  >
+                    AF2402
+                  </a>
+                </td>
+                <td>
+                  <a
+                    href="/student/kurser/kurs/AF2402?startterm=20212&l=en"
+                  >
+                    Acoustics and Fire
+                  </a>
+                </td>
+                <td>
+                  7.5 hp
+                </td>
+                <td>
+                  First cycle
+                </td>
+                <td>
+                  P1 Autumn 21 - P3 Spring 22
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a
+                    href="/student/kurser/kurs/AH2905?startterm=20212&l=en"
+                  >
+                    AH2905
+                  </a>
+                </td>
+                <td>
+                  <a
+                    href="/student/kurser/kurs/AH2905?startterm=20212&l=en"
+                  >
+                    Advanced Pavement Engineering Analysis and Design
+                  </a>
+                </td>
+                <td>
+                  7.5 hp
+                </td>
+                <td />
+                <td>
+                  P1 Autumn 21
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+      </div>
     </div>
   </div>
 </DocumentFragment>
@@ -378,117 +392,124 @@ exports[`Component <SearchResultDisplay> and resolved cases search by a text pat
     <div
       class="col"
     >
-      <article
-        class="article article--no-start-margin "
-      >
+      <div>
         <p
-          data-testid="number-of-results"
+          class="typescript-component"
         >
-          Your search returned 
-          <b>
-            2
-          </b>
-           result(s).
+          I'M A TYPESCRIPT COMPONENT
         </p>
-        <table
-          class="table table-responsive"
+        <article
+          class="article article--no-start-margin "
         >
-          <thead>
-            <tr>
-              <th
-                style="cursor: pointer; user-select: none;"
-              >
-                Course code
-                <span
-                  aria-hidden="true"
-                  style="opacity: 0; margin-left: .25em;"
+          <p
+            data-testid="number-of-results"
+          >
+            Your search returned 
+            <b>
+              2
+            </b>
+             result(s).
+          </p>
+          <table
+            class="table table-responsive"
+          >
+            <thead>
+              <tr>
+                <th
+                  style="cursor: pointer; user-select: none;"
                 >
-                  ▼
-                </span>
-              </th>
-              <th
-                style="cursor: pointer; user-select: none;"
-              >
-                Course name
-                <span
-                  aria-hidden="true"
-                  style="opacity: 0; margin-left: .25em;"
+                  Course code
+                  <span
+                    aria-hidden="true"
+                    style="opacity: 0; margin-left: .25em;"
+                  >
+                    ▼
+                  </span>
+                </th>
+                <th
+                  style="cursor: pointer; user-select: none;"
                 >
-                  ▼
-                </span>
-              </th>
-              <th
-                style="cursor: pointer; user-select: none;"
-              >
-                Scope
-                <span
-                  aria-hidden="true"
-                  style="opacity: 0; margin-left: .25em;"
+                  Course name
+                  <span
+                    aria-hidden="true"
+                    style="opacity: 0; margin-left: .25em;"
+                  >
+                    ▼
+                  </span>
+                </th>
+                <th
+                  style="cursor: pointer; user-select: none;"
                 >
-                  ▼
-                </span>
-              </th>
-              <th
-                style="cursor: pointer; user-select: none;"
-              >
-                Educational level
-                <span
-                  aria-hidden="true"
-                  style="opacity: 0; margin-left: .25em;"
+                  Scope
+                  <span
+                    aria-hidden="true"
+                    style="opacity: 0; margin-left: .25em;"
+                  >
+                    ▼
+                  </span>
+                </th>
+                <th
+                  style="cursor: pointer; user-select: none;"
                 >
-                  ▼
-                </span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <a
-                  href="/student/kurser/kurs/IX1303?l=en"
-                >
-                  IX1303
-                </a>
-              </td>
-              <td>
-                <a
-                  href="/student/kurser/kurs/IX1303?l=en"
-                >
-                  Algebra och geometri
-                </a>
-              </td>
-              <td>
-                7.5 hp
-              </td>
-              <td>
-                First cycle
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a
-                  href="/student/kurser/kurs/SF1624?l=en"
-                >
-                  SF1624
-                </a>
-              </td>
-              <td>
-                <a
-                  href="/student/kurser/kurs/SF1624?l=en"
-                >
-                  Algebra och geometri
-                </a>
-              </td>
-              <td>
-                7.5 hp
-              </td>
-              <td>
-                First cycle
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </article>
+                  Educational level
+                  <span
+                    aria-hidden="true"
+                    style="opacity: 0; margin-left: .25em;"
+                  >
+                    ▼
+                  </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <a
+                    href="/student/kurser/kurs/IX1303?l=en"
+                  >
+                    IX1303
+                  </a>
+                </td>
+                <td>
+                  <a
+                    href="/student/kurser/kurs/IX1303?l=en"
+                  >
+                    Algebra och geometri
+                  </a>
+                </td>
+                <td>
+                  7.5 hp
+                </td>
+                <td>
+                  First cycle
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a
+                    href="/student/kurser/kurs/SF1624?l=en"
+                  >
+                    SF1624
+                  </a>
+                </td>
+                <td>
+                  <a
+                    href="/student/kurser/kurs/SF1624?l=en"
+                  >
+                    Algebra och geometri
+                  </a>
+                </td>
+                <td>
+                  7.5 hp
+                </td>
+                <td>
+                  First cycle
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+      </div>
     </div>
   </div>
 </DocumentFragment>

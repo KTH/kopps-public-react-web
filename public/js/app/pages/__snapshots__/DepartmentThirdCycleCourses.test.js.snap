@@ -120,108 +120,115 @@ exports[`Render component DepartmentCourses within Layout for third cycle studie
         <div
           class="col"
         >
-          <article
-            class="article article--no-start-margin "
-          >
-            <table
-              class="table table-responsive"
+          <div>
+            <p
+              class="typescript-component"
             >
-              <thead>
-                <tr>
-                  <th
-                    style="cursor: pointer; user-select: none;"
-                  >
-                    Course code
-                    <span
-                      aria-hidden="true"
-                      style="opacity: 0; margin-left: .25em;"
+              I'M A TYPESCRIPT COMPONENT
+            </p>
+            <article
+              class="article article--no-start-margin "
+            >
+              <table
+                class="table table-responsive"
+              >
+                <thead>
+                  <tr>
+                    <th
+                      style="cursor: pointer; user-select: none;"
                     >
-                      ▼
-                    </span>
-                  </th>
-                  <th
-                    style="cursor: pointer; user-select: none;"
-                  >
-                    Course name
-                    <span
-                      aria-hidden="true"
-                      style="opacity: 0; margin-left: .25em;"
+                      Course code
+                      <span
+                        aria-hidden="true"
+                        style="opacity: 0; margin-left: .25em;"
+                      >
+                        ▼
+                      </span>
+                    </th>
+                    <th
+                      style="cursor: pointer; user-select: none;"
                     >
-                      ▼
-                    </span>
-                  </th>
-                  <th
-                    style="cursor: pointer; user-select: none;"
-                  >
-                    Scope
-                    <span
-                      aria-hidden="true"
-                      style="opacity: 0; margin-left: .25em;"
+                      Course name
+                      <span
+                        aria-hidden="true"
+                        style="opacity: 0; margin-left: .25em;"
+                      >
+                        ▼
+                      </span>
+                    </th>
+                    <th
+                      style="cursor: pointer; user-select: none;"
                     >
-                      ▼
-                    </span>
-                  </th>
-                  <th
-                    style="cursor: pointer; user-select: none;"
-                  >
-                    Educational level
-                    <span
-                      aria-hidden="true"
-                      style="opacity: 0; margin-left: .25em;"
+                      Scope
+                      <span
+                        aria-hidden="true"
+                        style="opacity: 0; margin-left: .25em;"
+                      >
+                        ▼
+                      </span>
+                    </th>
+                    <th
+                      style="cursor: pointer; user-select: none;"
                     >
-                      ▼
-                    </span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <a
-                      href="/student/kurser/kurs/F1C5031?l=en"
-                    >
-                      F1C5031
-                    </a>
-                  </td>
-                  <td>
-                    <a
-                      href="/student/kurser/kurs/F1C5031?l=en"
-                    >
-                      Design Methods for Reinforced Concrete Structures
-                    </a>
-                  </td>
-                  <td>
-                    7.5 hp
-                  </td>
-                  <td>
-                    Third cycle
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <a
-                      href="/student/kurser/kurs/FAF3115?l=en"
-                    >
-                      FAF3115
-                    </a>
-                  </td>
-                  <td>
-                    <a
-                      href="/student/kurser/kurs/FAF3115?l=en"
-                    >
-                      Concrete and Other Cement Based Materials
-                    </a>
-                  </td>
-                  <td>
-                    7.5 hp
-                  </td>
-                  <td>
-                    Third cycle
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </article>
+                      Educational level
+                      <span
+                        aria-hidden="true"
+                        style="opacity: 0; margin-left: .25em;"
+                      >
+                        ▼
+                      </span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <a
+                        href="/student/kurser/kurs/F1C5031?l=en"
+                      >
+                        F1C5031
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="/student/kurser/kurs/F1C5031?l=en"
+                      >
+                        Design Methods for Reinforced Concrete Structures
+                      </a>
+                    </td>
+                    <td>
+                      7.5 hp
+                    </td>
+                    <td>
+                      Third cycle
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a
+                        href="/student/kurser/kurs/FAF3115?l=en"
+                      >
+                        FAF3115
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="/student/kurser/kurs/FAF3115?l=en"
+                      >
+                        Concrete and Other Cement Based Materials
+                      </a>
+                    </td>
+                    <td>
+                      7.5 hp
+                    </td>
+                    <td>
+                      Third cycle
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </article>
+          </div>
         </div>
       </div>
       <div
@@ -377,108 +384,115 @@ exports[`Render component DepartmentCourses within Layout for third cycle studie
         <div
           class="col"
         >
-          <article
-            class="article article--no-start-margin "
-          >
-            <table
-              class="table table-responsive"
+          <div>
+            <p
+              class="typescript-component"
             >
-              <thead>
-                <tr>
-                  <th
-                    style="cursor: pointer; user-select: none;"
-                  >
-                    Kurskod
-                    <span
-                      aria-hidden="true"
-                      style="opacity: 0; margin-left: .25em;"
+              I'M A TYPESCRIPT COMPONENT
+            </p>
+            <article
+              class="article article--no-start-margin "
+            >
+              <table
+                class="table table-responsive"
+              >
+                <thead>
+                  <tr>
+                    <th
+                      style="cursor: pointer; user-select: none;"
                     >
-                      ▼
-                    </span>
-                  </th>
-                  <th
-                    style="cursor: pointer; user-select: none;"
-                  >
-                    Kursnamn
-                    <span
-                      aria-hidden="true"
-                      style="opacity: 0; margin-left: .25em;"
+                      Kurskod
+                      <span
+                        aria-hidden="true"
+                        style="opacity: 0; margin-left: .25em;"
+                      >
+                        ▼
+                      </span>
+                    </th>
+                    <th
+                      style="cursor: pointer; user-select: none;"
                     >
-                      ▼
-                    </span>
-                  </th>
-                  <th
-                    style="cursor: pointer; user-select: none;"
-                  >
-                    Omfattning
-                    <span
-                      aria-hidden="true"
-                      style="opacity: 0; margin-left: .25em;"
+                      Kursnamn
+                      <span
+                        aria-hidden="true"
+                        style="opacity: 0; margin-left: .25em;"
+                      >
+                        ▼
+                      </span>
+                    </th>
+                    <th
+                      style="cursor: pointer; user-select: none;"
                     >
-                      ▼
-                    </span>
-                  </th>
-                  <th
-                    style="cursor: pointer; user-select: none;"
-                  >
-                    Utbildningsnivå
-                    <span
-                      aria-hidden="true"
-                      style="opacity: 0; margin-left: .25em;"
+                      Omfattning
+                      <span
+                        aria-hidden="true"
+                        style="opacity: 0; margin-left: .25em;"
+                      >
+                        ▼
+                      </span>
+                    </th>
+                    <th
+                      style="cursor: pointer; user-select: none;"
                     >
-                      ▼
-                    </span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <a
-                      href="/student/kurser/kurs/F1C5031"
-                    >
-                      F1C5031
-                    </a>
-                  </td>
-                  <td>
-                    <a
-                      href="/student/kurser/kurs/F1C5031"
-                    >
-                      Dimensioneringsmetoder för armerade betongkonstruktioner
-                    </a>
-                  </td>
-                  <td>
-                    7,5 hp
-                  </td>
-                  <td>
-                    Forskarnivå
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <a
-                      href="/student/kurser/kurs/FAF3115"
-                    >
-                      FAF3115
-                    </a>
-                  </td>
-                  <td>
-                    <a
-                      href="/student/kurser/kurs/FAF3115"
-                    >
-                      Betong och andra cementbaserade material
-                    </a>
-                  </td>
-                  <td>
-                    7,5 hp
-                  </td>
-                  <td>
-                    Forskarnivå
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </article>
+                      Utbildningsnivå
+                      <span
+                        aria-hidden="true"
+                        style="opacity: 0; margin-left: .25em;"
+                      >
+                        ▼
+                      </span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <a
+                        href="/student/kurser/kurs/F1C5031"
+                      >
+                        F1C5031
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="/student/kurser/kurs/F1C5031"
+                      >
+                        Dimensioneringsmetoder för armerade betongkonstruktioner
+                      </a>
+                    </td>
+                    <td>
+                      7,5 hp
+                    </td>
+                    <td>
+                      Forskarnivå
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a
+                        href="/student/kurser/kurs/FAF3115"
+                      >
+                        FAF3115
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href="/student/kurser/kurs/FAF3115"
+                      >
+                        Betong och andra cementbaserade material
+                      </a>
+                    </td>
+                    <td>
+                      7,5 hp
+                    </td>
+                    <td>
+                      Forskarnivå
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </article>
+          </div>
         </div>
       </div>
       <div

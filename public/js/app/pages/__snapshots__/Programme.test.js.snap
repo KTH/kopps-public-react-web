@@ -120,31 +120,38 @@ exports[`Render component Programme within Layout match to snapshot in English 1
         <div
           class="col"
         >
-          <article
-            class="article article--no-start-margin "
-          >
-            <p>
-              Choose programme syllabus. Each year group within a programme has its own programme syllabus. The programme syllabus contains, among other things, information about which courses are included in the programme. 
-            </p>
-            <ul
-              class="link-list"
+          <div>
+            <p
+              class="typescript-component"
             >
-              <li>
-                <a
-                  href="/student/kurser/program/ARKIT/20192/arskurs2?l=en"
-                >
-                  Programme syllabus for studies starting in Autumn 19
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/student/kurser/program/ARKIT/20211/arskurs1?l=en"
-                >
-                  Programme syllabus for studies starting in Spring 21
-                </a>
-              </li>
-            </ul>
-          </article>
+              I'M A TYPESCRIPT COMPONENT
+            </p>
+            <article
+              class="article article--no-start-margin "
+            >
+              <p>
+                Choose programme syllabus. Each year group within a programme has its own programme syllabus. The programme syllabus contains, among other things, information about which courses are included in the programme. 
+              </p>
+              <ul
+                class="link-list"
+              >
+                <li>
+                  <a
+                    href="/student/kurser/program/ARKIT/20192/arskurs2?l=en"
+                  >
+                    Programme syllabus for studies starting in Autumn 19
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/student/kurser/program/ARKIT/20211/arskurs1?l=en"
+                  >
+                    Programme syllabus for studies starting in Spring 21
+                  </a>
+                </li>
+              </ul>
+            </article>
+          </div>
         </div>
       </div>
       <div
@@ -300,31 +307,38 @@ exports[`Render component Programme within Layout match to snapshot in Swedish 1
         <div
           class="col"
         >
-          <article
-            class="article article--no-start-margin "
-          >
-            <p>
-              Välj utbildningsplan. Varje årskull inom ett program har en egen utbildningsplan. I utbildningsplanen finns information om bland annat vilka kurser som ingår i programmet. 
-            </p>
-            <ul
-              class="link-list"
+          <div>
+            <p
+              class="typescript-component"
             >
-              <li>
-                <a
-                  href="/student/kurser/program/ARKIT/20192/arskurs2"
-                >
-                  Utbildningsplan kull HT19
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/student/kurser/program/ARKIT/20211/arskurs1"
-                >
-                  Utbildningsplan kull VT21
-                </a>
-              </li>
-            </ul>
-          </article>
+              I'M A TYPESCRIPT COMPONENT
+            </p>
+            <article
+              class="article article--no-start-margin "
+            >
+              <p>
+                Välj utbildningsplan. Varje årskull inom ett program har en egen utbildningsplan. I utbildningsplanen finns information om bland annat vilka kurser som ingår i programmet. 
+              </p>
+              <ul
+                class="link-list"
+              >
+                <li>
+                  <a
+                    href="/student/kurser/program/ARKIT/20192/arskurs2"
+                  >
+                    Utbildningsplan kull HT19
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/student/kurser/program/ARKIT/20211/arskurs1"
+                  >
+                    Utbildningsplan kull VT21
+                  </a>
+                </li>
+              </ul>
+            </article>
+          </div>
         </div>
       </div>
       <div
