@@ -124,20 +124,13 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
         <div
           class="col"
         >
-          <div>
-            <p
-              class="typescript-component"
-            >
-              I'M A TYPESCRIPT COMPONENT
+          <article
+            class="article article--no-start-margin "
+          >
+            <p>
+              Here is information about third-cycle courses at KTH. The courses are sorted by KTH schools and their respective organizations. Use the menu option Search third-cycle courses to search for a course or filter on courses that deal with environment, environmental technology, or sustainable development.
             </p>
-            <article
-              class="article article--no-start-margin "
-            >
-              <p>
-                Here is information about third-cycle courses at KTH. The courses are sorted by KTH schools and their respective organizations. Use the menu option Search third-cycle courses to search for a course or filter on courses that deal with environment, environmental technology, or sustainable development.
-              </p>
-            </article>
-          </div>
+          </article>
         </div>
       </div>
       <div
@@ -146,45 +139,38 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
         <div
           class="col"
         >
-          <div>
-            <p
-              class="typescript-component"
+          <article
+            class="article article--no-start-margin "
+          >
+            <h2>
+              School
+            </h2>
+            <ul
+              class="link-list"
             >
-              I'M A TYPESCRIPT COMPONENT
-            </p>
-            <article
-              class="article article--no-start-margin "
-            >
-              <h2>
-                School
-              </h2>
-              <ul
-                class="link-list"
-              >
-                <li>
-                  <a
-                    href="/utbildning/forskarutbildning/kurser/org/BB?l=en"
-                  >
-                    Department
-                  </a>
-                </li>
-              </ul>
-              <h2>
-                Older Schools
-              </h2>
-              <details
-                class=""
-              >
-                <summary
-                  aria-label=""
-                  class="white"
+              <li>
+                <a
+                  href="/utbildning/forskarutbildning/kurser/org/BB?l=en"
                 >
-                  Courses older schools
-                </summary>
-                <div />
-              </details>
-            </article>
-          </div>
+                  Department
+                </a>
+              </li>
+            </ul>
+            <h2>
+              Older Schools
+            </h2>
+            <details
+              class=""
+            >
+              <summary
+                aria-label=""
+                class="white"
+              >
+                Courses older schools
+              </summary>
+              <div />
+            </details>
+          </article>
         </div>
       </div>
       <div
@@ -344,20 +330,13 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
         <div
           class="col"
         >
-          <div>
-            <p
-              class="typescript-component"
-            >
-              I'M A TYPESCRIPT COMPONENT
+          <article
+            class="article article--no-start-margin "
+          >
+            <p>
+              Här hittar du information om forskarkurser på KTH. Kurserna är sorterade efter KTH:s skolor och deras organisationer. Använd menyalternativet Sök forskarkurs för att söka fram en kurs eller filtrera på kurser som behandlar miljö, miljöteknik eller hållbar utveckling.
             </p>
-            <article
-              class="article article--no-start-margin "
-            >
-              <p>
-                Här hittar du information om forskarkurser på KTH. Kurserna är sorterade efter KTH:s skolor och deras organisationer. Använd menyalternativet Sök forskarkurs för att söka fram en kurs eller filtrera på kurser som behandlar miljö, miljöteknik eller hållbar utveckling.
-              </p>
-            </article>
-          </div>
+          </article>
         </div>
       </div>
       <div
@@ -366,45 +345,38 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
         <div
           class="col"
         >
-          <div>
-            <p
-              class="typescript-component"
+          <article
+            class="article article--no-start-margin "
+          >
+            <h2>
+              Skola
+            </h2>
+            <ul
+              class="link-list"
             >
-              I'M A TYPESCRIPT COMPONENT
-            </p>
-            <article
-              class="article article--no-start-margin "
-            >
-              <h2>
-                Skola
-              </h2>
-              <ul
-                class="link-list"
-              >
-                <li>
-                  <a
-                    href="/utbildning/forskarutbildning/kurser/org/BB"
-                  >
-                    Avdelning
-                  </a>
-                </li>
-              </ul>
-              <h2>
-                Äldre skolor
-              </h2>
-              <details
-                class=""
-              >
-                <summary
-                  aria-label=""
-                  class="white"
+              <li>
+                <a
+                  href="/utbildning/forskarutbildning/kurser/org/BB"
                 >
-                  Kurser äldre skolor
-                </summary>
-                <div />
-              </details>
-            </article>
-          </div>
+                  Avdelning
+                </a>
+              </li>
+            </ul>
+            <h2>
+              Äldre skolor
+            </h2>
+            <details
+              class=""
+            >
+              <summary
+                aria-label=""
+                class="white"
+              >
+                Kurser äldre skolor
+              </summary>
+              <div />
+            </details>
+          </article>
         </div>
       </div>
       <div

@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import TypescriptComponent from './TypescriptComponent.tsx'
 
 function Article({ classNames, children, uiKey = '' }) {
   return (
