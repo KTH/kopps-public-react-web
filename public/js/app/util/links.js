@@ -19,6 +19,11 @@ function courseLink(courseCode, language, { term = undefined } = {}) {
   return pageLink(`/student/kurser/kurs/${courseCode}${startTerm}`, language) // outside link
 }
 
+function courseLinkInPdf(currentHost, courseCode, language, { term = undefined } = {}) {
+  const startTerm = term !== undefined && term !== '' ? `?startterm=${term}` : ''
+  return pageLink(`${currentHost}/student/kurser/kurs/${courseCode}${startTerm}`, language) // outside link
+}
+
 function courseSearchLink(courseCode, language) {
   return pageLink('/student/kurser/sokkurs', language)
 }
@@ -80,6 +85,7 @@ export {
   programmeLink,
   departmentLink,
   courseLink,
+  courseLinkInPdf,
   courseSearchLink,
   centralStudyCounselingUrl,
   koppsEmail,
