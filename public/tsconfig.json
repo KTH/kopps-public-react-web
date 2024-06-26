@@ -10,6 +10,5 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
   },
-  "files": ["./public/js/app/components/TypescriptComponent.tsx"],
   "include": ["./**/*.ts", "./**/*.tsx"]
 }
