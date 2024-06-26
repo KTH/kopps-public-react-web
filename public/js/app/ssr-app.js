@@ -19,21 +19,17 @@ function _getServerSideFunctions() {
     createStore(storeId) {
       return createApplicationStore(storeId)
     },
-
     getCompressedStoreCode(store) {
       const code = compressStoreIntoJavascriptCode(store)
       return code
     },
-
     renderStaticPage({ applicationStore, location, basename }) {
       enableStaticRendering(true)
-
       const app = (
         <StaticRouter basename={basename} location={location} context={{}}>
           {appFactory(applicationStore)}
         </StaticRouter>
       )
-
       const html = ReactDOMServer.renderToString(app)
       return html
     },

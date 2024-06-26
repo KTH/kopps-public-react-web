@@ -1,7 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
-// @ts-check
-
 const path = require('path')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -64,7 +62,7 @@ function composePublicPathString(...subDirParts) {
 }
 
 function getTransformationRules({ contextIsNode, subDir = null }) {
-  const MAGIC_EXTENSIONS_IF_OMITTED_WITH_IMPORT = ['.js', '.jsx', '.json']
+  const MAGIC_EXTENSIONS_IF_OMITTED_WITH_IMPORT = ['.js', '.jsx', '.json', '.tsx', '.ts']
   const ALLOW_MIX_OF_CJS_AND_ESM_IMPORTS = { sourceType: 'unambiguous' }
 
   // @ts-ignore
@@ -85,6 +83,13 @@ function getTransformationRules({ contextIsNode, subDir = null }) {
           use: {
             loader: 'babel-loader',
             options: { ...BabelConfig, ...ALLOW_MIX_OF_CJS_AND_ESM_IMPORTS },
+          },
+        },
+        {
+          test: /\.tsx?$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'ts-loader',
           },
         },
         {
