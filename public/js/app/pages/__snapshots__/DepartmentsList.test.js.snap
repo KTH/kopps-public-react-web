@@ -159,24 +159,31 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Eng
         <div
           class="col"
         >
-          <article
-            class="article article--no-start-margin "
-          >
-            <h2>
-              School
-            </h2>
-            <ul
-              class="link-list"
+          <div>
+            <p
+              class="typescript-component"
             >
-              <li>
-                <a
-                  href="/student/kurser/org/BB?l=en"
-                >
-                  Department
-                </a>
-              </li>
-            </ul>
-          </article>
+              I'M A TYPESCRIPT COMPONENT
+            </p>
+            <article
+              class="article article--no-start-margin "
+            >
+              <h2>
+                School
+              </h2>
+              <ul
+                class="link-list"
+              >
+                <li>
+                  <a
+                    href="/student/kurser/org/BB?l=en"
+                  >
+                    Department
+                  </a>
+                </li>
+              </ul>
+            </article>
+          </div>
         </div>
       </div>
       <div
@@ -371,24 +378,31 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Swe
         <div
           class="col"
         >
-          <article
-            class="article article--no-start-margin "
-          >
-            <h2>
-              Skola
-            </h2>
-            <ul
-              class="link-list"
+          <div>
+            <p
+              class="typescript-component"
             >
-              <li>
-                <a
-                  href="/student/kurser/org/BB"
-                >
-                  Avdelning
-                </a>
-              </li>
-            </ul>
-          </article>
+              I'M A TYPESCRIPT COMPONENT
+            </p>
+            <article
+              class="article article--no-start-margin "
+            >
+              <h2>
+                Skola
+              </h2>
+              <ul
+                class="link-list"
+              >
+                <li>
+                  <a
+                    href="/student/kurser/org/BB"
+                  >
+                    Avdelning
+                  </a>
+                </li>
+              </ul>
+            </article>
+          </div>
         </div>
       </div>
       <div

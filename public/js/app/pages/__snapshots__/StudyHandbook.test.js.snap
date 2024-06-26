@@ -152,20 +152,27 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Engli
         <div
           class="col"
         >
-          <article
-            class="article article--no-start-margin "
-          >
-            <p>
-              Until the academic year 2007/2008, information on programmes and courses was available in the study handbook.
+          <div>
+            <p
+              class="typescript-component"
+            >
+              I'M A TYPESCRIPT COMPONENT
             </p>
-            <p>
-              <a
-                href="https://intra.kth.se/utbildning/systemstod/kopps/shb"
-              >
-                Study Handbook 00/01 to 07/08
-              </a>
-            </p>
-          </article>
+            <article
+              class="article article--no-start-margin "
+            >
+              <p>
+                Until the academic year 2007/2008, information on programmes and courses was available in the study handbook.
+              </p>
+              <p>
+                <a
+                  href="https://intra.kth.se/utbildning/systemstod/kopps/shb"
+                >
+                  Study Handbook 00/01 to 07/08
+                </a>
+              </p>
+            </article>
+          </div>
         </div>
       </div>
       <div
@@ -353,20 +360,27 @@ exports[`Render component StudyHandbook within Layout match to snapshot in Swedi
         <div
           class="col"
         >
-          <article
-            class="article article--no-start-margin "
-          >
-            <p>
-              Fram till läsåret 2007/2008 fanns information om program och kurser i studiehandboken.
+          <div>
+            <p
+              class="typescript-component"
+            >
+              I'M A TYPESCRIPT COMPONENT
             </p>
-            <p>
-              <a
-                href="https://intra.kth.se/utbildning/systemstod/kopps/shb"
-              >
-                Studiehandboken 00/01 tom 07/08
-              </a>
-            </p>
-          </article>
+            <article
+              class="article article--no-start-margin "
+            >
+              <p>
+                Fram till läsåret 2007/2008 fanns information om program och kurser i studiehandboken.
+              </p>
+              <p>
+                <a
+                  href="https://intra.kth.se/utbildning/systemstod/kopps/shb"
+                >
+                  Studiehandboken 00/01 tom 07/08
+                </a>
+              </p>
+            </article>
+          </div>
         </div>
       </div>
       <div
