@@ -157,63 +157,56 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Engl
         <div
           class="col"
         >
-          <div>
-            <p
-              class="typescript-component"
+          <article
+            class="article article--no-start-margin "
+          >
+            <section
+              aria-labelledby="heading-TARKU"
+              id="progGroupTARKU"
             >
-              I'M A TYPESCRIPT COMPONENT
-            </p>
-            <article
-              class="article article--no-start-margin "
-            >
-              <section
-                aria-labelledby="heading-TARKU"
-                id="progGroupTARKU"
+              <h2
+                id="heading-TARKU"
               >
-                <h2
-                  id="heading-TARKU"
-                >
-                  Master of Architecture
-                </h2>
-                <ul
-                  class="link-list"
-                >
-                  <li>
-                    <a
-                      href="/student/kurser/program/ARKIT?l=en"
-                    >
-                      Degree Programme in Architecture (ARKIT)
-                    </a>
-                    , 300 hp, admitted/batch from Autumn 07
-                  </li>
-                </ul>
-                <details
-                  class=""
-                >
-                  <summary
-                    aria-label=""
-                    class="white"
+                Master of Architecture
+              </h2>
+              <ul
+                class="link-list"
+              >
+                <li>
+                  <a
+                    href="/student/kurser/program/ARKIT?l=en"
                   >
-                    Programmes without new admission (Master of Architecture)
-                  </summary>
-                  <div>
-                    <ul
-                      class="link-list"
-                    >
-                      <li>
-                        <a
-                          href="/student/kurser/program/A?l=en"
-                        >
-                          Degree Programme in Architecture (A)
-                        </a>
-                        , 270 hp, admitted/batch until Spring 07
-                      </li>
-                    </ul>
-                  </div>
-                </details>
-              </section>
-            </article>
-          </div>
+                    Degree Programme in Architecture (ARKIT)
+                  </a>
+                  , 300 hp, admitted/batch from Autumn 07
+                </li>
+              </ul>
+              <details
+                class=""
+              >
+                <summary
+                  aria-label=""
+                  class="white"
+                >
+                  Programmes without new admission (Master of Architecture)
+                </summary>
+                <div>
+                  <ul
+                    class="link-list"
+                  >
+                    <li>
+                      <a
+                        href="/student/kurser/program/A?l=en"
+                      >
+                        Degree Programme in Architecture (A)
+                      </a>
+                      , 270 hp, admitted/batch until Spring 07
+                    </li>
+                  </ul>
+                </div>
+              </details>
+            </section>
+          </article>
         </div>
       </div>
       <div
@@ -406,63 +399,56 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Swed
         <div
           class="col"
         >
-          <div>
-            <p
-              class="typescript-component"
+          <article
+            class="article article--no-start-margin "
+          >
+            <section
+              aria-labelledby="heading-TARKU"
+              id="progGroupTARKU"
             >
-              I'M A TYPESCRIPT COMPONENT
-            </p>
-            <article
-              class="article article--no-start-margin "
-            >
-              <section
-                aria-labelledby="heading-TARKU"
-                id="progGroupTARKU"
+              <h2
+                id="heading-TARKU"
               >
-                <h2
-                  id="heading-TARKU"
-                >
-                  Arkitektutbildning
-                </h2>
-                <ul
-                  class="link-list"
-                >
-                  <li>
-                    <a
-                      href="/student/kurser/program/ARKIT"
-                    >
-                      Arkitektutbildning (ARKIT)
-                    </a>
-                    , 300 hp, antagna/kull fr.o.m. HT07
-                  </li>
-                </ul>
-                <details
-                  class=""
-                >
-                  <summary
-                    aria-label=""
-                    class="white"
+                Arkitektutbildning
+              </h2>
+              <ul
+                class="link-list"
+              >
+                <li>
+                  <a
+                    href="/student/kurser/program/ARKIT"
                   >
-                    Program utan nyantagning (Arkitektutbildning)
-                  </summary>
-                  <div>
-                    <ul
-                      class="link-list"
-                    >
-                      <li>
-                        <a
-                          href="/student/kurser/program/A"
-                        >
-                          Arkitektutbildning (A)
-                        </a>
-                        , 270 hp, antagna/kull t.o.m. VT07
-                      </li>
-                    </ul>
-                  </div>
-                </details>
-              </section>
-            </article>
-          </div>
+                    Arkitektutbildning (ARKIT)
+                  </a>
+                  , 300 hp, antagna/kull fr.o.m. HT07
+                </li>
+              </ul>
+              <details
+                class=""
+              >
+                <summary
+                  aria-label=""
+                  class="white"
+                >
+                  Program utan nyantagning (Arkitektutbildning)
+                </summary>
+                <div>
+                  <ul
+                    class="link-list"
+                  >
+                    <li>
+                      <a
+                        href="/student/kurser/program/A"
+                      >
+                        Arkitektutbildning (A)
+                      </a>
+                      , 270 hp, antagna/kull t.o.m. VT07
+                    </li>
+                  </ul>
+                </div>
+              </details>
+            </section>
+          </article>
         </div>
       </div>
       <div

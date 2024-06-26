@@ -8,212 +8,205 @@ exports[`Component <SearchTableView> for MIXED types of courses creates a table 
     <div
       class="col"
     >
-      <div>
+      <article
+        class="article article--no-start-margin "
+      >
         <p
-          class="typescript-component"
+          data-testid="number-of-results"
         >
-          I'M A TYPESCRIPT COMPONENT
+          Din sökning gav 
+          <b>
+            5
+          </b>
+           resultat.
         </p>
-        <article
-          class="article article--no-start-margin "
+        <table
+          class="table table-responsive"
         >
-          <p
-            data-testid="number-of-results"
-          >
-            Din sökning gav 
-            <b>
-              5
-            </b>
-             resultat.
-          </p>
-          <table
-            class="table table-responsive"
-          >
-            <thead>
-              <tr>
-                <th
-                  style="cursor: pointer; user-select: none;"
+          <thead>
+            <tr>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Kurskod
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Kurskod
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-                <th
-                  style="cursor: pointer; user-select: none;"
+                  ▼
+                </span>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Kursnamn
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Kursnamn
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-                <th
-                  style="cursor: pointer; user-select: none;"
+                  ▼
+                </span>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Omfattning
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Omfattning
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-                <th
-                  style="cursor: pointer; user-select: none;"
+                  ▼
+                </span>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Utbildningsnivå
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Utbildningsnivå
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-                <th
-                  style="cursor: pointer; user-select: none;"
+                  ▼
+                </span>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Perioder
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Perioder
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/AF233X?startterm=20212"
-                  >
-                    AF233X
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/AF233X?startterm=20212"
-                  >
-                    Examensarbete inom byggnadsmateriallära, avancerad nivå
-                  </a>
-                </td>
-                <td>
-                  30 hp
-                </td>
-                <td>
-                  Avancerad nivå
-                </td>
-                <td>
-                  P1 HT21 - P2 HT21
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/AF2402?startterm=20212"
-                  >
-                    AF2402
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/AF2402?startterm=20212"
-                  >
-                    Akustik och brand
-                  </a>
-                </td>
-                <td>
-                  7.5 hp
-                </td>
-                <td>
-                  Grundnivå
-                </td>
-                <td>
-                  P1 HT21 - P3 VT22
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/AH2905?startterm=20212"
-                  >
-                    AH2905
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/AH2905?startterm=20212"
-                  >
-                    Avancerad analys och design av vägbeläggningar
-                  </a>
-                </td>
-                <td>
-                  7.5 hp
-                </td>
-                <td />
-                <td>
-                  P1 HT21
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3901"
-                  >
-                    FAF3901
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3901"
-                  >
-                    Avancerad reologi för bituminösa material
-                  </a>
-                </td>
-                <td>
-                  7.5 hp
-                </td>
-                <td>
-                  Forskarnivå
-                </td>
-                <td />
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAH3904?startterm=20212"
-                  >
-                    FAH3904
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAH3904?startterm=20212"
-                  >
-                    Introduktion till asfaltskemin
-                  </a>
-                </td>
-                <td>
-                  4 hp
-                </td>
-                <td>
-                  Förberedande nivå
-                </td>
-                <td>
-                  P0 HT21 - P5 VT22
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </article>
-      </div>
+                  ▼
+                </span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/AF233X?startterm=20212"
+                >
+                  AF233X
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/AF233X?startterm=20212"
+                >
+                  Examensarbete inom byggnadsmateriallära, avancerad nivå
+                </a>
+              </td>
+              <td>
+                30 hp
+              </td>
+              <td>
+                Avancerad nivå
+              </td>
+              <td>
+                P1 HT21 - P2 HT21
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/AF2402?startterm=20212"
+                >
+                  AF2402
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/AF2402?startterm=20212"
+                >
+                  Akustik och brand
+                </a>
+              </td>
+              <td>
+                7.5 hp
+              </td>
+              <td>
+                Grundnivå
+              </td>
+              <td>
+                P1 HT21 - P3 VT22
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/AH2905?startterm=20212"
+                >
+                  AH2905
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/AH2905?startterm=20212"
+                >
+                  Avancerad analys och design av vägbeläggningar
+                </a>
+              </td>
+              <td>
+                7.5 hp
+              </td>
+              <td />
+              <td>
+                P1 HT21
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3901"
+                >
+                  FAF3901
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3901"
+                >
+                  Avancerad reologi för bituminösa material
+                </a>
+              </td>
+              <td>
+                7.5 hp
+              </td>
+              <td>
+                Forskarnivå
+              </td>
+              <td />
+            </tr>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAH3904?startterm=20212"
+                >
+                  FAH3904
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAH3904?startterm=20212"
+                >
+                  Introduktion till asfaltskemin
+                </a>
+              </td>
+              <td>
+                4 hp
+              </td>
+              <td>
+                Förberedande nivå
+              </td>
+              <td>
+                P0 HT21 - P5 VT22
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
     </div>
   </div>
 </DocumentFragment>
@@ -227,212 +220,205 @@ exports[`Component <SearchTableView> for MIXED types of courses creates a table 
     <div
       class="col"
     >
-      <div>
+      <article
+        class="article article--no-start-margin "
+      >
         <p
-          class="typescript-component"
+          data-testid="number-of-results"
         >
-          I'M A TYPESCRIPT COMPONENT
+          Your search returned 
+          <b>
+            5
+          </b>
+           result(s).
         </p>
-        <article
-          class="article article--no-start-margin "
+        <table
+          class="table table-responsive"
         >
-          <p
-            data-testid="number-of-results"
-          >
-            Your search returned 
-            <b>
-              5
-            </b>
-             result(s).
-          </p>
-          <table
-            class="table table-responsive"
-          >
-            <thead>
-              <tr>
-                <th
-                  style="cursor: pointer; user-select: none;"
+          <thead>
+            <tr>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Course code
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Course code
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-                <th
-                  style="cursor: pointer; user-select: none;"
+                  ▼
+                </span>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Course name
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Course name
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-                <th
-                  style="cursor: pointer; user-select: none;"
+                  ▼
+                </span>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Scope
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Scope
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-                <th
-                  style="cursor: pointer; user-select: none;"
+                  ▼
+                </span>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Educational level
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Educational level
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-                <th
-                  style="cursor: pointer; user-select: none;"
+                  ▼
+                </span>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Periods
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Periods
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/AF233X?startterm=20212&l=en"
-                  >
-                    AF233X
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/AF233X?startterm=20212&l=en"
-                  >
-                    Degree Project in Building Materials, Second Cycle
-                  </a>
-                </td>
-                <td>
-                  30 hp
-                </td>
-                <td>
-                  Second cycle
-                </td>
-                <td>
-                  P1 Autumn 21 - P2 Autumn 21
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/AF2402?startterm=20212&l=en"
-                  >
-                    AF2402
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/AF2402?startterm=20212&l=en"
-                  >
-                    Acoustics and Fire
-                  </a>
-                </td>
-                <td>
-                  7.5 hp
-                </td>
-                <td>
-                  First cycle
-                </td>
-                <td>
-                  P1 Autumn 21 - P3 Spring 22
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/AH2905?startterm=20212&l=en"
-                  >
-                    AH2905
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/AH2905?startterm=20212&l=en"
-                  >
-                    Advanced Pavement Engineering Analysis and Design
-                  </a>
-                </td>
-                <td>
-                  7.5 hp
-                </td>
-                <td />
-                <td>
-                  P1 Autumn 21
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3901?l=en"
-                  >
-                    FAF3901
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3901?l=en"
-                  >
-                    Advanced Rheology of Bituminous Materials
-                  </a>
-                </td>
-                <td>
-                  7.5 hp
-                </td>
-                <td>
-                  Third cycle
-                </td>
-                <td />
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAH3904?startterm=20212&l=en"
-                  >
-                    FAH3904
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAH3904?startterm=20212&l=en"
-                  >
-                    Introduction to Asphalt Chemistry
-                  </a>
-                </td>
-                <td>
-                  4 hp
-                </td>
-                <td>
-                  Pre-university level
-                </td>
-                <td>
-                  P0 Autumn 21 - P5 Spring 22
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </article>
-      </div>
+                  ▼
+                </span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/AF233X?startterm=20212&l=en"
+                >
+                  AF233X
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/AF233X?startterm=20212&l=en"
+                >
+                  Degree Project in Building Materials, Second Cycle
+                </a>
+              </td>
+              <td>
+                30 hp
+              </td>
+              <td>
+                Second cycle
+              </td>
+              <td>
+                P1 Autumn 21 - P2 Autumn 21
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/AF2402?startterm=20212&l=en"
+                >
+                  AF2402
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/AF2402?startterm=20212&l=en"
+                >
+                  Acoustics and Fire
+                </a>
+              </td>
+              <td>
+                7.5 hp
+              </td>
+              <td>
+                First cycle
+              </td>
+              <td>
+                P1 Autumn 21 - P3 Spring 22
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/AH2905?startterm=20212&l=en"
+                >
+                  AH2905
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/AH2905?startterm=20212&l=en"
+                >
+                  Advanced Pavement Engineering Analysis and Design
+                </a>
+              </td>
+              <td>
+                7.5 hp
+              </td>
+              <td />
+              <td>
+                P1 Autumn 21
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3901?l=en"
+                >
+                  FAF3901
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3901?l=en"
+                >
+                  Advanced Rheology of Bituminous Materials
+                </a>
+              </td>
+              <td>
+                7.5 hp
+              </td>
+              <td>
+                Third cycle
+              </td>
+              <td />
+            </tr>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAH3904?startterm=20212&l=en"
+                >
+                  FAH3904
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAH3904?startterm=20212&l=en"
+                >
+                  Introduction to Asphalt Chemistry
+                </a>
+              </td>
+              <td>
+                4 hp
+              </td>
+              <td>
+                Pre-university level
+              </td>
+              <td>
+                P0 Autumn 21 - P5 Spring 22
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
     </div>
   </div>
 </DocumentFragment>
@@ -446,146 +432,139 @@ exports[`Component <SearchTableView> for RESEARCH courses creates a table with 4
     <div
       class="col"
     >
-      <div>
+      <article
+        class="article article--no-start-margin "
+      >
         <p
-          class="typescript-component"
+          data-testid="number-of-results"
         >
-          I'M A TYPESCRIPT COMPONENT
+          Your search returned 
+          <b>
+            3
+          </b>
+           result(s).
         </p>
-        <article
-          class="article article--no-start-margin "
+        <table
+          class="table table-responsive"
         >
-          <p
-            data-testid="number-of-results"
-          >
-            Your search returned 
-            <b>
-              3
-            </b>
-             result(s).
-          </p>
-          <table
-            class="table table-responsive"
-          >
-            <thead>
-              <tr>
-                <th
-                  style="cursor: pointer; user-select: none;"
+          <thead>
+            <tr>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Course code
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Course code
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-                <th
-                  style="cursor: pointer; user-select: none;"
+                  ▼
+                </span>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Course name
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Course name
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-                <th
-                  style="cursor: pointer; user-select: none;"
+                  ▼
+                </span>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Scope
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Scope
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-                <th
-                  style="cursor: pointer; user-select: none;"
+                  ▼
+                </span>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Educational level
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Educational level
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3302?l=en"
-                  >
-                    FAF3302
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3302?l=en"
-                  >
-                    Project in Building Materials Technology
-                  </a>
-                </td>
-                <td>
-                  7.5 hp
-                </td>
-                <td>
-                  Third cycle
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3304?l=en"
-                  >
-                    FAF3304
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3304?l=en"
-                  >
-                    Wood Chemistry, Biocomposites and Building Materials
-                  </a>
-                </td>
-                <td>
-                  7.5 hp
-                </td>
-                <td>
-                  Third cycle
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3305?l=en"
-                  >
-                    FAF3305
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3305?l=en"
-                  >
-                    Pavement Design and Performance Prediction
-                  </a>
-                </td>
-                <td>
-                  3 hp
-                </td>
-                <td>
-                  Third cycle
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </article>
-      </div>
+                  ▼
+                </span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3302?l=en"
+                >
+                  FAF3302
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3302?l=en"
+                >
+                  Project in Building Materials Technology
+                </a>
+              </td>
+              <td>
+                7.5 hp
+              </td>
+              <td>
+                Third cycle
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3304?l=en"
+                >
+                  FAF3304
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3304?l=en"
+                >
+                  Wood Chemistry, Biocomposites and Building Materials
+                </a>
+              </td>
+              <td>
+                7.5 hp
+              </td>
+              <td>
+                Third cycle
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3305?l=en"
+                >
+                  FAF3305
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3305?l=en"
+                >
+                  Pavement Design and Performance Prediction
+                </a>
+              </td>
+              <td>
+                3 hp
+              </td>
+              <td>
+                Third cycle
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
     </div>
   </div>
 </DocumentFragment>
@@ -599,146 +578,139 @@ exports[`Component <SearchTableView> for RESEARCH courses creates a table with 4
     <div
       class="col"
     >
-      <div>
+      <article
+        class="article article--no-start-margin "
+      >
         <p
-          class="typescript-component"
+          data-testid="number-of-results"
         >
-          I'M A TYPESCRIPT COMPONENT
+          Din sökning gav 
+          <b>
+            3
+          </b>
+           resultat.
         </p>
-        <article
-          class="article article--no-start-margin "
+        <table
+          class="table table-responsive"
         >
-          <p
-            data-testid="number-of-results"
-          >
-            Din sökning gav 
-            <b>
-              3
-            </b>
-             resultat.
-          </p>
-          <table
-            class="table table-responsive"
-          >
-            <thead>
-              <tr>
-                <th
-                  style="cursor: pointer; user-select: none;"
+          <thead>
+            <tr>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Kurskod
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Kurskod
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-                <th
-                  style="cursor: pointer; user-select: none;"
+                  ▼
+                </span>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Kursnamn
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Kursnamn
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-                <th
-                  style="cursor: pointer; user-select: none;"
+                  ▼
+                </span>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Omfattning
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Omfattning
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-                <th
-                  style="cursor: pointer; user-select: none;"
+                  ▼
+                </span>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Utbildningsnivå
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Utbildningsnivå
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3302"
-                  >
-                    FAF3302
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3302"
-                  >
-                    Projekt i byggnadsmaterialteknik
-                  </a>
-                </td>
-                <td>
-                  7.5 hp
-                </td>
-                <td>
-                  Forskarnivå
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3304"
-                  >
-                    FAF3304
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3304"
-                  >
-                    Träkemi för biokompositer som byggnadsmaterial
-                  </a>
-                </td>
-                <td>
-                  7.5 hp
-                </td>
-                <td>
-                  Forskarnivå
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3305"
-                  >
-                    FAF3305
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3305"
-                  >
-                    Vägdimensionering och prestandautvärdering
-                  </a>
-                </td>
-                <td>
-                  3 hp
-                </td>
-                <td>
-                  Forskarnivå
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </article>
-      </div>
+                  ▼
+                </span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3302"
+                >
+                  FAF3302
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3302"
+                >
+                  Projekt i byggnadsmaterialteknik
+                </a>
+              </td>
+              <td>
+                7.5 hp
+              </td>
+              <td>
+                Forskarnivå
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3304"
+                >
+                  FAF3304
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3304"
+                >
+                  Träkemi för biokompositer som byggnadsmaterial
+                </a>
+              </td>
+              <td>
+                7.5 hp
+              </td>
+              <td>
+                Forskarnivå
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3305"
+                >
+                  FAF3305
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3305"
+                >
+                  Vägdimensionering och prestandautvärdering
+                </a>
+              </td>
+              <td>
+                3 hp
+              </td>
+              <td>
+                Forskarnivå
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
     </div>
   </div>
 </DocumentFragment>
@@ -752,146 +724,139 @@ exports[`Component <SearchTableView> for RESEARCH courses creates a table with 5
     <div
       class="col"
     >
-      <div>
+      <article
+        class="article article--no-start-margin "
+      >
         <p
-          class="typescript-component"
+          data-testid="number-of-results"
         >
-          I'M A TYPESCRIPT COMPONENT
+          Your search returned 
+          <b>
+            3
+          </b>
+           result(s).
         </p>
-        <article
-          class="article article--no-start-margin "
+        <table
+          class="table table-responsive"
         >
-          <p
-            data-testid="number-of-results"
-          >
-            Your search returned 
-            <b>
-              3
-            </b>
-             result(s).
-          </p>
-          <table
-            class="table table-responsive"
-          >
-            <thead>
-              <tr>
-                <th
-                  style="cursor: pointer; user-select: none;"
+          <thead>
+            <tr>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Course code
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Course code
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-                <th
-                  style="cursor: pointer; user-select: none;"
+                  ▼
+                </span>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Course name
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Course name
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-                <th
-                  style="cursor: pointer; user-select: none;"
+                  ▼
+                </span>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Scope
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Scope
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-                <th
-                  style="cursor: pointer; user-select: none;"
+                  ▼
+                </span>
+              </th>
+              <th
+                style="cursor: pointer; user-select: none;"
+              >
+                Educational level
+                <span
+                  aria-hidden="true"
+                  style="opacity: 0; margin-left: .25em;"
                 >
-                  Educational level
-                  <span
-                    aria-hidden="true"
-                    style="opacity: 0; margin-left: .25em;"
-                  >
-                    ▼
-                  </span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3302?l=en"
-                  >
-                    FAF3302
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3302?l=en"
-                  >
-                    Project in Building Materials Technology
-                  </a>
-                </td>
-                <td>
-                  7.5 hp
-                </td>
-                <td>
-                  Third cycle
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3304?l=en"
-                  >
-                    FAF3304
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3304?l=en"
-                  >
-                    Wood Chemistry, Biocomposites and Building Materials
-                  </a>
-                </td>
-                <td>
-                  7.5 hp
-                </td>
-                <td>
-                  Third cycle
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3305?l=en"
-                  >
-                    FAF3305
-                  </a>
-                </td>
-                <td>
-                  <a
-                    href="/student/kurser/kurs/FAF3305?l=en"
-                  >
-                    Pavement Design and Performance Prediction
-                  </a>
-                </td>
-                <td>
-                  3 hp
-                </td>
-                <td>
-                  Third cycle
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </article>
-      </div>
+                  ▼
+                </span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3302?l=en"
+                >
+                  FAF3302
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3302?l=en"
+                >
+                  Project in Building Materials Technology
+                </a>
+              </td>
+              <td>
+                7.5 hp
+              </td>
+              <td>
+                Third cycle
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3304?l=en"
+                >
+                  FAF3304
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3304?l=en"
+                >
+                  Wood Chemistry, Biocomposites and Building Materials
+                </a>
+              </td>
+              <td>
+                7.5 hp
+              </td>
+              <td>
+                Third cycle
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3305?l=en"
+                >
+                  FAF3305
+                </a>
+              </td>
+              <td>
+                <a
+                  href="/student/kurser/kurs/FAF3305?l=en"
+                >
+                  Pavement Design and Performance Prediction
+                </a>
+              </td>
+              <td>
+                3 hp
+              </td>
+              <td>
+                Third cycle
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
     </div>
   </div>
 </DocumentFragment>
