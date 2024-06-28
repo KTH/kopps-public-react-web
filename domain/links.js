@@ -9,7 +9,7 @@ function _getLanguageParam(language, url = '') {
 function possiblyChangeBaseUrl() {
   let baseUrl = ''
   if (window.origin.includes('app')) {
-    baseUrl = window.origin.replace('https://app', 'https://app')
+    baseUrl = window.origin.replace('https://app', 'https://www')
   }
   return baseUrl
 }
