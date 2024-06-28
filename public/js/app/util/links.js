@@ -1,4 +1,10 @@
-import { departmentLink, pageLink, programmeLink, thirdCycleDepartmentLink } from '../../../../domain/links'
+import {
+  departmentLink,
+  pageLink,
+  possiblyChangeBaseUrl,
+  programmeLink,
+  thirdCycleDepartmentLink,
+} from '../../../../domain/links'
 
 function parentLink(language) {
   return pageLink(`/student/studier/`, language)
@@ -17,11 +23,6 @@ function parentThirdCycleStudyLink(language) {
 function courseLink(courseCode, language, { term = undefined } = {}) {
   const startTerm = term !== undefined && term !== '' ? `?startterm=${term}` : ''
   return pageLink(`/student/kurser/kurs/${courseCode}${startTerm}`, language) // outside link
-}
-
-function courseLinkInPdf(currentHost, courseCode, language, { term = undefined } = {}) {
-  const startTerm = term !== undefined && term !== '' ? `?startterm=${term}` : ''
-  return pageLink(`${currentHost}/student/kurser/kurs/${courseCode}${startTerm}`, language) // outside link
 }
 
 function courseSearchLink(courseCode, language) {
@@ -45,7 +46,8 @@ function programmeWebLink(programmeCode, language) {
 }
 
 function appendix1Link(programmeCode, term) {
-  return `/student/kurser/program/${programmeCode}/${term}/kurslista`
+  const baseUrl = possiblyChangeBaseUrl()
+  return `${baseUrl}/student/kurser/program/${programmeCode}/${term}/kurslista`
 }
 
 function centralStudyCounselingUrl(language) {
@@ -85,7 +87,6 @@ export {
   programmeLink,
   departmentLink,
   courseLink,
-  courseLinkInPdf,
   courseSearchLink,
   centralStudyCounselingUrl,
   koppsEmail,

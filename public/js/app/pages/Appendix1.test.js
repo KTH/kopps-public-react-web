@@ -4,7 +4,6 @@ import '@testing-library/jest-dom'
 import { useStore } from '../mobx'
 import Appendix1 from './Appendix1'
 import { applicationStores } from './mocks/Appendix1ApplicationStore'
-import commonSettings from '../config/mocks/mockCommonSettings'
 
 const mockDate = new Date('2022-08-18 16:00')
 
@@ -25,7 +24,6 @@ describe('Component <Appendix1>', () => {
   })
 
   test('Use CMETE Program Application Store to test Appendix1 Content', async () => {
-    applicationStores[0].setBrowserConfig(commonSettings, 'https://www-r.referens.sys.kth.se/')
     useStore.mockReturnValue(applicationStores[0])
 
     render(<Appendix1 />)
@@ -54,7 +52,6 @@ describe('Component <Appendix1>', () => {
   })
 
   test('Use CMAST Program Application Store to test Appendix1 Content', async () => {
-    applicationStores[1].setBrowserConfig(commonSettings, 'https://www-r.referens.sys.kth.se/')
     useStore.mockReturnValue(applicationStores[1])
 
     render(<Appendix1 />)
@@ -84,7 +81,6 @@ describe('Component <Appendix1>', () => {
   })
 
   test('Use TBTMD Program Application Store to test Appendix1 Content', async () => {
-    applicationStores[2].setBrowserConfig(commonSettings, 'https://www-r.referens.sys.kth.se/')
     useStore.mockReturnValue(applicationStores[2])
 
     render(<Appendix1 />)

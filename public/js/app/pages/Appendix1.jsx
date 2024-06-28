@@ -16,17 +16,14 @@ import FooterContent from '../components/FooterContent'
 import KoppsData from '../components/KoppsData'
 import Sidebar from '../components/Sidebar'
 
-import { courseLinkInPdf } from '../util/links'
-
-import { getCurrentHost } from '../util/stringUtil'
+import { courseLink } from '../util/links'
 
 function CourseListTableRow({ course }) {
-  const { language, thisHostBaseUrl } = useStore()
+  const { language } = useStore()
   const t = translate(language)
   const { code, name, comment, credits, creditAbbr, level } = course
 
-  const currentHost = getCurrentHost(thisHostBaseUrl, false)
-  const courselink = courseLinkInPdf(currentHost, code, language)
+  const courselink = courseLink(currentHost, code)
   return (
     <tr>
       <td className="code">
