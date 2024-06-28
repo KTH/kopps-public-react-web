@@ -57,7 +57,7 @@ function ProgramSyllabusExport({ applicationStore }) {
     // get program text for link
     const subHeaderText = t('program_syllabus_link_text')
     // get subheading link
-    const subHeadingLink = getCurrentHost(thisHostBaseUrl, false) + programLinkYear1(programmeCode, term, language)
+    const subHeadingLink = programLinkYear1(programmeCode, term, language)
     // get bottom right from translations and add appendix1 or appendix2 accordingly
     const appendix1 = t('appendix1')
     const appendix2 = t('appendix2')
