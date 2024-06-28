@@ -1,4 +1,10 @@
-import { departmentLink, pageLink, programmeLink, thirdCycleDepartmentLink } from '../../../../domain/links'
+import {
+  departmentLink,
+  pageLink,
+  possiblyChangeBaseUrl,
+  programmeLink,
+  thirdCycleDepartmentLink,
+} from '../../../../domain/links'
 
 function parentLink(language) {
   return pageLink(`/student/studier/`, language)
@@ -40,7 +46,8 @@ function programmeWebLink(programmeCode, language) {
 }
 
 function appendix1Link(programmeCode, term) {
-  return `/student/kurser/program/${programmeCode}/${term}/kurslista`
+  const baseUrl = possiblyChangeBaseUrl()
+  return `${baseUrl}/student/kurser/program/${programmeCode}/${term}/kurslista`
 }
 
 function centralStudyCounselingUrl(language) {
