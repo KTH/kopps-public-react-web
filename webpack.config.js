@@ -86,7 +86,7 @@ function getTransformationRules({ contextIsNode, subDir = null }) {
           },
         },
         {
-          test: /\.tsx?$/,
+          test: /\.ts|tsx?$/,
           exclude: /node_modules/,
           use: {
             loader: 'ts-loader',
