@@ -6,9 +6,18 @@ function _getLanguageParam(language, url = '') {
   return `${querySeparator}l=en`
 }
 
+function possiblyChangeBaseUrl() {
+  let baseUrl = ''
+  if (typeof window !== 'undefined' && window.origin.includes('app')) {
+    baseUrl = origin.replace('https://app', 'https://www')
+  }
+  return baseUrl
+}
+
 function pageLink(pagePath, language) {
+  const baseUrl = possiblyChangeBaseUrl()
   const languageParam = _getLanguageParam(language, pagePath)
-  return `${pagePath}${languageParam}`
+  return `${baseUrl}${pagePath}${languageParam}`
 }
 
 function departmentLink(departmentCode, language) {
@@ -27,4 +36,11 @@ function literatureListLink(schoolCode, term, language) {
   return pageLink(`/student/kurser/lit/${term}/${schoolCode}`, language)
 }
 
-module.exports = { departmentLink, pageLink, programmeLink, thirdCycleDepartmentLink, literatureListLink }
+module.exports = {
+  departmentLink,
+  pageLink,
+  possiblyChangeBaseUrl,
+  programmeLink,
+  thirdCycleDepartmentLink,
+  literatureListLink,
+}

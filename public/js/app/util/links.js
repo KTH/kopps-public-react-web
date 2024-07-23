@@ -40,7 +40,7 @@ function programmeWebLink(programmeCode, language) {
 }
 
 function appendix1Link(programmeCode, term) {
-  return `/student/kurser/program/${programmeCode}/${term}/kurslista`
+  return pageLink(`/student/kurser/program/${programmeCode}/${term}/kurslista`)
 }
 
 function centralStudyCounselingUrl(language) {
