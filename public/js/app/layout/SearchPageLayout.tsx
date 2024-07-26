@@ -23,7 +23,7 @@ const SearchPageLayout: React.FC<SearchPageLayoutProps> = ({ children }) => {
   return (
     // Container in publicLayout.handlebars – begin
     <Row>
-      <SearchFilters />
+      <SearchFilters title="Filtrera dina sökval" ancestorItem={{href: "/student/kurser/sokkurs", label: "Sök kurser"}}/>
       <MainContent>{children}</MainContent>
     </Row>
     // Container – end

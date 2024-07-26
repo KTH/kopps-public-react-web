@@ -5,42 +5,76 @@ import SearchDepartments from './SearchDepartments'
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 
-const paramsReducer = (state, action) => ({ ...state, ...action })
+interface IAncestorItem {
+  href: string
+  label: string
+}
 
-const SearchFilters = () => {
+interface ISearchFiltersProps {
+  title: string
+  ancestorItem: IAncestorItem
+}
+
+interface PeriodParams {
+  period: string[]
+}
+
+interface EduLevelParams {
+  eduLevel: string[]
+}
+
+interface ShowOptionsParams {
+  showOptions: string[]
+}
+
+type Params = PeriodParams | EduLevelParams | ShowOptionsParams
+
+const paramsReducer = (state: Params, action) => ({ ...state, ...action })
+
+const SearchFilters: React.FC<ISearchFiltersProps> = ({ title, ancestorItem }) => {
   const { languageIndex, textPattern: initialPattern = '' } = useStore()
 
   const { generalSearch } = i18n.messages[languageIndex]
-  const { searchLabel, searchStartPeriodPrefix, collapseHeaderOtherSearchOptions } = generalSearch
+  const { searchStartPeriodPrefix } = generalSearch
   const [state, setState] = useReducer(paramsReducer, { pattern: initialPattern })
-  const { pattern } = state
 
   const currentYearDate = new Date().getFullYear()
   const currentYearLabel = `${searchStartPeriodPrefix} ${currentYearDate}`
   const nextYearLabel = `${searchStartPeriodPrefix} ${Number(currentYearDate) + 1}`
 
-  function handleParamChange(params) {
+  const desktopId = 'local-navigation-title'
+
+  function handleParamChange(params: Params) {
+    console.log('params: ', params)
     setState(params)
   }
-  return (
-    <div id="mainMenu" className="kth-local-navigation col">
-      <SearchOptions
-        overrideSearchHead={currentYearLabel}
-        paramAliasName="currentYear"
-        paramName="period"
-        onChange={handleParamChange}
-      />
 
-      <SearchOptions
-        overrideSearchHead={nextYearLabel}
-        paramAliasName="nextYear"
-        paramName="period"
-        onChange={handleParamChange}
-      />
-      <SearchOptions paramName="eduLevel" onChange={handleParamChange} />
-      <SearchOptions paramName="showOptions" onChange={handleParamChange} />
-      <SearchDepartments onChange={handleParamChange} />
-    </div>
+  // id="mainMenu" is not a correct id as the search filters aren't really a menu.
+  // It puts everything in the correct position for now though.
+  return (
+    <>
+      <div id="mainMenu" className="kth-local-navigation col">
+        <a href={ancestorItem.href} className="kth-button back">
+          {ancestorItem.label}
+        </a>
+        <h2 id={desktopId}>{title}</h2>
+        <SearchOptions
+          overrideSearchHead={currentYearLabel}
+          paramAliasName="currentYear"
+          paramName="period"
+          onChange={handleParamChange}
+        />
+        <SearchOptions
+          overrideSearchHead={nextYearLabel}
+          paramAliasName="nextYear"
+          paramName="period"
+          onChange={handleParamChange}
+        />
+        <SearchOptions paramName="eduLevel" onChange={handleParamChange} />
+        <SearchOptions paramName="showOptions" onChange={handleParamChange} />
+        <SearchDepartments onChange={handleParamChange} />
+      </div>
+    </>
   )
 }
 

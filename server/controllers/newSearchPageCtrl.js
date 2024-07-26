@@ -5,6 +5,8 @@
 const log = require('@kth/log')
 const language = require('@kth/kth-node-web-common/lib/language')
 
+const i18n = require('../../i18n')
+
 // eslint-disable-next-line no-unused-vars
 const api = require('../api')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
@@ -40,14 +42,15 @@ async function getIndex(req, res, next) {
     const { uri: basename, uri: proxyPrefix } = serverConfig.proxyPrefixPath
     const html = renderStaticPage({ applicationStore, location: req.url, basename: basename })
 
+    const title = i18n.message('main_menu_search_all', lang)
+
     const breadcrumbsList = createBreadcrumbs(lang)
-    console.log('HERE IS THE PATH: ', basename, proxyPrefix, req.url)
 
     res.render('app/index', {
       html,
-      title: 'Search for courses',
+      title,
       compressedStoreCode,
-      description: 'TODO',
+      description: 'Search ',
       lang,
       proxyPrefix,
       toolbarUrl: serverConfig.toolbar.url,
