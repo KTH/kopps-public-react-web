@@ -29,10 +29,15 @@ interface ShowOptionsParams {
 
 type Params = PeriodParams | EduLevelParams | ShowOptionsParams
 
-const paramsReducer = (state: Params, action) => ({ ...state, ...action })
+interface IStore {
+    languageIndex: number,
+    textPattern: string
+}
+
+const paramsReducer = (state: Params, action: any) => ({ ...state, ...action })
 
 const SearchFilters: React.FC<ISearchFiltersProps> = ({ title, ancestorItem }) => {
-  const { languageIndex, textPattern: initialPattern = '' } = useStore()
+  const { languageIndex, textPattern: initialPattern = '' }: IStore = useStore()
 
   const { generalSearch } = i18n.messages[languageIndex]
   const { searchStartPeriodPrefix } = generalSearch
