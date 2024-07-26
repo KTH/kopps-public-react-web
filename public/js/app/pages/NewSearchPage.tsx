@@ -5,19 +5,14 @@ import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
-import { Lead } from '../components'
 
 const NewSearchPage = () => {
   const {
-    languageIndex,
-    textPattern: storePattern,
-    departmentCodeOrPrefix: storeDepartment,
-    eduLevel: storeEduLevel,
-    period: storePeriod,
-    showOptions: storeShowOptions,
+    languageIndex
   } = useStore()
-  const { bigSearch, searchInstructions } = i18n.messages[languageIndex]
-  const { searchHeading, leadIntro, searchButton } = bigSearch
+
+  const { bigSearch } = i18n.messages[languageIndex]
+  const { searchHeading } = bigSearch
   return (
     <>
       <Row>

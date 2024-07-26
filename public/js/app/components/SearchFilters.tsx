@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
-import { Col } from 'reactstrap'
 import SearchOptions from './SearchOptions'
 import SearchDepartments from './SearchDepartments'
+
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 
@@ -23,7 +23,7 @@ const SearchFilters = () => {
     setState(params)
   }
   return (
-    <div className="kth-local-navigation col">
+    <div id="mainMenu" className="kth-local-navigation col">
       <SearchOptions
         overrideSearchHead={currentYearLabel}
         paramAliasName="currentYear"
