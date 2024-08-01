@@ -1,7 +1,5 @@
 /* eslint no-use-before-define: ["error", "nofunc"] */
 
-// @ts-check
-
 /**
  * This file was added to minimise the download-size of the client app.
  * If you import it in "mobx/index.js" instead of "compress.js", the HTML-code
