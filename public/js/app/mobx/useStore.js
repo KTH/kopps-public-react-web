@@ -13,7 +13,6 @@ export default useStore
  *
  * @param {string} [storeId]
  *
- * @returns {object}
  *      Current state of application store
  */
 function useStore(storeId = 'default') {

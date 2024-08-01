@@ -92,6 +92,7 @@ const messages = {
     main_menu_page_example: 'Example',
     main_menu_shb: 'Studies before 07/08',
     main_menu_search_all: 'Search courses',
+    main_menu_search_all_new: 'Search courses (new)',
     main_menu_third_cycle_studies: 'Doctoral studies (PhD)',
     main_menu_third_cycle_courses_search: 'Search third-cycle courses',
 
@@ -299,6 +300,7 @@ const messages = {
     errorEmpty: 'Your search returned no results.',
     errorOverflow: 'There were too many results.',
     noQueryProvided: 'No query restriction was specified',
+    filtersLabel: 'Filter your search choices',
   },
   literatureList: {
     title: (term, schoolCode) => `Reading list ${term} ${schoolCode}`,
