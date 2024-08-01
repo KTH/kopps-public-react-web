@@ -4,7 +4,6 @@ const { browser: browserConfig, server: serverConfig } = require('../configurati
 const koppsApi = require('../kopps/koppsApi')
 const { programmeLink } = require('../../domain/links')
 
-// @ts-check
 /**
  * add props to a MobX-stores on server side
  * Appendix1, Appendix2, Curriculum, Eligibility
