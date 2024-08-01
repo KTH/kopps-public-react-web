@@ -23,6 +23,12 @@ function mockGetMenuData(language) {
             url: '/student/kurser/sokkurs',
           },
           {
+            id: 'searchAllCourses-new',
+            text: 'Search courses (new)',
+            type: 'leaf',
+            url: '/student/kurser/sokkurs-ny-design',
+          },
+          {
             id: 'departmentsList',
             type: 'leaf',
             text: 'Courses by school',
@@ -58,6 +64,12 @@ function mockGetMenuData(language) {
             text: 'Sök kurser',
             type: 'leaf',
             url: '/student/kurser/sokkurs',
+          },
+          {
+            id: 'searchAllCourses-new',
+            text: 'Sök kurser (ny)',
+            type: 'leaf',
+            url: '/student/kurser/sokkurs-ny-design',
           },
           {
             id: 'departmentsList',
