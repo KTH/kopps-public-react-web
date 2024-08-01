@@ -300,6 +300,7 @@ const messages = {
     errorEmpty: 'Your search returned no results.',
     errorOverflow: 'There were too many results.',
     noQueryProvided: 'No query restriction was specified',
+    filtersLabel: 'Filtrera dina sökval',
   },
   literatureList: {
     title: (term, schoolCode) => `Reading list ${term} ${schoolCode}`,

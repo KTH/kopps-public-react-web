@@ -11,7 +11,6 @@ interface IAncestorItem {
 }
 
 interface ISearchFiltersProps {
-  title: string
   ancestorItem: IAncestorItem
 }
 
@@ -30,16 +29,17 @@ interface ShowOptionsParams {
 type Params = PeriodParams | EduLevelParams | ShowOptionsParams
 
 interface IStore {
-    languageIndex: number,
-    textPattern: string
+  languageIndex: number
+  textPattern: string
 }
 
 const paramsReducer = (state: Params, action: any) => ({ ...state, ...action })
 
-const SearchFilters: React.FC<ISearchFiltersProps> = ({ title, ancestorItem }) => {
+const SearchFilters: React.FC<ISearchFiltersProps> = ({ ancestorItem }) => {
   const { languageIndex, textPattern: initialPattern = '' }: IStore = useStore()
 
   const { generalSearch } = i18n.messages[languageIndex]
+  const { filtersLabel } = generalSearch
   const { searchStartPeriodPrefix } = generalSearch
   const [state, setState] = useReducer(paramsReducer, { pattern: initialPattern })
 
@@ -62,7 +62,7 @@ const SearchFilters: React.FC<ISearchFiltersProps> = ({ title, ancestorItem }) =
         <a href={ancestorItem.href} className="kth-button back">
           {ancestorItem.label}
         </a>
-        <h2 id={desktopId}>{title}</h2>
+        <h2 id={desktopId}>{filtersLabel}</h2>
         <SearchOptions
           overrideSearchHead={currentYearLabel}
           paramAliasName="currentYear"

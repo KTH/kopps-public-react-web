@@ -291,6 +291,7 @@ const messages = {
     errorEmpty: 'Din sökning gav inga träffar.',
     errorOverflow: 'Sökningen gav för många träffar.',
     noQueryProvided: 'Ingen frågebegränsning angavs',
+    filtersLabel: 'Filter your search options',
   },
   literatureList: {
     title: (term, schoolCode) => `Litteraturlista ${term} ${schoolCode}`,

@@ -28,7 +28,6 @@ const NewSearchPage = () => {
   return (
     <Row>
       <SearchFilters
-        title="Filtrera dina sökval"
         ancestorItem={{ href: '/student/kurser/sokkurs-ny-design', label: main_menu_search_all_new }}
       />
       <MainContent>
