@@ -91,6 +91,7 @@ const messages = {
     main_menu_page_example: 'Exempel',
     main_menu_shb: 'Studier före 07/08',
     main_menu_search_all: 'Sök kurser',
+    main_menu_search_all_new: 'Sök kurser (ny)',
     main_menu_third_cycle_studies: 'Forskarutbildning',
     main_menu_third_cycle_courses_search: 'Sök forskarkurs',
 
@@ -290,6 +291,7 @@ const messages = {
     errorEmpty: 'Din sökning gav inga träffar.',
     errorOverflow: 'Sökningen gav för många träffar.',
     noQueryProvided: 'Ingen frågebegränsning angavs',
+    filtersLabel: 'Filtrera dina sökval',
   },
   literatureList: {
     title: (term, schoolCode) => `Litteraturlista ${term} ${schoolCode}`,

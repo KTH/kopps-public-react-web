@@ -14,6 +14,7 @@ import '../../css/node-web.scss'
 
 import Appendix1 from './pages/Appendix1'
 import Appendix2 from './pages/Appendix2'
+import NewSearchLandingPage from './pages/NewSearchLandingPage'
 import CourseSearch from './pages/CourseSearch'
 import CourseSearchThirdCycleStudy from './pages/CourseSearchThirdCycleStudy'
 import Curriculum from './pages/Curriculum'
@@ -28,9 +29,11 @@ import Programme from './pages/Programme'
 import ProgrammesList from './pages/ProgrammesList'
 import PageLayout from './layout/PageLayout'
 import ElementWrapper from './components/ElementWrapper'
+import SearchPageWrapper from './components/SearchPageWrapper'
 import StudyHandbook from './pages/StudyHandbook'
 import ThirdCycleDepartmentsList from './pages/ThirdCycleDepartmentsList'
 import ProgramSyllabusExport from './pages/ProgramSyllabusExport'
+import NewSearchPage from './pages/NewSearchPage'
 
 import getCurriculumMenuData from './config/curriculumMenuData'
 import getDepartmentMenuData from './config/departmentMenuData'
@@ -117,6 +120,27 @@ function appFactory(serverSideApplicationStore = null) {
             applicationStore={_initStore({ caller: 'CourseSearch' })}
             createMenuData={store => ({ selectedId: 'searchAllCourses', ...getMenuData(store) })}
           />
+        }
+      />
+      <Route
+        key="new-search-page"
+        exact
+        path="/student/kurser/sokkurs-ny-design"
+        element={
+          <ElementWrapper
+            component={NewSearchLandingPage}
+            layout={PageLayout}
+            applicationStore={_initStore({ caller: 'NewSearchPage' })}
+            createMenuData={store => ({ selectedId: 'searchAllCourses-new', ...getMenuData(store) })}
+          />
+        }
+      />
+      <Route
+        key="new-search-page"
+        exact
+        path="/student/kurser/sokkurs-ny-design/resultat"
+        element={
+          <SearchPageWrapper component={NewSearchPage} applicationStore={_initStore({ caller: 'NewSearchPage' })} />
         }
       />
       <Route
