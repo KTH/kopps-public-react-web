@@ -14,6 +14,7 @@ import '../../css/node-web.scss'
 
 import Appendix1 from './pages/Appendix1'
 import Appendix2 from './pages/Appendix2'
+import NewSearchLandingPage from './pages/NewSearchLandingPage'
 import CourseSearch from './pages/CourseSearch'
 import CourseSearchThirdCycleStudy from './pages/CourseSearchThirdCycleStudy'
 import Curriculum from './pages/Curriculum'
@@ -27,7 +28,6 @@ import Objectives from './pages/Objectives'
 import Programme from './pages/Programme'
 import ProgrammesList from './pages/ProgrammesList'
 import PageLayout from './layout/PageLayout'
-import SearchPageLayout from './layout/SearchPageLayout'
 import ElementWrapper from './components/ElementWrapper'
 import SearchPageWrapper from './components/SearchPageWrapper'
 import StudyHandbook from './pages/StudyHandbook'
@@ -65,6 +65,14 @@ function _initStore(optionalStoreProps = {}) {
 
   uncompressStoreInPlaceFromDocument(clientSideApplicationStore)
   return clientSideApplicationStore
+}
+
+function hasQueryParams() {
+  if (typeof window === 'undefined') return false
+  console.log('I am here')
+  const query = new URLSearchParams(window.location.search)
+
+  return query.size > 1 || (query.size === 1 && !query.toString().includes('l=')) ? true : false
 }
 
 function _renderOnClientSide() {
@@ -127,11 +135,16 @@ function appFactory(serverSideApplicationStore = null) {
         exact
         path="/student/kurser/sokkurs-ny-design"
         element={
-          <SearchPageWrapper
-            component={NewSearchPage}
-            layout={SearchPageLayout}
-            applicationStore={_initStore({ caller: 'NewSearchPage' })}
-          />
+          hasQueryParams() ? (
+            <SearchPageWrapper component={NewSearchPage} applicationStore={_initStore({ caller: 'NewSearchPage' })} />
+          ) : (
+            <ElementWrapper
+              component={NewSearchLandingPage}
+              layout={PageLayout}
+              applicationStore={_initStore({ caller: 'NewSearchPage' })}
+              createMenuData={store => ({ selectedId: 'searchAllCourses-new', ...getMenuData(store) })}
+            />
+          )
         }
       />
       <Route
