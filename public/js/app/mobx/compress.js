@@ -1,7 +1,5 @@
 /* eslint no-use-before-define: ["error", "nofunc"] */
 
-// @ts-check
-
 import { toJS } from 'mobx'
 
 export { compressStoreIntoJavascriptCode, uncompressStoreInPlaceFromDocument }

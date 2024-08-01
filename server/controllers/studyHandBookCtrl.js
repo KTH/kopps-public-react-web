@@ -1,5 +1,3 @@
-// @ts-check
-
 const log = require('@kth/log')
 const language = require('@kth/kth-node-web-common/lib/language')
 

@@ -1,6 +1,4 @@
 /* eslint no-use-before-define: ["error", "nofunc"] */
-//
-// @ts-check
 
 module.exports = { getServerSideFunctions }
 

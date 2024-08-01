@@ -1,7 +1,5 @@
 /* eslint no-use-before-define: ["error", "nofunc"] */
 
-// @ts-check
-
 import createApplicationStore from '../stores/createApplicationStore'
 import { getMobxManager } from './manager'
 
