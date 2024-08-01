@@ -67,14 +67,6 @@ function _initStore(optionalStoreProps = {}) {
   return clientSideApplicationStore
 }
 
-function hasQueryParams() {
-  if (typeof window === 'undefined') return false
-  console.log('I am here')
-  const query = new URLSearchParams(window.location.search)
-
-  return query.size > 1 || (query.size === 1 && !query.toString().includes('l=')) ? true : false
-}
-
 function _renderOnClientSide() {
   const isClientSide = typeof window !== 'undefined'
   if (!isClientSide) {
@@ -135,16 +127,20 @@ function appFactory(serverSideApplicationStore = null) {
         exact
         path="/student/kurser/sokkurs-ny-design"
         element={
-          hasQueryParams() ? (
-            <SearchPageWrapper component={NewSearchPage} applicationStore={_initStore({ caller: 'NewSearchPage' })} />
-          ) : (
-            <ElementWrapper
-              component={NewSearchLandingPage}
-              layout={PageLayout}
-              applicationStore={_initStore({ caller: 'NewSearchPage' })}
-              createMenuData={store => ({ selectedId: 'searchAllCourses-new', ...getMenuData(store) })}
-            />
-          )
+          <ElementWrapper
+            component={NewSearchLandingPage}
+            layout={PageLayout}
+            applicationStore={_initStore({ caller: 'NewSearchPage' })}
+            createMenuData={store => ({ selectedId: 'searchAllCourses-new', ...getMenuData(store) })}
+          />
+        }
+      />
+      <Route
+        key="new-search-page"
+        exact
+        path="/student/kurser/sokkurs-ny-design/resultat"
+        element={
+          <SearchPageWrapper component={NewSearchPage} applicationStore={_initStore({ caller: 'NewSearchPage' })} />
         }
       />
       <Route

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import { Col, Row } from 'reactstrap'
 import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
@@ -24,6 +24,7 @@ const MainContent: React.FC<MainContentProps> = ({ children }) => {
 
 const NewSearchLandingPage = () => {
   const navigate = useNavigate()
+  const location = useLocation()
   const { languageIndex } = useStore()
 
   const { bigSearch } = i18n.messages[languageIndex]
@@ -31,8 +32,8 @@ const NewSearchLandingPage = () => {
 
   const handleSubmit = (pattern: string) => {
     const searchStr = stringifyUrlParams({ pattern: pattern })
-    navigate({ search: searchStr }, { replace: true })
-    navigate(0)
+    const newUrl = `${location.pathname}/resultat?${searchStr}`
+    navigate(newUrl, { replace: true })
   }
 
   return (
