@@ -1,11 +1,12 @@
 import React from 'react'
 
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { Col, Row } from 'reactstrap'
 import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 import SearchInput from '../components/SearchInput'
 import { stringifyUrlParams } from '../../../../domain/searchParams'
+import { newSearchResultLink } from '../util/links'
 
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
@@ -23,17 +24,18 @@ const MainContent: React.FC<MainContentProps> = ({ children }) => {
 }
 
 const NewSearchLandingPage = () => {
+  const { languageIndex, language, setPattern } = useStore()
   const navigate = useNavigate()
-  const location = useLocation()
-  const { languageIndex } = useStore()
 
   const { bigSearch } = i18n.messages[languageIndex]
   const { searchHeading, searchButton } = bigSearch
 
   const handleSubmit = (pattern: string) => {
+    setPattern(pattern)
     const searchStr = stringifyUrlParams({ pattern: pattern })
-    const newUrl = `${location.pathname}/resultat?${searchStr}`
-    navigate(newUrl, { replace: true })
+    let newUrl = newSearchResultLink(searchStr, language)
+    if (newUrl.startsWith("/")) newUrl = origin + newUrl
+    window.location.href = newUrl
   }
 
   return (

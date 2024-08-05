@@ -23,6 +23,9 @@ function courseSearchLink(courseCode, language) {
   return pageLink('/student/kurser/sokkurs', language)
 }
 
+function newSearchResultLink(parametersStr, language) {
+  return pageLink(`/student/kurser/sokkurs-ny-design/resultat?${parametersStr}`, language)
+}
 function programLinkYear1(programmeCode, term, language) {
   return pageLink(`/student/kurser/program/${programmeCode}/${term}/arskurs1`, language)
 }
@@ -81,6 +84,7 @@ export {
   departmentLink,
   courseLink,
   courseSearchLink,
+  newSearchResultLink,
   centralStudyCounselingUrl,
   koppsEmail,
   parentStudyLink,

@@ -128,7 +128,7 @@ function appFactory(serverSideApplicationStore = null) {
           <ElementWrapper
             component={NewSearchLandingPage}
             layout={PageLayout}
-            applicationStore={_initStore({ caller: 'NewSearchPage' })}
+            applicationStore={_initStore({ caller: 'newSearchPage' })}
             createMenuData={store => ({ selectedId: 'searchAllCourses-new', ...getMenuData(store) })}
           />
         }
@@ -138,7 +138,7 @@ function appFactory(serverSideApplicationStore = null) {
         exact
         path="/student/kurser/sokkurs-ny-design/resultat"
         element={
-          <SearchPageWrapper component={NewSearchPage} applicationStore={_initStore({ caller: 'NewSearchPage' })} />
+          <SearchPageWrapper component={NewSearchPage} applicationStore={_initStore({ caller: 'newSearchPage' })} />
         }
       />
       <Route
