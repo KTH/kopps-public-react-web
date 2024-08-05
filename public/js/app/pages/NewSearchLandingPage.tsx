@@ -24,14 +24,13 @@ const MainContent: React.FC<MainContentProps> = ({ children }) => {
 }
 
 const NewSearchLandingPage = () => {
-  const { languageIndex, language, setPattern } = useStore()
+  const { languageIndex, language } = useStore()
   const navigate = useNavigate()
 
   const { bigSearch } = i18n.messages[languageIndex]
   const { searchHeading, searchButton } = bigSearch
 
   const handleSubmit = (pattern: string) => {
-    setPattern(pattern)
     const searchStr = stringifyUrlParams({ pattern: pattern })
     let newUrl = newSearchResultLink(searchStr, language)
     if (newUrl.startsWith("/")) newUrl = origin + newUrl
