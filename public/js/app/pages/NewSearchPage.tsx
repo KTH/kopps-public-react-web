@@ -5,8 +5,8 @@ import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 import SearchFilters from '../components/SearchFilters'
 import { stringifyUrlParams } from '../../../../domain/searchParams'
 
-import { koppsCourseSearch, KoppsCourseSearchResult} from '../util/newSeachApi'
-import { STATUS, ERROR_ASYNC, useAsync } from '../hooks/newSearchUseAsync'
+import { koppsCourseSearch, KoppsCourseSearchResult} from '../util/searchApi'
+import { STATUS, ERROR_ASYNC, useCourseSearch } from '../hooks/useCourseSearch'
 
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
@@ -45,8 +45,8 @@ const NewSearchPage = () => {
     pattern: textPattern
   }
   const searchParameters2 = {
-    period: ['20242:1'],
     pattern: textPattern,
+    period: ['20242:1']
   }
   const searchStr1 = stringifyUrlParams(searchParameters1)
   const searchStr2 = stringifyUrlParams(searchParameters2)
@@ -66,15 +66,15 @@ const NewSearchPage = () => {
     ? { status: textPattern ? STATUS.pending : STATUS.idle }
     : { status: searchStr1 ? STATUS.pending : STATUS.idle }
 
-  const state1 = useAsync(asyncCallback1, initialStatus1)
+  const state1 = useCourseSearch(asyncCallback1, initialStatus1)
 
   // the second call is only for testing the period filter
   const onlyPattern2 = searchParameters2.pattern && Object.keys(searchParameters2).length == 1
   const initialStatus = onlyPattern2
     ? { status: textPattern ? STATUS.pending : STATUS.idle }
-    : { status: searchStr1 ? STATUS.pending : STATUS.idle }
+    : { status: searchStr2 ? STATUS.pending : STATUS.idle }
 
-  const state2 = useAsync(asyncCallback2, initialStatus)
+  const state2 = useCourseSearch(asyncCallback2, initialStatus)
 
   const { data: searchResults1, status: searchStatus1, error: errorType1 } = state1
   const { data: searchResults2, status: searchStatus2, error: errorType2 } = state2
@@ -91,7 +91,7 @@ const NewSearchPage = () => {
         )}
         <h3>search result for "{textPattern}" and "period: 20242:1":</h3>
         {searchStatus2 === STATUS.resolved && isKoppsCourseSearchResult(searchResults2) && searchResults2.searchHits && searchResults2.searchHits.map(
-          ({course, searchHitInterval}) => (<p key={course.courseCode}><b>{course.title}</b> {course.courseCode} - {formatShortTerm(searchHitInterval.startTerm, language)}</p>)
+          ({course, searchHitInterval}) => (<p key={course.courseCode + searchHitInterval.startPeriod + searchHitInterval.endPeriod}><b>{course.title}</b> {course.courseCode} - {formatShortTerm(searchHitInterval.startTerm, language)}</p>)
         )}
       </MainContent>
     </Row>

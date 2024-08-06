@@ -7,6 +7,7 @@ const STATUS = {
   noQueryProvided: 'noQueryProvided',
   noHits: 'noHits',
   rejected: 'rejected',
+  
   idle: 'idle',
 } as const
 
@@ -60,7 +61,7 @@ const overflowDispatch = (dispatch: Dispatch<Action<any>>) => dispatch({ type: '
 const noHitsDispatch = (dispatch: Dispatch<Action<any>>) => dispatch({ type: 'noHits' })
 const noQueryProvidedDispatch = (dispatch: Dispatch<Action<any>>) => dispatch({ type: 'noQueryProvided' })
 
-function useAsync<T>(asyncCallback: () => Promise<T>, initialState?: Partial<State<T>>): State<T> {
+function useCourseSearch<T>(asyncCallback: () => Promise<T>, initialState?: Partial<State<T>>): State<T> {
   const [state, dispatch] = useReducer<React.Reducer<State<T>, Action<T>>>(asyncReducer, {
     status: STATUS.idle,
     data: null,
@@ -89,4 +90,4 @@ function useAsync<T>(asyncCallback: () => Promise<T>, initialState?: Partial<Sta
   return state
 }
 
-export { STATUS, ERROR_ASYNC, useAsync }
+export { STATUS, ERROR_ASYNC, useCourseSearch }
