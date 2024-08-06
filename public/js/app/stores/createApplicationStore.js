@@ -138,6 +138,7 @@ function createApplicationStore(storeId) {
     case 'newSearchPage':
       return {
         ...createCommonStore(),
+        ...createStore(),
         ...createNewSearchPageStore(),
       }
     case 'searchCourses':

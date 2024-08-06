@@ -5,12 +5,14 @@ import NotFound from '../pages/NotFound'
 
 interface SearchPageWrapperProps {
   component: React.ComponentType<any>
-  applicationStore: any
+  applicationStore: any,
+  initCallback?: () => any
 }
 
 const SearchPageWrapper: React.FC<SearchPageWrapperProps> = ({
   component: Component,
   applicationStore,
+  initCallback
 }) => {
   const { statusCode } = applicationStore
 
@@ -23,7 +25,7 @@ const SearchPageWrapper: React.FC<SearchPageWrapperProps> = ({
   }, [])
 
   return (
-    <MobxStoreProvider initCallback={() => applicationStore}>
+    <MobxStoreProvider initCallback={initCallback ?? (() => applicationStore)}>
       {statusCode === 404 ? <NotFound /> : <Component />}
     </MobxStoreProvider>
   )

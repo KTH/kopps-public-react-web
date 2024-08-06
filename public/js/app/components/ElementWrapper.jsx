@@ -4,7 +4,14 @@ import PropTypes from 'prop-types'
 import { MobxStoreProvider } from '../mobx'
 import NotFound from '../pages/NotFound'
 
-function ElementWrapper({ component: Component, layout: Layout, applicationStore, createMenuData }) {
+function ElementWrapper({
+  component: Component,
+  layout: Layout,
+  applicationStore,
+  createMenuData,
+  storeId,
+  initCallback,
+}) {
   const menuData = createMenuData(applicationStore)
   const { statusCode } = applicationStore
 
@@ -21,7 +28,7 @@ function ElementWrapper({ component: Component, layout: Layout, applicationStore
   }, [])
 
   return (
-    <MobxStoreProvider initCallback={() => applicationStore}>
+    <MobxStoreProvider initCallback={initCallback ?? (() => applicationStore)}>
       <Layout menuData={menuData}>{statusCode === 404 ? <NotFound /> : <Component />}</Layout>
     </MobxStoreProvider>
   )

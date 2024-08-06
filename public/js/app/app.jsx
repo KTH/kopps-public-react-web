@@ -79,6 +79,8 @@ function _renderOnClientSide() {
 }
 
 function appFactory(serverSideApplicationStore = null) {
+  const newSearchStore = _initStore({ storeId: 'newSearchPage' })
+  const newSearchStoreCallback = () => newSearchStore
   return (
     <Routes>
       <Route
@@ -128,7 +130,9 @@ function appFactory(serverSideApplicationStore = null) {
           <ElementWrapper
             component={NewSearchLandingPage}
             layout={PageLayout}
-            applicationStore={_initStore({ caller: 'newSearchPage' })}
+            applicationStore={newSearchStore}
+            initCallback={newSearchStoreCallback}
+            storeId="newSearchPage"
             createMenuData={store => ({ selectedId: 'searchAllCourses-new', ...getMenuData(store) })}
           />
         }
@@ -138,7 +142,12 @@ function appFactory(serverSideApplicationStore = null) {
         exact
         path="/student/kurser/sokkurs-ny-design/resultat"
         element={
-          <SearchPageWrapper component={NewSearchPage} applicationStore={_initStore({ caller: 'newSearchPage' })} />
+          <SearchPageWrapper
+            storeId="newSearchPage"
+            component={NewSearchPage}
+            applicationStore={newSearchStore}
+            initCallback={newSearchStoreCallback}
+          />
         }
       />
       <Route
