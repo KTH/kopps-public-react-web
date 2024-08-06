@@ -132,7 +132,6 @@ function appFactory(serverSideApplicationStore = null) {
             layout={PageLayout}
             applicationStore={newSearchStore}
             initCallback={newSearchStoreCallback}
-            storeId="newSearchPage"
             createMenuData={store => ({ selectedId: 'searchAllCourses-new', ...getMenuData(store) })}
           />
         }
@@ -143,7 +142,6 @@ function appFactory(serverSideApplicationStore = null) {
         path="/student/kurser/sokkurs-ny-design/resultat"
         element={
           <SearchPageWrapper
-            storeId="newSearchPage"
             component={NewSearchPage}
             applicationStore={newSearchStore}
             initCallback={newSearchStoreCallback}

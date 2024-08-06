@@ -69,7 +69,7 @@ const NewSearchPage = () => {
   const state1 = useAsync(asyncCallback1, initialStatus1)
 
   // the second call is only for testing the period filter
-  const onlyPattern2 = searchParameters1.pattern && Object.keys(searchParameters2).length == 1
+  const onlyPattern2 = searchParameters2.pattern && Object.keys(searchParameters2).length == 1
   const initialStatus = onlyPattern2
     ? { status: textPattern ? STATUS.pending : STATUS.idle }
     : { status: searchStr1 ? STATUS.pending : STATUS.idle }

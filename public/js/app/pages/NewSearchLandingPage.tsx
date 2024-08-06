@@ -32,7 +32,6 @@ const NewSearchLandingPage = () => {
 
   const handleSubmit = (pattern: string) => {
     setPattern(pattern)
-    console.log(pattern)
     const searchStr = stringifyUrlParams({ pattern: pattern })
     let newUrl = newSearchResultLink(searchStr, language)
     if (newUrl.startsWith('/')) navigate(newUrl)
