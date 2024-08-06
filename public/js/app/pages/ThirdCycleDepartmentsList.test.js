@@ -44,6 +44,7 @@ const WrapperThirdCycleDepartmentsList = ({ lang }) => {
   const updatedApplicationStore = {
     ...applicationStore,
   }
+  const initApplicationStoreCallback = () => updatedApplicationStore
   return (
     <StaticRouter>
       <ElementWrapper
@@ -51,7 +52,7 @@ const WrapperThirdCycleDepartmentsList = ({ lang }) => {
         path="/utbildning/forskarutbildning/kurser/avdelning"
         component={ThirdCycleDepartmentsList}
         layout={PageLayout}
-        applicationStore={updatedApplicationStore}
+        initApplicationStoreCallback={initApplicationStoreCallback}
         createMenuData={store => ({
           selectedId: 'thirdCycleDepartmentsList',
           ...getThirdCycleMenuData(store),

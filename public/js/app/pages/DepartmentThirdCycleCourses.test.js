@@ -81,12 +81,13 @@ const WrapperDepartmentCourses = ({ lang }) => {
   const updatedApplicationStore = {
     ...applicationStore,
   }
+  const initApplicationStoreCallback = () => updatedApplicationStore
   return (
     <StaticRouter>
       <ElementWrapper
         exact
         path="/utbildning/forskarutbildning/kurser/org/AFF"
-        applicationStore={updatedApplicationStore}
+        initApplicationStoreCallback={initApplicationStoreCallback}
         component={DepartmentCourses}
         layout={PageLayout}
         createMenuData={store => ({

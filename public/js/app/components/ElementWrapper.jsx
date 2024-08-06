@@ -4,14 +4,8 @@ import PropTypes from 'prop-types'
 import { MobxStoreProvider } from '../mobx'
 import NotFound from '../pages/NotFound'
 
-function ElementWrapper({
-  component: Component,
-  layout: Layout,
-  applicationStore,
-  createMenuData,
-  storeId,
-  initCallback,
-}) {
+function ElementWrapper({ component: Component, layout: Layout, createMenuData, initApplicationStoreCallback }) {
+  const applicationStore = initApplicationStoreCallback()
   const menuData = createMenuData(applicationStore)
   const { statusCode } = applicationStore
 
@@ -28,7 +22,7 @@ function ElementWrapper({
   }, [])
 
   return (
-    <MobxStoreProvider initCallback={initCallback ?? (() => applicationStore)}>
+    <MobxStoreProvider initCallback={initApplicationStoreCallback}>
       <Layout menuData={menuData}>{statusCode === 404 ? <NotFound /> : <Component />}</Layout>
     </MobxStoreProvider>
   )
@@ -38,8 +32,7 @@ ElementWrapper.propTypes = {
   component: PropTypes.oneOfType([PropTypes.node, PropTypes.func, PropTypes.elementType]).isRequired,
   layout: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
   createMenuData: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  applicationStore: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
+  initApplicationStoreCallback: PropTypes.func.isRequired,
 }
 
 export default ElementWrapper

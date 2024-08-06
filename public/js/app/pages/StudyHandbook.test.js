@@ -24,13 +24,14 @@ const WrapperStudyHandbook = ({ lang, ...rest }) => {
   const updatedApplicationStore = {
     ...applicationStore,
   }
+  const initApplicationStoreCallback = () => updatedApplicationStore
   return (
     <StaticRouter>
       <ElementWrapper
         exact
         path="/student/program/shb"
         component={StudyHandbook}
-        applicationStore={updatedApplicationStore}
+        initApplicationStoreCallback={initApplicationStoreCallback}
         layout={PageLayout}
         createMenuData={store => ({ selectedId: 'shb', ...getMenuData(store) })}
         {...rest}
