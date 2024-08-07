@@ -9,18 +9,6 @@ function ElementWrapper({ component: Component, layout: Layout, createMenuData, 
   const menuData = createMenuData(applicationStore)
   const { statusCode } = applicationStore
 
-  React.useEffect(() => {
-    let isMounted = true
-    if (isMounted) {
-      const siteNameElement = document.querySelector('.block.siteName a')
-      if (siteNameElement) {
-        const rawHref = siteNameElement.href
-        siteNameElement.href = rawHref.replace('.se//', '.se/')
-      }
-    }
-    return () => (isMounted = false)
-  }, [])
-
   return (
     <MobxStoreProvider initCallback={initApplicationStoreCallback}>
       <Layout menuData={menuData}>{statusCode === 404 ? <NotFound /> : <Component />}</Layout>

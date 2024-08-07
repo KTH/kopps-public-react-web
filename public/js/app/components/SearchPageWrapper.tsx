@@ -8,21 +8,14 @@ interface SearchPageWrapperProps {
   initApplicationStoreCallback: () => any
 }
 
-const SearchPageWrapper: React.FC<SearchPageWrapperProps> = ({ component: Component, initApplicationStoreCallback }) => {
-  const applicationStore = initApplicationStoreCallback()
-  const { statusCode } = applicationStore
-
-  useEffect(() => {
-    const siteNameElement = document.querySelector('.block.siteName a') as HTMLAnchorElement | null
-    if (siteNameElement) {
-      const rawHref = siteNameElement.href
-      siteNameElement.href = rawHref.replace('.se//', '.se/')
-    }
-  }, [])
+const SearchPageWrapper: React.FC<SearchPageWrapperProps> = ({
+  component: Component,
+  initApplicationStoreCallback,
+}) => {
 
   return (
     <MobxStoreProvider initCallback={initApplicationStoreCallback}>
-      {statusCode === 404 ? <NotFound /> : <Component />}
+      <Component />
     </MobxStoreProvider>
   )
 }
