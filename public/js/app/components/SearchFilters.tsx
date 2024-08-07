@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 import SearchOptions from './SearchOptions'
 import SearchDepartments from './SearchDepartments'
 
@@ -49,19 +50,22 @@ const SearchFilters: React.FC<ISearchFiltersProps> = ({ ancestorItem }) => {
 
   const desktopId = 'local-navigation-title'
 
+  const navigate = useNavigate()
+
   function handleParamChange(params: Params) {
     console.log('params: ', params)
     setState(params)
   }
+
 
   // id="mainMenu" is not a correct id as the search filters aren't really a menu.
   // It puts everything in the correct position for now though.
   return (
     <>
       <div id="mainMenu" className="kth-local-navigation col">
-        <a href={ancestorItem.href} className="kth-button back">
+        <Link to={ancestorItem.href} className="kth-button back">
           {ancestorItem.label}
-        </a>
+        </Link>
         <h2 id={desktopId}>{filtersLabel}</h2>
         <SearchOptions
           overrideSearchHead={currentYearLabel}

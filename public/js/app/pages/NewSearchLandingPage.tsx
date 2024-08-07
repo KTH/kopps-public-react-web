@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { Col, Row } from 'reactstrap'
 import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
@@ -23,24 +23,26 @@ const MainContent: React.FC<MainContentProps> = ({ children }) => {
 }
 
 const NewSearchLandingPage = () => {
-  const navigate = useNavigate()
-  const location = useLocation()
-  const { languageIndex } = useStore()
-
+  const { languageIndex, setPattern, textPattern } = useStore()
   const { bigSearch } = i18n.messages[languageIndex]
   const { searchHeading, searchButton } = bigSearch
+  
+  const navigate = useNavigate()
 
   const handleSubmit = (pattern: string) => {
+    setPattern(pattern)
     const searchStr = stringifyUrlParams({ pattern: pattern })
-    const newUrl = `${location.pathname}/resultat?${searchStr}`
-    navigate(newUrl, { replace: true })
+    navigate({
+      pathname: '/student/kurser/sokkurs-ny-design/resultat',
+      search: searchStr
+    })
   }
 
   return (
     <Row>
       <MainContent>
         <PageHeading>{searchHeading}</PageHeading>
-        <SearchInput caption="searchButton" onSubmit={handleSubmit} />
+        <SearchInput pattern={textPattern} caption="searchButton" onSubmit={handleSubmit} />
       </MainContent>
     </Row>
   )
