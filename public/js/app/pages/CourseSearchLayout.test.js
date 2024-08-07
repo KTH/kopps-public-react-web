@@ -27,13 +27,14 @@ const WrappedCourseSearch = ({ lang, ...rest }) => {
   const updatedApplicationStore = {
     ...applicationStore,
   }
+  const initApplicationStoreCallback = () => updatedApplicationStore
   return (
     <StaticRouter>
       <ElementWrapper
         exact
         path="/student/kurser/kurssok"
         component={CourseSearch}
-        applicationStore={updatedApplicationStore}
+        initApplicationStoreCallback={initApplicationStoreCallback}
         layout={PageLayout}
         createMenuData={store => ({ selectedId: 'searchAllCourses', ...getMenuData(store) })}
         // eslint-disable-next-line react/jsx-props-no-spreading

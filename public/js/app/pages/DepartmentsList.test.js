@@ -45,6 +45,7 @@ const WrapperDepartmentsList = ({ lang }) => {
   const updatedApplicationStore = {
     ...applicationStore,
   }
+  const initApplicationStoreCallback = () => updatedApplicationStore
   return (
     <StaticRouter>
       <ElementWrapper
@@ -52,7 +53,7 @@ const WrapperDepartmentsList = ({ lang }) => {
         path="/student/kurser/org"
         component={DepartmentsList}
         layout={PageLayout}
-        applicationStore={updatedApplicationStore}
+        initApplicationStoreCallback={initApplicationStoreCallback}
         createMenuData={store => ({ selectedId: 'departmentsList', ...getMenuData(store) })}
       />
     </StaticRouter>

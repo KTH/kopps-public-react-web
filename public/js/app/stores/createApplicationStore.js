@@ -6,6 +6,7 @@ import createCommonStore from './commonStore'
 import createCurriculumStore from './curriculumStore'
 import createStudyProgrammeStore from './studyProgrammeStore'
 import createSearchCoursesStore from './searchCoursesStore'
+import createNewSearchPageStore from './newSearchPageStore'
 import createAppendix1Store from './appendix1Store'
 import createAppendix2Store from './appendix2Store'
 import createLiteratureStore from './literatureStore'
@@ -133,6 +134,12 @@ function createApplicationStore(storeId) {
       return {
         ...createCommonStore(),
         ...createCurriculumStore(),
+      }
+    case 'newSearchPage':
+      return {
+        ...createCommonStore(),
+        ...createStore(),
+        ...createNewSearchPageStore(),
       }
     case 'searchCourses':
       return {
