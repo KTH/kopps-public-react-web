@@ -7,7 +7,6 @@ const STATUS = {
   noQueryProvided: 'noQueryProvided',
   noHits: 'noHits',
   rejected: 'rejected',
-  
   idle: 'idle',
 } as const
 

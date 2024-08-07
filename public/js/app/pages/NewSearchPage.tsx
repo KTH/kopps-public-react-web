@@ -91,7 +91,7 @@ const NewSearchPage = () => {
         )}
         <h3>search result for "{textPattern}" and "period: 20242:1":</h3>
         {searchStatus2 === STATUS.resolved && isKoppsCourseSearchResult(searchResults2) && searchResults2.searchHits && searchResults2.searchHits.map(
-          ({course, searchHitInterval}) => (<p key={course.courseCode + searchHitInterval.startPeriod + searchHitInterval.endPeriod}><b>{course.title}</b> {course.courseCode} - {formatShortTerm(searchHitInterval.startTerm, language)}</p>)
+          ({course, searchHitInterval}) => (<p key={`${course.courseCode}${searchHitInterval.startPeriod}${searchHitInterval.endPeriod}`}><b>{course.title}</b> {course.courseCode} - {formatShortTerm(searchHitInterval.startTerm, language)}</p>)
         )}
       </MainContent>
     </Row>
