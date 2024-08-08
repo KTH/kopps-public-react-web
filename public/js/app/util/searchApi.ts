@@ -6,7 +6,10 @@ export interface KoppsCourseSearchParams {
 }
 
 export interface KoppsCourseSearchResult {
-  searchHits?: Array<{ [key: string]: any }>
+  searchHits?: {
+    searchHitInterval?: any
+    course: any
+  }[]
   errorCode?: string
 }
 
@@ -17,29 +20,29 @@ export async function koppsCourseSearch(
 ): Promise<KoppsCourseSearchResult | string> {
   try {
     // Constructing the URL with query parameters
-    const baseUrl = new URL(proxyUrl, window.location.origin).href;
-    const url = new URL(`${baseUrl}/intern-api/sok/${language}`);
+    const baseUrl = new URL(proxyUrl, window.location.origin).href
+    const url = new URL(`${baseUrl}/intern-api/sok/${language}`)
     Object.keys(params).forEach(key => {
       if (Array.isArray(params[key])) {
-        params[key].forEach((item: any) => url.searchParams.append(`${key}[]`, item));
+        params[key].forEach((item: any) => url.searchParams.append(`${key}[]`, item))
       } else {
-        url.searchParams.append(key, params[key]);
+        url.searchParams.append(key, params[key])
       }
-    });
+    })
 
     // Making the request using fetch
-    const response = await fetch(url.toString());
+    const response = await fetch(url.toString())
 
     if (!response.ok) {
-      return 'ERROR-koppsCourseSearch-' + response.status;
+      return 'ERROR-koppsCourseSearch-' + response.status
     }
 
-    const data: KoppsCourseSearchResult | string = await response.json();
-    return data;
+    const data: KoppsCourseSearchResult | string = await response.json()
+    return data
   } catch (error: any) {
     if (error instanceof Error) {
-      throw new Error('Unexpected error from koppsCourseSearch-' + error.message);
+      throw new Error('Unexpected error from koppsCourseSearch-' + error.message)
     }
-    throw error;
+    throw error
   }
 }
