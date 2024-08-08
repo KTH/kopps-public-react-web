@@ -1,46 +1,13 @@
-export type SetPattern = (textPattern: string) => void
-
-export type SchoolsWithDepartments = {
-  departmentPrefix: string
-  departments: {
-    code: string
-    name: string
-  }[]
-  name: string
-}[]
-
-export type SetSchoolsWithDepartments = (schoolsWithDepartments: SchoolsWithDepartments) => void
-
-export type EduLevel = '0' | '1' | '2' | '3'
-
-export type SetEduLevels = (eduLevels: EduLevel[]) => void
-
-export type SetPeriods = (periods: string[]) => void
-
-export type ShowOptions = 'onlyEnglish' | 'onlyMHU' | 'showCancelled'
-
-export type SetShowOptions = (showOptions: ShowOptions[]) => void
-
-export type SetDepartmentCodeOrPrefix = (departmentCodeOrPrefix: string) => void
-
-export interface SearchCoursesStore {
-  textPattern: string
-  eduLevel: EduLevel[]
-  period: string[]
-  showOptions: ShowOptions[]
-  departmentCodeOrPrefix: string
-  schoolsWithDepartments: SchoolsWithDepartments
-  currentSchoolsWithDepartments: SchoolsWithDepartments
-  deprecatedSchoolsWithDepartments: SchoolsWithDepartments
-  setPattern: SetPattern
-  setEduLevels: SetEduLevels
-  setPeriods: SetPeriods
-  setShowOptions: SetShowOptions
-  setDepartmentCodeOrPrefix: SetDepartmentCodeOrPrefix
-  setSchoolsWithDepartments: SetSchoolsWithDepartments
-  setDeprecatedSchoolsWithDepartments: SetSchoolsWithDepartments
-  setCurrentSchoolsWithDepartments: SetSchoolsWithDepartments
-}
+import {
+  SetPattern,
+  SetSchoolsWithDepartments,
+  SetEduLevels,
+  SetPeriods,
+  SetShowOptions,
+  SetDepartmentCodeOrPrefix,
+  SearchCoursesStore,
+  ClearStore
+} from './types/searchPageStoreTypes'
 
 const setPattern: SetPattern = function (textPattern) {
   if (typeof textPattern === 'string') {
@@ -50,15 +17,15 @@ const setPattern: SetPattern = function (textPattern) {
 }
 
 const setEduLevels: SetEduLevels = function (eduLevels) {
-  this.eduLevel = eduLevels
+  this.eduLevel = _transformByInputType(eduLevels)
 }
 
-const setPeriods: SetEduLevels = function (periods) {
-  this.period = periods
+const setPeriods: SetPeriods = function (periods) {
+  this.period = _transformByInputType(periods)
 }
 
 const setShowOptions: SetShowOptions = function (showOptions) {
-  this.showOptions = showOptions
+  this.showOptions = _transformByInputType(showOptions)
 }
 
 const setDepartmentCodeOrPrefix: SetDepartmentCodeOrPrefix = function (departmentCodeOrPrefix) {
@@ -75,6 +42,26 @@ const setDeprecatedSchoolsWithDepartments: SetSchoolsWithDepartments = function 
 
 const setCurrentSchoolsWithDepartments: SetSchoolsWithDepartments = function (currentSchoolsWithDepartments) {
   this.currentSchoolsWithDepartments = currentSchoolsWithDepartments
+}
+
+const clearStore: ClearStore = function () {
+  this.setPattern('')
+  this.setDepartmentCodeOrPrefix('')
+  this.setPeriods([])
+  this.setEduLevels([])
+  this.setShowOptions([])
+}
+
+function _transformByInputType(parameters: string | string[]) {
+  const type = typeof parameters
+  switch (type) {
+    case 'string':
+      return [parameters]
+    case 'object':
+      return Object.values(parameters)
+    default:
+      return []
+  }
 }
 
 export function createNewSearchPageStore(): SearchCoursesStore {
@@ -95,6 +82,7 @@ export function createNewSearchPageStore(): SearchCoursesStore {
     setSchoolsWithDepartments,
     setDeprecatedSchoolsWithDepartments,
     setCurrentSchoolsWithDepartments,
+    clearStore,
   }
 
   return searchCoursesStore

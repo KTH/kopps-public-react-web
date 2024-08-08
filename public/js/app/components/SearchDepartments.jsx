@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { useStore } from '../mobx'
@@ -20,14 +20,10 @@ function SearchDepartments({ onChange }) {
   const { department: departmentLabel, departmentsAll, departmentsWithin } = i18n.messages[languageIndex].bigSearch
   const t = translate(language)
 
-  useEffect(() => {
-    let isMounted = true
-    if (isMounted) onChange({ department })
-    return () => (isMounted = false)
-  }, [department])
-
   function handleChange(e) {
-    setDepartment(e.target.value)
+    const department = e.target.value
+    setDepartment(department)
+    onChange({ department })
   }
 
   return (
@@ -36,7 +32,7 @@ function SearchDepartments({ onChange }) {
         <legend className="form-control-label">{departmentLabel}</legend>
         <select
           id="department"
-          defaultValue={initialDepartmentCode}
+          defaultValue={department}
           name="department"
           className="form-control"
           onChange={handleChange}

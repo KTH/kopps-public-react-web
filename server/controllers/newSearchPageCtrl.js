@@ -65,27 +65,13 @@ async function newSearchCourses(req, res, next) {
   }
 }
 
-function _transformByInputType(parameters) {
-  const type = typeof parameters
-  switch (type) {
-    case 'string':
-      return [parameters]
-    case 'object':
-      return Object.values(parameters)
-    case 'array':
-      return parameters
-    default:
-      return []
-  }
-}
-
 // eslint-disable-next-line no-unused-vars
 async function _fillApplicationStoreOnServerSide({ applicationStore, query }) {
   const { department, pattern, eduLevel, showOptions, period } = query
   applicationStore.setPattern(pattern)
-  applicationStore.setEduLevels(_transformByInputType(eduLevel))
-  applicationStore.setShowOptions(_transformByInputType(showOptions))
-  applicationStore.setPeriods(_transformByInputType(period))
+  applicationStore.setEduLevels(eduLevel)
+  applicationStore.setShowOptions(showOptions)
+  applicationStore.setPeriods(period)
   applicationStore.setDepartmentCodeOrPrefix(department)
 }
 

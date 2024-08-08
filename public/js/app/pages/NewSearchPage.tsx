@@ -2,7 +2,7 @@ import React, { useReducer } from 'react'
 
 import { Col, Row } from 'reactstrap'
 import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
-import SearchFilters from '../components/SearchFilters'
+import SearchFilters from '../components/SearchFilters/SearchFilters'
 import { stringifyUrlParams } from '../../../../domain/searchParams'
 
 import { koppsCourseSearch, KoppsCourseSearchResult } from '../util/searchApi'
@@ -13,9 +13,7 @@ import i18n from '../../../../i18n'
 
 import { formatShortTerm } from '../../../../domain/term'
 
-interface MainContentProps {
-  children: React.ReactNode
-}
+import { MainContentProps, SearchParams } from './types/searchPageTypes'
 
 const MainContent: React.FC<MainContentProps> = ({ children }) => {
   return (
@@ -41,7 +39,7 @@ const NewSearchPage = () => {
   const { main_menu_search_all_new } = messages
   const { searchHeading } = bigSearch
 
-  const paramsReducer = (state: any, action: any) => ({ ...state, ...action })
+  const paramsReducer = (state: SearchParams, action: Partial<SearchParams>) => ({ ...state, ...action })
 
   const [searchParameters, setSearchParameters] = useReducer(paramsReducer, {
     pattern: textPattern,
@@ -67,7 +65,7 @@ const NewSearchPage = () => {
 
   const { data: searchResults, status: searchStatus, error: errorType } = state1
 
-  function updateState(params: any) {
+  function updateSearch(params: Partial<SearchParams>) {
     setSearchParameters({ ...params })
   }
 
@@ -75,7 +73,7 @@ const NewSearchPage = () => {
     <Row>
       <SearchFilters
         ancestorItem={{ href: '/student/kurser/sokkurs-ny-design', label: main_menu_search_all_new }}
-        updateState={updateState}
+        updateSearch={updateSearch}
       />
       <MainContent>
         <PageHeading>{searchHeading}</PageHeading>
