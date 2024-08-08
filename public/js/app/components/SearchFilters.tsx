@@ -48,8 +48,6 @@ const SearchFilters: React.FC<ISearchFiltersProps> = ({ ancestorItem }) => {
   const currentYearLabel = `${searchStartPeriodPrefix} ${currentYearDate}`
   const nextYearLabel = `${searchStartPeriodPrefix} ${Number(currentYearDate) + 1}`
 
-  const desktopId = 'local-navigation-title'
-
   const navigate = useNavigate()
 
   function handleParamChange(params: Params) {
@@ -66,7 +64,7 @@ const SearchFilters: React.FC<ISearchFiltersProps> = ({ ancestorItem }) => {
         <Link to={ancestorItem.href} className="kth-button back">
           {ancestorItem.label}
         </Link>
-        <h2 id={desktopId}>{filtersLabel}</h2>
+        <h3>{filtersLabel}</h3>
         <SearchOptions
           overrideSearchHead={currentYearLabel}
           paramAliasName="currentYear"

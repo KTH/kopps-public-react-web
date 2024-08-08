@@ -255,8 +255,8 @@ appRoute.get(
 )
 appRoute.get('public.searchThirdCycleCourses', proxyPrefixPath.thirdCycleCourseSearch, Search.searchThirdCycleCourses)
 appRoute.get('public.searchAllCourses', proxyPrefixPath.courseSearch, Search.searchAllCourses)
-appRoute.get('public.newSearchPage', proxyPrefixPath.newSearchPage, NewSearchPage.getIndex)
-appRoute.get('public.searchResult', proxyPrefixPath.searchResult, NewSearchPage.getIndex)
+appRoute.get('public.newSearchPage', proxyPrefixPath.newSearchPage, NewSearchPage.newSearchCourses)
+appRoute.get('public.searchResult', proxyPrefixPath.searchResult, NewSearchPage.newSearchCourses)
 
 appRoute.get('api.searchCourses', proxyPrefixPath.courseSearchInternApi + '/:lang', Search.performCourseSearch)
 appRoute.post('api.programmeSyllabusPDF', proxyPrefixPath.programmeSyllabusPDF, PDFExport.performPDFRenderFunction)
