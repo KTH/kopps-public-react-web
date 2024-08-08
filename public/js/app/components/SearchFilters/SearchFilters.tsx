@@ -8,7 +8,7 @@ import i18n from '../../../../../i18n'
 
 import { SearchFiltersProps, FilterParams, FilterStore } from './searchFiltersTypes'
 
-const SearchFilters: React.FC<SearchFiltersProps> = ({ ancestorItem, updateSearch }) => {
+const SearchFilters: React.FC<SearchFiltersProps> = ({ ancestorItem, updateSearch, disabled }) => {
   const { languageIndex, clearStore }: FilterStore = useStore()
 
   const [searchParams, setSearchParams] = useSearchParams()
@@ -55,16 +55,18 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ ancestorItem, updateSearc
           paramAliasName="currentYear"
           paramName="period"
           onChange={handleFilterValueChange}
+          disabled={disabled}
         />
         <SearchOptions
           overrideSearchHead={nextYearLabel}
           paramAliasName="nextYear"
           paramName="period"
           onChange={handleFilterValueChange}
+          disabled={disabled}
         />
-        <SearchOptions paramName="eduLevel" onChange={handleFilterValueChange} />
-        <SearchOptions paramName="showOptions" onChange={handleFilterValueChange} />
-        <SearchDepartments onChange={handleFilterValueChange} />
+        <SearchOptions paramName="eduLevel" onChange={handleFilterValueChange} disabled={disabled} />
+        <SearchOptions paramName="showOptions" onChange={handleFilterValueChange} disabled={disabled} />
+        <SearchDepartments onChange={handleFilterValueChange} disabled={disabled} />
       </div>
     </>
   )

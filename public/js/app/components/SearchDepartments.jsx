@@ -7,7 +7,7 @@ import translate from '../../../../domain/translate'
 
 import { localeCompareDepartments } from '../../../../domain/departments'
 
-function SearchDepartments({ onChange }) {
+function SearchDepartments({ onChange, disabled }) {
   const store = useStore()
   const {
     currentSchoolsWithDepartments,
@@ -36,6 +36,7 @@ function SearchDepartments({ onChange }) {
           name="department"
           className="form-control"
           onChange={handleChange}
+          disabled={disabled}
           aria-label={departmentLabel}
         >
           <option value="" key="all-schools">

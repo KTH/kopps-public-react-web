@@ -74,6 +74,7 @@ const NewSearchPage = () => {
       <SearchFilters
         ancestorItem={{ href: '/student/kurser/sokkurs-ny-design', label: main_menu_search_all_new }}
         updateSearch={updateSearch}
+        disabled={searchStatus === STATUS.pending}
       />
       <MainContent>
         <PageHeading>{searchHeading}</PageHeading>

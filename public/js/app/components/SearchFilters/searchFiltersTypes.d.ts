@@ -15,6 +15,7 @@ export interface AncestorItem {
 export interface SearchFiltersProps {
   ancestorItem: AncestorItem
   updateSearch: (param: FilterParams) => void
+  disabled: boolean
 }
 
 export interface FilterParams {

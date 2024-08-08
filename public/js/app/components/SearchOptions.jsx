@@ -31,7 +31,7 @@ const optionsReducer = (state, action) => {
   }
 }
 
-function SearchOptions({ overrideSearchHead = '', paramAliasName = '', paramName, onChange }) {
+function SearchOptions({ overrideSearchHead = '', paramAliasName = '', paramName, onChange, disabled }) {
   const store = useStore()
   const { languageIndex } = store
   const initialParamValue = store[paramName]
@@ -70,6 +70,7 @@ function SearchOptions({ overrideSearchHead = '', paramAliasName = '', paramName
               type="checkbox"
               className="form-check-input"
               onChange={handleChange}
+              disabled={disabled}
               checked={!!(options && options.includes(value))}
             />
             <label htmlFor={id} className="form-control-label">
