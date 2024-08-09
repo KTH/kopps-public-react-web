@@ -9,9 +9,9 @@ export type SchoolsWithDepartments = {
     name: string
   }[]
   name: string
-}[]
+}
 
-export type SetSchoolsWithDepartments = (schoolsWithDepartments: SchoolsWithDepartments) => void
+export type SetSchoolsWithDepartments = (schoolsWithDepartments: SchoolsWithDepartments[]) => void
 
 export type EduLevel = '0' | '1' | '2' | '3'
 
@@ -34,12 +34,12 @@ export type ClearStore = () => void
 export interface SearchCoursesStore {
   textPattern: Pattern
   eduLevel: EduLevel[]
-  period: string[]
+  period: Period[]
   showOptions: ShowOptions[]
   departmentCodeOrPrefix: DepartmentCodeOrPrefix
-  schoolsWithDepartments: SchoolsWithDepartments
-  currentSchoolsWithDepartments: SchoolsWithDepartments
-  deprecatedSchoolsWithDepartments: SchoolsWithDepartments
+  schoolsWithDepartments: SchoolsWithDepartments[]
+  currentSchoolsWithDepartments: SchoolsWithDepartments[]
+  deprecatedSchoolsWithDepartments: SchoolsWithDepartments[]
   setPattern: SetPattern
   setEduLevels: SetEduLevels
   setPeriods: SetPeriods
