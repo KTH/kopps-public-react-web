@@ -1,18 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect } from 'react'
-import { MobxStoreProvider } from '../mobx'
-import NotFound from '../pages/NotFound'
+import React from 'react'
+import { MobxStoreProvider } from '../../mobx'
 
-interface SearchPageWrapperProps {
-  component: React.ComponentType<any>
-  initApplicationStoreCallback: () => any
-}
+import { SearchPageWrapperProps } from './types'
 
 const SearchPageWrapper: React.FC<SearchPageWrapperProps> = ({
   component: Component,
   initApplicationStoreCallback,
 }) => {
-
   return (
     <MobxStoreProvider initCallback={initApplicationStoreCallback}>
       <Component />

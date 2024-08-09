@@ -10,9 +10,7 @@ import { stringifyUrlParams } from '../../../../domain/searchParams'
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 
-interface MainContentProps {
-  children: React.ReactNode
-}
+import { MainContentProps } from './types/searchPageTypes'
 
 const MainContent: React.FC<MainContentProps> = ({ children }) => {
   return (
@@ -26,7 +24,7 @@ const NewSearchLandingPage = () => {
   const { languageIndex, setPattern, textPattern } = useStore()
   const { bigSearch } = i18n.messages[languageIndex]
   const { searchHeading, searchButton } = bigSearch
-  
+
   const navigate = useNavigate()
 
   const handleSubmit = (pattern: string) => {
@@ -34,7 +32,7 @@ const NewSearchLandingPage = () => {
     const searchStr = stringifyUrlParams({ pattern: pattern })
     navigate({
       pathname: '/student/kurser/sokkurs-ny-design/resultat',
-      search: searchStr
+      search: searchStr,
     })
   }
 
@@ -42,7 +40,7 @@ const NewSearchLandingPage = () => {
     <Row>
       <MainContent>
         <PageHeading>{searchHeading}</PageHeading>
-        <SearchInput pattern={textPattern} caption={searchButton} onSubmit={handleSubmit}/>
+        <SearchInput pattern={textPattern} caption={searchButton} onSubmit={handleSubmit} />
       </MainContent>
     </Row>
   )
