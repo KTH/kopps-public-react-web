@@ -8,6 +8,8 @@ import FooterContent from './FooterContent'
 import SearchResultDisplay from './SearchResultDisplay'
 import ThirdCycleStudySearchFormFields from './ThirdCycleStudySearchFormFields'
 import SearchFormFields from './SearchFormFields'
+import SearchFilters from './SearchFilters'
+import SearchInput from './SearchInput'
 
 export {
   SearchAlert,
@@ -20,4 +22,6 @@ export {
   SearchResultDisplay,
   ThirdCycleStudySearchFormFields,
   SearchFormFields,
+  SearchFilters,
+  SearchInput,
 }

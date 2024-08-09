@@ -42,7 +42,7 @@ const NewSearchLandingPage = () => {
     <Row>
       <MainContent>
         <PageHeading>{searchHeading}</PageHeading>
-        <SearchInput pattern={textPattern} caption="searchButton" onSubmit={handleSubmit} />
+        <SearchInput pattern={textPattern} caption={searchButton} onSubmit={handleSubmit}/>
       </MainContent>
     </Row>
   )

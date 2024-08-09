@@ -1,17 +1,19 @@
 import React from 'react'
-import { useSearchParams, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import SearchOptions from '../SearchOptions'
 import SearchDepartments from '../SearchDepartments'
+
+import useUpdateURLSearchParameters from '../../hooks/useUpdateURLSearchParameters'
 
 import { useStore } from '../../mobx'
 import i18n from '../../../../../i18n'
 
-import { SearchFiltersProps, FilterParams, FilterStore } from './searchFiltersTypes'
+import { SearchFiltersProps, FilterParams, FilterStore } from './types'
 
 const SearchFilters: React.FC<SearchFiltersProps> = ({ ancestorItem, updateSearch, disabled }) => {
   const { languageIndex, clearStore }: FilterStore = useStore()
 
-  const [searchParams, setSearchParams] = useSearchParams()
+  const updateURLSearchParameters = useUpdateURLSearchParameters()
 
   const { generalSearch } = i18n.messages[languageIndex]
   const { filtersLabel } = generalSearch
@@ -19,17 +21,6 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ ancestorItem, updateSearc
   const currentYearDate = new Date().getFullYear()
   const currentYearLabel = `${searchStartPeriodPrefix} ${currentYearDate}`
   const nextYearLabel = `${searchStartPeriodPrefix} ${Number(currentYearDate) + 1}`
-
-  const updateURLSearchParameters = (paramName: string, paramValue: string[] | string) => {
-    searchParams.delete(paramName)
-    const appendValue = (value: string) => searchParams.append(paramName, value)
-    if (paramValue && typeof paramValue === 'string') {
-      appendValue(paramValue)
-    } else if (Array.isArray(paramValue)) {
-      paramValue.forEach(appendValue)
-    }
-    setSearchParams(searchParams)
-  }
 
   function handleFilterValueChange(filterValue: FilterParams) {
     const filterName = Object.keys(filterValue)[0]

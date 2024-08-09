@@ -2,8 +2,12 @@ import React, { useReducer } from 'react'
 
 import { Col, Row } from 'reactstrap'
 import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
-import SearchFilters from '../components/SearchFilters/SearchFilters'
+import { SearchFilters, Lead } from '../components'
 import { stringifyUrlParams } from '../../../../domain/searchParams'
+
+import SearchInput from '../components/SearchInput'
+
+import useUpdateURLSearchParameters from '../hooks/useUpdateURLSearchParameters'
 
 import { koppsCourseSearch, KoppsCourseSearchResult } from '../util/searchApi'
 import { STATUS, ERROR_ASYNC, useCourseSearch } from '../hooks/useCourseSearch'
@@ -37,7 +41,9 @@ const NewSearchPage = () => {
 
   const { bigSearch, messages } = i18n.messages[languageIndex]
   const { main_menu_search_all_new } = messages
-  const { searchHeading } = bigSearch
+  const { searchHeading, searchButton, leadIntro } = bigSearch
+
+  const updateURLSearchParameters = useUpdateURLSearchParameters()
 
   const paramsReducer = (state: SearchParams, action: Partial<SearchParams>) => ({ ...state, ...action })
 
@@ -69,6 +75,11 @@ const NewSearchPage = () => {
     setSearchParameters({ ...params })
   }
 
+  function handlePatternChange(pattern: string) {
+    setSearchParameters({ ...{ pattern: pattern } })
+    updateURLSearchParameters('pattern', pattern)
+  }
+
   return (
     <Row>
       <SearchFilters
@@ -78,25 +89,26 @@ const NewSearchPage = () => {
       />
       <MainContent>
         <PageHeading>{searchHeading}</PageHeading>
-        <h3>search result for {textPattern}:</h3>
+        <Lead text={leadIntro} />
+        <SearchInput
+          pattern={textPattern}
+          caption={searchButton}
+          onSubmit={handlePatternChange}
+          disabled={searchStatus === STATUS.pending}
+        />
         {searchStatus === STATUS.resolved &&
           isKoppsCourseSearchResult(searchResults) &&
           searchResults.searchHits &&
-          searchResults.searchHits.map(({ course }) => (
-            <p key={course.courseCode}>
-              <b>{course.title}</b> {course.courseCode}
-            </p>
-          ))}
-        <h3>search result for "{textPattern}" and "period: 20242:1":</h3>
-        {searchStatus === STATUS.resolved &&
-          isKoppsCourseSearchResult(searchResults) &&
-          searchResults.searchHits &&
-          Object.keys(searchResults.searchHits[0]).length > 1 &&
-          searchResults.searchHits.map(({ course, searchHitInterval }) => (
-            <p key={`${course.courseCode}${searchHitInterval.startPeriod}${searchHitInterval.endPeriod}`}>
-              <b>{course.title}</b> {course.courseCode} - {formatShortTerm(searchHitInterval.startTerm, language)}
-            </p>
-          ))}
+          searchResults.searchHits.length > 0 &&
+          searchResults.searchHits.map(({ course, searchHitInterval }, index) => {
+            const { courseCode, title } = course
+            const startTerm = searchHitInterval ? formatShortTerm(searchHitInterval.startTerm, language) : ''
+            return (
+              <p key={`${courseCode}${index}`}>
+                <b>{title}</b> {courseCode} {startTerm && `- ${startTerm}`}
+              </p>
+            )
+          })}
       </MainContent>
     </Row>
   )
