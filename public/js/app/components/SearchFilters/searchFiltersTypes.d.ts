@@ -1,3 +1,4 @@
+import { CourseSearchParams, SetCourseSearchParams } from '../../pages/types/searchPageTypes'
 import {
   EduLevel,
   Period,
@@ -14,8 +15,9 @@ export interface AncestorItem {
 
 export interface SearchFiltersProps {
   ancestorItem: AncestorItem
-  updateSearch: (param: FilterParams) => void
   disabled: boolean
+  courseSearchParams: CourseSearchParams,
+  setCourseSearchParams: SetCourseSearchParams
 }
 
 export interface FilterParams {

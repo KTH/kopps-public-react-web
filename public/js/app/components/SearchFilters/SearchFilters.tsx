@@ -1,17 +1,20 @@
 import React from 'react'
-import { useSearchParams, Link } from 'react-router-dom'
-import SearchOptions from '../SearchOptions'
+import { Link } from 'react-router-dom'
 import SearchDepartments from '../SearchDepartments'
+import SearchOptions from '../SearchOptions'
 
-import { useStore } from '../../mobx'
 import i18n from '../../../../../i18n'
+import { useStore } from '../../mobx'
 
-import { SearchFiltersProps, FilterParams, FilterStore } from './searchFiltersTypes'
+import { FilterParams, FilterStore, SearchFiltersProps } from './searchFiltersTypes'
 
-const SearchFilters: React.FC<SearchFiltersProps> = ({ ancestorItem, updateSearch, disabled }) => {
-  const { languageIndex, clearStore }: FilterStore = useStore()
-
-  const [searchParams, setSearchParams] = useSearchParams()
+const SearchFilters: React.FC<SearchFiltersProps> = ({
+  courseSearchParams,
+  setCourseSearchParams,
+  ancestorItem,
+  disabled,
+}) => {
+  const { languageIndex }: FilterStore = useStore()
 
   const { generalSearch } = i18n.messages[languageIndex]
   const { filtersLabel } = generalSearch
@@ -20,25 +23,8 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ ancestorItem, updateSearc
   const currentYearLabel = `${searchStartPeriodPrefix} ${currentYearDate}`
   const nextYearLabel = `${searchStartPeriodPrefix} ${Number(currentYearDate) + 1}`
 
-  const updateURLSearchParameters = (paramName: string, paramValue: string[] | string) => {
-    searchParams.delete(paramName)
-    const appendValue = (value: string) => searchParams.append(paramName, value)
-    if (paramValue && typeof paramValue === 'string') {
-      appendValue(paramValue)
-    } else if (Array.isArray(paramValue)) {
-      paramValue.forEach(appendValue)
-    }
-    setSearchParams(searchParams)
-  }
-
   function handleFilterValueChange(filterValue: FilterParams) {
-    const filterName = Object.keys(filterValue)[0]
-    updateURLSearchParameters(filterName, filterValue[filterName])
-    updateSearch(filterValue)
-  }
-
-  function handleBackButton() {
-    clearStore()
+    setCourseSearchParams(filterValue)
   }
 
   // id="mainMenu" is not a correct id as the search filters aren't really a menu.
@@ -46,7 +32,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ ancestorItem, updateSearc
   return (
     <>
       <div id="mainMenu" className="kth-local-navigation col">
-        <Link to={ancestorItem.href} onClick={handleBackButton} className="kth-button back">
+        <Link to={ancestorItem.href} className="kth-button back">
           {ancestorItem.label}
         </Link>
         <h3>{filtersLabel}</h3>
@@ -54,6 +40,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ ancestorItem, updateSearc
           overrideSearchHead={currentYearLabel}
           paramAliasName="currentYear"
           paramName="period"
+          selectedValues={courseSearchParams.period}
           onChange={handleFilterValueChange}
           disabled={disabled}
         />
@@ -61,12 +48,27 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ ancestorItem, updateSearc
           overrideSearchHead={nextYearLabel}
           paramAliasName="nextYear"
           paramName="period"
+          selectedValues={courseSearchParams.period}
           onChange={handleFilterValueChange}
           disabled={disabled}
         />
-        <SearchOptions paramName="eduLevel" onChange={handleFilterValueChange} disabled={disabled} />
-        <SearchOptions paramName="showOptions" onChange={handleFilterValueChange} disabled={disabled} />
-        <SearchDepartments onChange={handleFilterValueChange} disabled={disabled} />
+        <SearchOptions
+          paramName="eduLevel"
+          selectedValues={courseSearchParams.eduLevel}
+          onChange={handleFilterValueChange}
+          disabled={disabled}
+        />
+        <SearchOptions
+          paramName="showOptions"
+          selectedValues={courseSearchParams.showOptions}
+          onChange={handleFilterValueChange}
+          disabled={disabled}
+        />
+        <SearchDepartments
+          onChange={handleFilterValueChange}
+          disabled={disabled}
+          departmentCode={courseSearchParams.department}
+        />
       </div>
     </>
   )

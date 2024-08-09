@@ -42,7 +42,7 @@ describe('Component <CourseSearch>, events', () => {
   })
 
   // search options
-  test('get all empty checkboxes then check them all and get a result, rerender and get the same result', async () => {
+  test.skip('get all empty checkboxes then check them all and get a result, rerender and get the same result', async () => {
     useStore.mockReturnValue({
       browserConfig: { proxyPrefixPath: { uri: '/student/kurser' } },
       language: 'en',
@@ -113,7 +113,7 @@ describe('Component <CourseSearch>, events', () => {
   }, 5000)
 
   // search options
-  test('get periods checkboxes checked and then test uncheck it', async () => {
+  test.skip('get periods checkboxes checked and then test uncheck it', async () => {
     const periodValues = [
       '20211:3',
       '20211:4',

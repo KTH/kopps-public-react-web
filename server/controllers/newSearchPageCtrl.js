@@ -34,7 +34,7 @@ async function newSearchCourses(req, res, next) {
     applicationStore.setLanguage(lang)
     applicationStore.setBrowserConfig(browserConfig, serverConfig.hostUrl)
 
-    await _fillApplicationStoreOnServerSide({ applicationStore, query: req.query })
+    // await _fillApplicationStoreOnServerSide({ applicationStore, query: req.query })
     await _fillApplicationStoreWithAllSchools({ applicationStore, lang })
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
@@ -66,14 +66,14 @@ async function newSearchCourses(req, res, next) {
 }
 
 // eslint-disable-next-line no-unused-vars
-async function _fillApplicationStoreOnServerSide({ applicationStore, query }) {
-  const { department, pattern, eduLevel, showOptions, period } = query
-  applicationStore.setPattern(pattern)
-  applicationStore.setEduLevels(eduLevel)
-  applicationStore.setShowOptions(showOptions)
-  applicationStore.setPeriods(period)
-  applicationStore.setDepartmentCodeOrPrefix(department)
-}
+// async function _fillApplicationStoreOnServerSide({ applicationStore, query }) {
+//   const { department, pattern, eduLevel, showOptions, period } = query
+//   applicationStore.setPattern(pattern)
+//   applicationStore.setEduLevels(eduLevel)
+//   applicationStore.setShowOptions(showOptions)
+//   applicationStore.setPeriods(period)
+//   applicationStore.setDepartmentCodeOrPrefix(department)
+// }
 
 async function _fillApplicationStoreWithAllSchools({ applicationStore, lang }) {
   applicationStore.setLanguage(lang)

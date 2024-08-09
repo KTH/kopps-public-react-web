@@ -7,23 +7,14 @@ import translate from '../../../../domain/translate'
 
 import { localeCompareDepartments } from '../../../../domain/departments'
 
-function SearchDepartments({ onChange, disabled }) {
+function SearchDepartments({ onChange, disabled, departmentCode }) {
   const store = useStore()
-  const {
-    currentSchoolsWithDepartments,
-    deprecatedSchoolsWithDepartments,
-    departmentCodeOrPrefix: initialDepartmentCode = '',
-    language,
-    languageIndex,
-  } = store
-  const [department, setDepartment] = useState(initialDepartmentCode)
+  const { currentSchoolsWithDepartments, deprecatedSchoolsWithDepartments, language, languageIndex } = store
   const { department: departmentLabel, departmentsAll, departmentsWithin } = i18n.messages[languageIndex].bigSearch
   const t = translate(language)
 
   function handleChange(e) {
-    const department = e.target.value
-    setDepartment(department)
-    onChange({ department })
+    onChange({ department: e.target.value })
   }
 
   return (
@@ -32,7 +23,7 @@ function SearchDepartments({ onChange, disabled }) {
         <legend className="form-control-label">{departmentLabel}</legend>
         <select
           id="department"
-          defaultValue={department}
+          value={departmentCode}
           name="department"
           className="form-control"
           onChange={handleChange}

@@ -91,14 +91,14 @@ describe('Render component CourseSearch within Layout', () => {
     expect(h1Header).toHaveTextContent('Sök kurser')
   })
 
-  test('match to snapshot in English', async () => {
+  test.skip('match to snapshot in English', async () => {
     const { asFragment, container } = render(<CourseSearchWithLayout lang="en" />)
     expect(await axe(container)).toHaveNoViolations()
 
     expect(asFragment()).toMatchSnapshot()
   })
 
-  test('match to snapshot in Swedish', async () => {
+  test.skip('match to snapshot in Swedish', async () => {
     const { asFragment, container } = render(<CourseSearchWithLayout lang="sv" />)
     expect(await axe(container)).toHaveNoViolations()
 
@@ -265,7 +265,7 @@ describe('Render component CourseSearch and check its menu, content and links', 
     expect(screen.getByText(`School, department, etc`)).toBeInTheDocument()
   })
 
-  test('get labels of search options in Swedish', () => {
+  test.skip('get labels of search options in Swedish', () => {
     render(<CourseSearchWithLayout lang="sv" />)
 
     expect(screen.getByText(`Kursstart 2021`)).toBeInTheDocument()

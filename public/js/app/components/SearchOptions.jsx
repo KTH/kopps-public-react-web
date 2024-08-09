@@ -5,37 +5,16 @@ import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 import { getParamConfig } from '../../../../domain/searchParams'
 
-const optionsReducer = (state, action) => {
-  const { value, type } = action
-  const { options } = state
-
-  switch (type) {
-    case 'ADD_ITEM': {
-      const lastIndex = options.length
-
-      options[lastIndex] = value // because while it is in state it, turns array into ordered object
-      return { options }
-    }
-    case 'REMOVE_ITEM': {
-      const removeIndex = options.indexOf(value)
-      if (removeIndex >= 0) {
-        options.splice(removeIndex, 1)
-      }
-      return { options }
-    }
-    default: {
-      throw new Error(
-        `Cannot change the state in reducer. Unknown type of action: ${type}. Allowed options: ADD_ITEM, REMOVE_ITEM`
-      )
-    }
-  }
-}
-
-function SearchOptions({ overrideSearchHead = '', paramAliasName = '', paramName, onChange, disabled }) {
+function SearchOptions({
+  overrideSearchHead = '',
+  paramAliasName = '',
+  paramName,
+  onChange,
+  disabled,
+  selectedValues,
+}) {
   const store = useStore()
   const { languageIndex } = store
-  const initialParamValue = store[paramName]
-  const [{ options }, setOptions] = React.useReducer(optionsReducer, { options: initialParamValue || [] })
   const { bigSearch } = i18n.messages[languageIndex]
   const searchHeadLevel = overrideSearchHead || bigSearch[paramName]
 
@@ -43,18 +22,11 @@ function SearchOptions({ overrideSearchHead = '', paramAliasName = '', paramName
     () => getParamConfig(paramAliasName || paramName, languageIndex),
     [paramAliasName, paramName, languageIndex]
   )
-  // [{ label, id, value}, ...]
-
-  useEffect(() => {
-    let isMounted = true
-
-    if (isMounted) onChange({ [paramName]: options })
-    return () => (isMounted = false)
-  }, [options.length])
 
   function handleChange(e) {
     const { value, checked } = e.target
-    setOptions({ value, type: checked ? 'ADD_ITEM' : 'REMOVE_ITEM' })
+    const newValues = checked ? [...selectedValues, value] : selectedValues.filter(x => x !== value)
+    onChange({ [paramName]: newValues })
   }
 
   return (
@@ -71,7 +43,7 @@ function SearchOptions({ overrideSearchHead = '', paramAliasName = '', paramName
               className="form-check-input"
               onChange={handleChange}
               disabled={disabled}
-              checked={!!(options && options.includes(value))}
+              checked={!!(selectedValues && selectedValues.includes(value))}
             />
             <label htmlFor={id} className="form-control-label">
               {label}
