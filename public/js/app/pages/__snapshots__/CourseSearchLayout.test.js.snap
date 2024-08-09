@@ -560,7 +560,6 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
                           name="department"
                         >
                           <option
-                            selected=""
                             value=""
                           >
                             All schools
@@ -1258,7 +1257,6 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
                           name="department"
                         >
                           <option
-                            selected=""
                             value=""
                           >
                             Samtliga skolor

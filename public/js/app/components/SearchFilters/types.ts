@@ -19,7 +19,7 @@ export interface SearchFiltersProps {
 }
 
 export interface FilterParams {
-  [key: string]: ShowOptions[] | EduLevel[] | Period[] | DepartmentCodeOrPrefix | Pattern
+  [key: string]: string[] | string
 }
 
 export interface FilterStore extends SearchCoursesStore {
