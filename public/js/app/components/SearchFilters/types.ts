@@ -1,10 +1,11 @@
+import { CourseSearchParams, SetCourseSearchParams } from '../../pages/types/searchPageTypes'
+
 import {
+  DepartmentCodeOrPrefix,
   EduLevel,
   Period,
-  ShowOptions,
   SearchCoursesStore,
-  DepartmentCodeOrPrefix,
-  Pattern,
+  ShowOptions,
 } from '../../stores/types/searchPageStoreTypes'
 
 export interface AncestorItem {
@@ -14,14 +15,15 @@ export interface AncestorItem {
 
 export interface SearchFiltersProps {
   ancestorItem: AncestorItem
-  updateSearch: (param: FilterParams) => void
   disabled: boolean
+  courseSearchParams: CourseSearchParams
+  setCourseSearchParams: SetCourseSearchParams
 }
 
-export interface FilterParams {
-  [key: string]: string[] | string
+export interface SearchFilterParams {
+  [key: string]: (Period | EduLevel | ShowOptions)[] | DepartmentCodeOrPrefix
 }
 
-export interface FilterStore extends SearchCoursesStore {
+export interface SearchFilterStore extends SearchCoursesStore {
   languageIndex: number
 }

@@ -32,21 +32,10 @@ export type SetDepartmentCodeOrPrefix = (departmentCodeOrPrefix: DepartmentCodeO
 export type ClearStore = () => void
 
 export interface SearchCoursesStore {
-  textPattern: Pattern
-  eduLevel: EduLevel[]
-  period: Period[]
-  showOptions: ShowOptions[]
-  departmentCodeOrPrefix: DepartmentCodeOrPrefix
   schoolsWithDepartments: SchoolsWithDepartments[]
   currentSchoolsWithDepartments: SchoolsWithDepartments[]
   deprecatedSchoolsWithDepartments: SchoolsWithDepartments[]
-  setPattern: SetPattern
-  setEduLevels: SetEduLevels
-  setPeriods: SetPeriods
-  setShowOptions: SetShowOptions
-  setDepartmentCodeOrPrefix: SetDepartmentCodeOrPrefix
   setSchoolsWithDepartments: SetSchoolsWithDepartments
   setDeprecatedSchoolsWithDepartments: SetSchoolsWithDepartments
   setCurrentSchoolsWithDepartments: SetSchoolsWithDepartments
-  clearStore: () => void
 }

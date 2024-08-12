@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react'
+import React, { ChangeEvent } from 'react'
 import { useStore } from '../../mobx'
 import i18n from '../../../../../i18n'
 import translate from '../../../../../domain/translate'
@@ -6,24 +6,15 @@ import { localeCompareDepartments } from '../../../../../domain/departments'
 
 import { SearchDepartmentsProps, SchoolsWithDepartments } from './types'
 
-const SearchDepartments: React.FC<SearchDepartmentsProps> = ({ onChange, disabled = false }) => {
+const NewSearchDepartments: React.FC<SearchDepartmentsProps> = ({ onChange, disabled, departmentCode }) => {
   const store = useStore()
-  const {
-    currentSchoolsWithDepartments,
-    deprecatedSchoolsWithDepartments,
-    departmentCodeOrPrefix: initialDepartmentCode = '',
-    language,
-    languageIndex,
-  } = store
+  const { currentSchoolsWithDepartments, deprecatedSchoolsWithDepartments, language, languageIndex } = store
 
-  const [department, setDepartment] = useState<string>(initialDepartmentCode)
   const { department: departmentLabel, departmentsAll, departmentsWithin } = i18n.messages[languageIndex].bigSearch
   const t = translate(language)
 
   function handleChange(e: ChangeEvent<HTMLSelectElement>) {
-    const department = e.target.value
-    setDepartment(department)
-    onChange({ department })
+    onChange({ department: e.target.value })
   }
 
   return (
@@ -32,7 +23,7 @@ const SearchDepartments: React.FC<SearchDepartmentsProps> = ({ onChange, disable
         <legend className="form-control-label">{departmentLabel}</legend>
         <select
           id="department"
-          value={department}
+          value={departmentCode}
           name="department"
           className="form-control"
           onChange={handleChange}
@@ -83,4 +74,4 @@ const SearchDepartments: React.FC<SearchDepartmentsProps> = ({ onChange, disable
   )
 }
 
-export default SearchDepartments
+export default NewSearchDepartments

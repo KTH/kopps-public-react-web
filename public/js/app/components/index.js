@@ -1,5 +1,7 @@
 import SearchInputField from './SearchInputField'
 import SearchAlert from './SearchAlert'
+import NewSearchOptions from './NewSearchOptions'
+import NewSearchDepartments from './NewSearchDepartments'
 import SearchOptions from './SearchOptions'
 import SearchDepartments from './SearchDepartments'
 import HelpTexts from './HelpTexts'
@@ -14,8 +16,10 @@ import SearchInput from './SearchInput'
 export {
   SearchAlert,
   SearchDepartments,
+  NewSearchDepartments,
   SearchInputField,
   SearchOptions,
+  NewSearchOptions,
   HelpTexts,
   Lead,
   FooterContent,

@@ -4,25 +4,20 @@ import i18n from '../../../../../i18n'
 
 import { SearchInputProps } from './types'
 
-const SearchInputField: React.FC<SearchInputProps> = ({
-  caption,
-  pattern: externalPattern = '',
-  onSubmit,
-  disabled,
-}) => {
+const SearchInputField: React.FC<SearchInputProps> = ({ caption, initialValue = '', onSubmit, disabled }) => {
   const { languageIndex } = useStore()
-  const [pattern, setPattern] = useState<string>(externalPattern)
+  const [inputText, setInputText] = useState<string>(initialValue)
 
   const { generalSearch } = i18n.messages[languageIndex]
   const { searchLabel } = generalSearch
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPattern(e.target.value)
+    setInputText(e.target.value)
   }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    onSubmit(pattern)
+    onSubmit(inputText)
   }
 
   const FormStyles: CSSProperties = {
@@ -51,7 +46,7 @@ const SearchInputField: React.FC<SearchInputProps> = ({
           onChange={handleChange}
           maxLength={80}
           size={50}
-          value={pattern}
+          value={inputText}
           name="pattern"
           disabled={disabled}
         />

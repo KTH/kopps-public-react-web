@@ -1,44 +1,33 @@
-import React, { useState, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useStore } from '../../mobx'
 import i18n from '../../../../../i18n'
 import { getParamConfig } from '../../../../../domain/searchParams'
-import { SearchOptionsProps } from './types'
+import { SearchOptionConfig, SearchOptionValues, SearchOptionsProps } from './types'
 
 const SearchOptions: React.FC<SearchOptionsProps> = ({
   overrideSearchHead = '',
   paramAliasName = '',
   paramName,
   onChange,
-  disabled = false,
+  disabled,
+  selectedValues,
 }) => {
   const store = useStore()
   const { languageIndex } = store
-  const initialParamValue = store[paramName] as string[]
-  const [options, setOptions] = useState<string[]>(initialParamValue || [])
 
   const { bigSearch } = i18n.messages[languageIndex]
   const searchHeadLevel = overrideSearchHead || bigSearch[paramName]
 
-  const values = useMemo(
+  const values: SearchOptionConfig[] = useMemo(
     () => getParamConfig(paramAliasName || paramName, languageIndex),
     [paramAliasName, paramName, languageIndex]
   )
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target
-    setOptions(prevOptions => {
-      if (checked) {
-        prevOptions.push(value)
-      } else {
-        const index = prevOptions.indexOf(value)
-        if (index >= 0) {
-          prevOptions.splice(index, 1)
-        }
-      }
-      onChange({ [paramName]: prevOptions })
-      return prevOptions
-    })
+    const newValues = checked ? [...selectedValues, value] : selectedValues.filter(x => x !== value)
+    onChange({ [paramName]: newValues as SearchOptionValues })
   }
 
   return (
@@ -55,7 +44,7 @@ const SearchOptions: React.FC<SearchOptionsProps> = ({
               className="form-check-input"
               onChange={handleChange}
               disabled={disabled}
-              checked={!!(options && options.includes(value))}
+              checked={!!(selectedValues && selectedValues.includes(value))}
             />
             <label htmlFor={id} className="form-control-label">
               {label}

@@ -3,11 +3,8 @@ import React, { useReducer } from 'react'
 import { Col, Row } from 'reactstrap'
 import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 import { SearchFilters, Lead } from '../components'
-import { stringifyUrlParams } from '../../../../domain/searchParams'
 
 import SearchInput from '../components/SearchInput'
-
-import useUpdateURLSearchParameters from '../hooks/useUpdateURLSearchParameters'
 
 import { koppsCourseSearch, KoppsCourseSearchResult } from '../util/searchApi'
 import { STATUS, ERROR_ASYNC, useCourseSearch } from '../hooks/useCourseSearch'
@@ -17,7 +14,8 @@ import i18n from '../../../../i18n'
 
 import { formatShortTerm } from '../../../../domain/term'
 
-import { MainContentProps, SearchParams } from './types/searchPageTypes'
+import { MainContentProps } from './types/searchPageTypes'
+import { useCourseSearchParams } from '../hooks/useCourseSearchParams'
 
 const MainContent: React.FC<MainContentProps> = ({ children }) => {
   return (
@@ -36,62 +34,40 @@ function isKoppsCourseSearchResult(data: string | KoppsCourseSearchResult): data
 }
 
 const NewSearchPage = () => {
-  const { browserConfig, language, languageIndex, textPattern, period, eduLevel, showOptions, departmentCodeOrPrefix } =
-    useStore()
+  const [courseSearchParams, setCourseSearchParams] = useCourseSearchParams()
+  const { pattern } = courseSearchParams
+  const { browserConfig, language, languageIndex } = useStore()
 
   const { bigSearch, messages } = i18n.messages[languageIndex]
   const { main_menu_search_all_new } = messages
   const { searchHeading, searchButton, leadIntro } = bigSearch
 
-  const updateURLSearchParameters = useUpdateURLSearchParameters()
-
-  const paramsReducer = (state: SearchParams, action: Partial<SearchParams>) => ({ ...state, ...action })
-
-  const [searchParameters, setSearchParameters] = useReducer(paramsReducer, {
-    pattern: textPattern,
-    period,
-    eduLevel,
-    showOptions,
-    department: departmentCodeOrPrefix,
-  })
-
-  const searchStr = stringifyUrlParams(searchParameters)
-
   const asyncCallback = React.useCallback(() => {
     const proxyUrl = _getThisHost(browserConfig.proxyPrefixPath.uri)
-    return koppsCourseSearch(language, proxyUrl, searchParameters)
-  }, [searchParameters])
+    return koppsCourseSearch(language, proxyUrl, courseSearchParams)
+  }, [courseSearchParams])
 
-  const onlyPattern = searchParameters.pattern && Object.keys(searchParameters).length == 1
-  const initialStatus = onlyPattern
-    ? { status: textPattern ? STATUS.pending : STATUS.idle }
-    : { status: searchStr ? STATUS.pending : STATUS.idle }
+  const state = useCourseSearch(asyncCallback, { status: STATUS.idle })
 
-  const state1 = useCourseSearch(asyncCallback, initialStatus)
-
-  const { data: searchResults, status: searchStatus, error: errorType } = state1
-
-  function updateSearch(params: Partial<SearchParams>) {
-    setSearchParameters({ ...params })
-  }
+  const { data: searchResults, status: searchStatus, error: errorType } = state
 
   function handlePatternChange(pattern: string) {
-    setSearchParameters({ ...{ pattern: pattern } })
-    updateURLSearchParameters('pattern', pattern)
+    setCourseSearchParams({ pattern: pattern })
   }
 
   return (
     <Row>
       <SearchFilters
+        courseSearchParams={courseSearchParams}
+        setCourseSearchParams={setCourseSearchParams}
         ancestorItem={{ href: '/student/kurser/sokkurs-ny-design', label: main_menu_search_all_new }}
-        updateSearch={updateSearch}
         disabled={searchStatus === STATUS.pending}
       />
       <MainContent>
         <PageHeading>{searchHeading}</PageHeading>
         <Lead text={leadIntro} />
         <SearchInput
-          pattern={textPattern}
+          initialValue={pattern}
           caption={searchButton}
           onSubmit={handlePatternChange}
           disabled={searchStatus === STATUS.pending}
