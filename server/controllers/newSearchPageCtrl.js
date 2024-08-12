@@ -6,13 +6,14 @@ const language = require('@kth/kth-node-web-common/lib/language')
 const i18n = require('../../i18n')
 
 // eslint-disable-next-line no-unused-vars
-const api = require('../api')
+const koppsApi = require('../kopps/koppsApi')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 
 const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
+const { compareSchools, filterOutDeprecatedSchools } = require('../../domain/schools')
 
-async function getIndex(req, res, next) {
+async function newSearchCourses(req, res, next) {
   try {
     const lang = language.getLanguage(res)
 
@@ -33,7 +34,7 @@ async function getIndex(req, res, next) {
     applicationStore.setLanguage(lang)
     applicationStore.setBrowserConfig(browserConfig, serverConfig.hostUrl)
 
-    await _fillApplicationStoreOnServerSide({ applicationStore, query: req.query })
+    await _fillApplicationStoreWithAllSchools({ applicationStore, lang })
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
@@ -63,12 +64,29 @@ async function getIndex(req, res, next) {
   }
 }
 
-// eslint-disable-next-line no-unused-vars
-async function _fillApplicationStoreOnServerSide({ applicationStore, query }) {
-  const { pattern } = query
-  applicationStore.setPattern(pattern)
+async function _fillApplicationStoreWithAllSchools({ applicationStore, lang }) {
+  applicationStore.setLanguage(lang)
+  applicationStore.setBrowserConfig(browserConfig, serverConfig.hostUrl)
+
+  const listForActiveCourses = true
+  const params = {
+    departmentCriteria: koppsApi.DEPARTMENT_CRITERIA.HAS_COURSES,
+    listForActiveCourses,
+    lang,
+  }
+  const { schoolsWithDepartments } = await koppsApi.listSchoolsWithDepartments(params)
+  const { currentSchoolsWithDepartments, deprecatedSchoolsWithDepartments } = filterOutDeprecatedSchools(
+    schoolsWithDepartments,
+    lang
+  )
+  deprecatedSchoolsWithDepartments.sort(compareSchools)
+  currentSchoolsWithDepartments.sort(compareSchools)
+  applicationStore.setCurrentSchoolsWithDepartments(currentSchoolsWithDepartments)
+  applicationStore.setDeprecatedSchoolsWithDepartments(deprecatedSchoolsWithDepartments)
+  schoolsWithDepartments.sort(compareSchools)
+  applicationStore.setSchoolsWithDepartments(schoolsWithDepartments)
 }
 
 module.exports = {
-  getIndex,
+  newSearchCourses,
 }

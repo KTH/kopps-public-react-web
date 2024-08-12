@@ -1,24 +1,29 @@
-type SetPatternFunction = (this: SearchCoursesStore, textPattern: string) => void
+import {
+  SetSchoolsWithDepartments,
+  SearchCoursesStore,
+} from './types/searchPageStoreTypes'
 
-interface SearchCoursesStore {
-  textPattern: string
-  setPattern: SetPatternFunction
+const setSchoolsWithDepartments: SetSchoolsWithDepartments = function (schoolsWithDepartments) {
+  this.schoolsWithDepartments = schoolsWithDepartments
 }
 
-const setPattern: SetPatternFunction = function (textPattern) {
-  if (typeof textPattern === 'string') {
-    const cleanTextPattern = textPattern.replace(/['"<>$]+/g, '').trim()
-    this.textPattern = cleanTextPattern || ''
-  }
+const setDeprecatedSchoolsWithDepartments: SetSchoolsWithDepartments = function (deprecatedSchoolsWithDepartments) {
+  this.deprecatedSchoolsWithDepartments = deprecatedSchoolsWithDepartments
 }
 
-function createNewSearchPageStore(): SearchCoursesStore {
+const setCurrentSchoolsWithDepartments: SetSchoolsWithDepartments = function (currentSchoolsWithDepartments) {
+  this.currentSchoolsWithDepartments = currentSchoolsWithDepartments
+}
+
+export function createNewSearchPageStore(): SearchCoursesStore {
   const searchCoursesStore: SearchCoursesStore = {
-    textPattern: '',
-    setPattern,
+    schoolsWithDepartments: [],
+    currentSchoolsWithDepartments: [],
+    deprecatedSchoolsWithDepartments: [],
+    setSchoolsWithDepartments,
+    setDeprecatedSchoolsWithDepartments,
+    setCurrentSchoolsWithDepartments,
   }
 
   return searchCoursesStore
 }
-
-export default createNewSearchPageStore
