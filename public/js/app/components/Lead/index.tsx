@@ -1,6 +1,8 @@
 import React from 'react'
 
-function Lead({ text }) {
+import { LeadProps } from './types'
+
+const Lead: React.FC<LeadProps> = ({ text }) => {
   return (
     <div className="lead">
       <p>{text}</p>
