@@ -300,6 +300,8 @@ const messages = {
     errorEmpty: 'Your search returned no results.',
     errorOverflow: 'There were too many results.',
     noQueryProvided: 'No query restriction was specified',
+    courseHasNoRounds: 'Course offerings are missing for current or upcoming semesters',
+    linkToInforKursval: 'The page before course selection',
     filtersLabel: 'Filter your search choices',
   },
   literatureList: {

@@ -291,6 +291,8 @@ const messages = {
     errorEmpty: 'Din sökning gav inga träffar.',
     errorOverflow: 'Sökningen gav för många träffar.',
     noQueryProvided: 'Ingen frågebegränsning angavs',
+    courseHasNoRounds: 'Kursomgångar saknas för aktuella eller kommande terminer',
+    linkToInforKursval: 'Sidan inför kursval',
     filtersLabel: 'Filtrera dina sökval',
   },
   literatureList: {
