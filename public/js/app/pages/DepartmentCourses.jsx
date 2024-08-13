@@ -8,6 +8,7 @@ import FooterContent from '../components/FooterContent'
 import { useStore } from '../mobx'
 import translate from '../../../../domain/translate'
 import { courseLink } from '../util/links'
+import { translateCreditUnitAbbr } from '../util/translateCreditUnitAbbr'
 
 function codeCell(code) {
   const { language } = useStore()
@@ -37,12 +38,12 @@ function compareCoursesBy(key) {
   }
 }
 
-function sortAndParseCourses(courses) {
+function sortAndParseCourses(courses, language) {
   courses.sort(compareCoursesBy('code'))
   const parsedCourses = courses.map(({ code, title, credits, creditUnitAbbr, level }) => [
     codeCell(code),
     titleCell(code, title),
-    `${credits} ${creditUnitAbbr}`,
+    `${credits} ${translateCreditUnitAbbr(language, creditUnitAbbr)}`,
     level,
   ])
   return parsedCourses
@@ -53,7 +54,7 @@ function DepartmentsList() {
   const t = translate(language)
 
   const headers = [t('course_code'), t('course_name'), t('course_scope'), t('course_educational_level')]
-  const courses = sortAndParseCourses(departmentCourses)
+  const courses = sortAndParseCourses(departmentCourses, language)
   return (
     <>
       <Row>
