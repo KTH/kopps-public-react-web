@@ -19,6 +19,7 @@ import { formatAcademicYear, calculateStartTerm } from '../../../../domain/acade
 import { ELECTIVE_CONDITIONS } from '../../../../domain/curriculum'
 import { ORDINARY_PERIODS } from '../../../../domain/periods'
 import { courseLink, programSyllabusLink, programmeWebLink } from '../util/links'
+import { translateCreditUnitAbbr } from '../util/translateCreditUnitAbbr'
 
 function CourseTablePeriodCols({ language, creditsPerPeriod, courseCode }) {
   return ORDINARY_PERIODS.map(period => {
@@ -59,6 +60,7 @@ function CourseTableRows({ participations }) {
     const { course, applicationCodes, term, creditsPerPeriod } = participation
 
     const { courseCode, title, credits, creditUnitAbbr, comment } = course
+    const translatedCreditUnitAbbr = translateCreditUnitAbbr(language, creditUnitAbbr)
     const currentTerm = getCurrentTerm()
     const courseNameCellData = (
       <>
@@ -74,7 +76,7 @@ function CourseTableRows({ participations }) {
         courseNameCellData={courseNameCellData}
         applicationCodeCellData={applicationCodeCellData}
         credits={credits}
-        creditUnitAbbr={creditUnitAbbr}
+        creditUnitAbbr={translatedCreditUnitAbbr}
         creditsPerPeriod={creditsPerPeriod}
       />
     )

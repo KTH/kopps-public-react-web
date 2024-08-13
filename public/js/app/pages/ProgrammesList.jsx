@@ -12,6 +12,7 @@ import translate from '../../../../domain/translate'
 import { programmeLink } from '../util/links'
 import { formatShortTerm } from '../../../../domain/term'
 import Article from '../components/Article'
+import { translateCreditUnitAbbr } from '../util/translateCreditUnitAbbr'
 
 function Heading({ size, text, id }) {
   switch (size) {
@@ -44,22 +45,24 @@ function CurrentProgrammeDescription({ programme }) {
   const { language } = useStore()
   const t = translate(language)
   const { credits, creditUnitAbbr, firstAdmissionTerm } = programme
+  const translatedCreditUnitAbbr = translateCreditUnitAbbr(language, creditUnitAbbr)
   const formattedTerm = formatShortTerm(firstAdmissionTerm, language)
-  return <>{`, ${credits} ${creditUnitAbbr}, ${t('programmes_admitted_from')} ${formattedTerm}`}</>
+  return <>{`, ${credits} ${translatedCreditUnitAbbr}, ${t('programmes_admitted_from')} ${formattedTerm}`}</>
 }
 
 function ObsoleteProgrammeDescription({ programme }) {
   const { language } = useStore()
   const t = translate(language)
   const { credits, creditUnitAbbr, firstAdmissionTerm, lastAdmissionTerm } = programme
+  const translatedCreditUnitAbbr = translateCreditUnitAbbr(language, creditUnitAbbr)
   const formattedLastTerm = formatShortTerm(lastAdmissionTerm, language)
   if (firstAdmissionTerm) {
     const formattedFirstTerm = formatShortTerm(firstAdmissionTerm, language)
     return (
-      <>{`, ${credits} ${creditUnitAbbr}, ${t('programmes_admitted')} ${formattedFirstTerm}–${formattedLastTerm}`}</>
+      <>{`, ${credits} ${translatedCreditUnitAbbr}, ${t('programmes_admitted')} ${formattedFirstTerm}–${formattedLastTerm}`}</>
     )
   }
-  return <>{`, ${credits} ${creditUnitAbbr}, ${t('programmes_admitted_until')} ${formattedLastTerm}`}</>
+  return <>{`, ${credits} ${translatedCreditUnitAbbr}, ${t('programmes_admitted_until')} ${formattedLastTerm}`}</>
 }
 
 function ProgrammesListItem({ programme, variant }) {
