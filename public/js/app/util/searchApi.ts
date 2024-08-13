@@ -1,17 +1,7 @@
 // Importing fetch
 // Note: fetch is natively available in modern browsers and Node.js (with a fetch polyfill if needed).
 
-export interface KoppsCourseSearchParams {
-  [key: string]: any // Allowing any key-value pair as params
-}
-
-export interface KoppsCourseSearchResult {
-  searchHits?: {
-    searchHitInterval?: any
-    course: any
-  }[]
-  errorCode?: string
-}
+import { KoppsCourseSearchParams, KoppsCourseSearchResult } from "./types/SearchApiTypes"
 
 export async function koppsCourseSearch(
   language: string,

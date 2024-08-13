@@ -1,41 +1,5 @@
 import React, { useEffect, useReducer, Dispatch } from 'react'
-
-const STATUS = {
-  pending: 'pending',
-  resolved: 'resolved',
-  overflow: 'overflow',
-  noQueryProvided: 'noQueryProvided',
-  noHits: 'noHits',
-  rejected: 'rejected',
-  idle: 'idle',
-} as const
-
-const ERROR_ASYNC = {
-  overflow: 'errorOverflow',
-  noQueryProvided: 'noQueryProvided',
-  noHits: 'errorEmpty',
-  rejected: 'errorUnknown',
-} as const
-
-type Status = (typeof STATUS)[keyof typeof STATUS]
-// This is equivalent to => type Status = 'pending' | 'resolved' | 'overflow' | 'noQueryProvided' | 'noHits' | 'rejected' | 'idle';
-
-type ErrorAsync = (typeof ERROR_ASYNC)[keyof typeof ERROR_ASYNC]
-// This is equivalent to => type ErrorAsync = 'errorOverflow' | 'noQueryProvided' | 'errorEmpty' | 'errorUnknown';
-
-interface State<T> {
-  status: Status
-  data: T | null
-  error: ErrorAsync | string | null
-}
-
-type Action<T> =
-  | { type: 'pending' }
-  | { type: 'resolved'; data: T }
-  | { type: 'overflow' }
-  | { type: 'noQueryProvided' }
-  | { type: 'noHits' }
-  | { type: 'rejected'; error: ErrorAsync | string }
+import { Action, ERROR_ASYNC, STATUS, State } from './types/UseCourseSearchTypes'
 
 function asyncReducer<T>(state: State<T>, action: Action<T>): State<T> {
   switch (action.type) {
@@ -78,7 +42,8 @@ function useCourseSearch<T>(asyncCallback: () => Promise<T>, initialState?: Part
         if (errorCode && errorCode === 'search-error-overflow') overflowDispatch(dispatch)
         else if (errorCode) dispatch({ type: 'rejected', error: errorCode })
         else if (searchHits && searchHits.length === 0) noHitsDispatch(dispatch)
-        else if (!searchHits && typeof data === "string" && data.includes("ERROR-koppsCourseSearch-")) dispatch({ type: 'rejected', error: data })
+        else if (!searchHits && typeof data === 'string' && data.includes('ERROR-koppsCourseSearch-'))
+          dispatch({ type: 'rejected', error: data })
         else if (!searchHits || data === 'No query restriction was specified') noQueryProvidedDispatch(dispatch)
         else dispatch({ type: 'resolved', data })
       },
@@ -89,4 +54,4 @@ function useCourseSearch<T>(asyncCallback: () => Promise<T>, initialState?: Part
   return state
 }
 
-export { STATUS, ERROR_ASYNC, useCourseSearch }
+export { useCourseSearch }

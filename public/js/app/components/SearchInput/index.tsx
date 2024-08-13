@@ -1,15 +1,23 @@
-import React, { CSSProperties, useState, ChangeEvent, FormEvent } from 'react'
+import React, { CSSProperties, useState, useEffect, ChangeEvent, FormEvent } from 'react'
 import { useStore } from '../../mobx'
 import i18n from '../../../../../i18n'
 
 import { SearchInputProps } from './types'
 
-const SearchInputField: React.FC<SearchInputProps> = ({ caption, initialValue = '', onSubmit, disabled }) => {
+const SearchInput: React.FC<SearchInputProps> = ({ caption, initialValue = '', onSubmit, disabled }) => {
   const { languageIndex } = useStore()
   const [inputText, setInputText] = useState<string>(initialValue)
 
   const { generalSearch } = i18n.messages[languageIndex]
   const { searchLabel } = generalSearch
+
+  useEffect(() => {
+    if (initialValue !== inputText) setInputText(initialValue)
+    // This effect listens for changes in the onSubmit prop, which indirectly relates to changes in the search parameters.
+    // If the input text has been modified by the user and handleSubmit is not called (meaning the search parameters haven't been updated yet),
+    // this effect ensures that if someone changes the filters in another part of the application, if the input field's internal state doesn't match the initial value from the parent (e.g., due to manual input changes),
+    // the input field will reset to reflect the initial value passed from the parent component.
+  }, [onSubmit])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value)
@@ -58,4 +66,4 @@ const SearchInputField: React.FC<SearchInputProps> = ({ caption, initialValue = 
   )
 }
 
-export default SearchInputField
+export default SearchInput
