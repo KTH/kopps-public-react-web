@@ -317,12 +317,12 @@ const messages = {
     errorUnknown: { text: 'An unknown error occurred - failed to retrieve course data' },
     errorEmpty: {
       header: 'Your search returned no results',
-      help: 'For help, see the link below: Instructions for searching',
+      help: '',
     },
     errorOverflow: {
       header: 'There were too many results',
       text: 'There are too many courses that match your search critera. Please specify more characters/digits in the course name or course code (example of course code: SF1624).',
-      help: 'For help, see the link below: Instructions for searching',
+      help: '', // we don't have this link anymore so we should decide what we are going to show as a help text
     },
     noQueryProvided: {
       text: 'No query restriction was specified',
