@@ -1,4 +1,6 @@
+import { STATUS } from '../../hooks/types/UseCourseSearchTypes'
 import { KoppsCourseSearchResult, KoppsCourseSearchResultState } from '../../util/types/SearchApiTypes'
+import { SearchHits } from '../../util/types/SearchApiTypes'
 
 export { KoppsCourseSearchResult, KoppsCourseSearchResultState }
 
@@ -8,7 +10,7 @@ export interface SearchResultDisplayParams {
 
 export interface SearchResultHeaderParams {
   resultsLength: number
-  language: string
+  searchStatus: (typeof STATUS)[keyof typeof STATUS]
 }
 
 export interface SearchResultComponentParams {
@@ -22,3 +24,7 @@ export const VIEW = {
 } as const
 
 export type View = (typeof VIEW)[keyof typeof VIEW]
+
+export interface ListViewParams {
+  results: SearchHits[]
+}

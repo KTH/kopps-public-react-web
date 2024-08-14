@@ -1,4 +1,5 @@
 import React from 'react'
+import { HelpTextsProps } from './types'
 
 /**
  * HelpTexts Component
@@ -24,7 +25,7 @@ import React from 'react'
  * <HelpTexts helptexts={helptexts} htmlIndexes={htmlIndexes} />
  */
 
-function HelpTexts({ helptexts, htmlIndexes = [] }) {
+const HelpTexts: React.FC<HelpTextsProps> = ({ helptexts, htmlIndexes = [] }) => {
   return (
     <div className="article">
       <ul>
@@ -32,9 +33,11 @@ function HelpTexts({ helptexts, htmlIndexes = [] }) {
           if (htmlIndexes.includes(index)) {
             return (
               // eslint-disable-next-line react/no-danger
-              <li key={value} dangerouslySetInnerHTML={{ __html: value }} />
+              <li key={index} dangerouslySetInnerHTML={{ __html: value }} />
             )
-          } else return <li key={value}>{value}</li>
+          } else {
+            return <li key={index}>{value}</li>
+          }
         })}
       </ul>
     </div>
