@@ -63,7 +63,7 @@ describe('Component <SearchTableView> for RESEARCH courses', () => {
         const { course } = TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_EN.searchHits[index]
         expect(utils.getAllByRole('cell')[0]).toHaveTextContent(course.courseCode, { exact: true })
         expect(utils.getAllByRole('cell')[1]).toHaveTextContent(course.title, { exact: true })
-        expect(utils.getAllByRole('cell')[2]).toHaveTextContent(`${course.credits} ${course.creditUnitAbbr}`, {
+        expect(utils.getAllByRole('cell')[2]).toHaveTextContent(`${course.credits} credits`, {
           exact: true,
         })
         expect(utils.getAllByRole('cell')[3]).toHaveTextContent('Third cycle')
@@ -154,7 +154,7 @@ describe('Component <SearchTableView> for RESEARCH courses', () => {
         const { course } = TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_EN.searchHits[index]
         expect(utils.getAllByRole('cell')[0]).toHaveTextContent(course.courseCode, { exact: true })
         expect(utils.getAllByRole('cell')[1]).toHaveTextContent(course.title, { exact: true })
-        expect(utils.getAllByRole('cell')[2]).toHaveTextContent(`${course.credits} ${course.creditUnitAbbr}`, {
+        expect(utils.getAllByRole('cell')[2]).toHaveTextContent(`${course.credits} credits`, {
           exact: true,
         })
         expect(utils.getAllByRole('cell')[3]).toHaveTextContent('Third cycle')
@@ -199,7 +199,7 @@ describe('Component <SearchTableView> for MIXED types of courses', () => {
         const { course } = EXPECTED_TEST_SEARCH_HITS_MIXED_EN.searchHits[index]
         expect(utils.getAllByRole('cell')[0]).toHaveTextContent(course.courseCode, { exact: true })
         expect(utils.getAllByRole('cell')[1]).toHaveTextContent(course.title, { exact: true })
-        expect(utils.getAllByRole('cell')[2]).toHaveTextContent(`${course.credits} ${course.creditUnitAbbr}`, {
+        expect(utils.getAllByRole('cell')[2]).toHaveTextContent(`${course.credits} credits`, {
           exact: true,
         })
         expect(utils.getAllByRole('cell')[3]).toHaveTextContent(
