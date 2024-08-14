@@ -19,16 +19,7 @@ const ListView: React.FC<ListViewParams> = ({ results }) => {
   return (
     <>
       {courses.sort(compareCoursesBy('courseCode')).map((course, index) => {
-        const {
-          courseCode,
-          title,
-          credits,
-          creditUnitAbbr,
-          startTerm,
-          endTerm,
-          endPeriod,
-          startPeriod,
-        } = course
+        const { courseCode, title, credits, creditUnitAbbr, startTerm, endTerm, endPeriod, startPeriod } = course
 
         let periodText = undefined
         if (hasSearchInterval) {
@@ -36,7 +27,7 @@ const ListView: React.FC<ListViewParams> = ({ results }) => {
         }
         const InforKursvalLink = inforKursvalLink(linkToInforKursval, courseCode, startTerm, language)
         return (
-          <div className="course-card">
+          <div className="course-card" key={courseCode + index}>
             <div className="course-header">
               <h3>
                 {title}, {credits} {creditUnitAbbr}
