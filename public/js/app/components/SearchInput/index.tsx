@@ -35,6 +35,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ caption, initialValue = '', o
 
   const SubmitStyles: CSSProperties = {
     margin: '2px 0.5rem',
+    flex: 'none',
   }
 
   return (
