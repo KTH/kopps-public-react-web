@@ -15,14 +15,14 @@ const ListView: React.FC<ListViewParams> = ({ results }) => {
 
   const { courseHasNoRounds, linkToInforKursval } = generalSearch
 
-  const { courses, hasSearchInterval } = flatCoursesArr(results)
+  const { courses, hasSearchHitInterval } = flatCoursesArr(results)
   return (
     <>
       {courses.sort(compareCoursesBy('courseCode')).map((course, index) => {
         const { courseCode, title, credits, creditUnitAbbr, startTerm, endTerm, endPeriod, startPeriod } = course
 
         let periodText = undefined
-        if (hasSearchInterval) {
+        if (hasSearchHitInterval) {
           periodText = periodsStr(startPeriod, startTerm, endPeriod, endTerm, language) || courseHasNoRounds
         }
         const InforKursvalLink = inforKursvalLink(linkToInforKursval, courseCode, startTerm, language)

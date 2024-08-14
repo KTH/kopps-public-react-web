@@ -35,11 +35,18 @@ export type Course = {
   [key: string]: any
 }
 
+type DataItem =
+  | string
+  | {
+      content: React.ReactElement | string
+      sortKey: string
+    }
+
 // Define the type for the function
 export type SortAndParseByCourseCodeForTableViewType = (
   courses: Course[],
   sliceUntilNum: number,
   language: string
-) => (string | JSX.Element)[][]
+) => DataItem[][]
 
-export type FlatCoursesArrType = (searchHits: SearchHits[]) => { courses: Course[]; hasSearchInterval: boolean }
+export type FlatCoursesArrType = (searchHits: SearchHits[]) => { courses: Course[]; hasSearchHitInterval: boolean }

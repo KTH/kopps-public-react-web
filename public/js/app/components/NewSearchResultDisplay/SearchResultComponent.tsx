@@ -7,7 +7,7 @@ const SearchResultComponent: React.FC<SearchResultComponentParams> = ({ searchRe
     case VIEW.list:
       return <ListView results={searchResults.searchHits} />
     case VIEW.table:
-      return <TableView />
+      return <TableView results={searchResults.searchHits} />
     default:
       return null
   }
