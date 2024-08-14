@@ -294,6 +294,10 @@ const messages = {
     courseHasNoRounds: 'Kursomgångar saknas för aktuella eller kommande terminer',
     linkToInforKursval: 'Sidan inför kursval',
     filtersLabel: 'Filtrera dina sökval',
+    toggleButton: {
+      list: 'Lista',
+      table: 'Tabell',
+    },
   },
   literatureList: {
     title: (term, schoolCode) => `Litteraturlista ${term} ${schoolCode}`,

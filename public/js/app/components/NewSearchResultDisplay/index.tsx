@@ -28,14 +28,14 @@ const NewSearchResultDisplay: React.FC<SearchResultDisplayParams> = ({ resultsSt
       <SearchResultHeader
         resultsLength={searchResults ? searchResults.searchHits.length : undefined}
         searchStatus={searchStatus}
+        view={view}
+        setView={setView}
       />
       {searchStatus === STATUS.resolved &&
         isKoppsCourseSearchResult(searchResults) &&
         searchResults.searchHits.length > 0 && <SearchResultComponent searchResults={searchResults} view={view} />}
     </Article>
   )
-
-  return null
 }
 
 export default NewSearchResultDisplay

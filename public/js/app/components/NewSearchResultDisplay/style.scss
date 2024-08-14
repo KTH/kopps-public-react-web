@@ -1,8 +1,39 @@
+@use '~@kth/style/scss/tokens/colors.scss' as colors;
+
 .course-search-results {
   .search-result-header {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
+    .toggle-container {
+      display: inline-flex;
+      border: 2px solid colors.$color-gray-medium;
+      border-radius: 5px;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    .toggle-button {
+      padding: 10px 20px;
+      cursor: pointer;
+      border: none;
+      background-color: colors.$color-white;
+      color: colors.$color-gray-dark;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 16px;
+    }
+
+    .toggle-button svg {
+      fill: colors.$color-gray-dark;
+    }
+
+    .toggle-button.active {
+      background-color: colors.$color-blue-light;
+      color: colors.$color-blue-kth;
+      border-color: 1px solid colors.$color-blue-lake;
+    }
   }
   .course-card {
     border: 1px solid rgba(230, 230, 230, 1);

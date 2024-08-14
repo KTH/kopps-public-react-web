@@ -11,6 +11,8 @@ export interface SearchResultDisplayParams {
 export interface SearchResultHeaderParams {
   resultsLength: number
   searchStatus: (typeof STATUS)[keyof typeof STATUS]
+  view: View
+  setView: (view: View) => void
 }
 
 export interface SearchResultComponentParams {
