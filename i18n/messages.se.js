@@ -292,11 +292,12 @@ const messages = {
     errorOverflow: 'Sökningen gav för många träffar.',
     noQueryProvided: 'Ingen frågebegränsning angavs',
     courseHasNoRounds: 'Kursomgångar saknas för aktuella eller kommande terminer',
+    courseHasNoRoundsInTableCell: 'Saknas',
     linkToInforKursval: 'Sidan inför kursval',
     filtersLabel: 'Filtrera dina sökval',
     toggleButton: {
-      list: 'Lista',
-      table: 'Tabell',
+      list: 'Standard',
+      table: 'Kompakt',
     },
   },
   literatureList: {

@@ -301,11 +301,12 @@ const messages = {
     errorOverflow: 'There were too many results.',
     noQueryProvided: 'No query restriction was specified',
     courseHasNoRounds: 'Course offerings are missing for current or upcoming semesters',
+    courseHasNoRoundsInTableCell: 'Missing',
     linkToInforKursval: 'The page before course selection',
     filtersLabel: 'Filter your search choices',
     toggleButton: {
-      list: 'List',
-      table: 'Table',
+      list: 'Standard',
+      table: 'Compact',
     },
   },
   literatureList: {

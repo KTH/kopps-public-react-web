@@ -103,7 +103,8 @@ export const sortAndParseByCourseCodeForTableView: SortAndParseByCourseCodeForTa
   sliceUntilNum,
   language
 ) => {
-  const { bigSearch } = i18n.messages[language === 'en' ? '0' : '1']
+  const { bigSearch, generalSearch } = i18n.messages[language === 'en' ? '0' : '1']
+  const { courseHasNoRoundsInTableCell } = generalSearch
 
   // Sort courses by courseCode
   courses.sort(compareCoursesBy('courseCode'))
@@ -126,7 +127,7 @@ export const sortAndParseByCourseCodeForTableView: SortAndParseByCourseCodeForTa
         titleCell(code, title, startTerm, language),
         `${credits} ${creditUnitAbbr}`,
         bigSearch[level] || '',
-        periodsStr(startPeriod, startTerm, endPeriod, endTerm, language) || '',
+        periodsStr(startPeriod, startTerm, endPeriod, endTerm, language) || courseHasNoRoundsInTableCell,
       ].slice(0, sliceUntilNum)
   )
 
