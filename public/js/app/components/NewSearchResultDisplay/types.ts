@@ -28,3 +28,5 @@ export type View = (typeof VIEW)[keyof typeof VIEW]
 export interface ListViewParams {
   results: SearchHits[]
 }
+
+export interface TableViewParams extends ListViewParams {}

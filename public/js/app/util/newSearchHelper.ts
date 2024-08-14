@@ -59,9 +59,9 @@ export const inforKursvalLink: InforKursvalLink = (text, code, startTerm, langua
 }
 
 export const flatCoursesArr: FlatCoursesArrType = searchHits => {
-  let hasSearchInterval = false
+  let hasSearchHitInterval = false
   const courses = searchHits.map(({ course, searchHitInterval }) => {
-    if (searchHitInterval) hasSearchInterval = true
+    if (searchHitInterval) hasSearchHitInterval = true
     return {
       ...course,
       ...searchHitInterval,
@@ -69,7 +69,7 @@ export const flatCoursesArr: FlatCoursesArrType = searchHits => {
   })
   return {
     courses: courses,
-    hasSearchInterval: hasSearchInterval,
+    hasSearchHitInterval: hasSearchHitInterval,
   }
 }
 
@@ -87,7 +87,7 @@ export const compareCoursesBy = <T extends keyof Course>(key: T) => {
 
 export const periodsStr: PeriodsStrType = (startPeriod, startTerm, endPeriod, endTerm, language) => {
   // Ensure startPeriod and endPeriod are strings
-  const startPeriodStr = startPeriod.toString()
+  const startPeriodStr = startPeriod?.toString()
   const endPeriodStr = endPeriod?.toString()
 
   if (!startTerm || !startPeriodStr) return ''

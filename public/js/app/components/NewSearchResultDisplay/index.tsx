@@ -16,7 +16,7 @@ const isKoppsCourseSearchResult = (data: string | KoppsCourseSearchResult): data
 }
 const NewSearchResultDisplay: React.FC<SearchResultDisplayParams> = ({ resultsState }) => {
   const { languageIndex } = useStore()
-  const [view, setView] = useState<View>(VIEW.list)
+  const [view, setView] = useState<View>(VIEW.table)
   const { data: searchResults, status: searchStatus, error: errorType } = resultsState
 
   if (errorType) {
@@ -24,7 +24,7 @@ const NewSearchResultDisplay: React.FC<SearchResultDisplayParams> = ({ resultsSt
   }
 
   return (
-    <Article>
+    <Article classNames={['course-search-results']}>
       <SearchResultHeader
         resultsLength={searchResults ? searchResults.searchHits.length : undefined}
         searchStatus={searchStatus}
