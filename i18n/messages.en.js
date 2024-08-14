@@ -303,6 +303,10 @@ const messages = {
     courseHasNoRounds: 'Course offerings are missing for current or upcoming semesters',
     linkToInforKursval: 'The page before course selection',
     filtersLabel: 'Filter your search choices',
+    toggleButton: {
+      list: 'List',
+      table: 'Table',
+    },
   },
   literatureList: {
     title: (term, schoolCode) => `Reading list ${term} ${schoolCode}`,
