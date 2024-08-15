@@ -13,17 +13,22 @@ export interface AncestorItem {
   label: string
 }
 
-export interface SearchFiltersProps {
+export interface SidebarFiltersProps {
   ancestorItem: AncestorItem
   disabled: boolean
   courseSearchParams: CourseSearchParams
   setCourseSearchParams: SetCourseSearchParams
 }
 
-export interface SearchFilterParams {
+export interface FilterParams {
   [key: string]: (Period | EduLevel | ShowOptions)[] | DepartmentCodeOrPrefix
 }
 
 export interface SearchFilterStore extends SearchCoursesStore {
   languageIndex: number
+}
+
+export interface CollapsableFiltersProps {
+  courseSearchParams: CourseSearchParams
+  setCourseSearchParams: SetCourseSearchParams
 }

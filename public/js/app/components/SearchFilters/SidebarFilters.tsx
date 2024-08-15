@@ -6,10 +6,10 @@ import NewSearchDepartments from '../NewSearchDepartments'
 import { useStore } from '../../mobx'
 import i18n from '../../../../../i18n'
 
-import { SearchFiltersProps, SearchFilterParams, SearchFilterStore } from './types'
+import { SidebarFiltersProps, FilterParams, SearchFilterStore } from './types'
 import { DepartmentCodeOrPrefix, EduLevel, Period, ShowOptions } from '../../stores/types/searchPageStoreTypes'
 
-const SearchFilters: React.FC<SearchFiltersProps> = ({
+const SidebarFilters: React.FC<SidebarFiltersProps> = ({
   ancestorItem,
   disabled,
   courseSearchParams,
@@ -24,7 +24,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
   const currentYearLabel = `${searchStartPeriodPrefix} ${currentYearDate}`
   const nextYearLabel = `${searchStartPeriodPrefix} ${Number(currentYearDate) + 1}`
 
-  function handleFilterValueChange(filterValue: SearchFilterParams) {
+  function handleFilterValueChange(filterValue: FilterParams) {
     setCourseSearchParams(filterValue)
   }
 
@@ -41,7 +41,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
           overrideSearchHead={currentYearLabel}
           paramAliasName="currentYear"
           paramName="period"
-          selectedValues={courseSearchParams.period}
+          selectedValues={courseSearchParams.period as Period[]}
           onChange={handleFilterValueChange}
           disabled={disabled}
         />
@@ -75,4 +75,4 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
   )
 }
 
-export default SearchFilters
+export default SidebarFilters
