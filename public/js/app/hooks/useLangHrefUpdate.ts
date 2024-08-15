@@ -3,7 +3,7 @@ import { stringifyUrlParams } from '../../../../domain/searchParams'
 import { CourseSearchParams } from '../pages/types/searchPageTypes'
 import { useStore } from '../mobx'
 
-export const useUpdateAnchorHref = (courseSearchParams: CourseSearchParams) => {
+export const useLangHrefUpdate = (courseSearchParams?: CourseSearchParams) => {
   const { language } = useStore()
   const langRef = useRef<HTMLAnchorElement | null>(null)
 
@@ -11,6 +11,8 @@ export const useUpdateAnchorHref = (courseSearchParams: CourseSearchParams) => {
     if (!langRef.current) {
       langRef.current = document.querySelector('.kth-menu-item.language')
     }
+
+    if (langRef.current && !courseSearchParams) langRef.current.href = `?l=${language === 'en' ? 'se' : 'en'}`
 
     if (langRef.current && courseSearchParams) {
       const filteredSearchParams = Object.fromEntries(

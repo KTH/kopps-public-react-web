@@ -17,7 +17,7 @@ import { useCourseSearchParams } from '../hooks/useCourseSearchParams'
 import { STATUS } from '../hooks/types/UseCourseSearchTypes'
 import NewSearchResultDisplay from '../components/NewSearchResultDisplay'
 import { KoppsCourseSearchResultState } from '../util/types/SearchApiTypes'
-import { useUpdateAnchorHref } from '../hooks/useLangHrefUpdate'
+import { useLangHrefUpdate } from '../hooks/useLangHrefUpdate'
 
 const MainContent: React.FC<MainContentProps> = ({ children }) => {
   return (
@@ -33,7 +33,7 @@ function _getThisHost(thisHostBaseUrl: string) {
 
 const NewSearchPage = () => {
   const [courseSearchParams, setCourseSearchParams] = useCourseSearchParams()
-  useUpdateAnchorHref(courseSearchParams)
+  useLangHrefUpdate(courseSearchParams)
   const { pattern } = courseSearchParams
   const { browserConfig, language, languageIndex } = useStore()
 
