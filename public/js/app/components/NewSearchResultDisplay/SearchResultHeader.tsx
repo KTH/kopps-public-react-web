@@ -10,13 +10,13 @@ const SearchResultHeader: React.FC<SearchResultHeaderParams> = ({ resultsLength,
 
   const { searchLoading, toggleButton } = i18n.messages[languageIndex].generalSearch
 
-  const handleChangeResultView = () => {
+  const handleChangeResultView = (current: string) => {
     switch (view) {
       case VIEW.table:
-        setView(VIEW.list)
+        if (current !== VIEW.table) setView(VIEW.list)
         break
       case VIEW.list:
-        setView(VIEW.table)
+        if (current !== VIEW.list) setView(VIEW.table)
         break
       default:
         break
@@ -34,7 +34,10 @@ const SearchResultHeader: React.FC<SearchResultHeaderParams> = ({ resultsLength,
             {language === 'en' ? ` result(s).` : ` resultat.`}
           </p>
           <div className="toggle-container">
-            <button onClick={handleChangeResultView} className={`toggle-button ${view === VIEW.list ? 'active' : ''}`}>
+            <button
+              onClick={() => handleChangeResultView(VIEW.list)}
+              className={`toggle-button ${view === VIEW.list ? 'active' : ''}`}
+            >
               {toggleButton.list}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +49,10 @@ const SearchResultHeader: React.FC<SearchResultHeaderParams> = ({ resultsLength,
                 <path d="M200-520q-33 0-56.5-23.5T120-600v-160q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v160q0 33-23.5 56.5T760-520H200Zm0-80h560v-160H200v160Zm0 480q-33 0-56.5-23.5T120-200v-160q0-33 23.5-56.5T200-440h560q33 0 56.5 23.5T840-360v160q0 33-23.5 56.5T760-120H200Zm0-80h560v-160H200v160Zm0-560v160-160Zm0 400v160-160Z" />
               </svg>
             </button>
-            <button onClick={handleChangeResultView} className={`toggle-button ${view === VIEW.table ? 'active' : ''}`}>
+            <button
+              onClick={() => handleChangeResultView(VIEW.table)}
+              className={`toggle-button ${view === VIEW.table ? 'active' : ''}`}
+            >
               {toggleButton.table}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
