@@ -1,0 +1,7 @@
+@use '~@kth/style/scss/tokens/spacing.scss' as space;
+
+.search-landing-page {
+  details {
+    margin-bottom: space.$space-0;
+  }
+}
