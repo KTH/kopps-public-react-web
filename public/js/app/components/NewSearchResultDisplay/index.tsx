@@ -16,7 +16,7 @@ const isKoppsCourseSearchResult = (data: string | KoppsCourseSearchResult): data
 }
 const NewSearchResultDisplay: React.FC<SearchResultDisplayParams> = ({ resultsState }) => {
   const { languageIndex } = useStore()
-  const [view, setView] = useState<View>(VIEW.table)
+  const [view, setView] = useState<View>(VIEW.list)
   const { data: searchResults, status: searchStatus, error: errorType } = resultsState
 
   if (errorType) {
@@ -28,14 +28,14 @@ const NewSearchResultDisplay: React.FC<SearchResultDisplayParams> = ({ resultsSt
       <SearchResultHeader
         resultsLength={searchResults ? searchResults.searchHits.length : undefined}
         searchStatus={searchStatus}
+        view={view}
+        setView={setView}
       />
       {searchStatus === STATUS.resolved &&
         isKoppsCourseSearchResult(searchResults) &&
         searchResults.searchHits.length > 0 && <SearchResultComponent searchResults={searchResults} view={view} />}
     </Article>
   )
-
-  return null
 }
 
 export default NewSearchResultDisplay
