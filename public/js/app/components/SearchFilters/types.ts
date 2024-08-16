@@ -18,7 +18,7 @@ export interface SidebarFiltersProps {
   disabled: boolean
   courseSearchParams: CourseSearchParams
   setCourseSearchParams: SetCourseSearchParams
-  FilterMode?: FilterModes
+  filterMode?: FilterModes
 }
 
 export interface FilterParams {
@@ -32,12 +32,14 @@ export interface SearchFilterStore extends SearchCoursesStore {
 export interface CollapsableFiltersProps {
   courseSearchParams: CourseSearchParams
   setCourseSearchParams: SetCourseSearchParams
-  FilterMode?: FilterModes
+  filterMode?: FilterModes
 }
 
-export const FILTER_MODES = {
+export const FILTER_MODES: Record<string, FilterModeKey[]> = {
   default: ['period', 'eduLevel', 'showOptions', 'department'],
   thirdCycleCourses: ['onlyMHU', 'department'],
 } as const
 
-export type FilterModes = (typeof FILTER_MODES)[keyof typeof FILTER_MODES]
+type FilterModeKey = 'period' | 'eduLevel' | 'showOptions' | 'department' | 'onlyMHU'
+
+export type FilterModes = FilterModeKey[]

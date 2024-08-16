@@ -7,14 +7,19 @@ import i18n from '../../../../../i18n'
 
 import NewSearchDepartments from '../NewSearchDepartments'
 import NewSearchOptions from '../NewSearchOptions'
-import { CollapsableFiltersProps, FilterParams, SearchFilterStore } from './types'
+import { CollapsableFiltersProps, FILTER_MODES, FilterParams, SearchFilterStore } from './types'
 import { DepartmentCodeOrPrefix, EduLevel, Period, ShowOptions } from '../../stores/types/searchPageStoreTypes'
 
-const CollapsableFilters: React.FC<CollapsableFiltersProps> = ({ courseSearchParams, setCourseSearchParams }) => {
+const CollapsableFilters: React.FC<CollapsableFiltersProps> = ({
+  courseSearchParams,
+  setCourseSearchParams,
+  filterMode = FILTER_MODES.default,
+}) => {
   const { languageIndex }: SearchFilterStore = useStore()
 
-  const { generalSearch } = i18n.messages[languageIndex]
+  const { generalSearch, bigSearch } = i18n.messages[languageIndex]
   const { searchStartPeriodPrefix, collapseHeaderOtherSearchOptions } = generalSearch
+  const { onlyMHULabel } = bigSearch
 
   const currentYearDate = new Date().getFullYear()
   const currentYearLabel = `${searchStartPeriodPrefix} ${currentYearDate}`
@@ -27,50 +32,67 @@ const CollapsableFilters: React.FC<CollapsableFiltersProps> = ({ courseSearchPar
   return (
     <>
       <CollapseDetails title={collapseHeaderOtherSearchOptions}>
+        {filterMode.includes('period') && (
+          <Row>
+            <Col>
+              <NewSearchOptions
+                overrideSearchHead={currentYearLabel}
+                paramAliasName="currentYear"
+                paramName="period"
+                selectedValues={courseSearchParams.period as Period[]}
+                onChange={handleFilterValueChange}
+              />
+            </Col>
+            <Col>
+              <NewSearchOptions
+                overrideSearchHead={nextYearLabel}
+                paramAliasName="nextYear"
+                paramName="period"
+                selectedValues={courseSearchParams.period as Period[]}
+                onChange={handleFilterValueChange}
+              />
+            </Col>
+          </Row>
+        )}
         <Row>
+          {filterMode.includes('eduLevel') && (
+            <Col>
+              <NewSearchOptions
+                paramName="eduLevel"
+                selectedValues={courseSearchParams.eduLevel as EduLevel[]}
+                onChange={handleFilterValueChange}
+              />
+            </Col>
+          )}
           <Col>
-            <NewSearchOptions
-              overrideSearchHead={currentYearLabel}
-              paramAliasName="currentYear"
-              paramName="period"
-              selectedValues={courseSearchParams.period as Period[]}
-              onChange={handleFilterValueChange}
-            />
-          </Col>
-          <Col>
-            <NewSearchOptions
-              overrideSearchHead={nextYearLabel}
-              paramAliasName="nextYear"
-              paramName="period"
-              selectedValues={courseSearchParams.period as Period[]}
-              onChange={handleFilterValueChange}
-            />
+            {filterMode.includes('showOptions') && (
+              <NewSearchOptions
+                paramName="showOptions"
+                selectedValues={courseSearchParams.showOptions as ShowOptions[]}
+                onChange={handleFilterValueChange}
+              />
+            )}
+            {filterMode.includes('onlyMHU') && (
+              <NewSearchOptions
+                paramName="showOptions"
+                paramAliasName="onlyMHU"
+                selectedValues={courseSearchParams.showOptions as ShowOptions[]}
+                onChange={handleFilterValueChange}
+                overrideSearchHead={onlyMHULabel}
+              />
+            )}
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <NewSearchOptions
-              paramName="eduLevel"
-              selectedValues={courseSearchParams.eduLevel as EduLevel[]}
-              onChange={handleFilterValueChange}
-            />
-          </Col>
-          <Col>
-            <NewSearchOptions
-              paramName="showOptions"
-              selectedValues={courseSearchParams.showOptions as ShowOptions[]}
-              onChange={handleFilterValueChange}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <NewSearchDepartments
-              departmentCode={courseSearchParams.department as DepartmentCodeOrPrefix}
-              onChange={handleFilterValueChange}
-            />
-          </Col>
-        </Row>
+        {filterMode.includes('department') && (
+          <Row>
+            <Col>
+              <NewSearchDepartments
+                departmentCode={courseSearchParams.department as DepartmentCodeOrPrefix}
+                onChange={handleFilterValueChange}
+              />
+            </Col>
+          </Row>
+        )}
       </CollapseDetails>
     </>
   )

@@ -6,7 +6,7 @@ import NewSearchDepartments from '../NewSearchDepartments'
 import { useStore } from '../../mobx'
 import i18n from '../../../../../i18n'
 
-import { SidebarFiltersProps, FilterParams, SearchFilterStore } from './types'
+import { SidebarFiltersProps, FilterParams, SearchFilterStore, FILTER_MODES } from './types'
 import { DepartmentCodeOrPrefix, EduLevel, Period, ShowOptions } from '../../stores/types/searchPageStoreTypes'
 
 const SidebarFilters: React.FC<SidebarFiltersProps> = ({
@@ -14,11 +14,13 @@ const SidebarFilters: React.FC<SidebarFiltersProps> = ({
   disabled,
   courseSearchParams,
   setCourseSearchParams,
+  filterMode = FILTER_MODES.default,
 }) => {
   const { languageIndex }: SearchFilterStore = useStore()
 
-  const { generalSearch } = i18n.messages[languageIndex]
+  const { generalSearch, bigSearch } = i18n.messages[languageIndex]
   const { filtersLabel } = generalSearch
+  const { onlyMHULabel } = bigSearch
   const { searchStartPeriodPrefix } = generalSearch
   const currentYearDate = new Date().getFullYear()
   const currentYearLabel = `${searchStartPeriodPrefix} ${currentYearDate}`
@@ -37,39 +39,58 @@ const SidebarFilters: React.FC<SidebarFiltersProps> = ({
           {ancestorItem.label}
         </Link>
         <h3>{filtersLabel}</h3>
-        <NewSearchOptions
-          overrideSearchHead={currentYearLabel}
-          paramAliasName="currentYear"
-          paramName="period"
-          selectedValues={courseSearchParams.period as Period[]}
-          onChange={handleFilterValueChange}
-          disabled={disabled}
-        />
-        <NewSearchOptions
-          overrideSearchHead={nextYearLabel}
-          paramAliasName="nextYear"
-          paramName="period"
-          selectedValues={courseSearchParams.period as Period[]}
-          onChange={handleFilterValueChange}
-          disabled={disabled}
-        />
-        <NewSearchOptions
-          paramName="eduLevel"
-          selectedValues={courseSearchParams.eduLevel as EduLevel[]}
-          onChange={handleFilterValueChange}
-          disabled={disabled}
-        />
-        <NewSearchOptions
-          paramName="showOptions"
-          selectedValues={courseSearchParams.showOptions as ShowOptions[]}
-          onChange={handleFilterValueChange}
-          disabled={disabled}
-        />
-        <NewSearchDepartments
-          departmentCode={courseSearchParams.department as DepartmentCodeOrPrefix}
-          onChange={handleFilterValueChange}
-          disabled={disabled}
-        />
+        {filterMode.includes('period') && (
+          <NewSearchOptions
+            overrideSearchHead={currentYearLabel}
+            paramAliasName="currentYear"
+            paramName="period"
+            selectedValues={courseSearchParams.period as Period[]}
+            onChange={handleFilterValueChange}
+            disabled={disabled}
+          />
+        )}
+        {filterMode.includes('period') && (
+          <NewSearchOptions
+            overrideSearchHead={nextYearLabel}
+            paramAliasName="nextYear"
+            paramName="period"
+            selectedValues={courseSearchParams.period as Period[]}
+            onChange={handleFilterValueChange}
+            disabled={disabled}
+          />
+        )}
+        {filterMode.includes('eduLevel') && (
+          <NewSearchOptions
+            paramName="eduLevel"
+            selectedValues={courseSearchParams.eduLevel as EduLevel[]}
+            onChange={handleFilterValueChange}
+            disabled={disabled}
+          />
+        )}
+        {filterMode.includes('showOptions') && (
+          <NewSearchOptions
+            paramName="showOptions"
+            selectedValues={courseSearchParams.showOptions as ShowOptions[]}
+            onChange={handleFilterValueChange}
+            disabled={disabled}
+          />
+        )}
+        {filterMode.includes('onlyMHU') && (
+          <NewSearchOptions
+            paramName="showOptions"
+            paramAliasName="onlyMHU"
+            selectedValues={courseSearchParams.showOptions as ShowOptions[]}
+            onChange={handleFilterValueChange}
+            overrideSearchHead={onlyMHULabel}
+          />
+        )}
+        {filterMode.includes('department') && (
+          <NewSearchDepartments
+            departmentCode={courseSearchParams.department as DepartmentCodeOrPrefix}
+            onChange={handleFilterValueChange}
+            disabled={disabled}
+          />
+        )}
       </div>
     </>
   )
