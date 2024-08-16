@@ -13,17 +13,31 @@ export interface AncestorItem {
   label: string
 }
 
-export interface SearchFiltersProps {
+export interface SidebarFiltersProps {
   ancestorItem: AncestorItem
   disabled: boolean
   courseSearchParams: CourseSearchParams
   setCourseSearchParams: SetCourseSearchParams
+  FilterMode?: FilterModes
 }
 
-export interface SearchFilterParams {
+export interface FilterParams {
   [key: string]: (Period | EduLevel | ShowOptions)[] | DepartmentCodeOrPrefix
 }
 
 export interface SearchFilterStore extends SearchCoursesStore {
   languageIndex: number
 }
+
+export interface CollapsableFiltersProps {
+  courseSearchParams: CourseSearchParams
+  setCourseSearchParams: SetCourseSearchParams
+  FilterMode?: FilterModes
+}
+
+export const FILTER_MODES = {
+  default: ['period', 'eduLevel', 'showOptions', 'department'],
+  thirdCycleCourses: ['onlyMHU', 'department'],
+} as const
+
+export type FilterModes = (typeof FILTER_MODES)[keyof typeof FILTER_MODES]
