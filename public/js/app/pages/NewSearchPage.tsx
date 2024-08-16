@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import { Col, Row } from 'reactstrap'
 import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
-import { SearchFilters, Lead } from '../components'
+import { SidebarFilters, Lead } from '../components'
 
 import SearchInput from '../components/SearchInput'
 
@@ -17,6 +17,7 @@ import { useCourseSearchParams } from '../hooks/useCourseSearchParams'
 import { STATUS } from '../hooks/types/UseCourseSearchTypes'
 import NewSearchResultDisplay from '../components/NewSearchResultDisplay'
 import { KoppsCourseSearchResultState } from '../util/types/SearchApiTypes'
+import { useLangHrefUpdate } from '../hooks/useLangHrefUpdate'
 
 const MainContent: React.FC<MainContentProps> = ({ children }) => {
   return (
@@ -32,6 +33,7 @@ function _getThisHost(thisHostBaseUrl: string) {
 
 const NewSearchPage = () => {
   const [courseSearchParams, setCourseSearchParams] = useCourseSearchParams()
+  useLangHrefUpdate(courseSearchParams)
   const { pattern } = courseSearchParams
   const { browserConfig, language, languageIndex } = useStore()
 
@@ -54,7 +56,7 @@ const NewSearchPage = () => {
 
   return (
     <Row>
-      <SearchFilters
+      <SidebarFilters
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={setCourseSearchParams}
         ancestorItem={{ href: '/student/kurser/sokkurs-ny-design', label: main_menu_search_all_new }}
@@ -63,12 +65,7 @@ const NewSearchPage = () => {
       <MainContent>
         <PageHeading>{resultsHeading}</PageHeading>
         <Lead text={leadIntro} />
-        <SearchInput
-          initialValue={pattern}
-          caption={searchButton}
-          onSubmit={handlePatternChange}
-          disabled={searchStatus === STATUS.pending}
-        />
+        <SearchInput caption={searchButton} onSubmit={handlePatternChange} disabled={searchStatus === STATUS.pending} />
         <NewSearchResultDisplay resultsState={state as KoppsCourseSearchResultState} />
       </MainContent>
     </Row>
