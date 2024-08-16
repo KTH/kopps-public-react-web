@@ -13,6 +13,7 @@ import { MainContentProps } from './types/searchPageTypes'
 import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
 import { HelpTexts } from '../components'
 import { getHelpText } from '../util/newSearchHelper'
+import { useLangHrefUpdate } from '../hooks/useLangHrefUpdate'
 
 const MainContent: React.FC<MainContentProps> = ({ children }) => {
   return (
@@ -24,6 +25,7 @@ const MainContent: React.FC<MainContentProps> = ({ children }) => {
 
 const NewSearchLandingPage = () => {
   const { languageIndex } = useStore()
+  useLangHrefUpdate()
   const { bigSearch, searchInstructions } = i18n.messages[languageIndex]
   const { searchHeading, searchButton } = bigSearch
   const { search_help_collapse_header: collapseHeader } = searchInstructions
