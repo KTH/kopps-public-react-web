@@ -23,7 +23,7 @@ const ListView: React.FC<ListViewParams> = ({ results }) => {
 
         let periodText = undefined
         if (hasSearchHitInterval) {
-          periodText = periodsStr(startPeriod, startTerm, endPeriod, endTerm, language) || courseHasNoRounds
+          periodText = periodsStr(startPeriod, startTerm, endPeriod, endTerm, language)
         }
         const InforKursvalLink = inforKursvalLink(linkToInforKursval, courseCode, startTerm, language)
         return (
@@ -34,6 +34,7 @@ const ListView: React.FC<ListViewParams> = ({ results }) => {
               </h3>
               <span className="course-code">{courseCode}</span>
               {periodText && <span className="course-period">{periodText}</span>}
+              {periodText === '' && <i>{courseHasNoRounds}</i>}
             </div>
             {/* 
             <p className="course-description">
