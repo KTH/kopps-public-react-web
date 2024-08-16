@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import { Col, Row } from 'reactstrap'
 import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
@@ -17,6 +17,7 @@ import { useCourseSearchParams } from '../hooks/useCourseSearchParams'
 import { STATUS } from '../hooks/types/UseCourseSearchTypes'
 import NewSearchResultDisplay from '../components/NewSearchResultDisplay'
 import { KoppsCourseSearchResultState } from '../util/types/SearchApiTypes'
+import { useLangHrefUpdate } from '../hooks/useLangHrefUpdate'
 
 const MainContent: React.FC<MainContentProps> = ({ children }) => {
   return (
@@ -32,6 +33,7 @@ function _getThisHost(thisHostBaseUrl: string) {
 
 const NewSearchPage = () => {
   const [courseSearchParams, setCourseSearchParams] = useCourseSearchParams()
+  useLangHrefUpdate(courseSearchParams)
   const { pattern } = courseSearchParams
   const { browserConfig, language, languageIndex } = useStore()
 
