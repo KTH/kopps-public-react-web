@@ -16,7 +16,7 @@ import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildnings
 import { HelpTexts } from '../components'
 import { getHelpText } from '../util/newSearchHelper'
 import { useLangHrefUpdate } from '../hooks/useLangHrefUpdate'
-import { CollapsableFilters } from '../components'
+import { SearchFilters } from '../components'
 import { stringifyUrlParams } from '../../../../domain/searchParams'
 
 const MainContent: React.FC<MainContentProps> = ({ children }) => {
@@ -75,7 +75,11 @@ const NewSearchLandingPage = () => {
         <CollapseDetails title={collapseHeader}>
           <HelpTexts helptexts={helptexts} htmlIndexes={[9]} />
         </CollapseDetails>
-        <CollapsableFilters courseSearchParams={courseSearchParams} setCourseSearchParams={setCourseSearchParams} />
+        <SearchFilters
+          courseSearchParams={courseSearchParams}
+          setCourseSearchParams={setCourseSearchParams}
+          collapsable={true}
+        />
       </MainContent>
     </Row>
   )

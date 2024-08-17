@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 
 import { Col, Row } from 'reactstrap'
 import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
-import { SidebarFilters, Lead } from '../components'
+import { SearchFilters, Lead } from '../components'
 
 import SearchInput from '../components/SearchInput'
 
@@ -56,7 +56,7 @@ const NewSearchPage = () => {
 
   return (
     <Row>
-      <SidebarFilters
+      <SearchFilters
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={setCourseSearchParams}
         ancestorItem={{ href: '/student/kurser/sokkurs-ny-design', label: main_menu_search_all_new }}

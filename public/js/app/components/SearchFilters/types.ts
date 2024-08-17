@@ -13,11 +13,12 @@ export interface AncestorItem {
   label: string
 }
 
-export interface SidebarFiltersProps {
-  ancestorItem: AncestorItem
-  disabled: boolean
+export interface SearchFiltersProps {
+  ancestorItem?: AncestorItem
+  disabled?: boolean
   courseSearchParams: CourseSearchParams
   setCourseSearchParams: SetCourseSearchParams
+  collapsable?: boolean
 }
 
 export interface FilterParams {
@@ -26,9 +27,4 @@ export interface FilterParams {
 
 export interface SearchFilterStore extends SearchCoursesStore {
   languageIndex: number
-}
-
-export interface CollapsableFiltersProps {
-  courseSearchParams: CourseSearchParams
-  setCourseSearchParams: SetCourseSearchParams
 }

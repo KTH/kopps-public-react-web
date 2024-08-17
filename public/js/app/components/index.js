@@ -10,8 +10,7 @@ import FooterContent from './FooterContent'
 import SearchResultDisplay from './SearchResultDisplay'
 import ThirdCycleStudySearchFormFields from './ThirdCycleStudySearchFormFields'
 import SearchFormFields from './SearchFormFields'
-import SidebarFilters from './SearchFilters/SidebarFilters'
-import CollapsableFilters from './SearchFilters/CollapsableFilters'
+import SearchFilters from './SearchFilters'
 import SearchInput from './SearchInput'
 
 export {
@@ -27,7 +26,6 @@ export {
   SearchResultDisplay,
   ThirdCycleStudySearchFormFields,
   SearchFormFields,
-  SidebarFilters,
-  CollapsableFilters,
+  SearchFilters,
   SearchInput,
 }
