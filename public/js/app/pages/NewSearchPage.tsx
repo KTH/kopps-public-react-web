@@ -21,7 +21,11 @@ import { useLangHrefUpdate } from '../hooks/useLangHrefUpdate'
 import { FILTER_MODES } from '../components/SearchFilters/types'
 
 const MainContent: React.FC<MainContentProps> = ({ children }) => {
-  return <Col>{children}</Col>
+  return (
+    <Col tag="main" id="mainContent">
+      {children}
+    </Col>
+  )
 }
 
 function _getThisHost(thisHostBaseUrl: string) {
@@ -62,7 +66,10 @@ const NewSearchPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.de
       break
     case SEARCH_MODES.thirdCycleCourses:
       leadIntro = thirdCycleSearchLeadIntro
-      ancestorItemObj = { href: '/utbildning/forskarutbildning/kurser/sok-ny-design', label: main_menu_third_cycle_courses_search_new }
+      ancestorItemObj = {
+        href: '/utbildning/forskarutbildning/kurser/sok-ny-design',
+        label: main_menu_third_cycle_courses_search_new,
+      }
     default:
       break
   }

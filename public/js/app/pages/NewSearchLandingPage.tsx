@@ -21,10 +21,6 @@ import { stringifyUrlParams } from '../../../../domain/searchParams'
 import { FILTER_MODES } from '../components/SearchFilters/types'
 import { courseSearchLink } from '../util/links'
 
-const MainContent: React.FC<MainContentProps> = ({ children }) => {
-  return <Col>{children}</Col>
-}
-
 const paramsReducer = (state: CourseSearchParams, action: any) => ({ ...state, ...action })
 
 const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.default }) => {
@@ -113,7 +109,7 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
 
   return (
     <Row className="search-landing-page">
-      <MainContent>
+      <>
         <PageHeading>{searchHeading}</PageHeading>
         <SearchInput caption={searchButton} onSubmit={handleSubmit} />
         <CollapseDetails title={collapseHeader}>
@@ -134,7 +130,7 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
             </Row>
           </>
         )}
-      </MainContent>
+      </>
     </Row>
   )
 }
