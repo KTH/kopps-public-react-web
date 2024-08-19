@@ -1,23 +1,25 @@
-import React, { CSSProperties, useState, useEffect, ChangeEvent, FormEvent } from 'react'
+import React, { CSSProperties, useState, ChangeEvent, FormEvent, useEffect } from 'react'
 import { useStore } from '../../mobx'
 import i18n from '../../../../../i18n'
 
 import { SearchInputProps } from './types'
+import { useCourseSearchParams } from '../../hooks/useCourseSearchParams'
 
-const SearchInput: React.FC<SearchInputProps> = ({ caption, initialValue = '', onSubmit, disabled }) => {
+const SearchInput: React.FC<SearchInputProps> = ({ caption, onSubmit, disabled }) => {
   const { languageIndex } = useStore()
-  const [inputText, setInputText] = useState<string>(initialValue)
+  const [courseSearchParams, setCourseSearchParams] = useCourseSearchParams()
+  const [inputText, setInputText] = useState<string>(courseSearchParams.pattern)
 
   const { generalSearch } = i18n.messages[languageIndex]
   const { searchLabel } = generalSearch
 
   useEffect(() => {
-    if (initialValue !== inputText) setInputText(initialValue)
-    // This effect listens for changes in the onSubmit prop, which indirectly relates to changes in the search parameters.
+    if (courseSearchParams.pattern !== inputText) setInputText(courseSearchParams.pattern)
+    // This useEffect listens for changes in the courseSearchParams, which relates to changes in the search parameters.
     // If the input text has been modified by the user and handleSubmit is not called (meaning the search parameters haven't been updated yet),
     // this effect ensures that if someone changes the filters in another part of the application, if the input field's internal state doesn't match the initial value from the parent (e.g., due to manual input changes),
     // the input field will reset to reflect the initial value passed from the parent component.
-  }, [onSubmit])
+  }, [courseSearchParams])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value)

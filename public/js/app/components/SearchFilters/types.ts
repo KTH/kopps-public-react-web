@@ -14,13 +14,14 @@ export interface AncestorItem {
 }
 
 export interface SearchFiltersProps {
-  ancestorItem: AncestorItem
-  disabled: boolean
+  ancestorItem?: AncestorItem
+  disabled?: boolean
   courseSearchParams: CourseSearchParams
   setCourseSearchParams: SetCourseSearchParams
+  collapsable?: boolean
 }
 
-export interface SearchFilterParams {
+export interface FilterParams {
   [key: string]: (Period | EduLevel | ShowOptions)[] | DepartmentCodeOrPrefix
 }
 
