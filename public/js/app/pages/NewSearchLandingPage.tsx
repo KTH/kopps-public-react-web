@@ -128,15 +128,13 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
           <HelpTexts {...helptextsProps} />
         </CollapseDetails>
         {searchMode === SEARCH_MODES.thirdCycleCourses && (
-          <>
-            <Row>
-              <Link href={courseSearchLink('sokkurs', language)}>{linkToUsualSearch}</Link>
-            </Row>
-            <Row>
-              <FooterContent></FooterContent>
-            </Row>
-          </>
+          <Row>
+            <Link href={courseSearchLink('sokkurs', language)}>{linkToUsualSearch}</Link>
+          </Row>
         )}
+        <Row>
+          <FooterContent></FooterContent>
+        </Row>
       </>
     </Row>
   )
