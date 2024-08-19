@@ -18,6 +18,7 @@ export interface SearchFiltersProps {
   disabled?: boolean
   courseSearchParams: CourseSearchParams
   setCourseSearchParams: SetCourseSearchParams
+  filterMode: FilterModes
   collapsable?: boolean
 }
 
@@ -28,3 +29,11 @@ export interface FilterParams {
 export interface SearchFilterStore extends SearchCoursesStore {
   languageIndex: number
 }
+export const FILTER_MODES: Record<string, FilterModeKey[]> = {
+  default: ['period', 'eduLevel', 'showOptions', 'department'],
+  thirdCycleCourses: ['onlyMHU', 'department'],
+} as const
+
+type FilterModeKey = 'period' | 'eduLevel' | 'showOptions' | 'department' | 'onlyMHU'
+
+export type FilterModes = FilterModeKey[]

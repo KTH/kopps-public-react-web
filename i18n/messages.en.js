@@ -95,6 +95,7 @@ const messages = {
     main_menu_search_all_new: 'Search courses (new)',
     main_menu_third_cycle_studies: 'Doctoral studies (PhD)',
     main_menu_third_cycle_courses_search: 'Search third-cycle courses',
+    main_menu_third_cycle_courses_search_new: 'Search third-cycle courses (new)',
 
     main_page_header_example: 'Example',
     main_page_article_lead_example:

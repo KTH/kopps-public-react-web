@@ -6,11 +6,12 @@ import { SearchPageWrapperProps } from './types'
 
 const SearchPageWrapper: React.FC<SearchPageWrapperProps> = ({
   component: Component,
+  props,
   initApplicationStoreCallback,
 }) => {
   return (
     <MobxStoreProvider initCallback={initApplicationStoreCallback}>
-      <Component />
+      <Component {...props} />
     </MobxStoreProvider>
   )
 }

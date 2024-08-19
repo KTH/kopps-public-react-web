@@ -15,3 +15,14 @@ export interface CourseSearchParams {
   showOptions: ShowOptions[]
   department: DepartmentCodeOrPrefix
 }
+
+export interface SearchPageProps {
+  searchMode: SearchModes
+}
+
+export const SEARCH_MODES: Record<string, SearchModes> = {
+  default: 'default',
+  thirdCycleCourses: 'thirdCycleCourses',
+} as const
+
+export type SearchModes = 'default' | 'thirdCycleCourses'

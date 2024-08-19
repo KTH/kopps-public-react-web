@@ -12,11 +12,16 @@ const { browser: browserConfig, server: serverConfig } = require('../configurati
 const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { compareSchools, filterOutDeprecatedSchools } = require('../../domain/schools')
+const { stringifyKoppsSearchParams } = require('../../domain/searchParams')
 
-async function newSearchCourses(req, res, next) {
+async function renderSearchPage(
+  req,
+  res,
+  next,
+  { storeId, basenameKey, titleKey, breadcrumbsFn, description = 'Search Page', theme = 'student-web' }
+) {
   try {
     const lang = language.getLanguage(res)
-
     let klaroAnalyticsConsentCookie = false
     if (req.cookies.klaro) {
       const consentCookiesArray = req.cookies.klaro.slice(1, -1).split(',')
@@ -27,40 +32,77 @@ async function newSearchCourses(req, res, next) {
       // eslint-disable-next-line no-const-assign
       klaroAnalyticsConsentCookie = analyticsConsentCookieString === 'true'
     }
-
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
-    const storeId = 'newSearchPage'
     const applicationStore = createStore(storeId)
-    applicationStore.setLanguage(lang)
-    applicationStore.setBrowserConfig(browserConfig, serverConfig.hostUrl)
 
     await _fillApplicationStoreWithAllSchools({ applicationStore, lang })
 
+    applicationStore.setLanguage(lang)
+    applicationStore.setBrowserConfig(browserConfig, serverConfig.hostUrl)
+
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
-    const { uri: basename, uri: proxyPrefix } = serverConfig.proxyPrefixPath
+    const { [basenameKey]: basename, uri: proxyPrefix } = serverConfig.proxyPrefixPath
     const html = renderStaticPage({ applicationStore, location: req.url, basename: basename })
 
-    const title = i18n.message('main_menu_search_all', lang)
-
-    const breadcrumbsList = createBreadcrumbs(lang)
+    const title = i18n.message(titleKey, lang)
+    const breadcrumbsList = breadcrumbsFn(lang)
 
     res.render('app/index', {
       html,
       title,
       compressedStoreCode,
-      description: 'Search ',
+      description,
       lang,
       proxyPrefix,
       toolbarUrl: serverConfig.toolbar.url,
-      studentWeb: true,
-      theme: 'student-web',
+      studentWeb: theme === 'student-web',
+      theme,
       klaroAnalyticsConsentCookie,
       breadcrumbsList,
     })
   } catch (err) {
     log.error('Error', { error: err })
     next(err)
+  }
+}
+
+async function searchAllCourses(req, res, next) {
+  await renderSearchPage(req, res, next, {
+    storeId: 'newSearchPage',
+    basenameKey: 'newSearchPage',
+    titleKey: 'main_menu_search_all',
+    breadcrumbsFn: createBreadcrumbs,
+  })
+}
+
+async function searchThirdCycleCourses(req, res, next) {
+  await renderSearchPage(req, res, next, {
+    storeId: 'newSearchPage',
+    basenameKey: 'thirdCycleCourseSearch',
+    titleKey: 'main_menu_third_cycle_courses_search',
+    breadcrumbsFn: createThirdCycleBreadcrumbs,
+    description: 'Search page for third cycle courses',
+    theme: 'external',
+  })
+}
+
+async function performCourseSearch(req, res, next) {
+  const { lang } = req.params
+
+  const { query } = req
+  // Example: `text_pattern=${pattern}`
+  const searchParamsStr = stringifyKoppsSearchParams(query)
+
+  try {
+    log.debug(` trying to perform a search of courses with ${searchParamsStr} transformed from parameters: `, { query })
+
+    const apiResponse = await koppsApi.getSearchResults(searchParamsStr, lang)
+    log.debug(` performCourseSearch with ${searchParamsStr} response: `, apiResponse)
+    return res.json(apiResponse)
+  } catch (error) {
+    log.error(` Exception from performCourseSearch with ${searchParamsStr}`, { error })
+    next(error)
   }
 }
 
@@ -88,5 +130,7 @@ async function _fillApplicationStoreWithAllSchools({ applicationStore, lang }) {
 }
 
 module.exports = {
-  newSearchCourses,
+  searchAllCourses,
+  searchThirdCycleCourses,
+  performCourseSearch,
 }

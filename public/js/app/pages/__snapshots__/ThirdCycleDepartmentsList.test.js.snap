@@ -61,6 +61,13 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
                 Search third-cycle courses
               </a>
             </li>
+            <li>
+              <a
+                href="/utbildning/forskarutbildning/kurser/sok-ny-design?l=en"
+              >
+                Search third-cycle courses (new)
+              </a>
+            </li>
           </ul>
         </div>
       </dialog>
@@ -95,6 +102,13 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
             href="/utbildning/forskarutbildning/kurser/sok?l=en"
           >
             Search third-cycle courses
+          </a>
+        </li>
+        <li>
+          <a
+            href="/utbildning/forskarutbildning/kurser/sok-ny-design?l=en"
+          >
+            Search third-cycle courses (new)
           </a>
         </li>
       </ul>
@@ -267,6 +281,13 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
                 Sök forskarkurs
               </a>
             </li>
+            <li>
+              <a
+                href="/utbildning/forskarutbildning/kurser/sok-ny-design"
+              >
+                Sök forskarkurs (ny)
+              </a>
+            </li>
           </ul>
         </div>
       </dialog>
@@ -301,6 +322,13 @@ exports[`Render component ThirdCycleDepartmentsList within Layout match to snaps
             href="/utbildning/forskarutbildning/kurser/sok"
           >
             Sök forskarkurs
+          </a>
+        </li>
+        <li>
+          <a
+            href="/utbildning/forskarutbildning/kurser/sok-ny-design"
+          >
+            Sök forskarkurs (ny)
           </a>
         </li>
       </ul>

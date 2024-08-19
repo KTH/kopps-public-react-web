@@ -130,7 +130,7 @@ describe('Render component ThirdCycleDepartmentsList and check its menu, content
     expect(h2Header[1]).toHaveTextContent('Older Schools')
 
     const links = screen.getAllByRole('link')
-    expect(links.length).toBe(6)
+    expect(links.length).toBe(7)
     // Menu links
     expect(links[0]).toHaveTextContent('Doctoral studies (PhD)')
     expect(links[0].href).toStrictEqual('http://localhost/en/studies/phd/?l=en')
@@ -138,14 +138,16 @@ describe('Render component ThirdCycleDepartmentsList and check its menu, content
     expect(links[1].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser/avdelning?l=en')
     expect(links[2]).toHaveTextContent('Search third-cycle courses')
     expect(links[2].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser/sok?l=en')
+    expect(links[3]).toHaveTextContent('Search third-cycle courses (new)')
+    expect(links[3].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser/sok-ny-design?l=en')
     // Main content links
-    expect(links[3]).toHaveTextContent('Department')
-    expect(links[3].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser/org/BB?l=en')
+    expect(links[4]).toHaveTextContent('Department')
+    expect(links[4].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser/org/BB?l=en')
     // Footer links
-    expect(links[4]).toHaveTextContent('Central study counseling')
-    expect(links[4].href).toStrictEqual('https://www.kth.se/en/studies/master/general-study-counselling-1.621634')
-    expect(links[5]).toHaveTextContent('kopps@kth.se')
-    expect(links[5].href).toStrictEqual('mailto:kopps@kth.se')
+    expect(links[5]).toHaveTextContent('Central study counseling')
+    expect(links[5].href).toStrictEqual('https://www.kth.se/en/studies/master/general-study-counselling-1.621634')
+    expect(links[6]).toHaveTextContent('kopps@kth.se')
+    expect(links[6].href).toStrictEqual('mailto:kopps@kth.se')
   })
 
   test('check all links on the page in Swedish', () => {
@@ -159,7 +161,7 @@ describe('Render component ThirdCycleDepartmentsList and check its menu, content
     expect(h2Header[1]).toHaveTextContent('Äldre skolor')
 
     const links = screen.getAllByRole('link')
-    expect(links.length).toBe(6)
+    expect(links.length).toBe(7)
     // Menu links
     expect(links[0]).toHaveTextContent('Forskarutbildning')
     expect(links[0].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/')
@@ -167,13 +169,15 @@ describe('Render component ThirdCycleDepartmentsList and check its menu, content
     expect(links[1].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser/avdelning')
     expect(links[2]).toHaveTextContent('Sök forskarkurs')
     expect(links[2].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser/sok')
+    expect(links[3]).toHaveTextContent('Sök forskarkurs (ny)')
+    expect(links[3].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser/sok-ny-design')
     // Main content links
-    expect(links[3]).toHaveTextContent('Avdelning')
-    expect(links[3].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser/org/BB')
+    expect(links[4]).toHaveTextContent('Avdelning')
+    expect(links[4].href).toStrictEqual('http://localhost/utbildning/forskarutbildning/kurser/org/BB')
     // Footer links
-    expect(links[4]).toHaveTextContent('Central studievägledning')
-    expect(links[4].href).toStrictEqual('https://www.kth.se/studievagledning')
-    expect(links[5]).toHaveTextContent('kopps@kth.se')
-    expect(links[5].href).toStrictEqual('mailto:kopps@kth.se')
+    expect(links[5]).toHaveTextContent('Central studievägledning')
+    expect(links[5].href).toStrictEqual('https://www.kth.se/studievagledning')
+    expect(links[6]).toHaveTextContent('kopps@kth.se')
+    expect(links[6].href).toStrictEqual('mailto:kopps@kth.se')
   })
 })
