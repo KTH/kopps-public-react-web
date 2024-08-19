@@ -4,8 +4,7 @@ import './styles/searchPage.scss'
 
 import { useNavigate } from 'react-router-dom'
 
-import { Row } from 'reactstrap'
-import { Link, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
+import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 import SearchInput from '../components/SearchInput'
 
 import { useStore } from '../mobx'
@@ -114,29 +113,23 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
   }
 
   return (
-    <Row className="search-landing-page">
-      <>
-        <PageHeading>{searchHeading}</PageHeading>
-        <SearchInput caption={searchButton} onSubmit={handleSubmit} />
-        <SearchFilters
-          filterMode={FILTER_MODES[searchMode]}
-          courseSearchParams={courseSearchParams}
-          setCourseSearchParams={setCourseSearchParams}
-          collapsable={true}
-        />
-        <CollapseDetails title={collapseHeader}>
-          <HelpTexts {...helptextsProps} />
-        </CollapseDetails>
-        {searchMode === SEARCH_MODES.thirdCycleCourses && (
-          <Row>
-            <Link href={courseSearchLink('sokkurs', language)}>{linkToUsualSearch}</Link>
-          </Row>
-        )}
-        <Row>
-          <FooterContent></FooterContent>
-        </Row>
-      </>
-    </Row>
+    <div className="search-landing-page">
+      <PageHeading>{searchHeading}</PageHeading>
+      <SearchInput caption={searchButton} onSubmit={handleSubmit} />
+      <SearchFilters
+        filterMode={FILTER_MODES[searchMode]}
+        courseSearchParams={courseSearchParams}
+        setCourseSearchParams={setCourseSearchParams}
+        collapsable={true}
+      />
+      <CollapseDetails title={collapseHeader}>
+        <HelpTexts {...helptextsProps} />
+      </CollapseDetails>
+      {searchMode === SEARCH_MODES.thirdCycleCourses && (
+        <a className='link-to' href={courseSearchLink('sokkurs', language)}>{linkToUsualSearch}</a>
+      )}
+      <FooterContent></FooterContent>
+    </div>
   )
 }
 
