@@ -65,12 +65,7 @@ const NewSearchPage = () => {
       <MainContent>
         <PageHeading>{resultsHeading}</PageHeading>
         <Lead text={leadIntro} />
-        <SearchInput
-          initialValue={pattern}
-          caption={searchButton}
-          onSubmit={handlePatternChange}
-          disabled={searchStatus === STATUS.pending}
-        />
+        <SearchInput caption={searchButton} onSubmit={handlePatternChange} disabled={searchStatus === STATUS.pending} />
         <NewSearchResultDisplay resultsState={state as KoppsCourseSearchResultState} />
       </MainContent>
     </Row>
