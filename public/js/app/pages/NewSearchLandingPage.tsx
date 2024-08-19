@@ -4,37 +4,34 @@ import './styles/searchPage.scss'
 
 import { useNavigate } from 'react-router-dom'
 
-import { Col, Row } from 'reactstrap'
 import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 import SearchInput from '../components/SearchInput'
 
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 
-import { CourseSearchParams, MainContentProps } from './types/searchPageTypes'
+import { CourseSearchParams, MainContentProps, SEARCH_MODES, SearchPageProps } from './types/searchPageTypes'
 import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
-import { HelpTexts } from '../components'
+import { FooterContent, HelpTexts, Lead } from '../components'
 import { getHelpText } from '../util/newSearchHelper'
 import { useLangHrefUpdate } from '../hooks/useLangHrefUpdate'
 import { SearchFilters } from '../components'
 import { stringifyUrlParams } from '../../../../domain/searchParams'
-
-const MainContent: React.FC<MainContentProps> = ({ children }) => {
-  return (
-    <Col tag="main" id="mainContent">
-      {children}
-    </Col>
-  )
-}
+import { FILTER_MODES } from '../components/SearchFilters/types'
+import { courseSearchLink } from '../util/links'
 
 const paramsReducer = (state: CourseSearchParams, action: any) => ({ ...state, ...action })
 
-const NewSearchLandingPage = () => {
-  const { languageIndex } = useStore()
+const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.default }) => {
+  const { languageIndex, language } = useStore()
   useLangHrefUpdate()
-  const { bigSearch, searchInstructions } = i18n.messages[languageIndex]
-  const { searchHeading, searchButton } = bigSearch
-  const { search_help_collapse_header: collapseHeader } = searchInstructions
+  const { bigSearch, searchInstructions, thirdCycleSearch, thirdCycleSearchInstructions } = i18n.messages[languageIndex]
+  const { searchHeading: defaultSearchHeading, searchButton } = bigSearch
+  const { search_help_collapse_header: defaultCollapseHeader } = searchInstructions
+  const { searchHeading: thirdCycleSearchHeading, linkToUsualSearch } = thirdCycleSearch
+  const { search_help_collapse_header: thirdCycleSearchCollapseHeader } = thirdCycleSearchInstructions
+
+  let searchHeading, collapseHeader, helptextsProps
 
   const [courseSearchParams, setCourseSearchParams] = useReducer(paramsReducer, {
     pattern: '',
@@ -44,7 +41,7 @@ const NewSearchLandingPage = () => {
     department: '',
   })
 
-  const helptexts = getHelpText(languageIndex, 'searchInstructions', [
+  const defaultHelptexts = getHelpText(languageIndex, 'searchInstructions', [
     'search_help_1',
     'search_help_2',
     'search_help_3',
@@ -57,31 +54,82 @@ const NewSearchLandingPage = () => {
     'search_help_10',
   ])
 
+  const thirdCycleSearchHelptexts = getHelpText(languageIndex, 'thirdCycleSearchInstructions', [
+    'search_research_help_1',
+    'search_research_help_2',
+    'search_research_help_3',
+    'search_research_help_4',
+    'search_research_help_5',
+    'search_research_help_6',
+  ])
+
+  switch (searchMode) {
+    case SEARCH_MODES.default:
+      searchHeading = defaultSearchHeading
+      collapseHeader = defaultCollapseHeader
+      helptextsProps = {
+        helptexts: defaultHelptexts,
+        htmlIndexes: [9],
+      }
+      break
+    case SEARCH_MODES.thirdCycleCourses:
+      searchHeading = thirdCycleSearchHeading
+      collapseHeader = thirdCycleSearchCollapseHeader
+      helptextsProps = {
+        helptexts: thirdCycleSearchHelptexts,
+      }
+    default:
+      break
+  }
+
   const navigate = useNavigate()
 
   const handleSubmit = (pattern: string) => {
-    const searchParams = stringifyUrlParams({ ...courseSearchParams, pattern })
-    navigate({
-      pathname: '/student/kurser/sokkurs-ny-design/resultat',
-      search: `?${searchParams}`,
-    })
+    let filteredParams
+    let stringifiedSearchParams
+    switch (searchMode) {
+      case SEARCH_MODES.default:
+        filteredParams = Object.fromEntries(
+          Object.entries({ ...courseSearchParams, pattern }).filter(([key, value]) => value !== '')
+        )
+        stringifiedSearchParams = stringifyUrlParams(filteredParams)
+        navigate({
+          pathname: '/student/kurser/sokkurs-ny-design/resultat',
+          search: `?${stringifiedSearchParams}`,
+        })
+        break
+      case SEARCH_MODES.thirdCycleCourses:
+        filteredParams = Object.fromEntries(
+          Object.entries({ ...courseSearchParams, eduLevel: [3], pattern }).filter(([key, value]) => value !== '')
+        )
+        stringifiedSearchParams = stringifyUrlParams(filteredParams)
+        navigate({
+          pathname: '/utbildning/forskarutbildning/kurser/sok-ny-design/resultat',
+          search: `?${stringifiedSearchParams}`,
+        })
+      default:
+        break
+    }
   }
 
   return (
-    <Row className="search-landing-page">
-      <MainContent>
-        <PageHeading>{searchHeading}</PageHeading>
-        <SearchInput caption={searchButton} onSubmit={handleSubmit} />
-        <CollapseDetails title={collapseHeader}>
-          <HelpTexts helptexts={helptexts} htmlIndexes={[9]} />
-        </CollapseDetails>
-        <SearchFilters
-          courseSearchParams={courseSearchParams}
-          setCourseSearchParams={setCourseSearchParams}
-          collapsable={true}
-        />
-      </MainContent>
-    </Row>
+    <div className="search-landing-page">
+      <PageHeading>{searchHeading}</PageHeading>
+      <SearchInput caption={searchButton} onSubmit={handleSubmit} />
+      <SearchFilters
+        filterMode={FILTER_MODES[searchMode]}
+        courseSearchParams={courseSearchParams}
+        setCourseSearchParams={setCourseSearchParams}
+        collapsable={true}
+      />
+      <CollapseDetails title={collapseHeader}>
+        <HelpTexts {...helptextsProps} />
+      </CollapseDetails>
+      {searchMode === SEARCH_MODES.thirdCycleCourses && (
+        <a className='link-to' href={courseSearchLink('sokkurs', language)}>{linkToUsualSearch}</a>
+      )}
+      <FooterContent></FooterContent>
+    </div>
   )
 }
 

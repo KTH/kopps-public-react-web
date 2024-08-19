@@ -94,6 +94,7 @@ const messages = {
     main_menu_search_all_new: 'Sök kurser (ny)',
     main_menu_third_cycle_studies: 'Forskarutbildning',
     main_menu_third_cycle_courses_search: 'Sök forskarkurs',
+    main_menu_third_cycle_courses_search_new: 'Sök forskarkurs (ny)',
 
     main_page_header_example: 'Exempel',
     main_page_article_lead_example: '”Stora miljoner dag, har.”',

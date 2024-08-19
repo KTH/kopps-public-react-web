@@ -41,6 +41,7 @@ import getProgrammeMenuData from './config/programmeMenuData'
 import getStudyProgrammeMenuData from './config/studyProgrammeMenuData'
 import getThirdCycleDepartmentMenuData from './config/thirdCycleDepartmentMenuData'
 import getThirdCycleMenuData from './config/thirdCycleMenuData'
+import { SEARCH_MODES } from './pages/types/searchPageTypes'
 
 export default appFactory
 
@@ -137,12 +138,41 @@ function appFactory(serverSideApplicationStore = null) {
         }
       />
       <Route
-        key="new-search-page"
+        key="new-search-page-result"
         exact
         path="/student/kurser/sokkurs-ny-design/resultat"
         element={
           <SearchPageWrapper
             component={NewSearchPage}
+            initApplicationStoreCallback={sharedInitApplicationStoreCallback['newSearchPage']}
+          />
+        }
+      />
+      <Route
+        key="third-cycle-search-courses-new"
+        exact
+        path="/utbildning/forskarutbildning/kurser/sok-ny-design"
+        element={
+          <ElementWrapper
+            component={NewSearchLandingPage}
+            props={{ searchMode: SEARCH_MODES.thirdCycleCourses }}
+            layout={PageLayout}
+            initApplicationStoreCallback={sharedInitApplicationStoreCallback['newSearchPage']}
+            createMenuData={store => ({
+              selectedId: 'searchThirdCycleCoursesNew',
+              ...getThirdCycleMenuData(store),
+            })}
+          />
+        }
+      />
+      <Route
+        key="third-cycle-search-courses-result-new"
+        exact
+        path="/utbildning/forskarutbildning/kurser/sok-ny-design/resultat"
+        element={
+          <SearchPageWrapper
+            component={NewSearchPage}
+            props={{ searchMode: SEARCH_MODES.thirdCycleCourses }}
             initApplicationStoreCallback={sharedInitApplicationStoreCallback['newSearchPage']}
           />
         }

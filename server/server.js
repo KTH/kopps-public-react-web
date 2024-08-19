@@ -253,12 +253,22 @@ appRoute.get(
   proxyPrefixPath.thirdCycleCoursesPerDepartment + '/:departmentCode',
   ThirdCycleStudyDepartment.getCoursesPerDepartment
 )
-appRoute.get('public.searchThirdCycleCourses', proxyPrefixPath.thirdCycleCourseSearch, Search.searchThirdCycleCourses)
 appRoute.get('public.searchAllCourses', proxyPrefixPath.courseSearch, Search.searchAllCourses)
-appRoute.get('public.newSearchPage', proxyPrefixPath.newSearchPage, NewSearchPage.newSearchCourses)
-appRoute.get('public.searchResult', proxyPrefixPath.searchResult, NewSearchPage.newSearchCourses)
+appRoute.get('public.searchThirdCycleCourses', proxyPrefixPath.thirdCycleCourseSearch, Search.searchThirdCycleCourses)
+appRoute.get('public.newSearchAllCourses', proxyPrefixPath.newSearchPage, NewSearchPage.searchAllCourses)
+appRoute.get('public.newSearchAllCoursesResult', proxyPrefixPath.searchResult, NewSearchPage.searchAllCourses)
+appRoute.get(
+  'public.NewSearchThirdCycleCourses',
+  proxyPrefixPath.thirdCycleCourseSearchNew,
+  Search.searchThirdCycleCourses
+)
+appRoute.get(
+  'public.NewSearchThirdCycleCoursesResult',
+  proxyPrefixPath.thirdCycleCourseSearchResultNew,
+  Search.searchThirdCycleCourses
+)
 
-appRoute.get('api.searchCourses', proxyPrefixPath.courseSearchInternApi + '/:lang', Search.performCourseSearch)
+appRoute.get('api.searchCourses', proxyPrefixPath.courseSearchInternApi + '/:lang', NewSearchPage.performCourseSearch)
 appRoute.post('api.programmeSyllabusPDF', proxyPrefixPath.programmeSyllabusPDF, PDFExport.performPDFRenderFunction)
 
 appRoute.get('redirect.departmentsListThirdCycleStudy', redirectProxyPath.thirdCycleRoot, (req, res) => {
