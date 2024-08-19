@@ -4,7 +4,7 @@ import './styles/searchPage.scss'
 
 import { useNavigate } from 'react-router-dom'
 
-import { Col, Row } from 'reactstrap'
+import { Row } from 'reactstrap'
 import { Link, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 import SearchInput from '../components/SearchInput'
 
@@ -118,15 +118,15 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
       <>
         <PageHeading>{searchHeading}</PageHeading>
         <SearchInput caption={searchButton} onSubmit={handleSubmit} />
-        <CollapseDetails title={collapseHeader}>
-          <HelpTexts {...helptextsProps} />
-        </CollapseDetails>
         <SearchFilters
           filterMode={FILTER_MODES[searchMode]}
           courseSearchParams={courseSearchParams}
           setCourseSearchParams={setCourseSearchParams}
           collapsable={true}
         />
+        <CollapseDetails title={collapseHeader}>
+          <HelpTexts {...helptextsProps} />
+        </CollapseDetails>
         {searchMode === SEARCH_MODES.thirdCycleCourses && (
           <>
             <Row>
