@@ -25,6 +25,8 @@ module.exports = {
     schoolsList: `${studentRoot}/program`,
     studyHandbook: '/student/program/shb',
     thirdCycleCourseSearch: `${thirdCycleRoot}/sok`,
+    thirdCycleCourseSearchNew: `${thirdCycleRoot}/sok-ny-design`,
+    thirdCycleCourseSearchResultNew: `${thirdCycleRoot}/sok-ny-design/resultat`,
     thirdCycleSchoolsAndDepartments: `${thirdCycleRoot}/avdelning`,
     thirdCycleCoursesPerDepartment: `${thirdCycleRoot}/org`,
     literatureList: `${studentRoot}/lit`,
