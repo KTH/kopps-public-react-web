@@ -16,7 +16,7 @@ import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildnings
 import { FooterContent, HelpTexts, Lead } from '../components'
 import { getHelpText } from '../util/newSearchHelper'
 import { useLangHrefUpdate } from '../hooks/useLangHrefUpdate'
-import { CollapsableFilters } from '../components'
+import { SearchFilters } from '../components'
 import { stringifyUrlParams } from '../../../../domain/searchParams'
 import { FILTER_MODES } from '../components/SearchFilters/types'
 import { courseSearchLink } from '../util/links'
@@ -87,20 +87,27 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
   const navigate = useNavigate()
 
   const handleSubmit = (pattern: string) => {
-    let searchParams
+    let filteredParams
+    let stringifiedSearchParams
     switch (searchMode) {
       case SEARCH_MODES.default:
-        searchParams = stringifyUrlParams({ pattern })
+        filteredParams = Object.fromEntries(
+          Object.entries({ ...courseSearchParams, pattern }).filter(([key, value]) => value !== '')
+        )
+        stringifiedSearchParams = stringifyUrlParams(filteredParams)
         navigate({
           pathname: '/student/kurser/sokkurs-ny-design/resultat',
-          search: `?${searchParams}`,
+          search: `?${stringifiedSearchParams}`,
         })
         break
       case SEARCH_MODES.thirdCycleCourses:
-        searchParams = stringifyUrlParams({ eduLevel: [3], pattern })
+        filteredParams = Object.fromEntries(
+          Object.entries({ ...courseSearchParams, eduLevel: [3], pattern }).filter(([key, value]) => value !== '')
+        )
+        stringifiedSearchParams = stringifyUrlParams(filteredParams)
         navigate({
           pathname: '/utbildning/forskarutbildning/kurser/sok-ny-design/resultat',
-          search: `?${searchParams}`,
+          search: `?${stringifiedSearchParams}`,
         })
       default:
         break
@@ -115,10 +122,11 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
         <CollapseDetails title={collapseHeader}>
           <HelpTexts {...helptextsProps} />
         </CollapseDetails>
-        <CollapsableFilters
+        <SearchFilters
           filterMode={FILTER_MODES[searchMode]}
           courseSearchParams={courseSearchParams}
           setCourseSearchParams={setCourseSearchParams}
+          collapsable={true}
         />
         {searchMode === SEARCH_MODES.thirdCycleCourses && (
           <>

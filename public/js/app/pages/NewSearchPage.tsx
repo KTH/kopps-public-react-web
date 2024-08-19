@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 
 import { Col, Row } from 'reactstrap'
 import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
-import { SidebarFilters, Lead } from '../components'
+import { SearchFilters, Lead } from '../components'
 
 import SearchInput from '../components/SearchInput'
 
@@ -76,7 +76,7 @@ const NewSearchPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.de
 
   return (
     <Row>
-      <SidebarFilters
+      <SearchFilters
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={setCourseSearchParams}
         ancestorItem={ancestorItemObj}
