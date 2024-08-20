@@ -7,7 +7,7 @@ module.exports = {
   transformIgnorePatterns: ['node_modules/(?!(@kth|@babel|@jest|uuid|nanoid)/)'],
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
   moduleNameMapper: {
-    '\\.(css|less|scss|sass)$': '<rootDir>/__mocks__/styleMock.js',
+    '\\.(css|less|scss|sass)$': '<rootDir>/public/__mocks__/styleMock.js',
   },
   setupFilesAfterEnv: ['jest-extended/all'],
   testEnvironment: 'jsdom',
