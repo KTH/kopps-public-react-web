@@ -1,6 +1,5 @@
 import React from 'react'
 import { render, screen, fireEvent, waitFor, waitForElementToBeRemoved } from '@testing-library/react'
-import { act } from 'react-dom/test-utils'
 import '@testing-library/jest-dom'
 import NewSearchPage from './NewSearchPage'
 import { useStore } from '../mobx'
@@ -26,7 +25,6 @@ const showOptions = [
 jest.mock('../mobx')
 jest.mock('../util/searchApi')
 let mockSearchParams = new URLSearchParams()
-let tempSearchParams = new URLSearchParams()
 jest.mock('react-router-dom', () => ({
   useNavigate: jest.fn(),
   useSearchParams: () => [

@@ -18,7 +18,7 @@ export const STATUS = {
   export type Status = (typeof STATUS)[keyof typeof STATUS]
   // This is equivalent to => type Status = 'pending' | 'resolved' | 'overflow' | 'noQueryProvided' | 'noHits' | 'rejected' | 'idle';
   
-  type ErrorAsync = (typeof ERROR_ASYNC)[keyof typeof ERROR_ASYNC]
+  export type ErrorAsync = (typeof ERROR_ASYNC)[keyof typeof ERROR_ASYNC]
   // This is equivalent to => type ErrorAsync = 'errorOverflow' | 'noQueryProvided' | 'errorEmpty' | 'errorUnknown';
   
   export interface State<T> {
