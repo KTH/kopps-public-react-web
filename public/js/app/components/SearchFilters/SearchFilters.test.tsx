@@ -154,7 +154,7 @@ describe('<SearchFilters />', () => {
     expect(departmentFilter).toBeInTheDocument()
   })
 
-  test.only('renders MHU filter when filterMode includes onlyMHU', () => {
+  test('renders MHU filter when filterMode includes onlyMHU', () => {
     render(
       <SearchFilters
         ancestorItem={ancestorItem}

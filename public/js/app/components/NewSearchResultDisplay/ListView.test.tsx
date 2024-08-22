@@ -16,7 +16,7 @@ describe('ListView component', () => {
   })
 
   test('renders course cards correctly', () => {
-    render(<ListView results={TEST_API_ANSWER_RESOLVED.searchHits as any} />)
+    render(<ListView results={TEST_API_ANSWER_RESOLVED.searchHits} />)
 
     expect(screen.getByText(/AF2402/i)).toBeInTheDocument()
     expect(screen.getByText(/AH2905/i)).toBeInTheDocument()
@@ -36,7 +36,7 @@ describe('ListView component', () => {
       ],
     }
 
-    render(<ListView results={modifiedResults.searchHits as any} />)
+    render(<ListView results={modifiedResults.searchHits} />)
 
     expect(screen.getByText(/Course offerings are missing for current or upcoming semesters/i)).toBeInTheDocument()
   })
@@ -57,7 +57,7 @@ describe('ListView component', () => {
       ],
     }
 
-    render(<ListView results={modifiedResults.searchHits as any} />)
+    render(<ListView results={modifiedResults.searchHits} />)
 
     expect(screen.getByText(/P1 Autumn 21 - P3 Spring 22/i)).toBeInTheDocument()
   })
@@ -75,7 +75,7 @@ describe('ListView component', () => {
       ],
     }
 
-    render(<ListView results={modifiedResultss.searchHits as any} />)
+    render(<ListView results={modifiedResultss.searchHits} />)
 
     expect(screen.getByText(/ECTS/i)).toBeInTheDocument()
   })

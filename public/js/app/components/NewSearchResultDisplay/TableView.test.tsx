@@ -131,7 +131,7 @@ describe('<TableView />', () => {
     })
   })
 
-  test.only('renders "no results" when searchHits are empty', () => {
+  test('renders "no results" when searchHits are empty', () => {
     ;(useStore as jest.Mock).mockReturnValue({ language: 'en', languageIndex: 0 })
 
     render(<TableView results={[]} />)
