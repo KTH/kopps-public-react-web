@@ -193,22 +193,29 @@ describe('Component <SearchTableView> for MIXED types of courses', () => {
       throw error
     }
 
-    rows.slice(1).forEach((row, index) => {
-      const utils = within(row)
-      const { course } = EXPECTED_TEST_SEARCH_HITS_MIXED_EN.searchHits[index]
-      expect(utils.getAllByRole('cell')[0]).toHaveTextContent(course.courseCode, { exact: true })
-      expect(utils.getAllByRole('cell')[1]).toHaveTextContent(course.title, { exact: true })
-      expect(utils.getAllByRole('cell')[2]).toHaveTextContent(`${course.credits} ${course.creditUnitAbbr}`, {
-        exact: true,
+    try {
+      rows.slice(1).forEach((row, index) => {
+        const utils = within(row)
+        const { course } = EXPECTED_TEST_SEARCH_HITS_MIXED_EN.searchHits[index]
+        expect(utils.getAllByRole('cell')[0]).toHaveTextContent(course.courseCode, { exact: true })
+        expect(utils.getAllByRole('cell')[1]).toHaveTextContent(course.title, { exact: true })
+        expect(utils.getAllByRole('cell')[2]).toHaveTextContent(`${course.credits} ${course.creditUnitAbbr}`, {
+          exact: true,
+        })
+        expect(utils.getAllByRole('cell')[3]).toHaveTextContent(
+          course.educationalLevel ? eduLevelTranslations.EN[course.educationalLevel] : '',
+          { exact: true }
+        )
+        expect(utils.getAllByRole('cell')[4]).toHaveTextContent(
+          EXPECTED_TEST_SEARCH_HITS_MIXED_PERIODS_TEXTS_EN[index],
+          { exact: true }
+        )
       })
-      expect(utils.getAllByRole('cell')[3]).toHaveTextContent(
-        course.educationalLevel ? eduLevelTranslations.EN[course.educationalLevel] : '',
-        { exact: true }
-      )
-      expect(utils.getAllByRole('cell')[4]).toHaveTextContent(EXPECTED_TEST_SEARCH_HITS_MIXED_PERIODS_TEXTS_EN[index], {
-        exact: true,
-      })
-    })
+    } catch (error) {
+      error.message = `${`Courses has been rendered incorrect. Course content in the table is differ from an expected content`}\n\n ${error}`
+
+      throw error
+    }
   })
 
   test.skip('creates a table with 5 columns for MIXED type of courses (include a column for period intervals). Swedish. 2B', () => {

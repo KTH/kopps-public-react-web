@@ -13,7 +13,7 @@ jest.mock('../mobx')
 jest.mock('../util/internApi')
 jest.mock('react-router-dom', () => ({
   useNavigate: jest.fn(),
-  useSearchParams: jest.fn(() => [new URLSearchParams(), jest.fn()]), // Corrected mock here
+  useSearchParams: jest.fn(() => [new URLSearchParams(), jest.fn()]),
 }))
 const periods = [
   'Autumn 2024 period 1',

@@ -171,7 +171,6 @@ describe('<NewSearchPage />', () => {
     const firstPeriodCheckbox = screen.getByLabelText(periods[0])
     expect(firstPeriodCheckbox).not.toBeChecked()
     fireEvent.click(firstPeriodCheckbox)
-    // Handle period checkboxes
     await waitFor(async () => {
       expect(mockSearchParams.getAll('period')).toEqual(['20242:1'])
       expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
