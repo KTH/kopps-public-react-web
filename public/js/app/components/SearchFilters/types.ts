@@ -14,7 +14,6 @@ export interface AncestorItem {
 }
 
 export interface SearchFiltersProps {
-  ancestorItem?: AncestorItem
   disabled?: boolean
   courseSearchParams: CourseSearchParams
   setCourseSearchParams: SetCourseSearchParams

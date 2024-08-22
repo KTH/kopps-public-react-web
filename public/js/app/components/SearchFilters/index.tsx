@@ -9,9 +9,7 @@ import NewSearchDepartments from '../NewSearchDepartments'
 import NewSearchOptions from '../NewSearchOptions'
 import { FilterParams, SearchFilterStore, SearchFiltersProps, FILTER_MODES } from './types'
 import { DepartmentCodeOrPrefix, EduLevel, Period, ShowOptions } from '../../stores/types/searchPageStoreTypes'
-
 const SearchFilters: React.FC<SearchFiltersProps> = ({
-  ancestorItem,
   disabled,
   courseSearchParams,
   setCourseSearchParams,
@@ -21,7 +19,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
   const { languageIndex }: SearchFilterStore = useStore()
 
   const { generalSearch, bigSearch } = i18n.messages[languageIndex]
-  const { searchStartPeriodPrefix, collapseHeaderOtherSearchOptions, filtersLabel } = generalSearch
+  const { searchStartPeriodPrefix, collapseHeaderOtherSearchOptions } = generalSearch
   const { onlyMHULabel } = bigSearch
 
   const currentYearDate = new Date().getFullYear()
@@ -111,13 +109,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
   return collapsable ? (
     <CollapseDetails title={collapseHeaderOtherSearchOptions}>{renderFilterGroup}</CollapseDetails>
   ) : (
-    <div id="mainMenu" className="kth-local-navigation col">
-      <Link to={ancestorItem.href} className="kth-button back">
-        {ancestorItem.label}
-      </Link>
-      <h3>{filtersLabel}</h3>
-      {renderFilterGroup}
-    </div>
+    <>{renderFilterGroup}</>
   )
 }
 

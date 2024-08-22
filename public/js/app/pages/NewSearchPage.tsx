@@ -19,6 +19,7 @@ import NewSearchResultDisplay from '../components/NewSearchResultDisplay'
 import { KoppsCourseSearchResultState } from '../util/types/SearchApiTypes'
 import { useLangHrefUpdate } from '../hooks/useLangHrefUpdate'
 import { FILTER_MODES } from '../components/SearchFilters/types'
+import { SidebarFilters } from '../components/SidebarFilters'
 
 const MainContent: React.FC<MainContentProps> = ({ children }) => {
   return (
@@ -40,7 +41,7 @@ const NewSearchPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.de
   const { bigSearch, generalSearch, messages, thirdCycleSearch } = i18n.messages[languageIndex]
   const { main_menu_search_all_new, main_menu_third_cycle_courses_search_new } = messages
   const { searchButton, leadIntro: defaultSearchLeadIntro } = bigSearch
-  const { resultsHeading } = generalSearch
+  const { resultsHeading, filtersLabel } = generalSearch
 
   const { leadIntro: thirdCycleSearchLeadIntro } = thirdCycleSearch
 
@@ -76,13 +77,14 @@ const NewSearchPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.de
 
   return (
     <Row>
-      <SearchFilters
-        courseSearchParams={courseSearchParams}
-        setCourseSearchParams={setCourseSearchParams}
-        ancestorItem={ancestorItemObj}
-        disabled={searchStatus === STATUS.pending}
-        filterMode={FILTER_MODES[searchMode]}
-      />
+      <SidebarFilters title={filtersLabel} ancestorItem={ancestorItemObj}>
+        <SearchFilters
+          courseSearchParams={courseSearchParams}
+          setCourseSearchParams={setCourseSearchParams}
+          disabled={searchStatus === STATUS.pending}
+          filterMode={FILTER_MODES[searchMode]}
+        />
+      </SidebarFilters>
       <MainContent>
         <PageHeading>{resultsHeading}</PageHeading>
         <Lead text={leadIntro} />

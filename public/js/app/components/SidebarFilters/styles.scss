@@ -1,0 +1,12 @@
+@use '~@kth/style/scss/components/local-navigation.scss';
+
+.sidebar-filters {
+  @extend .kth-local-navigation;
+  flex: 1 0 0%;
+  display: none;
+  @media (min-width: 992px) {
+    display: block;
+    width: 296px;
+    max-width: 296px;
+  }
+}
