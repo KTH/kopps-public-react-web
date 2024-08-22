@@ -95,6 +95,9 @@ describe('<NewSearchPage />', () => {
     const periodCheckbox = screen.getByLabelText('Autumn 2024 period 1')
     expect(periodCheckbox).toBeChecked()
 
+    const secondPeriodCheckbox = screen.getByLabelText('Autumn 2024 period 2')
+    expect(secondPeriodCheckbox).toBeChecked()
+
     const eduLevelCheckbox = screen.getByLabelText('First cycle')
     expect(eduLevelCheckbox).toBeChecked()
   })
@@ -134,32 +137,29 @@ describe('<NewSearchPage />', () => {
     render(<NewSearchPage searchMode="default" />)
 
     const searchInput = screen.getByRole('textbox')
-    expect(searchInput).toBeDisabled() // Search input should be disabled when search is pending
+    expect(searchInput).toBeDisabled()
+
+    periods.forEach(period => {
+      const periodCheckbox = screen.getByLabelText(period)
+      expect(periodCheckbox).toBeDisabled()
+    })
+
+    eduLevels.forEach(level => {
+      const levelCheckbox = screen.getByLabelText(level)
+      expect(levelCheckbox).toBeDisabled()
+    })
+
+    showOptions.forEach(option => {
+      const optionCheckbox = screen.getByLabelText(option)
+      expect(optionCheckbox).toBeDisabled()
+    })
   })
 
-  const periods = [
-    'Autumn 2024 period 1',
-    'Autumn 2024 period 2',
-    '2025 summer',
-    'Spring 2025 period 3',
-    'Spring 2025 period 4',
-    'Autumn 2025 period 1',
-    'Autumn 2025 period 2',
-  ];
-  
-  const eduLevels = ['Pre-university level', 'First cycle', 'Second cycle', 'Third cycle'];
-  
-  const showOptions = [
-    'Courses taught in English',
-    'Courses that deal with environment, environmental technology or sustainable development',
-    'Dormant/Terminated course',
-  ];
-  
   test('should update search params and call search API when period checkboxes, eduLevel, and showOptions are changed', async () => {
-    (koppsCourseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED));
-  
-    render(<NewSearchPage searchMode="default" />);
-  
+    ;(koppsCourseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED))
+
+    render(<NewSearchPage searchMode="default" />)
+
     // Verify that the initial API call was made with the correct parameters
     expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
       pattern: '',
@@ -167,26 +167,26 @@ describe('<NewSearchPage />', () => {
       eduLevel: [],
       period: [],
       showOptions: [],
-    });
-    const firstPeriodCheckbox = screen.getByLabelText(periods[0]);
-    expect(firstPeriodCheckbox).not.toBeChecked();
-    fireEvent.click(firstPeriodCheckbox);
+    })
+    const firstPeriodCheckbox = screen.getByLabelText(periods[0])
+    expect(firstPeriodCheckbox).not.toBeChecked()
+    fireEvent.click(firstPeriodCheckbox)
     // Handle period checkboxes
     await waitFor(async () => {
-      expect(mockSearchParams.getAll('period')).toEqual(['20242:1']);
+      expect(mockSearchParams.getAll('period')).toEqual(['20242:1'])
       expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
         eduLevel: [],
         period: ['20242:1'],
         showOptions: [],
-      });
-  
-      const secondPeriodCheckbox = screen.getByLabelText(periods[1]);
-      expect(secondPeriodCheckbox).not.toBeChecked();
-      fireEvent.click(secondPeriodCheckbox);
-    });
-  
+      })
+
+      const secondPeriodCheckbox = screen.getByLabelText(periods[1])
+      expect(secondPeriodCheckbox).not.toBeChecked()
+      fireEvent.click(secondPeriodCheckbox)
+    })
+
     await waitFor(async () => {
       expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
@@ -194,13 +194,13 @@ describe('<NewSearchPage />', () => {
         eduLevel: [],
         period: ['20242:1', '20242:2'],
         showOptions: [],
-      });
-  
-      const thirdPeriodCheckbox = screen.getByLabelText(periods[2]);
-      expect(thirdPeriodCheckbox).not.toBeChecked();
-      fireEvent.click(thirdPeriodCheckbox);
-    });
-  
+      })
+
+      const thirdPeriodCheckbox = screen.getByLabelText(periods[2])
+      expect(thirdPeriodCheckbox).not.toBeChecked()
+      fireEvent.click(thirdPeriodCheckbox)
+    })
+
     await waitFor(async () => {
       expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
@@ -208,13 +208,13 @@ describe('<NewSearchPage />', () => {
         eduLevel: [],
         period: ['20242:1', '20242:2', '2025:summer'],
         showOptions: [],
-      });
-  
-      const forthPeriodCheckbox = screen.getByLabelText(periods[3]);
-      expect(forthPeriodCheckbox).not.toBeChecked();
-      fireEvent.click(forthPeriodCheckbox);
-    });
-  
+      })
+
+      const forthPeriodCheckbox = screen.getByLabelText(periods[3])
+      expect(forthPeriodCheckbox).not.toBeChecked()
+      fireEvent.click(forthPeriodCheckbox)
+    })
+
     await waitFor(async () => {
       expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
@@ -222,13 +222,13 @@ describe('<NewSearchPage />', () => {
         eduLevel: [],
         period: ['20242:1', '20242:2', '2025:summer', '20251:3'],
         showOptions: [],
-      });
-  
-      const fifthPeriodCheckbox = screen.getByLabelText(periods[4]);
-      expect(fifthPeriodCheckbox).not.toBeChecked();
-      fireEvent.click(fifthPeriodCheckbox);
-    });
-  
+      })
+
+      const fifthPeriodCheckbox = screen.getByLabelText(periods[4])
+      expect(fifthPeriodCheckbox).not.toBeChecked()
+      fireEvent.click(fifthPeriodCheckbox)
+    })
+
     await waitFor(async () => {
       expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
@@ -236,13 +236,13 @@ describe('<NewSearchPage />', () => {
         eduLevel: [],
         period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4'],
         showOptions: [],
-      });
-  
-      const sixthPeriodCheckbox = screen.getByLabelText(periods[5]);
-      expect(sixthPeriodCheckbox).not.toBeChecked();
-      fireEvent.click(sixthPeriodCheckbox);
-    });
-  
+      })
+
+      const sixthPeriodCheckbox = screen.getByLabelText(periods[5])
+      expect(sixthPeriodCheckbox).not.toBeChecked()
+      fireEvent.click(sixthPeriodCheckbox)
+    })
+
     await waitFor(async () => {
       expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
@@ -250,13 +250,13 @@ describe('<NewSearchPage />', () => {
         eduLevel: [],
         period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1'],
         showOptions: [],
-      });
-  
-      const seventhPeriodCheckbox = screen.getByLabelText(periods[6]);
-      expect(seventhPeriodCheckbox).not.toBeChecked();
-      fireEvent.click(seventhPeriodCheckbox);
-    });
-  
+      })
+
+      const seventhPeriodCheckbox = screen.getByLabelText(periods[6])
+      expect(seventhPeriodCheckbox).not.toBeChecked()
+      fireEvent.click(seventhPeriodCheckbox)
+    })
+
     await waitFor(async () => {
       expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
@@ -264,13 +264,13 @@ describe('<NewSearchPage />', () => {
         eduLevel: [],
         period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
         showOptions: [],
-      });
-  
-      const firstEduLevelCheckbox = screen.getByLabelText(eduLevels[0]);
-      expect(firstEduLevelCheckbox).not.toBeChecked();
-      fireEvent.click(firstEduLevelCheckbox);
-    });
-  
+      })
+
+      const firstEduLevelCheckbox = screen.getByLabelText(eduLevels[0])
+      expect(firstEduLevelCheckbox).not.toBeChecked()
+      fireEvent.click(firstEduLevelCheckbox)
+    })
+
     await waitFor(async () => {
       expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
@@ -278,13 +278,13 @@ describe('<NewSearchPage />', () => {
         eduLevel: ['0'],
         period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
         showOptions: [],
-      });
-  
-      const secondEduLevelCheckbox = screen.getByLabelText(eduLevels[1]);
-      expect(secondEduLevelCheckbox).not.toBeChecked();
-      fireEvent.click(secondEduLevelCheckbox);
-    });
-  
+      })
+
+      const secondEduLevelCheckbox = screen.getByLabelText(eduLevels[1])
+      expect(secondEduLevelCheckbox).not.toBeChecked()
+      fireEvent.click(secondEduLevelCheckbox)
+    })
+
     await waitFor(async () => {
       expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
@@ -292,13 +292,13 @@ describe('<NewSearchPage />', () => {
         eduLevel: ['0', '1'],
         period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
         showOptions: [],
-      });
-  
-      const thirdEduLevelCheckbox = screen.getByLabelText(eduLevels[2]);
-      expect(thirdEduLevelCheckbox).not.toBeChecked();
-      fireEvent.click(thirdEduLevelCheckbox);
-    });
-  
+      })
+
+      const thirdEduLevelCheckbox = screen.getByLabelText(eduLevels[2])
+      expect(thirdEduLevelCheckbox).not.toBeChecked()
+      fireEvent.click(thirdEduLevelCheckbox)
+    })
+
     await waitFor(async () => {
       expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
@@ -306,13 +306,13 @@ describe('<NewSearchPage />', () => {
         eduLevel: ['0', '1', '2'],
         period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
         showOptions: [],
-      });
-  
-      const fourthEduLevelCheckbox = screen.getByLabelText(eduLevels[3]);
-      expect(fourthEduLevelCheckbox).not.toBeChecked();
-      fireEvent.click(fourthEduLevelCheckbox);
-    });
-  
+      })
+
+      const fourthEduLevelCheckbox = screen.getByLabelText(eduLevels[3])
+      expect(fourthEduLevelCheckbox).not.toBeChecked()
+      fireEvent.click(fourthEduLevelCheckbox)
+    })
+
     await waitFor(async () => {
       expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
@@ -320,13 +320,13 @@ describe('<NewSearchPage />', () => {
         eduLevel: ['0', '1', '2', '3'],
         period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
         showOptions: [],
-      });
-  
-      const firstShowOptionCheckbox = screen.getByLabelText(showOptions[0]);
-      expect(firstShowOptionCheckbox).not.toBeChecked();
-      fireEvent.click(firstShowOptionCheckbox);
-    });
-  
+      })
+
+      const firstShowOptionCheckbox = screen.getByLabelText(showOptions[0])
+      expect(firstShowOptionCheckbox).not.toBeChecked()
+      fireEvent.click(firstShowOptionCheckbox)
+    })
+
     await waitFor(async () => {
       expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
@@ -334,13 +334,13 @@ describe('<NewSearchPage />', () => {
         eduLevel: ['0', '1', '2', '3'],
         period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
         showOptions: ['onlyEnglish'],
-      });
-  
-      const secondShowOptionCheckbox = screen.getByLabelText(showOptions[1]);
-      expect(secondShowOptionCheckbox).not.toBeChecked();
-      fireEvent.click(secondShowOptionCheckbox);
-    });
-  
+      })
+
+      const secondShowOptionCheckbox = screen.getByLabelText(showOptions[1])
+      expect(secondShowOptionCheckbox).not.toBeChecked()
+      fireEvent.click(secondShowOptionCheckbox)
+    })
+
     await waitFor(async () => {
       expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
@@ -348,13 +348,13 @@ describe('<NewSearchPage />', () => {
         eduLevel: ['0', '1', '2', '3'],
         period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
         showOptions: ['onlyEnglish', 'onlyMHU'],
-      });
-  
-      const thirdShowOptionCheckbox = screen.getByLabelText(showOptions[2]);
-      expect(thirdShowOptionCheckbox).not.toBeChecked();
-      fireEvent.click(thirdShowOptionCheckbox);
-    });
-  
+      })
+
+      const thirdShowOptionCheckbox = screen.getByLabelText(showOptions[2])
+      expect(thirdShowOptionCheckbox).not.toBeChecked()
+      fireEvent.click(thirdShowOptionCheckbox)
+    })
+
     await waitFor(() => {
       expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
@@ -362,8 +362,7 @@ describe('<NewSearchPage />', () => {
         eduLevel: ['0', '1', '2', '3'],
         period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
         showOptions: ['onlyEnglish', 'onlyMHU', 'showCancelled'],
-      });
-    });
-  });
-  
+      })
+    })
+  })
 })

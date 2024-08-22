@@ -1,17 +1,13 @@
 import React from 'react'
-import { fireEvent, render, screen, act, waitFor, waitForElementToBeRemoved, within } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import koppsCourseSearch from '../util/internApi'
 import NewSearchLandingPage from './NewSearchLandingPage'
 import { useStore } from '../mobx'
-import { useNavigate, useSearchParams } from 'react-router-dom'
-import { TEST_API_ANSWER_ALGEBRA, TEST_API_ANSWER_RESOLVED } from '../components/mocks/mockKoppsCourseSearch'
+import { useNavigate } from 'react-router-dom'
 import { Mock } from 'node:test'
 import { stringifyUrlParams } from '../../../../domain/searchParams'
 
 const mockDate = new Date('2024-08-19 16:00')
-
-jest.setTimeout(1000)
 
 jest.mock('../mobx')
 jest.mock('../util/internApi')
@@ -36,144 +32,144 @@ const showOptions = [
 ]
 
 describe('<NewSearchLandingPage />', () => {
-  const mockNavigate = jest.fn();
+  const mockNavigate = jest.fn()
 
   beforeAll(() => {
-    jest.spyOn(global, 'Date').mockImplementation(() => mockDate);
-    (useNavigate as jest.Mock).mockReturnValue(mockNavigate);
-    (useStore as jest.Mock).mockReturnValue({
+    jest.spyOn(global, 'Date').mockImplementation(() => mockDate)
+    ;(useNavigate as jest.Mock).mockReturnValue(mockNavigate)
+    ;(useStore as jest.Mock).mockReturnValue({
       browserConfig: { proxyPrefixPath: { uri: '/student/kurser' } },
       language: 'en',
       languageIndex: 0,
       currentSchoolsWithDepartments: [],
       deprecatedSchoolsWithDepartments: [],
-    });
-  });
+    })
+  })
 
   afterAll(() => {
-    jest.spyOn(global, 'Date').mockRestore();
-  });
+    jest.spyOn(global, 'Date').mockRestore()
+  })
 
   // Scenario 1: Basic search without any filters selected
   test('should perform a basic search without any filters selected', async () => {
-    render(<NewSearchLandingPage />);
+    render(<NewSearchLandingPage />)
 
-    const button = screen.getByRole('button', { name: /search course/i });
-    fireEvent.click(button);
+    const button = screen.getByRole('button', { name: /search course/i })
+    fireEvent.click(button)
 
     expect(mockNavigate).toHaveBeenCalledWith({
       pathname: '/student/kurser/sokkurs-ny-design/resultat',
       search: '?',
-    });
-  });
+    })
+  })
 
   // Scenario 2: Selecting all filters and submitting the form
   test('should select all filters and submit search', async () => {
-    render(<NewSearchLandingPage />);
+    render(<NewSearchLandingPage />)
 
     periods.forEach(label => {
-      const checkbox = screen.getByLabelText(label);
-      fireEvent.click(checkbox);
-      expect(checkbox).toBeChecked();
-    });
+      const checkbox = screen.getByLabelText(label)
+      fireEvent.click(checkbox)
+      expect(checkbox).toBeChecked()
+    })
 
     eduLevels.forEach(label => {
-      const checkbox = screen.getByLabelText(label);
-      fireEvent.click(checkbox);
-      expect(checkbox).toBeChecked();
-    });
+      const checkbox = screen.getByLabelText(label)
+      fireEvent.click(checkbox)
+      expect(checkbox).toBeChecked()
+    })
 
     showOptions.forEach(label => {
-      const checkbox = screen.getByLabelText(label);
-      fireEvent.click(checkbox);
-      expect(checkbox).toBeChecked();
-    });
+      const checkbox = screen.getByLabelText(label)
+      fireEvent.click(checkbox)
+      expect(checkbox).toBeChecked()
+    })
 
-    const button = screen.getByRole('button', { name: /search course/i });
-    fireEvent.click(button);
+    const button = screen.getByRole('button', { name: /search course/i })
+    fireEvent.click(button)
 
     const searchParams = stringifyUrlParams({
       period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
       eduLevel: ['0', '1', '2', '3'],
       showOptions: ['onlyEnglish', 'onlyMHU', 'showCancelled'],
-    });
+    })
 
     expect(mockNavigate).toHaveBeenCalledWith({
       pathname: '/student/kurser/sokkurs-ny-design/resultat',
       search: `?${searchParams}`,
-    });
-  });
+    })
+  })
 
   // Scenario 3: Unselecting a filter and submitting the form
   test('should unselect a filter and submit search', async () => {
-    render(<NewSearchLandingPage />);
+    render(<NewSearchLandingPage />)
 
-    const firstPeriodCheckbox = screen.getByLabelText(periods[0]);
-    fireEvent.click(firstPeriodCheckbox); // Check it
-    expect(firstPeriodCheckbox).toBeChecked();
+    const firstPeriodCheckbox = screen.getByLabelText(periods[0])
+    fireEvent.click(firstPeriodCheckbox) // Check it
+    expect(firstPeriodCheckbox).toBeChecked()
 
-    fireEvent.click(firstPeriodCheckbox); // Uncheck it
-    expect(firstPeriodCheckbox).not.toBeChecked();
+    fireEvent.click(firstPeriodCheckbox) // Uncheck it
+    expect(firstPeriodCheckbox).not.toBeChecked()
 
-    const button = screen.getByRole('button', { name: /search course/i });
-    fireEvent.click(button);
+    const button = screen.getByRole('button', { name: /search course/i })
+    fireEvent.click(button)
 
     const searchParams = stringifyUrlParams({
       period: [],
       eduLevel: [],
       showOptions: [],
-    });
+    })
 
     expect(mockNavigate).toHaveBeenCalledWith({
       pathname: '/student/kurser/sokkurs-ny-design/resultat',
       search: `?${searchParams}`,
-    });
-  });
+    })
+  })
 
-  // Scenario 4: Third Cycle Courses Mode with specific filters
+  // Scenario 4: Third Cycle Courses Mode
   test('should handle thirdCycleCourses mode and submit search', async () => {
-    render(<NewSearchLandingPage searchMode="thirdCycleCourses" />);
+    render(<NewSearchLandingPage searchMode="thirdCycleCourses" />)
 
-    const button = screen.getByRole('button', { name: /search course/i });
-    fireEvent.click(button);
+    const button = screen.getByRole('button', { name: /search course/i })
+    fireEvent.click(button)
 
     const searchParams = stringifyUrlParams({
       eduLevel: ['3'],
       period: [],
       showOptions: [],
-    });
+    })
 
     expect(mockNavigate).toHaveBeenCalledWith({
       pathname: '/utbildning/forskarutbildning/kurser/sok-ny-design/resultat',
       search: `?${searchParams}`,
-    });
-  });
+    })
+  })
 
   // Scenario 5: Navigating with specific parameters
   test('should navigate to correct result page with specific parameters', async () => {
-    render(<NewSearchLandingPage />);
+    render(<NewSearchLandingPage />)
 
-    const firstPeriodCheckbox = screen.getByLabelText(periods[0]);
-    fireEvent.click(firstPeriodCheckbox); // Select a period
+    const firstPeriodCheckbox = screen.getByLabelText(periods[0])
+    fireEvent.click(firstPeriodCheckbox) // Select a period
 
-    const firstEduLevelCheckbox = screen.getByLabelText(eduLevels[0]);
-    fireEvent.click(firstEduLevelCheckbox); // Select an edu level
+    const firstEduLevelCheckbox = screen.getByLabelText(eduLevels[0])
+    fireEvent.click(firstEduLevelCheckbox) // Select an edu level
 
-    const firstShowOptionCheckbox = screen.getByLabelText(showOptions[0]);
-    fireEvent.click(firstShowOptionCheckbox); // Select a show option
+    const firstShowOptionCheckbox = screen.getByLabelText(showOptions[0])
+    fireEvent.click(firstShowOptionCheckbox) // Select a show option
 
-    const button = screen.getByRole('button', { name: /search course/i });
-    fireEvent.click(button);
+    const button = screen.getByRole('button', { name: /search course/i })
+    fireEvent.click(button)
 
     const searchParams = stringifyUrlParams({
       period: ['20242:1'],
       eduLevel: ['0'],
       showOptions: ['onlyEnglish'],
-    });
+    })
 
     expect(mockNavigate).toHaveBeenCalledWith({
       pathname: '/student/kurser/sokkurs-ny-design/resultat',
       search: `?${searchParams}`,
-    });
-  });
-});
+    })
+  })
+})
