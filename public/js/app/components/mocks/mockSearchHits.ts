@@ -169,14 +169,14 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_PERIODS_TEXTS_EN = [
   'P1 Autumn 21 - P2 Autumn 21',
   'P1 Autumn 21 - P3 Spring 22',
   'P1 Autumn 21',
-  '',
+  'Missing',
   'P0 Autumn 21 - P5 Spring 22',
 ]
 const EXPECTED_TEST_SEARCH_HITS_MIXED_PERIODS_TEXTS_SV = [
   'P1 HT21 - P2 HT21',
   'P1 HT21 - P3 VT22',
   'P1 HT21',
-  '',
+  'Saknas',
   'P0 HT21 - P5 VT22',
 ]
 
