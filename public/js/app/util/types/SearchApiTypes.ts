@@ -1,4 +1,5 @@
 import { ERROR_ASYNC, STATUS } from '../../hooks/searchUseAsync'
+import { ErrorAsync, Status } from '../../hooks/types/UseCourseSearchTypes'
 
 export interface KoppsCourseSearchParams {
   [key: string]: any // Allowing any key-value pair as params
@@ -11,11 +12,12 @@ export interface SearchHits {
 
 export interface KoppsCourseSearchResult {
   searchHits?: SearchHits[]
-  errorCode?: string
+  errorCode?: ErrorAsync
+  errorMessage?: string
 }
 
 export interface KoppsCourseSearchResultState {
   data: KoppsCourseSearchResult
-  status: keyof typeof STATUS | null
-  error: keyof typeof ERROR_ASYNC | null
+  status: Status | null
+  error: ErrorAsync | null
 }

@@ -17,7 +17,7 @@ export interface CourseSearchParams {
 }
 
 export interface SearchPageProps {
-  searchMode: SearchModes
+  searchMode?: SearchModes
 }
 
 export const SEARCH_MODES: Record<string, SearchModes> = {

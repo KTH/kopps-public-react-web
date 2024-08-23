@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 
 import { Col, Row } from 'reactstrap'
 import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
