@@ -168,7 +168,7 @@ describe('Component <SearchTableView> for RESEARCH courses', () => {
 })
 
 describe('Component <SearchTableView> for MIXED types of courses', () => {
-  test.skip('creates a table with 5 columns for mixed types of courses (include column for period intervals). English. 1B', () => {
+  test('creates a table with 5 columns for mixed types of courses (include column for period intervals). English. 1B', () => {
     useStore.mockReturnValue({ language: 'en', languageIndex: 0 })
     const { asFragment } = render(<SearchTableView unsortedSearchResults={TEST_SEARCH_HITS_MIXED_EN} />)
 
@@ -218,7 +218,7 @@ describe('Component <SearchTableView> for MIXED types of courses', () => {
     }
   })
 
-  test.skip('creates a table with 5 columns for MIXED type of courses (include a column for period intervals). Swedish. 2B', () => {
+  test('creates a table with 5 columns for MIXED type of courses (include a column for period intervals). Swedish. 2B', () => {
     useStore.mockReturnValue({ language: 'sv', languageIndex: 1 })
     const { asFragment } = render(<SearchTableView unsortedSearchResults={TEST_SEARCH_HITS_MIXED_SV} />)
 

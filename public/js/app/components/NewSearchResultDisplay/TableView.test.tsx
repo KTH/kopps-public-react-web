@@ -12,6 +12,8 @@ import {
   TEST_SEARCH_HITS_MIXED_SV,
   TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_SV,
   TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_EN,
+  EXPECTED_TEST_SEARCH_HITS_MIXED_PERIODS_TEXTS_EN_new,
+  EXPECTED_TEST_SEARCH_HITS_MIXED_PERIODS_TEXTS_SV_new,
 } from '../mocks/mockSearchHits'
 
 jest.mock('../../mobx')
@@ -103,7 +105,7 @@ describe('Component <TableView> for MIXED types of courses', () => {
       expect(utils.getAllByRole('cell')[3]).toHaveTextContent(
         course.educationalLevel ? eduLevelTranslations.EN[course.educationalLevel] : ''
       )
-      expect(utils.getAllByRole('cell')[4]).toHaveTextContent(EXPECTED_TEST_SEARCH_HITS_MIXED_PERIODS_TEXTS_EN[index])
+      expect(utils.getAllByRole('cell')[4]).toHaveTextContent(EXPECTED_TEST_SEARCH_HITS_MIXED_PERIODS_TEXTS_EN_new[index])
     })
   })
 
@@ -130,7 +132,7 @@ describe('Component <TableView> for MIXED types of courses', () => {
       expect(utils.getAllByRole('cell')[3]).toHaveTextContent(
         course.educationalLevel ? eduLevelTranslations.SV[course.educationalLevel] : ''
       )
-      expect(utils.getAllByRole('cell')[4]).toHaveTextContent(EXPECTED_TEST_SEARCH_HITS_MIXED_PERIODS_TEXTS_SV[index])
+      expect(utils.getAllByRole('cell')[4]).toHaveTextContent(EXPECTED_TEST_SEARCH_HITS_MIXED_PERIODS_TEXTS_SV_new[index])
     })
   })
 })
