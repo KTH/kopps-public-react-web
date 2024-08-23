@@ -257,6 +257,7 @@ const messages = {
     department: 'School, department, etc',
     departmentsAll: 'All schools',
     departmentsWithin: 'All within',
+    clearFilters: 'clear search choices',
   },
   searchInstructions: {
     search_help_collapse_header: 'Instructions for searching',

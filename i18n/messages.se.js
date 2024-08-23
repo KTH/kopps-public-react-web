@@ -251,6 +251,7 @@ const messages = {
     department: 'Skola, avdelning, etc',
     departmentsAll: 'Samtliga skolor',
     departmentsWithin: 'Alla inom',
+    clearFilters: 'tydliga sökval',
   },
   searchInstructions: {
     search_help_collapse_header: 'Få hjälp med sökningen',

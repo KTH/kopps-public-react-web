@@ -25,14 +25,22 @@
 }
 
 .sidebar-filters--mobile {
+  position: -webkit-sticky;
+  position: sticky;
+  top: var(--kpm-bar-height);
+  background-color: var(--color-background);
+  z-index: 1000;
   @extend .kth-local-navigation--mobile;
-  padding-bottom: space.$space-12;
+  padding: space.$space-8;
+  margin-bottom: space.$space-12;
+  box-shadow: 0px -2px 6px 4px var(--color-background);
   &__dialog {
     @extend .kth-mobile-menu;
     @extend .left;
   }
   &__navigation {
     @extend.kth-mobile-menu__navigation;
+    display: inline;
   }
   &__content {
     @extend.kth-mobile-menu__content;

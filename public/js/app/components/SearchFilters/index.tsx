@@ -1,6 +1,6 @@
 import React from 'react'
 import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
-import { Link } from 'react-router-dom'
+import './styles.scss'
 
 import { useStore } from '../../mobx'
 import i18n from '../../../../../i18n'
@@ -20,7 +20,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
 
   const { generalSearch, bigSearch } = i18n.messages[languageIndex]
   const { searchStartPeriodPrefix, collapseHeaderOtherSearchOptions } = generalSearch
-  const { onlyMHULabel } = bigSearch
+  const { onlyMHULabel, clearFilters } = bigSearch
 
   const currentYearDate = new Date().getFullYear()
   const currentYearLabel = `${searchStartPeriodPrefix} ${currentYearDate}`
@@ -30,8 +30,29 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
     setCourseSearchParams(filterValue)
   }
 
+  function handleClearFilters() {
+    setCourseSearchParams({
+      period: [],
+      eduLevel: [],
+      showOptions: [],
+      department: '',
+    })
+  }
+
+  const hasActiveFilters = Object.entries(courseSearchParams).some(([key, value]) => {
+    if (key !== 'pattern') {
+      return Array.isArray(value) ? value.length > 0 : !!value
+    }
+    return false // Ignore the 'pattern' key
+  })
+
   const renderFilterGroup = (
     <>
+      {hasActiveFilters && !collapsable && (
+        <button onClick={handleClearFilters} className="clear-filters kth-button secondary">
+          {clearFilters}
+        </button>
+      )}
       {filterMode.includes('period') && (
         <div className={collapsable ? 'row' : ''}>
           <div className={collapsable ? 'col' : ''}>

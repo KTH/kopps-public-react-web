@@ -3,6 +3,16 @@ import { MenuPanel } from '@kth/style'
 import './styles.scss'
 import { FiltersMobileDialogProps, FiltersProps } from './types'
 
+import { useStore } from '../../mobx'
+import i18n from '../../../../../i18n'
+
+const { languageIndex } = useStore()
+const { resultsHeading } = i18n.messages[languageIndex].generalSearch
+
+const closeDialog = (dialog: any) => {
+  dialog.current.close()
+}
+
 export const FiltersMobileDialog = React.forwardRef<HTMLDialogElement, FiltersMobileDialogProps>(
   ({ children }, ref) => (
     <dialog className="sidebar-filters--mobile__dialog" ref={ref}>
@@ -12,6 +22,9 @@ export const FiltersMobileDialog = React.forwardRef<HTMLDialogElement, FiltersMo
         </button>
       </div>
       <div className="sidebar-filters--mobile__content">{children}</div>
+      <button onClick={() => closeDialog(ref)} className="kth-button primary">
+        {resultsHeading}
+      </button>
     </dialog>
   )
 )

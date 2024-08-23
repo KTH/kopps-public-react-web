@@ -1,0 +1,5 @@
+@use '~@kth/style/scss/tokens/spacing.scss' as space;
+
+.clear-filters {
+  margin: space.$space-16 space.$space-0 space.$space-24 space.$space-0;
+}
