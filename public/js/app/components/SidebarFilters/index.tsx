@@ -1,17 +1,17 @@
 import React, { useEffect, useRef } from 'react'
 import { MenuPanel } from '@kth/style'
-import "./styles.scss"
+import './styles.scss'
 import { FiltersMobileDialogProps, FiltersProps } from './types'
 
 export const FiltersMobileDialog = React.forwardRef<HTMLDialogElement, FiltersMobileDialogProps>(
   ({ children }, ref) => (
-    <dialog className="kth-mobile-menu left" ref={ref}>
-      <div className="kth-mobile-menu__navigation">
+    <dialog className="sidebar-filters--mobile__dialog" ref={ref}>
+      <div className="sidebar-filters--mobile__navigation">
         <button className="kth-icon-button close">
           <span className="kth-visually-hidden">Close</span>
         </button>
       </div>
-      <div className="mobile-menu__content">{children}</div>
+      <div className="sidebar-filters--mobile__content">{children}</div>
     </dialog>
   )
 )
@@ -21,16 +21,31 @@ export const SidebarFilters: React.FC<FiltersProps> = ({ children, title, ancest
   const mobileButtonRef = useRef<HTMLButtonElement>(null)
   const mobileDialogRef = useRef<HTMLDialogElement>(null)
 
+  const handleDialogOpen = () => {
+    document.body.style.overflow = 'hidden'
+  }
+  const handleDialogClose = () => {
+    document.body.style.overflow = ''
+  }
+
   useEffect(() => {
     if (mobileButtonRef.current && mobileDialogRef.current) {
       MenuPanel.initModal(mobileButtonRef.current, mobileDialogRef.current)
+      mobileButtonRef.current.addEventListener('click', handleDialogOpen)
+      mobileDialogRef.current.addEventListener('close', handleDialogClose)
+    }
+    return () => {
+      mobileButtonRef.current.removeEventListener('click', handleDialogOpen)
+      mobileDialogRef.current.removeEventListener('close', handleDialogClose)
+
+      document.body.style.overflow = undefined
     }
   }, [])
 
   return (
     <>
-      <nav className="kth-local-navigation--mobile">
-        <button className="kth-button menu"ref={mobileButtonRef}>
+      <nav className="sidebar-filters--mobile">
+        <button className="kth-button filters" ref={mobileButtonRef}>
           <span>{title}</span>
         </button>
         <FiltersMobileDialog ref={mobileDialogRef}>

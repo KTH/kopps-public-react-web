@@ -1,4 +1,17 @@
 @use '~@kth/style/scss/components/local-navigation.scss';
+@use '~@kth/style/scss/components/mobile-menu.scss';
+@use '~@kth/style/scss/components/button.scss';
+@use '~@kth/style/scss/tokens/spacing.scss' as space;
+@use "'~@kth/style/scss/tokens/icons" as icons;
+
+.row {
+  display: block;
+  @media (min-width: 992px) {
+    &:has(> .kth-local-navigation--mobile) {
+      display: flex;
+    }
+  }
+}
 
 .sidebar-filters {
   @extend .kth-local-navigation;
@@ -8,5 +21,30 @@
     display: block;
     width: 296px;
     max-width: 296px;
+  }
+}
+
+.sidebar-filters--mobile {
+  @extend .kth-local-navigation--mobile;
+  padding-bottom: space.$space-12;
+  &__dialog {
+    @extend .kth-mobile-menu;
+    @extend .left;
+  }
+  &__navigation {
+    @extend.kth-mobile-menu__navigation;
+  }
+  &__content {
+    @extend.kth-mobile-menu__content;
+  }
+}
+
+.kth-button {
+  &.filters {
+    outline: none;
+    @extend .menu;
+    &:before {
+      @include icons.icon-menu; // this will be updated to the new icon later
+    }
   }
 }
