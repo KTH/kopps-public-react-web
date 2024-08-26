@@ -27,7 +27,7 @@ describe('FiltersMobileDialog Component', () => {
     )
 
     expect(screen.getByText('Test Child')).toBeInTheDocument()
-    expect(screen.getByText('Search results')).toBeInTheDocument()
+    expect(screen.getByText('show results')).toBeInTheDocument()
   })
 })
 
