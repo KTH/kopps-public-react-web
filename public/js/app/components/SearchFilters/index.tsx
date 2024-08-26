@@ -1,6 +1,5 @@
 import React from 'react'
 import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
-import './styles.scss'
 
 import { useStore } from '../../mobx'
 import i18n from '../../../../../i18n'
@@ -48,11 +47,6 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
 
   const renderFilterGroup = (
     <>
-      {hasActiveFilters && !collapsable && (
-        <button onClick={handleClearFilters} className="clear-filters kth-button secondary">
-          {clearFilters}
-        </button>
-      )}
       {filterMode.includes('period') && (
         <div className={collapsable ? 'row' : ''}>
           <div className={collapsable ? 'col' : ''}>
@@ -123,6 +117,11 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
             />
           </div>
         </div>
+      )}
+      {hasActiveFilters && !collapsable && (
+        <button onClick={handleClearFilters} className="kth-button secondary clear-filters">
+          {clearFilters}
+        </button>
       )}
     </>
   )

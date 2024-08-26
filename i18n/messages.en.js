@@ -257,7 +257,7 @@ const messages = {
     department: 'School, department, etc',
     departmentsAll: 'All schools',
     departmentsWithin: 'All within',
-    clearFilters: 'clear search choices',
+    clearFilters: 'clear filters',
   },
   searchInstructions: {
     search_help_collapse_header: 'Instructions for searching',
@@ -295,6 +295,7 @@ const messages = {
     collapseHeaderOtherSearchOptions: 'Filter your search choices',
     searchStartPeriodPrefix: 'Course Start',
     resultsHeading: 'Search results',
+    showResults: 'show results',
     searchLabel: 'Search by course name or course code',
     searchText: 'Example of course code: SF1624',
     searchLoading: 'Searching ...',

@@ -13,7 +13,7 @@ const closeDialog = (dialog: any) => {
 export const FiltersMobileDialog = React.forwardRef<HTMLDialogElement, FiltersMobileDialogProps>(
   ({ children }, ref) => {
     const { languageIndex } = useStore()
-    const { resultsHeading } = i18n.messages[languageIndex].generalSearch
+    const { showResults } = i18n.messages[languageIndex].generalSearch
     return (
       <dialog className="sidebar-filters--mobile__dialog" ref={ref}>
         <div className="sidebar-filters--mobile__navigation">
@@ -21,10 +21,12 @@ export const FiltersMobileDialog = React.forwardRef<HTMLDialogElement, FiltersMo
             <span className="kth-visually-hidden">Close</span>
           </button>
         </div>
-        <div className="sidebar-filters--mobile__content">{children}</div>
-        <button onClick={() => closeDialog(ref)} className="kth-button primary">
-          {resultsHeading}
-        </button>
+        <div className="sidebar-filters--mobile__content">
+          {children}
+          <button onClick={() => closeDialog(ref)} className="kth-button primary show-results">
+            {showResults}
+          </button>
+        </div>
       </dialog>
     )
   }
@@ -34,6 +36,7 @@ FiltersMobileDialog.displayName = 'FiltersMobileDialog'
 export const SidebarFilters: React.FC<FiltersProps> = ({ children, title, ancestorItem }) => {
   const mobileButtonRef = useRef<HTMLButtonElement>(null)
   const mobileDialogRef = useRef<HTMLDialogElement>(null)
+  const mobileViewRef = useRef<HTMLDialogElement>(null)
 
   const handleDialogOpen = () => {
     document.body.style.overflow = 'hidden'
@@ -42,11 +45,25 @@ export const SidebarFilters: React.FC<FiltersProps> = ({ children, title, ancest
     document.body.style.overflow = ''
   }
 
+  const isMobileView = () => {
+    return window.getComputedStyle(mobileViewRef.current).display !== 'none'
+  }
+
+  const handleResize = () => {
+    if (mobileDialogRef.current && mobileDialogRef.current.open) {
+      if (!isMobileView()) {
+        mobileDialogRef.current.close()
+      }
+    }
+  }
+
   useEffect(() => {
     if (mobileButtonRef.current && mobileDialogRef.current) {
       MenuPanel.initModal(mobileButtonRef.current, mobileDialogRef.current)
       mobileButtonRef.current.addEventListener('click', handleDialogOpen)
       mobileDialogRef.current.addEventListener('close', handleDialogClose)
+      window.addEventListener('resize', handleResize)
+      // here we make sure to close the dialog (modal) on device resize (on Ipad Air changing the view from horizental to vertical changes the view from mobile to desktop version)
     }
     return () => {
       if (mobileButtonRef.current && mobileDialogRef.current) {
@@ -60,7 +77,7 @@ export const SidebarFilters: React.FC<FiltersProps> = ({ children, title, ancest
 
   return (
     <>
-      <nav className="sidebar-filters--mobile">
+      <nav className="sidebar-filters--mobile" ref={mobileViewRef}>
         <button className="kth-button filters" ref={mobileButtonRef}>
           <span>{title}</span>
         </button>
@@ -68,7 +85,7 @@ export const SidebarFilters: React.FC<FiltersProps> = ({ children, title, ancest
           <a href={ancestorItem.href} className="kth-button back">
             {ancestorItem.label}
           </a>
-          <h3>{title}</h3>
+          <h4>{title}</h4>
           {children}
         </FiltersMobileDialog>
       </nav>
@@ -77,7 +94,7 @@ export const SidebarFilters: React.FC<FiltersProps> = ({ children, title, ancest
         <a href={ancestorItem.href} className="kth-button back">
           {ancestorItem.label}
         </a>
-        <h3>{title}</h3>
+        <h4>{title}</h4>
         {children}
       </nav>
     </>
