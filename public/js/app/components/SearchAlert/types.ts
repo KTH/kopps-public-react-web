@@ -1,6 +1,7 @@
 import { ERROR_ASYNC } from '../../hooks/searchUseAsync'
+import { ErrorAsync } from '../../hooks/types/UseCourseSearchTypes'
 
 export interface SearchAlertProps {
-  alertType: keyof typeof ERROR_ASYNC | null
+  alertType: ErrorAsync | null
   languageIndex: 0 | 1
 }
