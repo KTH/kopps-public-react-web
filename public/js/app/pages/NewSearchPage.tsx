@@ -78,7 +78,7 @@ const NewSearchPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.de
           courseSearchParams={courseSearchParams}
           setCourseSearchParams={setCourseSearchParams}
           disabled={searchStatus === STATUS.pending}
-          filterMode={FILTER_MODES[searchMode]}
+          searchMode={searchMode}
         />
       </SidebarFilters>
       <MainContent>

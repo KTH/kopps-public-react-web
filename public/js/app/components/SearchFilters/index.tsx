@@ -8,15 +8,17 @@ import NewSearchDepartments from '../NewSearchDepartments'
 import NewSearchOptions from '../NewSearchOptions'
 import { FilterParams, SearchFilterStore, SearchFiltersProps, FILTER_MODES } from './types'
 import { DepartmentCodeOrPrefix, EduLevel, Period, ShowOptions } from '../../stores/types/searchPageStoreTypes'
+import { SEARCH_MODES } from '../../pages/types/searchPageTypes'
 const SearchFilters: React.FC<SearchFiltersProps> = ({
   disabled,
   courseSearchParams,
   setCourseSearchParams,
   collapsable = false,
-  filterMode = FILTER_MODES.default,
+  searchMode = SEARCH_MODES.default,
 }) => {
   const { languageIndex }: SearchFilterStore = useStore()
 
+  const filterMode = FILTER_MODES[searchMode]
   const { generalSearch, bigSearch } = i18n.messages[languageIndex]
   const { searchStartPeriodPrefix, collapseHeaderOtherSearchOptions } = generalSearch
   const { onlyMHULabel, clearFilters } = bigSearch
@@ -32,7 +34,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
   function handleClearFilters() {
     setCourseSearchParams({
       period: [],
-      eduLevel: [],
+      eduLevel: searchMode === SEARCH_MODES.thirdCycleCourses ? ['3'] : [],
       showOptions: [],
       department: '',
     })

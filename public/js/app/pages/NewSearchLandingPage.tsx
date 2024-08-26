@@ -124,7 +124,7 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
       <Lead text={leadIntro} />
       <SearchInput caption={searchButton} onSubmit={handleSubmit} />
       <SearchFilters
-        filterMode={FILTER_MODES[searchMode]}
+        searchMode={searchMode}
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={setCourseSearchParams}
         collapsable={true}
