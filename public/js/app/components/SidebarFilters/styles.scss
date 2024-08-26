@@ -44,6 +44,22 @@
   }
   &__content {
     @extend.kth-mobile-menu__content;
+    & .show-results {
+      display: block;
+      width: -webkit-fill-available;
+    }
+    & .clear-filters {
+      display: inline;
+      float: inline-end;
+      margin-left: space.$space-4;
+      border: none;
+    }
+  }
+}
+.sidebar-filters,
+.sidebar-filters--mobile {
+  h4 {
+    padding: space.$space-12 space.$space-0;
   }
 }
 
