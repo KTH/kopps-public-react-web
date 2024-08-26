@@ -1,6 +1,7 @@
 @use '~@kth/style/scss/tokens/colors.scss' as colors;
 @use '~@kth/style/scss/tokens/typography.scss' as typography;
 @use '~@kth/style/scss/tokens/spacing.scss' as space;
+@use "'~@kth/style/scss/tokens/icons" as icons;
 
 @keyframes fadeIn {
   from {
@@ -42,20 +43,40 @@
             fill: colors.$color-blue-kth;
           }
         }
-        &:first-child {
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
-          border-right-width: 0;
-          &.active {
-            border-right-width: 2px;
+        & span {
+          @media (min-width: 992px) {
           }
         }
-        &:last-child {
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-          border-left-width: 0;
-          &.active {
-            border-left-width: 2px;
+      }
+      .toggle-button.list-btn {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right-width: 0;
+        &:before {
+          @include icons.icon-card-view;
+          background-color: var(--color-text);
+        }
+
+        &.active {
+          border-right-width: 2px;
+          &:before {
+            background: colors.$color-blue-kth;
+          }
+        }
+      }
+
+      .toggle-button.table-btn {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-left-width: 0;
+        &:before {
+          @include icons.icon-list-view;
+          background-color: var(--color-text);
+        }
+        &.active {
+          border-left-width: 2px;
+          &:before {
+            background: colors.$color-blue-kth;
           }
         }
       }
