@@ -62,31 +62,18 @@ describe('<SearchFilters />', () => {
   test('renders correctly with default props', () => {
     render(
       <SearchFilters
-<<<<<<< HEAD
-        ancestorItem={ancestorItem}
-=======
->>>>>>> issues/KP-362-new-search-mobil-view-draft
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={mockSetCourseSearchParams}
         filterMode={FILTER_MODES.default}
       />
     )
 
-<<<<<<< HEAD
-    expect(screen.getByText('Back')).toBeInTheDocument()
-    expect(screen.getByRole('heading', { level: 3, name: /Filter your search choices/i })).toBeInTheDocument()
-=======
     expect(screen.getByText('School, department, etc')).toBeInTheDocument()
->>>>>>> issues/KP-362-new-search-mobil-view-draft
   })
 
   test('renders CollapseDetails when collapsable is true', () => {
     render(
       <SearchFilters
-<<<<<<< HEAD
-        ancestorItem={ancestorItem}
-=======
->>>>>>> issues/KP-362-new-search-mobil-view-draft
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={mockSetCourseSearchParams}
         filterMode={FILTER_MODES.default}
@@ -100,10 +87,6 @@ describe('<SearchFilters />', () => {
   test('calls setCourseSearchParams when a filter value changes', () => {
     render(
       <SearchFilters
-<<<<<<< HEAD
-        ancestorItem={ancestorItem}
-=======
->>>>>>> issues/KP-362-new-search-mobil-view-draft
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={mockSetCourseSearchParams}
         filterMode={FILTER_MODES.default}
@@ -119,10 +102,6 @@ describe('<SearchFilters />', () => {
   test('disables filters when disabled prop is true', () => {
     render(
       <SearchFilters
-<<<<<<< HEAD
-        ancestorItem={ancestorItem}
-=======
->>>>>>> issues/KP-362-new-search-mobil-view-draft
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={mockSetCourseSearchParams}
         filterMode={FILTER_MODES.default}
@@ -144,10 +123,6 @@ describe('<SearchFilters />', () => {
   test('renders period filters when filterMode includes period', () => {
     render(
       <SearchFilters
-<<<<<<< HEAD
-        ancestorItem={ancestorItem}
-=======
->>>>>>> issues/KP-362-new-search-mobil-view-draft
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={mockSetCourseSearchParams}
         filterMode={['period']}
@@ -162,10 +137,6 @@ describe('<SearchFilters />', () => {
   test('renders department filter when filterMode includes department', () => {
     render(
       <SearchFilters
-<<<<<<< HEAD
-        ancestorItem={ancestorItem}
-=======
->>>>>>> issues/KP-362-new-search-mobil-view-draft
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={mockSetCourseSearchParams}
         filterMode={['department']}
@@ -179,10 +150,6 @@ describe('<SearchFilters />', () => {
   test('renders MHU filter when filterMode includes onlyMHU', () => {
     render(
       <SearchFilters
-<<<<<<< HEAD
-        ancestorItem={ancestorItem}
-=======
->>>>>>> issues/KP-362-new-search-mobil-view-draft
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={mockSetCourseSearchParams}
         filterMode={['onlyMHU']}
