@@ -10,7 +10,7 @@ import SearchInput from '../components/SearchInput'
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 
-import { CourseSearchParams, MainContentProps, SEARCH_MODES, SearchPageProps } from './types/searchPageTypes'
+import { CourseSearchParams, SEARCH_MODES, SearchPageProps } from './types/searchPageTypes'
 import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
 import { FooterContent, HelpTexts, Lead } from '../components'
 import { getHelpText } from '../util/newSearchHelper'
@@ -26,12 +26,16 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
   const { languageIndex, language } = useStore()
   useLangHrefUpdate()
   const { bigSearch, searchInstructions, thirdCycleSearch, thirdCycleSearchInstructions } = i18n.messages[languageIndex]
-  const { searchHeading: defaultSearchHeading, searchButton } = bigSearch
+  const { searchHeading: defaultSearchHeading, searchButton, leadIntro: defaultSearchLeadIntro } = bigSearch
   const { search_help_collapse_header: defaultCollapseHeader } = searchInstructions
-  const { searchHeading: thirdCycleSearchHeading, linkToUsualSearch } = thirdCycleSearch
+  const {
+    searchHeading: thirdCycleSearchHeading,
+    linkToUsualSearch,
+    leadIntro: thirdCycleSearchLeadIntro,
+  } = thirdCycleSearch
   const { search_help_collapse_header: thirdCycleSearchCollapseHeader } = thirdCycleSearchInstructions
 
-  let searchHeading, collapseHeader, helptextsProps
+  let searchHeading, collapseHeader, helptextsProps, leadIntro
 
   const [courseSearchParams, setCourseSearchParams] = useReducer(paramsReducer, {
     pattern: '',
@@ -66,6 +70,7 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
   switch (searchMode) {
     case SEARCH_MODES.default:
       searchHeading = defaultSearchHeading
+      leadIntro = defaultSearchLeadIntro
       collapseHeader = defaultCollapseHeader
       helptextsProps = {
         helptexts: defaultHelptexts,
@@ -74,6 +79,7 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
       break
     case SEARCH_MODES.thirdCycleCourses:
       searchHeading = thirdCycleSearchHeading
+      leadIntro = thirdCycleSearchLeadIntro
       collapseHeader = thirdCycleSearchCollapseHeader
       helptextsProps = {
         helptexts: thirdCycleSearchHelptexts,
@@ -115,6 +121,7 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
   return (
     <div className="search-landing-page">
       <PageHeading>{searchHeading}</PageHeading>
+      <Lead text={leadIntro} />
       <SearchInput caption={searchButton} onSubmit={handleSubmit} />
       <SearchFilters
         filterMode={FILTER_MODES[searchMode]}
@@ -126,7 +133,9 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
         <HelpTexts {...helptextsProps} />
       </CollapseDetails>
       {searchMode === SEARCH_MODES.thirdCycleCourses && (
-        <a className='link-to' href={courseSearchLink('sokkurs', language)}>{linkToUsualSearch}</a>
+        <a className="link-to" href={courseSearchLink('sokkurs', language)}>
+          {linkToUsualSearch}
+        </a>
       )}
       <FooterContent></FooterContent>
     </div>
