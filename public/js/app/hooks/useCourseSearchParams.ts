@@ -12,9 +12,9 @@ export const useCourseSearchParams = (): [CourseSearchParams, SetCourseSearchPar
   const courseSearchParams: CourseSearchParams = useMemo(
     () => ({
       pattern: searchParams.get('pattern') as Pattern ?? '',
-      period: (searchParams.getAll('period') as Period[]) ?? [],
-      eduLevel: (searchParams.getAll('eduLevel') as EduLevel[]) ?? [],
-      showOptions: (searchParams.getAll('showOptions') as ShowOptions[]) ?? [],
+      period: (searchParams.getAll('period').filter(Boolean) as Period[]),
+      eduLevel: (searchParams.getAll('eduLevel').filter(Boolean) as EduLevel[]),
+      showOptions: (searchParams.getAll('showOptions').filter(Boolean) as ShowOptions[]),
       department: searchParams.get('department') as DepartmentCodeOrPrefix ?? '',
     }),
     [searchParams]
