@@ -62,21 +62,18 @@ describe('<SearchFilters />', () => {
   test('renders correctly with default props', () => {
     render(
       <SearchFilters
-        ancestorItem={ancestorItem}
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={mockSetCourseSearchParams}
         filterMode={FILTER_MODES.default}
       />
     )
 
-    expect(screen.getByText('Back')).toBeInTheDocument()
-    expect(screen.getByRole('heading', { level: 3, name: /Filter your search choices/i })).toBeInTheDocument()
+    expect(screen.getByText('School, department, etc')).toBeInTheDocument()
   })
 
   test('renders CollapseDetails when collapsable is true', () => {
     render(
       <SearchFilters
-        ancestorItem={ancestorItem}
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={mockSetCourseSearchParams}
         filterMode={FILTER_MODES.default}
@@ -90,7 +87,6 @@ describe('<SearchFilters />', () => {
   test('calls setCourseSearchParams when a filter value changes', () => {
     render(
       <SearchFilters
-        ancestorItem={ancestorItem}
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={mockSetCourseSearchParams}
         filterMode={FILTER_MODES.default}
@@ -106,7 +102,6 @@ describe('<SearchFilters />', () => {
   test('disables filters when disabled prop is true', () => {
     render(
       <SearchFilters
-        ancestorItem={ancestorItem}
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={mockSetCourseSearchParams}
         filterMode={FILTER_MODES.default}
@@ -128,7 +123,6 @@ describe('<SearchFilters />', () => {
   test('renders period filters when filterMode includes period', () => {
     render(
       <SearchFilters
-        ancestorItem={ancestorItem}
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={mockSetCourseSearchParams}
         filterMode={['period']}
@@ -143,7 +137,6 @@ describe('<SearchFilters />', () => {
   test('renders department filter when filterMode includes department', () => {
     render(
       <SearchFilters
-        ancestorItem={ancestorItem}
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={mockSetCourseSearchParams}
         filterMode={['department']}
@@ -157,7 +150,6 @@ describe('<SearchFilters />', () => {
   test('renders MHU filter when filterMode includes onlyMHU', () => {
     render(
       <SearchFilters
-        ancestorItem={ancestorItem}
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={mockSetCourseSearchParams}
         filterMode={['onlyMHU']}

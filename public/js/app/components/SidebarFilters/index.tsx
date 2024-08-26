@@ -6,27 +6,28 @@ import { FiltersMobileDialogProps, FiltersProps } from './types'
 import { useStore } from '../../mobx'
 import i18n from '../../../../../i18n'
 
-const { languageIndex } = useStore()
-const { resultsHeading } = i18n.messages[languageIndex].generalSearch
-
 const closeDialog = (dialog: any) => {
   dialog.current.close()
 }
 
 export const FiltersMobileDialog = React.forwardRef<HTMLDialogElement, FiltersMobileDialogProps>(
-  ({ children }, ref) => (
-    <dialog className="sidebar-filters--mobile__dialog" ref={ref}>
-      <div className="sidebar-filters--mobile__navigation">
-        <button className="kth-icon-button close">
-          <span className="kth-visually-hidden">Close</span>
+  ({ children }, ref) => {
+    const { languageIndex } = useStore()
+    const { resultsHeading } = i18n.messages[languageIndex].generalSearch
+    return (
+      <dialog className="sidebar-filters--mobile__dialog" ref={ref}>
+        <div className="sidebar-filters--mobile__navigation">
+          <button className="kth-icon-button close">
+            <span className="kth-visually-hidden">Close</span>
+          </button>
+        </div>
+        <div className="sidebar-filters--mobile__content">{children}</div>
+        <button onClick={() => closeDialog(ref)} className="kth-button primary">
+          {resultsHeading}
         </button>
-      </div>
-      <div className="sidebar-filters--mobile__content">{children}</div>
-      <button onClick={() => closeDialog(ref)} className="kth-button primary">
-        {resultsHeading}
-      </button>
-    </dialog>
-  )
+      </dialog>
+    )
+  }
 )
 FiltersMobileDialog.displayName = 'FiltersMobileDialog'
 
@@ -48,10 +49,12 @@ export const SidebarFilters: React.FC<FiltersProps> = ({ children, title, ancest
       mobileDialogRef.current.addEventListener('close', handleDialogClose)
     }
     return () => {
-      mobileButtonRef.current.removeEventListener('click', handleDialogOpen)
-      mobileDialogRef.current.removeEventListener('close', handleDialogClose)
+      if (mobileButtonRef.current && mobileDialogRef.current) {
+        mobileButtonRef.current.removeEventListener('click', handleDialogOpen)
+        mobileDialogRef.current.removeEventListener('close', handleDialogClose)
 
-      document.body.style.overflow = undefined
+        document.body.style.overflow = undefined
+      }
     }
   }, [])
 
