@@ -1,6 +1,5 @@
 import React from 'react'
 import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
-import { Link } from 'react-router-dom'
 
 import { useStore } from '../../mobx'
 import i18n from '../../../../../i18n'
@@ -9,20 +8,20 @@ import NewSearchDepartments from '../NewSearchDepartments'
 import NewSearchOptions from '../NewSearchOptions'
 import { FilterParams, SearchFilterStore, SearchFiltersProps, FILTER_MODES } from './types'
 import { DepartmentCodeOrPrefix, EduLevel, Period, ShowOptions } from '../../stores/types/searchPageStoreTypes'
-
+import { SEARCH_MODES } from '../../pages/types/searchPageTypes'
 const SearchFilters: React.FC<SearchFiltersProps> = ({
-  ancestorItem,
   disabled,
   courseSearchParams,
   setCourseSearchParams,
   collapsable = false,
-  filterMode = FILTER_MODES.default,
+  searchMode = SEARCH_MODES.default,
 }) => {
   const { languageIndex }: SearchFilterStore = useStore()
 
+  const filterMode = FILTER_MODES[searchMode]
   const { generalSearch, bigSearch } = i18n.messages[languageIndex]
-  const { searchStartPeriodPrefix, collapseHeaderOtherSearchOptions, filtersLabel } = generalSearch
-  const { onlyMHULabel } = bigSearch
+  const { searchStartPeriodPrefix, collapseHeaderOtherSearchOptions } = generalSearch
+  const { onlyMHULabel, clearFilters } = bigSearch
 
   const currentYearDate = new Date().getFullYear()
   const currentYearLabel = `${searchStartPeriodPrefix} ${currentYearDate}`
@@ -31,6 +30,22 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
   function handleFilterValueChange(filterValue: FilterParams) {
     setCourseSearchParams(filterValue)
   }
+
+  function handleClearFilters() {
+    setCourseSearchParams({
+      period: [],
+      eduLevel: searchMode === SEARCH_MODES.thirdCycleCourses ? ['3'] : [],
+      showOptions: [],
+      department: '',
+    })
+  }
+
+  const hasActiveFilters = Object.entries(courseSearchParams).some(([key, value]) => {
+    if (key !== 'pattern') {
+      return Array.isArray(value) ? value.length > 0 : !!value
+    }
+    return false // Ignore the 'pattern' key
+  })
 
   const renderFilterGroup = (
     <>
@@ -105,19 +120,18 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
           </div>
         </div>
       )}
+      {hasActiveFilters && !collapsable && (
+        <button onClick={handleClearFilters} className="kth-button secondary clear-filters">
+          {clearFilters}
+        </button>
+      )}
     </>
   )
 
   return collapsable ? (
     <CollapseDetails title={collapseHeaderOtherSearchOptions}>{renderFilterGroup}</CollapseDetails>
   ) : (
-    <div id="mainMenu" className="kth-local-navigation col">
-      <Link to={ancestorItem.href} className="kth-button back">
-        {ancestorItem.label}
-      </Link>
-      <h3>{filtersLabel}</h3>
-      {renderFilterGroup}
-    </div>
+    <>{renderFilterGroup}</>
   )
 }
 

@@ -1,4 +1,4 @@
-import { CourseSearchParams, SetCourseSearchParams } from '../../pages/types/searchPageTypes'
+import { CourseSearchParams, SearchModes, SetCourseSearchParams } from '../../pages/types/searchPageTypes'
 
 import {
   DepartmentCodeOrPrefix,
@@ -14,11 +14,10 @@ export interface AncestorItem {
 }
 
 export interface SearchFiltersProps {
-  ancestorItem?: AncestorItem
   disabled?: boolean
   courseSearchParams: CourseSearchParams
   setCourseSearchParams: SetCourseSearchParams
-  filterMode: FilterModes
+  searchMode: SearchModes
   collapsable?: boolean
 }
 
@@ -35,5 +34,3 @@ export const FILTER_MODES: Record<string, FilterModeKey[]> = {
 } as const
 
 type FilterModeKey = 'period' | 'eduLevel' | 'showOptions' | 'department' | 'onlyMHU'
-
-export type FilterModes = FilterModeKey[]

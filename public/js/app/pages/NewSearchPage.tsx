@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Col, Row } from 'reactstrap'
 import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
-import { SearchFilters, Lead } from '../components'
+import { SearchFilters } from '../components'
 
 import SearchInput from '../components/SearchInput'
 
@@ -19,6 +19,7 @@ import NewSearchResultDisplay from '../components/NewSearchResultDisplay'
 import { KoppsCourseSearchResultState } from '../util/types/SearchApiTypes'
 import { useLangHrefUpdate } from '../hooks/useLangHrefUpdate'
 import { FILTER_MODES } from '../components/SearchFilters/types'
+import { SidebarFilters } from '../components/SidebarFilters'
 
 const MainContent: React.FC<MainContentProps> = ({ children }) => {
   return (
@@ -39,12 +40,10 @@ const NewSearchPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.de
 
   const { bigSearch, generalSearch, messages, thirdCycleSearch } = i18n.messages[languageIndex]
   const { main_menu_search_all_new, main_menu_third_cycle_courses_search_new } = messages
-  const { searchButton, leadIntro: defaultSearchLeadIntro } = bigSearch
-  const { resultsHeading } = generalSearch
+  const { searchButton } = bigSearch
+  const { resultsHeading, filtersLabel } = generalSearch
 
-  const { leadIntro: thirdCycleSearchLeadIntro } = thirdCycleSearch
-
-  let leadIntro, ancestorItemObj
+  let ancestorItemObj
 
   const asyncCallback = React.useCallback(() => {
     const proxyUrl = _getThisHost(browserConfig.proxyPrefixPath.uri)
@@ -61,11 +60,9 @@ const NewSearchPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.de
 
   switch (searchMode) {
     case SEARCH_MODES.default:
-      leadIntro = defaultSearchLeadIntro
       ancestorItemObj = { href: '/student/kurser/sokkurs-ny-design', label: main_menu_search_all_new }
       break
     case SEARCH_MODES.thirdCycleCourses:
-      leadIntro = thirdCycleSearchLeadIntro
       ancestorItemObj = {
         href: '/utbildning/forskarutbildning/kurser/sok-ny-design',
         label: main_menu_third_cycle_courses_search_new,
@@ -76,16 +73,16 @@ const NewSearchPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.de
 
   return (
     <Row>
-      <SearchFilters
-        courseSearchParams={courseSearchParams}
-        setCourseSearchParams={setCourseSearchParams}
-        ancestorItem={ancestorItemObj}
-        disabled={searchStatus === STATUS.pending}
-        filterMode={FILTER_MODES[searchMode]}
-      />
+      <SidebarFilters title={filtersLabel} ancestorItem={ancestorItemObj}>
+        <SearchFilters
+          courseSearchParams={courseSearchParams}
+          setCourseSearchParams={setCourseSearchParams}
+          disabled={searchStatus === STATUS.pending}
+          searchMode={searchMode}
+        />
+      </SidebarFilters>
       <MainContent>
         <PageHeading>{resultsHeading}</PageHeading>
-        <Lead text={leadIntro} />
         <SearchInput caption={searchButton} onSubmit={handlePatternChange} disabled={searchStatus === STATUS.pending} />
         <NewSearchResultDisplay resultsState={state as KoppsCourseSearchResultState} />
       </MainContent>

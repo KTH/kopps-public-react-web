@@ -251,6 +251,7 @@ const messages = {
     department: 'Skola, avdelning, etc',
     departmentsAll: 'Samtliga skolor',
     departmentsWithin: 'Alla inom',
+    clearFilters: 'Rensa filter',
   },
   searchInstructions: {
     search_help_collapse_header: 'Få hjälp med sökningen',
@@ -285,6 +286,7 @@ const messages = {
     collapseHeaderOtherSearchOptions: 'Filtrera dina sökval',
     searchStartPeriodPrefix: 'Kursstart',
     resultsHeading: 'Resultat från sökningen',
+    showResults: 'Visa resultat',
     searchLabel: 'Sök på kursnamn eller kurskod',
     searchText: 'Exempel på kurskod: SF1624',
     searchLoading: 'Söker ...',

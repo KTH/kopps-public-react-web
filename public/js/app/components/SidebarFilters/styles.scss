@@ -1,0 +1,74 @@
+@use '~@kth/style/scss/components/local-navigation.scss';
+@use '~@kth/style/scss/components/mobile-menu.scss';
+@use '~@kth/style/scss/components/button.scss';
+@use '~@kth/style/scss/tokens/spacing.scss' as space;
+@use "'~@kth/style/scss/tokens/icons" as icons;
+
+.row {
+  display: block;
+  @media (min-width: 992px) {
+    &:has(> .kth-local-navigation--mobile) {
+      display: flex;
+    }
+  }
+}
+
+.sidebar-filters {
+  @extend .kth-local-navigation;
+  flex: 1 0 0%;
+  display: none;
+  @media (min-width: 992px) {
+    display: block;
+    width: 296px;
+    max-width: 296px;
+  }
+}
+
+.sidebar-filters--mobile {
+  position: -webkit-sticky;
+  position: sticky;
+  top: var(--kpm-bar-height);
+  background-color: var(--color-background);
+  z-index: 1000;
+  padding: space.$space-8 space.$space-0;
+  margin-bottom: space.$space-12;
+  box-shadow: 0px -2px 6px 4px var(--color-background);
+  @extend .kth-local-navigation--mobile;
+  &__dialog {
+    @extend .kth-mobile-menu;
+    @extend .left;
+  }
+  &__navigation {
+    @extend.kth-mobile-menu__navigation;
+    display: inline;
+  }
+  &__content {
+    @extend.kth-mobile-menu__content;
+    & .show-results {
+      display: block;
+      width: -webkit-fill-available;
+    }
+    & .clear-filters {
+      display: inline;
+      float: inline-end;
+      margin-left: space.$space-4;
+      border: none;
+    }
+  }
+}
+.sidebar-filters,
+.sidebar-filters--mobile {
+  h4 {
+    padding: space.$space-12 space.$space-0;
+  }
+}
+
+.kth-button {
+  &.filters {
+    outline: none;
+    @extend .menu;
+    &:before {
+      @include icons.icon-menu; // this will be updated to the new icon later
+    }
+  }
+}
