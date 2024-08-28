@@ -36,33 +36,15 @@ const SearchResultHeader: React.FC<SearchResultHeaderParams> = ({ resultsLength,
           <div className="toggle-container">
             <button
               onClick={() => handleChangeResultView(VIEW.list)}
-              className={`toggle-button ${view === VIEW.list ? 'active' : ''}`}
+              className={`toggle-button list-btn ${view === VIEW.list ? 'active' : ''}`}
             >
               {toggleButton.list}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="24px"
-                viewBox="0 -960 960 960"
-                width="24px"
-                fill="#e8eaed"
-              >
-                <path d="M200-520q-33 0-56.5-23.5T120-600v-160q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v160q0 33-23.5 56.5T760-520H200Zm0-80h560v-160H200v160Zm0 480q-33 0-56.5-23.5T120-200v-160q0-33 23.5-56.5T200-440h560q33 0 56.5 23.5T840-360v160q0 33-23.5 56.5T760-120H200Zm0-80h560v-160H200v160Zm0-560v160-160Zm0 400v160-160Z" />
-              </svg>
             </button>
             <button
               onClick={() => handleChangeResultView(VIEW.table)}
-              className={`toggle-button ${view === VIEW.table ? 'active' : ''}`}
+              className={`toggle-button table-btn ${view === VIEW.table ? 'active' : ''}`}
             >
               {toggleButton.table}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="24px"
-                viewBox="0 -960 960 960"
-                width="24px"
-                fill="#e8eaed"
-              >
-                <path d="M360-200v-80h480v80H360Zm0-240v-80h480v80H360Zm0-240v-80h480v80H360ZM200-160q-33 0-56.5-23.5T120-240q0-33 23.5-56.5T200-320q33 0 56.5 23.5T280-240q0 33-23.5 56.5T200-160Zm0-240q-33 0-56.5-23.5T120-480q0-33 23.5-56.5T200-560q33 0 56.5 23.5T280-480q0 33-23.5 56.5T200-400Zm0-240q-33 0-56.5-23.5T120-720q0-33 23.5-56.5T200-800q33 0 56.5 23.5T280-720q0 33-23.5 56.5T200-640Z" />
-              </svg>
             </button>
           </div>
         </>
