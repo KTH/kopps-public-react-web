@@ -16,6 +16,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: space.$space-2;
     .toggle-container {
       display: inline-flex;
       border-radius: 4px;

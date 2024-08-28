@@ -1,10 +1,10 @@
 import React from 'react'
-import { render, screen, fireEvent, within } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import SearchFilters from './index'
-import { FILTER_MODES } from './types'
 import { useStore } from '../../mobx'
 import { EduLevel, Period, ShowOptions } from '../../stores/types/searchPageStoreTypes'
+import { SEARCH_MODES } from '../../pages/types/searchPageTypes'
 
 // Mocking the useStore hook
 jest.mock('../../mobx')
@@ -62,24 +62,21 @@ describe('<SearchFilters />', () => {
   test('renders correctly with default props', () => {
     render(
       <SearchFilters
-        ancestorItem={ancestorItem}
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={mockSetCourseSearchParams}
-        filterMode={FILTER_MODES.default}
+        searchMode={SEARCH_MODES.default}
       />
     )
 
-    expect(screen.getByText('Back')).toBeInTheDocument()
-    expect(screen.getByRole('heading', { level: 3, name: /Filter your search choices/i })).toBeInTheDocument()
+    expect(screen.getByText('School, department, etc')).toBeInTheDocument()
   })
 
   test('renders CollapseDetails when collapsable is true', () => {
     render(
       <SearchFilters
-        ancestorItem={ancestorItem}
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={mockSetCourseSearchParams}
-        filterMode={FILTER_MODES.default}
+        searchMode={SEARCH_MODES.default}
         collapsable={true}
       />
     )
@@ -90,10 +87,9 @@ describe('<SearchFilters />', () => {
   test('calls setCourseSearchParams when a filter value changes', () => {
     render(
       <SearchFilters
-        ancestorItem={ancestorItem}
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={mockSetCourseSearchParams}
-        filterMode={FILTER_MODES.default}
+        searchMode={SEARCH_MODES.default}
       />
     )
 
@@ -106,10 +102,9 @@ describe('<SearchFilters />', () => {
   test('disables filters when disabled prop is true', () => {
     render(
       <SearchFilters
-        ancestorItem={ancestorItem}
         courseSearchParams={courseSearchParams}
         setCourseSearchParams={mockSetCourseSearchParams}
-        filterMode={FILTER_MODES.default}
+        searchMode={SEARCH_MODES.default}
         disabled={true}
       />
     )
@@ -122,49 +117,5 @@ describe('<SearchFilters />', () => {
 
     const checkboxes = screen.getAllByRole('checkbox')
     checkboxes.forEach(input => expect(input).toBeDisabled())
-
-  })
-
-  test('renders period filters when filterMode includes period', () => {
-    render(
-      <SearchFilters
-        ancestorItem={ancestorItem}
-        courseSearchParams={courseSearchParams}
-        setCourseSearchParams={mockSetCourseSearchParams}
-        filterMode={['period']}
-      />
-    )
-
-    const periodFilters = screen.getAllByRole('checkbox')
-    expect(periodFilters.length).toBeGreaterThan(0)
-    periodFilters.forEach(filter => expect(filter).toBeInTheDocument())
-  })
-
-  test('renders department filter when filterMode includes department', () => {
-    render(
-      <SearchFilters
-        ancestorItem={ancestorItem}
-        courseSearchParams={courseSearchParams}
-        setCourseSearchParams={mockSetCourseSearchParams}
-        filterMode={['department']}
-      />
-    )
-
-    const departmentFilter = screen.getByRole('combobox')
-    expect(departmentFilter).toBeInTheDocument()
-  })
-
-  test('renders MHU filter when filterMode includes onlyMHU', () => {
-    render(
-      <SearchFilters
-        ancestorItem={ancestorItem}
-        courseSearchParams={courseSearchParams}
-        setCourseSearchParams={mockSetCourseSearchParams}
-        filterMode={['onlyMHU']}
-      />
-    )
-
-    const mhuFilter = screen.getByRole('checkbox')
-    expect(mhuFilter).toBeInTheDocument()
   })
 })
