@@ -49,10 +49,14 @@
       width: -webkit-fill-available;
     }
     & .clear-filters {
-      display: inline;
       float: inline-end;
       margin-left: space.$space-4;
       border: none;
+      &:before {
+        @include icons.icon-filter-off;
+        background-color: var(--color-text);
+        margin-right: space.$space-4;
+      }
     }
   }
 }
@@ -68,7 +72,7 @@
     outline: none;
     @extend .menu;
     &:before {
-      @include icons.icon-menu; // this will be updated to the new icon later
+      @include icons.icon-filter;
     }
   }
 }

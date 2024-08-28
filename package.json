@@ -48,7 +48,7 @@
     "@kth/monitor": "^4.2.1",
     "@kth/server": "^4.1.0",
     "@kth/session": "^3.0.9",
-    "@kth/style": "^0.18.5",
+    "@kth/style": "^1.4.2",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "axios": "^1.6.7",
