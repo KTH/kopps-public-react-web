@@ -50,6 +50,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ caption, onSubmit, realTimeUp
         <label htmlFor="pattern">{searchLabel}</label>
         <input
           id="pattern"
+          data-testid="pattern"
           type="text"
           onChange={handleChange}
           maxLength={80}

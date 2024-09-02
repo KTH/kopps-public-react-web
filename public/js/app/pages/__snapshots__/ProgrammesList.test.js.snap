@@ -185,6 +185,7 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Engl
                 Search programme syllabus
               </label>
               <input
+                data-testid="pattern"
                 id="pattern"
                 maxlength="80"
                 name="pattern"
@@ -472,6 +473,7 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Swed
                 Sök utbildningsplan
               </label>
               <input
+                data-testid="pattern"
                 id="pattern"
                 maxlength="80"
                 name="pattern"
