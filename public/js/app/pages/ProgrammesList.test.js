@@ -269,12 +269,18 @@ describe('Render component ProgrammesList and check its menu, content and links'
     )
     expect(content).toBeInTheDocument()
   })
-  test('test search', () => {
+  test('test searching for Arkitekt', () => {
     const inputText = 'Arkitekt'
     render(<FilteredProgrammesListWithLayout lang="sv" input={inputText} />)
     const links = screen.getAllByRole('link')
     expect(links.length).toBe(10)
     expect(links[6]).toHaveTextContent('Arkitektutbildning (ARKIT)')
     expect(links[7]).toHaveTextContent('Arkitektutbildning (A)')
+  })
+  test('test searching for something that does not exist', () => {
+    const inputText = 'Arkkkitekt'
+    render(<FilteredProgrammesListWithLayout lang="sv" input={inputText} />)
+    const links = screen.getAllByRole('link')
+    expect(links.length).toBe(8)
   })
 })
