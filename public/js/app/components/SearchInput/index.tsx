@@ -5,13 +5,9 @@ import i18n from '../../../../../i18n'
 import { SearchInputProps } from './types'
 import { useCourseSearchParams } from '../../hooks/useCourseSearchParams'
 
-const SearchInput: React.FC<SearchInputProps> = ({ caption, onSubmit, disabled }) => {
-  const { languageIndex } = useStore()
+const SearchInput: React.FC<SearchInputProps> = ({ caption, onSubmit, realTimeUpdates = false, searchLabel, disabled }) => {
   const [courseSearchParams, setCourseSearchParams] = useCourseSearchParams()
   const [inputText, setInputText] = useState<string>(courseSearchParams.pattern)
-
-  const { generalSearch } = i18n.messages[languageIndex]
-  const { searchLabel } = generalSearch
 
   useEffect(() => {
     if (courseSearchParams.pattern !== inputText) setInputText(courseSearchParams.pattern)
@@ -23,6 +19,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ caption, onSubmit, disabled }
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value)
+    if (realTimeUpdates) onSubmit(e.target.value)
   }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -62,9 +59,11 @@ const SearchInput: React.FC<SearchInputProps> = ({ caption, onSubmit, disabled }
           disabled={disabled}
         />
       </div>
-      <button disabled={disabled} className="kth-button primary" type="submit" style={SubmitStyles}>
-        {caption}
-      </button>
+      {!realTimeUpdates && (
+        <button disabled={disabled} className="kth-button primary" type="submit" style={SubmitStyles}>
+          {caption}
+        </button>
+      )}
     </form>
   )
 }

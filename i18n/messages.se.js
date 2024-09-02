@@ -303,6 +303,9 @@ const messages = {
       table: 'Kompakt',
     },
   },
+  programmeSyllabusSearch: {
+    searchLabel: 'Sök utbildningsplan',
+  },
   literatureList: {
     title: (term, schoolCode) => `Litteraturlista ${term} ${schoolCode}`,
     heading: 'Litteraturlista',

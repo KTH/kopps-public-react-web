@@ -312,6 +312,9 @@ const messages = {
       table: 'Compact',
     },
   },
+  programmeSyllabusSearch: {
+    searchLabel: 'Search programme syllabus',
+  },
   literatureList: {
     title: (term, schoolCode) => `Reading list ${term} ${schoolCode}`,
     heading: 'Reading list',

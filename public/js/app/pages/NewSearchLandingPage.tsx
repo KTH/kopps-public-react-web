@@ -24,6 +24,8 @@ const paramsReducer = (state: CourseSearchParams, action: any) => ({ ...state, .
 
 const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.default }) => {
   const { languageIndex, language } = useStore()
+  const { generalSearch } = i18n.messages[languageIndex]
+  const { searchLabel } = generalSearch
   useLangHrefUpdate()
   const { bigSearch, searchInstructions, thirdCycleSearch, thirdCycleSearchInstructions } = i18n.messages[languageIndex]
   const { searchHeading: defaultSearchHeading, searchButton, leadIntro: defaultSearchLeadIntro } = bigSearch
@@ -122,7 +124,7 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
     <div className="search-landing-page">
       <PageHeading>{searchHeading}</PageHeading>
       <Lead text={leadIntro} />
-      <SearchInput caption={searchButton} onSubmit={handleSubmit} />
+      <SearchInput caption={searchButton} onSubmit={handleSubmit} searchLabel={searchLabel}/>
       <SearchFilters
         searchMode={searchMode}
         courseSearchParams={courseSearchParams}

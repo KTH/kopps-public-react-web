@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Col, Row } from 'reactstrap'
 import { PageHeading, LinkList, Link } from '@kth/kth-reactstrap/dist/components/studinfo'
 import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
+import { SearchInput } from '../components'
+import i18n from '../../../../i18n'
 
 import Lead from '../components/Lead'
 import FooterContent from '../components/FooterContent'
@@ -12,6 +14,7 @@ import translate from '../../../../domain/translate'
 import { programmeLink } from '../util/links'
 import { formatShortTerm } from '../../../../domain/term'
 import Article from '../components/Article'
+import { filterProgrammeSyllabuses } from '../util/filterProgrammeSyllabuses'
 
 function Heading({ size, text, id }) {
   switch (size) {
@@ -103,9 +106,18 @@ function ObsololeteProgrammesList({ programmeType, programmes = [] }) {
   )
 }
 
-function ProgrammesList() {
-  const { language, programmes } = useStore()
+const ProgrammesList = () => {
+  const { language, languageIndex, programmes } = useStore()
   const t = translate(language)
+  const { programmeSyllabusSearch } = i18n.messages[languageIndex]
+  const { searchLabel } = programmeSyllabusSearch
+
+  const [filteredProgrammes, setFilteredProgrammes] = useState(programmes)
+
+  function handleInputChange(searchInput) {
+    const filtered = filterProgrammeSyllabuses(searchInput, programmes)
+    setFilteredProgrammes(filtered)
+  }
 
   return (
     <>
@@ -117,8 +129,18 @@ function ProgrammesList() {
       </Row>
       <Row>
         <Col>
+          <SearchInput
+            caption="Programme-Syllabuses"
+            onSubmit={handleInputChange}
+            realTimeUpdates={true}
+            searchLabel={searchLabel}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
           <Article>
-            {programmes.map(programme => {
+            {filteredProgrammes.map(programme => {
               const currentProgrammes = programme[1].first
               const obsoleteProgrammes = programme[1].second
               return (
