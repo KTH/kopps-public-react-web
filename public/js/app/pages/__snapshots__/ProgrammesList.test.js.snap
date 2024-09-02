@@ -171,6 +171,37 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Engl
         <div
           class="col"
         >
+          <form
+            aria-label="Programme-Syllabuses"
+            class="form-group"
+            name="searchForm"
+            role="search"
+            style="display: flex; align-items: end;"
+          >
+            <div>
+              <label
+                for="pattern"
+              >
+                Search programme syllabus
+              </label>
+              <input
+                id="pattern"
+                maxlength="80"
+                name="pattern"
+                size="50"
+                type="text"
+                value=""
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col"
+        >
           <article
             class="article article--no-start-margin "
           >
@@ -419,6 +450,37 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Swed
               Här hittar du alla utbildningsplaner på KTH. Varje årskull inom ett program har en egen utbildningsplan. I utbildningsplanen finns information om bland annat vilka kurser som ingår i programmet och vad som gäller för urval och behörighet.
             </p>
           </div>
+        </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="col"
+        >
+          <form
+            aria-label="Programme-Syllabuses"
+            class="form-group"
+            name="searchForm"
+            role="search"
+            style="display: flex; align-items: end;"
+          >
+            <div>
+              <label
+                for="pattern"
+              >
+                Sök utbildningsplan
+              </label>
+              <input
+                id="pattern"
+                maxlength="80"
+                name="pattern"
+                size="50"
+                type="text"
+                value=""
+              />
+            </div>
+          </form>
         </div>
       </div>
       <div
