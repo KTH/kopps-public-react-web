@@ -110,7 +110,7 @@ const ProgrammesList = () => {
   const { language, languageIndex, programmes } = useStore()
   const t = translate(language)
   const { programmeSyllabusSearch } = i18n.messages[languageIndex]
-  const { searchLabel } = programmeSyllabusSearch
+  const { searchLabel, noResults } = programmeSyllabusSearch
 
   const [filteredProgrammes, setFilteredProgrammes] = useState(programmes)
 
@@ -140,6 +140,7 @@ const ProgrammesList = () => {
       <Row>
         <Col>
           <Article>
+            {filteredProgrammes.length == 0 && <p>{noResults}</p>}
             {filteredProgrammes.map(programme => {
               const currentProgrammes = programme[1].first
               const obsoleteProgrammes = programme[1].second

@@ -314,6 +314,7 @@ const messages = {
   },
   programmeSyllabusSearch: {
     searchLabel: 'Search programme syllabus',
+    noResults: 'No results found',
   },
   literatureList: {
     title: (term, schoolCode) => `Reading list ${term} ${schoolCode}`,

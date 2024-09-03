@@ -305,6 +305,7 @@ const messages = {
   },
   programmeSyllabusSearch: {
     searchLabel: 'Sök utbildningsplan',
+    noResults: 'Inga resultat hittades',
   },
   literatureList: {
     title: (term, schoolCode) => `Litteraturlista ${term} ${schoolCode}`,
