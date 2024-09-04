@@ -99,7 +99,7 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
         )
         stringifiedSearchParams = stringifyUrlParams(filteredParams)
         navigate({
-          pathname: '/student/kurser/sokkurs-ny-design/resultat',
+          pathname: '/student/kurser/sokkurs-beta/resultat',
           search: `?${stringifiedSearchParams}`,
         })
         break
@@ -109,7 +109,7 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
         )
         stringifiedSearchParams = stringifyUrlParams(filteredParams)
         navigate({
-          pathname: '/utbildning/forskarutbildning/kurser/sok-ny-design/resultat',
+          pathname: '/utbildning/forskarutbildning/kurser/sok-beta/resultat',
           search: `?${stringifiedSearchParams}`,
         })
       default:
@@ -132,7 +132,7 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
         <HelpTexts {...helptextsProps} />
       </CollapseDetails>
       {searchMode === SEARCH_MODES.thirdCycleCourses && (
-        <a className="link-to" href={pageLink('/student/kurser/sokkurs-ny-design?l=en', language)}>
+        <a className="link-to" href={pageLink('/student/kurser/sokkurs-beta?l=en', language)}>
           {linkToUsualSearch}
         </a>
       )}

@@ -58,7 +58,7 @@ describe('<NewSearchLandingPage />', () => {
     fireEvent.click(button)
 
     expect(mockNavigate).toHaveBeenCalledWith({
-      pathname: '/student/kurser/sokkurs-ny-design/resultat',
+      pathname: '/student/kurser/sokkurs-beta/resultat',
       search: '?',
     })
   })
@@ -95,7 +95,7 @@ describe('<NewSearchLandingPage />', () => {
     })
 
     expect(mockNavigate).toHaveBeenCalledWith({
-      pathname: '/student/kurser/sokkurs-ny-design/resultat',
+      pathname: '/student/kurser/sokkurs-beta/resultat',
       search: `?${searchParams}`,
     })
   })
@@ -121,7 +121,7 @@ describe('<NewSearchLandingPage />', () => {
     })
 
     expect(mockNavigate).toHaveBeenCalledWith({
-      pathname: '/student/kurser/sokkurs-ny-design/resultat',
+      pathname: '/student/kurser/sokkurs-beta/resultat',
       search: `?${searchParams}`,
     })
   })
@@ -140,7 +140,7 @@ describe('<NewSearchLandingPage />', () => {
     })
 
     expect(mockNavigate).toHaveBeenCalledWith({
-      pathname: '/utbildning/forskarutbildning/kurser/sok-ny-design/resultat',
+      pathname: '/utbildning/forskarutbildning/kurser/sok-beta/resultat',
       search: `?${searchParams}`,
     })
   })
@@ -168,7 +168,7 @@ describe('<NewSearchLandingPage />', () => {
     })
 
     expect(mockNavigate).toHaveBeenCalledWith({
-      pathname: '/student/kurser/sokkurs-ny-design/resultat',
+      pathname: '/student/kurser/sokkurs-beta/resultat',
       search: `?${searchParams}`,
     })
   })

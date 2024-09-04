@@ -161,7 +161,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
                 We have designed and developed a new search function for the Course and Program Catalog that you can test here! You can and are welcome to leave feedback on what you think of the new search function!
               </p>
               <a
-                href="/student/kurser/sokkurs-ny-design?l=en"
+                href="/student/kurser/sokkurs-beta?l=en"
               >
                 Search courses (beta)
               </a>
@@ -863,7 +863,7 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
                 Vi har designat och utvecklat en ny sökfunktion för Kurs- och programkatalogen som du kan testa här! Du kan och får gärna lämna feedback på vad du tycker om den nya sökfunktionen!
               </p>
               <a
-                href="/student/kurser/sokkurs-ny-design"
+                href="/student/kurser/sokkurs-beta"
               >
                 Sök kurser (beta)
               </a>

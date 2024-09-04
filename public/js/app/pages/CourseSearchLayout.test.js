@@ -144,7 +144,7 @@ describe('Render component CourseSearch and check its menu, content and links', 
     expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
 
     expect(links[5]).toHaveTextContent('Search courses (beta)')
-    expect(links[5].href).toStrictEqual('http://localhost/student/kurser/sokkurs-ny-design?l=en')
+    expect(links[5].href).toStrictEqual('http://localhost/student/kurser/sokkurs-beta?l=en')
 
     expect(links[6]).toHaveTextContent('kopps@kth.se') // address in search instructions, link
     expect(links[6].href).toStrictEqual('mailto:kopps@kth.se')
@@ -176,7 +176,7 @@ describe('Render component CourseSearch and check its menu, content and links', 
     expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
 
     expect(links[5]).toHaveTextContent('Sök kurser (beta)')
-    expect(links[5].href).toStrictEqual('http://localhost/student/kurser/sokkurs-ny-design')
+    expect(links[5].href).toStrictEqual('http://localhost/student/kurser/sokkurs-beta')
 
     expect(links[6]).toHaveTextContent('kopps@kth.se') // address in search instructions, link
     expect(links[6].href).toStrictEqual('mailto:kopps@kth.se')

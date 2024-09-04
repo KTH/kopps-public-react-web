@@ -10,6 +10,7 @@ import Article from '../Article'
 import SearchAlert from '../SearchAlert'
 import SearchResultHeader from './SearchResultHeader'
 import SearchResultComponent from './SearchResultComponent'
+import { AlertType } from '../SearchAlert/types'
 
 const isKoppsCourseSearchResult = (data: string | KoppsCourseSearchResult): data is KoppsCourseSearchResult => {
   return (data as KoppsCourseSearchResult).searchHits !== undefined
@@ -20,7 +21,12 @@ const NewSearchResultDisplay: React.FC<SearchResultDisplayParams> = ({ resultsSt
   const { data: searchResults, status: searchStatus, error: errorType } = resultsState
 
   if (errorType) {
-    return <SearchAlert alertType={errorType} languageIndex={languageIndex} />
+    return (
+      <SearchAlert
+        alertType={errorType === ('errorOverflow' || 'errorEmpty') ? (`${errorType}Beta` as AlertType) : errorType}
+        languageIndex={languageIndex}
+      />
+    )
   }
 
   return (

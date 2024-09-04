@@ -91,7 +91,7 @@ const CourseSearch = () => {
           <Alert header={beta_version_title}>
             <p>{beta_version_description}</p>
 
-            <Link href={pageLink('/student/kurser/sokkurs-ny-design', language)}>{beta_version_link}</Link>
+            <Link href={pageLink('/student/kurser/sokkurs-beta', language)}>{beta_version_link}</Link>
           </Alert>
         </Col>
       </Row>
