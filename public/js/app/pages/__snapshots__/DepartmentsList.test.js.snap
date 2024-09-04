@@ -62,13 +62,6 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Eng
             </li>
             <li>
               <a
-                href="/student/kurser/sokkurs-ny-design"
-              >
-                Search courses (new)
-              </a>
-            </li>
-            <li>
-              <a
                 aria-current="page"
                 href="/student/kurser/org"
               >
@@ -115,13 +108,6 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Eng
             href="/student/kurser/sokkurs"
           >
             Search courses
-          </a>
-        </li>
-        <li>
-          <a
-            href="/student/kurser/sokkurs-ny-design"
-          >
-            Search courses (new)
           </a>
         </li>
         <li>
@@ -288,13 +274,6 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Swe
             </li>
             <li>
               <a
-                href="/student/kurser/sokkurs-ny-design"
-              >
-                Sök kurser (ny)
-              </a>
-            </li>
-            <li>
-              <a
                 aria-current="page"
                 href="/student/kurser/org"
               >
@@ -341,13 +320,6 @@ exports[`Render component DepartmentsList within Layout match to snapshot in Swe
             href="/student/kurser/sokkurs"
           >
             Sök kurser
-          </a>
-        </li>
-        <li>
-          <a
-            href="/student/kurser/sokkurs-ny-design"
-          >
-            Sök kurser (ny)
           </a>
         </li>
         <li>

@@ -92,10 +92,10 @@ const messages = {
     main_menu_page_example: 'Example',
     main_menu_shb: 'Studies before 07/08',
     main_menu_search_all: 'Search courses',
-    main_menu_search_all_new: 'Search courses (new)',
+    main_menu_search_all_new: 'Search courses (beta)',
     main_menu_third_cycle_studies: 'Doctoral studies (PhD)',
     main_menu_third_cycle_courses_search: 'Search third-cycle courses',
-    main_menu_third_cycle_courses_search_new: 'Search third-cycle courses (new)',
+    main_menu_third_cycle_courses_search_new: 'Search third-cycle courses (beta)',
 
     main_page_header_example: 'Example',
     main_page_article_lead_example:
@@ -279,6 +279,10 @@ const messages = {
       'You may select to show courses that are no longer offered or dormant at KTH (terminated courses). By default, these are not shown.',
     search_help_10:
       'If you have questions or feedback on the course search, please contact <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
+    beta_version_title: 'Want to try our new search function?',
+    beta_version_description:
+      'We have designed and developed a new search function for the Course and Program Catalog that you can test here! You can and are welcome to leave feedback on what you think of the new search function!',
+    beta_version_link: 'Search courses (beta)',
   },
   thirdCycleSearchInstructions: {
     search_help_collapse_header: 'Instructions for searching',
@@ -290,6 +294,10 @@ const messages = {
     search_research_help_5: 'Courses that are no longer offered or dormant at KTH are not shown.',
     search_research_help_6:
       'You can filter on courses that deal with environment, environmental technology, or sustainable development.',
+    beta_version_title: 'Want to try our new search function?',
+    beta_version_description:
+      'We have designed and developed a new search function for the Course and Program Catalog that you can test here! You can and are welcome to leave feedback on what you think of the new search function!',
+    beta_version_link: 'Search third-cycle courses (beta)',
   },
   generalSearch: {
     collapseHeaderOtherSearchOptions: 'Filter your search choices',

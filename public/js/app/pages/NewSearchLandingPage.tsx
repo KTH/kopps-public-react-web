@@ -17,8 +17,7 @@ import { getHelpText } from '../util/newSearchHelper'
 import { useLangHrefUpdate } from '../hooks/useLangHrefUpdate'
 import { SearchFilters } from '../components'
 import { stringifyUrlParams } from '../../../../domain/searchParams'
-import { FILTER_MODES } from '../components/SearchFilters/types'
-import { courseSearchLink } from '../util/links'
+import { pageLink } from '../util/links'
 
 const paramsReducer = (state: CourseSearchParams, action: any) => ({ ...state, ...action })
 
@@ -133,7 +132,7 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
         <HelpTexts {...helptextsProps} />
       </CollapseDetails>
       {searchMode === SEARCH_MODES.thirdCycleCourses && (
-        <a className="link-to" href={courseSearchLink('sokkurs', language)}>
+        <a className="link-to" href={pageLink('/student/kurser/sokkurs-ny-design?l=en', language)}>
           {linkToUsualSearch}
         </a>
       )}
