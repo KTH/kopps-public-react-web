@@ -1,8 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint no-use-before-define: ["error", "nofunc"] */
 
-// @ts-check
-
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
@@ -14,6 +12,7 @@ import '../../css/node-web.scss'
 
 import Appendix1 from './pages/Appendix1'
 import Appendix2 from './pages/Appendix2'
+import NewSearchLandingPage from './pages/NewSearchLandingPage'
 import CourseSearch from './pages/CourseSearch'
 import CourseSearchThirdCycleStudy from './pages/CourseSearchThirdCycleStudy'
 import Curriculum from './pages/Curriculum'
@@ -28,9 +27,11 @@ import Programme from './pages/Programme'
 import ProgrammesList from './pages/ProgrammesList'
 import PageLayout from './layout/PageLayout'
 import ElementWrapper from './components/ElementWrapper'
+import SearchPageWrapper from './components/SearchPageWrapper'
 import StudyHandbook from './pages/StudyHandbook'
 import ThirdCycleDepartmentsList from './pages/ThirdCycleDepartmentsList'
 import ProgramSyllabusExport from './pages/ProgramSyllabusExport'
+import NewSearchPage from './pages/NewSearchPage'
 
 import getCurriculumMenuData from './config/curriculumMenuData'
 import getDepartmentMenuData from './config/departmentMenuData'
@@ -40,6 +41,7 @@ import getProgrammeMenuData from './config/programmeMenuData'
 import getStudyProgrammeMenuData from './config/studyProgrammeMenuData'
 import getThirdCycleDepartmentMenuData from './config/thirdCycleDepartmentMenuData'
 import getThirdCycleMenuData from './config/thirdCycleMenuData'
+import { SEARCH_MODES } from './pages/types/searchPageTypes'
 
 export default appFactory
 
@@ -78,6 +80,9 @@ function _renderOnClientSide() {
 }
 
 function appFactory(serverSideApplicationStore = null) {
+  const sharedInitApplicationStoreCallback = {
+    newSearchPage: () => _initStore({ storeId: 'newSearchPage' }),
+  }
   return (
     <Routes>
       <Route
@@ -88,7 +93,7 @@ function appFactory(serverSideApplicationStore = null) {
           <ElementWrapper
             component={StudyHandbook}
             layout={PageLayout}
-            applicationStore={_initStore({ caller: 'StudyHandbook' })}
+            initApplicationStoreCallback={() => _initStore({ caller: 'StudyHandbook' })}
             createMenuData={store => ({ selectedId: 'shb', ...getMenuData(store) })}
           />
         }
@@ -101,7 +106,7 @@ function appFactory(serverSideApplicationStore = null) {
           <ElementWrapper
             component={ProgrammesList}
             layout={PageLayout}
-            applicationStore={_initStore({ caller: 'ProgrammesList' })}
+            initApplicationStoreCallback={() => _initStore({ caller: 'ProgrammesList' })}
             createMenuData={store => ({ selectedId: 'programmesList', ...getMenuData(store) })}
           />
         }
@@ -114,8 +119,61 @@ function appFactory(serverSideApplicationStore = null) {
           <ElementWrapper
             component={CourseSearch}
             layout={PageLayout}
-            applicationStore={_initStore({ caller: 'CourseSearch' })}
+            initApplicationStoreCallback={() => _initStore({ caller: 'CourseSearch' })}
             createMenuData={store => ({ selectedId: 'searchAllCourses', ...getMenuData(store) })}
+          />
+        }
+      />
+      <Route
+        key="new-search-page"
+        exact
+        path="/student/kurser/sokkurs-ny-design"
+        element={
+          <ElementWrapper
+            component={NewSearchLandingPage}
+            layout={PageLayout}
+            initApplicationStoreCallback={sharedInitApplicationStoreCallback['newSearchPage']}
+            createMenuData={store => ({ selectedId: 'searchAllCourses-new', ...getMenuData(store) })}
+          />
+        }
+      />
+      <Route
+        key="new-search-page-result"
+        exact
+        path="/student/kurser/sokkurs-ny-design/resultat"
+        element={
+          <SearchPageWrapper
+            component={NewSearchPage}
+            initApplicationStoreCallback={sharedInitApplicationStoreCallback['newSearchPage']}
+          />
+        }
+      />
+      <Route
+        key="third-cycle-search-courses-new"
+        exact
+        path="/utbildning/forskarutbildning/kurser/sok-ny-design"
+        element={
+          <ElementWrapper
+            component={NewSearchLandingPage}
+            props={{ searchMode: SEARCH_MODES.thirdCycleCourses }}
+            layout={PageLayout}
+            initApplicationStoreCallback={sharedInitApplicationStoreCallback['newSearchPage']}
+            createMenuData={store => ({
+              selectedId: 'searchThirdCycleCoursesNew',
+              ...getThirdCycleMenuData(store),
+            })}
+          />
+        }
+      />
+      <Route
+        key="third-cycle-search-courses-result-new"
+        exact
+        path="/utbildning/forskarutbildning/kurser/sok-ny-design/resultat"
+        element={
+          <SearchPageWrapper
+            component={NewSearchPage}
+            props={{ searchMode: SEARCH_MODES.thirdCycleCourses }}
+            initApplicationStoreCallback={sharedInitApplicationStoreCallback['newSearchPage']}
           />
         }
       />
@@ -127,7 +185,7 @@ function appFactory(serverSideApplicationStore = null) {
           <ElementWrapper
             component={DepartmentsList}
             layout={PageLayout}
-            applicationStore={_initStore({ caller: 'DepartmentsList', serverSideApplicationStore })}
+            initApplicationStoreCallback={() => _initStore({ caller: 'DepartmentsList', serverSideApplicationStore })}
             createMenuData={store => ({
               selectedId: 'departmentsList',
               ...getMenuData(store),
@@ -143,7 +201,7 @@ function appFactory(serverSideApplicationStore = null) {
           <ElementWrapper
             component={DepartmentCourses}
             layout={PageLayout}
-            applicationStore={_initStore({ caller: 'DepartmentCourses' })}
+            initApplicationStoreCallback={() => _initStore({ caller: 'DepartmentCourses' })}
             createMenuData={store => ({ selectedId: 'courses', ...getDepartmentMenuData(store) })}
           />
         }
@@ -156,7 +214,7 @@ function appFactory(serverSideApplicationStore = null) {
           <ElementWrapper
             component={Programme}
             layout={PageLayout}
-            applicationStore={_initStore({ caller: 'Programme' })}
+            initApplicationStoreCallback={() => _initStore({ caller: 'Programme' })}
             createMenuData={store => ({ selectedId: 'studyYears', ...getProgrammeMenuData(store) })}
           />
         }
@@ -169,7 +227,7 @@ function appFactory(serverSideApplicationStore = null) {
           <ElementWrapper
             component={ThirdCycleDepartmentsList}
             layout={PageLayout}
-            applicationStore={_initStore({ caller: 'ThirdCycleDepartmentsList' })}
+            initApplicationStoreCallback={() => _initStore({ caller: 'ThirdCycleDepartmentsList' })}
             createMenuData={store => ({
               selectedId: 'thirdCycleDepartmentsList',
               ...getThirdCycleMenuData(store),
@@ -185,7 +243,7 @@ function appFactory(serverSideApplicationStore = null) {
           <ElementWrapper
             component={DepartmentCourses}
             layout={PageLayout}
-            applicationStore={_initStore({ caller: 'DepartmentCourses' })}
+            initApplicationStoreCallback={() => _initStore({ caller: 'DepartmentCourses' })}
             createMenuData={store => ({
               selectedId: 'courses',
               ...getThirdCycleDepartmentMenuData(store),
@@ -201,7 +259,7 @@ function appFactory(serverSideApplicationStore = null) {
           <ElementWrapper
             component={CourseSearchThirdCycleStudy}
             layout={PageLayout}
-            applicationStore={_initStore({ storeId: 'searchCourses' })}
+            initApplicationStoreCallback={() => _initStore({ storeId: 'searchCourses' })}
             createMenuData={store => ({
               selectedId: 'searchThirdCycleCourses',
               ...getThirdCycleMenuData(store),
@@ -217,7 +275,7 @@ function appFactory(serverSideApplicationStore = null) {
           <ElementWrapper
             component={Objectives}
             layout={PageLayout}
-            applicationStore={_initStore({ storeId: 'objective' })}
+            initApplicationStoreCallback={() => _initStore({ storeId: 'objective' })}
             createMenuData={store => ({
               selectedId: 'objectives',
               ...getStudyProgrammeMenuData(store),
@@ -233,7 +291,7 @@ function appFactory(serverSideApplicationStore = null) {
           <ElementWrapper
             component={Extent}
             layout={PageLayout}
-            applicationStore={_initStore({ storeId: 'extent' })}
+            initApplicationStoreCallback={() => _initStore({ storeId: 'extent' })}
             createMenuData={store => ({
               selectedId: 'extent',
               ...getStudyProgrammeMenuData(store),
@@ -249,7 +307,7 @@ function appFactory(serverSideApplicationStore = null) {
           <ElementWrapper
             component={Eligibility}
             layout={PageLayout}
-            applicationStore={_initStore({ storeId: 'eligibility' })}
+            initApplicationStoreCallback={() => _initStore({ storeId: 'eligibility' })}
             createMenuData={store => ({
               selectedId: 'eligibility',
               ...getStudyProgrammeMenuData(store),
@@ -265,7 +323,7 @@ function appFactory(serverSideApplicationStore = null) {
           <ElementWrapper
             component={Implementation}
             layout={PageLayout}
-            applicationStore={_initStore({ storeId: 'implementation' })}
+            initApplicationStoreCallback={() => _initStore({ storeId: 'implementation' })}
             createMenuData={store => ({
               selectedId: 'implementation',
               ...getStudyProgrammeMenuData(store),
@@ -281,7 +339,7 @@ function appFactory(serverSideApplicationStore = null) {
           <ElementWrapper
             component={Appendix1}
             layout={PageLayout}
-            applicationStore={_initStore({ storeId: 'appendix1', serverSideApplicationStore })}
+            initApplicationStoreCallback={() => _initStore({ storeId: 'appendix1', serverSideApplicationStore })}
             createMenuData={store => ({
               selectedId: 'appendix1',
               ...getStudyProgrammeMenuData(store),
@@ -297,7 +355,7 @@ function appFactory(serverSideApplicationStore = null) {
           <ElementWrapper
             component={Appendix2}
             layout={PageLayout}
-            applicationStore={_initStore({ storeId: 'appendix2' })}
+            initApplicationStoreCallback={() => _initStore({ storeId: 'appendix2' })}
             createMenuData={store => ({
               selectedId: 'appendix2',
               ...getStudyProgrammeMenuData(store),
@@ -313,7 +371,7 @@ function appFactory(serverSideApplicationStore = null) {
           <ElementWrapper
             component={Curriculum}
             layout={PageLayout}
-            applicationStore={_initStore({ storeId: 'curriculum' })}
+            initApplicationStoreCallback={() => _initStore({ storeId: 'curriculum' })}
             createMenuData={store => ({
               selectedId: `year-${store.studyYear}`,
               ...getCurriculumMenuData(store),
@@ -329,7 +387,7 @@ function appFactory(serverSideApplicationStore = null) {
           <ElementWrapper
             component={LiteratureList}
             layout={PageLayout}
-            applicationStore={_initStore({ storeId: 'literatureList' })}
+            initApplicationStoreCallback={() => _initStore({ storeId: 'literatureList' })}
             createMenuData={store => ({
               selectedId: store.selectedSchoolCode,
               ...getLiteratureList(store),
@@ -340,7 +398,7 @@ function appFactory(serverSideApplicationStore = null) {
       <Route
         key="programme-pdf"
         path="/student/kurser/program/:programmeCodeAndTertm.pdf"
-        element={<ProgramSyllabusExport applicationStore={_initStore({ storeId: 'pdfStore' })} />}
+        element={<ProgramSyllabusExport initApplicationStoreCallback={() => _initStore({ storeId: 'pdfStore' })} />}
       />
     </Routes>
   )

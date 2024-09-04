@@ -1,7 +1,5 @@
 /* eslint no-use-before-define: ["error", "nofunc"] */
 
-// @ts-check
-
 import React from 'react'
 import { StaticRouter } from 'react-router-dom/server'
 import { enableStaticRendering } from 'mobx-react'

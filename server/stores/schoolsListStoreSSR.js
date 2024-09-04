@@ -5,8 +5,6 @@ const i18n = require('../../i18n')
 const koppsApi = require('../kopps/koppsApi')
 const { compareSchools, filterOutDeprecatedSchools } = require('../../domain/schools')
 
-// @ts-check
-
 module.exports = {
   fillStoreWithBasicConfig,
   fetchAndFillSchoolsList,

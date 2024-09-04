@@ -92,8 +92,10 @@ const messages = {
     main_menu_page_example: 'Example',
     main_menu_shb: 'Studies before 07/08',
     main_menu_search_all: 'Search courses',
+    main_menu_search_all_new: 'Search courses (new)',
     main_menu_third_cycle_studies: 'Doctoral studies (PhD)',
     main_menu_third_cycle_courses_search: 'Search third-cycle courses',
+    main_menu_third_cycle_courses_search_new: 'Search third-cycle courses (new)',
 
     main_page_header_example: 'Example',
     main_page_article_lead_example:
@@ -255,6 +257,7 @@ const messages = {
     department: 'School, department, etc',
     departmentsAll: 'All schools',
     departmentsWithin: 'All within',
+    clearFilters: 'Clear filters',
   },
   searchInstructions: {
     search_help_collapse_header: 'Instructions for searching',
@@ -292,6 +295,7 @@ const messages = {
     collapseHeaderOtherSearchOptions: 'Filter your search choices',
     searchStartPeriodPrefix: 'Course Start',
     resultsHeading: 'Search results',
+    showResults: 'Show results',
     searchLabel: 'Search by course name or course code',
     searchText: 'Example of course code: SF1624',
     searchLoading: 'Searching ...',
@@ -299,6 +303,14 @@ const messages = {
     errorEmpty: 'Your search returned no results.',
     errorOverflow: 'There were too many results.',
     noQueryProvided: 'No query restriction was specified',
+    courseHasNoRounds: 'Course offerings are missing for current or upcoming semesters',
+    courseHasNoRoundsInTableCell: 'Missing',
+    linkToInforKursval: 'The page before course selection',
+    filtersLabel: 'Filter your search choices',
+    toggleButton: {
+      list: 'Standard',
+      table: 'Compact',
+    },
   },
   literatureList: {
     title: (term, schoolCode) => `Reading list ${term} ${schoolCode}`,
@@ -315,12 +327,12 @@ const messages = {
     errorUnknown: { text: 'An unknown error occurred - failed to retrieve course data' },
     errorEmpty: {
       header: 'Your search returned no results',
-      help: 'For help, see the link below: Instructions for searching',
+      help: '',
     },
     errorOverflow: {
       header: 'There were too many results',
       text: 'There are too many courses that match your search critera. Please specify more characters/digits in the course name or course code (example of course code: SF1624).',
-      help: 'For help, see the link below: Instructions for searching',
+      help: '', // we don't have this link anymore so we should decide what we are going to show as a help text
     },
     noQueryProvided: {
       text: 'No query restriction was specified',

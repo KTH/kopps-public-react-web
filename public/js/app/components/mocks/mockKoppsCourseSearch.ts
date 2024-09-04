@@ -1,16 +1,19 @@
+import { ErrorAsync } from "../../hooks/types/UseCourseSearchTypes"
+import { SearchHits } from "../../util/types/SearchApiTypes"
+
 const TEST_API_ANSWER_OVERFLOW = {
-  searchHits: [],
-  errorCode: 'search-error-overflow',
+  searchHits: [] as SearchHits[],
+  errorCode: 'search-error-overflow' as ErrorAsync,
   errorMessage: 'search-error-overflow',
 }
 
 const TEST_API_ANSWER_NO_HITS = {
-  searchHits: [],
+  searchHits: [] as SearchHits[],
 }
 
 const TEST_API_ANSWER_UNKNOWN_ERROR = {
-  searchHits: [],
-  errorCode: 'search-error-unknown',
+  searchHits: [] as SearchHits[],
+  errorCode: 'search-error-unknown' as ErrorAsync,
   errorMessage: 'search-error-unknown',
 }
 const TEST_API_ANSWER_RESOLVED = {

@@ -48,7 +48,7 @@
     "@kth/monitor": "^4.2.1",
     "@kth/server": "^4.1.0",
     "@kth/session": "^3.0.9",
-    "@kth/style": "^0.18.5",
+    "@kth/style": "^1.4.2",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "axios": "^1.6.7",
@@ -115,7 +115,7 @@
     "terser-webpack-plugin": "^5.3.10",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.2",
+    "typescript": "^5.5.4",
     "webpack": "^5.90.3",
     "webpack-cli": "^5.1.4"
   },

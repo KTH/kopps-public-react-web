@@ -1,7 +1,5 @@
 /* eslint no-use-before-define: ["error", "nofunc"] */
 
-// @ts-check
-
 import React from 'react'
 
 import { createMobxManager } from './manager'
@@ -18,7 +16,6 @@ export default MobxStoreProvider
  * @param {string} [props.storeId]
  * @param {object} props.children
  *
- * @returns {object}
  */
 function MobxStoreProvider(props) {
   const { initCallback, storeId, children } = props

@@ -91,8 +91,10 @@ const messages = {
     main_menu_page_example: 'Exempel',
     main_menu_shb: 'Studier före 07/08',
     main_menu_search_all: 'Sök kurser',
+    main_menu_search_all_new: 'Sök kurser (ny)',
     main_menu_third_cycle_studies: 'Forskarutbildning',
     main_menu_third_cycle_courses_search: 'Sök forskarkurs',
+    main_menu_third_cycle_courses_search_new: 'Sök forskarkurs (ny)',
 
     main_page_header_example: 'Exempel',
     main_page_article_lead_example: '”Stora miljoner dag, har.”',
@@ -249,6 +251,7 @@ const messages = {
     department: 'Skola, avdelning, etc',
     departmentsAll: 'Samtliga skolor',
     departmentsWithin: 'Alla inom',
+    clearFilters: 'Rensa filter',
   },
   searchInstructions: {
     search_help_collapse_header: 'Få hjälp med sökningen',
@@ -283,6 +286,7 @@ const messages = {
     collapseHeaderOtherSearchOptions: 'Filtrera dina sökval',
     searchStartPeriodPrefix: 'Kursstart',
     resultsHeading: 'Resultat från sökningen',
+    showResults: 'Visa resultat',
     searchLabel: 'Sök på kursnamn eller kurskod',
     searchText: 'Exempel på kurskod: SF1624',
     searchLoading: 'Söker ...',
@@ -290,6 +294,14 @@ const messages = {
     errorEmpty: 'Din sökning gav inga träffar.',
     errorOverflow: 'Sökningen gav för många träffar.',
     noQueryProvided: 'Ingen frågebegränsning angavs',
+    courseHasNoRounds: 'Kursomgångar saknas för aktuella eller kommande terminer',
+    courseHasNoRoundsInTableCell: 'Saknas',
+    linkToInforKursval: 'Sidan inför kursval',
+    filtersLabel: 'Filtrera dina sökval',
+    toggleButton: {
+      list: 'Standard',
+      table: 'Kompakt',
+    },
   },
   literatureList: {
     title: (term, schoolCode) => `Litteraturlista ${term} ${schoolCode}`,
@@ -311,7 +323,7 @@ const messages = {
     errorOverflow: {
       header: 'Sökningen gav för många träffar',
       text: 'Det finns för många kurser som matchar det du sökt på. Ange fler bokstäver/siffror i kursnamn eller kurskod (exempel på kurskod: SF1624).',
-      help: 'Mer hjälp hittar du i länken nedan: Få hjälp med sökningen',
+      help: '', // we don't have this link anymore so we should decide what we are going to show as a help text
     },
     noQueryProvided: {
       text: `Ingen frågebegränsning angavs`,

@@ -61,6 +61,7 @@ const WrapperDepartmentCourses = ({ lang }) => {
   const updatedApplicationStore = {
     ...applicationStore,
   }
+  const initApplicationStoreCallback = () => updatedApplicationStore
   return (
     <StaticRouter>
       <ElementWrapper
@@ -68,7 +69,7 @@ const WrapperDepartmentCourses = ({ lang }) => {
         path="/student/kurser/org/ADD"
         component={DepartmentCourses}
         layout={PageLayout}
-        applicationStore={updatedApplicationStore}
+        initApplicationStoreCallback={initApplicationStoreCallback}
         createMenuData={store => ({ selectedId: 'courses', ...getMenuDepartmentData(store) })}
       />
     </StaticRouter>

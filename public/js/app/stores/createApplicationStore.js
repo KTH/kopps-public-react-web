@@ -1,13 +1,12 @@
 /* eslint no-use-before-define: ["error", "nofunc"] */
 
-// @ts-check
-
 // eslint-disable-next-line no-unused-vars
 import { observable } from 'mobx'
 import createCommonStore from './commonStore'
 import createCurriculumStore from './curriculumStore'
 import createStudyProgrammeStore from './studyProgrammeStore'
 import createSearchCoursesStore from './searchCoursesStore'
+import { createNewSearchPageStore } from './newSearchPageStore'
 import createAppendix1Store from './appendix1Store'
 import createAppendix2Store from './appendix2Store'
 import createLiteratureStore from './literatureStore'
@@ -135,6 +134,12 @@ function createApplicationStore(storeId) {
       return {
         ...createCommonStore(),
         ...createCurriculumStore(),
+      }
+    case 'newSearchPage':
+      return {
+        ...createCommonStore(),
+        ...createStore(),
+        ...createNewSearchPageStore(),
       }
     case 'searchCourses':
       return {
