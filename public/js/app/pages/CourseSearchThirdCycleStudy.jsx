@@ -91,7 +91,7 @@ const CourseSearchThirdCycleStudy = () => {
           <Alert header={beta_version_title}>
             <p>{beta_version_description}</p>
 
-            <Link href={pageLink('/utbildning/forskarutbildning/kurser/sok-ny-design', lang)}>{beta_version_link}</Link>
+            <Link href={pageLink('/utbildning/forskarutbildning/kurser/sok-beta', lang)}>{beta_version_link}</Link>
           </Alert>
         </Col>
       </Row>

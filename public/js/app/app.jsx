@@ -127,7 +127,7 @@ function appFactory(serverSideApplicationStore = null) {
       <Route
         key="new-search-page"
         exact
-        path="/student/kurser/sokkurs-ny-design"
+        path="/student/kurser/sokkurs-beta"
         element={
           <ElementWrapper
             component={NewSearchLandingPage}
@@ -140,7 +140,7 @@ function appFactory(serverSideApplicationStore = null) {
       <Route
         key="new-search-page-result"
         exact
-        path="/student/kurser/sokkurs-ny-design/resultat"
+        path="/student/kurser/sokkurs-beta/resultat"
         element={
           <SearchPageWrapper
             component={NewSearchPage}
@@ -151,7 +151,7 @@ function appFactory(serverSideApplicationStore = null) {
       <Route
         key="third-cycle-search-courses-new"
         exact
-        path="/utbildning/forskarutbildning/kurser/sok-ny-design"
+        path="/utbildning/forskarutbildning/kurser/sok-beta"
         element={
           <ElementWrapper
             component={NewSearchLandingPage}
@@ -168,7 +168,7 @@ function appFactory(serverSideApplicationStore = null) {
       <Route
         key="third-cycle-search-courses-result-new"
         exact
-        path="/utbildning/forskarutbildning/kurser/sok-ny-design/resultat"
+        path="/utbildning/forskarutbildning/kurser/sok-beta/resultat"
         element={
           <SearchPageWrapper
             component={NewSearchPage}

@@ -328,10 +328,19 @@ const messages = {
       header: 'Din sökning gav inga träffar.',
       help: 'Mer hjälp hittar du i länken nedan: Få hjälp med sökningen',
     },
+    errorEmptyBeta: {
+      header: 'Din sökning gav inga träffar.',
+      // we don't have this link anymore so we should decide what we are going to show as a help text
+    },
     errorOverflow: {
       header: 'Sökningen gav för många träffar',
       text: 'Det finns för många kurser som matchar det du sökt på. Ange fler bokstäver/siffror i kursnamn eller kurskod (exempel på kurskod: SF1624).',
-      help: '', // we don't have this link anymore so we should decide what we are going to show as a help text
+      help: 'Mer hjälp hittar du i länken nedan: Få hjälp med sökningen',
+    },
+    errorOverflowBeta: {
+      header: 'Sökningen gav för många träffar',
+      text: 'Det finns för många kurser som matchar det du sökt på. Ange fler bokstäver/siffror i kursnamn eller kurskod (exempel på kurskod: SF1624).',
+      // we don't have this link anymore so we should decide what we are going to show as a help text
     },
     noQueryProvided: {
       text: `Ingen frågebegränsning angavs`,

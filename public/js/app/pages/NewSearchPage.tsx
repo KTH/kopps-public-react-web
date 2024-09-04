@@ -60,11 +60,11 @@ const NewSearchPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.de
 
   switch (searchMode) {
     case SEARCH_MODES.default:
-      ancestorItemObj = { href: '/student/kurser/sokkurs-ny-design', label: main_menu_search_all_new }
+      ancestorItemObj = { href: '/student/kurser/sokkurs-beta', label: main_menu_search_all_new }
       break
     case SEARCH_MODES.thirdCycleCourses:
       ancestorItemObj = {
-        href: '/utbildning/forskarutbildning/kurser/sok-ny-design',
+        href: '/utbildning/forskarutbildning/kurser/sok-beta',
         label: main_menu_third_cycle_courses_search_new,
       }
     default:
