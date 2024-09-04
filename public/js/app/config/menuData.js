@@ -29,12 +29,16 @@ function getMenuData(applicationStore) {
           text: t('main_menu_search_all'),
           url: pageLink(courseSearch),
         },
-        {
-          id: 'searchAllCourses-new',
-          type: 'leaf',
-          text: t('main_menu_search_all_new'),
-          url: pageLink(newSearchPage),
-        },
+        ...(applicationStore.isNewSearch
+          ? [
+              {
+                id: 'searchAllCourses-new',
+                type: 'leaf',
+                text: t('main_menu_search_all_new'),
+                url: pageLink(newSearchPage),
+              },
+            ]
+          : []),
         {
           id: 'departmentsList',
           type: 'leaf',

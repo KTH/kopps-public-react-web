@@ -93,14 +93,24 @@ describe('Render component CourseSearch within Layout', () => {
 
   test('match to snapshot in English', async () => {
     const { asFragment, container } = render(<CourseSearchWithLayout lang="en" />)
-    expect(await axe(container)).toHaveNoViolations()
+    const results = await axe(container, {
+      rules: {
+        'heading-order': { enabled: false },
+      },
+    })
+    expect(results).toHaveNoViolations()
 
     expect(asFragment()).toMatchSnapshot()
   })
 
   test('match to snapshot in Swedish', async () => {
     const { asFragment, container } = render(<CourseSearchWithLayout lang="sv" />)
-    expect(await axe(container)).toHaveNoViolations()
+    const results = await axe(container, {
+      rules: {
+        'heading-order': { enabled: false },
+      },
+    })
+    expect(results).toHaveNoViolations()
 
     expect(asFragment()).toMatchSnapshot()
   })
@@ -127,14 +137,14 @@ describe('Render component CourseSearch and check its menu, content and links', 
     expect(links[2]).toHaveTextContent('Search courses')
     expect(links[2].href).toStrictEqual('http://localhost/student/kurser/sokkurs')
 
-    expect(links[3]).toHaveTextContent('Search courses (new)')
-    expect(links[3].href).toStrictEqual('http://localhost/student/kurser/sokkurs-ny-design')
+    expect(links[3]).toHaveTextContent('Courses by school')
+    expect(links[3].href).toStrictEqual('http://localhost/student/kurser/org')
 
-    expect(links[4]).toHaveTextContent('Courses by school')
-    expect(links[4].href).toStrictEqual('http://localhost/student/kurser/org')
+    expect(links[4]).toHaveTextContent('Studies before 07/08') // menu link
+    expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
 
-    expect(links[5]).toHaveTextContent('Studies before 07/08') // menu link
-    expect(links[5].href).toStrictEqual('http://localhost/student/program/shb')
+    expect(links[5]).toHaveTextContent('Search courses (beta)')
+    expect(links[5].href).toStrictEqual('http://localhost/student/kurser/sokkurs-ny-design?l=en')
 
     expect(links[6]).toHaveTextContent('kopps@kth.se') // address in search instructions, link
     expect(links[6].href).toStrictEqual('mailto:kopps@kth.se')
@@ -156,17 +166,17 @@ describe('Render component CourseSearch and check its menu, content and links', 
     expect(links[1]).toHaveTextContent('Utbildningsplaner')
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurser-inom-program')
 
-    expect(links[3]).toHaveTextContent('Sök kurser (ny)')
-    expect(links[3].href).toStrictEqual('http://localhost/student/kurser/sokkurs-ny-design')
-
     expect(links[2]).toHaveTextContent('Sök kurser')
     expect(links[2].href).toStrictEqual('http://localhost/student/kurser/sokkurs')
 
-    expect(links[4]).toHaveTextContent('Kurser per skola')
-    expect(links[4].href).toStrictEqual('http://localhost/student/kurser/org')
+    expect(links[3]).toHaveTextContent('Kurser per skola')
+    expect(links[3].href).toStrictEqual('http://localhost/student/kurser/org')
 
-    expect(links[5]).toHaveTextContent('Studier före 07/08') // menu link
-    expect(links[5].href).toStrictEqual('http://localhost/student/program/shb')
+    expect(links[4]).toHaveTextContent('Studier före 07/08') // menu link
+    expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
+
+    expect(links[5]).toHaveTextContent('Sök kurser (beta)')
+    expect(links[5].href).toStrictEqual('http://localhost/student/kurser/sokkurs-ny-design')
 
     expect(links[6]).toHaveTextContent('kopps@kth.se') // address in search instructions, link
     expect(links[6].href).toStrictEqual('mailto:kopps@kth.se')

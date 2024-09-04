@@ -62,13 +62,6 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Engl
             </li>
             <li>
               <a
-                href="/student/kurser/sokkurs-ny-design"
-              >
-                Search courses (new)
-              </a>
-            </li>
-            <li>
-              <a
                 href="/student/kurser/org"
               >
                 Courses by school
@@ -114,13 +107,6 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Engl
             href="/student/kurser/sokkurs"
           >
             Search courses
-          </a>
-        </li>
-        <li>
-          <a
-            href="/student/kurser/sokkurs-ny-design"
-          >
-            Search courses (new)
           </a>
         </li>
         <li>
@@ -318,13 +304,6 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Swed
             </li>
             <li>
               <a
-                href="/student/kurser/sokkurs-ny-design"
-              >
-                Sök kurser (ny)
-              </a>
-            </li>
-            <li>
-              <a
                 href="/student/kurser/org"
               >
                 Kurser per skola
@@ -370,13 +349,6 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Swed
             href="/student/kurser/sokkurs"
           >
             Sök kurser
-          </a>
-        </li>
-        <li>
-          <a
-            href="/student/kurser/sokkurs-ny-design"
-          >
-            Sök kurser (ny)
           </a>
         </li>
         <li>

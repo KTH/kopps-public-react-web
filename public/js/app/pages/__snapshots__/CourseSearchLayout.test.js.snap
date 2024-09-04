@@ -62,13 +62,6 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
             </li>
             <li>
               <a
-                href="/student/kurser/sokkurs-ny-design"
-              >
-                Search courses (new)
-              </a>
-            </li>
-            <li>
-              <a
                 href="/student/kurser/org"
               >
                 Courses by school
@@ -118,13 +111,6 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
         </li>
         <li>
           <a
-            href="/student/kurser/sokkurs-ny-design"
-          >
-            Search courses (new)
-          </a>
-        </li>
-        <li>
-          <a
             href="/student/kurser/org"
           >
             Courses by school
@@ -162,6 +148,24 @@ exports[`Render component CourseSearch within Layout match to snapshot in Englis
             <p>
               Find info on KTH courses: course syllabus, course memo, and course analyses. Search by course name or course code, you can also filter by semester and period. Which courses are included in a program can be found under Programme syllabuses.
             </p>
+          </div>
+          <div
+            class="kth-alert info"
+            role="alert"
+          >
+            <h4>
+              Want to try our new search function?
+            </h4>
+            <div>
+              <p>
+                We have designed and developed a new search function for the Course and Program Catalog that you can test here! You can and are welcome to leave feedback on what you think of the new search function!
+              </p>
+              <a
+                href="/student/kurser/sokkurs-ny-design?l=en"
+              >
+                Search courses (beta)
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -760,13 +764,6 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
             </li>
             <li>
               <a
-                href="/student/kurser/sokkurs-ny-design"
-              >
-                Sök kurser (ny)
-              </a>
-            </li>
-            <li>
-              <a
                 href="/student/kurser/org"
               >
                 Kurser per skola
@@ -816,13 +813,6 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
         </li>
         <li>
           <a
-            href="/student/kurser/sokkurs-ny-design"
-          >
-            Sök kurser (ny)
-          </a>
-        </li>
-        <li>
-          <a
             href="/student/kurser/org"
           >
             Kurser per skola
@@ -860,6 +850,24 @@ exports[`Render component CourseSearch within Layout match to snapshot in Swedis
             <p>
               Här finns info om kurser på KTH: kursplan, kurs-PM och kursanalyser. Sök på kursnamn eller kurskod, du kan även filtrera på termin och läsperiod. Vilka kurser som ingår i ett program finns under Utbildningsplaner.
             </p>
+          </div>
+          <div
+            class="kth-alert info"
+            role="alert"
+          >
+            <h4>
+              Vill du prova vår nya sökfunktion?
+            </h4>
+            <div>
+              <p>
+                Vi har designat och utvecklat en ny sökfunktion för Kurs- och programkatalogen som du kan testa här! Du kan och får gärna lämna feedback på vad du tycker om den nya sökfunktionen!
+              </p>
+              <a
+                href="/student/kurser/sokkurs-ny-design"
+              >
+                Sök kurser (beta)
+              </a>
+            </div>
           </div>
         </div>
       </div>

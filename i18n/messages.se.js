@@ -91,10 +91,10 @@ const messages = {
     main_menu_page_example: 'Exempel',
     main_menu_shb: 'Studier före 07/08',
     main_menu_search_all: 'Sök kurser',
-    main_menu_search_all_new: 'Sök kurser (ny)',
+    main_menu_search_all_new: 'Sök kurser (beta)',
     main_menu_third_cycle_studies: 'Forskarutbildning',
     main_menu_third_cycle_courses_search: 'Sök forskarkurs',
-    main_menu_third_cycle_courses_search_new: 'Sök forskarkurs (ny)',
+    main_menu_third_cycle_courses_search_new: 'Sök forskarkurs (beta)',
 
     main_page_header_example: 'Exempel',
     main_page_article_lead_example: '”Stora miljoner dag, har.”',
@@ -271,6 +271,10 @@ const messages = {
       'Du kan välja att även visa kurser som ej längre ges på KTH. Standardinställning är att dessa inte visas.',
     search_help_10:
       'Om du har synpunkter eller frågor gällande kurssökningen, kontakta <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
+    beta_version_title: 'Vill du prova vår nya sökfunktion?',
+    beta_version_description:
+      'Vi har designat och utvecklat en ny sökfunktion för Kurs- och programkatalogen som du kan testa här! Du kan och får gärna lämna feedback på vad du tycker om den nya sökfunktionen!',
+    beta_version_link: 'Sök kurser (beta)',
   },
   thirdCycleSearchInstructions: {
     search_help_collapse_header: 'Få hjälp med sökningen',
@@ -281,6 +285,10 @@ const messages = {
       'Sökningen visar max 250 träffar. Får du för många träffar, försök att förfina sökvillkoren.',
     search_research_help_5: 'Forskarkurser som ej längre ges på KTH visas inte.',
     search_research_help_6: 'Du kan filtrera på kurser som behandlar miljö, miljöteknik eller hållbar utveckling.',
+    beta_version_title: 'Vill du prova vår nya sökfunktion?',
+    beta_version_description:
+      'Vi har designat och utvecklat en ny sökfunktion för Kurs- och programkatalogen som du kan testa här! Du kan och får gärna lämna feedback på vad du tycker om den nya sökfunktionen!',
+    beta_version_link: 'Sök forskarkurs (beta)',
   },
   generalSearch: {
     collapseHeaderOtherSearchOptions: 'Filtrera dina sökval',
