@@ -1,6 +1,8 @@
 FROM kthregistry.azurecr.io/kth-nodejs-18:latest
 LABEL maintainer="KTH-studadm studadm.developers@kth.se"
 
+RUN apk update && apk upgrade
+
 WORKDIR /application
 ENV NODE_PATH /application
 
