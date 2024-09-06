@@ -119,7 +119,7 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
 
   return (
     <div className="search-landing-page">
-      <PageHeading>{searchHeading}</PageHeading>
+      <PageHeading>{`${searchHeading} (beta)`}</PageHeading>
       <Lead text={leadIntro} />
       <SearchInput caption={searchButton} onSubmit={handleSubmit} />
       <SearchFilters

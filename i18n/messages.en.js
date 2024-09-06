@@ -343,12 +343,12 @@ const messages = {
     },
     errorOverflow: {
       header: 'There were too many results',
-      text: 'There are too many courses that match your search critera. Please specify more characters/digits in the course name or course code (example of course code: SF1624).',
+      text: 'There are too many courses that match your search critera. Please specify more characters/digits in the course name or course code (example of course code: SF1624)',
       help: 'For help, see the link below: Instructions for searching',
     },
     errorOverflowBeta: {
-      header: 'Sökningen gav för många träffar',
-      text: 'Det finns för många kurser som matchar det du sökt på. Ange fler bokstäver/siffror i kursnamn eller kurskod (exempel på kurskod: SF1624).',
+      header: 'There were too many results',
+      text: 'There are too many courses that match your search critera. Please specify more characters/digits in the course name or course code (example of course code: SF1624)',
       // we don't have this link anymore so we should decide what we are going to show as a help text
     },
     noQueryProvided: {
