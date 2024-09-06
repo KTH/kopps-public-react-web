@@ -22,7 +22,9 @@ const SearchInput: React.FC<SearchInputProps> = ({ caption, onSubmit, disabled }
   }, [courseSearchParams])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputText(e.target.value)
+    const { value } = e.target
+    const cleanTextPattern = value ? value.replace(/['"<>$]+/g, '') : ''
+    setInputText(cleanTextPattern)
   }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {

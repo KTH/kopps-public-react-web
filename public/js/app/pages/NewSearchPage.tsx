@@ -82,7 +82,7 @@ const NewSearchPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.de
         />
       </SidebarFilters>
       <MainContent>
-        <PageHeading>{resultsHeading}</PageHeading>
+        <PageHeading>{`${resultsHeading} (beta)`}</PageHeading>
         <SearchInput caption={searchButton} onSubmit={handlePatternChange} disabled={searchStatus === STATUS.pending} />
         <NewSearchResultDisplay resultsState={state as KoppsCourseSearchResultState} />
       </MainContent>
