@@ -320,6 +320,10 @@ const messages = {
       table: 'Compact',
     },
   },
+  programmeSyllabusSearch: {
+    searchLabel: 'Search programme syllabus',
+    noResults: 'No results found',
+  },
   literatureList: {
     title: (term, schoolCode) => `Reading list ${term} ${schoolCode}`,
     heading: 'Reading list',
