@@ -5,7 +5,13 @@ import i18n from '../../../../../i18n'
 import { SearchInputProps } from './types'
 import { useCourseSearchParams } from '../../hooks/useCourseSearchParams'
 
-const SearchInput: React.FC<SearchInputProps> = ({ caption, onSubmit, realTimeUpdates = false, searchLabel, disabled }) => {
+const SearchInput: React.FC<SearchInputProps> = ({
+  caption,
+  onSubmit,
+  realTimeUpdates = false,
+  searchLabel,
+  disabled,
+}) => {
   const [courseSearchParams, setCourseSearchParams] = useCourseSearchParams()
   const [inputText, setInputText] = useState<string>(courseSearchParams.pattern)
 
@@ -18,8 +24,10 @@ const SearchInput: React.FC<SearchInputProps> = ({ caption, onSubmit, realTimeUp
   }, [courseSearchParams])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputText(e.target.value)
-    if (realTimeUpdates) onSubmit(e.target.value)
+    const { value } = e.target
+    const cleanTextPattern = value ? value.replace(/['"<>$]+/g, '') : ''
+    setInputText(cleanTextPattern)
+    if (realTimeUpdates) onSubmit(cleanTextPattern)
   }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {

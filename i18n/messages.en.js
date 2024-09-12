@@ -281,7 +281,7 @@ const messages = {
       'If you have questions or feedback on the course search, please contact <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
     beta_version_title: 'Want to try our new search function?',
     beta_version_description:
-      'We have designed and developed a new search function for the Course and Program Catalog that you can test here! You can and are welcome to leave feedback on what you think of the new search function!',
+      'We have designed and developed a new search function for the Course and Program Catalog that you can test here!',
     beta_version_link: 'Search courses (beta)',
   },
   thirdCycleSearchInstructions: {
