@@ -10,7 +10,6 @@ module.exports = {
   Curriculum: require('./curriculumCtrl'),
   Department: require('./departmentCtrl'),
   Eligibility: require('./eligibilityCtrl'),
-  EmbeddedPage: require('./embeddedPagesCtrl'),
   Extent: require('./extentCtrl'),
   Implementation: require('./implementationCtrl'),
   LiteratureList: require('./literatureListCtrl'),
