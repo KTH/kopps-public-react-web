@@ -241,7 +241,6 @@ const appRoute = AppRouter()
 
 appRoute.get('redirect.pdf_program_plan', _addProgramProxy('/:programmeCodeAndTerm.pdf'), PDFExport.getIndex)
 
-appRoute.get('system.ready', _addProxy('/_ready'), Public.getReady)
 appRoute.get('public.studyhandbook', proxyPrefixPath.studyHandbook, StudyHandBook.getStudyBook)
 appRoute.get(
   'public.departmentsListThirdCycleStudy',
