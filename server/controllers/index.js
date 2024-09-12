@@ -16,7 +16,6 @@ module.exports = {
   Objectives: require('./objectivesCtrl'),
   Programme: require('./programmeCtrl'),
   ProgrammesList: require('./programmesListCtrl'),
-  Sample: require('./sampleCtrl'),
   SchoolsList: require('./schoolsListCtrl'),
   Search: require('./searchCtrl'),
   StudyHandBook: require('./studyHandBookCtrl'),
