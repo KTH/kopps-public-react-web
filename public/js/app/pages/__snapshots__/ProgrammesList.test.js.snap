@@ -224,7 +224,7 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Engl
                   >
                     Degree Programme in Architecture (ARKIT)
                   </a>
-                  , 300 hp, admitted/batch from Autumn 07
+                  , 300 credits, admitted/batch from Autumn 07
                 </li>
               </ul>
               <details
@@ -246,7 +246,7 @@ exports[`Render component ProgrammesList within Layout match to snapshot in Engl
                       >
                         Degree Programme in Architecture (A)
                       </a>
-                      , 270 hp, admitted/batch until Spring 07
+                      , 270 credits, admitted/batch until Spring 07
                     </li>
                   </ul>
                 </div>

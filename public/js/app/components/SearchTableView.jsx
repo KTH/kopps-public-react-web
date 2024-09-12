@@ -12,6 +12,7 @@ import i18n from '../../../../i18n'
 import { courseLink } from '../util/links'
 import { formatShortTerm } from '../../../../domain/term'
 import Article from './Article'
+import { translateCreditUnitAbbr } from '../util/translateCreditUnitAbbr'
 
 function codeCell(code, startTerm) {
   const { language } = useStore()
@@ -53,7 +54,7 @@ function periodsStr(startPeriod, startTerm, endPeriod, endTerm) {
   return `P${startPeriod} ${formatShortTerm(startTerm, language)} - P${endPeriod} ${formatShortTerm(endTerm, language)}`
 }
 
-function sortAndParseByCourseCode(courses, languageIndex, sliceUntilNum) {
+function sortAndParseByCourseCode(courses, languageIndex, language, sliceUntilNum) {
   const { bigSearch } = i18n.messages[languageIndex]
   courses.sort(compareCoursesBy('courseCode'))
   const parsedCourses = courses.map(
@@ -71,7 +72,7 @@ function sortAndParseByCourseCode(courses, languageIndex, sliceUntilNum) {
       [
         codeCell(code, startTerm),
         titleCell(code, title, startTerm),
-        `${credits} ${creditUnitAbbr}`,
+        `${credits} ${translateCreditUnitAbbr(language, creditUnitAbbr)}`,
         bigSearch[level] || '',
         periodsStr(startPeriod, startTerm, endPeriod, endTerm) || '',
       ].slice(0, sliceUntilNum)
@@ -107,7 +108,7 @@ const SearchTableView = ({ unsortedSearchResults }) => {
     t('department_period_abbr'),
   ].slice(0, sliceUntilNum)
 
-  const courses = sortAndParseByCourseCode(flatCoursesArr, languageIndex, sliceUntilNum)
+  const courses = sortAndParseByCourseCode(flatCoursesArr, languageIndex, language, sliceUntilNum)
 
   const hitsNumber = courses.length
   return (

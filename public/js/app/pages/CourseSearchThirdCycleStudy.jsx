@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import { Col, Row } from 'reactstrap'
 import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
 import { PageHeading, Link } from '@kth/kth-reactstrap/dist/components/studinfo'
+import Alert from '../components-shared/Alert'
 
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 import { Lead, HelpTexts, FooterContent, SearchResultDisplay, ThirdCycleStudySearchFormFields } from '../components'
 
-import { replaceSiteLinkForThirdCyclePages, courseSearchLink } from '../util/links'
+import { replaceSiteLinkForThirdCyclePages, courseSearchLink, pageLink } from '../util/links'
 import { getHelpText, hasValue, openOptionsInCollapse } from '../util/searchHelper'
 
 function _checkAndGetCollapseOptions({ department, showOptions }) {
@@ -42,7 +43,12 @@ const CourseSearchThirdCycleStudy = () => {
   } = useStore()
   const { thirdCycleSearch, thirdCycleSearchInstructions, messages } = i18n.messages[languageIndex]
   const { searchHeading, leadIntro, linkToUsualSearch } = thirdCycleSearch
-  const { search_help_collapse_header: collapseHeader } = thirdCycleSearchInstructions
+  const {
+    search_help_collapse_header: collapseHeader,
+    beta_version_title,
+    beta_version_description,
+    beta_version_link,
+  } = thirdCycleSearchInstructions
 
   const [params, setParams] = useState(
     _checkAndGetResultValues({
@@ -82,6 +88,11 @@ const CourseSearchThirdCycleStudy = () => {
         <Col>
           <PageHeading>{searchHeading}</PageHeading>
           <Lead text={leadIntro} />
+          <Alert header={beta_version_title}>
+            <p>{beta_version_description}</p>
+
+            <Link href={pageLink('/utbildning/forskarutbildning/kurser/sok-beta', lang)}>{beta_version_link}</Link>
+          </Alert>
         </Col>
       </Row>
       <Row>

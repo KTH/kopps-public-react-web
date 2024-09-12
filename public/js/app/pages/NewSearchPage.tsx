@@ -37,12 +37,10 @@ const NewSearchPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.de
   const [courseSearchParams, setCourseSearchParams] = useCourseSearchParams()
   useLangHrefUpdate(courseSearchParams)
   const { browserConfig, language, languageIndex } = useStore()
-  
   const { bigSearch, generalSearch, messages, thirdCycleSearch } = i18n.messages[languageIndex]
   const { main_menu_search_all_new, main_menu_third_cycle_courses_search_new } = messages
   const { searchButton } = bigSearch
   const { resultsHeading, filtersLabel } = generalSearch
-  const { searchLabel } = generalSearch
 
   let ancestorItemObj
 
@@ -61,11 +59,11 @@ const NewSearchPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.de
 
   switch (searchMode) {
     case SEARCH_MODES.default:
-      ancestorItemObj = { href: '/student/kurser/sokkurs-ny-design', label: main_menu_search_all_new }
+      ancestorItemObj = { href: '/student/kurser/sokkurs-beta', label: main_menu_search_all_new }
       break
     case SEARCH_MODES.thirdCycleCourses:
       ancestorItemObj = {
-        href: '/utbildning/forskarutbildning/kurser/sok-ny-design',
+        href: '/utbildning/forskarutbildning/kurser/sok-beta',
         label: main_menu_third_cycle_courses_search_new,
       }
     default:
@@ -83,8 +81,8 @@ const NewSearchPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.de
         />
       </SidebarFilters>
       <MainContent>
-        <PageHeading>{resultsHeading}</PageHeading>
-        <SearchInput caption={searchButton} onSubmit={handlePatternChange} searchLabel={searchLabel} disabled={searchStatus === STATUS.pending} />
+        <PageHeading>{`${resultsHeading} (beta)`}</PageHeading>
+        <SearchInput caption={searchButton} onSubmit={handlePatternChange} disabled={searchStatus === STATUS.pending} />
         <NewSearchResultDisplay resultsState={state as KoppsCourseSearchResultState} />
       </MainContent>
     </Row>

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import React from 'react'
-import { render, screen, within, fireEvent } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { toHaveNoViolations } from 'jest-axe'
 import { axe } from './test-config/axeWithoutLandmarkUniqueRule'
@@ -16,7 +16,6 @@ import createApplicationStore from '../stores/createApplicationStore'
 import getMenuData from '../config/menuData'
 
 import commonSettings from '../config/mocks/mockCommonSettings'
-import { filterProgrammeSyllabuses } from '../util/filterProgrammeSyllabuses'
 
 expect.extend(toHaveNoViolations)
 
@@ -119,25 +118,6 @@ const WrapperProgrammesList = ({ lang }) => {
   )
 }
 
-const FilteredProgrammesListWithLayout = ({ lang, input }) => {
-  applicationStore.setLanguage(lang)
-  applicationStore.setBrowserConfig(commonSettings)
-  applicationStore.setProgrammes(filterProgrammeSyllabuses(input, testProgrammes[lang]))
-  const menuData = getMenuData(applicationStore)
-
-  const updatedApplicationStore = {
-    ...applicationStore,
-  }
-  return (
-    <StaticRouter>
-      <MobxStoreProvider initCallback={() => updatedApplicationStore}>
-        <PageLayout menuData={{ selectedId: 'ProgrammesList', ...menuData }}>
-          <ProgrammesList />
-        </PageLayout>
-      </MobxStoreProvider>
-    </StaticRouter>
-  )
-}
 const ProgrammesListWithLayout = ({ lang }) => {
   applicationStore.setLanguage(lang)
   applicationStore.setBrowserConfig(commonSettings)
@@ -199,7 +179,7 @@ describe('Render component ProgrammesList and check its menu, content and links'
     const h2Header = within(mainContent).getByRole('heading', { level: 2 })
     expect(h2Header).toHaveTextContent('Master of Architecture')
     const links = screen.getAllByRole('link')
-    expect(links.length).toBe(10)
+    expect(links.length).toBe(9)
     // Menu links
     expect(links[0]).toHaveTextContent('Studies')
     expect(links[0].href).toStrictEqual('http://localhost/student/studier/?l=en')
@@ -207,22 +187,20 @@ describe('Render component ProgrammesList and check its menu, content and links'
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurser-inom-program')
     expect(links[2]).toHaveTextContent('Search courses')
     expect(links[2].href).toStrictEqual('http://localhost/student/kurser/sokkurs')
-    expect(links[3]).toHaveTextContent('Search courses (new)')
-    expect(links[3].href).toStrictEqual('http://localhost/student/kurser/sokkurs-ny-design')
-    expect(links[4]).toHaveTextContent('Courses by school')
-    expect(links[4].href).toStrictEqual('http://localhost/student/kurser/org')
-    expect(links[5]).toHaveTextContent('Studies before 07/08')
-    expect(links[5].href).toStrictEqual('http://localhost/student/program/shb')
+    expect(links[3]).toHaveTextContent('Courses by school')
+    expect(links[3].href).toStrictEqual('http://localhost/student/kurser/org')
+    expect(links[4]).toHaveTextContent('Studies before 07/08')
+    expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
     // Main content links
-    expect(links[6]).toHaveTextContent('Degree Programme in Architecture (ARKIT)')
-    expect(links[6].href).toStrictEqual('http://localhost/student/kurser/program/ARKIT?l=en')
-    expect(links[7]).toHaveTextContent('Degree Programme in Architecture (A)')
-    expect(links[7].href).toStrictEqual('http://localhost/student/kurser/program/A?l=en')
+    expect(links[5]).toHaveTextContent('Degree Programme in Architecture (ARKIT)')
+    expect(links[5].href).toStrictEqual('http://localhost/student/kurser/program/ARKIT?l=en')
+    expect(links[6]).toHaveTextContent('Degree Programme in Architecture (A)')
+    expect(links[6].href).toStrictEqual('http://localhost/student/kurser/program/A?l=en')
     // Footer links
-    expect(links[8]).toHaveTextContent('Central study counseling')
-    expect(links[8].href).toStrictEqual('https://www.kth.se/en/studies/master/general-study-counselling-1.621634')
-    expect(links[9]).toHaveTextContent('kopps@kth.se')
-    expect(links[9].href).toStrictEqual('mailto:kopps@kth.se')
+    expect(links[7]).toHaveTextContent('Central study counseling')
+    expect(links[7].href).toStrictEqual('https://www.kth.se/en/studies/master/general-study-counselling-1.621634')
+    expect(links[8]).toHaveTextContent('kopps@kth.se')
+    expect(links[8].href).toStrictEqual('mailto:kopps@kth.se')
   })
   test('check all links on the page in Swedish', () => {
     render(<ProgrammesListWithLayout lang="sv" />)
@@ -230,7 +208,7 @@ describe('Render component ProgrammesList and check its menu, content and links'
     const h2Header = within(mainContent).getByRole('heading', { level: 2 })
     expect(h2Header).toHaveTextContent('Arkitektutbildning')
     const links = screen.getAllByRole('link')
-    expect(links.length).toBe(10)
+    expect(links.length).toBe(9)
     // Menu links
     expect(links[0]).toHaveTextContent('Studier')
     expect(links[0].href).toStrictEqual('http://localhost/student/studier/')
@@ -238,22 +216,20 @@ describe('Render component ProgrammesList and check its menu, content and links'
     expect(links[1].href).toStrictEqual('http://localhost/student/kurser/kurser-inom-program')
     expect(links[2]).toHaveTextContent('Sök kurser')
     expect(links[2].href).toStrictEqual('http://localhost/student/kurser/sokkurs')
-    expect(links[3]).toHaveTextContent('Sök kurser (ny)')
-    expect(links[3].href).toStrictEqual('http://localhost/student/kurser/sokkurs-ny-design')
-    expect(links[4]).toHaveTextContent('Kurser per skola')
-    expect(links[4].href).toStrictEqual('http://localhost/student/kurser/org')
-    expect(links[5]).toHaveTextContent('Studier före 07/08')
-    expect(links[5].href).toStrictEqual('http://localhost/student/program/shb')
+    expect(links[3]).toHaveTextContent('Kurser per skola')
+    expect(links[3].href).toStrictEqual('http://localhost/student/kurser/org')
+    expect(links[4]).toHaveTextContent('Studier före 07/08')
+    expect(links[4].href).toStrictEqual('http://localhost/student/program/shb')
     // Main content links
-    expect(links[6]).toHaveTextContent('Arkitektutbildning (ARKIT)')
-    expect(links[6].href).toStrictEqual('http://localhost/student/kurser/program/ARKIT')
-    expect(links[7]).toHaveTextContent('Arkitektutbildning (A)')
-    expect(links[7].href).toStrictEqual('http://localhost/student/kurser/program/A')
+    expect(links[5]).toHaveTextContent('Arkitektutbildning (ARKIT)')
+    expect(links[5].href).toStrictEqual('http://localhost/student/kurser/program/ARKIT')
+    expect(links[6]).toHaveTextContent('Arkitektutbildning (A)')
+    expect(links[6].href).toStrictEqual('http://localhost/student/kurser/program/A')
     // Footer links
-    expect(links[8]).toHaveTextContent('Central studievägledning')
-    expect(links[8].href).toStrictEqual('https://www.kth.se/studievagledning')
-    expect(links[9]).toHaveTextContent('kopps@kth.se')
-    expect(links[9].href).toStrictEqual('mailto:kopps@kth.se')
+    expect(links[7]).toHaveTextContent('Central studievägledning')
+    expect(links[7].href).toStrictEqual('https://www.kth.se/studievagledning')
+    expect(links[8]).toHaveTextContent('kopps@kth.se')
+    expect(links[8].href).toStrictEqual('mailto:kopps@kth.se')
   })
   test('get page content in English', () => {
     render(<ProgrammesListWithLayout lang="en" />)
@@ -268,19 +244,5 @@ describe('Render component ProgrammesList and check its menu, content and links'
       'Här hittar du alla utbildningsplaner på KTH. Varje årskull inom ett program har en egen utbildningsplan. I utbildningsplanen finns information om bland annat vilka kurser som ingår i programmet och vad som gäller för urval och behörighet.'
     )
     expect(content).toBeInTheDocument()
-  })
-  test('test searching for Arkitekt', () => {
-    const inputText = 'Arkitekt'
-    render(<FilteredProgrammesListWithLayout lang="sv" input={inputText} />)
-    const links = screen.getAllByRole('link')
-    expect(links.length).toBe(10)
-    expect(links[6]).toHaveTextContent('Arkitektutbildning (ARKIT)')
-    expect(links[7]).toHaveTextContent('Arkitektutbildning (A)')
-  })
-  test('test searching for something that does not exist', () => {
-    const inputText = 'Arkkkitekt'
-    render(<FilteredProgrammesListWithLayout lang="sv" input={inputText} />)
-    const links = screen.getAllByRole('link')
-    expect(links.length).toBe(8)
   })
 })

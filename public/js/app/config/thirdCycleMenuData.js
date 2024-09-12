@@ -31,12 +31,16 @@ function getThirdCycleMenuData(applicationStore) {
           text: t('main_menu_third_cycle_courses_search'),
           url: pageLink(thirdCycleCourseSearch, language),
         },
-        {
-          id: 'searchThirdCycleCoursesNew',
-          type: 'leaf',
-          text: t('main_menu_third_cycle_courses_search_new'),
-          url: pageLink(thirdCycleCourseSearchNew, language),
-        },
+        ...(applicationStore.isNewSearch
+          ? [
+              {
+                id: 'searchThirdCycleCoursesNew',
+                type: 'leaf',
+                text: t('main_menu_third_cycle_courses_search_new'),
+                url: pageLink(thirdCycleCourseSearchNew, language),
+              },
+            ]
+          : []),
       ],
     },
   }

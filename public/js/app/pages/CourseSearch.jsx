@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import { Col, Row } from 'reactstrap'
+import Alert from '../components-shared/Alert'
 import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
-import { PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
+import { PageHeading, Link } from '@kth/kth-reactstrap/dist/components/studinfo'
 
 import { useStore } from '../mobx'
 import i18n from '../../../../i18n'
 import { Lead, FooterContent, SearchResultDisplay, SearchFormFields, HelpTexts } from '../components'
 
 import { getHelpText, hasValue, openOptionsInCollapse } from '../util/searchHelper'
+import { pageLink } from '../util/links'
 
 function _checkAndGetCollapseOptions({ department, eduLevel, period, showOptions }) {
   // clean params
@@ -35,6 +37,7 @@ function _checkAndGetResultValues({ department, eduLevel, pattern, period, showO
 const CourseSearch = () => {
   const {
     languageIndex,
+    language,
     textPattern: storePattern,
     departmentCodeOrPrefix: storeDepartment,
     eduLevel: storeEduLevel,
@@ -43,7 +46,12 @@ const CourseSearch = () => {
   } = useStore()
   const { bigSearch, searchInstructions } = i18n.messages[languageIndex]
   const { searchHeading, leadIntro, searchButton } = bigSearch
-  const { search_help_collapse_header: collapseHeader } = searchInstructions
+  const {
+    search_help_collapse_header: collapseHeader,
+    beta_version_title,
+    beta_version_description,
+    beta_version_link,
+  } = searchInstructions
   // const [loadStatus, setLoadStatus] = useState('firstLoad')
   const [params, setParams] = useState(
     _checkAndGetResultValues({
@@ -80,6 +88,11 @@ const CourseSearch = () => {
         <Col>
           <PageHeading>{searchHeading}</PageHeading>
           <Lead text={leadIntro} />
+          <Alert header={beta_version_title}>
+            <p>{beta_version_description}</p>
+
+            <Link href={pageLink('/student/kurser/sokkurs-beta', language)}>{beta_version_link}</Link>
+          </Alert>
         </Col>
       </Row>
       <Row>

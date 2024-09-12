@@ -17,15 +17,12 @@ import { getHelpText } from '../util/newSearchHelper'
 import { useLangHrefUpdate } from '../hooks/useLangHrefUpdate'
 import { SearchFilters } from '../components'
 import { stringifyUrlParams } from '../../../../domain/searchParams'
-import { FILTER_MODES } from '../components/SearchFilters/types'
-import { courseSearchLink } from '../util/links'
+import { pageLink } from '../util/links'
 
 const paramsReducer = (state: CourseSearchParams, action: any) => ({ ...state, ...action })
 
 const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.default }) => {
   const { languageIndex, language } = useStore()
-  const { generalSearch } = i18n.messages[languageIndex]
-  const { searchLabel } = generalSearch
   useLangHrefUpdate()
   const { bigSearch, searchInstructions, thirdCycleSearch, thirdCycleSearchInstructions } = i18n.messages[languageIndex]
   const { searchHeading: defaultSearchHeading, searchButton, leadIntro: defaultSearchLeadIntro } = bigSearch
@@ -102,7 +99,7 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
         )
         stringifiedSearchParams = stringifyUrlParams(filteredParams)
         navigate({
-          pathname: '/student/kurser/sokkurs-ny-design/resultat',
+          pathname: '/student/kurser/sokkurs-beta/resultat',
           search: `?${stringifiedSearchParams}`,
         })
         break
@@ -112,7 +109,7 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
         )
         stringifiedSearchParams = stringifyUrlParams(filteredParams)
         navigate({
-          pathname: '/utbildning/forskarutbildning/kurser/sok-ny-design/resultat',
+          pathname: '/utbildning/forskarutbildning/kurser/sok-beta/resultat',
           search: `?${stringifiedSearchParams}`,
         })
       default:
@@ -122,9 +119,9 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
 
   return (
     <div className="search-landing-page">
-      <PageHeading>{searchHeading}</PageHeading>
+      <PageHeading>{`${searchHeading} (beta)`}</PageHeading>
       <Lead text={leadIntro} />
-      <SearchInput caption={searchButton} onSubmit={handleSubmit} searchLabel={searchLabel}/>
+      <SearchInput caption={searchButton} onSubmit={handleSubmit} />
       <SearchFilters
         searchMode={searchMode}
         courseSearchParams={courseSearchParams}
@@ -135,7 +132,7 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
         <HelpTexts {...helptextsProps} />
       </CollapseDetails>
       {searchMode === SEARCH_MODES.thirdCycleCourses && (
-        <a className="link-to" href={courseSearchLink('sokkurs', language)}>
+        <a className="link-to" href={pageLink('/student/kurser/sokkurs-beta?l=en', language)}>
           {linkToUsualSearch}
         </a>
       )}

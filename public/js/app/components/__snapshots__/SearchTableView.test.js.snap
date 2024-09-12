@@ -311,7 +311,7 @@ exports[`Component <SearchTableView> for MIXED types of courses creates a table 
                 </a>
               </td>
               <td>
-                30 hp
+                30 credits
               </td>
               <td>
                 Second cycle
@@ -336,7 +336,7 @@ exports[`Component <SearchTableView> for MIXED types of courses creates a table 
                 </a>
               </td>
               <td>
-                7.5 hp
+                7.5 credits
               </td>
               <td>
                 First cycle
@@ -361,7 +361,7 @@ exports[`Component <SearchTableView> for MIXED types of courses creates a table 
                 </a>
               </td>
               <td>
-                7.5 hp
+                7.5 credits
               </td>
               <td />
               <td>
@@ -384,7 +384,7 @@ exports[`Component <SearchTableView> for MIXED types of courses creates a table 
                 </a>
               </td>
               <td>
-                7.5 hp
+                7.5 credits
               </td>
               <td>
                 Third cycle
@@ -407,7 +407,7 @@ exports[`Component <SearchTableView> for MIXED types of courses creates a table 
                 </a>
               </td>
               <td>
-                4 hp
+                4 credits
               </td>
               <td>
                 Pre-university level
@@ -512,7 +512,7 @@ exports[`Component <SearchTableView> for RESEARCH courses creates a table with 4
                 </a>
               </td>
               <td>
-                7.5 hp
+                7.5 credits
               </td>
               <td>
                 Third cycle
@@ -534,7 +534,7 @@ exports[`Component <SearchTableView> for RESEARCH courses creates a table with 4
                 </a>
               </td>
               <td>
-                7.5 hp
+                7.5 credits
               </td>
               <td>
                 Third cycle
@@ -556,7 +556,7 @@ exports[`Component <SearchTableView> for RESEARCH courses creates a table with 4
                 </a>
               </td>
               <td>
-                3 hp
+                3 credits
               </td>
               <td>
                 Third cycle
@@ -804,7 +804,7 @@ exports[`Component <SearchTableView> for RESEARCH courses creates a table with 5
                 </a>
               </td>
               <td>
-                7.5 hp
+                7.5 credits
               </td>
               <td>
                 Third cycle
@@ -826,7 +826,7 @@ exports[`Component <SearchTableView> for RESEARCH courses creates a table with 5
                 </a>
               </td>
               <td>
-                7.5 hp
+                7.5 credits
               </td>
               <td>
                 Third cycle
@@ -848,7 +848,7 @@ exports[`Component <SearchTableView> for RESEARCH courses creates a table with 5
                 </a>
               </td>
               <td>
-                3 hp
+                3 credits
               </td>
               <td>
                 Third cycle
