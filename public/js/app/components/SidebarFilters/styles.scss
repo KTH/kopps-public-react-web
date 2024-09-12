@@ -4,14 +4,6 @@
 @use '~@kth/style/scss/tokens/spacing.scss' as space;
 @use "'~@kth/style/scss/tokens/icons" as icons;
 
-.row {
-  display: block;
-  @media (min-width: 992px) {
-    &:has(> .kth-local-navigation--mobile) {
-      display: flex;
-    }
-  }
-}
 
 .sidebar-filters {
   @extend .kth-local-navigation;

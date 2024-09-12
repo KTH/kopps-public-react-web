@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import React from 'react'
-import { render, screen, within, fireEvent } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { toHaveNoViolations } from 'jest-axe'
 import { axe } from './test-config/axeWithoutLandmarkUniqueRule'
