@@ -46,37 +46,6 @@ function reduceToQueryParamString(params) {
   return queryParam.slice(0, -1) // Remove either '?' or '&'
 }
 
-const searchFovCourses = async searchOptions => {
-  const { client } = koppsApi.koppsApi
-
-  const queryParams = reduceToQueryParamString(searchOptions)
-  const uri = `${slashEndedKoppsBase}courses/courserounds${queryParams}`
-  try {
-    const course = await client.getAsync({ uri, useCache: true })
-
-    return course.body
-  } catch (error) {
-    log.error('Exception calling from koppsAPI in koppsApi.searchFovCourses', { error })
-    throw error
-  }
-}
-
-const listActiveMainFieldsOfStudy = async () => {
-  const { client } = koppsApi.koppsApi
-  const uri = `${slashEndedKoppsBase}utils/mainsubjects/current`
-  try {
-    const data = await client.getAsync({ uri, useCache: true })
-    const noMainSubjectOption = data.body.find(mfs => mfs.code === ' _')
-    if (noMainSubjectOption) {
-      noMainSubjectOption.titleSv = 'Ej inom KTHs huvudområden'
-    }
-    return data.body
-  } catch (error) {
-    log.error('Exception calling from koppsAPI in koppsApi.listActiveMainFieldsOfStudy', { error })
-    throw error
-  }
-}
-
 const listProgrammes = async lang => {
   const { client } = koppsApi.koppsApi
 
@@ -256,8 +225,6 @@ const literatureForCourse = async ({ term, school, lang }) => {
 }
 
 module.exports = {
-  searchFovCourses,
-  listActiveMainFieldsOfStudy,
   listProgrammes,
   DEPARTMENT_CRITERIA,
   listSchools,
