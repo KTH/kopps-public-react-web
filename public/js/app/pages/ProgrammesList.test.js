@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import React from 'react'
-import { render, screen, within } from '@testing-library/react'
+import { render, screen, within, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { toHaveNoViolations } from 'jest-axe'
 import { axe } from './test-config/axeWithoutLandmarkUniqueRule'
@@ -16,6 +16,7 @@ import createApplicationStore from '../stores/createApplicationStore'
 import getMenuData from '../config/menuData'
 
 import commonSettings from '../config/mocks/mockCommonSettings'
+import { filterProgrammeSyllabuses } from '../util/filterProgrammeSyllabuses'
 
 expect.extend(toHaveNoViolations)
 
@@ -118,6 +119,25 @@ const WrapperProgrammesList = ({ lang }) => {
   )
 }
 
+const FilteredProgrammesListWithLayout = ({ lang, input }) => {
+  applicationStore.setLanguage(lang)
+  applicationStore.setBrowserConfig(commonSettings)
+  applicationStore.setProgrammes(filterProgrammeSyllabuses(input, testProgrammes[lang]))
+  const menuData = getMenuData(applicationStore)
+
+  const updatedApplicationStore = {
+    ...applicationStore,
+  }
+  return (
+    <StaticRouter>
+      <MobxStoreProvider initCallback={() => updatedApplicationStore}>
+        <PageLayout menuData={{ selectedId: 'ProgrammesList', ...menuData }}>
+          <ProgrammesList />
+        </PageLayout>
+      </MobxStoreProvider>
+    </StaticRouter>
+  )
+}
 const ProgrammesListWithLayout = ({ lang }) => {
   applicationStore.setLanguage(lang)
   applicationStore.setBrowserConfig(commonSettings)
@@ -244,5 +264,19 @@ describe('Render component ProgrammesList and check its menu, content and links'
       'Här hittar du alla utbildningsplaner på KTH. Varje årskull inom ett program har en egen utbildningsplan. I utbildningsplanen finns information om bland annat vilka kurser som ingår i programmet och vad som gäller för urval och behörighet.'
     )
     expect(content).toBeInTheDocument()
+  })
+  test('test searching for Arkitekt', () => {
+    const inputText = 'Arkitekt'
+    render(<FilteredProgrammesListWithLayout lang="sv" input={inputText} />)
+    const links = screen.getAllByRole('link')
+    expect(links.length).toBe(9)
+    expect(links[5]).toHaveTextContent('Arkitektutbildning (ARKIT)')
+    expect(links[6]).toHaveTextContent('Arkitektutbildning (A)')
+  })
+  test('test searching for something that does not exist', () => {
+    const inputText = 'Arkkkitekt'
+    render(<FilteredProgrammesListWithLayout lang="sv" input={inputText} />)
+    const links = screen.getAllByRole('link')
+    expect(links.length).toBe(7)
   })
 })
