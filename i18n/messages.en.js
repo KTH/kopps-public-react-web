@@ -281,7 +281,7 @@ const messages = {
       'If you have questions or feedback on the course search, please contact <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
     beta_version_title: 'Want to try our new search function?',
     beta_version_description:
-      'We have designed and developed a new search function for the Course and Program Catalog that you can test here!',
+      'We have designed and developed a new search function for the Course and Program directory that you can test here!',
     beta_version_link: 'Search courses (beta)',
   },
   thirdCycleSearchInstructions: {
@@ -296,7 +296,7 @@ const messages = {
       'You can filter on courses that deal with environment, environmental technology, or sustainable development.',
     beta_version_title: 'Want to try our new search function?',
     beta_version_description:
-      'We have designed and developed a new search function for the Course and Program Catalog that you can test here! You can and are welcome to leave feedback on what you think of the new search function!',
+      'We have designed and developed a new search function for the Course and Program directory that you can test here! You can and are welcome to leave feedback on what you think of the new search function!',
     beta_version_link: 'Search third-cycle courses (beta)',
   },
   generalSearch: {
@@ -339,11 +339,11 @@ const messages = {
     errorUnknown: { text: 'An unknown error occurred - failed to retrieve course data' },
     errorEmpty: {
       header: 'Your search returned no results',
-      // we don't have this link anymore so we should decide what we are going to show as a help text
+      help: 'For help, see the link below: Instructions for searching',
     },
     errorEmptyBeta: {
       header: 'Your search returned no results',
-      help: 'For help, see the link below: Instructions for searching',
+      // we don't have this link anymore so we should decide what we are going to show as a help text
     },
     errorOverflow: {
       header: 'There were too many results',

@@ -23,7 +23,7 @@ const NewSearchResultDisplay: React.FC<SearchResultDisplayParams> = ({ resultsSt
   if (errorType) {
     return (
       <SearchAlert
-        alertType={errorType === ('errorOverflow' || 'errorEmpty') ? (`${errorType}Beta` as AlertType) : errorType}
+        alertType={['errorOverflow', 'errorEmpty'].includes(errorType) ? (`${errorType}Beta` as AlertType) : errorType}
         languageIndex={languageIndex}
       />
     )
