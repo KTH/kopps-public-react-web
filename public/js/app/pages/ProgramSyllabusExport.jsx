@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import Alert from '../components-shared/Alert'
 import ElementWrapperForPDF from '../components/ElementWrapperForPDF'
@@ -17,7 +17,7 @@ import { Appendix1PDFExport } from './Appendix1'
 import { Appendix2PDFExport } from './Appendix2'
 
 // eslint-disable-next-line react/prop-types
-function ProgramSyllabusExport({ applicationStore }) {
+function ProgramSyllabusExport({ initApplicationStoreCallback }) {
   const [showError, setShowError] = useState(false)
   const [showLoader, setShowLoader] = useState(true)
   const [error, setError] = useState('')
@@ -30,6 +30,7 @@ function ProgramSyllabusExport({ applicationStore }) {
     const toMatch = [/Android/i, /webOS/i, /iPhone/i, /iPad/i, /iPod/i, /BlackBerry/i, /Windows Phone/i]
     return toMatch.some(toMatchItem => navigator.userAgent.match(toMatchItem))
   }
+  const applicationStore = useMemo(() => initApplicationStoreCallback(), [initApplicationStoreCallback])
 
   useEffect(() => {
     const pdfObjExtElgbImlpContainer = document.getElementById('pdfObjExtElgbImlpContainer')
