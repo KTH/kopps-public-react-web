@@ -6,7 +6,7 @@ import { useStore } from '../../mobx'
 import { ListViewParams } from './types'
 import i18n from '../../../../../i18n'
 
-import { compareCoursesBy, flatCoursesArr, inforKursvalLink, periodsStr } from '../../util/newSearchHelper'
+import { compareCoursesBy, inforKursvalLink, periodsStr } from '../../util/newSearchHelper'
 
 const ListView: React.FC<ListViewParams> = ({ results }) => {
   const { language, languageIndex } = useStore()
@@ -15,48 +15,55 @@ const ListView: React.FC<ListViewParams> = ({ results }) => {
 
   const { courseHasNoRounds, linkToInforKursval } = generalSearch
 
-  const { courses, hasSearchHitInterval } = flatCoursesArr(results)
   return (
     <>
-      {courses.sort(compareCoursesBy('courseCode')).map((course, index) => {
-        const { courseCode, title, credits, creditUnitAbbr, startTerm, endTerm, endPeriod, startPeriod } = course
+      {results.sort(compareCoursesBy('kod')).map((course, index) => {
+        const {
+          kod: courseCode,
+          benamning: title,
+          omfattning: credits,
+          utbildningstyp: { creditsUnit: { code: creditUnitAbbr = '' } = {} } = {},
+          forstaUndervisningsdatum: { period: startPeriod = '', year: startPeriodYear = '' } = {},
+          sistaUndervisningsdatum: { period: endPeriod = '', year: endPeriodYear = '' } = {},
+          tillfallesperioderNummer = '',
+          startperiod: { inDigits: startTerm = '' } = {},
+          studietakt: { takt: coursePace = '' } = {},
+          undervisningssprak: { name: courseLanguage = '' } = {},
+          studieort: { name: courseCampus = '' } = {},
+        } = course || {}
 
         let periodText = undefined
-        if (hasSearchHitInterval) {
-          periodText = periodsStr(startPeriod, startTerm, endPeriod, endTerm, language)
-        }
+        periodText = periodsStr(
+          startPeriod,
+          startPeriodYear,
+          endPeriod,
+          endPeriodYear,
+          tillfallesperioderNummer,
+          language
+        )
         const InforKursvalLink = inforKursvalLink(linkToInforKursval, courseCode, startTerm, language)
         return (
           <div className="course-card" key={courseCode + index}>
             <div className="course-header">
               <h3>
-                {title}, {credits} {creditUnitAbbr}
+                {title}, {credits} {creditUnitAbbr.toLowerCase()}
               </h3>
               <span className="course-code">{courseCode}</span>
               {periodText && <span className="course-period">{periodText}</span>}
               {periodText === '' && <i>{courseHasNoRounds}</i>}
             </div>
-            {/* 
-            <p className="course-description">
-              we dont have it now
-            </p> 
-            */}
-            <div className="course-details">
-              {/* 
-              <div className="course-location">
-                <img alt="Location Icon" />
-                <span></span>
+            <div className="course-footer">
+              <div className="course-details">
+                <div className="course-location">
+                  <span>{courseCampus}</span>
+                </div>
+                <div className="course-language">
+                  <span>{courseLanguage}</span>
+                </div>
+                <div className="course-pace">
+                  <span>{coursePace}%</span>
+                </div>
               </div>
-              <div className="course-language">
-                <img alt="Language Icon" />
-                <span></span>
-              </div>
-              <div className="course-pace">
-                <img alt="Pace Icon" />
-                <span></span>
-              </div> 
-              We don't have them now
-              */}
               <div className="course-link">{InforKursvalLink}</div>
             </div>
           </div>

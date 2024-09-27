@@ -12,7 +12,7 @@ import {
 import { Link } from '@kth/kth-reactstrap/dist/components/studinfo'
 import { courseLink } from './links'
 import React from 'react'
-import { formatShortTerm } from '../../../../domain/term'
+import { formatShortTerm, formatTermByYearAndPeriod } from '../../../../domain/term'
 
 export const getHelpText: GetHelpText = (langIndex, nameOfInstruction, instructionKeys) => {
   /**
@@ -85,50 +85,54 @@ export const compareCoursesBy = <T extends keyof Course>(key: T) => {
   }
 }
 
-export const periodsStr: PeriodsStrType = (startPeriod, startTerm, endPeriod, endTerm, language) => {
-  // Ensure startPeriod and endPeriod are strings
-  const startPeriodStr = startPeriod?.toString()
-  const endPeriodStr = endPeriod?.toString()
-
-  if (!startTerm || !startPeriodStr) return ''
-  if (!endTerm || !endPeriodStr) return `P${startPeriod} ${formatShortTerm(startTerm, language)}`
-  if (startPeriod === endPeriod && startTerm === endTerm)
-    return `P${startPeriod} ${formatShortTerm(startTerm, language)}`
-
-  return `P${startPeriod} ${formatShortTerm(startTerm, language)} - P${endPeriod} ${formatShortTerm(endTerm, language)}`
-}
-
-export const sortAndParseByCourseCodeForTableView: SortAndParseByCourseCodeForTableViewType = (
-  courses,
-  sliceUntilNum,
+export const periodsStr: PeriodsStrType = (
+  startPeriod,
+  startPeriodYear,
+  endPeriod,
+  endPeriodYear,
+  tillfallesperioderNummer,
   language
 ) => {
-  const { bigSearch, generalSearch } = i18n.messages[language === 'en' ? '0' : '1']
+  if (!startPeriod && startPeriod !== 0) return ''
+  if (startPeriod === endPeriod && tillfallesperioderNummer === 1)
+    return `P${startPeriod} ${formatTermByYearAndPeriod(startPeriod, startPeriodYear, language)}`
+
+  return `P${startPeriod} ${formatTermByYearAndPeriod(startPeriod, startPeriodYear, language)} - P${endPeriod} ${formatTermByYearAndPeriod(endPeriod, endPeriodYear, language)}`
+}
+
+export const sortAndParseByCourseCodeForTableView: SortAndParseByCourseCodeForTableViewType = (courses, language) => {
+  const { generalSearch } = i18n.messages[language === 'en' ? '0' : '1']
   const { courseHasNoRoundsInTableCell } = generalSearch
 
   // Sort courses by courseCode
-  courses.sort(compareCoursesBy('courseCode'))
+  courses.sort(compareCoursesBy('kod'))
 
   // Map and parse courses into the desired format
   const parsedCourses = courses.map(
     ({
-      courseCode: code,
-      title,
-      credits,
-      creditUnitAbbr,
-      educationalLevel: level,
-      startPeriod,
-      startTerm,
-      endPeriod,
-      endTerm,
-    }) =>
-      [
-        codeCell(code, startTerm, language),
-        titleCell(code, title, startTerm, language),
-        `${credits} ${creditUnitAbbr}`,
-        bigSearch[level] || '',
-        periodsStr(startPeriod, startTerm, endPeriod, endTerm, language) || courseHasNoRoundsInTableCell,
-      ].slice(0, sliceUntilNum)
+      kod: code,
+      benamning: title,
+      omfattning: credits,
+      utbildningstyp: { creditsUnit: { code: creditUnitAbbr = '' } = {} } = {},
+      utbildningstyp: { level: { name: educationalLevel = '' } = {} } = {},
+      forstaUndervisningsdatum: { period: startPeriod = '', year: startPeriodYear = '' } = {},
+      sistaUndervisningsdatum: { period: endPeriod = '', year: endPeriodYear = '' } = {},
+      tillfallesperioderNummer = '',
+      startperiod: { inDigits: startTerm = '' } = {},
+      studietakt: { takt: coursePace = '' } = {},
+      undervisningssprak: { name: courseLanguage = '' } = {},
+      studieort: { name: courseCampus = '' } = {},
+    }) => [
+      codeCell(code, startTerm, language),
+      titleCell(code, title, startTerm, language),
+      `${credits} ${creditUnitAbbr.toLowerCase()}`,
+      educationalLevel,
+      courseLanguage,
+      `${coursePace}%`,
+      courseCampus,
+      periodsStr(startPeriod, startPeriodYear, endPeriod, endPeriodYear, tillfallesperioderNummer, language) ||
+        courseHasNoRoundsInTableCell,
+    ]
   )
 
   return parsedCourses

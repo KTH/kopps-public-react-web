@@ -60,6 +60,9 @@ const messages = {
     course_name: 'Course name',
     course_educational_level: 'Educational level',
     course_educational_level_abbr: 'Edu. level',
+    course_language: 'Language',
+    course_campus: 'Campus',
+    course_pace: 'Pace',
 
     study_year: 'Study year',
 

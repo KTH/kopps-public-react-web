@@ -104,15 +104,84 @@
       }
     }
 
-    .course-details {
+    .course-footer {
       background-color: var(--color-background-alt);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: space.$space-16;
+      padding: space.$space-8 space.$space-16;
       border-bottom-right-radius: 4px;
       border-bottom-left-radius: 4px;
       box-shadow: 2px 2px 5px 0px colors.$color-gray-light;
+      @media (max-width: 600px) {
+        flex-wrap: wrap;
+      }
+      .course-details {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-weight: typography.$font-bold;
+        gap: space.$space-8;
+        @media (min-width: 1100px) {
+          width: 30%;
+        }
+        @media (min-width: 992px) and (max-width: 1200px) {
+          width: 35%;
+        }
+        @media (min-width: 700px) and (max-width: 992px) {
+          width: 40%;
+        }
+        @media (min-width: 600px) and (max-width: 700px) {
+          width: 45%;
+        }
+        @media (max-width: 600px) {
+          flex: 1 1 100%;
+        }
+        .course-location {
+          position: relative;
+          padding-top: 30px;
+          &:before {
+            @include icons.icon-home;
+            position: absolute;
+            top: -2px;
+            width: 35px;
+            height: 32px;
+            right: calc(50% - 17.5px);
+            background-color: var(--color-tertiary);
+          }
+        }
+        .course-language {
+          position: relative;
+          padding-top: 30px;
+          &:before {
+            @include icons.icon-language;
+            position: absolute;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            right: calc(50% - 15px);
+            background-color: var(--color-tertiary);
+          }
+        }
+        .course-pace {
+          position: relative;
+          padding-top: 30px;
+          &:before {
+            @include icons.icon-schedule;
+            position: absolute;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            right: calc(50% - 15px);
+            background-color: var(--color-tertiary);
+          }
+        }
+      }
+      .course-link {
+        @media (max-width: 600px) {
+          padding-top: space.$space-20;
+        }
+      }
     }
   }
   .table-container {

@@ -7,6 +7,7 @@ const i18n = require('../../i18n')
 
 // eslint-disable-next-line no-unused-vars
 const koppsApi = require('../kopps/koppsApi')
+const { searchCourses } = require('../ladok/ladokApi')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 
 const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
@@ -87,21 +88,28 @@ async function searchThirdCycleCourses(req, res, next) {
   })
 }
 
-async function performCourseSearch(req, res, next) {
+async function performCourseSearchBeta(req, res, next) {
   const { lang } = req.params
 
   const { query } = req
-  // Example: `text_pattern=${pattern}`
-  const searchParamsStr = stringifyKoppsSearchParams(query)
+
+  const searchParams = {
+    kodEllerBenamning: query.pattern ?? undefined,
+    organisation: query.department ?? undefined,
+    sprak: query.showOptions?.includes('onlyEnglish') ? 'ENG' : undefined,
+    avvecklad: query.showOptions?.includes('showCancelled') ? 'true' : undefined,
+    startPeriod: query.period ?? undefined,
+    utbildningsniva: query.eduLevel ?? undefined,
+  }
 
   try {
-    log.debug(` trying to perform a search of courses with ${searchParamsStr} transformed from parameters: `, { query })
+    log.debug(` trying to perform a search of courses with ${searchParams} transformed from parameters: `, { query })
 
-    const apiResponse = await koppsApi.getSearchResults(searchParamsStr, lang)
-    log.debug(` performCourseSearch with ${searchParamsStr} response: `, apiResponse)
+    const apiResponse = await searchCourses(searchParams, lang)
+    log.debug(` performCourseSearch with ${searchParams} response: `, apiResponse)
     return res.json(apiResponse)
   } catch (error) {
-    log.error(` Exception from performCourseSearch with ${searchParamsStr}`, { error })
+    log.error(` Exception from performCourseSearch with ${searchParams}`, { error })
     next(error)
   }
 }
@@ -132,5 +140,5 @@ async function _fillApplicationStoreWithAllSchools({ applicationStore, lang }) {
 module.exports = {
   searchAllCourses,
   searchThirdCycleCourses,
-  performCourseSearch,
+  performCourseSearchBeta,
 }

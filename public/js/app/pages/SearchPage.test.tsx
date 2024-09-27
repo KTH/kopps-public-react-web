@@ -3,7 +3,7 @@ import { render, screen, fireEvent, waitFor, waitForElementToBeRemoved } from '@
 import '@testing-library/jest-dom'
 import NewSearchPage from './NewSearchPage'
 import { useStore } from '../mobx'
-import { koppsCourseSearch } from '../util/searchApi'
+import { courseSearch } from '../util/searchApi'
 import { TEST_API_ANSWER_RESOLVED } from '../components/mocks/mockKoppsCourseSearch'
 
 const periods = [
@@ -78,11 +78,11 @@ describe('<NewSearchPage />', () => {
     mockSearchParams.append('period', '20242:2')
     mockSearchParams.append('eduLevel', '1')
     mockSearchParams.append('showOptions', 'onlyEnglish')
-    ;(koppsCourseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED))
+    ;(courseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED))
 
     render(<NewSearchPage searchMode="default" />)
 
-    expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+    expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
       pattern: 'Math',
       period: ['20242:1', '20242:2'],
       eduLevel: ['1'],
@@ -106,7 +106,7 @@ describe('<NewSearchPage />', () => {
     mockSearchParams = new URLSearchParams({
       pattern: '',
     })
-    ;(koppsCourseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED))
+    ;(courseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED))
 
     render(<NewSearchPage searchMode="default" />)
 
@@ -116,7 +116,7 @@ describe('<NewSearchPage />', () => {
 
     await waitFor(() => {
       expect(mockSearchParams.get('pattern')).toBe('Physics')
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: 'Physics',
         department: '',
         eduLevel: [],
@@ -156,12 +156,12 @@ describe('<NewSearchPage />', () => {
   })
 
   test('should update search params and call search API when period checkboxes, eduLevel, and showOptions are changed', async () => {
-    ;(koppsCourseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED))
+    ;(courseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED))
 
     render(<NewSearchPage searchMode="default" />)
 
     // Verify that the initial API call was made with the correct parameters
-    expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+    expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
       pattern: '',
       department: '',
       eduLevel: [],
@@ -173,7 +173,7 @@ describe('<NewSearchPage />', () => {
     fireEvent.click(firstPeriodCheckbox)
     await waitFor(async () => {
       expect(mockSearchParams.getAll('period')).toEqual(['20242:1'])
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
         eduLevel: [],
@@ -187,7 +187,7 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
         eduLevel: [],
@@ -201,7 +201,7 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
         eduLevel: [],
@@ -215,7 +215,7 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
         eduLevel: [],
@@ -229,7 +229,7 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
         eduLevel: [],
@@ -243,7 +243,7 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
         eduLevel: [],
@@ -257,7 +257,7 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
         eduLevel: [],
@@ -271,7 +271,7 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
         eduLevel: ['0'],
@@ -285,7 +285,7 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
         eduLevel: ['0', '1'],
@@ -299,7 +299,7 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
         eduLevel: ['0', '1', '2'],
@@ -313,7 +313,7 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
         eduLevel: ['0', '1', '2', '3'],
@@ -327,7 +327,7 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
         eduLevel: ['0', '1', '2', '3'],
@@ -341,7 +341,7 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
         eduLevel: ['0', '1', '2', '3'],
@@ -355,7 +355,7 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(() => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
         eduLevel: ['0', '1', '2', '3'],

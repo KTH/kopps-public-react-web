@@ -1,0 +1,14 @@
+'use strict'
+
+const { createApiClient } = require('om-kursen-ladok-client')
+const serverConfig = require('../configuration').server
+
+async function searchCourses(pattern, lang) {
+  const client = createApiClient(serverConfig.ladokMellanlagerApi)
+  const courses = await client.getSearchCoursesResult(pattern, lang)
+  return courses
+}
+
+module.exports = {
+  searchCourses,
+}

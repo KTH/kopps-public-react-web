@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import ListView from './ListView'
 import { useStore } from '../../mobx'
-import { TEST_API_ANSWER_RESOLVED } from '../mocks/mockKoppsCourseSearch'
+import { TEST_API_ANSWER_RESOLVED } from '../mocks/mockCourseSeasrch'
 
 jest.mock('../../mobx')
 
@@ -28,9 +28,8 @@ describe('ListView component', () => {
       searchHits: [
         {
           ...TEST_API_ANSWER_RESOLVED.searchHits[0],
-          searchHitInterval: {
-            startPeriod: null as any,
-            endPeriod: null as any,
+          forstaUndervisningsdatum: {
+            period: null as any,
           },
         },
       ],
@@ -66,10 +65,11 @@ describe('ListView component', () => {
     const modifiedResultss = {
       searchHits: [
         {
-          course: {
-            ...TEST_API_ANSWER_RESOLVED.searchHits[0].course,
-            credits: '7.5',
-            creditUnitAbbr: 'ECTS',
+          ...TEST_API_ANSWER_RESOLVED.searchHits[0],
+          utbildningstyp: {
+            creditsUnit: {
+              code: 'ECTS',
+            },
           },
         },
       ],
@@ -77,6 +77,6 @@ describe('ListView component', () => {
 
     render(<ListView results={modifiedResultss.searchHits} />)
 
-    expect(screen.getByText(/ECTS/i)).toBeInTheDocument()
+    expect(screen.getByText(/ects/i)).toBeInTheDocument()
   })
 })

@@ -1,23 +1,22 @@
 import { ERROR_ASYNC, STATUS } from '../../hooks/searchUseAsync'
 import { ErrorAsync, Status } from '../../hooks/types/UseCourseSearchTypes'
 
-export interface KoppsCourseSearchParams {
+export interface CourseSearchParams {
   [key: string]: any // Allowing any key-value pair as params
 }
 
 export interface SearchHits {
-  searchHitInterval?: { [key: string]: any }
-  course: { [key: string]: any }
+  [key: string]: any
 }
 
-export interface KoppsCourseSearchResult {
+export interface CourseSearchResult {
   searchHits?: SearchHits[]
   errorCode?: ErrorAsync
   errorMessage?: string
 }
 
-export interface KoppsCourseSearchResultState {
-  data: KoppsCourseSearchResult
+export interface CourseSearchResultState {
+  data: CourseSearchResult
   status: Status | null
   error: ErrorAsync | null
 }
