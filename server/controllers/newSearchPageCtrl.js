@@ -14,6 +14,7 @@ const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { compareSchools, filterOutDeprecatedSchools } = require('../../domain/schools')
 const { stringifyKoppsSearchParams } = require('../../domain/searchParams')
+const term = require('../../domain/term')
 
 async function renderSearchPage(
   req,
@@ -93,13 +94,43 @@ async function performCourseSearchBeta(req, res, next) {
 
   const { query } = req
 
+  const convertedPeriods = query.period?.reduce((acc, period) => {
+    const splitedPeriod = period.split(':')
+    const codes =
+      splitedPeriod[1] === 'summer' ? [`VT${splitedPeriod[0]}`, `HT${splitedPeriod[0]}`] : [splitedPeriod[0]]
+    const value = splitedPeriod[1] === 'summer' ? ['0', '5'] : splitedPeriod[1]
+
+    codes.forEach(code => {
+      const existingEntry = acc.find(entry => entry.code === code)
+
+      if (existingEntry) {
+        existingEntry.periods = Array.isArray(existingEntry.periods)
+          ? [...existingEntry.periods, ...value]
+          : [existingEntry.periods, ...value]
+      } else {
+        acc.push({
+          code: code,
+          periods: value,
+        })
+      }
+    })
+    return acc
+  }, [])
+
+  const convertedEduLevels = query.eduLevel?.map(level => {
+    if (level === '0') return 'FUPKURS'
+    if (level === '1') return '2007GKURS'
+    if (level === '2') return '2007AKURS'
+    if (level === '3') return '2007FKURS'
+  })
+
   const searchParams = {
     kodEllerBenamning: query.pattern ?? undefined,
     organisation: query.department ?? undefined,
     sprak: query.showOptions?.includes('onlyEnglish') ? 'ENG' : undefined,
     avvecklad: query.showOptions?.includes('showCancelled') ? 'true' : undefined,
-    startPeriod: query.period ?? undefined,
-    utbildningsniva: query.eduLevel ?? undefined,
+    startPeriod: convertedPeriods ?? undefined,
+    utbildningsniva: convertedEduLevels ?? undefined,
   }
 
   try {

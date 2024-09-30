@@ -54,7 +54,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
           <div className={collapsable ? 'col' : ''}>
             <NewSearchOptions
               overrideSearchHead={currentYearLabel}
-              paramAliasName="currentYear"
+              paramAliasName="currentYearBeta"
               paramName="period"
               selectedValues={courseSearchParams.period as Period[]}
               onChange={handleFilterValueChange}
@@ -64,7 +64,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
           <div className={collapsable ? 'col' : ''}>
             <NewSearchOptions
               overrideSearchHead={nextYearLabel}
-              paramAliasName="nextYear"
+              paramAliasName="nextYearBeta"
               paramName="period"
               selectedValues={courseSearchParams.period as Period[]}
               onChange={handleFilterValueChange}

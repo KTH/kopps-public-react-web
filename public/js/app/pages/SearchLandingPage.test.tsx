@@ -89,7 +89,7 @@ describe('<NewSearchLandingPage />', () => {
     fireEvent.click(button)
 
     const searchParams = stringifyUrlParams({
-      period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
+      period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3', 'VT2025:4', 'HT2025:1', 'HT2025:2'],
       eduLevel: ['0', '1', '2', '3'],
       showOptions: ['onlyEnglish', 'onlyMHU', 'showCancelled'],
     })
@@ -162,7 +162,7 @@ describe('<NewSearchLandingPage />', () => {
     fireEvent.click(button)
 
     const searchParams = stringifyUrlParams({
-      period: ['20242:1'],
+      period: ['HT2024:1'],
       eduLevel: ['0'],
       showOptions: ['onlyEnglish'],
     })

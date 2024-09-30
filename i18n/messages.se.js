@@ -331,6 +331,7 @@ const messages = {
   },
   searchAlarms: {
     errorUnknown: { text: 'Ett okänt fel inträffade - misslyckad hämtning av kursdata' },
+    errorKodEllerBenamning: { text: 'Sökinmatningen måste vara lika med eller större än 3 tecken.' },
     errorEmpty: {
       header: 'Din sökning gav inga träffar.',
       help: 'Mer hjälp hittar du i länken nedan: Få hjälp med sökningen',

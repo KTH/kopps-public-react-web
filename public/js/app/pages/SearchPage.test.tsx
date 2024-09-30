@@ -74,8 +74,8 @@ describe('<NewSearchPage />', () => {
 
     // Add multiple values for the 'period' key
     mockSearchParams.append('pattern', 'Math')
-    mockSearchParams.append('period', '20242:1')
-    mockSearchParams.append('period', '20242:2')
+    mockSearchParams.append('period', 'HT2024:1')
+    mockSearchParams.append('period', 'HT2024:2')
     mockSearchParams.append('eduLevel', '1')
     mockSearchParams.append('showOptions', 'onlyEnglish')
     ;(courseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED))
@@ -84,7 +84,7 @@ describe('<NewSearchPage />', () => {
 
     expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
       pattern: 'Math',
-      period: ['20242:1', '20242:2'],
+      period: ['HT2024:1', 'HT2024:2'],
       eduLevel: ['1'],
       showOptions: ['onlyEnglish'],
       department: '',
@@ -172,12 +172,12 @@ describe('<NewSearchPage />', () => {
     expect(firstPeriodCheckbox).not.toBeChecked()
     fireEvent.click(firstPeriodCheckbox)
     await waitFor(async () => {
-      expect(mockSearchParams.getAll('period')).toEqual(['20242:1'])
+      expect(mockSearchParams.getAll('period')).toEqual(['HT2024:1'])
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
         eduLevel: [],
-        period: ['20242:1'],
+        period: ['HT2024:1'],
         showOptions: [],
       })
 
@@ -191,7 +191,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: [],
-        period: ['20242:1', '20242:2'],
+        period: ['HT2024:1', 'HT2024:2'],
         showOptions: [],
       })
 
@@ -205,7 +205,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: [],
-        period: ['20242:1', '20242:2', '2025:summer'],
+        period: ['HT2024:1', 'HT2024:2', '2025:summer'],
         showOptions: [],
       })
 
@@ -219,7 +219,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: [],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3'],
+        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3'],
         showOptions: [],
       })
 
@@ -233,7 +233,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: [],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4'],
+        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3', 'VT2025:4'],
         showOptions: [],
       })
 
@@ -247,7 +247,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: [],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1'],
+        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3', 'VT2025:4', 'HT2025:1'],
         showOptions: [],
       })
 
@@ -261,7 +261,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: [],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
+        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3', 'VT2025:4', 'HT2025:1', 'HT2025:2'],
         showOptions: [],
       })
 
@@ -275,7 +275,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: ['0'],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
+        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3', 'VT2025:4', 'HT2025:1', 'HT2025:2'],
         showOptions: [],
       })
 
@@ -289,7 +289,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: ['0', '1'],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
+        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3', 'VT2025:4', 'HT2025:1', 'HT2025:2'],
         showOptions: [],
       })
 
@@ -303,7 +303,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: ['0', '1', '2'],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
+        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3', 'VT2025:4', 'HT2025:1', 'HT2025:2'],
         showOptions: [],
       })
 
@@ -317,7 +317,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: ['0', '1', '2', '3'],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
+        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3', 'VT2025:4', 'HT2025:1', 'HT2025:2'],
         showOptions: [],
       })
 
@@ -331,7 +331,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: ['0', '1', '2', '3'],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
+        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3', 'VT2025:4', 'HT2025:1', 'HT2025:2'],
         showOptions: ['onlyEnglish'],
       })
 
@@ -345,7 +345,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: ['0', '1', '2', '3'],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
+        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3', 'VT2025:4', 'HT2025:1', 'HT2025:2'],
         showOptions: ['onlyEnglish', 'onlyMHU'],
       })
 
@@ -359,7 +359,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: ['0', '1', '2', '3'],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
+        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3', 'VT2025:4', 'HT2025:1', 'HT2025:2'],
         showOptions: ['onlyEnglish', 'onlyMHU', 'showCancelled'],
       })
     })

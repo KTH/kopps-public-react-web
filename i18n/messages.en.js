@@ -340,6 +340,7 @@ const messages = {
   },
   searchAlarms: {
     errorUnknown: { text: 'An unknown error occurred - failed to retrieve course data' },
+    errorKodEllerBenamning: { text: 'Search input must be equal or more than 3 characters.' },
     errorEmpty: {
       header: 'Your search returned no results',
       help: 'For help, see the link below: Instructions for searching',
