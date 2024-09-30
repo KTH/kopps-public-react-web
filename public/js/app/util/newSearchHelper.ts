@@ -112,8 +112,7 @@ export const sortAndParseByCourseCodeForTableView: SortAndParseByCourseCodeForTa
     ({
       kod: code,
       benamning: title,
-      omfattning: credits,
-      utbildningstyp: { creditsUnit: { code: creditUnitAbbr = '' } = {} } = {},
+      omfattning: { formattedWithUnit: credits = '' } = {},
       utbildningstyp: { level: { name: educationalLevel = '' } = {} } = {},
       forstaUndervisningsdatum: { period: startPeriod = '', year: startPeriodYear = '' } = {},
       sistaUndervisningsdatum: { period: endPeriod = '', year: endPeriodYear = '' } = {},
@@ -125,7 +124,7 @@ export const sortAndParseByCourseCodeForTableView: SortAndParseByCourseCodeForTa
     }) => [
       codeCell(code, startTerm, language),
       titleCell(code, title, startTerm, language),
-      `${credits} ${creditUnitAbbr.toLowerCase()}`,
+      credits,
       educationalLevel,
       courseLanguage,
       `${coursePace}%`,

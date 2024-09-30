@@ -21,8 +21,9 @@ const ListView: React.FC<ListViewParams> = ({ results }) => {
         const {
           kod: courseCode,
           benamning: title,
-          omfattning: credits,
-          utbildningstyp: { creditsUnit: { code: creditUnitAbbr = '' } = {} } = {},
+          omfattning: {
+            formattedWithUnit: credits = ""
+          } = {},
           forstaUndervisningsdatum: { period: startPeriod = '', year: startPeriodYear = '' } = {},
           sistaUndervisningsdatum: { period: endPeriod = '', year: endPeriodYear = '' } = {},
           tillfallesperioderNummer = '',
@@ -46,7 +47,7 @@ const ListView: React.FC<ListViewParams> = ({ results }) => {
           <div className="course-card" key={courseCode + index}>
             <div className="course-header">
               <h3>
-                {title}, {credits} {creditUnitAbbr.toLowerCase()}
+                {title}, {credits}
               </h3>
               <span className="course-code">{courseCode}</span>
               {periodText && <span className="course-period">{periodText}</span>}

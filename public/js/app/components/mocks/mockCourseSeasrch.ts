@@ -22,7 +22,9 @@ const TEST_API_ANSWER_RESOLVED = {
     {
       kod: 'AF2402',
       benamning: 'Acoustics and Fire',
-      omfattning: 7.5,
+            omfattning: {
+        formattedWithUnit: '7.5 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -81,7 +83,9 @@ const TEST_API_ANSWER_RESOLVED = {
     {
       kod: 'AH2905',
       benamning: 'Advanced Pavement Engineering Analysis and Design',
-      omfattning: 7.5,
+            omfattning: {
+        formattedWithUnit: '7.5 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -146,7 +150,9 @@ const TEST_API_ANSWER_ALGEBRA = {
     {
       kod: 'IX1303',
       benamning: 'Algebra och geometri',
-      omfattning: 7.5,
+            omfattning: {
+        formattedWithUnit: '7.5 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -188,7 +194,9 @@ const TEST_API_ANSWER_ALGEBRA = {
     {
       kod: 'SF1624',
       benamning: 'Algebra och geometri',
-      omfattning: 7.5,
+            omfattning: {
+        formattedWithUnit: '7.5 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',

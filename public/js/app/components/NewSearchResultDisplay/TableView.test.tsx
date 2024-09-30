@@ -48,9 +48,7 @@ describe('Component <TableView> for RESEARCH courses', () => {
       const course = TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_EN_BETA.searchHits[index]
       expect(utils.getAllByRole('cell')[0]).toHaveTextContent(course.kod)
       expect(utils.getAllByRole('cell')[1]).toHaveTextContent(course.benamning)
-      expect(utils.getAllByRole('cell')[2]).toHaveTextContent(
-        `${course.omfattning} ${course.utbildningstyp.creditsUnit.code.toLocaleLowerCase()}`
-      )
+      expect(utils.getAllByRole('cell')[2]).toHaveTextContent(`${course.omfattning.formattedWithUnit}`)
       expect(utils.getAllByRole('cell')[3]).toHaveTextContent('Third cycle')
     })
   })
@@ -74,9 +72,7 @@ describe('Component <TableView> for RESEARCH courses', () => {
       const course = TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_SV_BETA.searchHits[index]
       expect(utils.getAllByRole('cell')[0]).toHaveTextContent(course.kod)
       expect(utils.getAllByRole('cell')[1]).toHaveTextContent(course.benamning)
-      expect(utils.getAllByRole('cell')[2]).toHaveTextContent(
-        `${course.omfattning} ${course.utbildningstyp.creditsUnit.code.toLocaleLowerCase()}`
-      )
+      expect(utils.getAllByRole('cell')[2]).toHaveTextContent(course.omfattning.formattedWithUnit)
       expect(utils.getAllByRole('cell')[3]).toHaveTextContent('Forskarnivå')
     })
   })
@@ -102,9 +98,7 @@ describe('Component <TableView> for MIXED types of courses', () => {
       const course = EXPECTED_TEST_SEARCH_HITS_MIXED_EN_BETA.searchHits[index]
       expect(utils.getAllByRole('cell')[0]).toHaveTextContent(course.kod)
       expect(utils.getAllByRole('cell')[1]).toHaveTextContent(course.benamning)
-      expect(utils.getAllByRole('cell')[2]).toHaveTextContent(
-        `${course.omfattning} ${course.utbildningstyp.creditsUnit.code.toLocaleLowerCase()}`
-      )
+      expect(utils.getAllByRole('cell')[2]).toHaveTextContent(`${course.omfattning.formattedWithUnit}`)
       expect(utils.getAllByRole('cell')[3]).toHaveTextContent(course.utbildningstyp.level.name)
       expect(utils.getAllByRole('cell')[7]).toHaveTextContent(
         EXPECTED_TEST_SEARCH_HITS_MIXED_PERIODS_TEXTS_EN_BETA[index]
@@ -131,9 +125,7 @@ describe('Component <TableView> for MIXED types of courses', () => {
       const course = EXPECTED_TEST_SEARCH_HITS_MIXED_SV_BETA.searchHits[index]
       expect(utils.getAllByRole('cell')[0]).toHaveTextContent(course.kod)
       expect(utils.getAllByRole('cell')[1]).toHaveTextContent(course.benamning)
-      expect(utils.getAllByRole('cell')[2]).toHaveTextContent(
-        `${course.omfattning} ${course.utbildningstyp.creditsUnit.code.toLocaleLowerCase()}`
-      )
+      expect(utils.getAllByRole('cell')[2]).toHaveTextContent(`${course.omfattning.formattedWithUnit}`)
       expect(utils.getAllByRole('cell')[3]).toHaveTextContent(course.utbildningstyp.level.name)
       expect(utils.getAllByRole('cell')[7]).toHaveTextContent(
         EXPECTED_TEST_SEARCH_HITS_MIXED_PERIODS_TEXTS_SV_BETA[index]

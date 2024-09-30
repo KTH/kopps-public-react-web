@@ -87,7 +87,9 @@ const TEST_SEARCH_HITS_MIXED_EN_BETA = {
     {
       kod: 'AF2402',
       benamning: 'Acoustics and Fire',
-      omfattning: 7.5,
+      omfattning: {
+        formattedWithUnit: '7.5 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -146,7 +148,9 @@ const TEST_SEARCH_HITS_MIXED_EN_BETA = {
     {
       kod: 'AH2905',
       benamning: 'Advanced Pavement Engineering Analysis and Design',
-      omfattning: 7.5,
+      omfattning: {
+        formattedWithUnit: '7.5 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -205,7 +209,9 @@ const TEST_SEARCH_HITS_MIXED_EN_BETA = {
     {
       kod: 'FAF3901',
       benamning: 'Advanced Rheology of Bituminous Materials',
-      omfattning: 7.5,
+      omfattning: {
+        formattedWithUnit: '7.5 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -260,7 +266,9 @@ const TEST_SEARCH_HITS_MIXED_EN_BETA = {
     {
       kod: 'AF233X',
       benamning: 'Degree Project in Building Materials, Second Cycle',
-      omfattning: 30,
+      omfattning: {
+        formattedWithUnit: '30 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -319,7 +327,9 @@ const TEST_SEARCH_HITS_MIXED_EN_BETA = {
     {
       kod: 'FAH3904',
       benamning: 'Introduction to Asphalt Chemistry',
-      omfattning: 4,
+      omfattning: {
+        formattedWithUnit: '4 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -467,7 +477,9 @@ const TEST_SEARCH_HITS_MIXED_SV_BETA = {
     {
       kod: 'AF2402',
       benamning: 'Akustik och brand',
-      omfattning: 7.5,
+      omfattning: {
+        formattedWithUnit: '7.5 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -526,7 +538,9 @@ const TEST_SEARCH_HITS_MIXED_SV_BETA = {
     {
       kod: 'AH2905',
       benamning: 'Avancerad analys och design av vägbeläggningar',
-      omfattning: 7.5,
+      omfattning: {
+        formattedWithUnit: '7.5 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -585,7 +599,9 @@ const TEST_SEARCH_HITS_MIXED_SV_BETA = {
     {
       kod: 'FAF3901',
       benamning: 'Avancerad reologi för bituminösa material',
-      omfattning: 7.5,
+      omfattning: {
+        formattedWithUnit: '7.5 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -632,7 +648,9 @@ const TEST_SEARCH_HITS_MIXED_SV_BETA = {
     {
       kod: 'AF233X',
       benamning: 'Examensarbete inom byggnadsmateriallära, avancerad nivå',
-      omfattning: 30,
+      omfattning: {
+        formattedWithUnit: '30 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -691,7 +709,9 @@ const TEST_SEARCH_HITS_MIXED_SV_BETA = {
     {
       kod: 'FAH3904',
       benamning: 'Introduktion till asfaltskemin',
-      omfattning: 4,
+      omfattning: {
+        formattedWithUnit: '4 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -871,7 +891,9 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_EN_BETA = {
     {
       kod: 'AF233X',
       benamning: 'Degree Project in Building Materials, Second Cycle',
-      omfattning: 30,
+      omfattning: {
+        formattedWithUnit: '30 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -930,7 +952,9 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_EN_BETA = {
     {
       kod: 'AF2402',
       benamning: 'Acoustics and Fire',
-      omfattning: 7.5,
+      omfattning: {
+        formattedWithUnit: '7.5 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -989,7 +1013,9 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_EN_BETA = {
     {
       kod: 'AH2905',
       benamning: 'Advanced Pavement Engineering Analysis and Design',
-      omfattning: 7.5,
+      omfattning: {
+        formattedWithUnit: '7.5 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -1048,7 +1074,9 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_EN_BETA = {
     {
       kod: 'FAF3901',
       benamning: 'Advanced Rheology of Bituminous Materials',
-      omfattning: 7.5,
+      omfattning: {
+        formattedWithUnit: '7.5 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -1095,7 +1123,9 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_EN_BETA = {
     {
       kod: 'FAH3904',
       benamning: 'Introduction to Asphalt Chemistry',
-      omfattning: 4,
+      omfattning: {
+        formattedWithUnit: '4 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -1244,7 +1274,9 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_SV_BETA = {
     {
       kod: 'AF233X',
       benamning: 'Examensarbete inom byggnadsmateriallära, avancerad nivå',
-      omfattning: 30,
+      omfattning: {
+        formattedWithUnit: '30 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -1303,7 +1335,9 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_SV_BETA = {
     {
       kod: 'AF2402',
       benamning: 'Akustik och brand',
-      omfattning: 7.5,
+      omfattning: {
+        formattedWithUnit: '7.5 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -1362,7 +1396,9 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_SV_BETA = {
     {
       kod: 'AH2905',
       benamning: 'Avancerad analys och design av vägbeläggningar',
-      omfattning: 7.5,
+      omfattning: {
+        formattedWithUnit: '7.5 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -1421,7 +1457,9 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_SV_BETA = {
     {
       kod: 'FAF3901',
       benamning: 'Avancerad reologi för bituminösa material',
-      omfattning: 7.5,
+      omfattning: {
+        formattedWithUnit: '7.5 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -1468,7 +1506,9 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_SV_BETA = {
     {
       kod: 'FAH3904',
       benamning: 'Introduktion till asfaltskemin',
-      omfattning: 4,
+      omfattning: {
+        formattedWithUnit: '4 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -1568,7 +1608,9 @@ const TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_SV_BETA = {
     {
       kod: 'FAF3302',
       benamning: 'Projekt i byggnadsmaterialteknik',
-      omfattning: 7.5,
+      omfattning: {
+        formattedWithUnit: '7.5 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -1610,7 +1652,9 @@ const TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_SV_BETA = {
     {
       kod: 'FAF3304',
       benamning: 'Träkemi för biokompositer som byggnadsmaterial',
-      omfattning: 7.5,
+      omfattning: {
+        formattedWithUnit: '7.5 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -1652,7 +1696,9 @@ const TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_SV_BETA = {
     {
       kod: 'FAF3305',
       benamning: 'Vägdimensionering och prestandautvärdering',
-      omfattning: 3,
+      omfattning: {
+        formattedWithUnit: '3 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -1692,8 +1738,7 @@ const TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_SV_BETA = {
       schoolCode: 'SCI',
     },
   ],
-};
-
+}
 
 const TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_EN = {
   // RESEARCH, NO searchHitInterval
@@ -1736,7 +1781,9 @@ const TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_EN_BETA = {
     {
       kod: 'FAF3302',
       benamning: 'Project in Building Materials Technology',
-      omfattning: 7.5,
+      omfattning: {
+        formattedWithUnit: '7.5 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -1778,7 +1825,9 @@ const TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_EN_BETA = {
     {
       kod: 'FAF3304',
       benamning: 'Wood Chemistry, Biocomposites and Building Materials',
-      omfattning: 7.5,
+      omfattning: {
+        formattedWithUnit: '7.5 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -1820,7 +1869,9 @@ const TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_EN_BETA = {
     {
       kod: 'FAF3305',
       benamning: 'Pavement Design and Performance Prediction',
-      omfattning: 3,
+      omfattning: {
+        formattedWithUnit: '3 hp',
+      },
       organisation: {
         id: '',
         code: 'SCI',
@@ -1860,8 +1911,7 @@ const TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_EN_BETA = {
       schoolCode: 'SCI',
     },
   ],
-};
-
+}
 
 export {
   EXPECTED_TEST_SEARCH_HITS_MIXED_EN,

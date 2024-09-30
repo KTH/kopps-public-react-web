@@ -60,23 +60,4 @@ describe('ListView component', () => {
 
     expect(screen.getByText(/P1 Autumn 21 - P3 Spring 22/i)).toBeInTheDocument()
   })
-
-  test('renders course with a specific credit unit abbreviation', async () => {
-    const modifiedResultss = {
-      searchHits: [
-        {
-          ...TEST_API_ANSWER_RESOLVED.searchHits[0],
-          utbildningstyp: {
-            creditsUnit: {
-              code: 'ECTS',
-            },
-          },
-        },
-      ],
-    }
-
-    render(<ListView results={modifiedResultss.searchHits} />)
-
-    expect(screen.getByText(/ects/i)).toBeInTheDocument()
-  })
 })
