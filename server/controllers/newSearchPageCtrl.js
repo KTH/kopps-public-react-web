@@ -122,7 +122,7 @@ async function performCourseSearchBeta(req, res, next) {
     if (level === '1') return '2007GKURS'
     if (level === '2') return '2007AKURS'
     if (level === '3') return '2007FKURS'
-  })
+  }) // todo - this can be moved to search params after we decided to use the beta search as the main search
 
   const searchParams = {
     kodEllerBenamning: query.pattern ?? undefined,
