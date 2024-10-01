@@ -44,7 +44,7 @@ function useCourseSearch<T>(asyncCallback: () => Promise<T>, initialState?: Part
         else if (searchHits && searchHits.length === 0) noHitsDispatch(dispatch)
         else if (!searchHits && typeof data === 'string' && data.includes('ERROR-courseSearch-'))
           dispatch({ type: 'rejected', error: data })
-        else if (!searchHits && data === 'No query restriction was specified') noQueryProvidedDispatch(dispatch)
+        else if (!searchHits || data === 'No query restriction was specified') noQueryProvidedDispatch(dispatch)
         else dispatch({ type: 'resolved', data })
       },
       error => dispatch({ type: 'rejected', error: ERROR_ASYNC.rejected })
