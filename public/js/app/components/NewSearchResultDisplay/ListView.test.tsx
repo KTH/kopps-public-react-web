@@ -28,9 +28,13 @@ describe('ListView component', () => {
       searchHits: [
         {
           ...TEST_API_ANSWER_RESOLVED.searchHits[0],
-          forstaUndervisningsdatum: {
-            period: null as any,
-          },
+          period: [
+            {
+              forstaUndervisningsdatum: {
+                period: null as any,
+              },
+            },
+          ],
         },
       ],
     }

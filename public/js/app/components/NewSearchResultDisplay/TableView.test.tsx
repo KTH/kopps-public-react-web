@@ -99,7 +99,7 @@ describe('Component <TableView> for MIXED types of courses', () => {
       expect(utils.getAllByRole('cell')[0]).toHaveTextContent(course.kod)
       expect(utils.getAllByRole('cell')[1]).toHaveTextContent(course.benamning)
       expect(utils.getAllByRole('cell')[2]).toHaveTextContent(`${course.omfattning.formattedWithUnit}`)
-      expect(utils.getAllByRole('cell')[3]).toHaveTextContent(course.utbildningstyp.level.name)
+      expect(utils.getAllByRole('cell')[3]).toHaveTextContent(course.utbildningstyp[0].level.name)
       expect(utils.getAllByRole('cell')[7]).toHaveTextContent(
         EXPECTED_TEST_SEARCH_HITS_MIXED_PERIODS_TEXTS_EN_BETA[index]
       )
@@ -126,7 +126,7 @@ describe('Component <TableView> for MIXED types of courses', () => {
       expect(utils.getAllByRole('cell')[0]).toHaveTextContent(course.kod)
       expect(utils.getAllByRole('cell')[1]).toHaveTextContent(course.benamning)
       expect(utils.getAllByRole('cell')[2]).toHaveTextContent(`${course.omfattning.formattedWithUnit}`)
-      expect(utils.getAllByRole('cell')[3]).toHaveTextContent(course.utbildningstyp.level.name)
+      expect(utils.getAllByRole('cell')[3]).toHaveTextContent(course.utbildningstyp[0].level.name)
       expect(utils.getAllByRole('cell')[7]).toHaveTextContent(
         EXPECTED_TEST_SEARCH_HITS_MIXED_PERIODS_TEXTS_SV_BETA[index]
       )

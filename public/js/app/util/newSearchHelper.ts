@@ -108,31 +108,129 @@ export const sortAndParseByCourseCodeForTableView: SortAndParseByCourseCodeForTa
   courses.sort(compareCoursesBy('kod'))
 
   // Map and parse courses into the desired format
-  const parsedCourses = courses.map(
-    ({
-      kod: code,
+  const parsedCourses = courses.map(course => {
+    const {
+      kod: courseCode,
       benamning: title,
+      utbildningstyp: utbildningstyps = [],
       omfattning: { formattedWithUnit: credits = '' } = {},
-      utbildningstyp: { level: { name: educationalLevel = '' } = {} } = {},
-      forstaUndervisningsdatum: { period: startPeriod = '', year: startPeriodYear = '' } = {},
-      sistaUndervisningsdatum: { period: endPeriod = '', year: endPeriodYear = '' } = {},
-      tillfallesperioderNummer = '',
-      startperiod: { inDigits: startTerm = '' } = {},
-      studietakt: { takt: coursePace = '' } = {},
-      undervisningssprak: { name: courseLanguage = '' } = {},
-      studieort: { name: courseCampus = '' } = {},
-    }) => [
-      codeCell(code, startTerm, language),
-      titleCell(code, title, startTerm, language),
-      credits,
+      period: periods = [],
+      startperiod: startPeriods = [],
+      studietakt: studyPaces = [],
+      undervisningssprak: languages = [],
+      studieort: campuses = [],
+    } = course || {}
+
+    const allPeriods = periods.map(
+      ({
+        startperiod: { inDigits: startTerm = '' } = {},
+        forstaUndervisningsdatum: {
+          date: startDate = '',
+          year: startPeriodYear = '',
+          week: startWeek = '',
+          period: startPeriod = '',
+        } = {},
+        sistaUndervisningsdatum: {
+          date: endDate = '',
+          year: endPeriodYear = '',
+          week: endWeek = '',
+          period: endPeriod = '',
+        } = {},
+        tillfallesperioderNummer = undefined,
+      }) => ({
+        startTerm,
+        startDate,
+        startPeriodYear,
+        startWeek,
+        startPeriod,
+        endDate,
+        endPeriodYear,
+        endWeek,
+        endPeriod,
+        tillfallesperioderNummer,
+      })
+    )
+
+    const allEducationalLevels = utbildningstyps.map(({ level: { name: educationalLevel = '' } = {} }) => ({
       educationalLevel,
+    }))
+
+    const allStudyPaces = studyPaces.map(({ takt: coursePace = '' }) => ({
+      coursePace,
+    }))
+
+    const allLanguages = languages.map(({ name: courseLanguage = '' }) => ({
       courseLanguage,
-      `${coursePace}%`,
+    }))
+
+    const allCampuses = campuses.map(({ name: courseCampus = '' }) => ({
       courseCampus,
-      periodsStr(startPeriod, startPeriodYear, endPeriod, endPeriodYear, tillfallesperioderNummer, language) ||
-        courseHasNoRoundsInTableCell,
+    }))
+
+    const allStartPeriods = startPeriods.map(({ code: startTerm = '', inDigits = '' }) => ({
+      startTerm,
+      inDigits,
+    }))
+
+    const startTerm = allStartPeriods.length === 1 ? allStartPeriods[0].startTerm : undefined
+
+    let allPeriodTexts = []
+    allPeriodTexts = allPeriods.map(
+      ({
+        startPeriod,
+        startPeriodYear,
+        endPeriod,
+        endPeriodYear,
+        tillfallesperioderNummer,
+      }: {
+        startPeriod: string
+        startPeriodYear: number
+        endPeriod: string
+        endPeriodYear: number
+        tillfallesperioderNummer: number
+      }) => periodsStr(startPeriod, startPeriodYear, endPeriod, endPeriodYear, tillfallesperioderNummer, language)
+    )
+
+    const areAllPeriodTextsEmpty = allPeriodTexts.every((value: string) => value === '')
+
+    let educationalLevelText = ''
+    allEducationalLevels.forEach(({ educationalLevel }: { educationalLevel: string }, index: number) => {
+      educationalLevelText += `${educationalLevel}${index + 1 != allEducationalLevels.length ? '\n' : ''}`
+    })
+
+    let courseLanguageText = ''
+    allLanguages.forEach(({ courseLanguage }: { courseLanguage: string }, index: number) => {
+      courseLanguageText += `${courseLanguage}${index + 1 != allLanguages.length ? '\n' : ''}`
+    })
+
+    let coursePaceText = ''
+    allStudyPaces.forEach(({ coursePace }: { coursePace: number }, index: number) => {
+      coursePaceText += `${coursePace}%${index + 1 != allStudyPaces.length ? '\n' : ''}`
+    })
+
+    let courseCampusText = ''
+    allCampuses.forEach(({ courseCampus }: { courseCampus: string }, index: number) => {
+      courseCampusText += `${courseCampus}${index + 1 != allCampuses.length ? '\n' : ''}`
+    })
+
+    let periodText = areAllPeriodTextsEmpty ? courseHasNoRoundsInTableCell : ''
+    if (!areAllPeriodTextsEmpty) {
+      allPeriodTexts.forEach((text: string, index: number) => {
+        periodText += ` ${text} ${index + 1 != allPeriodTexts.length ? '\n' : ''}`
+      })
+    }
+
+    return [
+      codeCell(courseCode, startTerm, language),
+      titleCell(courseCode, title, startTerm, language),
+      credits,
+      educationalLevelText,
+      courseLanguageText,
+      coursePaceText,
+      courseCampusText,
+      periodText,
     ]
-  )
+  })
 
   return parsedCourses
 }

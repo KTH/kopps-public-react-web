@@ -96,53 +96,71 @@ const TEST_SEARCH_HITS_MIXED_EN_BETA = {
         name: 'SCI/Engineering',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Basic level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '1',
-          name: 'BASIC',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Basic level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '1',
+            name: 'BASIC',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'EN',
-        name: 'English',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      forstaUndervisningsdatum: {
-        date: '2021-08-30',
-        period: 1,
-        year: 2021,
-        week: 35,
-      },
-      sistaUndervisningsdatum: {
-        date: '2022-01-17',
-        period: 3,
-        year: 2022,
-        week: 3,
-      },
-      tillfallesperioderNummer: 1,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'EN',
+          name: 'English',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          forstaUndervisningsdatum: {
+            date: '2021-08-30',
+            period: 1,
+            year: 2021,
+            week: 35,
+          },
+          sistaUndervisningsdatum: {
+            date: '2022-01-17',
+            period: 3,
+            year: 2022,
+            week: 3,
+          },
+          tillfallesperioderNummer: 1,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
@@ -157,53 +175,71 @@ const TEST_SEARCH_HITS_MIXED_EN_BETA = {
         name: 'SCI/Engineering',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, First-cycle',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '1',
-          name: 'First cycle',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, First-cycle',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '1',
+            name: 'First cycle',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'EN',
-        name: 'English',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      forstaUndervisningsdatum: {
-        date: '2021-08-30',
-        period: 1,
-        year: 2021,
-        week: 35,
-      },
-      sistaUndervisningsdatum: {
-        date: '2021-12-17',
-        period: 1,
-        year: 2021,
-        week: 50,
-      },
-      tillfallesperioderNummer: 1,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'EN',
+          name: 'English',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          forstaUndervisningsdatum: {
+            date: '2021-08-30',
+            period: 1,
+            year: 2021,
+            week: 35,
+          },
+          sistaUndervisningsdatum: {
+            date: '2021-12-17',
+            period: 1,
+            year: 2021,
+            week: 50,
+          },
+          tillfallesperioderNummer: 1,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
@@ -218,49 +254,67 @@ const TEST_SEARCH_HITS_MIXED_EN_BETA = {
         name: 'SCI/Materials Science',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Research-level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '2',
-          name: 'RESEARCH',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Research-level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '2',
+            name: 'RESEARCH',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'EN',
-        name: 'English',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      forstaUndervisningsdatum: {
-        date: '2021-09-01',
-        week: 36,
-      },
-      sistaUndervisningsdatum: {
-        date: '2021-12-15',
-        week: 50,
-      },
-      tillfallesperioderNummer: 1,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'EN',
+          name: 'English',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          forstaUndervisningsdatum: {
+            date: '2021-09-01',
+            week: 36,
+          },
+          sistaUndervisningsdatum: {
+            date: '2021-12-15',
+            week: 50,
+          },
+          tillfallesperioderNummer: 1,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
@@ -275,53 +329,71 @@ const TEST_SEARCH_HITS_MIXED_EN_BETA = {
         name: 'SCI/Materials Science',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Advanced-level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '2',
-          name: 'ADVANCED',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Advanced-level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '2',
+            name: 'ADVANCED',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'EN',
-        name: 'English',
-      },
-      studietakt: {
-        id: '',
-        code: '100',
-        name: 'Full-time',
-        takt: 100,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      forstaUndervisningsdatum: {
-        date: '2021-08-30',
-        period: 1,
-        year: 2021,
-        week: 35,
-      },
-      sistaUndervisningsdatum: {
-        date: '2021-12-15',
-        period: 2,
-        year: 2021,
-        week: 50,
-      },
-      tillfallesperioderNummer: 2,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'EN',
+          name: 'English',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '100',
+          name: 'Full-time',
+          takt: 100,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          forstaUndervisningsdatum: {
+            date: '2021-08-30',
+            period: 1,
+            year: 2021,
+            week: 35,
+          },
+          sistaUndervisningsdatum: {
+            date: '2021-12-15',
+            period: 2,
+            year: 2021,
+            week: 50,
+          },
+          tillfallesperioderNummer: 2,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
@@ -336,53 +408,71 @@ const TEST_SEARCH_HITS_MIXED_EN_BETA = {
         name: 'SCI/Materials Science',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Preparatory-level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '0',
-          name: 'PREPARATORY',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Preparatory-level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '0',
+            name: 'PREPARATORY',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'EN',
-        name: 'English',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      forstaUndervisningsdatum: {
-        date: '2021-08-30',
-        period: 0,
-        year: 2021,
-        week: 35,
-      },
-      sistaUndervisningsdatum: {
-        date: '2022-05-15',
-        period: 5,
-        year: 2022,
-        week: 20,
-      },
-      tillfallesperioderNummer: 5,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'EN',
+          name: 'English',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          forstaUndervisningsdatum: {
+            date: '2021-08-30',
+            period: 0,
+            year: 2021,
+            week: 35,
+          },
+          sistaUndervisningsdatum: {
+            date: '2022-05-15',
+            period: 5,
+            year: 2022,
+            week: 20,
+          },
+          tillfallesperioderNummer: 5,
+        },
+      ],
       schoolCode: 'SCI',
     },
   ],
@@ -486,53 +576,71 @@ const TEST_SEARCH_HITS_MIXED_SV_BETA = {
         name: 'SCI/Engineering',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Basic level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '1',
-          name: 'BASIC',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Basic level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '1',
+            name: 'BASIC',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'SV',
-        name: 'Swedish',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      forstaUndervisningsdatum: {
-        date: '2021-08-30',
-        period: 1,
-        year: 2021,
-        week: 35,
-      },
-      sistaUndervisningsdatum: {
-        date: '2022-01-17',
-        period: 3,
-        year: 2022,
-        week: 3,
-      },
-      tillfallesperioderNummer: 1,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'SV',
+          name: 'Swedish',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          forstaUndervisningsdatum: {
+            date: '2021-08-30',
+            period: 1,
+            year: 2021,
+            week: 35,
+          },
+          sistaUndervisningsdatum: {
+            date: '2022-01-17',
+            period: 3,
+            year: 2022,
+            week: 3,
+          },
+          tillfallesperioderNummer: 1,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
@@ -547,53 +655,71 @@ const TEST_SEARCH_HITS_MIXED_SV_BETA = {
         name: 'SCI/Engineering',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, First-cycle',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '1',
-          name: 'First cycle',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, First-cycle',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '1',
+            name: 'First cycle',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'SV',
-        name: 'Swedish',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      forstaUndervisningsdatum: {
-        date: '2021-08-30',
-        period: 1,
-        year: 2021,
-        week: 35,
-      },
-      sistaUndervisningsdatum: {
-        date: '2021-12-17',
-        period: 1,
-        year: 2021,
-        week: 50,
-      },
-      tillfallesperioderNummer: 1,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'SV',
+          name: 'Swedish',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          forstaUndervisningsdatum: {
+            date: '2021-08-30',
+            period: 1,
+            year: 2021,
+            week: 35,
+          },
+          sistaUndervisningsdatum: {
+            date: '2021-12-17',
+            period: 1,
+            year: 2021,
+            week: 50,
+          },
+          tillfallesperioderNummer: 1,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
@@ -608,41 +734,59 @@ const TEST_SEARCH_HITS_MIXED_SV_BETA = {
         name: 'SCI/Materials Science',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Research-level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '2',
-          name: 'RESEARCH',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Research-level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '2',
+            name: 'RESEARCH',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'SV',
-        name: 'Swedish',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      tillfallesperioderNummer: 1,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'SV',
+          name: 'Swedish',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          tillfallesperioderNummer: 1,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
@@ -657,53 +801,71 @@ const TEST_SEARCH_HITS_MIXED_SV_BETA = {
         name: 'SCI/Materials Science',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Advanced-level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '2',
-          name: 'ADVANCED',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Advanced-level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '2',
+            name: 'ADVANCED',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'SV',
-        name: 'Swedish',
-      },
-      studietakt: {
-        id: '',
-        code: '100',
-        name: 'Full-time',
-        takt: 100,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      forstaUndervisningsdatum: {
-        date: '2021-08-30',
-        period: 1,
-        year: 2021,
-        week: 35,
-      },
-      sistaUndervisningsdatum: {
-        date: '2021-12-15',
-        period: 2,
-        year: 2021,
-        week: 50,
-      },
-      tillfallesperioderNummer: 2,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'SV',
+          name: 'Swedish',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '100',
+          name: 'Full-time',
+          takt: 100,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          forstaUndervisningsdatum: {
+            date: '2021-08-30',
+            period: 1,
+            year: 2021,
+            week: 35,
+          },
+          sistaUndervisningsdatum: {
+            date: '2021-12-15',
+            period: 2,
+            year: 2021,
+            week: 50,
+          },
+          tillfallesperioderNummer: 2,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
@@ -718,53 +880,71 @@ const TEST_SEARCH_HITS_MIXED_SV_BETA = {
         name: 'SCI/Materials Science',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Preparatory-level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '0',
-          name: 'PREPARATORY',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Preparatory-level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '0',
+            name: 'PREPARATORY',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'SV',
-        name: 'Swedish',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      forstaUndervisningsdatum: {
-        date: '2021-08-30',
-        period: 0,
-        year: 2021,
-        week: 35,
-      },
-      sistaUndervisningsdatum: {
-        date: '2022-05-15',
-        period: 5,
-        year: 2022,
-        week: 20,
-      },
-      tillfallesperioderNummer: 5,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'SV',
+          name: 'Swedish',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          forstaUndervisningsdatum: {
+            date: '2021-08-30',
+            period: 0,
+            year: 2021,
+            week: 35,
+          },
+          sistaUndervisningsdatum: {
+            date: '2022-05-15',
+            period: 5,
+            year: 2022,
+            week: 20,
+          },
+          tillfallesperioderNummer: 5,
+        },
+      ],
       schoolCode: 'SCI',
     },
   ],
@@ -900,53 +1080,71 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_EN_BETA = {
         name: 'SCI/Materials Science',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Advanced-level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '2',
-          name: 'ADVANCED',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Advanced-level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '2',
+            name: 'ADVANCED',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'EN',
-        name: 'English',
-      },
-      studietakt: {
-        id: '',
-        code: '100',
-        name: 'Full-time',
-        takt: 100,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      forstaUndervisningsdatum: {
-        date: '2021-08-30',
-        period: 1,
-        year: 2021,
-        week: 35,
-      },
-      sistaUndervisningsdatum: {
-        date: '2021-12-15',
-        period: 2,
-        year: 2021,
-        week: 50,
-      },
-      tillfallesperioderNummer: 2,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'EN',
+          name: 'English',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '100',
+          name: 'Full-time',
+          takt: 100,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          forstaUndervisningsdatum: {
+            date: '2021-08-30',
+            period: 1,
+            year: 2021,
+            week: 35,
+          },
+          sistaUndervisningsdatum: {
+            date: '2021-12-15',
+            period: 2,
+            year: 2021,
+            week: 50,
+          },
+          tillfallesperioderNummer: 2,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
@@ -961,53 +1159,71 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_EN_BETA = {
         name: 'SCI/Engineering',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Basic level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '1',
-          name: 'BASIC',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Basic level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '1',
+            name: 'BASIC',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'EN',
-        name: 'English',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      forstaUndervisningsdatum: {
-        date: '2021-08-30',
-        period: 1,
-        year: 2021,
-        week: 35,
-      },
-      sistaUndervisningsdatum: {
-        date: '2022-01-17',
-        period: 3,
-        year: 2022,
-        week: 3,
-      },
-      tillfallesperioderNummer: 1,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'EN',
+          name: 'English',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          forstaUndervisningsdatum: {
+            date: '2021-08-30',
+            period: 1,
+            year: 2021,
+            week: 35,
+          },
+          sistaUndervisningsdatum: {
+            date: '2022-01-17',
+            period: 3,
+            year: 2022,
+            week: 3,
+          },
+          tillfallesperioderNummer: 1,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
@@ -1022,53 +1238,71 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_EN_BETA = {
         name: 'SCI/Engineering',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, First-cycle',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '1',
-          name: 'First cycle',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, First-cycle',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '1',
+            name: 'First cycle',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'EN',
-        name: 'English',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      forstaUndervisningsdatum: {
-        date: '2021-08-30',
-        period: 1,
-        year: 2021,
-        week: 35,
-      },
-      sistaUndervisningsdatum: {
-        date: '2021-12-17',
-        period: 1,
-        year: 2021,
-        week: 50,
-      },
-      tillfallesperioderNummer: 1,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'EN',
+          name: 'English',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          forstaUndervisningsdatum: {
+            date: '2021-08-30',
+            period: 1,
+            year: 2021,
+            week: 35,
+          },
+          sistaUndervisningsdatum: {
+            date: '2021-12-17',
+            period: 1,
+            year: 2021,
+            week: 50,
+          },
+          tillfallesperioderNummer: 1,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
@@ -1083,41 +1317,59 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_EN_BETA = {
         name: 'SCI/Materials Science',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Research-level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '2',
-          name: 'RESEARCH',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Research-level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '2',
+            name: 'RESEARCH',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'EN',
-        name: 'English',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      tillfallesperioderNummer: 1,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'EN',
+          name: 'English',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          tillfallesperioderNummer: 1,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
@@ -1132,53 +1384,71 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_EN_BETA = {
         name: 'SCI/Materials Science',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Preparatory-level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '0',
-          name: 'PREPARATORY',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Preparatory-level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '0',
+            name: 'PREPARATORY',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'EN',
-        name: 'English',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      forstaUndervisningsdatum: {
-        date: '2021-08-30',
-        period: 0,
-        year: 2021,
-        week: 35,
-      },
-      sistaUndervisningsdatum: {
-        date: '2022-05-15',
-        period: 5,
-        year: 2022,
-        week: 20,
-      },
-      tillfallesperioderNummer: 5,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'EN',
+          name: 'English',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          forstaUndervisningsdatum: {
+            date: '2021-08-30',
+            period: 0,
+            year: 2021,
+            week: 35,
+          },
+          sistaUndervisningsdatum: {
+            date: '2022-05-15',
+            period: 5,
+            year: 2022,
+            week: 20,
+          },
+          tillfallesperioderNummer: 5,
+        },
+      ],
       schoolCode: 'SCI',
     },
   ],
@@ -1283,53 +1553,71 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_SV_BETA = {
         name: 'SCI/Materials Science',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Advanced-level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '2',
-          name: 'ADVANCED',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Advanced-level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '2',
+            name: 'ADVANCED',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'SV',
-        name: 'Swedish',
-      },
-      studietakt: {
-        id: '',
-        code: '100',
-        name: 'Full-time',
-        takt: 100,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      forstaUndervisningsdatum: {
-        date: '2021-08-30',
-        period: 1,
-        year: 2021,
-        week: 35,
-      },
-      sistaUndervisningsdatum: {
-        date: '2021-12-15',
-        period: 2,
-        year: 2021,
-        week: 50,
-      },
-      tillfallesperioderNummer: 2,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'SV',
+          name: 'Swedish',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '100',
+          name: 'Full-time',
+          takt: 100,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          forstaUndervisningsdatum: {
+            date: '2021-08-30',
+            period: 1,
+            year: 2021,
+            week: 35,
+          },
+          sistaUndervisningsdatum: {
+            date: '2021-12-15',
+            period: 2,
+            year: 2021,
+            week: 50,
+          },
+          tillfallesperioderNummer: 2,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
@@ -1344,53 +1632,71 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_SV_BETA = {
         name: 'SCI/Engineering',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Basic level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '1',
-          name: 'BASIC',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Basic level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '1',
+            name: 'BASIC',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'SV',
-        name: 'Swedish',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      forstaUndervisningsdatum: {
-        date: '2021-08-30',
-        period: 1,
-        year: 2021,
-        week: 35,
-      },
-      sistaUndervisningsdatum: {
-        date: '2022-01-17',
-        period: 3,
-        year: 2022,
-        week: 3,
-      },
-      tillfallesperioderNummer: 1,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'SV',
+          name: 'Swedish',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          forstaUndervisningsdatum: {
+            date: '2021-08-30',
+            period: 1,
+            year: 2021,
+            week: 35,
+          },
+          sistaUndervisningsdatum: {
+            date: '2022-01-17',
+            period: 3,
+            year: 2022,
+            week: 3,
+          },
+          tillfallesperioderNummer: 1,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
@@ -1405,53 +1711,71 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_SV_BETA = {
         name: 'SCI/Engineering',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, First-cycle',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '1',
-          name: 'First cycle',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, First-cycle',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '1',
+            name: 'First cycle',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'SV',
-        name: 'Swedish',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      forstaUndervisningsdatum: {
-        date: '2021-08-30',
-        period: 1,
-        year: 2021,
-        week: 35,
-      },
-      sistaUndervisningsdatum: {
-        date: '2021-12-17',
-        period: 1,
-        year: 2021,
-        week: 50,
-      },
-      tillfallesperioderNummer: 1,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'SV',
+          name: 'Swedish',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          forstaUndervisningsdatum: {
+            date: '2021-08-30',
+            period: 1,
+            year: 2021,
+            week: 35,
+          },
+          sistaUndervisningsdatum: {
+            date: '2021-12-17',
+            period: 1,
+            year: 2021,
+            week: 50,
+          },
+          tillfallesperioderNummer: 1,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
@@ -1466,41 +1790,59 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_SV_BETA = {
         name: 'SCI/Materials Science',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Research-level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '2',
-          name: 'RESEARCH',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Research-level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '2',
+            name: 'RESEARCH',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'SV',
-        name: 'Swedish',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      tillfallesperioderNummer: 1,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'SV',
+          name: 'Swedish',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          tillfallesperioderNummer: 1,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
@@ -1515,53 +1857,71 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_SV_BETA = {
         name: 'SCI/Materials Science',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Preparatory-level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '0',
-          name: 'PREPARATORY',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Preparatory-level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '0',
+            name: 'PREPARATORY',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'SV',
-        name: 'Swedish',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      forstaUndervisningsdatum: {
-        date: '2021-08-30',
-        period: 0,
-        year: 2021,
-        week: 35,
-      },
-      sistaUndervisningsdatum: {
-        date: '2022-05-15',
-        period: 5,
-        year: 2022,
-        week: 20,
-      },
-      tillfallesperioderNummer: 5,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'SV',
+          name: 'Swedish',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          forstaUndervisningsdatum: {
+            date: '2021-08-30',
+            period: 0,
+            year: 2021,
+            week: 35,
+          },
+          sistaUndervisningsdatum: {
+            date: '2022-05-15',
+            period: 5,
+            year: 2022,
+            week: 20,
+          },
+          tillfallesperioderNummer: 5,
+        },
+      ],
       schoolCode: 'SCI',
     },
   ],
@@ -1617,36 +1977,44 @@ const TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_SV_BETA = {
         name: 'SCI/Materials Science',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Research-level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '2',
-          name: 'Forskarnivå',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Research-level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '2',
+            name: 'Forskarnivå',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'SV',
-        name: 'Swedish',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'SV',
+          name: 'Swedish',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
@@ -1661,36 +2029,44 @@ const TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_SV_BETA = {
         name: 'SCI/Materials Science',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Research-level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '2',
-          name: 'Forskarnivå',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Research-level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '2',
+            name: 'Forskarnivå',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'SV',
-        name: 'Swedish',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'SV',
+          name: 'Swedish',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
@@ -1705,36 +2081,44 @@ const TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_SV_BETA = {
         name: 'SCI/Materials Science',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Research-level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '2',
-          name: 'Forskarnivå',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Research-level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '2',
+            name: 'Forskarnivå',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'SV',
-        name: 'Swedish',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'SV',
+          name: 'Swedish',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
       schoolCode: 'SCI',
     },
   ],
@@ -1790,36 +2174,44 @@ const TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_EN_BETA = {
         name: 'SCI/Materials Science',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Research-level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '2',
-          name: 'Third cycle',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Research-level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '2',
+            name: 'Third cycle',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'EN',
-        name: 'English',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'EN',
+          name: 'English',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
@@ -1834,36 +2226,44 @@ const TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_EN_BETA = {
         name: 'SCI/Materials Science',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Research-level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '2',
-          name: 'Third cycle',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Research-level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '2',
+            name: 'Third cycle',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'EN',
-        name: 'English',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'EN',
+          name: 'English',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
@@ -1878,36 +2278,44 @@ const TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_EN_BETA = {
         name: 'SCI/Materials Science',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Research-level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '2',
-          name: 'Third cycle',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Research-level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '2',
+            name: 'Third cycle',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'EN',
-        name: 'English',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'EN',
+          name: 'English',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
       schoolCode: 'SCI',
     },
   ],

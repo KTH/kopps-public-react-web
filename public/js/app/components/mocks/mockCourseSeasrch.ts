@@ -22,7 +22,7 @@ const TEST_API_ANSWER_RESOLVED = {
     {
       kod: 'AF2402',
       benamning: 'Acoustics and Fire',
-            omfattning: {
+      omfattning: {
         formattedWithUnit: '7.5 hp',
       },
       organisation: {
@@ -31,59 +31,77 @@ const TEST_API_ANSWER_RESOLVED = {
         name: 'SCI/Engineering',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Basic level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '1',
-          name: 'BASIC',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Basic level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '1',
+            name: 'BASIC',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'EN',
-        name: 'English',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      forstaUndervisningsdatum: {
-        date: '2021-08-30',
-        period: 1,
-        year: 2021,
-        week: 35,
-      },
-      sistaUndervisningsdatum: {
-        date: '2022-01-17',
-        period: 3,
-        year: 2022,
-        week: 3,
-      },
-      tillfallesperioderNummer: 1,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'EN',
+          name: 'English',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          forstaUndervisningsdatum: {
+            date: '2021-08-30',
+            period: 1,
+            year: 2021,
+            week: 35,
+          },
+          sistaUndervisningsdatum: {
+            date: '2022-01-17',
+            period: 3,
+            year: 2022,
+            week: 3,
+          },
+          tillfallesperioderNummer: 1,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
       kod: 'AH2905',
       benamning: 'Advanced Pavement Engineering Analysis and Design',
-            omfattning: {
+      omfattning: {
         formattedWithUnit: '7.5 hp',
       },
       organisation: {
@@ -92,53 +110,71 @@ const TEST_API_ANSWER_RESOLVED = {
         name: 'SCI/Engineering',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, First-cycle',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '1',
-          name: 'First cycle',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, First-cycle',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '1',
+            name: 'First cycle',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'EN',
-        name: 'English',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
-      startperiod: {
-        code: '20212',
-        inDigits: '20212',
-      },
-      forstaUndervisningsdatum: {
-        date: '2021-08-30',
-        period: 1,
-        year: 2021,
-        week: 35,
-      },
-      sistaUndervisningsdatum: {
-        date: '2021-12-17',
-        period: 1,
-        year: 2021,
-        week: 50,
-      },
-      tillfallesperioderNummer: 1,
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'EN',
+          name: 'English',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
+      startperiod: [
+        {
+          code: '20212',
+          inDigits: '20212',
+        },
+      ],
+      period: [
+        {
+          startperiod: {
+            code: '20212',
+            inDigits: '20212',
+          },
+          forstaUndervisningsdatum: {
+            date: '2021-08-30',
+            period: 1,
+            year: 2021,
+            week: 35,
+          },
+          sistaUndervisningsdatum: {
+            date: '2021-12-17',
+            period: 1,
+            year: 2021,
+            week: 50,
+          },
+          tillfallesperioderNummer: 1,
+        },
+      ],
       schoolCode: 'SCI',
     },
   ],
@@ -150,7 +186,7 @@ const TEST_API_ANSWER_ALGEBRA = {
     {
       kod: 'IX1303',
       benamning: 'Algebra och geometri',
-            omfattning: {
+      omfattning: {
         formattedWithUnit: '7.5 hp',
       },
       organisation: {
@@ -159,42 +195,50 @@ const TEST_API_ANSWER_ALGEBRA = {
         name: 'SCI/Mathematics',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Basic level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '1',
-          name: 'BASIC',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Basic level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '1',
+            name: 'BASIC',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'SV',
-        name: 'Swedish',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'SV',
+          name: 'Swedish',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
       schoolCode: 'SCI',
     },
     {
       kod: 'SF1624',
       benamning: 'Algebra och geometri',
-            omfattning: {
+      omfattning: {
         formattedWithUnit: '7.5 hp',
       },
       organisation: {
@@ -203,36 +247,44 @@ const TEST_API_ANSWER_ALGEBRA = {
         name: 'SCI/Mathematics',
         organisationTypeName: 'Department',
       },
-      studieort: {
-        id: '',
-        code: 'MAIN_CAMPUS',
-        name: 'Main Campus',
-      },
-      utbildningstyp: {
-        id: '',
-        code: '',
-        name: 'Course, Basic level',
-        creditsUnit: {
-          code: 'HP',
-          sv: 'Högskolepoäng',
-          en: 'Credits',
+      studieort: [
+        {
+          id: '',
+          code: 'MAIN_CAMPUS',
+          name: 'Main Campus',
         },
-        level: {
-          code: '1',
-          name: 'BASIC',
+      ],
+      utbildningstyp: [
+        {
+          id: '',
+          code: '',
+          name: 'Course, Basic level',
+          creditsUnit: {
+            code: 'HP',
+            sv: 'Högskolepoäng',
+            en: 'Credits',
+          },
+          level: {
+            code: '1',
+            name: 'BASIC',
+          },
         },
-      },
-      undervisningssprak: {
-        id: '',
-        code: 'SV',
-        name: 'Swedish',
-      },
-      studietakt: {
-        id: '',
-        code: '33',
-        name: 'One-third-time',
-        takt: 33,
-      },
+      ],
+      undervisningssprak: [
+        {
+          id: '',
+          code: 'SV',
+          name: 'Swedish',
+        },
+      ],
+      studietakt: [
+        {
+          id: '',
+          code: '33',
+          name: 'One-third-time',
+          takt: 33,
+        },
+      ],
       schoolCode: 'SCI',
     },
   ],

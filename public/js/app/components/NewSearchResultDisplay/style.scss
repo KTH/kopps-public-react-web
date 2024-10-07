@@ -118,7 +118,7 @@
       }
       .course-details {
         display: flex;
-        align-items: center;
+        align-items: start;
         justify-content: space-between;
         font-weight: typography.$font-bold;
         gap: space.$space-8;
@@ -140,6 +140,8 @@
         .course-location {
           position: relative;
           padding-top: 30px;
+          display: flex;
+          flex-direction: column;
           &:before {
             @include icons.icon-home;
             position: absolute;
@@ -153,6 +155,8 @@
         .course-language {
           position: relative;
           padding-top: 30px;
+          display: flex;
+          flex-direction: column;
           &:before {
             @include icons.icon-language;
             position: absolute;
@@ -166,6 +170,8 @@
         .course-pace {
           position: relative;
           padding-top: 30px;
+          display: flex;
+          flex-direction: column;
           &:before {
             @include icons.icon-schedule;
             position: absolute;
@@ -191,6 +197,9 @@
     th,
     td {
       vertical-align: middle;
+    }
+    td:last-child {
+      white-space: pre-line;
     }
   }
 }
