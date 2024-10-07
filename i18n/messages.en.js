@@ -247,6 +247,7 @@ const messages = {
     leadIntro:
       'Find info on KTH courses: course syllabus, course memo, and course analyses. Search by course name or course code, you can also filter by semester and period. Which courses are included in a program can be found under Programme syllabuses.',
     eduLevel: 'Educational level:',
+    semesters: 'Course Start:',
     PREPARATORY: 'Pre-university level',
     BASIC: 'First cycle',
     ADVANCED: 'Second cycle',

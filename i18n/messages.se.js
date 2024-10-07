@@ -241,6 +241,7 @@ const messages = {
     leadIntro:
       'Här finns info om kurser på KTH: kursplan, kurs-PM och kursanalyser. Sök på kursnamn eller kurskod, du kan även filtrera på termin och läsperiod. Vilka kurser som ingår i ett program finns under Utbildningsplaner.',
     eduLevel: 'Utbildningsnivå:',
+    semesters: 'Kursstart:',
     PREPARATORY: 'Förberedande nivå',
     BASIC: 'Grundnivå',
     ADVANCED: 'Avancerad nivå',

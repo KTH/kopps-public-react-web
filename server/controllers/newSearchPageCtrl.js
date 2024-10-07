@@ -94,28 +94,28 @@ async function performCourseSearchBeta(req, res, next) {
 
   const { query } = req
 
-  const convertedPeriods = query.period?.reduce((acc, period) => {
-    const splitedPeriod = period.split(':')
-    const codes =
-      splitedPeriod[1] === 'summer' ? [`VT${splitedPeriod[0]}`, `HT${splitedPeriod[0]}`] : [splitedPeriod[0]]
-    const value = splitedPeriod[1] === 'summer' ? ['0', '5'] : splitedPeriod[1]
+  // const convertedPeriods = query.period?.reduce((acc, period) => {
+  //   const splitedPeriod = period.split(':')
+  //   const codes =
+  //     splitedPeriod[1] === 'summer' ? [`VT${splitedPeriod[0]}`, `HT${splitedPeriod[0]}`] : [splitedPeriod[0]]
+  //   const value = splitedPeriod[1] === 'summer' ? ['0', '5'] : splitedPeriod[1]
 
-    codes.forEach(code => {
-      const existingEntry = acc.find(entry => entry.code === code)
+  //   codes.forEach(code => {
+  //     const existingEntry = acc.find(entry => entry.code === code)
 
-      if (existingEntry) {
-        existingEntry.periods = Array.isArray(existingEntry.periods)
-          ? [...existingEntry.periods, ...value]
-          : [existingEntry.periods, ...value]
-      } else {
-        acc.push({
-          code: code,
-          periods: value,
-        })
-      }
-    })
-    return acc
-  }, [])
+  //     if (existingEntry) {
+  //       existingEntry.periods = Array.isArray(existingEntry.periods)
+  //         ? [...existingEntry.periods, ...value]
+  //         : [existingEntry.periods, ...value]
+  //     } else {
+  //       acc.push({
+  //         code: code,
+  //         periods: value,
+  //       })
+  //     }
+  //   })
+  //   return acc
+  // }, []) // todo - we can use it again when we had the data for periods from ladok
 
   const convertedEduLevels = query.eduLevel?.map(level => {
     if (level === '0') return 'FUPKURS'
@@ -125,11 +125,11 @@ async function performCourseSearchBeta(req, res, next) {
   }) // todo - this can be moved to search params after we decided to use the beta search as the main search
 
   const searchParams = {
-    kodEllerBenamning: query.pattern ?? undefined,
-    organisation: query.department ?? undefined,
+    kodEllerBenamning: query.pattern ? query.pattern : undefined,
+    organisation: query.department ? query.department : undefined,
     sprak: query.showOptions?.includes('onlyEnglish') ? 'ENG' : undefined,
     avvecklad: query.showOptions?.includes('showCancelled') ? 'true' : undefined,
-    startPeriod: convertedPeriods ?? undefined,
+    startPeriod: query.semesters ?? undefined,
     utbildningsniva: convertedEduLevels ?? undefined,
   }
 

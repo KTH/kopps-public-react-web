@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import SearchFilters from './index'
 import { useStore } from '../../mobx'
-import { EduLevel, Period, ShowOptions } from '../../stores/types/searchPageStoreTypes'
+import { EduLevel, Period, Semester, ShowOptions } from '../../stores/types/searchPageStoreTypes'
 import { SEARCH_MODES } from '../../pages/types/searchPageTypes'
 
 // Mocking the useStore hook
@@ -42,7 +42,7 @@ describe('<SearchFilters />', () => {
 
   const courseSearchParams = {
     pattern: '',
-    period: [] as Period[],
+    semesters: [] as Semester[],
     eduLevel: [] as EduLevel[],
     showOptions: [] as ShowOptions[],
     department: '',

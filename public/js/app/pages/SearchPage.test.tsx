@@ -6,15 +6,7 @@ import { useStore } from '../mobx'
 import { courseSearch } from '../util/searchApi'
 import { TEST_API_ANSWER_RESOLVED } from '../components/mocks/mockKoppsCourseSearch'
 
-const periods = [
-  'Autumn 2024 period 1',
-  'Autumn 2024 period 2',
-  '2025 summer',
-  'Spring 2025 period 3',
-  'Spring 2025 period 4',
-  'Autumn 2025 period 1',
-  'Autumn 2025 period 2',
-]
+const periods = ['Autumn 2024', 'Spring 2025', 'Autumn 2025']
 const eduLevels = ['Pre-university level', 'First cycle', 'Second cycle', 'Third cycle']
 const showOptions = [
   'Courses taught in English',
@@ -72,10 +64,10 @@ describe('<NewSearchPage />', () => {
   test('should load search parameters from URL and call search API', async () => {
     mockSearchParams = new URLSearchParams()
 
-    // Add multiple values for the 'period' key
+    // Add multiple values for the 'semesters' key
     mockSearchParams.append('pattern', 'Math')
-    mockSearchParams.append('period', 'HT2024:1')
-    mockSearchParams.append('period', 'HT2024:2')
+    mockSearchParams.append('semesters', 'HT2024')
+    mockSearchParams.append('semesters', 'VT2024')
     mockSearchParams.append('eduLevel', '1')
     mockSearchParams.append('showOptions', 'onlyEnglish')
     ;(courseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED))
@@ -84,7 +76,7 @@ describe('<NewSearchPage />', () => {
 
     expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
       pattern: 'Math',
-      period: ['HT2024:1', 'HT2024:2'],
+      semesters: ['HT2024', 'VT2024'],
       eduLevel: ['1'],
       showOptions: ['onlyEnglish'],
       department: '',
@@ -92,11 +84,8 @@ describe('<NewSearchPage />', () => {
 
     expect(screen.getByRole('textbox')).toHaveValue('Math')
 
-    const periodCheckbox = screen.getByLabelText('Autumn 2024 period 1')
+    const periodCheckbox = screen.getByLabelText('Autumn 2024')
     expect(periodCheckbox).toBeChecked()
-
-    const secondPeriodCheckbox = screen.getByLabelText('Autumn 2024 period 2')
-    expect(secondPeriodCheckbox).toBeChecked()
 
     const eduLevelCheckbox = screen.getByLabelText('First cycle')
     expect(eduLevelCheckbox).toBeChecked()
@@ -120,7 +109,7 @@ describe('<NewSearchPage />', () => {
         pattern: 'Physics',
         department: '',
         eduLevel: [],
-        period: [],
+        semesters: [],
         showOptions: [],
       })
     })
@@ -139,8 +128,8 @@ describe('<NewSearchPage />', () => {
     const searchInput = screen.getByRole('textbox')
     expect(searchInput).toBeDisabled()
 
-    periods.forEach(period => {
-      const periodCheckbox = screen.getByLabelText(period)
+    periods.forEach(semesters => {
+      const periodCheckbox = screen.getByLabelText(semesters)
       expect(periodCheckbox).toBeDisabled()
     })
 
@@ -155,7 +144,7 @@ describe('<NewSearchPage />', () => {
     })
   })
 
-  test('should update search params and call search API when period checkboxes, eduLevel, and showOptions are changed', async () => {
+  test('should update search params and call search API when semesters checkboxes, eduLevel, and showOptions are changed', async () => {
     ;(courseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED))
 
     render(<NewSearchPage searchMode="default" />)
@@ -165,19 +154,19 @@ describe('<NewSearchPage />', () => {
       pattern: '',
       department: '',
       eduLevel: [],
-      period: [],
+      semesters: [],
       showOptions: [],
     })
     const firstPeriodCheckbox = screen.getByLabelText(periods[0])
     expect(firstPeriodCheckbox).not.toBeChecked()
     fireEvent.click(firstPeriodCheckbox)
     await waitFor(async () => {
-      expect(mockSearchParams.getAll('period')).toEqual(['HT2024:1'])
+      expect(mockSearchParams.getAll('semesters')).toEqual(['HT2024'])
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
         eduLevel: [],
-        period: ['HT2024:1'],
+        semesters: ['HT2024'],
         showOptions: [],
       })
 
@@ -191,7 +180,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: [],
-        period: ['HT2024:1', 'HT2024:2'],
+        semesters: ['HT2024', 'VT2025'],
         showOptions: [],
       })
 
@@ -205,63 +194,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: [],
-        period: ['HT2024:1', 'HT2024:2', '2025:summer'],
-        showOptions: [],
-      })
-
-      const forthPeriodCheckbox = screen.getByLabelText(periods[3])
-      expect(forthPeriodCheckbox).not.toBeChecked()
-      fireEvent.click(forthPeriodCheckbox)
-    })
-
-    await waitFor(async () => {
-      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
-        pattern: '',
-        department: '',
-        eduLevel: [],
-        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3'],
-        showOptions: [],
-      })
-
-      const fifthPeriodCheckbox = screen.getByLabelText(periods[4])
-      expect(fifthPeriodCheckbox).not.toBeChecked()
-      fireEvent.click(fifthPeriodCheckbox)
-    })
-
-    await waitFor(async () => {
-      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
-        pattern: '',
-        department: '',
-        eduLevel: [],
-        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3', 'VT2025:4'],
-        showOptions: [],
-      })
-
-      const sixthPeriodCheckbox = screen.getByLabelText(periods[5])
-      expect(sixthPeriodCheckbox).not.toBeChecked()
-      fireEvent.click(sixthPeriodCheckbox)
-    })
-
-    await waitFor(async () => {
-      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
-        pattern: '',
-        department: '',
-        eduLevel: [],
-        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3', 'VT2025:4', 'HT2025:1'],
-        showOptions: [],
-      })
-
-      const seventhPeriodCheckbox = screen.getByLabelText(periods[6])
-      expect(seventhPeriodCheckbox).not.toBeChecked()
-      fireEvent.click(seventhPeriodCheckbox)
-    })
-
-    await waitFor(async () => {
-      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
-        pattern: '',
-        department: '',
-        eduLevel: [],
-        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3', 'VT2025:4', 'HT2025:1', 'HT2025:2'],
+        semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
 
@@ -275,7 +208,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: ['0'],
-        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3', 'VT2025:4', 'HT2025:1', 'HT2025:2'],
+        semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
 
@@ -289,7 +222,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: ['0', '1'],
-        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3', 'VT2025:4', 'HT2025:1', 'HT2025:2'],
+        semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
 
@@ -303,7 +236,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: ['0', '1', '2'],
-        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3', 'VT2025:4', 'HT2025:1', 'HT2025:2'],
+        semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
 
@@ -317,7 +250,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: ['0', '1', '2', '3'],
-        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3', 'VT2025:4', 'HT2025:1', 'HT2025:2'],
+        semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
 
@@ -331,7 +264,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: ['0', '1', '2', '3'],
-        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3', 'VT2025:4', 'HT2025:1', 'HT2025:2'],
+        semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: ['onlyEnglish'],
       })
 
@@ -345,7 +278,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: ['0', '1', '2', '3'],
-        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3', 'VT2025:4', 'HT2025:1', 'HT2025:2'],
+        semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: ['onlyEnglish', 'onlyMHU'],
       })
 
@@ -359,7 +292,7 @@ describe('<NewSearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: ['0', '1', '2', '3'],
-        period: ['HT2024:1', 'HT2024:2', '2025:summer', 'VT2025:3', 'VT2025:4', 'HT2025:1', 'HT2025:2'],
+        semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: ['onlyEnglish', 'onlyMHU', 'showCancelled'],
       })
     })

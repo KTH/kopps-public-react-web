@@ -153,6 +153,24 @@ function _periodConfigByYearType(yearType, langIndex, isBetaSearch = false) {
   }
 }
 
+function _semestersConfig(langIndex) {
+  const { messages } = i18n.messages[langIndex]
+  const { semester } = messages
+  const relevantTerms = getRelevantTerms(2)
+  const yearsAndPeriod = _separateYearAndPeriod(relevantTerms)
+  const resultSemestersConfig = []
+  yearsAndPeriod.forEach(({ year, termNumber }) => {
+    const label = `${semester[termNumber]} ${year}`
+    const value = `${termNumber === '1' ? 'VT' : 'HT'}${year}`
+    resultSemestersConfig.push({
+      label,
+      id: value,
+      value,
+    })
+  })
+  return resultSemestersConfig
+}
+
 function getParamConfig(paramName, langIndex) {
   switch (paramName) {
     case 'eduLevel':
@@ -165,6 +183,8 @@ function getParamConfig(paramName, langIndex) {
       return _periodConfigByYearType('currentYear', langIndex, true)
     case 'nextYearBeta':
       return _periodConfigByYearType('nextYear', langIndex, true)
+    case 'semesters':
+      return _semestersConfig(langIndex)
     case 'showOptions':
       return showOptionsConfig(langIndex)
     case 'onlyMHU':
