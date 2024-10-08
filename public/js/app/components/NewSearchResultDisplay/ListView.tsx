@@ -11,7 +11,9 @@ import { compareCoursesBy, inforKursvalLink, periodsStr } from '../../util/newSe
 const ListView: React.FC<ListViewParams> = ({ results }) => {
   const { language, languageIndex } = useStore()
 
-  const { generalSearch } = i18n.messages[languageIndex]
+  const { generalSearch, messages } = i18n.messages[languageIndex]
+
+  const { course_pace, course_campus, course_language } = messages
 
   const { courseHasNoRounds, linkToInforKursval } = generalSearch
 
@@ -113,16 +115,19 @@ const ListView: React.FC<ListViewParams> = ({ results }) => {
             <div className="course-footer">
               <div className="course-details">
                 <div className="course-location">
+                  <span className="icon">{course_campus}</span>
                   {allCampuses.map(({ courseCampus }: { courseCampus: string }, index: number) => (
                     <span key={courseCampus + index}>{courseCampus}</span>
                   ))}
                 </div>
                 <div className="course-language">
+                  <span className="icon">{course_language}</span>
                   {allLanguages.map(({ courseLanguage }: { courseLanguage: string }, index: number) => (
                     <span key={courseLanguage + index}>{courseLanguage}</span>
                   ))}
                 </div>
                 <div className="course-pace">
+                  <span className="icon">{course_pace}</span>
                   {allStudyPaces.map(({ coursePace }: { coursePace: number }, index: number) => (
                     <span key={coursePace + index}>{coursePace}%</span>
                   ))}

@@ -18,7 +18,7 @@ jest.mock('../../mobx')
 
 const headers = {
   en: ['Course code', 'Course name', 'Scope', 'Educational level', 'Language', 'Pace', 'Campus', 'Periods'],
-  sv: ['Kurskod', 'Kursnamn', 'Omfattning', 'Utbildningsnivå', 'Språk', 'Takt', 'Campus', 'Perioder'],
+  sv: ['Kurskod', 'Kursnamn', 'Omfattning', 'Utbildningsnivå', 'Språk', 'Omfattning', 'Campus', 'Perioder'],
 }
 const reseacrhHitsColHeaders = headers
 const mixedHitsColHeaders = headers
@@ -98,8 +98,11 @@ describe('Component <TableView> for MIXED types of courses', () => {
       const course = EXPECTED_TEST_SEARCH_HITS_MIXED_EN_BETA.searchHits[index]
       expect(utils.getAllByRole('cell')[0]).toHaveTextContent(course.kod)
       expect(utils.getAllByRole('cell')[1]).toHaveTextContent(course.benamning)
-      expect(utils.getAllByRole('cell')[2]).toHaveTextContent(`${course.omfattning.formattedWithUnit}`)
+      expect(utils.getAllByRole('cell')[2]).toHaveTextContent(course.omfattning.formattedWithUnit)
       expect(utils.getAllByRole('cell')[3]).toHaveTextContent(course.utbildningstyp[0].level.name)
+      expect(utils.getAllByRole('cell')[4]).toHaveTextContent(course.undervisningssprak[0].name)
+      expect(utils.getAllByRole('cell')[5]).toHaveTextContent(`${course.studietakt[0].code}%`)
+      expect(utils.getAllByRole('cell')[6]).toHaveTextContent(course.studieort[0].name)
       expect(utils.getAllByRole('cell')[7]).toHaveTextContent(
         EXPECTED_TEST_SEARCH_HITS_MIXED_PERIODS_TEXTS_EN_BETA[index]
       )
@@ -127,6 +130,9 @@ describe('Component <TableView> for MIXED types of courses', () => {
       expect(utils.getAllByRole('cell')[1]).toHaveTextContent(course.benamning)
       expect(utils.getAllByRole('cell')[2]).toHaveTextContent(`${course.omfattning.formattedWithUnit}`)
       expect(utils.getAllByRole('cell')[3]).toHaveTextContent(course.utbildningstyp[0].level.name)
+      expect(utils.getAllByRole('cell')[4]).toHaveTextContent(course.undervisningssprak[0].name)
+      expect(utils.getAllByRole('cell')[5]).toHaveTextContent(`${course.studietakt[0].code}%`)
+      expect(utils.getAllByRole('cell')[6]).toHaveTextContent(course.studieort[0].name)
       expect(utils.getAllByRole('cell')[7]).toHaveTextContent(
         EXPECTED_TEST_SEARCH_HITS_MIXED_PERIODS_TEXTS_SV_BETA[index]
       )
