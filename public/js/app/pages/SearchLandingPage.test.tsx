@@ -15,15 +15,7 @@ jest.mock('react-router-dom', () => ({
   useNavigate: jest.fn(),
   useSearchParams: jest.fn(() => [new URLSearchParams(), jest.fn()]),
 }))
-const periods = [
-  'Autumn 2024 period 1',
-  'Autumn 2024 period 2',
-  '2025 summer',
-  'Spring 2025 period 3',
-  'Spring 2025 period 4',
-  'Autumn 2025 period 1',
-  'Autumn 2025 period 2',
-]
+const periods = ['Autumn 2024', 'Spring 2025', 'Autumn 2025']
 const eduLevels = ['Pre-university level', 'First cycle', 'Second cycle', 'Third cycle']
 const showOptions = [
   'Courses taught in English',
@@ -89,7 +81,7 @@ describe('<NewSearchLandingPage />', () => {
     fireEvent.click(button)
 
     const searchParams = stringifyUrlParams({
-      period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
+      semesters: ['HT2024', 'VT2025', 'HT2025'],
       eduLevel: ['0', '1', '2', '3'],
       showOptions: ['onlyEnglish', 'onlyMHU', 'showCancelled'],
     })
@@ -115,7 +107,7 @@ describe('<NewSearchLandingPage />', () => {
     fireEvent.click(button)
 
     const searchParams = stringifyUrlParams({
-      period: [],
+      semesters: [],
       eduLevel: [],
       showOptions: [],
     })
@@ -162,7 +154,7 @@ describe('<NewSearchLandingPage />', () => {
     fireEvent.click(button)
 
     const searchParams = stringifyUrlParams({
-      period: ['20242:1'],
+      semesters: ['HT2024'],
       eduLevel: ['0'],
       showOptions: ['onlyEnglish'],
     })

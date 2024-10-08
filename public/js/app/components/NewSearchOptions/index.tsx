@@ -20,7 +20,7 @@ const SearchOptions: React.FC<SearchOptionsProps> = ({
   const searchHeadLevel = overrideSearchHead || bigSearch[paramName]
 
   const values: SearchOptionConfig[] = useMemo(
-    () => getParamConfig(paramAliasName || paramName, languageIndex),
+    () => getParamConfig(paramAliasName || paramName, languageIndex) || [],
     [paramAliasName, paramName, languageIndex]
   )
 

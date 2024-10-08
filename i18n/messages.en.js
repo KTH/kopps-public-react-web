@@ -60,6 +60,9 @@ const messages = {
     course_name: 'Course name',
     course_educational_level: 'Educational level',
     course_educational_level_abbr: 'Edu. level',
+    course_language: 'Language',
+    course_campus: 'Campus',
+    course_pace: 'Pace',
 
     study_year: 'Study year',
 
@@ -244,6 +247,7 @@ const messages = {
     leadIntro:
       'Find info on KTH courses: course syllabus, course memo, and course analyses. Search by course name or course code, you can also filter by semester and period. Which courses are included in a program can be found under Programme syllabuses.',
     eduLevel: 'Educational level:',
+    semesters: 'Course Start:',
     PREPARATORY: 'Pre-university level',
     BASIC: 'First cycle',
     ADVANCED: 'Second cycle',
@@ -337,6 +341,7 @@ const messages = {
   },
   searchAlarms: {
     errorUnknown: { text: 'An unknown error occurred - failed to retrieve course data' },
+    errorKodEllerBenamning: { text: 'Search input must be equal or more than 3 characters.' },
     errorEmpty: {
       header: 'Your search returned no results',
       help: 'For help, see the link below: Instructions for searching',

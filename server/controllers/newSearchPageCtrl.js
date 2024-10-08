@@ -7,12 +7,14 @@ const i18n = require('../../i18n')
 
 // eslint-disable-next-line no-unused-vars
 const koppsApi = require('../kopps/koppsApi')
+const { searchCourses } = require('../ladok/ladokApi')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 
 const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { compareSchools, filterOutDeprecatedSchools } = require('../../domain/schools')
 const { stringifyKoppsSearchParams } = require('../../domain/searchParams')
+const term = require('../../domain/term')
 
 async function renderSearchPage(
   req,
@@ -87,21 +89,58 @@ async function searchThirdCycleCourses(req, res, next) {
   })
 }
 
-async function performCourseSearch(req, res, next) {
+async function performCourseSearchBeta(req, res, next) {
   const { lang } = req.params
 
   const { query } = req
-  // Example: `text_pattern=${pattern}`
-  const searchParamsStr = stringifyKoppsSearchParams(query)
+
+  // const convertedPeriods = query.period?.reduce((acc, period) => {
+  //   const splitedPeriod = period.split(':')
+  //   const codes =
+  //     splitedPeriod[1] === 'summer' ? [`VT${splitedPeriod[0]}`, `HT${splitedPeriod[0]}`] : [splitedPeriod[0]]
+  //   const value = splitedPeriod[1] === 'summer' ? ['0', '5'] : splitedPeriod[1]
+
+  //   codes.forEach(code => {
+  //     const existingEntry = acc.find(entry => entry.code === code)
+
+  //     if (existingEntry) {
+  //       existingEntry.periods = Array.isArray(existingEntry.periods)
+  //         ? [...existingEntry.periods, ...value]
+  //         : [existingEntry.periods, ...value]
+  //     } else {
+  //       acc.push({
+  //         code: code,
+  //         periods: value,
+  //       })
+  //     }
+  //   })
+  //   return acc
+  // }, []) // todo - we can use it again when we had the data for periods from ladok
+
+  const convertedEduLevels = query.eduLevel?.map(level => {
+    if (level === '0') return 'FUPKURS'
+    if (level === '1') return '2007GKURS'
+    if (level === '2') return '2007AKURS'
+    if (level === '3') return '2007FKURS'
+  }) // todo - this can be moved to search params after we decided to use the beta search as the main search
+
+  const searchParams = {
+    kodEllerBenamning: query.pattern ? query.pattern : undefined,
+    organisation: query.department ? query.department : undefined,
+    sprak: query.showOptions?.includes('onlyEnglish') ? 'ENG' : undefined,
+    avvecklad: query.showOptions?.includes('showCancelled') ? 'true' : undefined,
+    startPeriod: query.semesters ?? undefined,
+    utbildningsniva: convertedEduLevels ?? undefined,
+  }
 
   try {
-    log.debug(` trying to perform a search of courses with ${searchParamsStr} transformed from parameters: `, { query })
+    log.debug(` trying to perform a search of courses with ${searchParams} transformed from parameters: `, { query })
 
-    const apiResponse = await koppsApi.getSearchResults(searchParamsStr, lang)
-    log.debug(` performCourseSearch with ${searchParamsStr} response: `, apiResponse)
+    const apiResponse = await searchCourses(searchParams, lang)
+    log.debug(` performCourseSearch with ${searchParams} response: `, apiResponse)
     return res.json(apiResponse)
   } catch (error) {
-    log.error(` Exception from performCourseSearch with ${searchParamsStr}`, { error })
+    log.error(` Exception from performCourseSearch with ${searchParams}`, { error })
     next(error)
   }
 }
@@ -132,5 +171,5 @@ async function _fillApplicationStoreWithAllSchools({ applicationStore, lang }) {
 module.exports = {
   searchAllCourses,
   searchThirdCycleCourses,
-  performCourseSearch,
+  performCourseSearchBeta,
 }

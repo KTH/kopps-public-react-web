@@ -6,7 +6,7 @@ import { SearchAlertProps } from './types'
 
 const SearchAlert: React.FC<SearchAlertProps> = ({ alertType: externalAlertType, languageIndex }) => {
   const { searchAlarms } = i18n.messages[languageIndex]
-  const { header, help, text } = searchAlarms[externalAlertType]
+  const { header, help, text } = searchAlarms[externalAlertType] || searchAlarms['errorUnknown']
 
   return (
     <Alert type="info" header={header}>

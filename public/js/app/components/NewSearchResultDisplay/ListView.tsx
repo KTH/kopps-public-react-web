@@ -6,57 +6,133 @@ import { useStore } from '../../mobx'
 import { ListViewParams } from './types'
 import i18n from '../../../../../i18n'
 
-import { compareCoursesBy, flatCoursesArr, inforKursvalLink, periodsStr } from '../../util/newSearchHelper'
+import { compareCoursesBy, inforKursvalLink, periodsStr } from '../../util/newSearchHelper'
 
 const ListView: React.FC<ListViewParams> = ({ results }) => {
   const { language, languageIndex } = useStore()
 
-  const { generalSearch } = i18n.messages[languageIndex]
+  const { generalSearch, messages } = i18n.messages[languageIndex]
+
+  const { course_pace, course_campus, course_language } = messages
 
   const { courseHasNoRounds, linkToInforKursval } = generalSearch
 
-  const { courses, hasSearchHitInterval } = flatCoursesArr(results)
   return (
     <>
-      {courses.sort(compareCoursesBy('courseCode')).map((course, index) => {
-        const { courseCode, title, credits, creditUnitAbbr, startTerm, endTerm, endPeriod, startPeriod } = course
+      {results.sort(compareCoursesBy('kod')).map((course, index) => {
+        const {
+          kod: courseCode,
+          benamning: title,
+          omfattning: { formattedWithUnit: credits = '' } = {},
+          period: periods = [],
+          startperiod: startPeriods = [],
+          studietakt: studyPaces = [],
+          undervisningssprak: languages = [],
+          studieort: campuses = [],
+        } = course || {}
 
-        let periodText = undefined
-        if (hasSearchHitInterval) {
-          periodText = periodsStr(startPeriod, startTerm, endPeriod, endTerm, language)
-        }
+        const allPeriods = periods.map(
+          ({
+            startperiod: { inDigits: startTerm = '' } = {},
+            forstaUndervisningsdatum: {
+              date: startDate = '',
+              year: startPeriodYear = '',
+              week: startWeek = '',
+              period: startPeriod = '',
+            } = {},
+            sistaUndervisningsdatum: {
+              date: endDate = '',
+              year: endPeriodYear = '',
+              week: endWeek = '',
+              period: endPeriod = '',
+            } = {},
+            tillfallesperioderNummer = undefined,
+          }) => ({
+            startTerm,
+            startDate,
+            startPeriodYear,
+            startWeek,
+            startPeriod,
+            endDate,
+            endPeriodYear,
+            endWeek,
+            endPeriod,
+            tillfallesperioderNummer,
+          })
+        )
+
+        const allStudyPaces = studyPaces.map(({ takt: coursePace = '' }) => ({
+          coursePace,
+        }))
+
+        const allLanguages = languages.map(({ name: courseLanguage = '' }) => ({
+          courseLanguage,
+        }))
+
+        const allCampuses = campuses.map(({ name: courseCampus = '' }) => ({
+          courseCampus,
+        }))
+
+        const allStartPeriods = startPeriods.map(({ code: startTerm = '', inDigits = '' }) => ({
+          startTerm,
+          inDigits,
+        }))
+
+        const startTerm = allStartPeriods.length === 1 ? allStartPeriods[0].startTerm : undefined
+
+        let periodTexts = []
+        periodTexts = allPeriods.map(
+          ({
+            startPeriod,
+            startPeriodYear,
+            endPeriod,
+            endPeriodYear,
+            tillfallesperioderNummer,
+          }: {
+            startPeriod: string
+            startPeriodYear: number
+            endPeriod: string
+            endPeriodYear: number
+            tillfallesperioderNummer: number
+          }) => periodsStr(startPeriod, startPeriodYear, endPeriod, endPeriodYear, tillfallesperioderNummer, language)
+        )
+
+        const areAllPeriodTextsEmpty = periodTexts.every((value: string) => !value.trim())
+
         const InforKursvalLink = inforKursvalLink(linkToInforKursval, courseCode, startTerm, language)
         return (
           <div className="course-card" key={courseCode + index}>
             <div className="course-header">
               <h3>
-                {title}, {credits} {creditUnitAbbr}
+                {title}, {credits}
               </h3>
               <span className="course-code">{courseCode}</span>
-              {periodText && <span className="course-period">{periodText}</span>}
-              {periodText === '' && <i>{courseHasNoRounds}</i>}
+              <span className="course-period">
+                {periodTexts.map((periodText: string, index: number) => `${index != 0 ? ',' : ''} ${periodText}`)}
+              </span>
+              {(areAllPeriodTextsEmpty || periodTexts.length === 0) && <i>{courseHasNoRounds}</i>}
             </div>
-            {/* 
-            <p className="course-description">
-              we dont have it now
-            </p> 
-            */}
-            <div className="course-details">
-              {/* 
-              <div className="course-location">
-                <img alt="Location Icon" />
-                <span></span>
+            <div className="course-footer">
+              <div className="course-details">
+                <div className="course-location">
+                  <span className="icon">{course_campus}</span>
+                  {allCampuses.map(({ courseCampus }: { courseCampus: string }, index: number) => (
+                    <span key={courseCampus + index}>{courseCampus}</span>
+                  ))}
+                </div>
+                <div className="course-language">
+                  <span className="icon">{course_language}</span>
+                  {allLanguages.map(({ courseLanguage }: { courseLanguage: string }, index: number) => (
+                    <span key={courseLanguage + index}>{courseLanguage}</span>
+                  ))}
+                </div>
+                <div className="course-pace">
+                  <span className="icon">{course_pace}</span>
+                  {allStudyPaces.map(({ coursePace }: { coursePace: number }, index: number) => (
+                    <span key={coursePace + index}>{coursePace}%</span>
+                  ))}
+                </div>
               </div>
-              <div className="course-language">
-                <img alt="Language Icon" />
-                <span></span>
-              </div>
-              <div className="course-pace">
-                <img alt="Pace Icon" />
-                <span></span>
-              </div> 
-              We don't have them now
-              */}
               <div className="course-link">{InforKursvalLink}</div>
             </div>
           </div>

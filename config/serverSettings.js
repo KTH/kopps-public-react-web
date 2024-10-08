@@ -46,6 +46,19 @@ module.exports = {
   // Kopps
   koppsApi: unpackKOPPSConfig('KOPPS_API_BASEURL', devKoppsApi),
 
+  // TODO(Ladok-POC): Replace devDefaults and add values to ref/prod.parameters.json when final mellanlager is deployed
+  ladokMellanlagerApi: {
+    clientId: getEnv('LADOK_AUTH_CLIENT_ID', devDefaults('c978bff4-80c6-42d2-8d64-a6d90227013b')),
+    clientSecret: getEnv('LADOK_AUTH_CLIENT_SECRET', null),
+    tokenUrl: getEnv(
+      'LADOK_AUTH_TOKEN_URL',
+      devDefaults('https://login.microsoftonline.com/acd7f330-d613-48d9-85f2-258b1ac4a015/oauth2/v2.0/token')
+    ),
+    scope: getEnv('LADOK_AUTH_SCOPE', devDefaults('api://4afd7e46-019e-44e1-9630-12fdf9d31d02/.default')),
+    baseUrl: getEnv('LADOK_BASE_URL', devDefaults('https://ladok-mellanlagring-lab.azure-api.net')),
+    ocpApimSubscriptionKey: getEnv('LADOK_OCP_APIM_SUBSCRIPTION_KEY', null),
+  },
+
   // Service API's
   nodeApi: {
     // nodeApi: unpackNodeApiConfig('NODE_API_URI', devNodeApi),

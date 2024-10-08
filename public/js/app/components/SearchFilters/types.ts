@@ -5,6 +5,7 @@ import {
   EduLevel,
   Period,
   SearchCoursesStore,
+  Semester,
   ShowOptions,
 } from '../../stores/types/searchPageStoreTypes'
 
@@ -22,15 +23,15 @@ export interface SearchFiltersProps {
 }
 
 export interface FilterParams {
-  [key: string]: (Period | EduLevel | ShowOptions)[] | DepartmentCodeOrPrefix
+  [key: string]: (Period | Semester | EduLevel | ShowOptions)[] | DepartmentCodeOrPrefix
 }
 
 export interface SearchFilterStore extends SearchCoursesStore {
   languageIndex: number
 }
 export const FILTER_MODES: Record<string, FilterModeKey[]> = {
-  default: ['period', 'eduLevel', 'showOptions', 'department'],
+  default: ['semesters', 'eduLevel', 'showOptions', 'department'],
   thirdCycleCourses: ['onlyMHU', 'department'],
 } as const
 
-type FilterModeKey = 'period' | 'eduLevel' | 'showOptions' | 'department' | 'onlyMHU'
+type FilterModeKey = 'semesters' | 'eduLevel' | 'showOptions' | 'department' | 'onlyMHU'

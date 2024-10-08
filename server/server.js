@@ -267,7 +267,12 @@ appRoute.get(
   Search.searchThirdCycleCourses
 )
 
-appRoute.get('api.searchCourses', proxyPrefixPath.courseSearchInternApi + '/:lang', NewSearchPage.performCourseSearch)
+appRoute.get('api.searchCourses', proxyPrefixPath.courseSearchInternApi + '/:lang', Search.performCourseSearch)
+appRoute.get(
+  'api.searchCoursesBeta',
+  proxyPrefixPath.courseSearchInternApiBeta + '/:lang',
+  NewSearchPage.performCourseSearchBeta
+)
 appRoute.post('api.programmeSyllabusPDF', proxyPrefixPath.programmeSyllabusPDF, PDFExport.performPDFRenderFunction)
 
 appRoute.get('redirect.departmentsListThirdCycleStudy', redirectProxyPath.thirdCycleRoot, (req, res) => {

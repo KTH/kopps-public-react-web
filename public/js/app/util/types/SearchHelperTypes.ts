@@ -25,9 +25,10 @@ export type TitleCell = (
 
 export type PeriodsStrType = (
   startPeriod: number | string,
-  startTerm: string | undefined,
+  startPeriodYear: number,
   endPeriod: number | string | undefined,
-  endTerm: string | undefined,
+  endPeriodYear: number,
+  tillfallesperioderNummer: number,
   language: string
 ) => string
 
@@ -42,10 +43,6 @@ type DataItem =
       sortKey: string
     }
 
-export type SortAndParseByCourseCodeForTableViewType = (
-  courses: Course[],
-  sliceUntilNum: number,
-  language: string
-) => DataItem[][]
+export type SortAndParseByCourseCodeForTableViewType = (courses: Course[], language: string) => DataItem[][]
 
 export type FlatCoursesArrType = (searchHits: SearchHits[]) => { courses: Course[]; hasSearchHitInterval: boolean }

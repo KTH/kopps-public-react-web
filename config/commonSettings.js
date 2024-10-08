@@ -19,6 +19,7 @@ module.exports = {
     newSearchPage: `${studentRoot}/sokkurs-beta`,
     searchResult: `${studentRoot}/sokkurs-beta/resultat`,
     courseSearchInternApi: `${studentRoot}/intern-api/sok`,
+    courseSearchInternApiBeta: `${studentRoot}/intern-api/sokBeta`,
     department: `${studentRoot}/org`,
     programme: `${studentRoot}/program`,
     programmesList: `${studentRoot}/kurser-inom-program`,

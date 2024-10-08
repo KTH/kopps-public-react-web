@@ -1,11 +1,11 @@
 import { STATUS } from '../../hooks/types/UseCourseSearchTypes'
-import { KoppsCourseSearchResult, KoppsCourseSearchResultState } from '../../util/types/SearchApiTypes'
+import { CourseSearchResult, CourseSearchResultState } from '../../util/types/SearchApiTypes'
 import { SearchHits } from '../../util/types/SearchApiTypes'
 
-export { KoppsCourseSearchResult, KoppsCourseSearchResultState }
+export { CourseSearchResult, CourseSearchResultState }
 
 export interface SearchResultDisplayParams {
-  resultsState: KoppsCourseSearchResultState
+  resultsState: CourseSearchResultState
 }
 
 export interface SearchResultHeaderParams {
@@ -16,7 +16,7 @@ export interface SearchResultHeaderParams {
 }
 
 export interface SearchResultComponentParams {
-  searchResults: KoppsCourseSearchResult
+  searchResults: CourseSearchResult
   view: View
 }
 

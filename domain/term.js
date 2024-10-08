@@ -91,6 +91,12 @@ function formatShortTerm(term, language) {
   return `${t('semester')[semester]}${language === 'en' ? ' ' : ''}${shortYear}`
 }
 
+function formatTermByYearAndPeriod(period, year, language) {
+  const t = translate(language)
+  const shortYear = year.toString().slice(-2)
+  return `${t('semester')[period == 0 || period == 1 || period == 2 ? 2 : 1]}${language === 'en' ? ' ' : ''}${shortYear}`
+}
+
 function formatLongTerm(term, language) {
   const t = translate(language)
   const [year, semester] = splitTerm(term)
@@ -153,6 +159,7 @@ module.exports = {
   _nTermsAgo,
   studyYear: _studyYear,
   formatShortTerm,
+  formatTermByYearAndPeriod,
   formatLongTerm,
   splitTerm,
   add,
