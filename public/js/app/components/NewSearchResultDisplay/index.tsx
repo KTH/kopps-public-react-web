@@ -4,7 +4,7 @@ import './style.scss'
 
 import { useStore } from '../../mobx'
 
-import { SearchResultDisplayParams, KoppsCourseSearchResult, VIEW, View } from './types'
+import { SearchResultDisplayParams, CourseSearchResult, VIEW, View } from './types'
 import { STATUS } from '../../hooks/types/UseCourseSearchTypes'
 import Article from '../Article'
 import SearchAlert from '../SearchAlert'
@@ -12,8 +12,8 @@ import SearchResultHeader from './SearchResultHeader'
 import SearchResultComponent from './SearchResultComponent'
 import { AlertType } from '../SearchAlert/types'
 
-const isKoppsCourseSearchResult = (data: string | KoppsCourseSearchResult): data is KoppsCourseSearchResult => {
-  return (data as KoppsCourseSearchResult).searchHits !== undefined
+const isCourseSearchResult = (data: string | CourseSearchResult): data is CourseSearchResult => {
+  return (data as CourseSearchResult).searchHits !== undefined
 }
 const NewSearchResultDisplay: React.FC<SearchResultDisplayParams> = ({ resultsState }) => {
   const { languageIndex } = useStore()
@@ -38,7 +38,7 @@ const NewSearchResultDisplay: React.FC<SearchResultDisplayParams> = ({ resultsSt
         setView={setView}
       />
       {searchStatus === STATUS.resolved &&
-        isKoppsCourseSearchResult(searchResults) &&
+        isCourseSearchResult(searchResults) &&
         searchResults.searchHits.length > 0 && <SearchResultComponent searchResults={searchResults} view={view} />}
     </Article>
   )

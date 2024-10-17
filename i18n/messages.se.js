@@ -59,6 +59,9 @@ const messages = {
     course_name: 'Kursnamn',
     course_educational_level: 'Utbildningsnivå',
     course_educational_level_abbr: 'Utbildningsnivå',
+    course_language: 'Språk',
+    course_campus: 'Campus',
+    course_pace: 'Omfattning',
 
     study_year: 'Årskurs',
 
@@ -238,6 +241,7 @@ const messages = {
     leadIntro:
       'Här finns info om kurser på KTH: kursplan, kurs-PM och kursanalyser. Sök på kursnamn eller kurskod, du kan även filtrera på termin och läsperiod. Vilka kurser som ingår i ett program finns under Utbildningsplaner.',
     eduLevel: 'Utbildningsnivå:',
+    semesters: 'Kursstart:',
     PREPARATORY: 'Förberedande nivå',
     BASIC: 'Grundnivå',
     ADVANCED: 'Avancerad nivå',
@@ -328,6 +332,7 @@ const messages = {
   },
   searchAlarms: {
     errorUnknown: { text: 'Ett okänt fel inträffade - misslyckad hämtning av kursdata' },
+    errorKodEllerBenamning: { text: 'Sökinmatningen måste vara lika med eller större än 3 tecken.' },
     errorEmpty: {
       header: 'Din sökning gav inga träffar.',
       help: 'Mer hjälp hittar du i länken nedan: Få hjälp med sökningen',

@@ -102,7 +102,7 @@ function _combineTermsByYear(arrWithYearsAndPeriod) {
   return groupedTerms
 }
 
-function _periodConfigForOneYear({ year, terms }, langIndex) {
+function _periodConfigForOneYear({ year, terms }, langIndex, isBetaSearch) {
   const hasOnlyOneTerm = !!terms.length === 1
 
   const { summer: summerLabel } = i18n.messages[langIndex].bigSearch
@@ -130,7 +130,7 @@ function _periodConfigForOneYear({ year, terms }, langIndex) {
           value,
         })
       }
-      const value = `${year}${term}:${periodNum}`
+      const value = isBetaSearch ? `${term == 2 ? 'HT' : 'VT'}${year}:${periodNum}` : `${year}${term}:${periodNum}`
       const label = `${formatLongTerm(`${year}${term}`, language)} period ${periodNum}`
       return resultPeriodsConfig.push({ label, id: value, value })
     })
@@ -139,18 +139,36 @@ function _periodConfigForOneYear({ year, terms }, langIndex) {
   return resultPeriodsConfig
 }
 
-function _periodConfigByYearType(yearType, langIndex) {
+function _periodConfigByYearType(yearType, langIndex, isBetaSearch = false) {
   const relevantTerms = getRelevantTerms(2)
   const yearsAndPeriod = _separateYearAndPeriod(relevantTerms)
   const { current, next } = _combineTermsByYear(yearsAndPeriod)
   switch (yearType) {
     case 'currentYear':
-      return _periodConfigForOneYear(current, langIndex)
+      return _periodConfigForOneYear(current, langIndex, isBetaSearch)
     case 'nextYear':
-      return _periodConfigForOneYear(next, langIndex)
+      return _periodConfigForOneYear(next, langIndex, isBetaSearch)
     default:
       throw new Error(`Unknown yearType: ${yearType}. Allowed values: currentYear and nextYear`)
   }
+}
+
+function _semestersConfig(langIndex) {
+  const { messages } = i18n.messages[langIndex]
+  const { semester } = messages
+  const relevantTerms = getRelevantTerms(2)
+  const yearsAndPeriod = _separateYearAndPeriod(relevantTerms)
+  const resultSemestersConfig = []
+  yearsAndPeriod.forEach(({ year, termNumber }) => {
+    const label = `${semester[termNumber]} ${year}`
+    const value = `${termNumber === '1' ? 'VT' : 'HT'}${year}`
+    resultSemestersConfig.push({
+      label,
+      id: value,
+      value,
+    })
+  })
+  return resultSemestersConfig
 }
 
 function getParamConfig(paramName, langIndex) {
@@ -161,6 +179,12 @@ function getParamConfig(paramName, langIndex) {
       return _periodConfigByYearType('currentYear', langIndex)
     case 'nextYear':
       return _periodConfigByYearType('nextYear', langIndex)
+    case 'currentYearBeta':
+      return _periodConfigByYearType('currentYear', langIndex, true)
+    case 'nextYearBeta':
+      return _periodConfigByYearType('nextYear', langIndex, true)
+    case 'semesters':
+      return _semestersConfig(langIndex)
     case 'showOptions':
       return showOptionsConfig(langIndex)
     case 'onlyMHU':
