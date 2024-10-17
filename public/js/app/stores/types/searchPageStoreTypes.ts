@@ -19,6 +19,8 @@ export type SetEduLevels = (eduLevels: EduLevel[]) => void
 
 export type Period = `${number}:${'1' | '2' | '3' | '4' | 'summer'}`
 
+export type Semester = `${'VT' | 'HT'}${number}}`
+
 export type SetPeriods = (periods: Period[]) => void
 
 export type ShowOptions = 'onlyEnglish' | 'onlyMHU' | 'showCancelled'

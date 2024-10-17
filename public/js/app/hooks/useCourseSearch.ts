@@ -42,7 +42,7 @@ function useCourseSearch<T>(asyncCallback: () => Promise<T>, initialState?: Part
         if (errorCode && errorCode === 'search-error-overflow') overflowDispatch(dispatch)
         else if (errorCode) dispatch({ type: 'rejected', error: errorCode })
         else if (searchHits && searchHits.length === 0) noHitsDispatch(dispatch)
-        else if (!searchHits && typeof data === 'string' && data.includes('ERROR-koppsCourseSearch-'))
+        else if (!searchHits && typeof data === 'string' && data.includes('ERROR-courseSearch-'))
           dispatch({ type: 'rejected', error: data })
         else if (!searchHits || data === 'No query restriction was specified') noQueryProvidedDispatch(dispatch)
         else dispatch({ type: 'resolved', data })

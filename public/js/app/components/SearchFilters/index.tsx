@@ -7,7 +7,13 @@ import i18n from '../../../../../i18n'
 import NewSearchDepartments from '../NewSearchDepartments'
 import NewSearchOptions from '../NewSearchOptions'
 import { FilterParams, SearchFilterStore, SearchFiltersProps, FILTER_MODES } from './types'
-import { DepartmentCodeOrPrefix, EduLevel, Period, ShowOptions } from '../../stores/types/searchPageStoreTypes'
+import {
+  DepartmentCodeOrPrefix,
+  EduLevel,
+  Period,
+  Semester,
+  ShowOptions,
+} from '../../stores/types/searchPageStoreTypes'
 import { SEARCH_MODES } from '../../pages/types/searchPageTypes'
 const SearchFilters: React.FC<SearchFiltersProps> = ({
   disabled,
@@ -33,7 +39,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
 
   function handleClearFilters() {
     setCourseSearchParams({
-      period: [],
+      semesters: [],
       eduLevel: searchMode === SEARCH_MODES.thirdCycleCourses ? ['3'] : [],
       showOptions: [],
       department: '',
@@ -49,24 +55,12 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
 
   const renderFilterGroup = (
     <>
-      {filterMode.includes('period') && (
+      {filterMode.includes('semesters') && (
         <div className={collapsable ? 'row' : ''}>
           <div className={collapsable ? 'col' : ''}>
             <NewSearchOptions
-              overrideSearchHead={currentYearLabel}
-              paramAliasName="currentYear"
-              paramName="period"
-              selectedValues={courseSearchParams.period as Period[]}
-              onChange={handleFilterValueChange}
-              disabled={disabled}
-            />
-          </div>
-          <div className={collapsable ? 'col' : ''}>
-            <NewSearchOptions
-              overrideSearchHead={nextYearLabel}
-              paramAliasName="nextYear"
-              paramName="period"
-              selectedValues={courseSearchParams.period as Period[]}
+              paramName="semesters"
+              selectedValues={courseSearchParams.semesters as Semester[]}
               onChange={handleFilterValueChange}
               disabled={disabled}
             />

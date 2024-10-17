@@ -6,7 +6,7 @@ import { SearchFilters } from '../components'
 
 import SearchInput from '../components/SearchInput'
 
-import { koppsCourseSearch } from '../util/searchApi'
+import { courseSearch } from '../util/searchApi'
 import { useCourseSearch } from '../hooks/useCourseSearch'
 
 import { useStore } from '../mobx'
@@ -16,7 +16,7 @@ import { MainContentProps, SEARCH_MODES, SearchPageProps } from './types/searchP
 import { useCourseSearchParams } from '../hooks/useCourseSearchParams'
 import { STATUS } from '../hooks/types/UseCourseSearchTypes'
 import NewSearchResultDisplay from '../components/NewSearchResultDisplay'
-import { KoppsCourseSearchResultState } from '../util/types/SearchApiTypes'
+import { CourseSearchResultState } from '../util/types/SearchApiTypes'
 import { useLangHrefUpdate } from '../hooks/useLangHrefUpdate'
 import { FILTER_MODES } from '../components/SearchFilters/types'
 import { SidebarFilters } from '../components/SidebarFilters'
@@ -46,7 +46,7 @@ const NewSearchPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.de
 
   const asyncCallback = React.useCallback(() => {
     const proxyUrl = _getThisHost(browserConfig.proxyPrefixPath.uri)
-    return koppsCourseSearch(language, proxyUrl, courseSearchParams)
+    return courseSearch(language, proxyUrl, courseSearchParams)
   }, [courseSearchParams])
 
   const state = useCourseSearch(asyncCallback, { status: STATUS.idle })
@@ -88,7 +88,7 @@ const NewSearchPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.de
           searchLabel={searchLabel}
           disabled={searchStatus === STATUS.pending}
         />
-        <NewSearchResultDisplay resultsState={state as KoppsCourseSearchResultState} />
+        <NewSearchResultDisplay resultsState={state as CourseSearchResultState} />
       </MainContent>
     </Row>
   )

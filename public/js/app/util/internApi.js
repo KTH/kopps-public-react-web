@@ -8,14 +8,14 @@ async function koppsCourseSearch(language, proxyUrl, params) {
     })
     if (result) {
       if (result.status >= 400) {
-        return 'ERROR-koppsCourseSearch-' + result.status
+        return 'ERROR-courseSearch-' + result.status
       }
       const { data } = result
       return data
     }
   } catch (error) {
     if (error.response) {
-      throw new Error('Unexpected error from koppsCourseSearch-' + error.message)
+      throw new Error('Unexpected error from courseSearch-' + error.message)
     }
     throw error
   }
