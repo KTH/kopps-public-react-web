@@ -11,7 +11,7 @@ export async function courseSearch(
   try {
     // Constructing the URL with query parameters
     const baseUrl = new URL(proxyUrl, window.location.origin).href
-    const url = new URL(`${baseUrl}/intern-api/sokBeta/${language}`)
+    const url = new URL(`${baseUrl}/intern-api/sok/${language}`)
     Object.keys(params).forEach(key => {
       if (Array.isArray(params[key])) {
         params[key].forEach((item: any) => url.searchParams.append(`${key}[]`, item))

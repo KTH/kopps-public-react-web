@@ -17,11 +17,10 @@ module.exports = {
   Programme: require('./programmeCtrl'),
   ProgrammesList: require('./programmesListCtrl'),
   SchoolsList: require('./schoolsListCtrl'),
-  Search: require('./searchCtrl'),
   StudyHandBook: require('./studyHandBookCtrl'),
   System: require('./systemCtrl'),
   ThirdCycleStudySchoolsList: require('./thirdCycleStudySchoolsListCtrl'),
   ThirdCycleStudyDepartment: require('./thirdCycleStudyDepartmentCtrl'),
   PDFExport: require('./pdfCtrl'),
-  NewSearchPage: require('./newSearchPageCtrl'),
+  SearchPage: require('./searchPageCtrl'),
 }

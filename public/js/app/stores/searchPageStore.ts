@@ -15,9 +15,8 @@ const setCurrentSchoolsWithDepartments: SetSchoolsWithDepartments = function (cu
   this.currentSchoolsWithDepartments = currentSchoolsWithDepartments
 }
 
-export function createNewSearchPageStore(): SearchCoursesStore {
+export function createSearchPageStore(): SearchCoursesStore {
   const searchCoursesStore: SearchCoursesStore = {
-    isNewSearch: true,
     schoolsWithDepartments: [],
     currentSchoolsWithDepartments: [],
     deprecatedSchoolsWithDepartments: [],

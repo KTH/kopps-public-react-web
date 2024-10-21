@@ -6,7 +6,7 @@ import { localeCompareDepartments } from '../../../../../domain/departments'
 
 import { SearchDepartmentsProps, SchoolsWithDepartments } from './types'
 
-const NewSearchDepartments: React.FC<SearchDepartmentsProps> = ({ onChange, disabled, departmentCode }) => {
+const SearchDepartments: React.FC<SearchDepartmentsProps> = ({ onChange, disabled, departmentCode }) => {
   const store = useStore()
   const { currentSchoolsWithDepartments, deprecatedSchoolsWithDepartments, language, languageIndex } = store
 
@@ -74,4 +74,4 @@ const NewSearchDepartments: React.FC<SearchDepartmentsProps> = ({ onChange, disa
   )
 }
 
-export default NewSearchDepartments
+export default SearchDepartments
