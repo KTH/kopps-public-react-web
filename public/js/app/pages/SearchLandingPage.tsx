@@ -101,7 +101,7 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
         )
         stringifiedSearchParams = stringifyUrlParams(filteredParams)
         navigate({
-          pathname: '/student/kurser/sokkurs-beta/resultat',
+          pathname: '/student/kurser/sokkurs/resultat',
           search: `?${stringifiedSearchParams}`,
         })
         break
@@ -111,7 +111,7 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
         )
         stringifiedSearchParams = stringifyUrlParams(filteredParams)
         navigate({
-          pathname: '/utbildning/forskarutbildning/kurser/sok-beta/resultat',
+          pathname: '/utbildning/forskarutbildning/kurser/sok/resultat',
           search: `?${stringifiedSearchParams}`,
         })
       default:
@@ -121,7 +121,7 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
 
   return (
     <div className="search-landing-page">
-      <PageHeading>{`${searchHeading} (beta)`}</PageHeading>
+      <PageHeading>{searchHeading}</PageHeading>
       <Lead text={leadIntro} />
       <SearchInput caption={searchButton} onSubmit={handleSubmit} searchLabel={searchLabel}/>
       <SearchFilters
@@ -134,7 +134,7 @@ const NewSearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_M
         <HelpTexts {...helptextsProps} />
       </CollapseDetails>
       {searchMode === SEARCH_MODES.thirdCycleCourses && (
-        <a className="link-to" href={pageLink('/student/kurser/sokkurs-beta?l=en', language)}>
+        <a className="link-to" href={pageLink('/student/kurser/sokkurs?l=en', language)}>
           {linkToUsualSearch}
         </a>
       )}

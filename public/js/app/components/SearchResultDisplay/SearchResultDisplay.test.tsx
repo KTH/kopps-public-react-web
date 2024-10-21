@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import NewSearchResultDisplay from './index'
+import SearchResultDisplay from './index'
 import { useStore } from '../../mobx'
 import {
   TEST_API_ANSWER_NO_HITS,
@@ -10,7 +10,7 @@ import {
 } from '../mocks/mockKoppsCourseSearch'
 import { ERROR_ASYNC, STATUS } from '../../hooks/types/UseCourseSearchTypes'
 jest.mock('../../mobx')
-describe('NewSearchResultDisplay component', () => {
+describe('SearchResultDisplay component', () => {
   beforeEach(() => {
     ;(useStore as jest.Mock).mockReturnValue({ languageIndex: 0 })
   })
@@ -22,7 +22,7 @@ describe('NewSearchResultDisplay component', () => {
       error: null as any,
     }
 
-    render(<NewSearchResultDisplay resultsState={resultsState} />)
+    render(<SearchResultDisplay resultsState={resultsState} />)
 
     await waitFor(() => {
       expect(screen.getByText('Standard')).toBeInTheDocument()
@@ -36,7 +36,7 @@ describe('NewSearchResultDisplay component', () => {
       error: ERROR_ASYNC.rejected,
     }
 
-    render(<NewSearchResultDisplay resultsState={resultsState} />)
+    render(<SearchResultDisplay resultsState={resultsState} />)
     await waitFor(() => {
       expect(screen.getByText(/An unknown error occurred - failed to retrieve course data/i)).toBeInTheDocument()
     })
@@ -49,7 +49,7 @@ describe('NewSearchResultDisplay component', () => {
       error: null as any,
     }
 
-    render(<NewSearchResultDisplay resultsState={resultsState} />)
+    render(<SearchResultDisplay resultsState={resultsState} />)
 
     expect(screen.getByText('Searching ...')).toBeInTheDocument()
   })
@@ -61,7 +61,7 @@ describe('NewSearchResultDisplay component', () => {
       error: ERROR_ASYNC.noHits,
     }
 
-    render(<NewSearchResultDisplay resultsState={resultsState} />)
+    render(<SearchResultDisplay resultsState={resultsState} />)
 
     expect(screen.getByText('Your search returned no results')).toBeInTheDocument()
   })
@@ -69,7 +69,7 @@ describe('NewSearchResultDisplay component', () => {
   test('displays no search params message', () => {
     const resultsState = { data: null as null, status: STATUS.noQueryProvided, error: ERROR_ASYNC.noQueryProvided }
 
-    render(<NewSearchResultDisplay resultsState={resultsState} />)
+    render(<SearchResultDisplay resultsState={resultsState} />)
 
     expect(screen.getByText('No query restriction was specified')).toBeInTheDocument()
   })

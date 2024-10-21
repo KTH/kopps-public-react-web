@@ -10,7 +10,7 @@ const koppsApi = require('../kopps/koppsApi')
 const { searchCourses } = require('../ladok/ladokApi')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 
-const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
+const { createBreadcrumbs, createThirdCycleBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { compareSchools, filterOutDeprecatedSchools } = require('../../domain/schools')
 const { stringifyKoppsSearchParams } = require('../../domain/searchParams')
@@ -71,8 +71,8 @@ async function renderSearchPage(
 
 async function searchAllCourses(req, res, next) {
   await renderSearchPage(req, res, next, {
-    storeId: 'newSearchPage',
-    basenameKey: 'newSearchPage',
+    storeId: 'SearchPage',
+    basenameKey: 'searchPage',
     titleKey: 'main_menu_search_all',
     breadcrumbsFn: createBreadcrumbs,
   })
@@ -80,7 +80,7 @@ async function searchAllCourses(req, res, next) {
 
 async function searchThirdCycleCourses(req, res, next) {
   await renderSearchPage(req, res, next, {
-    storeId: 'newSearchPage',
+    storeId: 'SearchPage',
     basenameKey: 'thirdCycleCourseSearch',
     titleKey: 'main_menu_third_cycle_courses_search',
     breadcrumbsFn: createThirdCycleBreadcrumbs,
@@ -89,7 +89,7 @@ async function searchThirdCycleCourses(req, res, next) {
   })
 }
 
-async function performCourseSearchBeta(req, res, next) {
+async function performCourseSearch(req, res, next) {
   const { lang } = req.params
 
   const { query } = req
@@ -122,7 +122,7 @@ async function performCourseSearchBeta(req, res, next) {
     if (level === '1') return '2007GKURS'
     if (level === '2') return '2007AKURS'
     if (level === '3') return '2007FKURS'
-  }) // todo - this can be moved to search params after we decided to use the beta search as the main search
+  }) // todo - this can be moved to search params after we are done with ladokAPI and we are sure about the values
 
   const searchParams = {
     kodEllerBenamning: query.pattern ? query.pattern : undefined,
@@ -171,5 +171,5 @@ async function _fillApplicationStoreWithAllSchools({ applicationStore, lang }) {
 module.exports = {
   searchAllCourses,
   searchThirdCycleCourses,
-  performCourseSearchBeta,
+  performCourseSearch,
 }
