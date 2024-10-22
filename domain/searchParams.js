@@ -102,7 +102,7 @@ function _combineTermsByYear(arrWithYearsAndPeriod) {
   return groupedTerms
 }
 
-function _periodConfigForOneYear({ year, terms }, langIndex, isBetaSearch) {
+function _periodConfigForOneYear({ year, terms }, langIndex) {
   const hasOnlyOneTerm = !!terms.length === 1
 
   const { summer: summerLabel } = i18n.messages[langIndex].bigSearch
@@ -130,7 +130,7 @@ function _periodConfigForOneYear({ year, terms }, langIndex, isBetaSearch) {
           value,
         })
       }
-      const value = isBetaSearch ? `${term == 2 ? 'HT' : 'VT'}${year}:${periodNum}` : `${year}${term}:${periodNum}`
+      const value = `${term == 2 ? 'HT' : 'VT'}${year}:${periodNum}`
       const label = `${formatLongTerm(`${year}${term}`, language)} period ${periodNum}`
       return resultPeriodsConfig.push({ label, id: value, value })
     })
@@ -139,15 +139,15 @@ function _periodConfigForOneYear({ year, terms }, langIndex, isBetaSearch) {
   return resultPeriodsConfig
 }
 
-function _periodConfigByYearType(yearType, langIndex, isBetaSearch = false) {
+function _periodConfigByYearType(yearType, langIndex) {
   const relevantTerms = getRelevantTerms(2)
   const yearsAndPeriod = _separateYearAndPeriod(relevantTerms)
   const { current, next } = _combineTermsByYear(yearsAndPeriod)
   switch (yearType) {
     case 'currentYear':
-      return _periodConfigForOneYear(current, langIndex, isBetaSearch)
+      return _periodConfigForOneYear(current, langIndex)
     case 'nextYear':
-      return _periodConfigForOneYear(next, langIndex, isBetaSearch)
+      return _periodConfigForOneYear(next, langIndex)
     default:
       throw new Error(`Unknown yearType: ${yearType}. Allowed values: currentYear and nextYear`)
   }
@@ -176,12 +176,8 @@ function getParamConfig(paramName, langIndex) {
     case 'eduLevel':
       return eduLevelConfig(langIndex)
     case 'currentYear':
-      return _periodConfigByYearType('currentYear', langIndex)
-    case 'nextYear':
-      return _periodConfigByYearType('nextYear', langIndex)
-    case 'currentYearBeta':
       return _periodConfigByYearType('currentYear', langIndex, true)
-    case 'nextYearBeta':
+    case 'nextYear':
       return _periodConfigByYearType('nextYear', langIndex, true)
     case 'semesters':
       return _semestersConfig(langIndex)

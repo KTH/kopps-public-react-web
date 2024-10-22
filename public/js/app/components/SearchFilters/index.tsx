@@ -4,8 +4,8 @@ import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildnings
 import { useStore } from '../../mobx'
 import i18n from '../../../../../i18n'
 
-import NewSearchDepartments from '../NewSearchDepartments'
-import NewSearchOptions from '../NewSearchOptions'
+import SearchDepartments from '../SearchDepartments'
+import SearchOptions from '../SearchOptions'
 import { FilterParams, SearchFilterStore, SearchFiltersProps, FILTER_MODES } from './types'
 import {
   DepartmentCodeOrPrefix,
@@ -47,7 +47,10 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
   }
 
   const hasActiveFilters = Object.entries(courseSearchParams).some(([key, value]) => {
-    if (key !== 'pattern') {
+    if (
+      (searchMode !== SEARCH_MODES.thirdCycleCourses && key !== 'pattern') ||
+      (searchMode === SEARCH_MODES.thirdCycleCourses && key !== 'pattern' && key !== 'eduLevel')
+    ) {
       return Array.isArray(value) ? value.length > 0 : !!value
     }
     return false // Ignore the 'pattern' key
@@ -58,7 +61,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
       {filterMode.includes('semesters') && (
         <div className={collapsable ? 'row' : ''}>
           <div className={collapsable ? 'col' : ''}>
-            <NewSearchOptions
+            <SearchOptions
               paramName="semesters"
               selectedValues={courseSearchParams.semesters as Semester[]}
               onChange={handleFilterValueChange}
@@ -73,7 +76,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
         <div className={collapsable ? 'row' : ''}>
           {filterMode.includes('eduLevel') && (
             <div className={collapsable ? 'col' : ''}>
-              <NewSearchOptions
+              <SearchOptions
                 paramName="eduLevel"
                 selectedValues={courseSearchParams.eduLevel as EduLevel[]}
                 onChange={handleFilterValueChange}
@@ -83,7 +86,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
           )}
           {filterMode.includes('eduLevel') && (
             <div className={collapsable ? 'col' : ''}>
-              <NewSearchOptions
+              <SearchOptions
                 paramName="showOptions"
                 selectedValues={courseSearchParams.showOptions as ShowOptions[]}
                 onChange={handleFilterValueChange}
@@ -92,7 +95,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
             </div>
           )}
           {filterMode.includes('onlyMHU') && (
-            <NewSearchOptions
+            <SearchOptions
               paramName="showOptions"
               paramAliasName="onlyMHU"
               selectedValues={courseSearchParams.showOptions as ShowOptions[]}
@@ -106,7 +109,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
       {filterMode.includes('department') && (
         <div className={collapsable ? 'row' : ''}>
           <div className={collapsable ? 'col' : ''}>
-            <NewSearchDepartments
+            <SearchDepartments
               departmentCode={courseSearchParams.department as DepartmentCodeOrPrefix}
               onChange={handleFilterValueChange}
               disabled={disabled}
