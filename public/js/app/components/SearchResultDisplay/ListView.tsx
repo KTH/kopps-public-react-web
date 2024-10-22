@@ -6,7 +6,7 @@ import { useStore } from '../../mobx'
 import { ListViewParams } from './types'
 import i18n from '../../../../../i18n'
 
-import { compareCoursesBy, inforKursvalLink, periodsStr } from '../../util/newSearchHelper'
+import { compareCoursesBy, inforKursvalLink, periodsStr } from '../../util/searchHelper'
 
 const ListView: React.FC<ListViewParams> = ({ results }) => {
   const { language, languageIndex } = useStore()

@@ -144,7 +144,7 @@ function appFactory(serverSideApplicationStore = null) {
             layout={PageLayout}
             initApplicationStoreCallback={sharedInitApplicationStoreCallback['SearchPage']}
             createMenuData={store => ({
-              selectedId: 'searchThirdCycleCoursesNew',
+              selectedId: 'searchThirdCycleCourses',
               ...getThirdCycleMenuData(store),
             })}
           />

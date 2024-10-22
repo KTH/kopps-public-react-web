@@ -5,7 +5,7 @@ import './style.scss'
 import { useStore } from '../../mobx'
 
 import translate from '../../../../../domain/translate'
-import { sortAndParseByCourseCodeForTableView } from '../../util/newSearchHelper'
+import { sortAndParseByCourseCodeForTableView } from '../../util/searchHelper'
 
 import { TableViewParams } from './types'
 import { SortableTable } from '@kth/kth-reactstrap/dist/components/studinfo'

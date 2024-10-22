@@ -252,15 +252,15 @@ appRoute.get(
   proxyPrefixPath.thirdCycleCoursesPerDepartment + '/:departmentCode',
   ThirdCycleStudyDepartment.getCoursesPerDepartment
 )
-appRoute.get('public.newSearchAllCourses', proxyPrefixPath.searchPage, SearchPage.searchAllCourses)
-appRoute.get('public.newSearchAllCoursesResult', proxyPrefixPath.searchResult, SearchPage.searchAllCourses)
+appRoute.get('public.searchAllCourses', proxyPrefixPath.searchPage, SearchPage.searchAllCourses)
+appRoute.get('public.searchAllCoursesResult', proxyPrefixPath.searchResult, SearchPage.searchAllCourses)
 appRoute.get(
-  'public.NewSearchThirdCycleCourses',
+  'public.SearchThirdCycleCourses',
   proxyPrefixPath.thirdCycleCourseSearch,
   SearchPage.searchThirdCycleCourses
 )
 appRoute.get(
-  'public.NewSearchThirdCycleCoursesResult',
+  'public.SearchThirdCycleCoursesResult',
   proxyPrefixPath.thirdCycleCourseSearchResult,
   SearchPage.searchThirdCycleCourses
 )

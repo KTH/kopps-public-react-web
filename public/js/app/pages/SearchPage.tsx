@@ -33,7 +33,7 @@ function _getThisHost(thisHostBaseUrl: string) {
   return thisHostBaseUrl.slice(-1) === '/' ? thisHostBaseUrl.slice(0, -1) : thisHostBaseUrl
 }
 
-const NewSearchPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.default }) => {
+const SearchPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.default }) => {
   const [courseSearchParams, setCourseSearchParams] = useCourseSearchParams()
   useLangHrefUpdate(courseSearchParams)
   const { browserConfig, language, languageIndex } = useStore()
@@ -94,4 +94,4 @@ const NewSearchPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.de
   )
 }
 
-export default NewSearchPage
+export default SearchPage

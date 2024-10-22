@@ -25,7 +25,7 @@ function getThirdCycleMenuData(applicationStore) {
           url: pageLink(thirdCycleSchoolsAndDepartments, language),
         },
         {
-          id: 'searchThirdCycleCoursesNew',
+          id: 'searchThirdCycleCourses',
           type: 'leaf',
           text: t('main_menu_third_cycle_courses_search'),
           url: pageLink(thirdCycleCourseSearch, language),

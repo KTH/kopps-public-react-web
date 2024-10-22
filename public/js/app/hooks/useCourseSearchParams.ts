@@ -22,14 +22,14 @@ export const useCourseSearchParams = (): [CourseSearchParams, SetCourseSearchPar
 
   const setCourseSearchParams = (updatedCourseSearchParam: Partial<CourseSearchParams>) => {
     // merge current courseSearchParams with updated value and remove empty values
-    const newSearchParams = Object.fromEntries(
+    const searchParams = Object.fromEntries(
       Object.entries({
         ...courseSearchParams,
         ...updatedCourseSearchParam,
       }).filter(([, value]) => !!value)
     )
 
-    setSearchParams(newSearchParams)
+    setSearchParams(searchParams)
   }
 
   return [courseSearchParams, setCourseSearchParams]
