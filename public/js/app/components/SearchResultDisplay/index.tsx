@@ -15,7 +15,7 @@ import { AlertType } from '../SearchAlert/types'
 const isCourseSearchResult = (data: string | CourseSearchResult): data is CourseSearchResult => {
   return (data as CourseSearchResult).searchHits !== undefined
 }
-const NewSearchResultDisplay: React.FC<SearchResultDisplayParams> = ({ resultsState }) => {
+const SearchResultDisplay: React.FC<SearchResultDisplayParams> = ({ resultsState }) => {
   const { languageIndex } = useStore()
   const [view, setView] = useState<View>(VIEW.list)
   const { data: searchResults, status: searchStatus, error: errorType } = resultsState
@@ -23,7 +23,7 @@ const NewSearchResultDisplay: React.FC<SearchResultDisplayParams> = ({ resultsSt
   if (errorType) {
     return (
       <SearchAlert
-        alertType={['errorOverflow', 'errorEmpty'].includes(errorType) ? (`${errorType}Beta` as AlertType) : errorType}
+        alertType={errorType}
         languageIndex={languageIndex}
       />
     )
@@ -44,4 +44,4 @@ const NewSearchResultDisplay: React.FC<SearchResultDisplayParams> = ({ resultsSt
   )
 }
 
-export default NewSearchResultDisplay
+export default SearchResultDisplay

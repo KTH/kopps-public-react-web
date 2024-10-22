@@ -3,10 +3,8 @@ const applicationStores = [
     browserConfig: {
       proxyPrefixPath: {
         uri: '/student/kurser',
-        courseSearch: '/student/kurser/sokkurs',
-        newSearchPage: '/student/kurser/sokkurs-beta',
+        searchPage: '/student/kurser/sokkurs',
         courseSearchInternApi: '/student/kurser/intern-api/sok',
-        courseSearchInternApiBeta: '/student/kurser/intern-api/sokBeta',
         department: '/student/kurser/org',
         programme: '/student/kurser/program',
         programmesList: '/student/kurser/kurser-inom-program',
@@ -521,10 +519,8 @@ const applicationStores = [
     browserConfig: {
       proxyPrefixPath: {
         uri: '/student/kurser',
-        courseSearch: '/student/kurser/sokkurs',
-        newSearchPage: '/student/kurser/sokkurs-beta',
+        searchPage: '/student/kurser/sokkurs',
         courseSearchInternApi: '/student/kurser/intern-api/sok',
-        courseSearchInternApiBeta: '/student/kurser/intern-api/sokBeta',
         department: '/student/kurser/org',
         programme: '/student/kurser/program',
         programmesList: '/student/kurser/kurser-inom-program',
@@ -3507,10 +3503,8 @@ const applicationStores = [
     browserConfig: {
       proxyPrefixPath: {
         uri: '/student/kurser',
-        courseSearch: '/student/kurser/sokkurs',
-        newSearchPage: '/student/kurser/sokkurs-beta',
+        searchPage: '/student/kurser/sokkurs',
         courseSearchInternApi: '/student/kurser/intern-api/sok',
-        courseSearchInternApiBeta: '/student/kurser/intern-api/sokBeta',
         department: '/student/kurser/org',
         programme: '/student/kurser/program',
         programmesList: '/student/kurser/kurser-inom-program',

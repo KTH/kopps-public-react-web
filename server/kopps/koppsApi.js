@@ -144,19 +144,6 @@ const getProgramme = async (programmeCode, lang) => {
   }
 }
 
-const getSearchResults = async (searchParamsStr, lang) => {
-  const { client } = koppsApi.koppsApi
-  const uri = `${slashEndedKoppsBase}courses/search?${searchParamsStr}&l=${lang}`
-
-  try {
-    const response = await client.getAsync({ uri, useCache: true })
-    return response.body
-  } catch (error) {
-    log.error('Exception calling KOPPS API in koppsApi.getSearchResults', { error })
-    throw error
-  }
-}
-
 const getStudyProgrammeVersion = async (programmeCode, validFromTerm, lang) => {
   const { client } = koppsApi.koppsApi
   const programmeCodeUpperCase = programmeCode?.toUpperCase()
@@ -231,7 +218,6 @@ module.exports = {
   listSchoolsWithDepartments,
   getCourses,
   getProgramme,
-  getSearchResults,
   getStudyProgrammeVersion,
   listCurriculums,
   listCourseRoundsInYearPlan,

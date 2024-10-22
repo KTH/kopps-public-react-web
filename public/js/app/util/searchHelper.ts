@@ -12,7 +12,7 @@ import {
 import { Link } from '@kth/kth-reactstrap/dist/components/studinfo'
 import { courseLink } from './links'
 import React from 'react'
-import { formatShortTerm, formatTermByYearAndPeriod } from '../../../../domain/term'
+import { formatTermByYearAndPeriod } from '../../../../domain/term'
 
 export const getHelpText: GetHelpText = (langIndex, nameOfInstruction, instructionKeys) => {
   /**

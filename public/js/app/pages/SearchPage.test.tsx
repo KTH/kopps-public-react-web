@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, screen, fireEvent, waitFor, waitForElementToBeRemoved } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import NewSearchPage from './NewSearchPage'
+import SearchPage from './SearchPage'
 import { useStore } from '../mobx'
 import { courseSearch } from '../util/searchApi'
 import { TEST_API_ANSWER_RESOLVED } from '../components/mocks/mockKoppsCourseSearch'
@@ -42,7 +42,7 @@ jest.mock('../hooks/useLangHrefUpdate', () => ({
 
 const mockDate = new Date('2024-08-19 16:00')
 
-describe('<NewSearchPage />', () => {
+describe('<SearchPage />', () => {
   beforeAll(() => {
     jest.spyOn(global, 'Date').mockImplementation(() => mockDate)
     ;(useStore as jest.Mock).mockReturnValue({
@@ -72,7 +72,7 @@ describe('<NewSearchPage />', () => {
     mockSearchParams.append('showOptions', 'onlyEnglish')
     ;(courseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED))
 
-    render(<NewSearchPage searchMode="default" />)
+    render(<SearchPage searchMode="default" />)
 
     expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
       pattern: 'Math',
@@ -97,7 +97,7 @@ describe('<NewSearchPage />', () => {
     })
     ;(courseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED))
 
-    render(<NewSearchPage searchMode="default" />)
+    render(<SearchPage searchMode="default" />)
 
     const searchInput = screen.getByRole('textbox')
     fireEvent.change(searchInput, { target: { value: 'Physics' } })
@@ -123,7 +123,7 @@ describe('<NewSearchPage />', () => {
       }),
     }))
 
-    render(<NewSearchPage searchMode="default" />)
+    render(<SearchPage searchMode="default" />)
 
     const searchInput = screen.getByRole('textbox')
     expect(searchInput).toBeDisabled()
@@ -147,7 +147,7 @@ describe('<NewSearchPage />', () => {
   test('should update search params and call search API when semesters checkboxes, eduLevel, and showOptions are changed', async () => {
     ;(courseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED))
 
-    render(<NewSearchPage searchMode="default" />)
+    render(<SearchPage searchMode="default" />)
 
     // Verify that the initial API call was made with the correct parameters
     expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
