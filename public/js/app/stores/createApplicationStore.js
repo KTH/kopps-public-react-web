@@ -9,6 +9,7 @@ import createSearchCoursesStore from './searchCoursesStore'
 import { createSearchPageStore } from './searchPageStore'
 import createAppendix1Store from './appendix1Store'
 import createAppendix2Store from './appendix2Store'
+import createAppendix3Store from './appendix3Store'
 import createLiteratureStore from './literatureStore'
 import createPdfStore from './pdfStore'
 
@@ -161,6 +162,13 @@ function createApplicationStore(storeId) {
         ...createStudyProgrammeStore(),
         ...createAppendix2Store(),
       }
+    case 'appendix3':
+      const appendix3Store = {
+        ...createCommonStore(),
+        ...createStudyProgrammeStore(),
+        ...createAppendix3Store(),
+      }
+      return appendix3Store
     case 'pdfStore':
       return {
         ...createCommonStore(),

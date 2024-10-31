@@ -230,6 +230,7 @@ const {
   Implementation,
   Appendix1,
   Appendix2,
+  Appendix3,
   LiteratureList,
   PDFExport,
   SearchPage,
@@ -404,6 +405,13 @@ appRoute.get(
   _addProgramProxy('/:programmeCode/:term([0-9]{4}[1-2])/inriktningar'),
   Appendix2.getIndex
 )
+
+appRoute.get(
+  'public.appendix3',
+  _addProgramProxy('/:programmeCode/:term([0-9]{4}[1-2])/kurslista-ladok'),
+  Appendix3.getIndex
+)
+
 appRoute.get(
   'redirect.curriculumRoot_five_digit',
   _addProgramProxy('/:programmeCode/:term([0-9]{4}[1-2])'),

@@ -76,6 +76,12 @@ function getCurriculumMenuData(applicationStore) {
       text: t('programme_appendix2'),
       url: pageLink(`${pageRoot}/${programmeCode}/${term}/inriktningar`, language),
     },
+    {
+      id: 'appendix3',
+      type: 'leaf',
+      text: 'Bilaga 3: Kurslista från Ladok',
+      url: pageLink(`${pageRoot}/${programmeCode}/${term}/kurslista-ladok`, language),
+    },
   ]
   return {
     ariaLabel: t('main_menu_aria_label'),

@@ -9,6 +9,13 @@ async function searchCourses(pattern, lang) {
   return courses
 }
 
+async function getUtbildningsplan(uid, lang) {
+  const client = createApiClient(serverConfig.ladokMellanlagerApi)
+  const plan = await client.getUtbildningsPlan(uid, lang)
+  return plan
+}
+
 module.exports = {
   searchCourses,
+  getUtbildningsplan,
 }

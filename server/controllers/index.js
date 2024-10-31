@@ -7,6 +7,7 @@
 module.exports = {
   Appendix1: require('./appendix1Ctrl'),
   Appendix2: require('./appendix2Ctrl'),
+  Appendix3: require('./appendix3Ctrl'),
   Curriculum: require('./curriculumCtrl'),
   Department: require('./departmentCtrl'),
   Eligibility: require('./eligibilityCtrl'),

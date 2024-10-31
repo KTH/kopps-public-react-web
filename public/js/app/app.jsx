@@ -13,6 +13,7 @@ import '../../css/node-web.scss'
 import Appendix1 from './pages/Appendix1'
 import Appendix2 from './pages/Appendix2'
 import SearchLandingPage from './pages/SearchLandingPage'
+import Appendix3 from './pages/Appendix3'
 import Curriculum from './pages/Curriculum'
 import DepartmentCourses from './pages/DepartmentCourses'
 import DepartmentsList from './pages/DepartmentsList'
@@ -327,6 +328,22 @@ function appFactory(serverSideApplicationStore = null) {
             initApplicationStoreCallback={() => _initStore({ storeId: 'appendix2' })}
             createMenuData={store => ({
               selectedId: 'appendix2',
+              ...getStudyProgrammeMenuData(store),
+            })}
+          />
+        }
+      />
+      <Route
+        key="programme-appendix3"
+        exact
+        path="/student/kurser/program/:programmeCode/:term/kurslista-ladok"
+        element={
+          <ElementWrapper
+            component={Appendix3}
+            layout={PageLayout}
+            initApplicationStoreCallback={() => _initStore({ storeId: 'appendix3', serverSideApplicationStore })}
+            createMenuData={store => ({
+              selectedId: 'appendix3',
               ...getStudyProgrammeMenuData(store),
             })}
           />

@@ -64,6 +64,7 @@
     "kth-node-i18n": "^1.0.18",
     "kth-node-redis": "^3.3.0",
     "kth-style": "^10.3.0",
+    "marked": "^14.1.3",
     "mobx": "^6.12.0",
     "mobx-react": "^9.1.0",
     "om-kursen-ladok-client": "file:../studadm-om-kursen-packages/packages/om-kursen-ladok-client",
