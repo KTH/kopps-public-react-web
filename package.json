@@ -11,7 +11,7 @@
     "uri": "https://github.com/KTH/node-web"
   },
   "engines": {
-    "node": "18"
+    "node": "20"
   },
   "scripts": {
     "build": "bash ./build.sh prod",
