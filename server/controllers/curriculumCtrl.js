@@ -12,6 +12,8 @@ const { createProgrammeBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { programmeFullName } = require('../utils/programmeFullName')
 
+const { getProgramStructure, getActiveProgramTillfalle } = require('../ladok/ladokApi')
+
 const {
   fillStoreWithQueryParams,
   fetchAndFillProgrammeDetails,
@@ -134,7 +136,11 @@ async function getIndex(req, res, next) {
     const options = { applicationStore, lang, programmeCode, term, studyYear }
 
     log.info(`Starting to fill in application store ${storeId} on server side `, { programmeCode })
-    const { programmeName } = await fetchAndFillProgrammeDetails(options, storeId)
+    const convertedTerm = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
+    const programDetails = await getActiveProgramTillfalle(programmeCode, convertedTerm, lang)
+
+    const test = await fetchAndFillProgrammeDetails(options, storeId)
+    const { programmeName } = test
 
     fillStoreWithQueryParams(options)
     await _fetchAndFillCurriculumByStudyYear(options, storeId)
