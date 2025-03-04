@@ -45,10 +45,10 @@ async function getIndex(req, res, next) {
     const options = { applicationStore, lang, programmeCode, term }
     log.info(`Starting to fill in application store ${storeId} on server side `, { programmeCode })
 
-    const { programmeName } = await fetchAndFillProgrammeDetails(options, storeId)
+    const { programmeName, tillfalleUid } = await fetchAndFillProgrammeDetails(options, storeId)
 
     fillStoreWithQueryParams(options)
-    await fetchAndFillCurriculumList(options)
+    await fetchAndFillCurriculumList(options, tillfalleUid)
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
     log.info(`${storeId} store was filled in and compressed on server side`, { programmeCode })
 

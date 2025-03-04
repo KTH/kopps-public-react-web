@@ -15,7 +15,7 @@ async function getActiveProgramTillfalle(programCode, startPeriod, lang) {
   return courses
 }
 
-async function getProgramStructure(programCode, startPeriod, lang) {
+async function getProgramStructure(programCode, lang) {
   const client = createApiClient(serverConfig.ladokMellanlagerApi)
   const courses = await client.getUtbildningstilfalleStructure(programCode, lang)
   return courses

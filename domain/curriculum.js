@@ -150,6 +150,83 @@ function curriculumInfo({ programmeTermYear = {}, curriculum }) {
   }
 }
 
+function curriculumInfoFromLadok({ programmeTermYear = {}, curriculum }) {
+  let code = ''
+  let specializationName = null
+  let isCommon = true
+
+  const participations = {}
+  const isFirstSpec = false
+
+  const { programmeSpecialization, studyYears } = curriculum
+  const { studyYear } = programmeTermYear
+
+  if (programmeSpecialization) {
+    code = programmeSpecialization.programmeSpecializationCode
+    specializationName = programmeSpecialization.title
+    isCommon = false
+  }
+
+  const [curriculumStudyYear] = studyYears.filter(s => Math.abs(s.yearNumber) === Math.abs(studyYear))
+
+  if (curriculumStudyYear) {
+    for (const course of curriculumStudyYear.courses) {
+      if (!participations[course.Valvillkor]) participations[course.Valvillkor] = []
+
+      const termCode = course.startperiod.code.startsWith('HT') ? '1' : '2'
+      const year = course.startperiod.code.replace(/[^0-9]/g, '')
+      const term = `${year}${termCode}`
+
+      const creditsPerPeriod = [0, 0, 0, 0, 0, 0]
+
+      course.Tillfallesperioder.forEach(period => {
+        if (period.Lasperiodsfordelning) {
+          period.Lasperiodsfordelning.forEach(lasperiod => {
+            const periodIndex =
+              {
+                P1: 1,
+                P2: 2,
+                P3: 3,
+                P4: 4,
+              }[lasperiod.Lasperiodskod] || 0
+
+            creditsPerPeriod[periodIndex] += lasperiod.Omfattningsvarde
+          })
+        } else {
+          creditsPerPeriod[1] += period.Omfattningsvarde // Default to first period
+        }
+      })
+
+      participations[course.Valvillkor].push({
+        course: {
+          courseCode: course.kod,
+          title: course.benamning,
+          credits: course.omfattning.number,
+          formattedCredits: course.omfattning.formattedWithUnit,
+          educationalLevel: course.utbildningstyp?.level?.name,
+          electiveCondition: course.Valvillkor,
+        },
+        applicationCodes: [course.tillfalleskod],
+        term,
+        creditsPerPeriod,
+      })
+
+      participations[course.Valvillkor].sort((a, b) => a.term.localeCompare(b.term))
+    }
+  }
+
+  const hasInfo = Object.keys(participations).length !== 0
+
+  return {
+    code,
+    specializationName,
+    isCommon,
+    participations,
+    isFirstSpec,
+    hasInfo,
+  }
+}
+
 function setFirstSpec(cis) {
   for (let i = 0; i < cis.length; i++) {
     const ci = cis[i]
@@ -164,6 +241,7 @@ const ELECTIVE_CONDITIONS = ['ALL', 'O', 'VV', 'R', 'V']
 
 module.exports = {
   curriculumInfo,
+  curriculumInfoFromLadok,
   setFirstSpec,
   filterCourseRoundsForNthYear,
   ELECTIVE_CONDITIONS,
