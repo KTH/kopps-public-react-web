@@ -43,11 +43,14 @@ function CourseTableRow({
   creditsPerPeriod,
 }) {
   const { language } = useStore()
+  console.log('here', credits)
   return (
     <tr>
       <td>{courseNameCellData}</td>
       <td className="text-center">{applicationCodeCellData}</td>
-      <td className="text-right credits">{`${formatCredits(language, credits)} ${creditUnitAbbr}`}</td>
+      <td className="text-right credits">
+        {creditUnitAbbr ? `${formatCredits(language, credits)} ${creditUnitAbbr}` : credits}
+      </td>
       <CourseTablePeriodCols language={language} creditsPerPeriod={creditsPerPeriod} courseCode={courseCode} />
     </tr>
   )
@@ -59,8 +62,11 @@ function CourseTableRows({ participations }) {
   return participations.map(participation => {
     const { course, applicationCodes, term, creditsPerPeriod } = participation
 
-    const { courseCode, title, credits, creditUnitAbbr, comment } = course
-    const translatedCreditUnitAbbr = translateCreditUnitAbbr(language, creditUnitAbbr)
+    console.log(course)
+
+    const { courseCode, title, credits, formattedCredits, creditUnitAbbr, comment } = course
+    let translatedCreditUnitAbbr
+    if (!formattedCredits) translatedCreditUnitAbbr = translateCreditUnitAbbr(language, creditUnitAbbr)
     const currentTerm = getCurrentTerm()
     const courseNameCellData = (
       <>
@@ -75,7 +81,7 @@ function CourseTableRows({ participations }) {
         courseCode={courseCode}
         courseNameCellData={courseNameCellData}
         applicationCodeCellData={applicationCodeCellData}
-        credits={credits}
+        credits={formattedCredits ? formattedCredits : credits}
         creditUnitAbbr={translatedCreditUnitAbbr}
         creditsPerPeriod={creditsPerPeriod}
       />
