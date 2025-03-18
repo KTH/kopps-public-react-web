@@ -9,6 +9,13 @@ async function searchCourses(pattern, lang) {
   return courses
 }
 
+async function getSyllabus(courseCode, semester, lang) {
+  const client = createApiClient(serverConfig.ladokMellanlagerApi)
+  const syllabus = await client.getProgramSyllabus(courseCode, semester, lang)
+  return syllabus
+}
+
 module.exports = {
   searchCourses,
+  getSyllabus,
 }

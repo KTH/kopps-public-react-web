@@ -17,6 +17,7 @@ const {
   fetchAndFillProgrammeDetails,
   fetchAndFillStudyProgrammeVersion,
 } = require('../stores/programmeStoreSSR')
+const { getSyllabus } = require('../ladok/ladokApi')
 
 /**
  *
@@ -81,6 +82,15 @@ function _compareCurriculum(a, b) {
  */
 async function _fetchAndFillCurriculumByStudyYear(options, storeId) {
   const { applicationStore, lang, programmeCode, studyYear, term } = options
+  if (Number(term.substring(0, 4)) < 2024) {
+    try {
+      const syllabus = await getSyllabus(programmeCode, term, lang)
+      applicationStore.setCurriculumInfos(syllabus)
+      return
+    } catch (error) {
+      _setErrorMissingAdmission(applicationStore, 404)
+    }
+  }
   const { studyProgrammeId, statusCode } = await fetchAndFillStudyProgrammeVersion({ ...options, storeId })
   if (!studyProgrammeId) {
     _setErrorMissingAdmission(applicationStore, statusCode)
