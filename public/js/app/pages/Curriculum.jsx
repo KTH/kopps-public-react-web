@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger */
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Col, Row } from 'reactstrap'
 import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
