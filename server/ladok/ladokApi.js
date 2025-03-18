@@ -1,6 +1,6 @@
 'use strict'
 
-const { createApiClient } = require('om-kursen-ladok-client')
+const { createApiClient } = require('@kth/om-kursen-ladok-client')
 const serverConfig = require('../configuration').server
 
 async function searchCourses(pattern, lang) {
@@ -9,6 +9,13 @@ async function searchCourses(pattern, lang) {
   return courses
 }
 
+async function getSyllabus(courseCode, semester, lang) {
+  const client = createApiClient(serverConfig.ladokMellanlagerApi)
+  const syllabus = await client.getProgramSyllabus(courseCode, semester, lang)
+  return syllabus
+}
+
 module.exports = {
   searchCourses,
+  getSyllabus,
 }

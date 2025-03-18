@@ -203,13 +203,17 @@ function CurriculumInfo() {
 }
 
 function ArticleContent() {
-  const { language, owningSchoolCode, isMissingAdmission, studyYear, term } = useStore()
+  const { language, owningSchoolCode, isMissingAdmission, studyYear, term, curriculumInfos } = useStore()
   const t = translate(language)
   const calculatedStartTerm = calculateStartTerm(term, studyYear)
   const formattedAcademicYear = formatAcademicYear(calculatedStartTerm)
   return isMissingAdmission() ? (
     <Article>
       <p>{t('curriculums_missing_admission_text')(owningSchoolCode)}</p>
+    </Article>
+  ) : Number(term.substring(0, 4)) < 2024 ? (
+    <Article>
+      <div dangerouslySetInnerHTML={{ __html: curriculumInfos.courseList[`year${studyYear}`] }} />
     </Article>
   ) : (
     <Article>
