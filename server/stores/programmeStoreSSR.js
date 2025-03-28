@@ -52,7 +52,7 @@ async function fetchAndFillProgrammeDetails({ applicationStore, term, lang, prog
   const year = term.slice(0, 4)
   const convertedTerm = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
 
-  if (year >= 2024) {
+  if (year >= 2025) {
     // TODO - this is for test now, the exact year needs to be changed after the actual user stories are ready
     const program = await getActiveProgramTillfalle(programmeCode, convertedTerm, lang)
     programDetails = {
