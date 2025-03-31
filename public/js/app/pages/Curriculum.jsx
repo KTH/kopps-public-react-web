@@ -64,7 +64,7 @@ function CourseTableRows({ participations }) {
 
     console.log(course)
 
-    const { courseCode, title, credits, formattedCredits, creditUnitAbbr, comment } = course
+    const { courseCode, title, credits, formattedCredits, creditUnitAbbr, comment, status } = course
     let translatedCreditUnitAbbr
     if (!formattedCredits) translatedCreditUnitAbbr = translateCreditUnitAbbr(language, creditUnitAbbr)
     const currentTerm = getCurrentTerm()
@@ -74,7 +74,10 @@ function CourseTableRows({ participations }) {
         {comment && <b className="course-comment">{comment}</b>}
       </>
     )
-    const applicationCodeCellData = currentTerm <= term ? applicationCodes.join(', ') : ''
+    const applicationCodeCellData =
+      applicationCodes.length && currentTerm <= term && (status?.nameEn === 'Started' || status?.nameEn === 'Completed')
+        ? applicationCodes.join(', ')
+        : ''
     return (
       <CourseTableRow
         key={courseCode}

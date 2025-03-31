@@ -3,7 +3,7 @@ const log = require('@kth/log')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const koppsApi = require('../kopps/koppsApi')
 const { programmeLink } = require('../../domain/links')
-const { getActiveProgramTillfalle, getProgramStructure } = require('../ladok/ladokApi')
+const { getProgramStructure, getProgramVersion, getActiveProgramTillfalle } = require('../ladok/ladokApi')
 
 /**
  * add props to a MobX-stores on server side
@@ -49,30 +49,25 @@ async function fetchAndFillProgrammeDetails({ applicationStore, term, lang, prog
 
   let programDetails
 
-  const year = term.slice(0, 4)
   const convertedTerm = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
 
-  if (year >= 2025) {
-    // TODO - this is for test now, the exact year needs to be changed after the actual user stories are ready
-    const program = await getActiveProgramTillfalle(programmeCode, convertedTerm, lang)
+  try {
+    const { programInstans, statusCode } = await getProgramVersion(programmeCode, convertedTerm, lang)
+
     programDetails = {
-      title: program.benamning,
-      lengthInStudyYears: program.lengthInStudyYears,
-      creditUnitAbbr: program.creditUnitAbbr,
-      owningSchoolCode: program.organisation.name,
-      credits: program.omfattning.number,
-      titleOtherLanguage: program.organisation.nameOther,
-      educationalLevel: program.tilltradesniva.name,
-      tillfalleUid: program.uid,
+      title: programInstans?.benamning,
+      lengthInStudyYears: programInstans?.lengthInStudyYears,
+      creditUnitAbbr: programInstans?.creditUnitAbbr,
+      owningSchoolCode: programInstans?.organisation.name,
+      credits: programInstans?.omfattning?.number,
+      titleOtherLanguage: programInstans?.benamningOther,
+      educationalLevel: programInstans?.tilltradesniva.name,
     }
-  } else {
-    const { programme, statusCode } = await koppsApi.getProgramme(programmeCode, lang)
-    programDetails = programme
     applicationStore.setStatusCode(statusCode)
-    if (statusCode !== 200 || !programme) {
-      log.debug('Failed to fetch from KOPPs api, programmeCode:', programmeCode)
-      return
-    } // react NotFound
+  } catch (error) {
+    applicationStore.setStatusCode(503)
+    log.debug('Failed to fetch from Ladok api, programmeCode:', programmeCode)
+    return
   }
 
   log.info('Successfully fetched programme from KOPPs API, programmeCode:', programmeCode)
@@ -343,25 +338,33 @@ function _parseSpecializations(curriculums) {
  * @param {string} options.programmeCode
  * @param {string} options.term
  */
-async function fetchAndFillCurriculumList(options, tillfalleUid) {
-  const { applicationStore, lang } = options
+async function fetchAndFillCurriculumList(options) {
+  const { applicationStore, programmeCode, term, lang } = options
 
   let curriculumData
+  let tillfalleUid
 
-  if (tillfalleUid) {
-    curriculumData = await getProgramStructure(tillfalleUid, lang)
-  } else {
-    const { studyProgrammeId } = await fetchAndFillStudyProgrammeVersion({ ...options }) // we are not using the programmeStudy data here so I removed the option of saving it to store
-    if (!studyProgrammeId) return
-    const { curriculums, statusCode: secondStatusCode } = await koppsApi.listCurriculums(studyProgrammeId, lang)
-    curriculumData = curriculums
-    applicationStore.setStatusCode(secondStatusCode)
-    if (secondStatusCode !== 200) return // react NotFound
+  const convertedTerm = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
+
+  try {
+    const programTillfalle = await getActiveProgramTillfalle(programmeCode, convertedTerm, lang)
+    const { uid } = programTillfalle
+    tillfalleUid = uid
+  } catch (error) {
+    console.log(error)
   }
 
+  if (tillfalleUid) {
+    try {
+      curriculumData = await getProgramStructure(tillfalleUid, lang)
+    } catch (error) {
+      applicationStore.setStatusCode(503)
+      return
+    }
+  } else return
+
   if (tillfalleUid) _parseCurriculumsAndFillStoreFromStructure(applicationStore, curriculumData)
-  else _parseCurriculumsAndFillStore(applicationStore, curriculumData)
-  return
+  else return
 }
 
 /**
@@ -372,19 +375,27 @@ async function fetchAndFillCurriculumList(options, tillfalleUid) {
  * @param {string} options.programmeCode
  * @param {string} options.term
  */
-async function fetchAndFillSpecializations(options, tillfalleUid) {
-  const { applicationStore, lang } = options
+async function fetchAndFillSpecializations(options) {
+  const { applicationStore, programmeCode, term, lang } = options
   let curriculumData
-  if (!tillfalleUid) {
-    const { studyProgrammeId } = await fetchAndFillStudyProgrammeVersion({ ...options, storeId: 'appendix2' })
-    if (!studyProgrammeId) return
-    const { curriculums, statusCode: secondStatusCode } = await koppsApi.listCurriculums(studyProgrammeId, lang)
-    curriculumData = curriculums
-    applicationStore.setStatusCode(secondStatusCode)
-    if (secondStatusCode !== 200) return // react NotFound
-  } else {
-    curriculumData = await getProgramStructure(tillfalleUid, lang)
-  }
+  let tillfalleUid
+
+  const convertedTerm = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
+
+  try {
+    const programTillfalle = await getActiveProgramTillfalle(programmeCode, convertedTerm, lang)
+    const { uid } = programTillfalle
+    tillfalleUid = uid
+  } catch (error) {}
+
+  if (tillfalleUid) {
+    try {
+      curriculumData = await getProgramStructure(tillfalleUid, lang)
+    } catch (error) {
+      applicationStore.setStatusCode(503)
+      return
+    }
+  } else return
 
   const specializations = _parseSpecializations(curriculumData)
   applicationStore.setSpecializations(specializations)
