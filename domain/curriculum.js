@@ -150,7 +150,7 @@ function curriculumInfo({ programmeTermYear = {}, curriculum }) {
   }
 }
 
-function curriculumInfoFromLadok({ programmeTermYear = {}, curriculum }) {
+function curriculumInfoFromStructure({ programmeTermYear = {}, curriculum }) {
   let code = ''
   let specializationName = null
   let isCommon = true
@@ -192,8 +192,6 @@ function curriculumInfoFromLadok({ programmeTermYear = {}, curriculum }) {
 
             creditsPerPeriod[periodIndex] += lasperiod.Omfattningsvarde
           })
-        } else {
-          creditsPerPeriod[1] += period.Omfattningsvarde // Default to first period
         }
       })
 
@@ -241,7 +239,7 @@ const ELECTIVE_CONDITIONS = ['ALL', 'O', 'VV', 'R', 'V']
 
 module.exports = {
   curriculumInfo,
-  curriculumInfoFromLadok,
+  curriculumInfoFromStructure,
   setFirstSpec,
   filterCourseRoundsForNthYear,
   ELECTIVE_CONDITIONS,

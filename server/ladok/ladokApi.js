@@ -15,6 +15,12 @@ async function getActiveProgramTillfalle(programCode, startPeriod, lang) {
   return courses
 }
 
+async function getProgramVersion(programCode, startPeriod, lang) {
+  const client = createApiClient(serverConfig.ladokMellanlagerApi)
+  const courses = await client.getProgramVersion(programCode, startPeriod, lang)
+  return courses
+}
+
 async function getProgramStructure(programCode, lang) {
   const client = createApiClient(serverConfig.ladokMellanlagerApi)
   const courses = await client.getUtbildningstilfalleStructure(programCode, lang)
@@ -25,4 +31,5 @@ module.exports = {
   searchCourses,
   getProgramStructure,
   getActiveProgramTillfalle,
+  getProgramVersion,
 }

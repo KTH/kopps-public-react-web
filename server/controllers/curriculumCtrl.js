@@ -5,7 +5,7 @@ const { server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 
 const koppsApi = require('../kopps/koppsApi')
-const { curriculumInfo, curriculumInfoFromLadok, setFirstSpec } = require('../../domain/curriculum')
+const { curriculumInfo, curriculumInfoFromStructure, setFirstSpec } = require('../../domain/curriculum')
 const { calculateStartTerm } = require('../../domain/academicYear')
 
 const { createProgrammeBreadcrumbs } = require('../utils/breadcrumbUtil')
@@ -81,7 +81,7 @@ function _compareCurriculum(a, b) {
  * @param {string} options.term
  * @param {string} storeId
  */
-async function _fetchAndFillCurriculumByStudyYear(options, storeId, tillfalleUid) {
+async function _fetchAndFillCurriculumByStudyYear(options, storeId) {
   const { applicationStore, lang, programmeCode, studyYear, term } = options
   const { studyProgrammeId, statusCode } = await fetchAndFillStudyProgrammeVersion({ ...options, storeId })
   if (!studyProgrammeId) {
@@ -90,22 +90,25 @@ async function _fetchAndFillCurriculumByStudyYear(options, storeId, tillfalleUid
   } // react NotFound
 
   let curriculumData
+  let tillfalleUid
+
+  const convertedTerm = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
+
+  try {
+    const programTillfalle = await getActiveProgramTillfalle(programmeCode, convertedTerm, lang)
+    const { uid } = programTillfalle
+    tillfalleUid = uid
+  } catch (error) {}
 
   if (tillfalleUid) {
     curriculumData = await getProgramStructure(tillfalleUid, lang)
-  } else {
-    const { curriculums, statusCode: secondStatusCode } = await koppsApi.listCurriculums(studyProgrammeId, lang)
-    applicationStore.setStatusCode(secondStatusCode)
-    if (secondStatusCode !== 200) return // react NotFound
-    curriculumData = await _addCourseRounds(curriculums, programmeCode, term, studyYear, lang)
-  }
+  } else return
 
   applicationStore.setCurriculums(curriculumData)
   const curriculumInfos = curriculumData
     .map(curriculum => {
       if (tillfalleUid)
-        return curriculumInfoFromLadok({ programmeTermYear: { programStartTerm: term, studyYear }, curriculum })
-      else return curriculumInfo({ programmeTermYear: { programStartTerm: term, studyYear }, curriculum })
+        return curriculumInfoFromStructure({ programmeTermYear: { programStartTerm: term, studyYear }, curriculum })
     })
     .filter(ci => ci.hasInfo)
   curriculumInfos.sort(_compareCurriculum)
@@ -148,10 +151,10 @@ async function getIndex(req, res, next) {
 
     log.info(`Starting to fill in application store ${storeId} on server side `, { programmeCode })
 
-    const { programmeName, tillfalleUid } = await fetchAndFillProgrammeDetails(options, storeId)
+    const { programmeName } = await fetchAndFillProgrammeDetails(options, storeId)
 
     fillStoreWithQueryParams(options)
-    await _fetchAndFillCurriculumByStudyYear(options, storeId, tillfalleUid)
+    await _fetchAndFillCurriculumByStudyYear(options, storeId)
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
     log.info(`${storeId} store was filled in and compressed`, { programmeCode })
