@@ -28,6 +28,7 @@ const server = require('@kth/server')
 require('./api')
 const AppRouter = require('kth-node-express-routing').PageRouter
 const { getPaths } = require('kth-node-express-routing')
+const { cortinaMiddleware } = require('@kth/cortina-block')
 
 const { proxyPrefixPath, redirectProxyPath } = config
 const _addDepartmentProxy = (uri = '') => `${proxyPrefixPath.department}${uri}`
@@ -197,15 +198,11 @@ server.use('/', systemRoute.getRouter())
  */
 server.use(
   '/', //  customized to kopps-public
-  require('@kth/kth-node-web-common/lib/web/cortina')({
-    blockUrl: config.blockApi.blockUrl,
-    proxyPrefixPath: proxyPrefixPath.uri,
-    hostUrl: config.hostUrl,
+  cortinaMiddleware({
+    blockApiUrl: config.blockApi.blockUrl,
     redisConfig: config.cache.cortinaBlock.redis,
-    globalLink: config.blockApi.globalLink,
-    addBlocks: config.blockApi.addBlocks,
+    blocksConfig: config.blockApi.addBlocks,
     redisKey: config.cache.cortinaBlock.redisKey,
-    useStyle10: true,
   })
 )
 
