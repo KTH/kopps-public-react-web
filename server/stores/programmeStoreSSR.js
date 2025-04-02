@@ -49,7 +49,7 @@ async function fetchAndFillProgrammeDetails({ applicationStore, term, lang, prog
 
   let programDetails
 
-  const convertedTerm = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
+  const convertedTerm = term ? `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}` : undefined
 
   try {
     const { programInstans, statusCode } = await getProgramVersion(programmeCode, convertedTerm, lang)
@@ -62,6 +62,7 @@ async function fetchAndFillProgrammeDetails({ applicationStore, term, lang, prog
       credits: programInstans?.omfattning?.number,
       titleOtherLanguage: programInstans?.benamningOther,
       educationalLevel: programInstans?.tilltradesniva.name,
+      approvedStudyProgrammeTerms: programInstans.approvedStudyProgrammeTerms,
     }
     applicationStore.setStatusCode(statusCode)
   } catch (error) {

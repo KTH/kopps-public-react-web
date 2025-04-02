@@ -27,14 +27,16 @@ function _metaTitleAndDescription(lang, programmeCode, programmeName) {
  * @returns {object}
  */
 async function _fetchSortAndFillProgrammeTerms({ applicationStore, lang, programmeCode }) {
-  const { approvedStudyProgrammeTerms, firstAdmissionTerm, lastAdmissionTerm, programmeName } =
-    await fetchAndFillProgrammeDetails({ applicationStore, lang, programmeCode })
+  const { programmeName, approvedStudyProgrammeTerms } = await fetchAndFillProgrammeDetails({
+    applicationStore,
+    lang,
+    programmeCode,
+  })
 
-  const programmeTerms = filterOutInvalidTerms({ approvedStudyProgrammeTerms, firstAdmissionTerm, lastAdmissionTerm })
-  programmeTerms.sort().reverse()
+  // TODO: For now we dont need firstAdmissionTerm and lastAdmissionTerm, in future first admission term equals to giltig.from and last admission term comes from syllabuses.
+  approvedStudyProgrammeTerms.sort().reverse()
 
-  applicationStore.setLastAdmissionTerm(lastAdmissionTerm)
-  applicationStore.setProgrammeTerms(programmeTerms)
+  applicationStore.setProgrammeTerms(approvedStudyProgrammeTerms)
   return { programmeName }
 }
 

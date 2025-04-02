@@ -18,6 +18,8 @@ function _filterOutInvalidTerms(programme) {
   return filteredTerms
 }
 
+// TODO: We might not need this file in future, but we might need to use it when we are listing program syllabuses
+
 module.exports = {
   filterOutInvalidTerms: _filterOutInvalidTerms,
 }
