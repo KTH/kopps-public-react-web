@@ -5,7 +5,7 @@ const { server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 
 const koppsApi = require('../kopps/koppsApi')
-const { curriculumInfo, curriculumInfoFromStructure, setFirstSpec } = require('../../domain/curriculum')
+const { curriculumInfoFromStructure, setFirstSpec } = require('../../domain/curriculum')
 const { calculateStartTerm } = require('../../domain/academicYear')
 
 const { createProgrammeBreadcrumbs } = require('../utils/breadcrumbUtil')
