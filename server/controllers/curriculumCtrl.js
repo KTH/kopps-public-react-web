@@ -12,7 +12,7 @@ const { createProgrammeBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { programmeFullName } = require('../utils/programmeFullName')
 
-const { getProgramStructure, getActiveProgramTillfalle } = require('../ladok/ladokApi')
+const { getProgramStructure, getActiveProgramInstance } = require('../ladok/ladokApi')
 
 const {
   fillStoreWithQueryParams,
@@ -92,16 +92,21 @@ async function _fetchAndFillCurriculumByStudyYear(options, storeId) {
   let curriculumData
   let tillfalleUid
 
-  const convertedTerm = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
+  const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
 
   try {
-    const programTillfalle = await getActiveProgramTillfalle(programmeCode, convertedTerm, lang)
-    const { uid } = programTillfalle
+    const programInstance = await getActiveProgramInstance(programmeCode, convertedSemester, lang)
+    const { uid } = programInstance
     tillfalleUid = uid
   } catch (error) {}
 
   if (tillfalleUid) {
-    curriculumData = await getProgramStructure(tillfalleUid, lang)
+    try {
+      curriculumData = await getProgramStructure(tillfalleUid, lang)
+    } catch (error) {
+      applicationStore.setStatusCode(503)
+      return
+    }
   } else return
 
   applicationStore.setCurriculums(curriculumData)

@@ -2,8 +2,7 @@ const log = require('@kth/log')
 
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const koppsApi = require('../kopps/koppsApi')
-const { programmeLink } = require('../../domain/links')
-const { getProgramStructure, getProgramVersion, getActiveProgramTillfalle } = require('../ladok/ladokApi')
+const { getProgramStructure, getProgramVersion, getActiveProgramInstance } = require('../ladok/ladokApi')
 
 /**
  * add props to a MobX-stores on server side
@@ -248,11 +247,11 @@ async function fetchAndFillCurriculumList(options) {
   let curriculumData
   let tillfalleUid
 
-  const convertedTerm = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
+  const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
 
   try {
-    const programTillfalle = await getActiveProgramTillfalle(programmeCode, convertedTerm, lang)
-    const { uid } = programTillfalle
+    const programInstance = await getActiveProgramInstance(programmeCode, convertedSemester, lang)
+    const { uid } = programInstance
     tillfalleUid = uid
   } catch (error) {
     console.log(error)
@@ -284,11 +283,11 @@ async function fetchAndFillSpecializations(options) {
   let curriculumData
   let tillfalleUid
 
-  const convertedTerm = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
+  const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
 
   try {
-    const programTillfalle = await getActiveProgramTillfalle(programmeCode, convertedTerm, lang)
-    const { uid } = programTillfalle
+    const programInstance = await getActiveProgramInstance(programmeCode, convertedSemester, lang)
+    const { uid } = programInstance
     tillfalleUid = uid
   } catch (error) {}
 

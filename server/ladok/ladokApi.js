@@ -9,15 +9,15 @@ async function searchCourses(pattern, lang) {
   return courses
 }
 
-async function getActiveProgramTillfalle(programCode, startPeriod, lang) {
+async function getActiveProgramInstance(programCode, semester, lang) {
   const client = createApiClient(serverConfig.ladokMellanlagerApi)
-  const program = await client.getActiveProgramTillfalle(programCode, startPeriod, lang)
+  const program = await client.getActiveProgramInstance(programCode, semester, lang)
   return program
 }
 
-async function getProgramVersion(programCode, startPeriod, lang) {
+async function getProgramVersion(programCode, semester, lang) {
   const client = createApiClient(serverConfig.ladokMellanlagerApi)
-  const programVersion = await client.getProgramVersion(programCode, startPeriod, lang)
+  const programVersion = await client.getProgramVersion(programCode, semester, lang)
   return programVersion
 }
 
@@ -30,6 +30,6 @@ async function getProgramStructure(programCode, lang) {
 module.exports = {
   searchCourses,
   getProgramStructure,
-  getActiveProgramTillfalle,
+  getActiveProgramInstance,
   getProgramVersion,
 }
