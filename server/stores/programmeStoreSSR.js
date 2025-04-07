@@ -48,10 +48,10 @@ async function fetchAndFillProgrammeDetails({ applicationStore, term, lang, prog
 
   let programDetails
 
-  const convertedTerm = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
+  const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
 
   try {
-    const { programInstans, statusCode } = await getProgramVersion(programmeCode, convertedTerm, lang)
+    const { programInstans, statusCode } = await getProgramVersion(programmeCode, convertedSemester, lang)
 
     programDetails = {
       title: programInstans?.benamning,
