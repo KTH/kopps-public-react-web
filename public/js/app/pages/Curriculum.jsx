@@ -19,7 +19,6 @@ import { formatAcademicYear, calculateStartTerm } from '../../../../domain/acade
 import { ELECTIVE_CONDITIONS } from '../../../../domain/curriculum'
 import { ORDINARY_PERIODS } from '../../../../domain/periods'
 import { courseLink, programSyllabusLink, programmeWebLink } from '../util/links'
-import { translateCreditUnitAbbr } from '../util/translateCreditUnitAbbr'
 
 function CourseTablePeriodCols({ language, creditsPerPeriod, courseCode }) {
   return ORDINARY_PERIODS.map(period => {
@@ -34,23 +33,14 @@ function CourseTablePeriodCols({ language, creditsPerPeriod, courseCode }) {
   })
 }
 
-function CourseTableRow({
-  courseCode,
-  courseNameCellData,
-  applicationCodeCellData,
-  credits,
-  creditUnitAbbr,
-  creditsPerPeriod,
-}) {
+function CourseTableRow({ courseCode, courseNameCellData, applicationCodeCellData, credits, creditsPerPeriod }) {
   const { language } = useStore()
   console.log('here', credits)
   return (
     <tr>
       <td>{courseNameCellData}</td>
       <td className="text-center">{applicationCodeCellData}</td>
-      <td className="text-right credits">
-        {creditUnitAbbr ? `${formatCredits(language, credits)} ${creditUnitAbbr}` : credits}
-      </td>
+      <td className="text-right credits">{credits}</td>
       <CourseTablePeriodCols language={language} creditsPerPeriod={creditsPerPeriod} courseCode={courseCode} />
     </tr>
   )
@@ -64,9 +54,7 @@ function CourseTableRows({ participations }) {
 
     console.log(course)
 
-    const { courseCode, title, credits, formattedCredits, creditUnitAbbr, comment, status } = course
-    let translatedCreditUnitAbbr
-    if (!formattedCredits) translatedCreditUnitAbbr = translateCreditUnitAbbr(language, creditUnitAbbr)
+    const { courseCode, title, formattedCredits, comment, status } = course
     const currentTerm = getCurrentTerm()
     const courseNameCellData = (
       <>
@@ -84,8 +72,7 @@ function CourseTableRows({ participations }) {
         courseCode={courseCode}
         courseNameCellData={courseNameCellData}
         applicationCodeCellData={applicationCodeCellData}
-        credits={formattedCredits ? formattedCredits : credits}
-        creditUnitAbbr={translatedCreditUnitAbbr}
+        credits={formattedCredits}
         creditsPerPeriod={creditsPerPeriod}
       />
     )
@@ -313,7 +300,6 @@ CourseTableRow.propTypes = {
   courseNameCellData: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   applicationCodeCellData: PropTypes.string.isRequired,
   credits: PropTypes.number.isRequired,
-  creditUnitAbbr: PropTypes.string.isRequired,
   creditsPerPeriod: PropTypes.arrayOf(PropTypes.number).isRequired,
 }
 
