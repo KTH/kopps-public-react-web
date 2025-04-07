@@ -264,10 +264,8 @@ async function fetchAndFillCurriculumList(options) {
       applicationStore.setStatusCode(503)
       return
     }
+    _parseCurriculumsAndFillStoreFromStructure(applicationStore, curriculumData)
   } else return
-
-  if (tillfalleUid) _parseCurriculumsAndFillStoreFromStructure(applicationStore, curriculumData)
-  else return
 }
 
 /**

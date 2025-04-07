@@ -112,8 +112,7 @@ async function _fetchAndFillCurriculumByStudyYear(options, storeId) {
   applicationStore.setCurriculums(curriculumData)
   const curriculumInfos = curriculumData
     .map(curriculum => {
-      if (tillfalleUid)
-        return curriculumInfoFromStructure({ programmeTermYear: { programStartTerm: term, studyYear }, curriculum })
+      return curriculumInfoFromStructure({ programmeTermYear: { programStartTerm: term, studyYear }, curriculum })
     })
     .filter(ci => ci.hasInfo)
   curriculumInfos.sort(_compareCurriculum)
