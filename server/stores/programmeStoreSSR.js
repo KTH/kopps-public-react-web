@@ -254,7 +254,7 @@ async function fetchAndFillCurriculumList(options) {
     const { uid } = programInstance
     tillfalleUid = uid
   } catch (error) {
-    console.log(error)
+    log.error('Error in fetching getActiveProgramInstance!')
   }
 
   if (tillfalleUid) {

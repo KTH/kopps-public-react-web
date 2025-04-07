@@ -35,7 +35,6 @@ function CourseTablePeriodCols({ language, creditsPerPeriod, courseCode }) {
 
 function CourseTableRow({ courseCode, courseNameCellData, applicationCodeCellData, credits, creditsPerPeriod }) {
   const { language } = useStore()
-  console.log('here', credits)
   return (
     <tr>
       <td>{courseNameCellData}</td>
@@ -51,8 +50,6 @@ function CourseTableRows({ participations }) {
 
   return participations.map(participation => {
     const { course, applicationCodes, term, creditsPerPeriod } = participation
-
-    console.log(course)
 
     const { courseCode, title, formattedCredits, comment, status } = course
     const currentTerm = getCurrentTerm()
