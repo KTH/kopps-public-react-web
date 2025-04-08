@@ -5,12 +5,14 @@ const { server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 
 const koppsApi = require('../kopps/koppsApi')
-const { curriculumInfo, setFirstSpec } = require('../../domain/curriculum')
+const { curriculumInfoFromStructure, setFirstSpec } = require('../../domain/curriculum')
 const { calculateStartTerm } = require('../../domain/academicYear')
 
 const { createProgrammeBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { programmeFullName } = require('../utils/programmeFullName')
+
+const { getProgramStructure, getActiveProgramInstance } = require('../ladok/ladokApi')
 
 const {
   fillStoreWithQueryParams,
@@ -86,14 +88,32 @@ async function _fetchAndFillCurriculumByStudyYear(options, storeId) {
     _setErrorMissingAdmission(applicationStore, statusCode)
     return
   } // react NotFound
-  const { curriculums, statusCode: secondStatusCode } = await koppsApi.listCurriculums(studyProgrammeId, lang)
-  applicationStore.setStatusCode(secondStatusCode)
-  if (secondStatusCode !== 200) return // react NotFound
 
-  const curriculumsWithCourseRounds = await _addCourseRounds(curriculums, programmeCode, term, studyYear, lang)
-  applicationStore.setCurriculums(curriculumsWithCourseRounds)
-  const curriculumInfos = curriculumsWithCourseRounds
-    .map(curriculum => curriculumInfo({ programmeTermYear: { programStartTerm: term, studyYear }, curriculum }))
+  let curriculumData
+  let tillfalleUid
+
+  const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
+
+  try {
+    const programInstance = await getActiveProgramInstance(programmeCode, convertedSemester, lang)
+    const { uid } = programInstance
+    tillfalleUid = uid
+  } catch (error) {}
+
+  if (tillfalleUid) {
+    try {
+      curriculumData = await getProgramStructure(tillfalleUid, lang)
+    } catch (error) {
+      applicationStore.setStatusCode(503)
+      return
+    }
+  } else return
+
+  applicationStore.setCurriculums(curriculumData)
+  const curriculumInfos = curriculumData
+    .map(curriculum => {
+      return curriculumInfoFromStructure({ programmeTermYear: { programStartTerm: term, studyYear }, curriculum })
+    })
     .filter(ci => ci.hasInfo)
   curriculumInfos.sort(_compareCurriculum)
   setFirstSpec(curriculumInfos)
@@ -134,6 +154,7 @@ async function getIndex(req, res, next) {
     const options = { applicationStore, lang, programmeCode, term, studyYear }
 
     log.info(`Starting to fill in application store ${storeId} on server side `, { programmeCode })
+
     const { programmeName } = await fetchAndFillProgrammeDetails(options, storeId)
 
     fillStoreWithQueryParams(options)

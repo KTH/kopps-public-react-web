@@ -21,7 +21,7 @@ import { courseLink } from '../util/links'
 function CourseListTableRow({ course }) {
   const { language } = useStore()
   const t = translate(language)
-  const { code, name, comment, credits, creditAbbr, level } = course
+  const { code, name, comment, formattedCredits, formattedLevel, level } = course
 
   const courselink = courseLink(code, language)
   return (
@@ -33,8 +33,8 @@ function CourseListTableRow({ course }) {
         <a href={courselink}>{name}</a>
         {comment && <b className="course-comment">{comment}</b>}
       </td>
-      <td className="credits">{`${formatCredits(language, credits)} ${creditAbbr}`}</td>
-      <td className="level">{`${t('programme_edulevel')[level]}`}</td>
+      <td className="credits">{formattedCredits}</td>
+      <td className="level">{formattedLevel ? formattedLevel : `${t('programme_edulevel')[level]}`}</td>
     </tr>
   )
 }
@@ -43,9 +43,9 @@ const courseType = PropTypes.shape({
   code: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   comment: PropTypes.oneOfType([PropTypes.string, undefined]).isRequired,
-  credits: PropTypes.number.isRequired,
-  creditAbbr: PropTypes.string.isRequired,
-  level: PropTypes.string.isRequired,
+  formattedCredits: PropTypes.string,
+  level: PropTypes.string,
+  formattedLevel: PropTypes.string,
 })
 
 CourseListTableRow.propTypes = {

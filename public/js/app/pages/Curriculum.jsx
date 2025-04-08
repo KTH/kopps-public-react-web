@@ -19,7 +19,6 @@ import { formatAcademicYear, calculateStartTerm } from '../../../../domain/acade
 import { ELECTIVE_CONDITIONS } from '../../../../domain/curriculum'
 import { ORDINARY_PERIODS } from '../../../../domain/periods'
 import { courseLink, programSyllabusLink, programmeWebLink } from '../util/links'
-import { translateCreditUnitAbbr } from '../util/translateCreditUnitAbbr'
 
 function CourseTablePeriodCols({ language, creditsPerPeriod, courseCode }) {
   return ORDINARY_PERIODS.map(period => {
@@ -34,20 +33,13 @@ function CourseTablePeriodCols({ language, creditsPerPeriod, courseCode }) {
   })
 }
 
-function CourseTableRow({
-  courseCode,
-  courseNameCellData,
-  applicationCodeCellData,
-  credits,
-  creditUnitAbbr,
-  creditsPerPeriod,
-}) {
+function CourseTableRow({ courseCode, courseNameCellData, applicationCodeCellData, credits, creditsPerPeriod }) {
   const { language } = useStore()
   return (
     <tr>
       <td>{courseNameCellData}</td>
       <td className="text-center">{applicationCodeCellData}</td>
-      <td className="text-right credits">{`${formatCredits(language, credits)} ${creditUnitAbbr}`}</td>
+      <td className="text-right credits">{credits}</td>
       <CourseTablePeriodCols language={language} creditsPerPeriod={creditsPerPeriod} courseCode={courseCode} />
     </tr>
   )
@@ -59,8 +51,7 @@ function CourseTableRows({ participations }) {
   return participations.map(participation => {
     const { course, applicationCodes, term, creditsPerPeriod } = participation
 
-    const { courseCode, title, credits, creditUnitAbbr, comment } = course
-    const translatedCreditUnitAbbr = translateCreditUnitAbbr(language, creditUnitAbbr)
+    const { courseCode, title, formattedCredits, comment, status } = course
     const currentTerm = getCurrentTerm()
     const courseNameCellData = (
       <>
@@ -68,15 +59,17 @@ function CourseTableRows({ participations }) {
         {comment && <b className="course-comment">{comment}</b>}
       </>
     )
-    const applicationCodeCellData = currentTerm <= term ? applicationCodes.join(', ') : ''
+    const applicationCodeCellData =
+      applicationCodes.length && currentTerm <= term && (status?.nameEn === 'Started' || status?.nameEn === 'Completed')
+        ? applicationCodes.join(', ')
+        : ''
     return (
       <CourseTableRow
         key={courseCode}
         courseCode={courseCode}
         courseNameCellData={courseNameCellData}
         applicationCodeCellData={applicationCodeCellData}
-        credits={credits}
-        creditUnitAbbr={translatedCreditUnitAbbr}
+        credits={formattedCredits}
         creditsPerPeriod={creditsPerPeriod}
       />
     )
@@ -304,7 +297,6 @@ CourseTableRow.propTypes = {
   courseNameCellData: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   applicationCodeCellData: PropTypes.string.isRequired,
   credits: PropTypes.number.isRequired,
-  creditUnitAbbr: PropTypes.string.isRequired,
   creditsPerPeriod: PropTypes.arrayOf(PropTypes.number).isRequired,
 }
 
