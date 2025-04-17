@@ -68,7 +68,7 @@ describe('<SearchPage />', () => {
     mockSearchParams.append('pattern', 'Math')
     mockSearchParams.append('semesters', 'HT2024')
     mockSearchParams.append('semesters', 'VT2024')
-    mockSearchParams.append('eduLevel', '1')
+    mockSearchParams.append('eduLevel', '2007GKURS')
     mockSearchParams.append('showOptions', 'onlyEnglish')
     ;(courseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED))
 
@@ -77,7 +77,7 @@ describe('<SearchPage />', () => {
     expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
       pattern: 'Math',
       semesters: ['HT2024', 'VT2024'],
-      eduLevel: ['1'],
+      eduLevel: ['2007GKURS'],
       showOptions: ['onlyEnglish'],
       department: '',
     })
@@ -207,7 +207,7 @@ describe('<SearchPage />', () => {
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['0'],
+        eduLevel: ['FUPKURS'],
         semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
@@ -221,7 +221,7 @@ describe('<SearchPage />', () => {
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['0', '1'],
+        eduLevel: ['FUPKURS', '2007GKURS'],
         semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
@@ -235,7 +235,7 @@ describe('<SearchPage />', () => {
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['0', '1', '2'],
+        eduLevel: ['FUPKURS', '2007GKURS', '2007AKURS'],
         semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
@@ -249,7 +249,7 @@ describe('<SearchPage />', () => {
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['0', '1', '2', '3'],
+        eduLevel: ['FUPKURS', '2007GKURS', '2007AKURS', '2007FKURS'],
         semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
@@ -263,7 +263,7 @@ describe('<SearchPage />', () => {
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['0', '1', '2', '3'],
+        eduLevel: ['FUPKURS', '2007GKURS', '2007AKURS', '2007FKURS'],
         semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: ['onlyEnglish'],
       })
@@ -277,7 +277,7 @@ describe('<SearchPage />', () => {
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['0', '1', '2', '3'],
+        eduLevel: ['FUPKURS', '2007GKURS', '2007AKURS', '2007FKURS'],
         semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: ['onlyEnglish', 'onlyMHU'],
       })
@@ -291,7 +291,7 @@ describe('<SearchPage />', () => {
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['0', '1', '2', '3'],
+        eduLevel: ['FUPKURS', '2007GKURS', '2007AKURS', '2007FKURS'],
         semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: ['onlyEnglish', 'onlyMHU', 'showCancelled'],
       })

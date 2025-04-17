@@ -40,7 +40,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
   function handleClearFilters() {
     setCourseSearchParams({
       semesters: [],
-      eduLevel: searchMode === SEARCH_MODES.thirdCycleCourses ? ['3'] : [],
+      eduLevel: searchMode === SEARCH_MODES.thirdCycleCourses ? ['2007FKURS'] : [],
       showOptions: [],
       department: '',
     })

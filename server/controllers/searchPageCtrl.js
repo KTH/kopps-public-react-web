@@ -118,7 +118,7 @@ async function performCourseSearch(req, res, next) {
   // }, []) // todo - we can use it again when we had the data for periods from ladok
 
   const convertedEduLevels = query.eduLevel?.map(level => {
-    if (level === '0') return 'FUPKURS'
+    if (level === '99') return 'FUPKURS'
     if (level === '1') return '2007GKURS'
     if (level === '2') return '2007AKURS'
     if (level === '3') return '2007FKURS'
@@ -130,7 +130,7 @@ async function performCourseSearch(req, res, next) {
     sprak: query.showOptions?.includes('onlyEnglish') ? 'ENG' : undefined,
     avvecklad: query.showOptions?.includes('showCancelled') ? 'true' : undefined,
     startPeriod: query.semesters ?? undefined,
-    utbildningsniva: convertedEduLevels ?? undefined,
+    utbildningsniva: query.eduLevel ?? undefined,
   }
 
   try {

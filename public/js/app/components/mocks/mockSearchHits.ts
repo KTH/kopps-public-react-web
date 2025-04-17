@@ -343,7 +343,7 @@ const TEST_SEARCH_HITS_MIXED_EN = {
             en: 'Credits',
           },
           level: {
-            code: '0',
+            code: '99',
             name: 'PREPARATORY',
           },
         },
@@ -732,7 +732,7 @@ const TEST_SEARCH_HITS_MIXED_SV = {
             en: 'Credits',
           },
           level: {
-            code: '0',
+            code: '99',
             name: 'PREPARATORY',
           },
         },
@@ -1137,7 +1137,7 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_EN = {
             en: 'Credits',
           },
           level: {
-            code: '0',
+            code: '99',
             name: 'PREPARATORY',
           },
         },
@@ -1525,7 +1525,7 @@ const EXPECTED_TEST_SEARCH_HITS_MIXED_SV = {
             en: 'Credits',
           },
           level: {
-            code: '0',
+            code: '99',
             name: 'PREPARATORY',
           },
         },

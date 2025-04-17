@@ -13,7 +13,7 @@ export type SchoolsWithDepartments = {
 
 export type SetSchoolsWithDepartments = (schoolsWithDepartments: SchoolsWithDepartments[]) => void
 
-export type EduLevel = '0' | '1' | '2' | '3'
+export type EduLevel = 'FUPKURS' | '2007GKURS' | '2007AKURS' | '2007FKURS'
 
 export type SetEduLevels = (eduLevels: EduLevel[]) => void
 

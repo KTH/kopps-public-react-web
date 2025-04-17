@@ -71,7 +71,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
 
   test('search by one educational level param in english', async () => {
     searchCourses.mockReturnValue(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
-    await performCourseSearch(mReq({ eduLevel: ['0'] }, langEn), mRes, mockNext())
+    await performCourseSearch(mReq({ eduLevel: ['FUPKURS'] }, langEn), mRes, mockNext())
 
     expect(ladokApi.searchCourses).toHaveBeenCalledWith(
       {
@@ -88,7 +88,11 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
   })
   test('search by all educational level param in english', async () => {
     searchCourses.mockReturnValue(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
-    await performCourseSearch(mReq({ eduLevel: ['0', '1', '2', '3'] }, langEn), mRes, mockNext())
+    await performCourseSearch(
+      mReq({ eduLevel: ['FUPKURS', '2007GKURS', '2007AKURS', '2007FKURS'] }, langEn),
+      mRes,
+      mockNext()
+    )
 
     expect(ladokApi.searchCourses).toHaveBeenCalledWith(
       {
@@ -164,7 +168,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
     await performCourseSearch(
       mReq(
         {
-          eduLevel: ['0', '1', '2', '3'],
+          eduLevel: ['FUPKURS', '2007GKURS', '2007AKURS', '2007FKURS'],
           department: 'ADB',
           semesters: ['HT2021', 'VT2021'],
           pattern: 'Algebra',
