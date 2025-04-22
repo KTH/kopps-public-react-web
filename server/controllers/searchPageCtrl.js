@@ -117,13 +117,6 @@ async function performCourseSearch(req, res, next) {
   //   return acc
   // }, []) // todo - we can use it again when we had the data for periods from ladok
 
-  const convertedEduLevels = query.eduLevel?.map(level => {
-    if (level === '99') return 'FUPKURS'
-    if (level === '1') return '2007GKURS'
-    if (level === '2') return '2007AKURS'
-    if (level === '3') return '2007FKURS'
-  }) // todo - this can be moved to search params after we are done with ladokAPI and we are sure about the values
-
   const searchParams = {
     kodEllerBenamning: query.pattern ? query.pattern : undefined,
     organisation: query.department ? query.department : undefined,
