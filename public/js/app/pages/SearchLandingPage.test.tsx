@@ -5,7 +5,6 @@ import SearchLandingPage from './SearchLandingPage'
 import { useStore } from '../mobx'
 import { useNavigate } from 'react-router-dom'
 import { stringifyUrlParams } from '../../../../domain/searchParams'
-import { EducationalLevelCode } from '@kth/om-kursen-ladok-client'
 
 const mockDate = new Date('2024-08-19 16:00')
 
@@ -82,12 +81,7 @@ describe('<searchLandingPage />', () => {
 
     const searchParams = stringifyUrlParams({
       semesters: ['HT2024', 'VT2025', 'HT2025'],
-      eduLevel: [
-        EducationalLevelCode.Preparatory,
-        EducationalLevelCode.Basic,
-        EducationalLevelCode.Advanced,
-        EducationalLevelCode.Research,
-      ],
+      eduLevel: ['99', '1', '2', '3'],
       showOptions: ['onlyEnglish', 'onlyMHU', 'showCancelled'],
     })
 
