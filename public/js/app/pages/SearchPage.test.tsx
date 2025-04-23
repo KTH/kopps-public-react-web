@@ -5,6 +5,7 @@ import SearchPage from './SearchPage'
 import { useStore } from '../mobx'
 import { courseSearch } from '../util/searchApi'
 import { TEST_API_ANSWER_RESOLVED } from '../components/mocks/mockKoppsCourseSearch'
+import { EducationalLevelCode } from '@kth/om-kursen-ladok-client'
 
 const periods = ['Autumn 2024', 'Spring 2025', 'Autumn 2025']
 const eduLevels = ['Pre-university level', 'First cycle', 'Second cycle', 'Third cycle']
@@ -68,7 +69,7 @@ describe('<SearchPage />', () => {
     mockSearchParams.append('pattern', 'Math')
     mockSearchParams.append('semesters', 'HT2024')
     mockSearchParams.append('semesters', 'VT2024')
-    mockSearchParams.append('eduLevel', '2007GKURS')
+    mockSearchParams.append('eduLevel', EducationalLevelCode.Basic)
     mockSearchParams.append('showOptions', 'onlyEnglish')
     ;(courseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED))
 
@@ -77,7 +78,7 @@ describe('<SearchPage />', () => {
     expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
       pattern: 'Math',
       semesters: ['HT2024', 'VT2024'],
-      eduLevel: ['2007GKURS'],
+      eduLevel: [EducationalLevelCode.Basic],
       showOptions: ['onlyEnglish'],
       department: '',
     })
@@ -207,7 +208,7 @@ describe('<SearchPage />', () => {
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['FUPKURS'],
+        eduLevel: [EducationalLevelCode.Preparatory],
         semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
@@ -221,7 +222,7 @@ describe('<SearchPage />', () => {
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['FUPKURS', '2007GKURS'],
+        eduLevel: [EducationalLevelCode.Preparatory, EducationalLevelCode.Basic],
         semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
@@ -235,7 +236,7 @@ describe('<SearchPage />', () => {
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['FUPKURS', '2007GKURS', '2007AKURS'],
+        eduLevel: [EducationalLevelCode.Preparatory, EducationalLevelCode.Basic, EducationalLevelCode.Advanced],
         semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
@@ -249,7 +250,12 @@ describe('<SearchPage />', () => {
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['FUPKURS', '2007GKURS', '2007AKURS', '2007FKURS'],
+        eduLevel: [
+          EducationalLevelCode.Preparatory,
+          EducationalLevelCode.Basic,
+          EducationalLevelCode.Advanced,
+          EducationalLevelCode.Research,
+        ],
         semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
@@ -263,7 +269,12 @@ describe('<SearchPage />', () => {
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['FUPKURS', '2007GKURS', '2007AKURS', '2007FKURS'],
+        eduLevel: [
+          EducationalLevelCode.Preparatory,
+          EducationalLevelCode.Basic,
+          EducationalLevelCode.Advanced,
+          EducationalLevelCode.Research,
+        ],
         semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: ['onlyEnglish'],
       })
@@ -277,7 +288,12 @@ describe('<SearchPage />', () => {
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['FUPKURS', '2007GKURS', '2007AKURS', '2007FKURS'],
+        eduLevel: [
+          EducationalLevelCode.Preparatory,
+          EducationalLevelCode.Basic,
+          EducationalLevelCode.Advanced,
+          EducationalLevelCode.Research,
+        ],
         semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: ['onlyEnglish', 'onlyMHU'],
       })
@@ -291,7 +307,12 @@ describe('<SearchPage />', () => {
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['FUPKURS', '2007GKURS', '2007AKURS', '2007FKURS'],
+        eduLevel: [
+          EducationalLevelCode.Preparatory,
+          EducationalLevelCode.Basic,
+          EducationalLevelCode.Advanced,
+          EducationalLevelCode.Research,
+        ],
         semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: ['onlyEnglish', 'onlyMHU', 'showCancelled'],
       })

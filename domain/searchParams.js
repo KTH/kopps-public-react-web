@@ -21,24 +21,24 @@ function _transformIfSummerOrEmptyPeriods(initialPeriods) {
 
 function _transformSearchParams(params) {
   const { eduLevel = [], pattern = '', showOptions = [], period = [], department = '' } = params
-  const koppsFormatParams = {
+  const formatParams = {
     educational_level: eduLevel.map(level => educationalLevel(level)), // ['RESEARCH', 'ADVANCED'],
     flag: showOptions.map(opt => getShowOptions(opt)), // Example: flag: [only_mhu, in_english_only, include_non_active]
     term_period: _transformIfSummerOrEmptyPeriods(period), // ['2018:2']
   }
-  if (pattern) koppsFormatParams.text_pattern = pattern
-  if (department) koppsFormatParams.department_prefix = department
+  if (pattern) formatParams.text_pattern = pattern
+  if (department) formatParams.department_prefix = department
 
-  return koppsFormatParams
+  return formatParams
 }
 
 function stringifyUrlParams(params) {
   return querystring.stringify(params)
 }
 
-function stringifyKoppsSearchParams(params) {
-  const koppsFormatParams = _transformSearchParams(params)
-  const paramsStr = stringifyUrlParams(koppsFormatParams)
+function stringifySearchParams(params) {
+  const formatParams = _transformSearchParams(params)
+  const paramsStr = stringifyUrlParams(formatParams)
   return paramsStr
 }
 
@@ -197,6 +197,6 @@ function getParamConfig(paramName, langIndex) {
 
 module.exports = {
   getParamConfig,
-  stringifyKoppsSearchParams,
+  stringifyKoppsSearchParams: stringifySearchParams,
   stringifyUrlParams,
 }
