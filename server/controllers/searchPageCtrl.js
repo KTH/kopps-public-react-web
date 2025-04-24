@@ -13,7 +13,6 @@ const { browser: browserConfig, server: serverConfig } = require('../configurati
 const { createBreadcrumbs, createThirdCycleBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { compareSchools, filterOutDeprecatedSchools } = require('../../domain/schools')
-const { stringifyKoppsSearchParams } = require('../../domain/searchParams')
 const term = require('../../domain/term')
 
 async function renderSearchPage(

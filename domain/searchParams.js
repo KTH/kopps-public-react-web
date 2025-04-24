@@ -197,6 +197,6 @@ function getParamConfig(paramName, langIndex) {
 
 module.exports = {
   getParamConfig,
-  stringifyKoppsSearchParams: stringifySearchParams,
+  stringifySearchParams,
   stringifyUrlParams,
 }
