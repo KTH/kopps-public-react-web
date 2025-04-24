@@ -71,7 +71,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
 
   test('search by one educational level param in english', async () => {
     searchCourses.mockReturnValue(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
-    await performCourseSearch(mReq({ eduLevel: ['FUPKURS'] }, langEn), mRes, mockNext())
+    await performCourseSearch(mReq({ eduLevel: ['99'] }, langEn), mRes, mockNext())
 
     expect(ladokApi.searchCourses).toHaveBeenCalledWith(
       {
@@ -80,7 +80,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
         organisation: undefined,
         sprak: undefined,
         startPeriod: undefined,
-        utbildningsniva: ['FUPKURS'],
+        utbildningsniva: ['99'],
       },
       'en'
     )
