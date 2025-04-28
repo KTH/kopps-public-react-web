@@ -13,7 +13,6 @@ const { browser: browserConfig, server: serverConfig } = require('../configurati
 const { createBreadcrumbs, createThirdCycleBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { compareSchools, filterOutDeprecatedSchools } = require('../../domain/schools')
-const { stringifyKoppsSearchParams } = require('../../domain/searchParams')
 const term = require('../../domain/term')
 
 async function renderSearchPage(
@@ -117,20 +116,13 @@ async function performCourseSearch(req, res, next) {
   //   return acc
   // }, []) // todo - we can use it again when we had the data for periods from ladok
 
-  const convertedEduLevels = query.eduLevel?.map(level => {
-    if (level === '0') return 'FUPKURS'
-    if (level === '1') return '2007GKURS'
-    if (level === '2') return '2007AKURS'
-    if (level === '3') return '2007FKURS'
-  }) // todo - this can be moved to search params after we are done with ladokAPI and we are sure about the values
-
   const searchParams = {
     kodEllerBenamning: query.pattern ? query.pattern : undefined,
     organisation: query.department ? query.department : undefined,
     sprak: query.showOptions?.includes('onlyEnglish') ? 'ENG' : undefined,
     avvecklad: query.showOptions?.includes('showCancelled') ? 'true' : undefined,
     startPeriod: query.semesters ?? undefined,
-    utbildningsniva: convertedEduLevels ?? undefined,
+    utbildningsniva: query.eduLevel ?? undefined,
   }
 
   try {

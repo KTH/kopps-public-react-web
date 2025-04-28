@@ -207,7 +207,7 @@ describe('<SearchPage />', () => {
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['0'],
+        eduLevel: ['99'],
         semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
@@ -221,7 +221,7 @@ describe('<SearchPage />', () => {
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['0', '1'],
+        eduLevel: ['99', '1'],
         semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
@@ -235,7 +235,7 @@ describe('<SearchPage />', () => {
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['0', '1', '2'],
+        eduLevel: ['99', '1', '2'],
         semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
@@ -249,7 +249,7 @@ describe('<SearchPage />', () => {
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['0', '1', '2', '3'],
+        eduLevel: ['99', '1', '2', '3'],
         semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
@@ -263,7 +263,7 @@ describe('<SearchPage />', () => {
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['0', '1', '2', '3'],
+        eduLevel: ['99', '1', '2', '3'],
         semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: ['onlyEnglish'],
       })
@@ -277,7 +277,7 @@ describe('<SearchPage />', () => {
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['0', '1', '2', '3'],
+        eduLevel: ['99', '1', '2', '3'],
         semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: ['onlyEnglish', 'onlyMHU'],
       })
@@ -291,7 +291,7 @@ describe('<SearchPage />', () => {
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['0', '1', '2', '3'],
+        eduLevel: ['99', '1', '2', '3'],
         semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: ['onlyEnglish', 'onlyMHU', 'showCancelled'],
       })

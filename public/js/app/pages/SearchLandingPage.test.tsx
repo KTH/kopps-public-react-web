@@ -81,7 +81,7 @@ describe('<searchLandingPage />', () => {
 
     const searchParams = stringifyUrlParams({
       semesters: ['HT2024', 'VT2025', 'HT2025'],
-      eduLevel: ['0', '1', '2', '3'],
+      eduLevel: ['99', '1', '2', '3'],
       showOptions: ['onlyEnglish', 'onlyMHU', 'showCancelled'],
     })
 
@@ -154,7 +154,7 @@ describe('<searchLandingPage />', () => {
 
     const searchParams = stringifyUrlParams({
       semesters: ['HT2024'],
-      eduLevel: ['0'],
+      eduLevel: ['99'],
       showOptions: ['onlyEnglish'],
     })
 

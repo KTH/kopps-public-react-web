@@ -1,3 +1,5 @@
+import { EducationalLevelCode } from "@kth/om-kursen-ladok-client"
+
 export type Pattern = string
 
 export type SetPattern = (textPattern: Pattern) => void
@@ -13,7 +15,7 @@ export type SchoolsWithDepartments = {
 
 export type SetSchoolsWithDepartments = (schoolsWithDepartments: SchoolsWithDepartments[]) => void
 
-export type EduLevel = '0' | '1' | '2' | '3'
+export type EduLevel = `${EducationalLevelCode}`
 
 export type SetEduLevels = (eduLevels: EduLevel[]) => void
 

@@ -15,6 +15,7 @@ import {
   ShowOptions,
 } from '../../stores/types/searchPageStoreTypes'
 import { SEARCH_MODES } from '../../pages/types/searchPageTypes'
+import { EducationalLevelCode } from '@kth/om-kursen-ladok-client'
 const SearchFilters: React.FC<SearchFiltersProps> = ({
   disabled,
   courseSearchParams,
@@ -40,7 +41,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
   function handleClearFilters() {
     setCourseSearchParams({
       semesters: [],
-      eduLevel: searchMode === SEARCH_MODES.thirdCycleCourses ? ['3'] : [],
+      eduLevel: searchMode === SEARCH_MODES.thirdCycleCourses ? [EducationalLevelCode.Research] : [],
       showOptions: [],
       department: '',
     })

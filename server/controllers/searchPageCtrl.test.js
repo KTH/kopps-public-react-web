@@ -71,7 +71,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
 
   test('search by one educational level param in english', async () => {
     searchCourses.mockReturnValue(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
-    await performCourseSearch(mReq({ eduLevel: ['0'] }, langEn), mRes, mockNext())
+    await performCourseSearch(mReq({ eduLevel: ['99'] }, langEn), mRes, mockNext())
 
     expect(ladokApi.searchCourses).toHaveBeenCalledWith(
       {
@@ -80,7 +80,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
         organisation: undefined,
         sprak: undefined,
         startPeriod: undefined,
-        utbildningsniva: ['FUPKURS'],
+        utbildningsniva: ['99'],
       },
       'en'
     )
@@ -88,7 +88,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
   })
   test('search by all educational level param in english', async () => {
     searchCourses.mockReturnValue(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
-    await performCourseSearch(mReq({ eduLevel: ['0', '1', '2', '3'] }, langEn), mRes, mockNext())
+    await performCourseSearch(mReq({ eduLevel: ['99', '1', '2', '3'] }, langEn), mRes, mockNext())
 
     expect(ladokApi.searchCourses).toHaveBeenCalledWith(
       {
@@ -97,7 +97,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
         organisation: undefined,
         sprak: undefined,
         startPeriod: undefined,
-        utbildningsniva: ['FUPKURS', '2007GKURS', '2007AKURS', '2007FKURS'],
+        utbildningsniva: ['99', '1', '2', '3'],
       },
       'en'
     )
@@ -164,7 +164,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
     await performCourseSearch(
       mReq(
         {
-          eduLevel: ['0', '1', '2', '3'],
+          eduLevel: ['99', '1', '2', '3'],
           department: 'ADB',
           semesters: ['HT2021', 'VT2021'],
           pattern: 'Algebra',
@@ -183,7 +183,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
         organisation: 'ADB',
         sprak: 'ENG',
         startPeriod: ['HT2021', 'VT2021'],
-        utbildningsniva: ['FUPKURS', '2007GKURS', '2007AKURS', '2007FKURS'],
+        utbildningsniva: ['99', '1', '2', '3'],
       },
       'en'
     )
