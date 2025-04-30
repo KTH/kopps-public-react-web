@@ -6,7 +6,6 @@ const i18n = require('../../i18n')
 
 const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
-const { filterOutInvalidTerms } = require('../../domain/programmes')
 const { fillStoreWithQueryParams, fetchAndFillProgrammeDetails } = require('../stores/programmeStoreSSR')
 
 /**
@@ -27,15 +26,15 @@ function _metaTitleAndDescription(lang, programmeCode, programmeName) {
  * @returns {object}
  */
 async function _fetchSortAndFillProgrammeTerms({ applicationStore, lang, programmeCode }) {
-  const { programmeName, approvedStudyProgrammeTerms } = await fetchAndFillProgrammeDetails({
+  const { programmeName, approvedStudyProgrammeTerms, lastAdmissionTerm } = await fetchAndFillProgrammeDetails({
     applicationStore,
     lang,
     programmeCode,
   })
 
-  // TODO: For now we dont need firstAdmissionTerm and lastAdmissionTerm, in future first admission term equals to giltig.from and last admission term comes from syllabuses.
   approvedStudyProgrammeTerms.sort().reverse()
 
+  applicationStore.setLastAdmissionTerm(lastAdmissionTerm)
   applicationStore.setProgrammeTerms(approvedStudyProgrammeTerms)
   return { programmeName }
 }
