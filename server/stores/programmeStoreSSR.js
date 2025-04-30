@@ -3,6 +3,7 @@ const log = require('@kth/log')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const koppsApi = require('../kopps/koppsApi')
 const { getProgramStructure, getProgramVersion, getActiveProgramInstance } = require('../ladok/ladokApi')
+const { parseTerm } = require('../../domain/term')
 
 /**
  * add props to a MobX-stores on server side
@@ -62,6 +63,8 @@ async function fetchAndFillProgrammeDetails({ applicationStore, term, lang, prog
       titleOtherLanguage: programInstans?.benamningOther,
       educationalLevel: programInstans?.tilltradesniva.name,
       approvedStudyProgrammeTerms: programInstans.approvedStudyProgrammeTerms,
+      lastAdmissionTerm: programInstans?.sistaAntagningstermin,
+      firstAdmissionTerm: parseTerm(programInstans?.firstAdmissionTerm),
     }
     applicationStore.setStatusCode(statusCode)
   } catch (error) {
