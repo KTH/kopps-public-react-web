@@ -73,9 +73,12 @@ function curriculumInfoFromStructure({ programmeTermYear = {}, curriculum }) {
     for (const course of curriculumStudyYear.courses) {
       if (!participations[course.Valvillkor]) participations[course.Valvillkor] = []
 
-      const termCode = course.startperiod.code.startsWith('HT') ? '1' : '2'
-      const year = course.startperiod.code.replace(/[^0-9]/g, '')
-      const term = `${year}${termCode}`
+      let term
+      if (course?.startperiod) {
+        const termCode = course.startperiod.code.startsWith('HT') ? '1' : '2'
+        const year = course.startperiod.code.replace(/[^0-9]/g, '')
+        term = `${year}${termCode}`
+      }
 
       const creditsPerPeriod = [0, 0, 0, 0, 0, 0]
 
@@ -102,7 +105,12 @@ function curriculumInfoFromStructure({ programmeTermYear = {}, curriculum }) {
         creditsPerPeriod,
       })
 
-      participations[course.Valvillkor].sort((a, b) => a.term.localeCompare(b.term))
+      participations[course.Valvillkor].sort((a, b) => {
+        if (!a.term && !b.term) return 0
+        if (!a.term) return 1 // 'a' is undefined → goes after 'b'
+        if (!b.term) return -1 // 'b' is undefined → goes after 'a'
+        return a.term.localeCompare(b.term)
+      })
     }
   }
 
