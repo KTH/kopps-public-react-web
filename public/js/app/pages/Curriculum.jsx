@@ -19,6 +19,7 @@ import { formatAcademicYear, calculateStartTerm } from '../../../../domain/acade
 import { ELECTIVE_CONDITIONS } from '../../../../domain/curriculum'
 import { ORDINARY_PERIODS } from '../../../../domain/periods'
 import { courseLink, programSyllabusLink, programmeWebLink } from '../util/links'
+import { LadokStatusCode } from '@kth/om-kursen-ladok-client'
 
 function CourseTablePeriodCols({ language, creditsPerPeriod, courseCode }) {
   return ORDINARY_PERIODS.map(period => {
@@ -60,7 +61,9 @@ function CourseTableRows({ participations }) {
       </>
     )
     const applicationCodeCellData =
-      applicationCodes.length && currentTerm <= term && (status?.nameEn === 'Started' || status?.nameEn === 'Completed')
+      applicationCodes.length &&
+      currentTerm <= term &&
+      (status?.code === LadokStatusCode.Started || status?.code === LadokStatusCode.Complete)
         ? applicationCodes.join(', ')
         : ''
     return (
