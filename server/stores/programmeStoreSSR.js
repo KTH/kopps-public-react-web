@@ -61,8 +61,8 @@ async function fetchAndFillProgrammeDetails({ applicationStore, term, lang, prog
       owningSchoolCode: programInstans?.organisation.name,
       credits: programInstans?.omfattning?.number,
       titleOtherLanguage: programInstans?.benamningOther,
-      educationalLevel: programInstans?.tilltradesniva.name,
-      approvedStudyProgrammeTerms: programInstans.approvedStudyProgrammeTerms,
+      educationalLevel: programInstans?.utbildningstyp?.level?.name,
+      approvedStudyProgrammeTerms: programInstans?.approvedStudyProgrammeTerms,
       lastAdmissionTerm: programInstans?.sistaAntagningstermin,
       firstAdmissionTerm: parseTerm(programInstans?.firstAdmissionTerm),
     }
