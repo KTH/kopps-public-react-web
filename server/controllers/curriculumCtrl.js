@@ -5,55 +5,20 @@ const { server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 
 const koppsApi = require('../kopps/koppsApi')
-const { curriculumInfoFromStructure, setFirstSpec } = require('../../domain/curriculum')
+const { curriculumInfo, setFirstSpec } = require('../../domain/curriculum')
 const { calculateStartTerm } = require('../../domain/academicYear')
 
 const { createProgrammeBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { programmeFullName } = require('../utils/programmeFullName')
 
-const { getProgramStructure, getActiveProgramInstance } = require('../ladok/ladokApi')
+const { getProgramCurriculums } = require('../ladok/ladokApi')
 
 const {
   fillStoreWithQueryParams,
   fetchAndFillProgrammeDetails,
   fetchAndFillStudyProgrammeVersion,
 } = require('../stores/programmeStoreSSR')
-
-/**
- *
- * @param {object} curriculum
- * @param {string} programmeCode
- * @param {string} term
- * @param {string} studyYear
- * @param {string} lang
- */
-async function _getCourseRounds(curriculum, programmeCode, term, studyYear, lang) {
-  const specializationCode = curriculum.programmeSpecialization
-    ? curriculum.programmeSpecialization.programmeSpecializationCode
-    : null
-  const academicYearStartTerm = calculateStartTerm(term, studyYear)
-  return koppsApi.listCourseRoundsInYearPlan({
-    programmeCode,
-    specializationCode,
-    academicYearStartTerm,
-    studyYearNumber: studyYear,
-    lang,
-  })
-}
-
-async function _addCourseRounds(curriculums, programmeCode, term, studyYear, lang) {
-  const curriculumsWithCourseRounds = []
-  await Promise.all(
-    curriculums.map(async curriculum => {
-      const courseRounds = await _getCourseRounds(curriculum, programmeCode, term, studyYear, lang)
-      const curriculumWithCourseRounds = curriculum
-      curriculumWithCourseRounds.courseRounds = courseRounds
-      curriculumsWithCourseRounds.push(curriculumWithCourseRounds)
-    })
-  )
-  return curriculumsWithCourseRounds
-}
 
 function _setErrorMissingAdmission(applicationStore, statusCode) {
   if (statusCode === 404) {
@@ -90,29 +55,20 @@ async function _fetchAndFillCurriculumByStudyYear(options, storeId) {
   } // react NotFound
 
   let curriculumData
-  let tillfalleUid
 
   const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
 
   try {
-    const programInstance = await getActiveProgramInstance(programmeCode, convertedSemester, lang)
-    const { uid } = programInstance
-    tillfalleUid = uid
-  } catch (error) {}
-
-  if (tillfalleUid) {
-    try {
-      curriculumData = await getProgramStructure(tillfalleUid, lang)
-    } catch (error) {
-      applicationStore.setStatusCode(503)
-      return
-    }
-  } else return
+    curriculumData = await getProgramCurriculums(programmeCode, convertedSemester, lang)
+  } catch (error) {
+    applicationStore.setStatusCode(503)
+    return
+  }
 
   applicationStore.setCurriculums(curriculumData)
   const curriculumInfos = curriculumData
     .map(curriculum => {
-      return curriculumInfoFromStructure({ programmeTermYear: { programStartTerm: term, studyYear }, curriculum })
+      return curriculumInfo({ programmeTermYear: { programStartTerm: term, studyYear }, curriculum })
     })
     .filter(ci => ci.hasInfo)
   curriculumInfos.sort(_compareCurriculum)

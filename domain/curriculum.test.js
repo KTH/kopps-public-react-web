@@ -1,4 +1,4 @@
-const { curriculumInfoFromStructure } = require('./curriculum')
+const { curriculumInfo } = require('./curriculum')
 
 const firstYear = 1
 const secondYear = 2
@@ -58,9 +58,9 @@ const curriculumWithoutSpec = {
   ],
 }
 
-describe('curriculumInfoFromStructure', () => {
+describe('curriculumInfo', () => {
   test('returns correct info with programme specialization', () => {
-    const result = curriculumInfoFromStructure({
+    const result = curriculumInfo({
       programmeTermYear: { studyYear: firstYear },
       curriculum: curriculumWithStructure,
     })
@@ -75,7 +75,7 @@ describe('curriculumInfoFromStructure', () => {
   })
 
   test('returns correct info without programme specialization', () => {
-    const result = curriculumInfoFromStructure({
+    const result = curriculumInfo({
       programmeTermYear: { studyYear: firstYear },
       curriculum: curriculumWithoutSpec,
     })
@@ -87,7 +87,7 @@ describe('curriculumInfoFromStructure', () => {
   })
 
   test('returns no info when study year is missing', () => {
-    const result = curriculumInfoFromStructure({
+    const result = curriculumInfo({
       programmeTermYear: { studyYear: thirdYear },
       curriculum: curriculumWithoutSpec,
     })
@@ -106,20 +106,20 @@ describe('curriculumInfoFromStructure', () => {
               kod: 'BB1000',
               benamning: 'Second',
               tillfalleskod: 'B1',
-              startperiod: { code: 'VT2025' }, // Term: 20252
+              startperiod: { code: 'HT2025', inDigits: '20252' }, // Term: 20252
             }),
             mockCourse({
               kod: 'AA1000',
               benamning: 'First',
               tillfalleskod: 'A1',
-              startperiod: { code: 'HT2024' }, // Term: 20241
+              startperiod: { code: 'VT2024', inDigits: '20241' }, // Term: 20241
             }),
           ],
         },
       ],
     }
 
-    const result = curriculumInfoFromStructure({
+    const result = curriculumInfo({
       programmeTermYear: { studyYear: firstYear },
       curriculum,
     })
@@ -131,7 +131,7 @@ describe('curriculumInfoFromStructure', () => {
   })
 })
 
-describe('curriculumInfoFromStructure - edge cases', () => {
+describe('curriculumInfo - edge cases', () => {
   test('handles course with empty Tillfallesperioder', () => {
     const curriculum = {
       studyYears: [
@@ -147,7 +147,7 @@ describe('curriculumInfoFromStructure - edge cases', () => {
       ],
     }
 
-    const result = curriculumInfoFromStructure({ programmeTermYear: { studyYear: firstYear }, curriculum })
+    const result = curriculumInfo({ programmeTermYear: { studyYear: firstYear }, curriculum })
 
     const participation = result.participations['O'][0]
     expect(participation.creditsPerPeriod).toEqual([0, 0, 0, 0, 0, 0])
@@ -174,7 +174,7 @@ describe('curriculumInfoFromStructure - edge cases', () => {
       ],
     }
 
-    const result = curriculumInfoFromStructure({ programmeTermYear: { studyYear: firstYear }, curriculum })
+    const result = curriculumInfo({ programmeTermYear: { studyYear: firstYear }, curriculum })
 
     const participation = result.participations['O'][0]
     // P9 is unknown, so should fallback to index 0
@@ -196,7 +196,7 @@ describe('curriculumInfoFromStructure - edge cases', () => {
       ],
     }
 
-    const result = curriculumInfoFromStructure({ programmeTermYear: { studyYear: firstYear }, curriculum })
+    const result = curriculumInfo({ programmeTermYear: { studyYear: firstYear }, curriculum })
 
     const participation = result.participations['O'][0]
     expect(participation.course.educationalLevel).toBeUndefined()
@@ -216,7 +216,7 @@ describe('curriculumInfoFromStructure - edge cases', () => {
       ],
     }
 
-    const result = curriculumInfoFromStructure({ programmeTermYear: { studyYear: firstYear }, curriculum })
+    const result = curriculumInfo({ programmeTermYear: { studyYear: firstYear }, curriculum })
 
     expect(Object.keys(result.participations)).toEqual(expect.arrayContaining(['O', 'V', 'F']))
     expect(result.participations['O'].length).toBe(1)

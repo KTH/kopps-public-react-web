@@ -50,11 +50,13 @@ function filterCourseRoundsForNthYear(courseRoundTerms, programStartTerm, progra
  * @param {object} options.curriculum
  * @returns {object}
  */
-function curriculumInfoFromStructure({ programmeTermYear = {}, curriculum }) {
+function curriculumInfo({ programmeTermYear = {}, curriculum }) {
   let code = ''
   let specializationName = null
   let isCommon = true
 
+  let supplementaryInformation
+  let conditionallyELectiveCoursesInformation
   const participations = {}
   const isFirstSpec = false
 
@@ -69,58 +71,63 @@ function curriculumInfoFromStructure({ programmeTermYear = {}, curriculum }) {
 
   const [curriculumStudyYear] = studyYears.filter(s => Math.abs(s.yearNumber) === Math.abs(studyYear))
 
+  let hasInfo = false
+  let htmlCourses = undefined
+
   if (curriculumStudyYear) {
-    for (const course of curriculumStudyYear.courses) {
-      if (!participations[course.Valvillkor]) participations[course.Valvillkor] = []
+    if (typeof curriculumStudyYear.courses === 'string') {
+      htmlCourses = curriculumStudyYear.courses
+      hasInfo = true
+    } else if (Array.isArray(curriculumStudyYear.courses)) {
+      supplementaryInformation = curriculumStudyYear.supplementaryInfo
+      conditionallyELectiveCoursesInformation = curriculumStudyYear.conditionallyElectiveCoursesInfo
+      for (const course of curriculumStudyYear.courses) {
+        if (!participations[course.Valvillkor]) participations[course.Valvillkor] = []
 
-      let term
-      if (course?.startperiod) {
-        const termCode = course.startperiod.code.startsWith('HT') ? '1' : '2'
-        const year = course.startperiod.code.replace(/[^0-9]/g, '')
-        term = `${year}${termCode}`
-      }
+        const term = course?.startperiod?.inDigits
 
-      const creditsPerPeriod = [0, 0, 0, 0, 0, 0]
-
-      course.Tillfallesperioder.forEach(period => {
-        if (period.Lasperiodsfordelning) {
-          period.Lasperiodsfordelning.forEach(lasperiod => {
+        const creditsPerPeriod = [0, 0, 0, 0, 0, 0]
+        course.Tillfallesperioder?.forEach(period => {
+          period.Lasperiodsfordelning?.forEach(lasperiod => {
             const periodIndex = LASPERIOD_INDEX[lasperiod.Lasperiodskod] || 0
             creditsPerPeriod[periodIndex] += lasperiod.Omfattningsvarde
           })
-        }
-      })
+        })
 
-      participations[course.Valvillkor].push({
-        course: {
-          courseCode: course.kod,
-          title: course.benamning,
-          credits: course.omfattning.number,
-          formattedCredits: course.omfattning.formattedWithUnit,
-          educationalLevel: course.utbildningstyp?.level?.name,
-          electiveCondition: course.Valvillkor,
-        },
-        applicationCodes: [course.tillfalleskod],
-        term,
-        creditsPerPeriod,
-      })
+        participations[course.Valvillkor].push({
+          course: {
+            courseCode: course.kod,
+            title: course.benamning,
+            credits: course.omfattning?.number,
+            formattedCredits: course.omfattning?.formattedWithUnit,
+            educationalLevel: course.utbildningstyp?.level?.name,
+            electiveCondition: course.Valvillkor,
+          },
+          applicationCodes: [course.tillfalleskod],
+          term,
+          creditsPerPeriod,
+        })
 
-      participations[course.Valvillkor].sort((a, b) => {
-        if (!a.term && !b.term) return 0
-        if (!a.term) return 1 // 'a' is undefined → goes after 'b'
-        if (!b.term) return -1 // 'b' is undefined → goes after 'a'
-        return a.term.localeCompare(b.term)
-      })
+        participations[course.Valvillkor].sort((a, b) => {
+          if (!a.term && !b.term) return 0
+          if (!a.term) return 1 // 'a' is undefined → goes after 'b'
+          if (!b.term) return -1 // 'b' is undefined → goes after 'a'
+          return a.term.localeCompare(b.term)
+        })
+      }
+
+      hasInfo = Object.keys(participations).length !== 0
     }
   }
-
-  const hasInfo = Object.keys(participations).length !== 0
 
   return {
     code,
     specializationName,
     isCommon,
     participations,
+    supplementaryInformation,
+    conditionallyELectiveCoursesInformation,
+    htmlCourses,
     isFirstSpec,
     hasInfo,
   }
@@ -139,7 +146,7 @@ function setFirstSpec(cis) {
 const ELECTIVE_CONDITIONS = ['ALL', 'O', 'VV', 'R', 'V']
 
 module.exports = {
-  curriculumInfoFromStructure,
+  curriculumInfo,
   setFirstSpec,
   filterCourseRoundsForNthYear,
   ELECTIVE_CONDITIONS,
