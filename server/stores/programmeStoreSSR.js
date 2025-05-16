@@ -2,7 +2,7 @@ const log = require('@kth/log')
 
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const koppsApi = require('../kopps/koppsApi')
-const { getProgramCurriculums, getProgramVersion } = require('../ladok/ladokApi')
+const { getProgramCurriculum, getProgramVersion } = require('../ladok/ladokApi')
 const { parseTerm } = require('../../domain/term')
 
 /**
@@ -282,7 +282,7 @@ async function fetchAndFillCurriculumList(options) {
   const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
 
   try {
-    curriculumData = await getProgramCurriculums(programmeCode, convertedSemester, lang)
+    curriculumData = await getProgramCurriculum(programmeCode, convertedSemester, lang)
   } catch (error) {
     applicationStore.setStatusCode(503)
     return
@@ -306,7 +306,7 @@ async function fetchAndFillSpecializations(options) {
   const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
 
   try {
-    curriculumData = await getProgramCurriculums(programmeCode, convertedSemester, lang)
+    curriculumData = await getProgramCurriculum(programmeCode, convertedSemester, lang)
   } catch (error) {
     applicationStore.setStatusCode(503)
     return
