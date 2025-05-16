@@ -5,7 +5,7 @@ function addHtmlStudyYear(html, studyYear) {
   this.htmlStudyYears[studyYear] = html
 }
 
-function addElectiveConditionCourse(courses, electiveCondition, studyYear, code) {
+function addElectiveConditionCourse(course, electiveCondition, studyYear, code) {
   if (!this.studyYearCourses[code]) {
     this.studyYearCourses[code] = { [studyYear]: {} }
   }
@@ -25,7 +25,7 @@ function addElectiveConditionCourse(courses, electiveCondition, studyYear, code)
     course instances for the same coruse version. (and here we will skip to add the course if it is already added)
   */
   if (!alreadyExists) {
-    this.studyYearCourses[code][studyYear][electiveCondition].push(courses)
+    this.studyYearCourses[code][studyYear][electiveCondition].push(course)
   }
 }
 
