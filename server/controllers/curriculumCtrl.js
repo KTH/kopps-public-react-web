@@ -12,7 +12,7 @@ const { createProgrammeBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { programmeFullName } = require('../utils/programmeFullName')
 
-const { getProgramCurriculums } = require('../ladok/ladokApi')
+const { getProgramCurriculum } = require('../ladok/ladokApi')
 
 const {
   fillStoreWithQueryParams,
@@ -59,7 +59,7 @@ async function _fetchAndFillCurriculumByStudyYear(options, storeId) {
   const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
 
   try {
-    curriculumData = await getProgramCurriculums(programmeCode, convertedSemester, lang)
+    curriculumData = await getProgramCurriculum(programmeCode, convertedSemester, lang)
   } catch (error) {
     applicationStore.setStatusCode(503)
     return
