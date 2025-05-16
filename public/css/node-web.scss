@@ -56,7 +56,7 @@
   }
 }
 
-// Style for mark data from Kopps (enabled by default in localhost only)
+// Style for mark data from Kopps (enabled by default in localhost only) TODO: We should remove the styles for KOPPS when we have removed it from everywhere
 *[data-from-kopps] {
   &:hover {
     background-color: colors.$color-green-light;
@@ -64,6 +64,23 @@
 
   &:hover:before {
     content: 'KOPPS';
+    float: right;
+    margin-top: -1.5em;
+    padding: 0 0.75em;
+    background-color: colors.$color-green;
+    color: white;
+    border-radius: 0.75em 0.75em 0 0;
+  }
+}
+
+// Style for mark data from Kopps (enabled by default in localhost only)
+*[data-from-ladok] {
+  &:hover {
+    background-color: colors.$color-green-light;
+  }
+
+  &:hover:before {
+    content: 'LADOK';
     float: right;
     margin-top: -1.5em;
     padding: 0 0.75em;

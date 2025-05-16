@@ -139,7 +139,11 @@ async function fetchAndFillStudyProgrammeVersion({ applicationStore, lang, progr
 
 function _parseCurriculumsAndFillStore(applicationStore, curriculums) {
   curriculums.forEach(curriculum => {
-    if (curriculum.programmeSpecialization) {
+    if (
+      curriculum.programmeSpecialization &&
+      Array.isArray(curriculum.studyYears) &&
+      curriculum.studyYears.some(studyYear => studyYear.courses?.length > 0)
+    ) {
       // Specialization
       const { programmeSpecialization, studyYears } = curriculum
       const { programmeSpecializationCode: code, title, description } = programmeSpecialization
@@ -196,7 +200,7 @@ function _parseCurriculumsAndFillStore(applicationStore, curriculums) {
       const { studyYears } = curriculum
       studyYears.forEach(studyYear => {
         if (typeof studyYear.courses === 'string') {
-          applicationStore.addHtmlStudyYear(studyYear.courses, studyYear.yearNumber, 'Common')
+          applicationStore.addHtmlStudyYear(studyYear.courses, studyYear.yearNumber)
           return
         }
 
@@ -301,7 +305,6 @@ async function fetchAndFillCurriculumList(options) {
 async function fetchAndFillSpecializations(options) {
   const { applicationStore, programmeCode, term, lang } = options
   let curriculumData
-  let tillfalleUid
 
   const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
 
