@@ -1,3 +1,10 @@
+function addHtmlStudyYear(html, studyYear) {
+  if (!this.htmlStudyYears) {
+    this.htmlStudyYears = {}
+  }
+  this.htmlStudyYears[studyYear] = html
+}
+
 function addElectiveConditionCourse(courses, electiveCondition, studyYear, code) {
   if (!this.studyYearCourses[code]) {
     this.studyYearCourses[code] = { [studyYear]: {} }
@@ -8,7 +15,18 @@ function addElectiveConditionCourse(courses, electiveCondition, studyYear, code)
   if (!this.studyYearCourses[code][studyYear][electiveCondition]) {
     this.studyYearCourses[code][studyYear][electiveCondition] = []
   }
-  this.studyYearCourses[code][studyYear][electiveCondition].push(courses)
+
+  const existingCourses = this.studyYearCourses[code][studyYear][electiveCondition]
+  const alreadyExists = existingCourses.some(c => c.code === course.code)
+  /*
+    These lines has been added due to the fact that previously we were getting courses from kopps
+    and the later we were fetching course rounds for them. So we had unique courses.
+    But the the data from ladok send course instance, and on that case we might have multiple
+    course instances for the same coruse version. (and here we will skip to add the course if it is already added)
+  */
+  if (!alreadyExists) {
+    this.studyYearCourses[code][studyYear][electiveCondition].push(courses)
+  }
 }
 
 function addSupplementaryInfo(supplementaryInfo, studyYear, code) {
@@ -109,6 +127,14 @@ function createAppendix1Store() {
      * @param {{}} specialization
      */
     addSpecialization,
+
+    htmlStudyYears: {},
+    /**
+     * @method
+     * @param {string} html
+     * @param {number} studyYear
+     */
+    addHtmlStudyYear,
   }
   return appendix1Store
 }
