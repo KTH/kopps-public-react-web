@@ -14,38 +14,6 @@ const calculateProgramYear = (programFirstYear, programNthYear) =>
   Math.abs(programNthYear) - 1 + Math.abs(programFirstYear)
 
 /**
- * @param {string} programStartTerm
- * @param {array} courseRoundTerms
- * @param {string} programNthYear // 1,2,3,4,5
- * @returns {array}
- */
-
-function filterCourseRoundsForNthYear(courseRoundTerms, programStartTerm, programNthYear) {
-  if (!programStartTerm || !programNthYear || !courseRoundTerms) return []
-  const [programFirstYear, programStartSeason] = splitTerm(programStartTerm)
-
-  const programYear = calculateProgramYear(programFirstYear, programNthYear)
-  const { startYear: startAcademicYear, endYear: endAcademicYear } = academicYearStartAndEnd(
-    `${programYear}${programStartSeason}`
-  )
-
-  let expectedStudyTerms
-  if (isSpringTerm(programStartTerm))
-    expectedStudyTerms = [
-      Math.abs(`${startAcademicYear}${termConstants.SPRING_TERM_NUMBER}`),
-      Math.abs(`${startAcademicYear}${termConstants.AUTUMN_TERM_NUMBER}`),
-    ]
-  else
-    expectedStudyTerms = [
-      Math.abs(`${startAcademicYear}${termConstants.AUTUMN_TERM_NUMBER}`),
-      Math.abs(`${endAcademicYear}${termConstants.SPRING_TERM_NUMBER}`),
-    ]
-
-  const yearCourseRoundTerms = courseRoundTerms.filter(({ term }) => expectedStudyTerms.includes(Math.abs(term)))
-  return yearCourseRoundTerms
-}
-
-/**
  * @param {object} options.programmeTermYear
  * @param {object} options.curriculum
  * @returns {object}
@@ -102,8 +70,9 @@ function curriculumInfo({ programmeTermYear = {}, curriculum }) {
             formattedCredits: course.omfattning?.formattedWithUnit,
             educationalLevel: course.utbildningstyp?.level?.name,
             electiveCondition: course.Valvillkor,
+            status: course.status,
           },
-          applicationCodes: [course.tillfalleskod],
+          applicationCode: course.tillfalleskod, // A course instance in Ladok can have only one tillfalleskod
           term,
           creditsPerPeriod,
         })
@@ -148,6 +117,5 @@ const ELECTIVE_CONDITIONS = ['ALL', 'O', 'VV', 'R', 'V']
 module.exports = {
   curriculumInfo,
   setFirstSpec,
-  filterCourseRoundsForNthYear,
   ELECTIVE_CONDITIONS,
 }

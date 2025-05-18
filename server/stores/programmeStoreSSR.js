@@ -54,6 +54,13 @@ async function fetchAndFillProgrammeDetails({ applicationStore, term, lang, prog
   try {
     const { programInstans, statusCode } = await getProgramVersion(programmeCode, convertedSemester, lang)
 
+    if (!programInstans) {
+      return {
+        programmeName: programmeCode,
+        approvedStudyProgrammeTerms: [],
+      }
+    }
+
     programDetails = {
       title: programInstans?.benamning,
       lengthInStudyYears: programInstans?.lengthInStudyYears,
@@ -70,7 +77,10 @@ async function fetchAndFillProgrammeDetails({ applicationStore, term, lang, prog
   } catch (error) {
     applicationStore.setStatusCode(503)
     log.debug('Failed to fetch from Ladok api, programmeCode:', programmeCode)
-    return
+    return {
+      programmeName: programmeCode,
+      approvedStudyProgrammeTerms: [],
+    }
   }
 
   log.info('Successfully fetched programme from KOPPs API, programmeCode:', programmeCode)
