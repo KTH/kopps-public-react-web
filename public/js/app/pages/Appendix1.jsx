@@ -221,7 +221,7 @@ function HtmlBasedCurriculums() {
 
   const t = translate(language)
 
-  if (!studyYears) return null
+  if (!htmlStudyYears) return null
 
   const studyYears = Object.entries(htmlStudyYears)
 

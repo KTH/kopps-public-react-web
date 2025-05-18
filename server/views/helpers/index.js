@@ -56,7 +56,7 @@ handlebars.registerHelper('getSwedishFormattedCredits', course => {
   return course.credits.toFixed(1).toString().replace('.', ',') + ' hp'
 })
 handlebars.registerHelper('getAnmalningsKod', course => {
-  return course.applicationCodes[0]
+  return course.applicationCode
 })
 handlebars.registerHelper('getCourseLink', course => {
   return `${config.proxyPrefixPath.uri}/kurs/${course.code}`

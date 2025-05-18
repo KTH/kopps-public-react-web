@@ -19,10 +19,10 @@ function addElectiveConditionCourse(course, electiveCondition, studyYear, code) 
   const existingCourses = this.studyYearCourses[code][studyYear][electiveCondition]
   const alreadyExists = existingCourses.some(c => c.code === course.code)
   /*
-    These lines has been added due to the fact that previously we were getting courses from kopps
-    and the later we were fetching course rounds for them. So we had unique courses.
-    But the the data from ladok send course instance, and on that case we might have multiple
-    course instances for the same coruse version. (and here we will skip to add the course if it is already added)
+    These lines has been added due to the fact that previously we were getting courses being included in a program from kopps
+    and in a in a separate step we were fetching course rounds for them to have more information for the courses. So we had unique courses (with more information regarding the coruse rounds).
+    But the the data from ladok contains course instances, and on that case we might have multiple
+    course instances for the same coruse version. (and here we will skip to add a course if it is already added)
   */
   if (!alreadyExists) {
     this.studyYearCourses[code][studyYear][electiveCondition].push(course)

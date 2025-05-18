@@ -50,7 +50,7 @@ function CourseTableRows({ participations }) {
   const { language } = useStore()
 
   return participations.map(participation => {
-    const { course, applicationCodes, term, creditsPerPeriod } = participation
+    const { course, applicationCode, term, creditsPerPeriod } = participation
 
     const { courseCode, title, formattedCredits, status } = course
     const currentTerm = getCurrentTerm()
@@ -64,10 +64,10 @@ function CourseTableRows({ participations }) {
       </>
     )
     const applicationCodeCellData =
-      applicationCodes.length &&
+      applicationCode &&
       currentTerm <= term &&
       (status?.code === LadokStatusCode.Started || status?.code === LadokStatusCode.Complete)
-        ? applicationCodes.join(', ')
+        ? applicationCode
         : ''
     return (
       <CourseTableRow
