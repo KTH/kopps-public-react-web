@@ -1,144 +1,43 @@
 import React from 'react'
 import './style.scss'
 
-import { useStore } from '../../mobx'
+import { useLanguage } from '../../hooks/useLanguage'
+import { ResultType, SearchData } from '../../hooks/types/UseCourseSearchTypes'
+import { CourseVersionCardView } from './CourseVersionCardView'
+import { CourseInstanceCardView } from './CourseInstanceCardView'
 
-import { ListViewParams } from './types'
-import i18n from '../../../../../i18n'
+export const ListView: React.FC<{
+  searchData: SearchData
+}> = ({ searchData }) => {
+  const { type, results } = searchData
 
-import { compareCoursesBy, inforKursvalLink, periodsStr } from '../../util/searchHelper'
+  switch (type) {
+    case ResultType.VERSION:
+      return <CourseVersionCardView results={results} />
+    case ResultType.INSTANCE:
+      return <CourseInstanceCardView results={results} />
+  }
+}
 
-const ListView: React.FC<ListViewParams> = ({ results }) => {
-  const { language, languageIndex } = useStore()
-
-  const { generalSearch, messages } = i18n.messages[languageIndex]
-
-  const { course_pace, course_campus, course_language } = messages
-
-  const { courseHasNoRounds, linkToInforKursval } = generalSearch
+export const CourseHeader: React.FC<{
+  title: string
+  credits: string
+  courseCode: string
+  periodTexts?: string[]
+  courseHasNoRounds?: boolean
+}> = ({ title, credits, courseCode, periodTexts, courseHasNoRounds }) => {
+  const { translation } = useLanguage()
+  const { generalSearch } = translation
 
   return (
-    <>
-      {results.sort(compareCoursesBy('kod')).map((course, index) => {
-        const {
-          kod: courseCode,
-          benamning: title,
-          omfattning: { formattedWithUnit: credits = '' } = {},
-          period: periods = [],
-          startperiod: startPeriods = [],
-          studietakt: studyPaces = [],
-          undervisningssprak: languages = [],
-          studieort: campuses = [],
-        } = course || {}
-
-        const allPeriods = periods.map(
-          ({
-            startperiod: { inDigits: startTerm = '' } = {},
-            forstaUndervisningsdatum: {
-              date: startDate = '',
-              year: startPeriodYear = '',
-              week: startWeek = '',
-              period: startPeriod = '',
-            } = {},
-            sistaUndervisningsdatum: {
-              date: endDate = '',
-              year: endPeriodYear = '',
-              week: endWeek = '',
-              period: endPeriod = '',
-            } = {},
-            tillfallesperioderNummer = undefined,
-          }) => ({
-            startTerm,
-            startDate,
-            startPeriodYear,
-            startWeek,
-            startPeriod,
-            endDate,
-            endPeriodYear,
-            endWeek,
-            endPeriod,
-            tillfallesperioderNummer,
-          })
-        )
-
-        const allStudyPaces = studyPaces.map(({ takt: coursePace = '' }) => ({
-          coursePace,
-        }))
-
-        const allLanguages = languages.map(({ name: courseLanguage = '' }) => ({
-          courseLanguage,
-        }))
-
-        const allCampuses = campuses.map(({ name: courseCampus = '' }) => ({
-          courseCampus,
-        }))
-
-        const allStartPeriods = startPeriods.map(({ code: startTerm = '', inDigits = '' }) => ({
-          startTerm,
-          inDigits,
-        }))
-
-        const startTerm = allStartPeriods.length === 1 ? allStartPeriods[0].startTerm : undefined
-
-        let periodTexts = []
-        periodTexts = allPeriods.map(
-          ({
-            startPeriod,
-            startPeriodYear,
-            endPeriod,
-            endPeriodYear,
-            tillfallesperioderNummer,
-          }: {
-            startPeriod: string
-            startPeriodYear: number
-            endPeriod: string
-            endPeriodYear: number
-            tillfallesperioderNummer: number
-          }) => periodsStr(startPeriod, startPeriodYear, endPeriod, endPeriodYear, tillfallesperioderNummer, language)
-        )
-
-        const areAllPeriodTextsEmpty = periodTexts.every((value: string) => !value.trim())
-
-        const InforKursvalLink = inforKursvalLink(linkToInforKursval, courseCode, startTerm, language)
-        return (
-          <div className="course-card" key={courseCode + index}>
-            <div className="course-header">
-              <h3>
-                {title}, {credits}
-              </h3>
-              <span className="course-code">{courseCode}</span>
-              <span className="course-period">
-                {periodTexts.map((periodText: string, index: number) => `${index != 0 ? ',' : ''} ${periodText}`)}
-              </span>
-              {(areAllPeriodTextsEmpty || periodTexts.length === 0) && <i>{courseHasNoRounds}</i>}
-            </div>
-            <div className="course-footer">
-              <div className="course-details">
-                <div className="course-location">
-                  <span className="icon">{course_campus}</span>
-                  {allCampuses.map(({ courseCampus }: { courseCampus: string }, index: number) => (
-                    <span key={courseCampus + index}>{courseCampus}</span>
-                  ))}
-                </div>
-                <div className="course-language">
-                  <span className="icon">{course_language}</span>
-                  {allLanguages.map(({ courseLanguage }: { courseLanguage: string }, index: number) => (
-                    <span key={courseLanguage + index}>{courseLanguage}</span>
-                  ))}
-                </div>
-                <div className="course-pace">
-                  <span className="icon">{course_pace}</span>
-                  {allStudyPaces.map(({ coursePace }: { coursePace: number }, index: number) => (
-                    <span key={coursePace + index}>{coursePace}%</span>
-                  ))}
-                </div>
-              </div>
-              <div className="course-link">{InforKursvalLink}</div>
-            </div>
-          </div>
-        )
-      })}
-    </>
+    <div className="course-header">
+      <h3>
+        {title}, {credits}
+      </h3>
+      <span className="course-code">{courseCode}</span>
+      {periodTexts && periodTexts.length > 0 && <span className="course-period">{periodTexts.join(', ')}</span>}
+      {courseHasNoRounds && <i>{generalSearch.courseHasNoRounds}</i>}
+    </div>
   )
 }
 

@@ -16,9 +16,7 @@ import { MainContentProps, SEARCH_MODES, SearchPageProps } from './types/searchP
 import { useCourseSearchParams } from '../hooks/useCourseSearchParams'
 import { STATUS } from '../hooks/types/UseCourseSearchTypes'
 import SearchResultDisplay from '../components/SearchResultDisplay'
-import { CourseSearchResultState } from '../util/types/SearchApiTypes'
 import { useLangHrefUpdate } from '../hooks/useLangHrefUpdate'
-import { FILTER_MODES } from '../components/SearchFilters/types'
 import { SidebarFilters } from '../components/SidebarFilters'
 
 const MainContent: React.FC<MainContentProps> = ({ children }) => {
@@ -47,7 +45,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.defau
   const asyncCallback = React.useCallback(() => {
     const proxyUrl = _getThisHost(browserConfig.proxyPrefixPath.uri)
     return courseSearch(language, proxyUrl, courseSearchParams)
-  }, [courseSearchParams])
+  }, [courseSearchParams, language])
 
   const state = useCourseSearch(asyncCallback, { status: STATUS.idle })
 
@@ -88,7 +86,7 @@ const SearchPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.defau
           searchLabel={searchLabel}
           disabled={searchStatus === STATUS.pending}
         />
-        <SearchResultDisplay resultsState={state as CourseSearchResultState} />
+        <SearchResultDisplay searchState={state} />
       </MainContent>
     </Row>
   )

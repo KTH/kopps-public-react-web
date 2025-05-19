@@ -4,7 +4,8 @@ import '@testing-library/jest-dom'
 import SearchPage from './SearchPage'
 import { useStore } from '../mobx'
 import { courseSearch } from '../util/searchApi'
-import { TEST_API_ANSWER_RESOLVED } from '../components/mocks/mockKoppsCourseSearch'
+
+jest.mock('../util/searchApi')
 
 const periods = ['Autumn 2024', 'Spring 2025', 'Autumn 2025']
 const eduLevels = ['Pre-university level', 'First cycle', 'Second cycle', 'Third cycle']
@@ -70,7 +71,6 @@ describe('<SearchPage />', () => {
     mockSearchParams.append('semesters', 'VT2024')
     mockSearchParams.append('eduLevel', '1')
     mockSearchParams.append('showOptions', 'onlyEnglish')
-    ;(courseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED))
 
     render(<SearchPage searchMode="default" />)
 
@@ -95,7 +95,6 @@ describe('<SearchPage />', () => {
     mockSearchParams = new URLSearchParams({
       pattern: '',
     })
-    ;(courseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED))
 
     render(<SearchPage searchMode="default" />)
 
@@ -145,8 +144,6 @@ describe('<SearchPage />', () => {
   })
 
   test('should update search params and call search API when semesters checkboxes, eduLevel, and showOptions are changed', async () => {
-    ;(courseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED))
-
     render(<SearchPage searchMode="default" />)
 
     // Verify that the initial API call was made with the correct parameters

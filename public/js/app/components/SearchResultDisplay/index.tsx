@@ -2,44 +2,37 @@ import React, { useState } from 'react'
 
 import './style.scss'
 
-import { useStore } from '../../mobx'
-
-import { SearchResultDisplayParams, CourseSearchResult, VIEW, View } from './types'
-import { STATUS } from '../../hooks/types/UseCourseSearchTypes'
+import { VIEW, View } from './types'
+import { State, STATUS } from '../../hooks/types/UseCourseSearchTypes'
 import Article from '../Article'
 import SearchAlert from '../SearchAlert'
 import SearchResultHeader from './SearchResultHeader'
-import SearchResultComponent from './SearchResultComponent'
-import { AlertType } from '../SearchAlert/types'
+import SearchResultContent from './SearchResultContent'
+import { useLanguage } from '../../hooks/useLanguage'
 
-const isCourseSearchResult = (data: string | CourseSearchResult): data is CourseSearchResult => {
-  return (data as CourseSearchResult).searchHits !== undefined
-}
-const SearchResultDisplay: React.FC<SearchResultDisplayParams> = ({ resultsState }) => {
-  const { languageIndex } = useStore()
+const SearchResultDisplay: React.FC<{
+  searchState: State
+}> = ({ searchState }) => {
+  const { languageIndex } = useLanguage()
   const [view, setView] = useState<View>(VIEW.list)
-  const { data: searchResults, status: searchStatus, error: errorType } = resultsState
+  const { searchData, status: searchStatus, error: errorType } = searchState
 
   if (errorType) {
-    return (
-      <SearchAlert
-        alertType={errorType}
-        languageIndex={languageIndex}
-      />
-    )
+    return <SearchAlert alertType={errorType} languageIndex={languageIndex} />
   }
 
   return (
     <Article classNames={['course-search-results']}>
       <SearchResultHeader
-        resultsLength={searchResults ? searchResults.searchHits.length : undefined}
+        // TODO benni fix chaining
+        resultsLength={searchData?.results?.length ?? undefined}
         searchStatus={searchStatus}
         view={view}
         setView={setView}
       />
-      {searchStatus === STATUS.resolved &&
-        isCourseSearchResult(searchResults) &&
-        searchResults.searchHits.length > 0 && <SearchResultComponent searchResults={searchResults} view={view} />}
+      {searchStatus === STATUS.resolved && searchData?.results?.length > 0 && (
+        <SearchResultContent searchData={searchData} view={view} />
+      )}
     </Article>
   )
 }

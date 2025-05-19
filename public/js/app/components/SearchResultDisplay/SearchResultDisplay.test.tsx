@@ -3,26 +3,23 @@ import { render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import SearchResultDisplay from './index'
 import { useStore } from '../../mobx'
-import {
-  TEST_API_ANSWER_NO_HITS,
-  TEST_API_ANSWER_RESOLVED,
-  TEST_API_ANSWER_UNKNOWN_ERROR,
-} from '../mocks/mockKoppsCourseSearch'
-import { ERROR_ASYNC, STATUS } from '../../hooks/types/UseCourseSearchTypes'
+import { ERROR_ASYNC, State, STATUS } from '../../hooks/types/UseCourseSearchTypes'
+import { SEARCH_DATA_EMPTY_RESULT, SEARCH_DATA_WITH_INSTANCE_RESULTS } from '../mocks/mockSearchData'
 jest.mock('../../mobx')
+
 describe('SearchResultDisplay component', () => {
   beforeEach(() => {
-    ;(useStore as jest.Mock).mockReturnValue({ languageIndex: 0 })
+    ;(useStore as jest.Mock).mockReturnValue({ language: 'en', languageIndex: 0 })
   })
 
   test('displays SearchResultComponent when status is resolved and results are available', async () => {
-    const resultsState = {
-      data: TEST_API_ANSWER_RESOLVED,
+    const resultsState: State = {
+      searchData: SEARCH_DATA_WITH_INSTANCE_RESULTS,
       status: STATUS.resolved,
       error: null as any,
     }
 
-    render(<SearchResultDisplay resultsState={resultsState} />)
+    render(<SearchResultDisplay searchState={resultsState} />)
 
     await waitFor(() => {
       expect(screen.getByText('Standard')).toBeInTheDocument()
@@ -30,46 +27,50 @@ describe('SearchResultDisplay component', () => {
   })
 
   test('displays SearchAlert when an error occurs', async () => {
-    const resultsState = {
-      data: TEST_API_ANSWER_UNKNOWN_ERROR,
+    const resultsState: State = {
+      searchData: SEARCH_DATA_EMPTY_RESULT,
       status: STATUS.rejected,
       error: ERROR_ASYNC.rejected,
     }
 
-    render(<SearchResultDisplay resultsState={resultsState} />)
+    render(<SearchResultDisplay searchState={resultsState} />)
     await waitFor(() => {
       expect(screen.getByText(/An unknown error occurred - failed to retrieve course data/i)).toBeInTheDocument()
     })
   })
 
   test('displays loading state when status is loading', () => {
-    const resultsState = {
-      data: null as any,
+    const resultsState: State = {
+      searchData: null as any,
       status: STATUS.pending,
       error: null as any,
     }
 
-    render(<SearchResultDisplay resultsState={resultsState} />)
+    render(<SearchResultDisplay searchState={resultsState} />)
 
     expect(screen.getByText('Searching ...')).toBeInTheDocument()
   })
 
   test('displays no results message when status is resolved but no results', () => {
-    const resultsState = {
-      data: TEST_API_ANSWER_NO_HITS,
+    const resultsState: State = {
+      searchData: SEARCH_DATA_EMPTY_RESULT,
       status: STATUS.noHits,
       error: ERROR_ASYNC.noHits,
     }
 
-    render(<SearchResultDisplay resultsState={resultsState} />)
+    render(<SearchResultDisplay searchState={resultsState} />)
 
     expect(screen.getByText('Your search returned no results')).toBeInTheDocument()
   })
 
   test('displays no search params message', () => {
-    const resultsState = { data: null as null, status: STATUS.noQueryProvided, error: ERROR_ASYNC.noQueryProvided }
+    const resultsState: State = {
+      searchData: null as null,
+      status: STATUS.noQueryProvided,
+      error: ERROR_ASYNC.noQueryProvided,
+    }
 
-    render(<SearchResultDisplay resultsState={resultsState} />)
+    render(<SearchResultDisplay searchState={resultsState} />)
 
     expect(screen.getByText('No query restriction was specified')).toBeInTheDocument()
   })

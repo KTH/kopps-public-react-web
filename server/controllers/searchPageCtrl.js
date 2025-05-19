@@ -7,13 +7,12 @@ const i18n = require('../../i18n')
 
 // eslint-disable-next-line no-unused-vars
 const koppsApi = require('../kopps/koppsApi')
-const { searchCourses } = require('../ladok/ladokApi')
+const { searchCourseInstances, searchCourseVersions } = require('../ladok/ladokApi')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 
 const { createBreadcrumbs, createThirdCycleBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { compareSchools, filterOutDeprecatedSchools } = require('../../domain/schools')
-const term = require('../../domain/term')
 
 async function renderSearchPage(
   req,
@@ -128,9 +127,43 @@ async function performCourseSearch(req, res, next) {
   try {
     log.debug(` trying to perform a search of courses with ${searchParams} transformed from parameters: `, { query })
 
-    const apiResponse = await searchCourses(searchParams, lang)
-    log.debug(` performCourseSearch with ${searchParams} response: `, apiResponse)
-    return res.json(apiResponse)
+    // TODO Benni we should be able to return "no query restriction was specified" error already here (or even better in the client)
+
+    // TODO Benni - this is where we want to build the correct response
+
+    // searchParams for courseInstance
+    // sprak
+    // startPeriod
+
+    // searchParams to go for courseVersion
+    // kodEllerBenamning
+    // organisation
+    // avvecklad
+
+    let type = 'courseVersion'
+    let apiResponse
+
+    // Here we are deciding which API to call based on the searchParams - still WIP
+    if (searchParams.sprak || searchParams.startPeriod) {
+      apiResponse = await searchCourseInstances(searchParams, lang)
+      type = 'courseInstance' // We have an enum for this, but it is in the TS-client: ResultType
+    } else {
+      apiResponse = await searchCourseVersions(searchParams, lang)
+      type = 'courseVersion'
+    }
+
+    log.debug(` performCourseSearch to ${type} with searchParams:`, searchParams)
+
+    // Types for this are in the TS-client: SearchResponse
+    const searchResponse = {
+      searchData: {
+        results: apiResponse.searchHits,
+        type,
+      },
+      errorCode: apiResponse.errorCode,
+    }
+
+    return res.json(searchResponse)
   } catch (error) {
     log.error(` Exception from performCourseSearch with ${searchParams}`, { error })
     next(error)
