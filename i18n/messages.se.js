@@ -61,7 +61,7 @@ const messages = {
     course_educational_level_abbr: 'Utbildningsnivå',
     course_language: 'Språk',
     course_campus: 'Campus',
-    course_pace: 'Omfattning',
+    course_pace: 'Fart',
 
     study_year: 'Årskurs',
 
