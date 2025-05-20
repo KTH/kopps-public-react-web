@@ -14,16 +14,11 @@ const { programmeFullName } = require('../utils/programmeFullName')
 
 const { getProgramCurriculum } = require('../ladok/ladokApi')
 
-const {
-  fillStoreWithQueryParams,
-  fetchAndFillProgrammeDetails,
-  fetchAndFillStudyProgrammeVersion,
-} = require('../stores/programmeStoreSSR')
+const { fillStoreWithQueryParams, fetchAndFillProgrammeDetails } = require('../stores/programmeStoreSSR')
 
-function _setErrorMissingAdmission(applicationStore, statusCode) {
-  if (statusCode === 404) {
-    applicationStore.setMissingAdmission()
-  }
+function _setErrorMissingAdmission(applicationStore) {
+  // TODO: Handle the errors for syllabuses in a better way and investigate how we can use status codes.
+  applicationStore.setMissingAdmission()
   return
 }
 
@@ -48,18 +43,16 @@ function _compareCurriculum(a, b) {
  */
 async function _fetchAndFillCurriculumByStudyYear(options, storeId) {
   const { applicationStore, lang, programmeCode, studyYear, term } = options
-  const { studyProgrammeId, statusCode } = await fetchAndFillStudyProgrammeVersion({ ...options, storeId })
-  if (!studyProgrammeId) {
-    _setErrorMissingAdmission(applicationStore, statusCode)
-    return
-  } // react NotFound
-
   let curriculumData
 
   const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
 
   try {
     curriculumData = await getProgramCurriculum(programmeCode, convertedSemester, lang)
+    if (!curriculumData) {
+      _setErrorMissingAdmission(applicationStore)
+      return
+    }
   } catch (error) {
     applicationStore.setStatusCode(503)
     return

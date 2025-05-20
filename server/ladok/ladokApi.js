@@ -17,13 +17,21 @@ async function getProgramVersion(programCode, semester, lang) {
 
 async function getProgramCurriculum(programCode, semester, lang) {
   const client = createApiClient(serverConfig.ladokMellanlagerApi)
-  const programCurriculums = await client.getProgramCurriculum(programCode, semester, lang)
+  const programCurriculum = await client.getProgramCurriculum(programCode, semester, lang)
 
-  return programCurriculums
+  return programCurriculum
+}
+
+async function getProgramSyllabus(programCode, semester, lang) {
+  const client = createApiClient(serverConfig.ladokMellanlagerApi)
+  const programSyllabus = await client.getProgramSyllabus(programCode, semester, lang)
+
+  return programSyllabus
 }
 
 module.exports = {
   searchCourses,
   getProgramCurriculum,
   getProgramVersion,
+  getProgramSyllabus,
 }
