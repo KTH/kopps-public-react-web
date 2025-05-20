@@ -130,7 +130,7 @@ async function fetchAndFillStudyProgrammeVersion({ applicationStore, lang, progr
       return
     }
   } catch (error) {
-    applicationStore.setStatusCode(500)
+    applicationStore.setStatusCode(404)
     return
   }
   if (
