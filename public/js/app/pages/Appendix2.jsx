@@ -10,7 +10,7 @@ import { formatLongTerm } from '../../../../domain/term'
 
 import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'
-import KoppsData from '../components/KoppsData'
+import LadokData from '../components/LadokData'
 import Sidebar from '../components/Sidebar'
 
 function Specializations() {
@@ -25,7 +25,7 @@ function Specializations() {
       <div key={`div-${heading}`} className="page-break-inside">
         <h2 key={heading}>{heading}</h2>
         {description ? (
-          <KoppsData key={`kopps-data-${heading}`} html={description} />
+          <LadokData key={`ladok-data-${heading}`} html={description} />
         ) : (
           <p key="empty" className="font-italic">
             {t('programme_appendix2_empty_description')}
