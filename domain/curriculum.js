@@ -24,7 +24,7 @@ function curriculumInfo({ programmeTermYear = {}, curriculum }) {
   let isCommon = true
 
   let supplementaryInformation
-  let conditionallyELectiveCoursesInformation
+  let conditionallyElectiveCoursesInformation
   const participations = {}
   const isFirstSpec = false
 
@@ -48,7 +48,7 @@ function curriculumInfo({ programmeTermYear = {}, curriculum }) {
       hasInfo = true
     } else if (Array.isArray(curriculumStudyYear.courses)) {
       supplementaryInformation = curriculumStudyYear.supplementaryInfo
-      conditionallyELectiveCoursesInformation = curriculumStudyYear.conditionallyElectiveCoursesInfo
+      conditionallyElectiveCoursesInformation = curriculumStudyYear.conditionallyElectiveCoursesInfo
       for (const course of curriculumStudyYear.courses) {
         if (!participations[course.Valvillkor]) participations[course.Valvillkor] = []
 
@@ -76,8 +76,10 @@ function curriculumInfo({ programmeTermYear = {}, curriculum }) {
           term,
           creditsPerPeriod,
         })
+      }
 
-        participations[course.Valvillkor].sort((a, b) => {
+      for (const valvillkor in participations) {
+        participations[valvillkor].sort((a, b) => {
           if (!a.term && !b.term) return 0
           if (!a.term) return 1 // 'a' is undefined → goes after 'b'
           if (!b.term) return -1 // 'b' is undefined → goes after 'a'
@@ -95,7 +97,7 @@ function curriculumInfo({ programmeTermYear = {}, curriculum }) {
     isCommon,
     participations,
     supplementaryInformation,
-    conditionallyELectiveCoursesInformation,
+    conditionallyElectiveCoursesInformation,
     htmlCourses,
     isFirstSpec,
     hasInfo,

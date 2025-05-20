@@ -292,7 +292,7 @@ const curriculumInfo = PropTypes.shape({
   specializationName: PropTypes.string,
   isCommon: PropTypes.bool,
   supplementaryInformation: PropTypes.string,
-  conditionallyELectiveCoursesInformation: PropTypes.string,
+  conditionallyElectiveCoursesInformation: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types
   participations: PropTypes.object,
   isFirstSpec: PropTypes.bool,
