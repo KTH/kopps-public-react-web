@@ -7,37 +7,21 @@ import { useStore } from '../mobx'
 
 import translate from '../../../../domain/translate'
 import { formatLongTerm } from '../../../../domain/term'
-import { formatISODate } from '../../../../domain/date'
 
 import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'
-import KoppsData from '../components/KoppsData'
+import LadokData from '../components/LadokData'
 import Sidebar from '../components/Sidebar'
-
-function EligibilityDates() {
-  const { language, studyProgramme } = useStore()
-  const t = translate(language)
-  const { approvedAt, changedAt } = studyProgramme
-  return (
-    <p>
-      {`${t('programme_objectives_changed')}: ${formatISODate(changedAt, language)}`}
-      <br />
-      {`${t('programme_objectives_approved')}: ${formatISODate(approvedAt, language)}`}
-      <br />
-    </p>
-  )
-}
 
 function EligibilityContent() {
   const { studyProgramme } = useStore()
-  const { eligibility } = studyProgramme
-  return <KoppsData html={eligibility} />
+  const { behorighetOchUrval: eligibility } = studyProgramme
+  return <LadokData html={eligibility} />
 }
 
 function ArticleContent() {
   return (
     <Article>
-      <EligibilityDates />
       <EligibilityContent />
     </Article>
   )
