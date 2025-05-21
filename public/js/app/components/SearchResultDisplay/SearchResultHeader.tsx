@@ -3,13 +3,14 @@ import './style.scss'
 import { useStore } from '../../mobx'
 import { SearchResultHeaderParams, VIEW } from './types'
 import i18n from '../../../../../i18n'
-import { STATUS } from '../../hooks/searchUseAsync'
+import { STATUS } from '../../hooks/types/UseCourseSearchTypes'
 
 const SearchResultHeader: React.FC<SearchResultHeaderParams> = ({ resultsLength, searchStatus, view, setView }) => {
   const { language, languageIndex } = useStore()
 
   const { searchLoading, toggleButton } = i18n.messages[languageIndex].generalSearch
 
+  // TODO Benni switch to list view if there are many results?
   const handleChangeResultView = (current: string) => {
     switch (view) {
       case VIEW.table:
@@ -29,6 +30,7 @@ const SearchResultHeader: React.FC<SearchResultHeaderParams> = ({ resultsLength,
       {searchStatus === STATUS.resolved && (
         <>
           <p>
+            {/* TODO benni fix language */}
             {language === 'en' ? `Your search returned ` : `Din sökning gav `}
             <b>{resultsLength}</b>
             {language === 'en' ? ` result(s).` : ` resultat.`}

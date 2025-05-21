@@ -1,53 +1,70 @@
 import React, { useEffect, useReducer, Dispatch } from 'react'
-import { Action, ERROR_ASYNC, STATUS, State } from './types/UseCourseSearchTypes'
+import { Action, ERROR_ASYNC, ResultType, STATUS, SearchResponse, State } from './types/UseCourseSearchTypes'
+import { SearchErrorCode } from '@kth/om-kursen-ladok-client'
 
-function asyncReducer<T>(state: State<T>, action: Action<T>): State<T> {
+function asyncReducer<T>(state: State, action: Action): State {
   switch (action.type) {
     case 'pending':
-      return { status: STATUS.pending, data: null, error: null }
+      return { status: STATUS.pending, searchData: null, error: null }
     case 'resolved':
-      return { status: STATUS.resolved, data: action.data, error: null }
+      return { status: STATUS.resolved, searchData: action.data, error: null }
     case 'overflow':
-      return { status: STATUS.overflow, data: null, error: ERROR_ASYNC.overflow }
+      return { status: STATUS.overflow, searchData: null, error: ERROR_ASYNC.overflow }
     case 'noQueryProvided':
-      return { status: STATUS.noQueryProvided, data: null, error: ERROR_ASYNC.noQueryProvided }
+      return { status: STATUS.noQueryProvided, searchData: null, error: ERROR_ASYNC.noQueryProvided }
     case 'noHits':
-      return { status: STATUS.noHits, data: null, error: ERROR_ASYNC.noHits }
+      return { status: STATUS.noHits, searchData: null, error: ERROR_ASYNC.noHits }
     case 'rejected':
-      return { status: STATUS.rejected, data: null, error: action.error }
+      return { status: STATUS.rejected, searchData: null, error: ERROR_ASYNC.rejected }
     default:
-      throw new Error(`Unhandled action type: ${(action as Action<T>).type}`)
+      throw new Error(`Unhandled action type: ${(action as Action).type}`)
   }
 }
 
-const overflowDispatch = (dispatch: Dispatch<Action<any>>) => dispatch({ type: 'overflow' })
-const noHitsDispatch = (dispatch: Dispatch<Action<any>>) => dispatch({ type: 'noHits' })
-const noQueryProvidedDispatch = (dispatch: Dispatch<Action<any>>) => dispatch({ type: 'noQueryProvided' })
+const noHitsDispatch = (dispatch: Dispatch<Action>) => dispatch({ type: 'noHits' })
 
-function useCourseSearch<T>(asyncCallback: () => Promise<T>, initialState?: Partial<State<T>>): State<T> {
-  const [state, dispatch] = useReducer<React.Reducer<State<T>, Action<T>>>(asyncReducer, {
+const errorDispatch = (errorCode: string, dispatch: Dispatch<Action>) => {
+  switch (errorCode) {
+    case SearchErrorCode.OVERFLOW:
+      dispatch({ type: 'overflow' })
+      break
+    case SearchErrorCode.NO_RESTRICTIONS:
+      dispatch({ type: 'noQueryProvided' })
+      break
+
+    default:
+      console.error(errorCode) // TODO Benni fix logging
+      dispatch({ type: 'rejected' })
+      break
+  }
+}
+
+function useCourseSearch(asyncCallback: () => Promise<SearchResponse>, initialState?: Partial<State>): State {
+  const [state, dispatch] = useReducer<React.Reducer<State, Action>>(asyncReducer, {
     status: STATUS.idle,
-    data: null,
+    searchData: {
+      results: [],
+      type: ResultType.VERSION,
+    },
     error: null,
     ...initialState,
-  } as State<T>)
+  })
 
   useEffect(() => {
     const promise = asyncCallback()
     if (!promise) return
     dispatch({ type: 'pending' })
     promise.then(
-      data => {
-        const { searchHits, errorCode } = data as any
-        if (errorCode && errorCode === 'search-error-overflow') overflowDispatch(dispatch)
-        else if (errorCode) dispatch({ type: 'rejected', error: errorCode })
-        else if (searchHits && searchHits.length === 0) noHitsDispatch(dispatch)
-        else if (!searchHits && typeof data === 'string' && data.includes('ERROR-courseSearch-'))
-          dispatch({ type: 'rejected', error: data })
-        else if (!searchHits || data === 'No query restriction was specified') noQueryProvidedDispatch(dispatch)
-        else dispatch({ type: 'resolved', data })
+      response => {
+        const { searchData, errorCode } = response as SearchResponse
+        if (errorCode) errorDispatch(errorCode, dispatch)
+        else if (searchData.results && searchData.results.length === 0) noHitsDispatch(dispatch)
+        // else if (!searchHits && typeof data === 'string' && data.includes('ERROR-courseSearch-'))
+        //   // TODO Benni Fix this ERROR-courseSearch- searchApi.ts
+        //   dispatch({ type: 'rejected', error: data })
+        else dispatch({ type: 'resolved', data: response.searchData })
       },
-      error => dispatch({ type: 'rejected', error: ERROR_ASYNC.rejected })
+      () => dispatch({ type: 'rejected' })
     )
   }, [asyncCallback])
 

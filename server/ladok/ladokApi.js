@@ -3,9 +3,15 @@
 const { createApiClient } = require('@kth/om-kursen-ladok-client')
 const serverConfig = require('../configuration').server
 
-async function searchCourses(pattern, lang) {
+async function searchCourseInstances(pattern, lang) {
   const client = createApiClient(serverConfig.ladokMellanlagerApi)
-  const courses = await client.searchCourses(pattern, lang)
+  const courses = await client.Search.searchCourses(pattern, lang)
+  return courses
+}
+
+async function searchCourseVersions(pattern, lang) {
+  const client = createApiClient(serverConfig.ladokMellanlagerApi)
+  const courses = await client.Search.searchCourseVersions(pattern, lang)
   return courses
 }
 
@@ -28,7 +34,8 @@ async function getProgramStructure(programCode, lang) {
 }
 
 module.exports = {
-  searchCourses,
+  searchCourseInstances,
+  searchCourseVersions,
   getProgramStructure,
   getActiveProgramInstance,
   getProgramVersion,
