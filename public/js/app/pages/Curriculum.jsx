@@ -8,7 +8,7 @@ import { Link, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 import Alert from '../components-shared/Alert'
 import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'
-import KoppsData from '../components/KoppsData'
+import LadokData from '../components/LadokData'
 
 import { useStore } from '../mobx'
 
@@ -50,9 +50,9 @@ function CourseTableRows({ participations }) {
   const { language } = useStore()
 
   return participations.map(participation => {
-    const { course, applicationCodes, term, creditsPerPeriod } = participation
+    const { course, applicationCode, term, creditsPerPeriod } = participation
 
-    const { courseCode, title, formattedCredits, comment, status } = course
+    const { courseCode, title, formattedCredits, status } = course
     const currentTerm = getCurrentTerm()
     const courseNameCellData = (
       <>
@@ -61,14 +61,13 @@ function CourseTableRows({ participations }) {
         ) : (
           `${courseCode} ${title}`
         )}
-        {comment && <b className="course-comment">{comment}</b>}
       </>
     )
     const applicationCodeCellData =
-      applicationCodes.length &&
+      applicationCode &&
       currentTerm <= term &&
       (status?.code === LadokStatusCode.Started || status?.code === LadokStatusCode.Complete)
-        ? applicationCodes.join(', ')
+        ? applicationCode
         : ''
     return (
       <CourseTableRow
@@ -120,10 +119,19 @@ function CourseTable({ curriculumInfo, participations, electiveCondition }) {
 function Courses({ curriculumInfo }) {
   const { language } = useStore()
   const t = translate(language)
-  const { code, participations: allParticipations } = curriculumInfo
+  const { code, participations: allParticipations, htmlCourses } = curriculumInfo
+
+  if (htmlCourses) {
+    return (
+      <div className="curriculum-html-content">
+        <LadokData html={htmlCourses} />
+      </div>
+    )
+  }
+
   return (
     <>
-      <KoppsData html={curriculumInfo.supplementaryInformation} />
+      <LadokData html={curriculumInfo.supplementaryInformation} />
       {ELECTIVE_CONDITIONS.map(electiveCondition => {
         const participations = allParticipations[electiveCondition] || []
         return (
@@ -132,7 +140,7 @@ function Courses({ curriculumInfo }) {
               {/* Information about conditionally elective courses for this study year, only if there are such courses to display */}
               {electiveCondition === 'VV' && (
                 <div className="conditionallyElectiveInfo">
-                  <KoppsData html={curriculumInfo.conditionallyELectiveCoursesInformation} />
+                  <LadokData html={curriculumInfo.conditionallyElectiveCoursesInformation} />
                 </div>
               )}
               {code ? (
@@ -284,7 +292,7 @@ const curriculumInfo = PropTypes.shape({
   specializationName: PropTypes.string,
   isCommon: PropTypes.bool,
   supplementaryInformation: PropTypes.string,
-  conditionallyELectiveCoursesInformation: PropTypes.string,
+  conditionallyElectiveCoursesInformation: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types
   participations: PropTypes.object,
   isFirstSpec: PropTypes.bool,

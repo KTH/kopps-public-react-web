@@ -1,3 +1,4 @@
+// TODO: investigate if we still need this data or not after 1st of June 2025
 module.exports = {
   detailedInformation: {
     course: {

@@ -22,7 +22,7 @@ const applicationStores = [
         coursesPerDepartment: '/student/kurser/kurser-per-avdelning',
         departmentCourses: '/student/kurser/avdelning/:departmentCode/kurser/',
       },
-      markHtmlFromKopps: true,
+      markHtmlFromLadok: true,
       env: 'dev',
     },
     setBrowserConfig: function setBrowserConfig(config) {
@@ -538,7 +538,7 @@ const applicationStores = [
         coursesPerDepartment: '/student/kurser/kurser-per-avdelning',
         departmentCourses: '/student/kurser/avdelning/:departmentCode/kurser/',
       },
-      markHtmlFromKopps: true,
+      markHtmlFromLadok: true,
       env: 'dev',
     },
     setBrowserConfig: function setBrowserConfig(config) {
@@ -3522,7 +3522,7 @@ const applicationStores = [
         coursesPerDepartment: '/student/kurser/kurser-per-avdelning',
         departmentCourses: '/student/kurser/avdelning/:departmentCode/kurser/',
       },
-      markHtmlFromKopps: true,
+      markHtmlFromLadok: true,
       env: 'dev',
     },
     setBrowserConfig: function setBrowserConfig(config) {

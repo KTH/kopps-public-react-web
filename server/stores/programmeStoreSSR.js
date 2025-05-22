@@ -2,7 +2,7 @@ const log = require('@kth/log')
 
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const koppsApi = require('../kopps/koppsApi')
-const { getProgramStructure, getProgramVersion, getActiveProgramInstance } = require('../ladok/ladokApi')
+const { getProgramCurriculum, getProgramVersion } = require('../ladok/ladokApi')
 const { parseTerm } = require('../../domain/term')
 
 /**
@@ -54,6 +54,13 @@ async function fetchAndFillProgrammeDetails({ applicationStore, term, lang, prog
   try {
     const { programInstans, statusCode } = await getProgramVersion(programmeCode, convertedSemester, lang)
 
+    if (!programInstans) {
+      return {
+        programmeName: programmeCode,
+        approvedStudyProgrammeTerms: [],
+      }
+    }
+
     programDetails = {
       title: programInstans?.benamning,
       lengthInStudyYears: programInstans?.lengthInStudyYears,
@@ -70,7 +77,10 @@ async function fetchAndFillProgrammeDetails({ applicationStore, term, lang, prog
   } catch (error) {
     applicationStore.setStatusCode(503)
     log.debug('Failed to fetch from Ladok api, programmeCode:', programmeCode)
-    return
+    return {
+      programmeName: programmeCode,
+      approvedStudyProgrammeTerms: [],
+    }
   }
 
   log.info('Successfully fetched programme from KOPPs API, programmeCode:', programmeCode)
@@ -137,19 +147,35 @@ async function fetchAndFillStudyProgrammeVersion({ applicationStore, lang, progr
  * @param {array} curriculums
  */
 
-function _parseCurriculumsAndFillStoreFromStructure(applicationStore, curriculums) {
+function _parseCurriculumsAndFillStore(applicationStore, curriculums) {
   curriculums.forEach(curriculum => {
-    if (curriculum.programmeSpecialization) {
+    if (
+      curriculum.programmeSpecialization &&
+      Array.isArray(curriculum.studyYears) &&
+      curriculum.studyYears.some(studyYear => studyYear.courses?.length > 0)
+    ) {
       // Specialization
       const { programmeSpecialization, studyYears } = curriculum
-      const { programmeSpecializationCode: code, title } = programmeSpecialization
-
+      const { programmeSpecializationCode: code, title, description } = programmeSpecialization
       applicationStore.addSpecialization({
         code,
         title,
+        description,
         studyYears: studyYears.reduce((years, studyYear) => {
           if (studyYear.courses.length) {
             years.push(studyYear.yearNumber)
+          }
+
+          if (studyYear.supplementaryInfo) {
+            applicationStore.addSupplementaryInfo(studyYear.supplementaryInfo, studyYear.yearNumber, code)
+          }
+
+          if (studyYear.conditionallyElectiveCoursesInfo) {
+            applicationStore.addConditionallyElectiveCoursesInfo(
+              studyYear.conditionallyElectiveCoursesInfo,
+              studyYear.yearNumber,
+              code
+            )
           }
 
           studyYear.courses.forEach(course => {
@@ -183,8 +209,25 @@ function _parseCurriculumsAndFillStoreFromStructure(applicationStore, curriculum
       // Common
       const { studyYears } = curriculum
       studyYears.forEach(studyYear => {
-        if (studyYear.courses.length) {
+        if (typeof studyYear.courses === 'string') {
+          applicationStore.addHtmlStudyYear(studyYear.courses, studyYear.yearNumber)
+          return
+        }
+
+        if (studyYear.courses.length || studyYear.supplementaryInfo || studyYear.conditionallyElectiveCoursesInfo) {
           applicationStore.addStudyYear(studyYear.yearNumber)
+        }
+
+        if (studyYear.supplementaryInfo) {
+          applicationStore.addSupplementaryInfo(studyYear.supplementaryInfo, studyYear.yearNumber, 'Common')
+        }
+
+        if (studyYear.conditionallyElectiveCoursesInfo) {
+          applicationStore.addConditionallyElectiveCoursesInfo(
+            studyYear.conditionallyElectiveCoursesInfo,
+            studyYear.yearNumber,
+            'Common'
+          )
         }
 
         studyYear.courses.forEach(course => {
@@ -249,27 +292,16 @@ async function fetchAndFillCurriculumList(options) {
   const { applicationStore, programmeCode, term, lang } = options
 
   let curriculumData
-  let tillfalleUid
 
   const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
 
   try {
-    const programInstance = await getActiveProgramInstance(programmeCode, convertedSemester, lang)
-    const { uid } = programInstance
-    tillfalleUid = uid
+    curriculumData = await getProgramCurriculum(programmeCode, convertedSemester, lang)
   } catch (error) {
-    log.error('Error in fetching getActiveProgramInstance!')
+    applicationStore.setStatusCode(503)
+    return
   }
-
-  if (tillfalleUid) {
-    try {
-      curriculumData = await getProgramStructure(tillfalleUid, lang)
-    } catch (error) {
-      applicationStore.setStatusCode(503)
-      return
-    }
-    _parseCurriculumsAndFillStoreFromStructure(applicationStore, curriculumData)
-  } else return
+  _parseCurriculumsAndFillStore(applicationStore, curriculumData)
 }
 
 /**
@@ -283,24 +315,15 @@ async function fetchAndFillCurriculumList(options) {
 async function fetchAndFillSpecializations(options) {
   const { applicationStore, programmeCode, term, lang } = options
   let curriculumData
-  let tillfalleUid
 
   const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
 
   try {
-    const programInstance = await getActiveProgramInstance(programmeCode, convertedSemester, lang)
-    const { uid } = programInstance
-    tillfalleUid = uid
-  } catch (error) {}
-
-  if (tillfalleUid) {
-    try {
-      curriculumData = await getProgramStructure(tillfalleUid, lang)
-    } catch (error) {
-      applicationStore.setStatusCode(503)
-      return
-    }
-  } else return
+    curriculumData = await getProgramCurriculum(programmeCode, convertedSemester, lang)
+  } catch (error) {
+    applicationStore.setStatusCode(503)
+    return
+  }
 
   const specializations = _parseSpecializations(curriculumData)
   applicationStore.setSpecializations(specializations)
