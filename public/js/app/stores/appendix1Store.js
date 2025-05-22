@@ -5,6 +5,17 @@ function addHtmlStudyYear(html, studyYear) {
   this.htmlStudyYears[studyYear] = html
 }
 
+function addFreeTexts(texts, code, studyYear) {
+  if (!this.freeTexts[code]) {
+    this.freeTexts[code] = {}
+  }
+  if (!this.freeTexts[code][studyYear]) {
+    this.freeTexts[code][studyYear] = []
+  }
+
+  this.freeTexts[code][studyYear].push(...texts)
+}
+
 function addElectiveConditionCourse(course, electiveCondition, studyYear, code) {
   if (!this.studyYearCourses[code]) {
     this.studyYearCourses[code] = { [studyYear]: {} }
@@ -135,6 +146,15 @@ function createAppendix1Store() {
      * @param {number} studyYear
      */
     addHtmlStudyYear,
+
+    freeTexts: {},
+    /**
+     * @method
+     * @param {Fritext[]} texts
+     * @param {string} code
+     * @param {number} studyYear
+     */
+    addFreeTexts,
   }
   return appendix1Store
 }

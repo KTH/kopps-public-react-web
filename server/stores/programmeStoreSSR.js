@@ -183,6 +183,8 @@ function _parseCurriculumsAndFillStore(applicationStore, curriculums) {
             )
           }
 
+          applicationStore.addFreeTexts(studyYear.freeTexts, code, studyYear.yearNumber)
+
           studyYear.courses.forEach(course => {
             const {
               kod: courseCode,
@@ -234,6 +236,8 @@ function _parseCurriculumsAndFillStore(applicationStore, curriculums) {
             'Common'
           )
         }
+
+        applicationStore.addFreeTexts(studyYear.freeTexts, 'Common', studyYear.yearNumber)
 
         studyYear.courses.forEach(course => {
           const {

@@ -165,6 +165,7 @@ const messages = {
       R: 'Rekommenderade',
       V: 'Valfria',
     },
+    free_texts_header: 'Kommentar till kurslistan',
     pdf_error: {
       heading: 'Något har gått fel - Prova att ladda om sidan',
       error:

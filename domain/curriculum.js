@@ -25,6 +25,7 @@ function curriculumInfo({ programmeTermYear = {}, curriculum }) {
 
   let supplementaryInformation
   let conditionallyElectiveCoursesInformation
+  let freeTexts
   const participations = {}
   const isFirstSpec = false
 
@@ -49,6 +50,7 @@ function curriculumInfo({ programmeTermYear = {}, curriculum }) {
     } else if (Array.isArray(curriculumStudyYear.courses)) {
       supplementaryInformation = curriculumStudyYear.supplementaryInfo
       conditionallyElectiveCoursesInformation = curriculumStudyYear.conditionallyElectiveCoursesInfo
+      freeTexts = curriculumStudyYear.freeTexts
       for (const course of curriculumStudyYear.courses) {
         if (!participations[course.Valvillkor]) participations[course.Valvillkor] = []
 
@@ -101,6 +103,7 @@ function curriculumInfo({ programmeTermYear = {}, curriculum }) {
     htmlCourses,
     isFirstSpec,
     hasInfo,
+    freeTexts,
   }
 }
 
