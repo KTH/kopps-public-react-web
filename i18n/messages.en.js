@@ -169,6 +169,7 @@ const messages = {
       R: 'Recommended',
       V: 'Optional',
     },
+    free_texts_header: 'Comment to course list',
     pdf_error: {
       heading: 'Something has gone wrong - Try to reload the page',
       error:

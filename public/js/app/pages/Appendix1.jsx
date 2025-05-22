@@ -155,6 +155,31 @@ ConditionallyElectiveCoursesInfo.propTypes = {
   code: PropTypes.string.isRequired,
 }
 
+function FreeTexts({ studyYear, code }) {
+  const { language, freeTexts } = useStore()
+  const t = translate(language)
+
+  const texts = freeTexts?.[code]?.[studyYear] || []
+
+  if (!texts.length) return null
+
+  return (
+    <>
+      <h4 id={`heading-free-texts-${code}-${studyYear}`}>{t('free_texts_header')}</h4>
+      <ul>
+        {texts.map((textObj, index) => (
+          <li key={textObj.FritextUID || index}>{textObj.Text}</li>
+        ))}
+      </ul>
+    </>
+  )
+}
+
+FreeTexts.propTypes = {
+  studyYear: PropTypes.number.isRequired,
+  code: PropTypes.string.isRequired,
+}
+
 function StudyYear({ studyYear, code }) {
   const { language } = useStore()
   const t = translate(language)
@@ -175,6 +200,7 @@ function StudyYear({ studyYear, code }) {
       </div>
       <SupplementaryInfo studyYear={studyYear} code={code} />
       <ConditionallyElectiveCoursesInfo studyYear={studyYear} code={code} />
+      <FreeTexts studyYear={studyYear} code={code} />
     </Fragment>
   )
 }
