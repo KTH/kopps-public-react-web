@@ -10,9 +10,6 @@ const LASPERIOD_INDEX = {
   P5: 5,
 }
 
-const calculateProgramYear = (programFirstYear, programNthYear) =>
-  Math.abs(programNthYear) - 1 + Math.abs(programFirstYear)
-
 /**
  * @param {object} options.programmeTermYear
  * @param {object} options.curriculum
