@@ -35,10 +35,18 @@ async function getProgramSyllabus(programCode, semester, lang) {
   return programSyllabus
 }
 
+async function getSchoolsList(lang, deprecated = false) {
+  const client = createApiClient(serverConfig.ladokMellanlagerApi)
+  const departmentList = await client.Support.createDepartmentList(lang, deprecated)
+
+  return departmentList
+}
+
 module.exports = {
   searchCourseInstances,
   searchCourseVersions,
   getProgramCurriculum,
   getProgramVersion,
   getProgramSyllabus,
+  getSchoolsList,
 }
