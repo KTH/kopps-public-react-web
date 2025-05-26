@@ -1,8 +1,7 @@
 const log = require('@kth/log')
 
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
-const koppsApi = require('../kopps/koppsApi')
-const { getProgramCurriculum, getProgramVersion } = require('../ladok/ladokApi')
+const { getProgramCurriculum, getProgramVersion, getProgramSyllabus } = require('../ladok/ladokApi')
 const { parseTerm } = require('../../domain/term')
 
 /**
@@ -121,11 +120,19 @@ async function fetchAndFillProgrammeDetails({ applicationStore, term, lang, prog
  * @returns {object}
  */
 async function fetchAndFillStudyProgrammeVersion({ applicationStore, lang, programmeCode, term, storeId }) {
-  const { studyProgramme, statusCode } = await koppsApi.getStudyProgrammeVersion(programmeCode, term, lang)
+  let studyProgramme
 
-  applicationStore.setStatusCode(statusCode)
-  if (statusCode !== 200) return { statusCode } // react NotFound
-
+  const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
+  try {
+    studyProgramme = await getProgramSyllabus(programmeCode, convertedSemester, lang)
+    if (!studyProgramme) {
+      applicationStore.setStatusCode(404)
+      return
+    }
+  } catch (error) {
+    applicationStore.setStatusCode(404)
+    return
+  }
   if (
     storeId === 'eligibility' ||
     storeId === 'extent' ||
@@ -135,9 +142,7 @@ async function fetchAndFillStudyProgrammeVersion({ applicationStore, lang, progr
   ) {
     applicationStore.setStudyProgramme(studyProgramme)
   }
-  const { id: studyProgrammeId } = studyProgramme
-
-  return { studyProgrammeId, statusCode }
+  return studyProgramme
 }
 
 /**

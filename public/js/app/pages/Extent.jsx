@@ -7,37 +7,21 @@ import { useStore } from '../mobx'
 
 import translate from '../../../../domain/translate'
 import { formatLongTerm } from '../../../../domain/term'
-import { formatISODate } from '../../../../domain/date'
 
 import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'
-import KoppsData from '../components/KoppsData'
+import LadokData from '../components/LadokData'
 import Sidebar from '../components/Sidebar'
-
-function ExtentDates() {
-  const { language, studyProgramme } = useStore()
-  const t = translate(language)
-  const { approvedAt, changedAt } = studyProgramme
-  return (
-    <p>
-      {`${t('programme_objectives_changed')}: ${formatISODate(changedAt, language)}`}
-      <br />
-      {`${t('programme_objectives_approved')}: ${formatISODate(approvedAt, language)}`}
-      <br />
-    </p>
-  )
-}
 
 function ExtentContent() {
   const { studyProgramme } = useStore()
-  const { extent } = studyProgramme
-  return <KoppsData html={extent} />
+  const { utbildningensOmfattningOchInnehall: extent } = studyProgramme
+  return <LadokData html={extent} />
 }
 
 function ArticleContent() {
   return (
     <Article>
-      <ExtentDates />
       <ExtentContent />
     </Article>
   )
