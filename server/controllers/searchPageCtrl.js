@@ -7,7 +7,7 @@ const i18n = require('../../i18n')
 
 // eslint-disable-next-line no-unused-vars
 const koppsApi = require('../kopps/koppsApi')
-const { searchCourseInstances, searchCourseVersions } = require('../ladok/ladokApi')
+const { searchCourseInstances, searchCourseVersions, getSchoolsList } = require('../ladok/ladokApi')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 
 const { createBreadcrumbs, createThirdCycleBreadcrumbs } = require('../utils/breadcrumbUtil')
@@ -35,7 +35,7 @@ async function renderSearchPage(
     const { createStore, getCompressedStoreCode, renderStaticPage } = getServerSideFunctions()
     const applicationStore = createStore(storeId)
 
-    await _fillApplicationStoreWithAllSchools({ applicationStore, lang })
+    await _fillApplicationStoreWithAllLadokSchools({ applicationStore, lang })
 
     applicationStore.setLanguage(lang)
     applicationStore.setBrowserConfig(browserConfig, serverConfig.hostUrl)
@@ -170,27 +170,13 @@ async function performCourseSearch(req, res, next) {
   }
 }
 
-async function _fillApplicationStoreWithAllSchools({ applicationStore, lang }) {
-  applicationStore.setLanguage(lang)
-  applicationStore.setBrowserConfig(browserConfig, serverConfig.hostUrl)
-
-  const listForActiveCourses = true
-  const params = {
-    departmentCriteria: koppsApi.DEPARTMENT_CRITERIA.HAS_COURSES,
-    listForActiveCourses,
-    lang,
-  }
-  const { schoolsWithDepartments } = await koppsApi.listSchoolsWithDepartments(params)
-  const { currentSchoolsWithDepartments, deprecatedSchoolsWithDepartments } = filterOutDeprecatedSchools(
-    schoolsWithDepartments,
-    lang
-  )
-  deprecatedSchoolsWithDepartments.sort(compareSchools)
-  currentSchoolsWithDepartments.sort(compareSchools)
+const _fillApplicationStoreWithAllLadokSchools = async ({ applicationStore, lang }) => {
+  const [currentSchoolsWithDepartments, deprecatedSchoolsWithDepartments] = await Promise.all([
+    getSchoolsList(lang),
+    getSchoolsList(lang, true),
+  ])
   applicationStore.setCurrentSchoolsWithDepartments(currentSchoolsWithDepartments)
   applicationStore.setDeprecatedSchoolsWithDepartments(deprecatedSchoolsWithDepartments)
-  schoolsWithDepartments.sort(compareSchools)
-  applicationStore.setSchoolsWithDepartments(schoolsWithDepartments)
 }
 
 module.exports = {
