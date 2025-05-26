@@ -119,7 +119,7 @@ function CourseTable({ curriculumInfo, participations, electiveCondition }) {
 function Courses({ curriculumInfo }) {
   const { language } = useStore()
   const t = translate(language)
-  const { code, participations: allParticipations, htmlCourses } = curriculumInfo
+  const { code, participations: allParticipations, htmlCourses, freeTexts } = curriculumInfo
 
   if (htmlCourses) {
     return (
@@ -161,6 +161,12 @@ function Courses({ curriculumInfo }) {
           )
         )
       })}
+      <h3 id={`heading-free-texts`}>{t('free_texts_header')}</h3>
+      <ul>
+        {freeTexts.map((textObj, index) => (
+          <li key={textObj.FritextUID || index}>{textObj.Text}</li>
+        ))}
+      </ul>
     </>
   )
 }
