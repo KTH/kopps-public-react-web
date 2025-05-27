@@ -122,6 +122,7 @@ async function performCourseSearch(req, res, next) {
     avvecklad: query.showOptions?.includes('showCancelled') ? 'true' : undefined,
     startPeriod: query.semesters ?? undefined,
     utbildningsniva: query.eduLevel ?? undefined,
+    onlyMHU: query.showOptions?.includes('onlyMHU') ? 'true' : undefined,
   }
 
   try {
