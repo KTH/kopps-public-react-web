@@ -1,90 +1,13 @@
 const { isSpringTerm, splitTerm, termConstants } = require('./term')
 const { academicYearStartAndEnd } = require('./academicYear')
 
-function _compareParticipations(a, b) {
-  let aFirstIndex = Number.MAX_SAFE_INTEGER
-  for (let index = 0; index < a.creditsPerPeriod.length; index++) {
-    const credit = a.creditsPerPeriod[index]
-    if (credit > 0) {
-      aFirstIndex = index
-      break
-    }
-  }
-  let bFirstIndex = Number.MAX_SAFE_INTEGER
-  for (let index = 0; index < b.creditsPerPeriod.length; index++) {
-    const credit = b.creditsPerPeriod[index]
-    if (credit > 0) {
-      bFirstIndex = index
-      break
-    }
-  }
-  if (aFirstIndex < bFirstIndex) return -1
-  if (aFirstIndex > bFirstIndex) return 1
-
-  const aLastIndex = a.creditsPerPeriod.reduce((lastIndex, credit, index) => (credit > 0 ? index : lastIndex), 0)
-  const bLastIndex = b.creditsPerPeriod.reduce((lastIndex, credit, index) => (credit > 0 ? index : lastIndex), 0)
-  if (aLastIndex < bLastIndex) return -1
-  if (aLastIndex > bLastIndex) return 1
-  return 0
-}
-
-function _term(yearTerms) {
-  if (Array.isArray(yearTerms) && yearTerms.length) {
-    return yearTerms[0].term
-  }
-  return ''
-}
-/**
- * @param {array} yearTerms
- * @returns {array}
- */
-function _creditsPerPeriod(yearTerms) {
-  const mergedCreditsPerPeriod = []
-  yearTerms.forEach(yearTerm => {
-    const { creditsPerPeriod } = yearTerm
-
-    creditsPerPeriod.forEach((credits, index) => {
-      if (!mergedCreditsPerPeriod[index]) {
-        mergedCreditsPerPeriod[index] = credits
-      }
-    })
-  })
-  return mergedCreditsPerPeriod
-}
-
-const calculateProgramYear = (programFirstYear, programNthYear) =>
-  Math.abs(programNthYear) - 1 + Math.abs(programFirstYear)
-
-/**
- * @param {string} programStartTerm
- * @param {array} courseRoundTerms
- * @param {string} programNthYear // 1,2,3,4,5
- * @returns {array}
- */
-
-function filterCourseRoundsForNthYear(courseRoundTerms, programStartTerm, programNthYear) {
-  if (!programStartTerm || !programNthYear || !courseRoundTerms) return []
-  const [programFirstYear, programStartSeason] = splitTerm(programStartTerm)
-
-  const programYear = calculateProgramYear(programFirstYear, programNthYear)
-  const { startYear: startAcademicYear, endYear: endAcademicYear } = academicYearStartAndEnd(
-    `${programYear}${programStartSeason}`
-  )
-
-  let expectedStudyTerms
-  if (isSpringTerm(programStartTerm))
-    expectedStudyTerms = [
-      Math.abs(`${startAcademicYear}${termConstants.SPRING_TERM_NUMBER}`),
-      Math.abs(`${startAcademicYear}${termConstants.AUTUMN_TERM_NUMBER}`),
-    ]
-  else
-    expectedStudyTerms = [
-      Math.abs(`${startAcademicYear}${termConstants.AUTUMN_TERM_NUMBER}`),
-      Math.abs(`${endAcademicYear}${termConstants.SPRING_TERM_NUMBER}`),
-    ]
-
-  const yearCourseRoundTerms = courseRoundTerms.filter(({ term }) => expectedStudyTerms.includes(Math.abs(term)))
-  return yearCourseRoundTerms
+const LASPERIOD_INDEX = {
+  P0: 0,
+  P1: 1,
+  P2: 2,
+  P3: 3,
+  P4: 4,
+  P5: 5,
 }
 
 /**
@@ -98,12 +21,13 @@ function curriculumInfo({ programmeTermYear = {}, curriculum }) {
   let isCommon = true
 
   let supplementaryInformation
-  let conditionallyELectiveCoursesInformation
+  let conditionallyElectiveCoursesInformation
+  let freeTexts
   const participations = {}
   const isFirstSpec = false
 
   const { programmeSpecialization, studyYears } = curriculum
-  const { programStartTerm, studyYear } = programmeTermYear
+  const { studyYear } = programmeTermYear
 
   if (programmeSpecialization) {
     code = programmeSpecialization.programmeSpecializationCode
@@ -113,40 +37,70 @@ function curriculumInfo({ programmeTermYear = {}, curriculum }) {
 
   const [curriculumStudyYear] = studyYears.filter(s => Math.abs(s.yearNumber) === Math.abs(studyYear))
 
+  let hasInfo = false
+  let htmlCourses = undefined
+
   if (curriculumStudyYear) {
-    supplementaryInformation = curriculumStudyYear.supplementaryInfo
-    conditionallyELectiveCoursesInformation = curriculumStudyYear.conditionallyElectiveCoursesInfo
+    if (typeof curriculumStudyYear.courses === 'string') {
+      htmlCourses = curriculumStudyYear.courses
+      hasInfo = true
+    } else if (Array.isArray(curriculumStudyYear.courses)) {
+      supplementaryInformation = curriculumStudyYear.supplementaryInfo
+      conditionallyElectiveCoursesInformation = curriculumStudyYear.conditionallyElectiveCoursesInfo
+      freeTexts = curriculumStudyYear.freeTexts
+      for (const course of curriculumStudyYear.courses) {
+        if (!participations[course.Valvillkor]) participations[course.Valvillkor] = []
 
-    for (const course of curriculumStudyYear.courses) {
-      if (!participations[course.electiveCondition]) participations[course.electiveCondition] = []
-      const round = curriculum.courseRounds.find(courseRound => courseRound.courseCode === course.courseCode) || {}
+        const term = course?.startperiod?.inDigits
 
-      const { applicationCodes = [], courseRoundTerms = [] } = round
+        const creditsPerPeriod = [0, 0, 0, 0, 0, 0]
+        course.Tillfallesperioder?.forEach(period => {
+          period.Lasperiodsfordelning?.forEach(lasperiod => {
+            const periodIndex = LASPERIOD_INDEX[lasperiod.Lasperiodskod] || 0
+            creditsPerPeriod[periodIndex] += lasperiod.Omfattningsvarde
+          })
+        })
 
-      const courseRoundsForNthYear = filterCourseRoundsForNthYear(courseRoundTerms, programStartTerm, studyYear)
+        participations[course.Valvillkor].push({
+          course: {
+            courseCode: course.kod,
+            title: course.benamning,
+            credits: course.omfattning?.number,
+            formattedCredits: course.omfattning?.formattedWithUnit,
+            educationalLevel: course.utbildningstyp?.level?.name,
+            electiveCondition: course.Valvillkor,
+            status: course.status,
+          },
+          applicationCode: course.tillfalleskod, // A course instance in Ladok can have only one tillfalleskod
+          term,
+          creditsPerPeriod,
+        })
+      }
 
-      const term = _term(courseRoundsForNthYear) // ???
-      participations[course.electiveCondition].push({
-        course,
-        applicationCodes,
-        term,
-        creditsPerPeriod: _creditsPerPeriod(courseRoundsForNthYear),
-      })
-      participations[course.electiveCondition].sort(_compareParticipations)
+      for (const valvillkor in participations) {
+        participations[valvillkor].sort((a, b) => {
+          if (!a.term && !b.term) return 0
+          if (!a.term) return 1 // 'a' is undefined → goes after 'b'
+          if (!b.term) return -1 // 'b' is undefined → goes after 'a'
+          return a.term.localeCompare(b.term)
+        })
+      }
+
+      hasInfo = Object.keys(participations).length !== 0
     }
   }
-
-  const hasInfo = Object.keys(participations).length !== 0 || !!supplementaryInformation
 
   return {
     code,
     specializationName,
     isCommon,
-    supplementaryInformation,
-    conditionallyELectiveCoursesInformation,
     participations,
+    supplementaryInformation,
+    conditionallyElectiveCoursesInformation,
+    htmlCourses,
     isFirstSpec,
     hasInfo,
+    freeTexts,
   }
 }
 
@@ -165,6 +119,5 @@ const ELECTIVE_CONDITIONS = ['ALL', 'O', 'VV', 'R', 'V']
 module.exports = {
   curriculumInfo,
   setFirstSpec,
-  filterCourseRoundsForNthYear,
   ELECTIVE_CONDITIONS,
 }

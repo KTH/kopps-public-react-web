@@ -8,7 +8,7 @@ import { Link, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 import Alert from '../components-shared/Alert'
 import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'
-import KoppsData from '../components/KoppsData'
+import LadokData from '../components/LadokData'
 
 import { useStore } from '../mobx'
 
@@ -19,7 +19,7 @@ import { formatAcademicYear, calculateStartTerm } from '../../../../domain/acade
 import { ELECTIVE_CONDITIONS } from '../../../../domain/curriculum'
 import { ORDINARY_PERIODS } from '../../../../domain/periods'
 import { courseLink, programSyllabusLink, programmeWebLink } from '../util/links'
-import { translateCreditUnitAbbr } from '../util/translateCreditUnitAbbr'
+import { LadokStatusCode } from '@kth/om-kursen-ladok-client'
 
 function CourseTablePeriodCols({ language, creditsPerPeriod, courseCode }) {
   return ORDINARY_PERIODS.map(period => {
@@ -34,20 +34,13 @@ function CourseTablePeriodCols({ language, creditsPerPeriod, courseCode }) {
   })
 }
 
-function CourseTableRow({
-  courseCode,
-  courseNameCellData,
-  applicationCodeCellData,
-  credits,
-  creditUnitAbbr,
-  creditsPerPeriod,
-}) {
+function CourseTableRow({ courseCode, courseNameCellData, applicationCodeCellData, credits, creditsPerPeriod }) {
   const { language } = useStore()
   return (
     <tr>
       <td>{courseNameCellData}</td>
       <td className="text-center">{applicationCodeCellData}</td>
-      <td className="text-right credits">{`${formatCredits(language, credits)} ${creditUnitAbbr}`}</td>
+      <td className="text-right credits">{credits}</td>
       <CourseTablePeriodCols language={language} creditsPerPeriod={creditsPerPeriod} courseCode={courseCode} />
     </tr>
   )
@@ -57,26 +50,32 @@ function CourseTableRows({ participations }) {
   const { language } = useStore()
 
   return participations.map(participation => {
-    const { course, applicationCodes, term, creditsPerPeriod } = participation
+    const { course, applicationCode, term, creditsPerPeriod } = participation
 
-    const { courseCode, title, credits, creditUnitAbbr, comment } = course
-    const translatedCreditUnitAbbr = translateCreditUnitAbbr(language, creditUnitAbbr)
+    const { courseCode, title, formattedCredits, status } = course
     const currentTerm = getCurrentTerm()
     const courseNameCellData = (
       <>
-        <a href={courseLink(courseCode, language, { term })}>{`${courseCode} ${title}`}</a>
-        {comment && <b className="course-comment">{comment}</b>}
+        {term ? (
+          <a href={courseLink(courseCode, language, { term })}>{`${courseCode} ${title}`}</a>
+        ) : (
+          `${courseCode} ${title}`
+        )}
       </>
     )
-    const applicationCodeCellData = currentTerm <= term ? applicationCodes.join(', ') : ''
+    const applicationCodeCellData =
+      applicationCode &&
+      currentTerm <= term &&
+      (status?.code === LadokStatusCode.Started || status?.code === LadokStatusCode.Complete)
+        ? applicationCode
+        : ''
     return (
       <CourseTableRow
         key={courseCode}
         courseCode={courseCode}
         courseNameCellData={courseNameCellData}
         applicationCodeCellData={applicationCodeCellData}
-        credits={credits}
-        creditUnitAbbr={translatedCreditUnitAbbr}
+        credits={formattedCredits}
         creditsPerPeriod={creditsPerPeriod}
       />
     )
@@ -120,10 +119,19 @@ function CourseTable({ curriculumInfo, participations, electiveCondition }) {
 function Courses({ curriculumInfo }) {
   const { language } = useStore()
   const t = translate(language)
-  const { code, participations: allParticipations } = curriculumInfo
+  const { code, participations: allParticipations, htmlCourses, freeTexts } = curriculumInfo
+
+  if (htmlCourses) {
+    return (
+      <div className="curriculum-html-content">
+        <LadokData html={htmlCourses} />
+      </div>
+    )
+  }
+
   return (
     <>
-      <KoppsData html={curriculumInfo.supplementaryInformation} />
+      <LadokData html={curriculumInfo.supplementaryInformation} />
       {ELECTIVE_CONDITIONS.map(electiveCondition => {
         const participations = allParticipations[electiveCondition] || []
         return (
@@ -132,7 +140,7 @@ function Courses({ curriculumInfo }) {
               {/* Information about conditionally elective courses for this study year, only if there are such courses to display */}
               {electiveCondition === 'VV' && (
                 <div className="conditionallyElectiveInfo">
-                  <KoppsData html={curriculumInfo.conditionallyELectiveCoursesInformation} />
+                  <LadokData html={curriculumInfo.conditionallyElectiveCoursesInformation} />
                 </div>
               )}
               {code ? (
@@ -153,6 +161,12 @@ function Courses({ curriculumInfo }) {
           )
         )
       })}
+      <h3 id={`heading-free-texts`}>{t('free_texts_header')}</h3>
+      <ul>
+        {freeTexts.map((textObj, index) => (
+          <li key={textObj.FritextUID || index}>{textObj.Text}</li>
+        ))}
+      </ul>
     </>
   )
 }
@@ -284,7 +298,7 @@ const curriculumInfo = PropTypes.shape({
   specializationName: PropTypes.string,
   isCommon: PropTypes.bool,
   supplementaryInformation: PropTypes.string,
-  conditionallyELectiveCoursesInformation: PropTypes.string,
+  conditionallyElectiveCoursesInformation: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types
   participations: PropTypes.object,
   isFirstSpec: PropTypes.bool,
@@ -304,7 +318,6 @@ CourseTableRow.propTypes = {
   courseNameCellData: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   applicationCodeCellData: PropTypes.string.isRequired,
   credits: PropTypes.number.isRequired,
-  creditUnitAbbr: PropTypes.string.isRequired,
   creditsPerPeriod: PropTypes.arrayOf(PropTypes.number).isRequired,
 }
 

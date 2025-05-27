@@ -48,28 +48,28 @@ describe('useLangHrefUpdate', () => {
     const courseSearchParams = {
       pattern: 'test',
       department: 'A',
-      period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
-      eduLevel: ['0', '1', '2', '3'],
+      semesters: ['HT2024', 'VT2025', 'HT2025'],
+      eduLevel: ['99', '1', '2', '3'],
       showOptions: ['onlyEnglish', 'onlyMHU', 'showCancelled'],
     }
 
     render(<TestComponent courseSearchParams={courseSearchParams} />)
 
     expect(mockLanguageAnchor?.href).toContain(
-      '?pattern=test&department=A&period=20242%3A1&period=20242%3A2&period=2025%3Asummer&period=20251%3A3&period=20251%3A4&period=20252%3A1&period=20252%3A2&eduLevel=0&eduLevel=1&eduLevel=2&eduLevel=3&showOptions=onlyEnglish&showOptions=onlyMHU&showOptions=showCancelled&l=se'
+      '?pattern=test&department=A&semesters=HT2024&semesters=VT2025&semesters=HT2025&eduLevel=99&eduLevel=1&eduLevel=2&eduLevel=3&showOptions=onlyEnglish&showOptions=onlyMHU&showOptions=showCancelled&l=se'
     )
   })
 
   test('filters out empty, null, or undefined search params', () => {
     const courseSearchParams = {
       pattern: '',
-      eduLevel: ['0'],
+      eduLevel: ['99'],
       department: undefined as any,
-      period: [] as any,
+      semesters: [] as any,
     }
 
     render(<TestComponent courseSearchParams={courseSearchParams} />)
 
-    expect(mockLanguageAnchor?.href).toContain('?eduLevel=0&l=se')
+    expect(mockLanguageAnchor?.href).toContain('?eduLevel=99&l=se')
   })
 })

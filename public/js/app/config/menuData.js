@@ -5,7 +5,7 @@ const { throwErrorIfNoBrowserConfig } = require('../util/errors')
 function getMenuData(applicationStore) {
   const { language, browserConfig } = applicationStore
   throwErrorIfNoBrowserConfig(browserConfig)
-  const { programmesList, courseSearch, department, studyHandbook, newSearchPage } = browserConfig.proxyPrefixPath
+  const { programmesList, department, studyHandbook, searchPage } = browserConfig.proxyPrefixPath
   const t = translate(language)
   return {
     ariaLabel: t('main_menu_aria_label'),
@@ -27,18 +27,8 @@ function getMenuData(applicationStore) {
           id: 'searchAllCourses',
           type: 'leaf',
           text: t('main_menu_search_all'),
-          url: pageLink(courseSearch),
+          url: pageLink(searchPage),
         },
-        ...(applicationStore.isNewSearch
-          ? [
-              {
-                id: 'searchAllCourses-new',
-                type: 'leaf',
-                text: t('main_menu_search_all_new'),
-                url: pageLink(newSearchPage),
-              },
-            ]
-          : []),
         {
           id: 'departmentsList',
           type: 'leaf',

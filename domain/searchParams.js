@@ -21,24 +21,24 @@ function _transformIfSummerOrEmptyPeriods(initialPeriods) {
 
 function _transformSearchParams(params) {
   const { eduLevel = [], pattern = '', showOptions = [], period = [], department = '' } = params
-  const koppsFormatParams = {
+  const formatParams = {
     educational_level: eduLevel.map(level => educationalLevel(level)), // ['RESEARCH', 'ADVANCED'],
     flag: showOptions.map(opt => getShowOptions(opt)), // Example: flag: [only_mhu, in_english_only, include_non_active]
     term_period: _transformIfSummerOrEmptyPeriods(period), // ['2018:2']
   }
-  if (pattern) koppsFormatParams.text_pattern = pattern
-  if (department) koppsFormatParams.department_prefix = department
+  if (pattern) formatParams.text_pattern = pattern
+  if (department) formatParams.department_prefix = department
 
-  return koppsFormatParams
+  return formatParams
 }
 
 function stringifyUrlParams(params) {
   return querystring.stringify(params)
 }
 
-function stringifyKoppsSearchParams(params) {
-  const koppsFormatParams = _transformSearchParams(params)
-  const paramsStr = stringifyUrlParams(koppsFormatParams)
+function stringifySearchParams(params) {
+  const formatParams = _transformSearchParams(params)
+  const paramsStr = stringifyUrlParams(formatParams)
   return paramsStr
 }
 
@@ -130,7 +130,7 @@ function _periodConfigForOneYear({ year, terms }, langIndex) {
           value,
         })
       }
-      const value = `${year}${term}:${periodNum}`
+      const value = `${term == 2 ? 'HT' : 'VT'}${year}:${periodNum}`
       const label = `${formatLongTerm(`${year}${term}`, language)} period ${periodNum}`
       return resultPeriodsConfig.push({ label, id: value, value })
     })
@@ -153,14 +153,34 @@ function _periodConfigByYearType(yearType, langIndex) {
   }
 }
 
+function _semestersConfig(langIndex) {
+  const { messages } = i18n.messages[langIndex]
+  const { semester } = messages
+  const relevantTerms = getRelevantTerms(2)
+  const yearsAndPeriod = _separateYearAndPeriod(relevantTerms)
+  const resultSemestersConfig = []
+  yearsAndPeriod.forEach(({ year, termNumber }) => {
+    const label = `${semester[termNumber]} ${year}`
+    const value = `${termNumber === '1' ? 'VT' : 'HT'}${year}`
+    resultSemestersConfig.push({
+      label,
+      id: value,
+      value,
+    })
+  })
+  return resultSemestersConfig
+}
+
 function getParamConfig(paramName, langIndex) {
   switch (paramName) {
     case 'eduLevel':
       return eduLevelConfig(langIndex)
     case 'currentYear':
-      return _periodConfigByYearType('currentYear', langIndex)
+      return _periodConfigByYearType('currentYear', langIndex, true)
     case 'nextYear':
-      return _periodConfigByYearType('nextYear', langIndex)
+      return _periodConfigByYearType('nextYear', langIndex, true)
+    case 'semesters':
+      return _semestersConfig(langIndex)
     case 'showOptions':
       return showOptionsConfig(langIndex)
     case 'onlyMHU':
@@ -177,6 +197,6 @@ function getParamConfig(paramName, langIndex) {
 
 module.exports = {
   getParamConfig,
-  stringifyKoppsSearchParams,
+  stringifySearchParams,
   stringifyUrlParams,
 }

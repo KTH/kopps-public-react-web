@@ -12,51 +12,13 @@ const { createProgrammeBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { programmeFullName } = require('../utils/programmeFullName')
 
-const {
-  fillStoreWithQueryParams,
-  fetchAndFillProgrammeDetails,
-  fetchAndFillStudyProgrammeVersion,
-} = require('../stores/programmeStoreSSR')
+const { getProgramCurriculum } = require('../ladok/ladokApi')
 
-/**
- *
- * @param {object} curriculum
- * @param {string} programmeCode
- * @param {string} term
- * @param {string} studyYear
- * @param {string} lang
- */
-async function _getCourseRounds(curriculum, programmeCode, term, studyYear, lang) {
-  const specializationCode = curriculum.programmeSpecialization
-    ? curriculum.programmeSpecialization.programmeSpecializationCode
-    : null
-  const academicYearStartTerm = calculateStartTerm(term, studyYear)
-  return koppsApi.listCourseRoundsInYearPlan({
-    programmeCode,
-    specializationCode,
-    academicYearStartTerm,
-    studyYearNumber: studyYear,
-    lang,
-  })
-}
+const { fillStoreWithQueryParams, fetchAndFillProgrammeDetails } = require('../stores/programmeStoreSSR')
 
-async function _addCourseRounds(curriculums, programmeCode, term, studyYear, lang) {
-  const curriculumsWithCourseRounds = []
-  await Promise.all(
-    curriculums.map(async curriculum => {
-      const courseRounds = await _getCourseRounds(curriculum, programmeCode, term, studyYear, lang)
-      const curriculumWithCourseRounds = curriculum
-      curriculumWithCourseRounds.courseRounds = courseRounds
-      curriculumsWithCourseRounds.push(curriculumWithCourseRounds)
-    })
-  )
-  return curriculumsWithCourseRounds
-}
-
-function _setErrorMissingAdmission(applicationStore, statusCode) {
-  if (statusCode === 404) {
-    applicationStore.setMissingAdmission()
-  }
+function _setErrorMissingAdmission(applicationStore) {
+  // TODO: Handle the errors for syllabuses in a better way and investigate how we can use status codes.
+  applicationStore.setMissingAdmission()
   return
 }
 
@@ -81,19 +43,26 @@ function _compareCurriculum(a, b) {
  */
 async function _fetchAndFillCurriculumByStudyYear(options, storeId) {
   const { applicationStore, lang, programmeCode, studyYear, term } = options
-  const { studyProgrammeId, statusCode } = await fetchAndFillStudyProgrammeVersion({ ...options, storeId })
-  if (!studyProgrammeId) {
-    _setErrorMissingAdmission(applicationStore, statusCode)
-    return
-  } // react NotFound
-  const { curriculums, statusCode: secondStatusCode } = await koppsApi.listCurriculums(studyProgrammeId, lang)
-  applicationStore.setStatusCode(secondStatusCode)
-  if (secondStatusCode !== 200) return // react NotFound
+  let curriculumData
 
-  const curriculumsWithCourseRounds = await _addCourseRounds(curriculums, programmeCode, term, studyYear, lang)
-  applicationStore.setCurriculums(curriculumsWithCourseRounds)
-  const curriculumInfos = curriculumsWithCourseRounds
-    .map(curriculum => curriculumInfo({ programmeTermYear: { programStartTerm: term, studyYear }, curriculum }))
+  const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
+
+  try {
+    curriculumData = await getProgramCurriculum(programmeCode, convertedSemester, lang)
+    if (!curriculumData) {
+      _setErrorMissingAdmission(applicationStore)
+      return
+    }
+  } catch (error) {
+    applicationStore.setStatusCode(503)
+    return
+  }
+
+  applicationStore.setCurriculums(curriculumData)
+  const curriculumInfos = curriculumData
+    .map(curriculum => {
+      return curriculumInfo({ programmeTermYear: { programStartTerm: term, studyYear }, curriculum })
+    })
     .filter(ci => ci.hasInfo)
   curriculumInfos.sort(_compareCurriculum)
   setFirstSpec(curriculumInfos)
@@ -134,6 +103,7 @@ async function getIndex(req, res, next) {
     const options = { applicationStore, lang, programmeCode, term, studyYear }
 
     log.info(`Starting to fill in application store ${storeId} on server side `, { programmeCode })
+
     const { programmeName } = await fetchAndFillProgrammeDetails(options, storeId)
 
     fillStoreWithQueryParams(options)

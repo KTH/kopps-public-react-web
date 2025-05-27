@@ -60,6 +60,9 @@ const messages = {
     course_name: 'Course name',
     course_educational_level: 'Educational level',
     course_educational_level_abbr: 'Edu. level',
+    course_language: 'Language',
+    course_campus: 'Campus',
+    course_pace: 'Pace',
 
     study_year: 'Study year',
 
@@ -92,10 +95,8 @@ const messages = {
     main_menu_page_example: 'Example',
     main_menu_shb: 'Studies before 07/08',
     main_menu_search_all: 'Search courses',
-    main_menu_search_all_new: 'Search courses (beta)',
     main_menu_third_cycle_studies: 'Doctoral studies (PhD)',
     main_menu_third_cycle_courses_search: 'Search third-cycle courses',
-    main_menu_third_cycle_courses_search_new: 'Search third-cycle courses (beta)',
 
     main_page_header_example: 'Example',
     main_page_article_lead_example:
@@ -168,6 +169,7 @@ const messages = {
       R: 'Recommended',
       V: 'Optional',
     },
+    free_texts_header: 'Comment to course list',
     pdf_error: {
       heading: 'Something has gone wrong - Try to reload the page',
       error:
@@ -193,7 +195,6 @@ const messages = {
     programme_programwebb_text: `Once you have registered on the first course in your programme you will find a link to your programme room in Canvas in the Personal meny.`,
     programme_programwebb_linktext: programmeCode => `Programme web ${programmeCode}`,
     programme_objectives: 'Programme objectives',
-    programme_objectives_changed: 'Last edit',
     programme_objectives_approved: 'Approved',
     programme_objectives_knowledge_and_understanding: 'Knowledge and understanding',
     programme_objectives_skills_and_abilities: 'Skills and abilities',
@@ -202,14 +203,11 @@ const messages = {
     programme_eligibility_and_selection: 'Eligibility and selection',
     programme_implementation: 'Implementation of the education',
     programme_structure: 'Structure of the education',
-    programme_implementation_courses_intro: 'The programme is course-based. Lists of courses are included in',
     appendix1: 'Appendix 1',
     appendix2: 'Appendix 2',
     programme_appendix1: 'Appendix 1: Course list',
     programme_appendix2: 'Appendix 2: Specialisations',
     programme_grading_system: 'Grading system',
-    programme_grading_system_intro:
-      'Courses in the first and the second cycle are graded on a scale from A to F. A-E are passing grades, A is the highest grade. The grades pass (P) and fail (F) are used for courses under certain circumstances.',
     programme_participation: 'Conditions for participation in the programme',
     programme_previous_studies: 'Recognition of previous academic studies',
     programme_studies_abroad: 'Studies abroad',
@@ -244,6 +242,7 @@ const messages = {
     leadIntro:
       'Find info on KTH courses: course syllabus, course memo, and course analyses. Search by course name or course code, you can also filter by semester and period. Which courses are included in a program can be found under Programme syllabuses.',
     eduLevel: 'Educational level:',
+    semesters: 'Course Start:',
     PREPARATORY: 'Pre-university level',
     BASIC: 'First cycle',
     ADVANCED: 'Second cycle',
@@ -279,10 +278,6 @@ const messages = {
       'You may select to show courses that are no longer offered or dormant at KTH (terminated courses). By default, these are not shown.',
     search_help_10:
       'If you have questions or feedback on the course search, please contact <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
-    beta_version_title: 'Want to try our new search function?',
-    beta_version_description:
-      'We have designed and developed a new search function for the Course and Program directory that you can test here!',
-    beta_version_link: 'Search courses (beta)',
   },
   thirdCycleSearchInstructions: {
     search_help_collapse_header: 'Instructions for searching',
@@ -294,10 +289,6 @@ const messages = {
     search_research_help_5: 'Courses that are no longer offered or dormant at KTH are not shown.',
     search_research_help_6:
       'You can filter on courses that deal with environment, environmental technology, or sustainable development.',
-    beta_version_title: 'Want to try our new search function?',
-    beta_version_description:
-      'We have designed and developed a new search function for the Course and Program directory that you can test here! You can and are welcome to leave feedback on what you think of the new search function!',
-    beta_version_link: 'Search third-cycle courses (beta)',
   },
   generalSearch: {
     collapseHeaderOtherSearchOptions: 'Filter your search choices',
@@ -337,20 +328,12 @@ const messages = {
   },
   searchAlarms: {
     errorUnknown: { text: 'An unknown error occurred - failed to retrieve course data' },
+    errorKodEllerBenamning: { text: 'Search input must be equal or more than 3 characters.' },
     errorEmpty: {
-      header: 'Your search returned no results',
-      help: 'For help, see the link below: Instructions for searching',
-    },
-    errorEmptyBeta: {
       header: 'Your search returned no results',
       // we don't have this link anymore so we should decide what we are going to show as a help text
     },
     errorOverflow: {
-      header: 'There were too many results',
-      text: 'There are too many courses that match your search critera. Please specify more characters/digits in the course name or course code (example of course code: SF1624)',
-      help: 'For help, see the link below: Instructions for searching',
-    },
-    errorOverflowBeta: {
       header: 'There were too many results',
       text: 'There are too many courses that match your search critera. Please specify more characters/digits in the course name or course code (example of course code: SF1624)',
       // we don't have this link anymore so we should decide what we are going to show as a help text

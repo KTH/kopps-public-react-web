@@ -1,8 +1,8 @@
 const log = require('@kth/log')
 
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
-const koppsApi = require('../kopps/koppsApi')
-const { programmeLink } = require('../../domain/links')
+const { getProgramCurriculum, getProgramVersion, getProgramSyllabus } = require('../ladok/ladokApi')
+const { parseTerm } = require('../../domain/term')
 
 /**
  * add props to a MobX-stores on server side
@@ -43,15 +43,44 @@ function fillBrowserConfigWithHostUrl({ applicationStore }) {
  * @param {string} storeId
  * @returns {object}
  */
-async function fetchAndFillProgrammeDetails({ applicationStore, lang, programmeCode }, storeId = '') {
+async function fetchAndFillProgrammeDetails({ applicationStore, term, lang, programmeCode }, storeId = '') {
   log.info('Fetching programme from KOPPs API, programmeCode:', programmeCode)
 
-  const { programme, statusCode } = await koppsApi.getProgramme(programmeCode, lang)
-  applicationStore.setStatusCode(statusCode)
-  if (statusCode !== 200 || !programme) {
-    log.debug('Failed to fetch from KOPPs api, programmeCode:', programmeCode)
-    return
-  } // react NotFound
+  let programDetails
+
+  const convertedSemester = term ? `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}` : undefined
+
+  try {
+    const { programInstans, statusCode } = await getProgramVersion(programmeCode, convertedSemester, lang)
+
+    if (!programInstans) {
+      return {
+        programmeName: programmeCode,
+        approvedStudyProgrammeTerms: [],
+      }
+    }
+
+    programDetails = {
+      title: programInstans?.benamning,
+      lengthInStudyYears: programInstans?.lengthInStudyYears,
+      creditUnitAbbr: programInstans?.creditUnitAbbr,
+      owningSchoolCode: programInstans?.organisation.name,
+      credits: programInstans?.omfattning?.number,
+      titleOtherLanguage: programInstans?.benamningOther,
+      educationalLevel: programInstans?.tilltradesniva?.name ?? programInstans?.utbildningstyp?.level?.name,
+      approvedStudyProgrammeTerms: programInstans?.approvedStudyProgrammeTerms,
+      lastAdmissionTerm: programInstans?.sistaAntagningstermin,
+      firstAdmissionTerm: parseTerm(programInstans?.firstAdmissionTerm),
+    }
+    applicationStore.setStatusCode(statusCode)
+  } catch (error) {
+    applicationStore.setStatusCode(503)
+    log.debug('Failed to fetch from Ladok api, programmeCode:', programmeCode)
+    return {
+      programmeName: programmeCode,
+      approvedStudyProgrammeTerms: [],
+    }
+  }
 
   log.info('Successfully fetched programme from KOPPs API, programmeCode:', programmeCode)
 
@@ -63,7 +92,7 @@ async function fetchAndFillProgrammeDetails({ applicationStore, lang, programmeC
     credits,
     titleOtherLanguage,
     educationalLevel,
-  } = programme
+  } = programDetails
   applicationStore.setProgrammeName(programmeName)
   applicationStore.setLengthInStudyYears(lengthInStudyYears)
   if (storeId === 'appendix1' || storeId === 'pdfStore') {
@@ -78,7 +107,7 @@ async function fetchAndFillProgrammeDetails({ applicationStore, lang, programmeC
     applicationStore.setEducationalLevel(educationalLevel)
   }
   // eslint-disable-next-line consistent-return
-  return { programmeName, ...programme }
+  return { programmeName, ...programDetails }
 }
 
 /**
@@ -91,13 +120,20 @@ async function fetchAndFillProgrammeDetails({ applicationStore, lang, programmeC
  * @returns {object}
  */
 async function fetchAndFillStudyProgrammeVersion({ applicationStore, lang, programmeCode, term, storeId }) {
-  const { studyProgramme, statusCode } = await koppsApi.getStudyProgrammeVersion(programmeCode, term, lang)
+  let studyProgramme
 
-  applicationStore.setStatusCode(statusCode)
-  if (statusCode !== 200) return { statusCode } // react NotFound
-
+  const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
+  try {
+    studyProgramme = await getProgramSyllabus(programmeCode, convertedSemester, lang)
+    if (!studyProgramme) {
+      applicationStore.setStatusCode(404)
+      return
+    }
+  } catch (error) {
+    applicationStore.setStatusCode(404)
+    return
+  }
   if (
-    storeId === 'appendix1' ||
     storeId === 'eligibility' ||
     storeId === 'extent' ||
     storeId === 'implementation' ||
@@ -106,9 +142,7 @@ async function fetchAndFillStudyProgrammeVersion({ applicationStore, lang, progr
   ) {
     applicationStore.setStudyProgramme(studyProgramme)
   }
-  const { id: studyProgrammeId } = studyProgramme
-
-  return { studyProgrammeId, statusCode }
+  return studyProgramme
 }
 
 /**
@@ -117,9 +151,14 @@ async function fetchAndFillStudyProgrammeVersion({ applicationStore, lang, progr
  * @param {object} applicationStore
  * @param {array} curriculums
  */
+
 function _parseCurriculumsAndFillStore(applicationStore, curriculums) {
   curriculums.forEach(curriculum => {
-    if (curriculum.programmeSpecialization) {
+    if (
+      curriculum.programmeSpecialization &&
+      Array.isArray(curriculum.studyYears) &&
+      curriculum.studyYears.some(studyYear => studyYear.courses?.length > 0)
+    ) {
       // Specialization
       const { programmeSpecialization, studyYears } = curriculum
       const { programmeSpecializationCode: code, title, description } = programmeSpecialization
@@ -131,9 +170,11 @@ function _parseCurriculumsAndFillStore(applicationStore, curriculums) {
           if (studyYear.courses.length) {
             years.push(studyYear.yearNumber)
           }
+
           if (studyYear.supplementaryInfo) {
             applicationStore.addSupplementaryInfo(studyYear.supplementaryInfo, studyYear.yearNumber, code)
           }
+
           if (studyYear.conditionallyElectiveCoursesInfo) {
             applicationStore.addConditionallyElectiveCoursesInfo(
               studyYear.conditionallyElectiveCoursesInfo,
@@ -141,24 +182,27 @@ function _parseCurriculumsAndFillStore(applicationStore, curriculums) {
               code
             )
           }
+
+          applicationStore.addFreeTexts(studyYear.freeTexts, code, studyYear.yearNumber)
+
           studyYear.courses.forEach(course => {
             const {
-              courseCode,
-              title: name,
-              comment,
-              credits,
-              creditUnitAbbr: creditAbbr,
-              educationalLevel: level,
-              electiveCondition,
+              kod: courseCode,
+              benamning: name,
+              omfattning: { number: credits, formattedWithUnit: formattedCredits },
+              utbildningstyp: {
+                level: { name: level },
+              },
+              Valvillkor: electiveCondition,
             } = course
+
             applicationStore.addElectiveConditionCourse(
               {
                 code: courseCode,
                 name,
-                comment,
                 credits,
-                creditAbbr,
-                level,
+                formattedCredits,
+                formattedLevel: level,
               },
               electiveCondition,
               studyYear.yearNumber,
@@ -172,12 +216,19 @@ function _parseCurriculumsAndFillStore(applicationStore, curriculums) {
       // Common
       const { studyYears } = curriculum
       studyYears.forEach(studyYear => {
+        if (typeof studyYear.courses === 'string') {
+          applicationStore.addHtmlStudyYear(studyYear.courses, studyYear.yearNumber)
+          return
+        }
+
         if (studyYear.courses.length || studyYear.supplementaryInfo || studyYear.conditionallyElectiveCoursesInfo) {
           applicationStore.addStudyYear(studyYear.yearNumber)
         }
+
         if (studyYear.supplementaryInfo) {
           applicationStore.addSupplementaryInfo(studyYear.supplementaryInfo, studyYear.yearNumber, 'Common')
         }
+
         if (studyYear.conditionallyElectiveCoursesInfo) {
           applicationStore.addConditionallyElectiveCoursesInfo(
             studyYear.conditionallyElectiveCoursesInfo,
@@ -185,24 +236,27 @@ function _parseCurriculumsAndFillStore(applicationStore, curriculums) {
             'Common'
           )
         }
+
+        applicationStore.addFreeTexts(studyYear.freeTexts, 'Common', studyYear.yearNumber)
+
         studyYear.courses.forEach(course => {
           const {
-            courseCode: code,
-            title: name,
-            comment,
-            credits,
-            creditUnitAbbr: creditAbbr,
-            educationalLevel: level,
-            electiveCondition,
+            kod: courseCode,
+            benamning: name,
+            omfattning: { number: credits, formattedWithUnit: formattedCredits },
+            utbildningstyp: {
+              level: { name: level },
+            },
+            Valvillkor: electiveCondition,
           } = course
+
           applicationStore.addElectiveConditionCourse(
             {
-              code,
+              code: courseCode,
               name,
-              comment,
               credits,
-              creditAbbr,
-              level,
+              formattedCredits,
+              formattedLevel: level,
             },
             electiveCondition,
             studyYear.yearNumber,
@@ -244,15 +298,19 @@ function _parseSpecializations(curriculums) {
  * @param {string} options.term
  */
 async function fetchAndFillCurriculumList(options) {
-  const { applicationStore, lang } = options
-  const { studyProgrammeId } = await fetchAndFillStudyProgrammeVersion({ ...options, storeId: 'appendix1' })
-  if (!studyProgrammeId) return
-  const { curriculums, statusCode: secondStatusCode } = await koppsApi.listCurriculums(studyProgrammeId, lang)
-  applicationStore.setStatusCode(secondStatusCode)
-  if (secondStatusCode !== 200) return // react NotFound
+  const { applicationStore, programmeCode, term, lang } = options
 
-  _parseCurriculumsAndFillStore(applicationStore, curriculums)
-  return
+  let curriculumData
+
+  const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
+
+  try {
+    curriculumData = await getProgramCurriculum(programmeCode, convertedSemester, lang)
+  } catch (error) {
+    applicationStore.setStatusCode(503)
+    return
+  }
+  _parseCurriculumsAndFillStore(applicationStore, curriculumData)
 }
 
 /**
@@ -264,14 +322,19 @@ async function fetchAndFillCurriculumList(options) {
  * @param {string} options.term
  */
 async function fetchAndFillSpecializations(options) {
-  const { applicationStore, lang } = options
-  const { studyProgrammeId } = await fetchAndFillStudyProgrammeVersion({ ...options, storeId: 'appendix2' })
-  if (!studyProgrammeId) return
-  const { curriculums, statusCode: secondStatusCode } = await koppsApi.listCurriculums(studyProgrammeId, lang)
-  applicationStore.setStatusCode(secondStatusCode)
-  if (secondStatusCode !== 200) return // react NotFound
+  const { applicationStore, programmeCode, term, lang } = options
+  let curriculumData
 
-  const specializations = _parseSpecializations(curriculums)
+  const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
+
+  try {
+    curriculumData = await getProgramCurriculum(programmeCode, convertedSemester, lang)
+  } catch (error) {
+    applicationStore.setStatusCode(503)
+    return
+  }
+
+  const specializations = _parseSpecializations(curriculumData)
   applicationStore.setSpecializations(specializations)
   return
 }

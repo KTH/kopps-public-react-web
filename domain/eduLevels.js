@@ -1,41 +1,28 @@
-// const { termConstants } = require('./term')
+const { EducationalLevelCode } = require('@kth/om-kursen-ladok-client')
 
-const PREPARATORY_EDU_LEVEL = 'PREPARATORY'
-const BASIC_EDU_LEVEL = 'BASIC'
-const ADVANCED_EDU_LEVEL = 'ADVANCED'
-const RESEARCH_EDU_LEVEL = 'RESEARCH'
+const LEVEL_MAP = {
+  [EducationalLevelCode.Preparatory]: 'PREPARATORY',
+  [EducationalLevelCode.Basic]: 'BASIC',
+  [EducationalLevelCode.Advanced]: 'ADVANCED',
+  [EducationalLevelCode.Research]: 'RESEARCH',
+}
 
-const CLIENT_EDU_LEVELS = ['0', '1', '2', '3']
+const CLIENT_EDU_LEVELS = Object.values(EducationalLevelCode)
 
-function educationalLevel(levelNumberAsStr) {
-  switch (levelNumberAsStr) {
-    /**
-     * Education preparing for university studies.
-     */
-    case '0':
-      return PREPARATORY_EDU_LEVEL
-    /**
-     * Studies at university.
-     */
-    case '1':
-      return BASIC_EDU_LEVEL
-    /**
-     * Doctoral studies.
-     */
-    case '2':
-      return ADVANCED_EDU_LEVEL
-    /**
-     * Post-doc studies.
-     */
-    case '3':
-      return RESEARCH_EDU_LEVEL
-    default: {
-      if (typeof levelNumberAsStr !== 'string')
-        throw new Error(`Check the type of level: ${levelNumberAsStr} has the type ${typeof levelNumberAsStr}`)
-
-      throw new Error(`Unknown education level number: ${levelNumberAsStr}. Allowed types: '0'-'3'`)
-    }
+function educationalLevel(levelCode) {
+  if (typeof levelCode !== 'string') {
+    throw new Error(`Invalid type for education level code: ${levelCode} (type: ${typeof levelCode})`)
   }
+
+  const level = LEVEL_MAP[levelCode]
+
+  if (!level) {
+    throw new Error(
+      `Unknown education level number: ${levelCode}. Allowed types: ${Object.values(EducationalLevelCode).join(' , ')}]`
+    )
+  }
+
+  return level
 }
 
 module.exports = {

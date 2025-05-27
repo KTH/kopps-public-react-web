@@ -6,8 +6,7 @@ function getThirdCycleMenuData(applicationStore) {
   const { language, browserConfig } = applicationStore
   throwErrorIfNoBrowserConfig(browserConfig)
 
-  const { thirdCycleSchoolsAndDepartments, thirdCycleCourseSearch, thirdCycleCourseSearchNew } =
-    browserConfig.proxyPrefixPath
+  const { thirdCycleSchoolsAndDepartments, thirdCycleCourseSearch } = browserConfig.proxyPrefixPath
   const t = translate(language)
   return {
     ariaLabel: t('main_menu_aria_label'),
@@ -31,16 +30,6 @@ function getThirdCycleMenuData(applicationStore) {
           text: t('main_menu_third_cycle_courses_search'),
           url: pageLink(thirdCycleCourseSearch, language),
         },
-        ...(applicationStore.isNewSearch
-          ? [
-              {
-                id: 'searchThirdCycleCoursesNew',
-                type: 'leaf',
-                text: t('main_menu_third_cycle_courses_search_new'),
-                url: pageLink(thirdCycleCourseSearchNew, language),
-              },
-            ]
-          : []),
       ],
     },
   }

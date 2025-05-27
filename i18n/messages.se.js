@@ -59,6 +59,9 @@ const messages = {
     course_name: 'Kursnamn',
     course_educational_level: 'Utbildningsnivå',
     course_educational_level_abbr: 'Utbildningsnivå',
+    course_language: 'Språk',
+    course_campus: 'Campus',
+    course_pace: 'Fart',
 
     study_year: 'Årskurs',
 
@@ -91,10 +94,8 @@ const messages = {
     main_menu_page_example: 'Exempel',
     main_menu_shb: 'Studier före 07/08',
     main_menu_search_all: 'Sök kurser',
-    main_menu_search_all_new: 'Sök kurser (beta)',
     main_menu_third_cycle_studies: 'Forskarutbildning',
     main_menu_third_cycle_courses_search: 'Sök forskarkurs',
-    main_menu_third_cycle_courses_search_new: 'Sök forskarkurs (beta)',
 
     main_page_header_example: 'Exempel',
     main_page_article_lead_example: '”Stora miljoner dag, har.”',
@@ -164,6 +165,7 @@ const messages = {
       R: 'Rekommenderade',
       V: 'Valfria',
     },
+    free_texts_header: 'Kommentar till kurslistan',
     pdf_error: {
       heading: 'Något har gått fel - Prova att ladda om sidan',
       error:
@@ -188,7 +190,6 @@ const messages = {
     programme_programwebb_text: `När du har registrerat dig på den första kursen i ditt program hittar du en länk till ditt programrum i Canvas i Personliga menyn.`,
     programme_programwebb_linktext: programmeCode => `Programwebb ${programmeCode}`,
     programme_objectives: 'Utbildningens mål',
-    programme_objectives_changed: 'Senast ändrad',
     programme_objectives_approved: 'Godkänd',
     programme_objectives_knowledge_and_understanding: 'Kunskap och förståelse',
     programme_objectives_skills_and_abilities: 'Färdigheter och förmågor',
@@ -197,14 +198,11 @@ const messages = {
     programme_eligibility_and_selection: 'Behörighet och urval',
     programme_implementation: 'Utbildningens genomförande',
     programme_structure: 'Utbildningens upplägg',
-    programme_implementation_courses_intro: 'Utbildningen sker i kursform. Kurslistor finns i',
     appendix1: 'Bilaga 1',
     appendix2: 'Bilaga 2',
     programme_appendix1: 'Bilaga 1: Kurslista',
     programme_appendix2: 'Bilaga 2: Inriktningar',
     programme_grading_system: 'Betygssystem',
-    programme_grading_system_intro:
-      'För kurser på KTH används en sjugradig målrelaterad betygsskala A-F som slutbetyg för kurser på grundnivå och avancerad nivå. A-E är godkända betyg med A som högsta betyg. Betygen godkänd (P) och underkänd (F) används som slutbetyg då särskilda skäl föreligger.',
     programme_participation: 'Villkor för deltagande i utbildningen',
     programme_previous_studies: 'Tillgodoräknanden',
     programme_studies_abroad: 'Utlandsstudier',
@@ -238,6 +236,7 @@ const messages = {
     leadIntro:
       'Här finns info om kurser på KTH: kursplan, kurs-PM och kursanalyser. Sök på kursnamn eller kurskod, du kan även filtrera på termin och läsperiod. Vilka kurser som ingår i ett program finns under Utbildningsplaner.',
     eduLevel: 'Utbildningsnivå:',
+    semesters: 'Kursstart:',
     PREPARATORY: 'Förberedande nivå',
     BASIC: 'Grundnivå',
     ADVANCED: 'Avancerad nivå',
@@ -271,10 +270,6 @@ const messages = {
       'Du kan välja att även visa kurser som ej längre ges på KTH. Standardinställning är att dessa inte visas.',
     search_help_10:
       'Om du har synpunkter eller frågor gällande kurssökningen, kontakta <a href="mailto:kopps@kth.se">kopps@kth.se</a>.',
-    beta_version_title: 'Vill du prova vår nya sökfunktion?',
-    beta_version_description:
-      'Vi har designat och utvecklat en ny sökfunktion för Kurs- och programkatalogen som du kan testa här!',
-    beta_version_link: 'Sök kurser (beta)',
   },
   thirdCycleSearchInstructions: {
     search_help_collapse_header: 'Få hjälp med sökningen',
@@ -285,10 +280,6 @@ const messages = {
       'Sökningen visar max 250 träffar. Får du för många träffar, försök att förfina sökvillkoren.',
     search_research_help_5: 'Forskarkurser som ej längre ges på KTH visas inte.',
     search_research_help_6: 'Du kan filtrera på kurser som behandlar miljö, miljöteknik eller hållbar utveckling.',
-    beta_version_title: 'Vill du prova vår nya sökfunktion?',
-    beta_version_description:
-      'Vi har designat och utvecklat en ny sökfunktion för Kurs- och programkatalogen som du kan testa här! Du kan och får gärna lämna feedback på vad du tycker om den nya sökfunktionen!',
-    beta_version_link: 'Sök forskarkurs (beta)',
   },
   generalSearch: {
     collapseHeaderOtherSearchOptions: 'Filtrera dina sökval',
@@ -328,20 +319,12 @@ const messages = {
   },
   searchAlarms: {
     errorUnknown: { text: 'Ett okänt fel inträffade - misslyckad hämtning av kursdata' },
+    errorKodEllerBenamning: { text: 'Sökinmatningen måste vara lika med eller större än 3 tecken.' },
     errorEmpty: {
-      header: 'Din sökning gav inga träffar.',
-      help: 'Mer hjälp hittar du i länken nedan: Få hjälp med sökningen',
-    },
-    errorEmptyBeta: {
       header: 'Din sökning gav inga träffar.',
       // we don't have this link anymore so we should decide what we are going to show as a help text
     },
     errorOverflow: {
-      header: 'Sökningen gav för många träffar',
-      text: 'Det finns för många kurser som matchar det du sökt på. Ange fler bokstäver/siffror i kursnamn eller kurskod (exempel på kurskod: SF1624).',
-      help: 'Mer hjälp hittar du i länken nedan: Få hjälp med sökningen',
-    },
-    errorOverflowBeta: {
       header: 'Sökningen gav för många träffar',
       text: 'Det finns för många kurser som matchar det du sökt på. Ange fler bokstäver/siffror i kursnamn eller kurskod (exempel på kurskod: SF1624).',
       // we don't have this link anymore so we should decide what we are going to show as a help text

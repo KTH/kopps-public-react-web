@@ -1,4 +1,22 @@
-function addElectiveConditionCourse(courses, electiveCondition, studyYear, code) {
+function addHtmlStudyYear(html, studyYear) {
+  if (!this.htmlStudyYears) {
+    this.htmlStudyYears = {}
+  }
+  this.htmlStudyYears[studyYear] = html
+}
+
+function addFreeTexts(texts, code, studyYear) {
+  if (!this.freeTexts[code]) {
+    this.freeTexts[code] = {}
+  }
+  if (!this.freeTexts[code][studyYear]) {
+    this.freeTexts[code][studyYear] = []
+  }
+
+  this.freeTexts[code][studyYear].push(...texts)
+}
+
+function addElectiveConditionCourse(course, electiveCondition, studyYear, code) {
   if (!this.studyYearCourses[code]) {
     this.studyYearCourses[code] = { [studyYear]: {} }
   }
@@ -8,7 +26,18 @@ function addElectiveConditionCourse(courses, electiveCondition, studyYear, code)
   if (!this.studyYearCourses[code][studyYear][electiveCondition]) {
     this.studyYearCourses[code][studyYear][electiveCondition] = []
   }
-  this.studyYearCourses[code][studyYear][electiveCondition].push(courses)
+
+  const existingCourses = this.studyYearCourses[code][studyYear][electiveCondition]
+  const alreadyExists = existingCourses.some(c => c.code === course.code)
+  /*
+    These lines has been added due to the fact that previously we were getting courses being included in a program from kopps
+    and in a in a separate step we were fetching course rounds for them to have more information for the courses. So we had unique courses (with more information regarding the course rounds).
+    But the the data from ladok contains course instances, and on that case we might have multiple
+    course instances for the same course version. (and here we will skip to add a course if it is already added)
+  */
+  if (!alreadyExists) {
+    this.studyYearCourses[code][studyYear][electiveCondition].push(course)
+  }
 }
 
 function addSupplementaryInfo(supplementaryInfo, studyYear, code) {
@@ -109,6 +138,23 @@ function createAppendix1Store() {
      * @param {{}} specialization
      */
     addSpecialization,
+
+    htmlStudyYears: {},
+    /**
+     * @method
+     * @param {string} html
+     * @param {number} studyYear
+     */
+    addHtmlStudyYear,
+
+    freeTexts: {},
+    /**
+     * @method
+     * @param {Fritext[]} texts
+     * @param {string} code
+     * @param {number} studyYear
+     */
+    addFreeTexts,
   }
   return appendix1Store
 }

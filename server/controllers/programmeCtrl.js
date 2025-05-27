@@ -6,7 +6,6 @@ const i18n = require('../../i18n')
 
 const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
-const { filterOutInvalidTerms } = require('../../domain/programmes')
 const { fillStoreWithQueryParams, fetchAndFillProgrammeDetails } = require('../stores/programmeStoreSSR')
 
 /**
@@ -27,14 +26,16 @@ function _metaTitleAndDescription(lang, programmeCode, programmeName) {
  * @returns {object}
  */
 async function _fetchSortAndFillProgrammeTerms({ applicationStore, lang, programmeCode }) {
-  const { approvedStudyProgrammeTerms, firstAdmissionTerm, lastAdmissionTerm, programmeName } =
-    await fetchAndFillProgrammeDetails({ applicationStore, lang, programmeCode })
+  const { programmeName, approvedStudyProgrammeTerms, lastAdmissionTerm } = await fetchAndFillProgrammeDetails({
+    applicationStore,
+    lang,
+    programmeCode,
+  })
 
-  const programmeTerms = filterOutInvalidTerms({ approvedStudyProgrammeTerms, firstAdmissionTerm, lastAdmissionTerm })
-  programmeTerms.sort().reverse()
+  approvedStudyProgrammeTerms.sort().reverse()
 
   applicationStore.setLastAdmissionTerm(lastAdmissionTerm)
-  applicationStore.setProgrammeTerms(programmeTerms)
+  applicationStore.setProgrammeTerms(approvedStudyProgrammeTerms)
   return { programmeName }
 }
 

@@ -3,7 +3,7 @@ const applicationStores = [
     browserConfig: {
       proxyPrefixPath: {
         uri: '/student/kurser',
-        courseSearch: '/student/kurser/sokkurs',
+        searchPage: '/student/kurser/sokkurs',
         courseSearchInternApi: '/student/kurser/intern-api/sok',
         department: '/student/kurser/org',
         programme: '/student/kurser/program',
@@ -22,7 +22,7 @@ const applicationStores = [
         coursesPerDepartment: '/student/kurser/kurser-per-avdelning',
         departmentCourses: '/student/kurser/avdelning/:departmentCode/kurser/',
       },
-      markHtmlFromKopps: true,
+      markHtmlFromLadok: true,
       env: 'dev',
     },
     setBrowserConfig: function setBrowserConfig(config) {
@@ -519,7 +519,7 @@ const applicationStores = [
     browserConfig: {
       proxyPrefixPath: {
         uri: '/student/kurser',
-        courseSearch: '/student/kurser/sokkurs',
+        searchPage: '/student/kurser/sokkurs',
         courseSearchInternApi: '/student/kurser/intern-api/sok',
         department: '/student/kurser/org',
         programme: '/student/kurser/program',
@@ -538,7 +538,7 @@ const applicationStores = [
         coursesPerDepartment: '/student/kurser/kurser-per-avdelning',
         departmentCourses: '/student/kurser/avdelning/:departmentCode/kurser/',
       },
-      markHtmlFromKopps: true,
+      markHtmlFromLadok: true,
       env: 'dev',
     },
     setBrowserConfig: function setBrowserConfig(config) {
@@ -3503,7 +3503,7 @@ const applicationStores = [
     browserConfig: {
       proxyPrefixPath: {
         uri: '/student/kurser',
-        courseSearch: '/student/kurser/sokkurs',
+        searchPage: '/student/kurser/sokkurs',
         courseSearchInternApi: '/student/kurser/intern-api/sok',
         department: '/student/kurser/org',
         programme: '/student/kurser/program',
@@ -3522,7 +3522,7 @@ const applicationStores = [
         coursesPerDepartment: '/student/kurser/kurser-per-avdelning',
         departmentCourses: '/student/kurser/avdelning/:departmentCode/kurser/',
       },
-      markHtmlFromKopps: true,
+      markHtmlFromLadok: true,
       env: 'dev',
     },
     setBrowserConfig: function setBrowserConfig(config) {
@@ -3563,8 +3563,8 @@ const applicationStores = [
         titleOtherLanguage: 'Tekniskt basår, termin 2, KTH Campus',
         firstAdmissionTerm: '20111',
         credits: 30,
+        formattedCredits: '30 fup',
         creditUnitLabel: 'Pre-education credits',
-        creditUnitAbbr: 'fup',
         educationalLevel: 'PREPARATORY',
         lengthInStudyYears: 1,
         owningSchoolCode: 'Kemi, bioteknologi och hälsa',
@@ -3599,7 +3599,7 @@ const applicationStores = [
               name: 'Mathematics for Technical Preparatory Year II',
               comment: undefined,
               credits: 12,
-              creditAbbr: 'fup',
+              formattedCredits: '12.0 fup',
               level: 'PREPARATORY',
             },
             {
@@ -3607,7 +3607,7 @@ const applicationStores = [
               name: 'Physics for Technical Preparatory Year II',
               comment: undefined,
               credits: 18,
-              creditAbbr: 'fup',
+              formattedCredits: '18.0 fup',
               level: 'PREPARATORY',
             },
           ],

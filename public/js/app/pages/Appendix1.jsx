@@ -13,15 +13,15 @@ import { ELECTIVE_CONDITIONS } from '../../../../domain/curriculum'
 
 import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'
-import KoppsData from '../components/KoppsData'
 import Sidebar from '../components/Sidebar'
 
 import { courseLink } from '../util/links'
+import LadokData from '../components/LadokData'
 
 function CourseListTableRow({ course }) {
   const { language } = useStore()
   const t = translate(language)
-  const { code, name, comment, credits, creditAbbr, level } = course
+  const { code, name, formattedCredits, formattedLevel, level } = course
 
   const courselink = courseLink(code, language)
   return (
@@ -31,10 +31,9 @@ function CourseListTableRow({ course }) {
       </td>
       <td className="name">
         <a href={courselink}>{name}</a>
-        {comment && <b className="course-comment">{comment}</b>}
       </td>
-      <td className="credits">{`${formatCredits(language, credits)} ${creditAbbr}`}</td>
-      <td className="level">{`${t('programme_edulevel')[level]}`}</td>
+      <td className="credits">{formattedCredits}</td>
+      <td className="level">{formattedLevel ? formattedLevel : `${t('programme_edulevel')[level]}`}</td>
     </tr>
   )
 }
@@ -42,10 +41,9 @@ function CourseListTableRow({ course }) {
 const courseType = PropTypes.shape({
   code: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  comment: PropTypes.oneOfType([PropTypes.string, undefined]).isRequired,
-  credits: PropTypes.number.isRequired,
-  creditAbbr: PropTypes.string.isRequired,
-  level: PropTypes.string.isRequired,
+  formattedCredits: PropTypes.string,
+  level: PropTypes.string,
+  formattedLevel: PropTypes.string,
 })
 
 CourseListTableRow.propTypes = {
@@ -128,7 +126,7 @@ function SupplementaryInfo({ studyYear, code }) {
     <>
       <div className="page-break-inside">
         <h4>{t('programme_supplementary_information')}</h4>
-        <KoppsData html={supplementaryInfo[code][studyYear]} />
+        <LadokData html={supplementaryInfo[code][studyYear]} />
       </div>
     </>
   ) : null
@@ -146,13 +144,38 @@ function ConditionallyElectiveCoursesInfo({ studyYear, code }) {
     <>
       <div className="conditionally-elective-course-info-container">
         <h4>{t('programme_conditionally_elective_courses_info')}</h4>
-        <KoppsData html={conditionallyElectiveCoursesInfo[code][studyYear]} />
+        <LadokData html={conditionallyElectiveCoursesInfo[code][studyYear]} />
       </div>
     </>
   ) : null
 }
 
 ConditionallyElectiveCoursesInfo.propTypes = {
+  studyYear: PropTypes.number.isRequired,
+  code: PropTypes.string.isRequired,
+}
+
+function FreeTexts({ studyYear, code }) {
+  const { language, freeTexts } = useStore()
+  const t = translate(language)
+
+  const texts = freeTexts?.[code]?.[studyYear] || []
+
+  if (!texts.length) return null
+
+  return (
+    <>
+      <h4 id={`heading-free-texts-${code}-${studyYear}`}>{t('free_texts_header')}</h4>
+      <ul>
+        {texts.map((textObj, index) => (
+          <li key={textObj.FritextUID || index}>{textObj.Text}</li>
+        ))}
+      </ul>
+    </>
+  )
+}
+
+FreeTexts.propTypes = {
   studyYear: PropTypes.number.isRequired,
   code: PropTypes.string.isRequired,
 }
@@ -177,6 +200,7 @@ function StudyYear({ studyYear, code }) {
       </div>
       <SupplementaryInfo studyYear={studyYear} code={code} />
       <ConditionallyElectiveCoursesInfo studyYear={studyYear} code={code} />
+      <FreeTexts studyYear={studyYear} code={code} />
     </Fragment>
   )
 }
@@ -218,12 +242,38 @@ function Specialisations() {
   )
 }
 
+function HtmlBasedCurriculums() {
+  const { language, htmlStudyYears } = useStore()
+
+  const t = translate(language)
+
+  if (!htmlStudyYears) return null
+
+  const studyYears = Object.entries(htmlStudyYears)
+
+  if (!studyYears?.length) return null
+
+  return (
+    <>
+      {studyYears.map(([year, html]) => (
+        <Fragment key={year}>
+          <h3>
+            {t('study_year')} {year}
+          </h3>
+          <LadokData html={html} />
+        </Fragment>
+      ))}
+    </>
+  )
+}
+
 export function Appendix1PDFExport() {
   return (
     <>
       <Row>
         <Col>
           <Article>
+            <HtmlBasedCurriculums />
             <CommonCourses />
             <Specialisations />
           </Article>
@@ -252,6 +302,7 @@ function Appendix1() {
       <Row>
         <Col>
           <Article>
+            <HtmlBasedCurriculums />
             <CommonCourses />
             <Specialisations />
           </Article>

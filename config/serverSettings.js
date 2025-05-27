@@ -46,6 +46,15 @@ module.exports = {
   // Kopps
   koppsApi: unpackKOPPSConfig('KOPPS_API_BASEURL', devKoppsApi),
 
+  ladokMellanlagerApi: {
+    clientId: getEnv('LADOK_AUTH_CLIENT_ID', null),
+    clientSecret: getEnv('LADOK_AUTH_CLIENT_SECRET', null),
+    tokenUrl: getEnv('LADOK_AUTH_TOKEN_URL', null),
+    scope: getEnv('LADOK_AUTH_SCOPE', null),
+    baseUrl: getEnv('LADOK_BASE_URL', null),
+    ocpApimSubscriptionKey: getEnv('LADOK_OCP_APIM_SUBSCRIPTION_KEY', null),
+  },
+
   // Service API's
   nodeApi: {
     // nodeApi: unpackNodeApiConfig('NODE_API_URI', devNodeApi),

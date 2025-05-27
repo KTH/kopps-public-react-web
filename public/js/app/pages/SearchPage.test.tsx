@@ -1,20 +1,13 @@
 import React from 'react'
 import { render, screen, fireEvent, waitFor, waitForElementToBeRemoved } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import NewSearchPage from './NewSearchPage'
+import SearchPage from './SearchPage'
 import { useStore } from '../mobx'
-import { koppsCourseSearch } from '../util/searchApi'
-import { TEST_API_ANSWER_RESOLVED } from '../components/mocks/mockKoppsCourseSearch'
+import { courseSearch } from '../util/searchApi'
 
-const periods = [
-  'Autumn 2024 period 1',
-  'Autumn 2024 period 2',
-  '2025 summer',
-  'Spring 2025 period 3',
-  'Spring 2025 period 4',
-  'Autumn 2025 period 1',
-  'Autumn 2025 period 2',
-]
+jest.mock('../util/searchApi')
+
+const periods = ['Autumn 2024', 'Spring 2025', 'Autumn 2025']
 const eduLevels = ['Pre-university level', 'First cycle', 'Second cycle', 'Third cycle']
 const showOptions = [
   'Courses taught in English',
@@ -50,7 +43,7 @@ jest.mock('../hooks/useLangHrefUpdate', () => ({
 
 const mockDate = new Date('2024-08-19 16:00')
 
-describe('<NewSearchPage />', () => {
+describe('<SearchPage />', () => {
   beforeAll(() => {
     jest.spyOn(global, 'Date').mockImplementation(() => mockDate)
     ;(useStore as jest.Mock).mockReturnValue({
@@ -72,19 +65,18 @@ describe('<NewSearchPage />', () => {
   test('should load search parameters from URL and call search API', async () => {
     mockSearchParams = new URLSearchParams()
 
-    // Add multiple values for the 'period' key
+    // Add multiple values for the 'semesters' key
     mockSearchParams.append('pattern', 'Math')
-    mockSearchParams.append('period', '20242:1')
-    mockSearchParams.append('period', '20242:2')
+    mockSearchParams.append('semesters', 'HT2024')
+    mockSearchParams.append('semesters', 'VT2024')
     mockSearchParams.append('eduLevel', '1')
     mockSearchParams.append('showOptions', 'onlyEnglish')
-    ;(koppsCourseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED))
 
-    render(<NewSearchPage searchMode="default" />)
+    render(<SearchPage searchMode="default" />)
 
-    expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+    expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
       pattern: 'Math',
-      period: ['20242:1', '20242:2'],
+      semesters: ['HT2024', 'VT2024'],
       eduLevel: ['1'],
       showOptions: ['onlyEnglish'],
       department: '',
@@ -92,11 +84,8 @@ describe('<NewSearchPage />', () => {
 
     expect(screen.getByRole('textbox')).toHaveValue('Math')
 
-    const periodCheckbox = screen.getByLabelText('Autumn 2024 period 1')
+    const periodCheckbox = screen.getByLabelText('Autumn 2024')
     expect(periodCheckbox).toBeChecked()
-
-    const secondPeriodCheckbox = screen.getByLabelText('Autumn 2024 period 2')
-    expect(secondPeriodCheckbox).toBeChecked()
 
     const eduLevelCheckbox = screen.getByLabelText('First cycle')
     expect(eduLevelCheckbox).toBeChecked()
@@ -106,9 +95,8 @@ describe('<NewSearchPage />', () => {
     mockSearchParams = new URLSearchParams({
       pattern: '',
     })
-    ;(koppsCourseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED))
 
-    render(<NewSearchPage searchMode="default" />)
+    render(<SearchPage searchMode="default" />)
 
     const searchInput = screen.getByRole('textbox')
     fireEvent.change(searchInput, { target: { value: 'Physics' } })
@@ -116,11 +104,11 @@ describe('<NewSearchPage />', () => {
 
     await waitFor(() => {
       expect(mockSearchParams.get('pattern')).toBe('Physics')
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: 'Physics',
         department: '',
         eduLevel: [],
-        period: [],
+        semesters: [],
         showOptions: [],
       })
     })
@@ -134,13 +122,13 @@ describe('<NewSearchPage />', () => {
       }),
     }))
 
-    render(<NewSearchPage searchMode="default" />)
+    render(<SearchPage searchMode="default" />)
 
     const searchInput = screen.getByRole('textbox')
     expect(searchInput).toBeDisabled()
 
-    periods.forEach(period => {
-      const periodCheckbox = screen.getByLabelText(period)
+    periods.forEach(semesters => {
+      const periodCheckbox = screen.getByLabelText(semesters)
       expect(periodCheckbox).toBeDisabled()
     })
 
@@ -155,29 +143,27 @@ describe('<NewSearchPage />', () => {
     })
   })
 
-  test('should update search params and call search API when period checkboxes, eduLevel, and showOptions are changed', async () => {
-    ;(koppsCourseSearch as jest.Mock).mockReturnValue(Promise.resolve(TEST_API_ANSWER_RESOLVED))
-
-    render(<NewSearchPage searchMode="default" />)
+  test('should update search params and call search API when semesters checkboxes, eduLevel, and showOptions are changed', async () => {
+    render(<SearchPage searchMode="default" />)
 
     // Verify that the initial API call was made with the correct parameters
-    expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+    expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
       pattern: '',
       department: '',
       eduLevel: [],
-      period: [],
+      semesters: [],
       showOptions: [],
     })
     const firstPeriodCheckbox = screen.getByLabelText(periods[0])
     expect(firstPeriodCheckbox).not.toBeChecked()
     fireEvent.click(firstPeriodCheckbox)
     await waitFor(async () => {
-      expect(mockSearchParams.getAll('period')).toEqual(['20242:1'])
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(mockSearchParams.getAll('semesters')).toEqual(['HT2024'])
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
         eduLevel: [],
-        period: ['20242:1'],
+        semesters: ['HT2024'],
         showOptions: [],
       })
 
@@ -187,11 +173,11 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
         eduLevel: [],
-        period: ['20242:1', '20242:2'],
+        semesters: ['HT2024', 'VT2025'],
         showOptions: [],
       })
 
@@ -201,67 +187,11 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
         eduLevel: [],
-        period: ['20242:1', '20242:2', '2025:summer'],
-        showOptions: [],
-      })
-
-      const forthPeriodCheckbox = screen.getByLabelText(periods[3])
-      expect(forthPeriodCheckbox).not.toBeChecked()
-      fireEvent.click(forthPeriodCheckbox)
-    })
-
-    await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
-        pattern: '',
-        department: '',
-        eduLevel: [],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3'],
-        showOptions: [],
-      })
-
-      const fifthPeriodCheckbox = screen.getByLabelText(periods[4])
-      expect(fifthPeriodCheckbox).not.toBeChecked()
-      fireEvent.click(fifthPeriodCheckbox)
-    })
-
-    await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
-        pattern: '',
-        department: '',
-        eduLevel: [],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4'],
-        showOptions: [],
-      })
-
-      const sixthPeriodCheckbox = screen.getByLabelText(periods[5])
-      expect(sixthPeriodCheckbox).not.toBeChecked()
-      fireEvent.click(sixthPeriodCheckbox)
-    })
-
-    await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
-        pattern: '',
-        department: '',
-        eduLevel: [],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1'],
-        showOptions: [],
-      })
-
-      const seventhPeriodCheckbox = screen.getByLabelText(periods[6])
-      expect(seventhPeriodCheckbox).not.toBeChecked()
-      fireEvent.click(seventhPeriodCheckbox)
-    })
-
-    await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
-        pattern: '',
-        department: '',
-        eduLevel: [],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
+        semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
 
@@ -271,11 +201,11 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['0'],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
+        eduLevel: ['99'],
+        semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
 
@@ -285,11 +215,11 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['0', '1'],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
+        eduLevel: ['99', '1'],
+        semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
 
@@ -299,11 +229,11 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['0', '1', '2'],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
+        eduLevel: ['99', '1', '2'],
+        semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
 
@@ -313,11 +243,11 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['0', '1', '2', '3'],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
+        eduLevel: ['99', '1', '2', '3'],
+        semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: [],
       })
 
@@ -327,11 +257,11 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['0', '1', '2', '3'],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
+        eduLevel: ['99', '1', '2', '3'],
+        semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: ['onlyEnglish'],
       })
 
@@ -341,11 +271,11 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(async () => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['0', '1', '2', '3'],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
+        eduLevel: ['99', '1', '2', '3'],
+        semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: ['onlyEnglish', 'onlyMHU'],
       })
 
@@ -355,11 +285,11 @@ describe('<NewSearchPage />', () => {
     })
 
     await waitFor(() => {
-      expect(koppsCourseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
+      expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
-        eduLevel: ['0', '1', '2', '3'],
-        period: ['20242:1', '20242:2', '2025:summer', '20251:3', '20251:4', '20252:1', '20252:2'],
+        eduLevel: ['99', '1', '2', '3'],
+        semesters: ['HT2024', 'VT2025', 'HT2025'],
         showOptions: ['onlyEnglish', 'onlyMHU', 'showCancelled'],
       })
     })

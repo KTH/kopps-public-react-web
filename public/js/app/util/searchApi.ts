@@ -1,17 +1,14 @@
-// Importing fetch
-// Note: fetch is natively available in modern browsers and Node.js (with a fetch polyfill if needed).
+import { ERROR_ASYNC, SearchResponse } from '../hooks/types/UseCourseSearchTypes'
 
-import { KoppsCourseSearchParams, KoppsCourseSearchResult } from "./types/SearchApiTypes"
-
-export async function koppsCourseSearch(
+export async function courseSearch(
   language: string,
   proxyUrl: string,
-  params: KoppsCourseSearchParams
-): Promise<KoppsCourseSearchResult | string> {
+  params: CourseSearchParams
+): Promise<SearchResponse> {
   try {
     // Constructing the URL with query parameters
     const baseUrl = new URL(proxyUrl, window.location.origin).href
-    const url = new URL(`${baseUrl}/intern-api/sok/${language}`)
+    const url = new URL(`${baseUrl}/intern-api/sok/${language}`) // TODO Benni here we have the API call
     Object.keys(params).forEach(key => {
       if (Array.isArray(params[key])) {
         params[key].forEach((item: any) => url.searchParams.append(`${key}[]`, item))
@@ -24,15 +21,23 @@ export async function koppsCourseSearch(
     const response = await fetch(url.toString())
 
     if (!response.ok) {
-      return 'ERROR-koppsCourseSearch-' + response.status
+      return {
+        errorCode: ERROR_ASYNC.rejected,
+        // errorCode: 'ERROR-courseSearch-' + response.status, // TODO Benni fix this properly useCourseSearch.ts
+      }
     }
 
-    const data: KoppsCourseSearchResult | string = await response.json()
-    return data
+    const jsonResponse: SearchResponse = await response.json()
+
+    return jsonResponse
   } catch (error: any) {
     if (error instanceof Error) {
-      throw new Error('Unexpected error from koppsCourseSearch-' + error.message)
+      throw new Error('Unexpected error from courseSearch-' + error.message)
     }
     throw error
   }
+}
+
+type CourseSearchParams = {
+  [key: string]: any // Allowing any key-value pair as params
 }

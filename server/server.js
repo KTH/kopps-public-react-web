@@ -229,7 +229,7 @@ const {
   Appendix2,
   LiteratureList,
   PDFExport,
-  NewSearchPage,
+  SearchPage,
 } = require('./controllers')
 const { parseTerm } = require('../domain/term')
 
@@ -249,22 +249,20 @@ appRoute.get(
   proxyPrefixPath.thirdCycleCoursesPerDepartment + '/:departmentCode',
   ThirdCycleStudyDepartment.getCoursesPerDepartment
 )
-appRoute.get('public.searchAllCourses', proxyPrefixPath.courseSearch, Search.searchAllCourses)
-appRoute.get('public.searchThirdCycleCourses', proxyPrefixPath.thirdCycleCourseSearch, Search.searchThirdCycleCourses)
-appRoute.get('public.newSearchAllCourses', proxyPrefixPath.newSearchPage, NewSearchPage.searchAllCourses)
-appRoute.get('public.newSearchAllCoursesResult', proxyPrefixPath.searchResult, NewSearchPage.searchAllCourses)
+appRoute.get('public.searchAllCourses', proxyPrefixPath.searchPage, SearchPage.searchAllCourses)
+appRoute.get('public.searchAllCoursesResult', proxyPrefixPath.searchResult, SearchPage.searchAllCourses)
 appRoute.get(
-  'public.NewSearchThirdCycleCourses',
-  proxyPrefixPath.thirdCycleCourseSearchNew,
-  Search.searchThirdCycleCourses
+  'public.SearchThirdCycleCourses',
+  proxyPrefixPath.thirdCycleCourseSearch,
+  SearchPage.searchThirdCycleCourses
 )
 appRoute.get(
-  'public.NewSearchThirdCycleCoursesResult',
-  proxyPrefixPath.thirdCycleCourseSearchResultNew,
-  Search.searchThirdCycleCourses
+  'public.SearchThirdCycleCoursesResult',
+  proxyPrefixPath.thirdCycleCourseSearchResult,
+  SearchPage.searchThirdCycleCourses
 )
 
-appRoute.get('api.searchCourses', proxyPrefixPath.courseSearchInternApi + '/:lang', NewSearchPage.performCourseSearch)
+appRoute.get('api.searchCourses', proxyPrefixPath.courseSearchInternApi + '/:lang', SearchPage.performCourseSearch)
 appRoute.post('api.programmeSyllabusPDF', proxyPrefixPath.programmeSyllabusPDF, PDFExport.performPDFRenderFunction)
 
 appRoute.get('redirect.departmentsListThirdCycleStudy', redirectProxyPath.thirdCycleRoot, (req, res) => {

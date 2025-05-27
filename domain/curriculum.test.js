@@ -1,247 +1,226 @@
-const { curriculumInfo, filterCourseRoundsForNthYear, setFirstSpec } = require('./curriculum')
+const { curriculumInfo } = require('./curriculum')
 
 const firstYear = 1
 const secondYear = 2
 const thirdYear = 3
 
-const courseNoElectiveConditionAAA = {
-  courseCode: 'AA1000',
-  title: 'AAA',
-  credits: 1.0,
-  creditUnitLabel: 'Högskolepoäng',
-  creditUnitAbbr: 'hp',
-  educationalLevel: 'BASIC',
-  electiveCondition: 'O',
+const mockCourse = (overrides = {}) => {
+  const { kod, benamning, omfattning, utbildningstyp, Valvillkor, tillfalleskod, startperiod, Tillfallesperioder } = {
+    kod: 'AA1000',
+    benamning: 'Test Course',
+    omfattning: { number: 7.5, formattedWithUnit: '7.5 hp' },
+    utbildningstyp: { level: { name: 'BASIC' } },
+    Valvillkor: 'O',
+    tillfalleskod: 'A1',
+    startperiod: { code: 'HT2024' },
+    Tillfallesperioder: [
+      {
+        Lasperiodsfordelning: [
+          { Lasperiodskod: 'P1', Omfattningsvarde: 3 },
+          { Lasperiodskod: 'P2', Omfattningsvarde: 4.5 },
+        ],
+      },
+    ],
+    ...overrides,
+  }
+
+  return {
+    kod,
+    benamning,
+    omfattning,
+    utbildningstyp,
+    Valvillkor,
+    tillfalleskod,
+    startperiod,
+    Tillfallesperioder,
+  }
 }
 
-const courseNoElectiveConditionBBB = {
-  courseCode: 'BB1000',
-  title: 'BBB',
-  credits: 2.0,
-  creditUnitLabel: 'Högskolepoäng',
-  creditUnitAbbr: 'hp',
-  educationalLevel: 'BASIC',
-  electiveCondition: 'O',
-}
-
-const firstYearCourses = {
-  yearNumber: firstYear,
-  courses: [courseNoElectiveConditionAAA, courseNoElectiveConditionBBB],
-}
-
-const thirdYearCoursesWithSupplementaryInformation = {
-  yearNumber: thirdYear,
-  supplementaryInfo: 'Extra information',
-  courses: [courseNoElectiveConditionAAA, courseNoElectiveConditionBBB],
-}
-
-const thirdYearCoursesWithConditionallyElectiveCoursesInformation = {
-  yearNumber: thirdYear,
-  conditionallyElectiveCoursesInfo: 'Elective information',
-  courses: [courseNoElectiveConditionAAA, courseNoElectiveConditionBBB],
-}
-
-const curriculumWithProgrammeSpecialization = {
+const curriculumWithStructure = {
   programmeSpecialization: {
     programmeSpecializationCode: 'A',
-    title: 'A Special Programme',
+    title: 'Special Title',
   },
-  studyYears: [firstYearCourses],
-  courseRounds: [],
+  studyYears: [
+    {
+      yearNumber: firstYear,
+      courses: [mockCourse()],
+    },
+  ],
 }
 
-const curriculumWithSupplementaryInformation = {
-  studyYears: [thirdYearCoursesWithSupplementaryInformation],
-  courseRounds: [],
+const curriculumWithoutSpec = {
+  studyYears: [
+    {
+      yearNumber: firstYear,
+      courses: [mockCourse()],
+    },
+  ],
 }
 
-const curriculumWithConditionallyElectiveCoursesInformation = {
-  studyYears: [thirdYearCoursesWithConditionallyElectiveCoursesInformation],
-  courseRounds: [],
-}
-
-const curriculum = { studyYears: [firstYearCourses], courseRounds: [] }
-
-describe('Create curriculum info', () => {
-  test('with non-existing study year', () => {
-    const programmeTermYear = { studyYear: secondYear }
-    const info = curriculumInfo({ programmeTermYear, curriculum })
-    expect(info.hasInfo).toBeFalse()
-  })
-  test('with programme specialization', () => {
-    const programmeTermYear = { studyYear: firstYear }
-    const info = curriculumInfo({ programmeTermYear, curriculum: curriculumWithProgrammeSpecialization })
-    expect(info.code).toBeString()
-    expect(info.specializationName).toBeString()
-    expect(info.isCommon).toBeFalse()
-    expect(info.hasInfo).toBeTrue()
-  })
-  test('without programme specialization', () => {
-    const programmeTermYear = { studyYear: firstYear }
-    const info = curriculumInfo({ programmeTermYear, curriculum })
-    expect(info.code).toBeFalsy()
-    expect(info.specializationName).toBeNull()
-    expect(info.hasInfo).toBeTrue()
-  })
-  test('with supplementary information', () => {
-    const programmeTermYear = { studyYear: thirdYear }
-    const info = curriculumInfo({ programmeTermYear, curriculum: curriculumWithSupplementaryInformation })
-    expect(info.supplementaryInformation).toBeString()
-    expect(info.hasInfo).toBeTrue()
-  })
-  test('without supplementary information', () => {
-    const programmeTermYear = { studyYear: thirdYear }
-    const info = curriculumInfo({ programmeTermYear, curriculum })
-    expect(info.supplementaryInformation).toBeFalsy()
-    expect(info.hasInfo).toBeFalse()
-  })
-  test('with conditionally elective courses information', () => {
-    const programmeTermYear = { studyYear: thirdYear }
-    const info = curriculumInfo({
-      programmeTermYear,
-      curriculum: curriculumWithConditionallyElectiveCoursesInformation,
+describe('curriculumInfo', () => {
+  test('returns correct info with programme specialization', () => {
+    const result = curriculumInfo({
+      programmeTermYear: { studyYear: firstYear },
+      curriculum: curriculumWithStructure,
     })
-    expect(info.conditionallyELectiveCoursesInformation).toBeString()
-    expect(info.hasInfo).toBeTrue()
+
+    expect(result.code).toBe('A')
+    expect(result.specializationName).toBe('Special Title')
+    expect(result.isCommon).toBe(false)
+    expect(result.hasInfo).toBe(true)
+    expect(Object.keys(result.participations)).toContain('O')
+    expect(result.participations['O'][0].course.courseCode).toBe('AA1000')
+    expect(result.participations['O'][0].creditsPerPeriod).toEqual([0, 3, 4.5, 0, 0, 0])
   })
-  test('without conditionally elective courses information', () => {
-    const programmeTermYear = { studyYear: firstYear }
-    const info = curriculumInfo({ programmeTermYear, curriculum })
-    expect(info.conditionallyELectiveCoursesInformation).toBeFalsy()
-    expect(info.hasInfo).toBeTrue()
+
+  test('returns correct info without programme specialization', () => {
+    const result = curriculumInfo({
+      programmeTermYear: { studyYear: firstYear },
+      curriculum: curriculumWithoutSpec,
+    })
+
+    expect(result.code).toBe('')
+    expect(result.specializationName).toBeNull()
+    expect(result.isCommon).toBe(true)
+    expect(result.hasInfo).toBe(true)
   })
-  test('set first curriculum info with programme specialization code', () => {
-    const infoWithCode = { code: 'A' }
-    const infoWithoutCode = { code: null }
-    const infoWithFirstSpec = { code: 'A', isFirstSpec: true }
-    const infosWithoutCode = [infoWithoutCode, infoWithoutCode, infoWithoutCode]
-    const refInfosWithoutCode = [infoWithoutCode, infoWithoutCode, infoWithoutCode]
-    const infosWithCode = [infoWithoutCode, infoWithCode, infoWithCode]
-    const infosWithFirstSpec = [infoWithoutCode, infoWithFirstSpec, infoWithCode]
-    setFirstSpec(infosWithoutCode)
-    expect(infosWithoutCode).toEqual(refInfosWithoutCode)
-    setFirstSpec(infosWithCode)
-    expect(infosWithCode).toEqual(infosWithFirstSpec)
+
+  test('returns no info when study year is missing', () => {
+    const result = curriculumInfo({
+      programmeTermYear: { studyYear: thirdYear },
+      curriculum: curriculumWithoutSpec,
+    })
+
+    expect(result.hasInfo).toBe(false)
+    expect(result.participations).toEqual({})
+  })
+
+  test('handles multiple courses and sorts by term', () => {
+    const curriculum = {
+      studyYears: [
+        {
+          yearNumber: firstYear,
+          courses: [
+            mockCourse({
+              kod: 'BB1000',
+              benamning: 'Second',
+              tillfalleskod: 'B1',
+              startperiod: { code: 'HT2025', inDigits: '20252' }, // Term: 20252
+            }),
+            mockCourse({
+              kod: 'AA1000',
+              benamning: 'First',
+              tillfalleskod: 'A1',
+              startperiod: { code: 'VT2024', inDigits: '20241' }, // Term: 20241
+            }),
+          ],
+        },
+      ],
+    }
+
+    const result = curriculumInfo({
+      programmeTermYear: { studyYear: firstYear },
+      curriculum,
+    })
+
+    const participations = result.participations['O']
+    expect(participations.length).toBe(2)
+    expect(participations[0].term).toBe('20241')
+    expect(participations[1].term).toBe('20252')
   })
 })
 
-describe('Get relevant course rounds for exact study year of a program', () => {
-  test('study year 2, program starts spring 2022', () => {
-    const programFirstTerm = '20221'
-    const expectedRound = [
-      {
-        term: '20231',
-        creditsPerPeriod: [0, 0, 0, 4.5, 0, 0],
-        creditUnitLabel: 'Högskolepoäng',
-        creditUnitAbbr: 'hp',
-      },
-    ]
-    const courseRoundTerms = [
-      {
-        term: '20222',
-        creditsPerPeriod: [0, 7, 0.5, 0, 0, 0],
-        creditUnitLabel: 'Högskolepoäng',
-        creditUnitAbbr: 'hp',
-      },
-      ...expectedRound,
-    ]
-    const studyYear = 2
-    const rounds = filterCourseRoundsForNthYear(courseRoundTerms, programFirstTerm, studyYear)
-    expect(rounds.length).toBe(1)
-    expect(rounds).toMatchObject(expectedRound)
+describe('curriculumInfo - edge cases', () => {
+  test('handles course with empty Tillfallesperioder', () => {
+    const curriculum = {
+      studyYears: [
+        {
+          yearNumber: firstYear,
+          courses: [
+            mockCourse({
+              kod: 'NO_PERIODS',
+              Tillfallesperioder: [],
+            }),
+          ],
+        },
+      ],
+    }
+
+    const result = curriculumInfo({ programmeTermYear: { studyYear: firstYear }, curriculum })
+
+    const participation = result.participations['O'][0]
+    expect(participation.creditsPerPeriod).toEqual([0, 0, 0, 0, 0, 0])
   })
 
-  test('study year 3, program starts spring 2021', () => {
-    const programFirstTerm = '20211'
-    const expectedRound = [
-      {
-        term: '20231',
-        creditsPerPeriod: [0, 0, 0, 4.5, 0, 0],
-        creditUnitLabel: 'Högskolepoäng',
-        creditUnitAbbr: 'hp',
-      },
-      {
-        term: '20232',
-        creditsPerPeriod: [0, 7, 0.5, 0, 0, 0],
-        creditUnitLabel: 'Högskolepoäng',
-        creditUnitAbbr: 'hp',
-      },
-    ]
-    const courseRoundTerms = [...expectedRound]
+  test('handles course with unknown Lasperiodskod', () => {
+    const curriculum = {
+      studyYears: [
+        {
+          yearNumber: firstYear,
+          courses: [
+            mockCourse({
+              kod: 'UNKNOWN_PERIOD',
+              Tillfallesperioder: [
+                {
+                  Lasperiodsfordelning: [
+                    { Lasperiodskod: 'P9', Omfattningsvarde: 5 }, // Invalid
+                  ],
+                },
+              ],
+            }),
+          ],
+        },
+      ],
+    }
 
-    const studyYear = 3
-    const rounds = filterCourseRoundsForNthYear(courseRoundTerms, programFirstTerm, studyYear)
-    expect(rounds.length).toBe(2)
-    expect(rounds).toMatchObject(expectedRound)
+    const result = curriculumInfo({ programmeTermYear: { studyYear: firstYear }, curriculum })
+
+    const participation = result.participations['O'][0]
+    // P9 is unknown, so should fallback to index 0
+    expect(participation.creditsPerPeriod[0]).toBe(5)
   })
 
-  test('study year 1, program starts autumn 2021', () => {
-    const programFirstTerm = '20212'
-    const expectedRound = [
-      {
-        term: '20212',
-        creditsPerPeriod: [0, 7, 0.5, 0, 0, 0],
-        creditUnitLabel: 'Högskolepoäng',
-        creditUnitAbbr: 'hp',
-      },
-    ]
-    const courseRoundTerms = [
-      {
-        term: '20211',
-        creditsPerPeriod: [0, 0, 0, 4.5, 0, 0],
-        creditUnitLabel: 'Högskolepoäng',
-        creditUnitAbbr: 'hp',
-      },
-      ...expectedRound,
-    ]
-    const studyYear = 1
-    const rounds = filterCourseRoundsForNthYear(courseRoundTerms, programFirstTerm, studyYear)
-    expect(rounds.length).toBe(1)
-    expect(rounds).toMatchObject(expectedRound)
+  test('handles course with missing educational level', () => {
+    const curriculum = {
+      studyYears: [
+        {
+          yearNumber: firstYear,
+          courses: [
+            mockCourse({
+              kod: 'NO_LEVEL',
+              utbildningstyp: undefined,
+            }),
+          ],
+        },
+      ],
+    }
+
+    const result = curriculumInfo({ programmeTermYear: { studyYear: firstYear }, curriculum })
+
+    const participation = result.participations['O'][0]
+    expect(participation.course.educationalLevel).toBeUndefined()
   })
 
-  test('study year 4, program starts autumn 2021', () => {
-    const programFirstTerm = '20212'
-    const expectedRound = [
-      {
-        term: '20242',
-        creditsPerPeriod: [0, 7, 0.5, 0, 0, 0],
-        creditUnitLabel: 'Högskolepoäng',
-        creditUnitAbbr: 'hp',
-      },
-      {
-        term: '20251',
-        creditsPerPeriod: [0, 0, 0, 4.5, 0, 0],
-        creditUnitLabel: 'Högskolepoäng',
-        creditUnitAbbr: 'hp',
-      },
-    ]
-    const courseRoundTerms = [...expectedRound]
-    const studyYear = 4
-    const rounds = filterCourseRoundsForNthYear(courseRoundTerms, programFirstTerm, studyYear)
-    expect(rounds.length).toBe(2)
-    expect(rounds).toMatchObject(expectedRound)
-  })
+  test('handles curriculum with multiple Valvillkor groups', () => {
+    const curriculum = {
+      studyYears: [
+        {
+          yearNumber: firstYear,
+          courses: [
+            mockCourse({ kod: 'X1', Valvillkor: 'O' }),
+            mockCourse({ kod: 'Y1', Valvillkor: 'V' }),
+            mockCourse({ kod: 'Z1', Valvillkor: 'F' }),
+          ],
+        },
+      ],
+    }
 
-  test('study year 4, program starts autumn 2021, has no actual course rounds', () => {
-    const programFirstTerm = '20212'
-    const courseRoundTerms = [
-      {
-        term: '20242',
-        creditsPerPeriod: [0, 7, 0.5, 0, 0, 0],
-        creditUnitLabel: 'Högskolepoäng',
-        creditUnitAbbr: 'hp',
-      },
-      {
-        term: '20251',
-        creditsPerPeriod: [0, 0, 0, 4.5, 0, 0],
-        creditUnitLabel: 'Högskolepoäng',
-        creditUnitAbbr: 'hp',
-      },
-    ]
-    const studyYear = 3
-    const rounds = filterCourseRoundsForNthYear(courseRoundTerms, programFirstTerm, studyYear)
-    expect(rounds.length).toBe(0)
-    expect(rounds).toMatchObject([])
+    const result = curriculumInfo({ programmeTermYear: { studyYear: firstYear }, curriculum })
+
+    expect(Object.keys(result.participations)).toEqual(expect.arrayContaining(['O', 'V', 'F']))
+    expect(result.participations['O'].length).toBe(1)
+    expect(result.participations['V'].length).toBe(1)
+    expect(result.participations['F'].length).toBe(1)
   })
 })
