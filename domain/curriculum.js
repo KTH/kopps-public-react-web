@@ -44,7 +44,7 @@ function curriculumInfo({ programmeTermYear = {}, curriculum }) {
     if (typeof curriculumStudyYear.courses === 'string') {
       htmlCourses = curriculumStudyYear.courses
       hasInfo = true
-    } else if (Array.isArray(curriculumStudyYear.courses)) {
+    } else {
       supplementaryInformation = curriculumStudyYear.supplementaryInfo
       conditionallyElectiveCoursesInformation = curriculumStudyYear.conditionallyElectiveCoursesInfo
       freeTexts = curriculumStudyYear.freeTexts
@@ -86,7 +86,8 @@ function curriculumInfo({ programmeTermYear = {}, curriculum }) {
         })
       }
 
-      hasInfo = Object.keys(participations).length !== 0
+      hasInfo =
+        Object.keys(participations).length !== 0 || conditionallyElectiveCoursesInformation || supplementaryInformation
     }
   }
 
