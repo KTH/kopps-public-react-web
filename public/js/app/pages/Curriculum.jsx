@@ -161,12 +161,16 @@ function Courses({ curriculumInfo }) {
           )
         )
       })}
-      <h3 id={`heading-free-texts`}>{t('free_texts_header')}</h3>
-      <ul>
-        {freeTexts.map((textObj, index) => (
-          <li key={textObj.FritextUID || index}>{textObj.Text}</li>
-        ))}
-      </ul>
+      {freeTexts?.length > 0 && (
+        <>
+          <h3 id={`heading-free-texts`}>{t('free_texts_header')}</h3>
+          <ul>
+            {freeTexts.map((textObj, index) => (
+              <li key={textObj.FritextUID || index}>{textObj.Text}</li>
+            ))}
+          </ul>
+        </>
+      )}
     </>
   )
 }
