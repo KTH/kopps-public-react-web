@@ -59,7 +59,7 @@ function ObsoleteProgrammeDescription({ programme }) {
     const formattedFirstTerm = formatShortTerm(firstAdmissionTerm, language)
     return <>{`, ${formattedCredits}, ${t('programmes_admitted')} ${formattedFirstTerm}–${formattedLastTerm}`}</>
   }
-  return <>{`, ${formattedCreditsr}, ${t('programmes_admitted_until')} ${formattedLastTerm}`}</>
+  return <>{`, ${formattedCredits}, ${t('programmes_admitted_until')} ${formattedLastTerm}`}</>
 }
 
 function ProgrammesListItem({ programme, variant }) {
