@@ -69,8 +69,8 @@ async function fetchAndFillProgrammeDetails({ applicationStore, term, lang, prog
       titleOtherLanguage: programInstans?.benamningOther,
       educationalLevel: programInstans?.tilltradesniva?.name ?? programInstans?.utbildningstyp?.level?.name,
       approvedStudyProgrammeTerms: programInstans?.approvedStudyProgrammeTerms,
-      lastAdmissionTerm: programInstans?.sistaAntagningstermin,
-      firstAdmissionTerm: parseTerm(programInstans?.firstAdmissionTerm),
+      lastAdmissionTerm: programInstans?.sistaAntagningstermin?.toKTHSemesterString(),
+      firstAdmissionTerm: programInstans?.firstAdmissionTerm?.toKTHSemesterString(),
     }
     applicationStore.setStatusCode(statusCode)
   } catch (error) {
