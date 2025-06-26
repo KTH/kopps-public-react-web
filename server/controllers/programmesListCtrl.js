@@ -45,7 +45,11 @@ function _addCategorizedProgramme(c, programme, degree) {
   const categorized = new Map(c)
   const heading = findProgrammeGroupHeading(programme, degree)
   if (!categorized.has(heading)) return categorized
-  if (programme.lastAdmissionTerm || programme.star) {
+
+  const OLD_PROGRAMME_TYPES = ['1993PRG']
+  const isOldProgrammeType = OLD_PROGRAMME_TYPES.includes(programme.programType)
+
+  if (programme.lastAdmissionTerm || isOldProgrammeType) {
     // Program utan nyantagning
     categorized.get(heading).second.push(programme)
   } else {
@@ -97,7 +101,7 @@ function _createProgrammeDisplayData(programme) {
     educationalLevel: programme.tilltradesniva?.name ?? programme.utbildningstyp?.level?.name,
     firstAdmissionTerm: programme.firstAdmissionTerm?.toKTHSemesterString(),
     lastAdmissionTerm: programme.sistaAntagningstermin?.toKTHSemesterString(),
-    status: programme.status,
+    programType: programme.utbildningstyp?.code,
     degrees: programme.degrees,
   }
 }

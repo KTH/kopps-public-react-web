@@ -54,12 +54,21 @@ function ObsoleteProgrammeDescription({ programme }) {
   const { language } = useStore()
   const t = translate(language)
   const { formattedCredits, firstAdmissionTerm, lastAdmissionTerm } = programme
-  const formattedLastTerm = formatShortTerm(lastAdmissionTerm, language)
-  if (firstAdmissionTerm) {
-    const formattedFirstTerm = formatShortTerm(firstAdmissionTerm, language)
-    return <>{`, ${formattedCredits}, ${t('programmes_admitted')} ${formattedFirstTerm}–${formattedLastTerm}`}</>
+
+  const formattedFirstTerm = firstAdmissionTerm ? formatShortTerm(firstAdmissionTerm, language) : null
+  const formattedLastTerm = lastAdmissionTerm ? formatShortTerm(lastAdmissionTerm, language) : null
+
+  let programmeText = null
+
+  if (formattedFirstTerm && formattedLastTerm) {
+    programmeText = `${t('programmes_admitted')} ${formattedFirstTerm}–${formattedLastTerm}`
+  } else if (formattedLastTerm) {
+    programmeText = `${t('programmes_admitted_until')} ${formattedLastTerm}`
   }
-  return <>{`, ${formattedCredits}, ${t('programmes_admitted_until')} ${formattedLastTerm}`}</>
+  const programmeParts = [formattedCredits]
+  if (programmeText) programmeParts.push(programmeText)
+
+  return <>{`, ${programmeParts.join(', ')}`}</>
 }
 
 function ProgrammesListItem({ programme, variant }) {
@@ -185,7 +194,7 @@ ObsoleteProgrammeDescription.propTypes = {
   programme: PropTypes.shape({
     formattedCredits: PropTypes.string.isRequired,
     firstAdmissionTerm: PropTypes.string,
-    lastAdmissionTerm: PropTypes.string.isRequired,
+    lastAdmissionTerm: PropTypes.string,
   }).isRequired,
 }
 
