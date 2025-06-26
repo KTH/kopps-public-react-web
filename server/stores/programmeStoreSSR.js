@@ -2,7 +2,7 @@ const log = require('@kth/log')
 
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const { getProgramCurriculum, getProgramVersion, getProgramSyllabus } = require('../ladok/ladokApi')
-const { parseTerm } = require('../../domain/term')
+const { isOldProgramme } = require('../../domain/oldProgrammes')
 
 /**
  * add props to a MobX-stores on server side
@@ -50,6 +50,14 @@ async function fetchAndFillProgrammeDetails({ applicationStore, term, lang, prog
 
   const convertedSemester = term ? `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}` : undefined
 
+  if (programmeCode.length < 2) {
+    return {
+      programmeName: programmeCode,
+      isOldProgramme: true,
+      approvedStudyProgrammeTerms: [],
+    }
+  }
+
   try {
     const { programInstans, statusCode } = await getProgramVersion(programmeCode, convertedSemester, lang)
 
@@ -71,6 +79,7 @@ async function fetchAndFillProgrammeDetails({ applicationStore, term, lang, prog
       approvedStudyProgrammeTerms: programInstans?.approvedStudyProgrammeTerms,
       lastAdmissionTerm: programInstans?.sistaAntagningstermin?.toKTHSemesterString(),
       firstAdmissionTerm: programInstans?.firstAdmissionTerm?.toKTHSemesterString(),
+      isOldProgramme: isOldProgramme(programInstans?.utbildningstyp?.code),
     }
     applicationStore.setStatusCode(statusCode)
   } catch (error) {

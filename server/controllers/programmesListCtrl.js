@@ -9,6 +9,7 @@ const ladokApi = require('../ladok/ladokApi')
 const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { programmeGroupHeadings, findProgrammeGroupHeading } = require('../../domain/programmeGroupHeading')
+const { isOldProgramme } = require('../../domain/oldProgrammes')
 
 function _compareProgrammes(a, b) {
   if (a.title.toLowerCase() < b.title.toLowerCase()) {
@@ -46,10 +47,7 @@ function _addCategorizedProgramme(c, programme, degree) {
   const heading = findProgrammeGroupHeading(programme, degree)
   if (!categorized.has(heading)) return categorized
 
-  const OLD_PROGRAMME_TYPES = ['1993PRG']
-  const isOldProgrammeType = OLD_PROGRAMME_TYPES.includes(programme.programType)
-
-  if (programme.lastAdmissionTerm || isOldProgrammeType) {
+  if (programme.lastAdmissionTerm || isOldProgramme(programme.programType)) {
     // Program utan nyantagning
     categorized.get(heading).second.push(programme)
   } else {
