@@ -98,7 +98,7 @@ function _createProgrammeDisplayData(programme) {
     credits: Number(programme.omfattning?.number),
     formattedCredits: programme.omfattning?.formattedWithUnit,
     creditUnitAbbr: programme.creditUnitAbbr,
-    educationalLevel: programme.tilltradesniva?.name ?? programme.utbildningstyp?.level?.name,
+    educationalLevel: programme.eduLevel?.name,
     firstAdmissionTerm: programme.firstAdmissionTerm?.toKTHSemesterString(),
     lastAdmissionTerm: programme.sistaAntagningstermin?.toKTHSemesterString(),
     programType: programme.utbildningstyp?.code,
