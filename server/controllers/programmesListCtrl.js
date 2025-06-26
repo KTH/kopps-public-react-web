@@ -4,11 +4,12 @@ const language = require('@kth/kth-node-web-common/lib/language')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 
-const koppsApi = require('../kopps/koppsApi')
+const ladokApi = require('../ladok/ladokApi')
 
 const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { programmeGroupHeadings, findProgrammeGroupHeading } = require('../../domain/programmeGroupHeading')
+const { isOldProgramme } = require('../../domain/oldProgrammes')
 
 function _compareProgrammes(a, b) {
   if (a.title.toLowerCase() < b.title.toLowerCase()) {
@@ -45,7 +46,8 @@ function _addCategorizedProgramme(c, programme, degree) {
   const categorized = new Map(c)
   const heading = findProgrammeGroupHeading(programme, degree)
   if (!categorized.has(heading)) return categorized
-  if (programme.lastAdmissionTerm) {
+
+  if (programme.lastAdmissionTerm || isOldProgramme(programme.programType)) {
     // Program utan nyantagning
     categorized.get(heading).second.push(programme)
   } else {
@@ -86,20 +88,40 @@ function _categorizeProgrammes(programmes) {
   return categorized
 }
 
+function _createProgrammeDisplayData(programme) {
+  return {
+    programmeCode: programme.kod,
+    title: programme.benamning,
+    titleOtherLanguage: programme.benamningOther,
+    credits: Number(programme.omfattning?.number),
+    formattedCredits: programme.omfattning?.formattedWithUnit,
+    creditUnitAbbr: programme.creditUnitAbbr,
+    educationalLevel: programme.eduLevel?.name,
+    firstAdmissionTerm: programme.firstAdmissionTerm?.toKTHSemesterString(),
+    lastAdmissionTerm: programme.sistaAntagningstermin?.toKTHSemesterString(),
+    programType: programme.utbildningstyp?.code,
+    degrees: programme.degrees,
+  }
+}
+
 async function _fillApplicationStoreOnServerSide({ applicationStore, lang }) {
   applicationStore.setLanguage(lang)
   applicationStore.setBrowserConfig(browserConfig)
   log.info('Fetching programmes from KOPPs API')
 
-  const { programmes, statusCode } = await koppsApi.listProgrammes(lang)
-  applicationStore.setStatusCode(statusCode)
+  let programmes
 
-  if (statusCode !== 200) {
+  try {
+    programmes = await ladokApi.getAllProgrammeVersions(lang)
+    if (!programmes || !programmes.length) throw new Error('failed to fetch all programmes')
+  } catch (error) {
     log.info('Failed to fetch programmes')
     return
   }
+  applicationStore.setStatusCode(200)
   log.info('Successfully fetched programmes')
 
+  programmes = programmes.map(_createProgrammeDisplayData)
   const programmesByDegree = _categorizeProgrammes(programmes)
   applicationStore.setProgrammes(programmesByDegree)
 }

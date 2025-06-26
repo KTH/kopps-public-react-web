@@ -15,8 +15,6 @@ import { programmeLink } from '../util/links'
 import { formatShortTerm } from '../../../../domain/term'
 import Article from '../components/Article'
 import { filterProgrammeSyllabuses } from '../util/filterProgrammeSyllabuses'
-import { translateCreditUnitAbbr } from '../util/translateCreditUnitAbbr'
-
 function Heading({ size, text, id }) {
   switch (size) {
     case 'h1':
@@ -47,25 +45,30 @@ function Section({ programmeType, children }) {
 function CurrentProgrammeDescription({ programme }) {
   const { language } = useStore()
   const t = translate(language)
-  const { credits, creditUnitAbbr, firstAdmissionTerm } = programme
-  const translatedCreditUnitAbbr = translateCreditUnitAbbr(language, creditUnitAbbr)
+  const { formattedCredits, firstAdmissionTerm } = programme
   const formattedTerm = formatShortTerm(firstAdmissionTerm, language)
-  return <>{`, ${credits} ${translatedCreditUnitAbbr}, ${t('programmes_admitted_from')} ${formattedTerm}`}</>
+  return <>{`, ${formattedCredits}, ${t('programmes_admitted_from')} ${formattedTerm}`}</>
 }
 
 function ObsoleteProgrammeDescription({ programme }) {
   const { language } = useStore()
   const t = translate(language)
-  const { credits, creditUnitAbbr, firstAdmissionTerm, lastAdmissionTerm } = programme
-  const translatedCreditUnitAbbr = translateCreditUnitAbbr(language, creditUnitAbbr)
-  const formattedLastTerm = formatShortTerm(lastAdmissionTerm, language)
-  if (firstAdmissionTerm) {
-    const formattedFirstTerm = formatShortTerm(firstAdmissionTerm, language)
-    return (
-      <>{`, ${credits} ${translatedCreditUnitAbbr}, ${t('programmes_admitted')} ${formattedFirstTerm}–${formattedLastTerm}`}</>
-    )
+  const { formattedCredits, firstAdmissionTerm, lastAdmissionTerm } = programme
+
+  const formattedFirstTerm = firstAdmissionTerm ? formatShortTerm(firstAdmissionTerm, language) : null
+  const formattedLastTerm = lastAdmissionTerm ? formatShortTerm(lastAdmissionTerm, language) : null
+
+  let programmeText = null
+
+  if (formattedFirstTerm && formattedLastTerm) {
+    programmeText = `${t('programmes_admitted')} ${formattedFirstTerm}–${formattedLastTerm}`
+  } else if (formattedLastTerm) {
+    programmeText = `${t('programmes_admitted_until')} ${formattedLastTerm}`
   }
-  return <>{`, ${credits} ${translatedCreditUnitAbbr}, ${t('programmes_admitted_until')} ${formattedLastTerm}`}</>
+  const programmeParts = [formattedCredits]
+  if (programmeText) programmeParts.push(programmeText)
+
+  return <>{`, ${programmeParts.join(', ')}`}</>
 }
 
 function ProgrammesListItem({ programme, variant }) {
@@ -182,18 +185,16 @@ Section.propTypes = {
 
 CurrentProgrammeDescription.propTypes = {
   programme: PropTypes.shape({
-    credits: PropTypes.number.isRequired,
-    creditUnitAbbr: PropTypes.string.isRequired,
+    formattedCredits: PropTypes.string.isRequired,
     firstAdmissionTerm: PropTypes.string.isRequired,
   }).isRequired,
 }
 
 ObsoleteProgrammeDescription.propTypes = {
   programme: PropTypes.shape({
-    credits: PropTypes.number.isRequired,
-    creditUnitAbbr: PropTypes.string.isRequired,
+    formattedCredits: PropTypes.string.isRequired,
     firstAdmissionTerm: PropTypes.string,
-    lastAdmissionTerm: PropTypes.string.isRequired,
+    lastAdmissionTerm: PropTypes.string,
   }).isRequired,
 }
 

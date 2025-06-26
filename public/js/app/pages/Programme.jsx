@@ -29,7 +29,7 @@ function ProgrammeTermsLinkListItem({ term }) {
 }
 
 function Programme() {
-  const { lastAdmissionTerm, language, programmeCode, programmeName, programmeTerms } = useStore()
+  const { lastAdmissionTerm, isOldProgramme, language, programmeCode, programmeName, programmeTerms } = useStore()
   const t = translate(language)
   return (
     <>
@@ -54,7 +54,7 @@ function Programme() {
           )}
         </Col>
       </Row>
-      {lastAdmissionTerm && (
+      {(lastAdmissionTerm || isOldProgramme) && (
         <Row key="programme-syllabus-old">
           <Col className="article">
             <h2>{t('programme_study_years_old')}</h2>
