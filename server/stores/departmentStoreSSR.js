@@ -2,6 +2,7 @@ const log = require('@kth/log')
 
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const koppsApi = require('../kopps/koppsApi')
+const { getDepartmentWithCourseList } = require('../ladok/ladokApi')
 
 /**
  * @param {object} options.applicationStore
@@ -24,26 +25,29 @@ function getOnlyThirdCycleCourses(courses, lang) {
  * @param {object} options.applicationStore
  * @param {string} options.lang
  * @param {string} options.departmentCode
- * @param {string | undefined} options.studyLevel
+ * @param {boolean} [onlyThirdCycle=false]
  * @returns {string}
  */
-async function fetchAndFillDepartmentCourses({ applicationStore, lang, departmentCode }, studyLevel = 'all') {
-  log.info('Fetching department courses from KOPPs API', { departmentCode })
+async function fetchAndFillDepartmentCoursesFromLadok(
+  { applicationStore, lang, departmentCode },
+  onlyThirdCycle = false
+) {
+  log.info('Fetching department courses from Ladok API', { departmentCode })
 
-  const { departmentCourses, statusCode } = await koppsApi.getCourses({ departmentCode, lang })
+  const { departmentWithCourseList } = await getDepartmentWithCourseList(departmentCode, lang, onlyThirdCycle)
+  const statusCode = 200
+
   applicationStore.setStatusCode(statusCode)
   if (statusCode !== 200) {
-    log.info('Failed to fetch department courses from KOPPs api', { departmentCode })
+    log.info('Failed to fetch department courses from Ladok api', { departmentCode })
     return
   }
-  log.info('Successfully fetched department courses from KOPPs API', { departmentCode })
+  log.info('Successfully fetched department courses from Ladok API', { departmentCode })
 
-  const { department: departmentName = '', courses } = departmentCourses
+  const { department: departmentName = '', courses } = departmentWithCourseList
   applicationStore.setDepartmentName(departmentName)
 
-  const coursesByStudyLevel = studyLevel === 'third-cycle' ? await getOnlyThirdCycleCourses(courses, lang) : courses
-
-  applicationStore.setDepartmentCourses(coursesByStudyLevel)
+  applicationStore.setDepartmentCourses(courses)
 
   // eslint-disable-next-line consistent-return
   return departmentName
@@ -51,6 +55,6 @@ async function fetchAndFillDepartmentCourses({ applicationStore, lang, departmen
 
 module.exports = {
   fillStoreWithBasicConfig,
-  fetchAndFillDepartmentCourses,
   getOnlyThirdCycleCourses,
+  fetchAndFillDepartmentCoursesFromLadok,
 }
