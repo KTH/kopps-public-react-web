@@ -6,7 +6,7 @@ const { server: serverConfig } = require('../configuration')
 const { createThirdCycleBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { departmentTabTitle } = require('../utils/titles')
-const { fillStoreWithBasicConfig, fetchAndFillDepartmentCourses } = require('../stores/departmentStoreSSR')
+const { fillStoreWithBasicConfig, fetchAndFillDepartmentCoursesFromLadok } = require('../stores/departmentStoreSSR')
 
 async function getCoursesPerDepartment(req, res, next) {
   try {
@@ -32,7 +32,7 @@ async function getCoursesPerDepartment(req, res, next) {
     log.debug(`Starting to fill a default application store, for a third-cycle department controller`, {
       departmentCode,
     })
-    const departmentName = await fetchAndFillDepartmentCourses(options, 'third-cycle')
+    const departmentName = await fetchAndFillDepartmentCoursesFromLadok(options, true)
     await fillStoreWithBasicConfig(options)
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
     log.info(`Default store was filled in and compressed on server side`, { departmentCode })

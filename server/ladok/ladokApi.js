@@ -1,6 +1,6 @@
 'use strict'
 
-const { createApiClient } = require('@kth/om-kursen-ladok-client')
+const { createApiClient, EducationalLevelCode } = require('@kth/om-kursen-ladok-client')
 const serverConfig = require('../configuration').server
 
 async function searchCourseInstances(pattern, lang) {
@@ -42,6 +42,29 @@ async function getSchoolsList(lang, deprecated = false) {
   return departmentList
 }
 
+async function getDepartmentWithCourseList(departmentCode, lang, onlyThirdCycle = false) {
+  const utbildningsniva = onlyThirdCycle ? [EducationalLevelCode.Research] : undefined
+
+  const client = createApiClient(serverConfig.ladokMellanlagerApi)
+  const departmentWithCourses = await client.Search.getDepartmentWithCourseList(
+    { organisation: departmentCode, utbildningsniva },
+    lang
+  )
+
+  return departmentWithCourses
+}
+
+/**
+ *
+ * @param {lang?: Language, onlyThirdCycle?: boolean} params
+ * @returns
+ */
+async function getSchoolsListForCoursesPerSchool(params) {
+  const client = createApiClient(serverConfig.ladokMellanlagerApi)
+  const departmentList = await client.Support.getCurrentAndDeprecatedSchoolsAndDepartmentsWithAtLeastOneCourse(params)
+  return departmentList
+}
+
 module.exports = {
   searchCourseInstances,
   searchCourseVersions,
@@ -49,4 +72,6 @@ module.exports = {
   getProgramVersion,
   getProgramSyllabus,
   getSchoolsList,
+  getSchoolsListForCoursesPerSchool,
+  getDepartmentWithCourseList,
 }

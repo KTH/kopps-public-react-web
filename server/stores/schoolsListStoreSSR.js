@@ -3,7 +3,7 @@ const log = require('@kth/log')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 const koppsApi = require('../kopps/koppsApi')
-const { compareSchools, filterOutDeprecatedSchools } = require('../../domain/schools')
+const { getSchoolsListForCoursesPerSchool } = require('../ladok/ladokApi')
 
 module.exports = {
   fillStoreWithBasicConfig,
@@ -29,31 +29,26 @@ function fillStoreWithBasicConfig({ applicationStore, lang }) {
 
 /**
  * @param {object} applicationStore
- * @param {string} params.departmentCriteria
- * @param {boolean} params.listForActiveCourses
  * @param {string} params.lang
  * @returns {object}
  */
 async function fetchAndFillSchoolsList(applicationStore, params) {
-  const { departmentCriteria, lang } = params
-  log.info('Fetching schools with departments', { departmentCriteria: params.departmentCriteria })
+  log.info('Fetching schools with departments', params)
 
-  const { schoolsWithDepartments, statusCode } = await koppsApi.listSchoolsWithDepartments(params)
-  applicationStore.setStatusCode(statusCode)
-  if (statusCode !== 200) {
-    log.info('Failed to fetch schools', { departmentCriteria })
+  let schoolsWithDepartments
+  try {
+    schoolsWithDepartments = await getSchoolsListForCoursesPerSchool(params)
+    applicationStore.setStatusCode(200)
+    log.info('Successfully fetched schools with departments', params)
+  } catch (error) {
+    log.info('Failed to fetch schools', params)
     return
   }
-  log.info('Successfully fetched schools with departments', { departmentCriteria })
 
-  const { currentSchoolsWithDepartments, deprecatedSchoolsWithDepartments } = await filterOutDeprecatedSchools(
-    schoolsWithDepartments,
-    lang
-  )
-  await deprecatedSchoolsWithDepartments.sort(compareSchools)
-  await currentSchoolsWithDepartments.sort(compareSchools)
-  applicationStore.setCurrentSchoolsWithDepartments(currentSchoolsWithDepartments)
-  applicationStore.setDeprecatedSchoolsWithDepartments(deprecatedSchoolsWithDepartments)
+  const { current: currentSchools, deprecated: deprecatedSchools } = schoolsWithDepartments
 
-  return schoolsWithDepartments
+  applicationStore.setCurrentSchoolsWithDepartments(currentSchools)
+  applicationStore.setDeprecatedSchoolsWithDepartments(deprecatedSchools)
+
+  return [...currentSchools, ...deprecatedSchools]
 }

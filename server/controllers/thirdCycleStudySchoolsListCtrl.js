@@ -12,12 +12,11 @@ const { fillStoreWithBasicConfig, fetchAndFillSchoolsList } = require('../stores
 async function _fillApplicationStoreWithAllSchoolsInThirdCycleStudy({ applicationStore, lang }) {
   fillStoreWithBasicConfig({ applicationStore, lang })
 
-  const listForActiveCourses = true
   const params = {
-    departmentCriteria: koppsApi.DEPARTMENT_CRITERIA.HAS_THIRD_CYCLE_COURSES,
-    listForActiveCourses,
+    onlyThirdCycle: true,
     lang,
   }
+  // TODO BENNI SET PARAMS HERE BENNI
   await fetchAndFillSchoolsList(applicationStore, params)
 }
 

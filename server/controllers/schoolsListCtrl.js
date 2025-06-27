@@ -4,8 +4,6 @@ const language = require('@kth/kth-node-web-common/lib/language')
 const { server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
 
-const koppsApi = require('../kopps/koppsApi')
-
 const { createBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { fillStoreWithBasicConfig, fetchAndFillSchoolsList } = require('../stores/schoolsListStoreSSR')
@@ -17,9 +15,7 @@ const { fillStoreWithBasicConfig, fetchAndFillSchoolsList } = require('../stores
 async function _fillApplicationStoreOnServerSide({ applicationStore, lang }) {
   fillStoreWithBasicConfig({ applicationStore, lang })
 
-  const listForActiveCourses = true
-  const params = { departmentCriteria: koppsApi.DEPARTMENT_CRITERIA.HAS_COURSES, listForActiveCourses, lang }
-  await fetchAndFillSchoolsList(applicationStore, params)
+  await fetchAndFillSchoolsList(applicationStore, { lang })
 }
 
 async function getSchoolsList(req, res, next) {
