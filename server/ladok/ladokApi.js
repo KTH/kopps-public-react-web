@@ -64,6 +64,12 @@ async function getSchoolsListForCoursesPerSchool(params) {
   const departmentList = await client.Support.getCurrentAndDeprecatedSchoolsAndDepartmentsWithAtLeastOneCourse(params)
   return departmentList
 }
+async function getAllProgrammeVersions(lang, avvecklad = true) {
+  const client = createApiClient(serverConfig.ladokMellanlagerApi)
+  const programmes = await client.Programme.getAllProgrammeVersions(lang, avvecklad)
+
+  return programmes
+}
 
 module.exports = {
   searchCourseInstances,
@@ -74,4 +80,5 @@ module.exports = {
   getSchoolsList,
   getSchoolsListForCoursesPerSchool,
   getDepartmentWithCourseList,
+  getAllProgrammeVersions,
 }
