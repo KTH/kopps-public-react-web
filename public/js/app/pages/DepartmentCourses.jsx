@@ -54,7 +54,6 @@ function DepartmentsList() {
   const { language, departmentName, departmentCourses } = useStore()
   const t = translate(language)
 
-  debugger
   const headers = [t('course_code'), t('course_name'), t('course_scope'), t('course_educational_level')]
   const courses = sortAndParseCourses(departmentCourses)
   return (
