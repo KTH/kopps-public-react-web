@@ -34,6 +34,12 @@ function createStore() {
      * @param {string} lastAdmissionTerm
      */
     setLastAdmissionTerm,
+    isOldProgramme: '',
+    /**
+     * @method
+     * @param {boolean} isOldProgramme
+     */
+    setIsOldProgramme,
     /**
      * @method
      * @param {map<string, {}>} programmes
@@ -208,6 +214,10 @@ function setDepartmentCourses(departmentCourses) {
 
 function setLastAdmissionTerm(lastAdmissionTerm) {
   this.lastAdmissionTerm = lastAdmissionTerm
+}
+
+function setIsOldProgramme(isOldProgramme) {
+  this.isOldProgramme = isOldProgramme
 }
 
 function setProgrammeName(programmeName) {
