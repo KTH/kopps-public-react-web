@@ -7,7 +7,7 @@ const { createDepartmentBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 
 const { departmentTabTitle } = require('../utils/titles')
-const { fillStoreWithBasicConfig, fetchAndFillDepartmentCourses } = require('../stores/departmentStoreSSR')
+const { fillStoreWithBasicConfig, fetchAndFillDepartmentCoursesFromLadok } = require('../stores/departmentStoreSSR')
 
 async function getIndex(req, res, next) {
   try {
@@ -33,7 +33,7 @@ async function getIndex(req, res, next) {
 
     const options = { applicationStore, lang, departmentCode }
     log.debug(`Starting to fill a default application store, for department controller`, { departmentCode })
-    const departmentName = await fetchAndFillDepartmentCourses(options)
+    const departmentName = await fetchAndFillDepartmentCoursesFromLadok(options)
     await fillStoreWithBasicConfig(options)
 
     const compressedStoreCode = getCompressedStoreCode(applicationStore)

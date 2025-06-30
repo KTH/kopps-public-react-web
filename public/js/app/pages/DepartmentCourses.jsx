@@ -8,10 +8,9 @@ import FooterContent from '../components/FooterContent'
 import { useStore } from '../mobx'
 import translate from '../../../../domain/translate'
 import { courseLink } from '../util/links'
-import { translateCreditUnitAbbr } from '../util/translateCreditUnitAbbr'
 
 function codeCell(code) {
-  const { language } = useStore()
+  const { language } = useStore() // Invalid hook call
   return {
     content: <Link href={courseLink(code, language)}>{code}</Link>,
     sortKey: code,
@@ -19,7 +18,7 @@ function codeCell(code) {
 }
 
 function titleCell(code, title) {
-  const { language } = useStore()
+  const { language } = useStore() // Invalid hook call
   return {
     content: <Link href={courseLink(code, language)}>{title}</Link>,
     sortKey: title,
@@ -38,14 +37,16 @@ function compareCoursesBy(key) {
   }
 }
 
-function sortAndParseCourses(courses, language) {
-  courses.sort(compareCoursesBy('code'))
-  const parsedCourses = courses.map(({ code, title, credits, creditUnitAbbr, level }) => [
-    codeCell(code),
-    titleCell(code, title),
-    `${credits} ${translateCreditUnitAbbr(language, creditUnitAbbr)}`,
-    level,
-  ])
+function sortAndParseCourses(courses) {
+  courses.sort(compareCoursesBy('kod'))
+  const parsedCourses = courses.map(
+    ({ kod: code, benamning: title, omfattning: formattedCredits, utbildningstyp: level }) => [
+      codeCell(code),
+      titleCell(code, title),
+      formattedCredits,
+      level,
+    ]
+  )
   return parsedCourses
 }
 
@@ -54,7 +55,7 @@ function DepartmentsList() {
   const t = translate(language)
 
   const headers = [t('course_code'), t('course_name'), t('course_scope'), t('course_educational_level')]
-  const courses = sortAndParseCourses(departmentCourses, language)
+  const courses = sortAndParseCourses(departmentCourses)
   return (
     <>
       <Row>
