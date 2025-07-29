@@ -4,6 +4,7 @@ import '@testing-library/jest-dom'
 import SearchPage from './SearchPage'
 import { useStore } from '../mobx'
 import { courseSearch } from '../util/searchApi'
+import { MIXED_SEARCH_DATA_SE } from '../components/mocks/mockSearchData'
 
 jest.mock('../util/searchApi')
 
@@ -41,6 +42,8 @@ jest.mock('../hooks/useLangHrefUpdate', () => ({
   useLangHrefUpdate: jest.fn(),
 }))
 
+const mockedCourseSearch = jest.mocked(courseSearch)
+
 const mockDate = new Date('2024-08-19 16:00')
 
 describe('<SearchPage />', () => {
@@ -60,6 +63,7 @@ describe('<SearchPage />', () => {
 
   afterAll(() => {
     jest.spyOn(global, 'Date').mockRestore()
+    jest.restoreAllMocks()
   })
 
   test('should load search parameters from URL and call search API', async () => {
@@ -89,6 +93,12 @@ describe('<SearchPage />', () => {
 
     const eduLevelCheckbox = screen.getByLabelText('First cycle')
     expect(eduLevelCheckbox).toBeChecked()
+
+    const courseCode = await screen.findByText(/AF0700/i)
+    expect(courseCode).toBeInTheDocument()
+
+    const courseTitle = await screen.findByText(/Introduktionskurs i matematik, 1.5 fup/i)
+    expect(courseTitle).toBeInTheDocument()
   })
 
   test('should update search params when search input is changed', async () => {
@@ -114,13 +124,16 @@ describe('<SearchPage />', () => {
     })
   })
 
-  test('should disable search input when search is pending', async () => {
-    jest.mock('../hooks/useCourseSearch', () => ({
-      useCourseSearch: jest.fn().mockReturnValue({
-        status: 'pending',
-        data: [],
-      }),
-    }))
+  test('should disable search input when search is pending and re-enable them when search is resolved', async () => {
+    jest.useFakeTimers()
+    jest.setSystemTime(mockDate)
+    mockedCourseSearch.mockImplementationOnce(() => {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve({ searchData: MIXED_SEARCH_DATA_SE })
+        }, 100)
+      })
+    })
 
     render(<SearchPage searchMode="default" />)
 
@@ -141,9 +154,34 @@ describe('<SearchPage />', () => {
       const optionCheckbox = screen.getByLabelText(option)
       expect(optionCheckbox).toBeDisabled()
     })
+
+    jest.advanceTimersByTime(100)
+
+    const courseCode = await screen.findByText(/AF0700/i)
+    expect(courseCode).toBeInTheDocument()
+
+    const searchInputAfterResolve = await screen.findByRole('textbox')
+    expect(searchInputAfterResolve).not.toBeDisabled()
+
+    periods.forEach(semesters => {
+      const periodCheckbox = screen.getByLabelText(semesters)
+      expect(periodCheckbox).not.toBeDisabled()
+    })
+
+    eduLevels.forEach(level => {
+      const levelCheckbox = screen.getByLabelText(level)
+      expect(levelCheckbox).not.toBeDisabled()
+    })
+
+    showOptions.forEach(option => {
+      const optionCheckbox = screen.getByLabelText(option)
+      expect(optionCheckbox).not.toBeDisabled()
+    })
+    jest.useRealTimers()
   })
 
   test('should update search params and call search API when semesters checkboxes, eduLevel, and showOptions are changed', async () => {
+    jest.spyOn(global, 'Date').mockImplementation(() => mockDate)
     render(<SearchPage searchMode="default" />)
 
     // Verify that the initial API call was made with the correct parameters
