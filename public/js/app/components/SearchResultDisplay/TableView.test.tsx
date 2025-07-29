@@ -3,7 +3,12 @@ import { render, screen, within } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import TableView from './TableView'
 import { useStore } from '../../mobx'
-import { MIXED_SEARCH_DATA_EN, MIXED_SEARCH_DATA_SE } from '../mocks/mockSearchData'
+import {
+  MIXED_SEARCH_DATA_EN,
+  MIXED_SEARCH_DATA_SE,
+  RESEARCH_SEARCH_DATA_EN,
+  RESEARCH_SEARCH_DATA_SV,
+} from '../mocks/mockSearchData'
 import { CourseRoundSearchDTO } from '@kth/om-kursen-ladok-client/dist/search/types'
 
 jest.mock('../../mobx')
@@ -20,56 +25,55 @@ const eduLevelTranslations = {
   SV: { PREPARATORY: 'Förberedande nivå', BASIC: 'Grundnivå', ADVANCED: 'Avancerad nivå', RESEARCH: 'Forskarnivå' },
 } as any
 
-// TODO Benni fix third cycle search
-// describe.skip('Component <TableView> for RESEARCH courses', () => {
-//   test('creates a table with 4 columns for RESEARCH courses (without column for period intervals). English. 1A', () => {
-//     ;(useStore as jest.Mock).mockReturnValue({ language: 'en', languageIndex: 0 })
+describe('Component <TableView> for RESEARCH courses', () => {
+  test('creates a table with 4 columns for RESEARCH courses (without column for period intervals). English. 1A', () => {
+    ;(useStore as jest.Mock).mockReturnValue({ language: 'en', languageIndex: 0 })
 
-//     render(<TableView results={TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_EN.searchHits} />)
+    render(<TableView searchData={RESEARCH_SEARCH_DATA_EN} />)
 
-//     const rows = screen.queryAllByRole('row')
-//     const columnHeaders = screen.getAllByRole('columnheader')
-//     expect(rows).toHaveLength(4) // 3 courses + 1 header row
-//     expect(columnHeaders).toHaveLength(8)
+    const rows = screen.queryAllByRole('row')
+    const columnHeaders = screen.getAllByRole('columnheader')
+    expect(rows).toHaveLength(4) // 3 courses + 1 header row
+    expect(columnHeaders).toHaveLength(4)
 
-//     columnHeaders.forEach((colHeader, index) => {
-//       expect(colHeader).toHaveTextContent(reseacrhHitsColHeaders.en[index])
-//     })
+    columnHeaders.forEach((colHeader, index) => {
+      expect(colHeader).toHaveTextContent(reseacrhHitsColHeaders.en[index])
+    })
 
-//     rows.slice(1).forEach((row, index) => {
-//       const utils = within(row)
-//       const course = TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_EN.searchHits[index]
-//       expect(utils.getAllByRole('cell')[0]).toHaveTextContent(course.kod)
-//       expect(utils.getAllByRole('cell')[1]).toHaveTextContent(course.benamning)
-//       expect(utils.getAllByRole('cell')[2]).toHaveTextContent(`${course.omfattning.formattedWithUnit}`)
-//       expect(utils.getAllByRole('cell')[3]).toHaveTextContent('Third cycle')
-//     })
-//   })
+    rows.slice(1).forEach((row, index) => {
+      const utils = within(row)
+      const course = RESEARCH_SEARCH_DATA_EN.results[index]
+      expect(utils.getAllByRole('cell')[0]).toHaveTextContent(course.kod)
+      expect(utils.getAllByRole('cell')[1]).toHaveTextContent(course.benamning)
+      expect(utils.getAllByRole('cell')[2]).toHaveTextContent(`${course.omfattning}`)
+      expect(utils.getAllByRole('cell')[3]).toHaveTextContent('Third cycle')
+    })
+  })
 
-//   test('creates a table with 4 columns for RESEARCH courses (without column for period intervals). Swedish. 2A', () => {
-//     ;(useStore as jest.Mock).mockReturnValue({ language: 'sv', languageIndex: 1 })
+  test('creates a table with 4 columns for RESEARCH courses (without column for period intervals). Swedish. 2A', () => {
+    ;(useStore as jest.Mock).mockReturnValue({ language: 'sv', languageIndex: 1 })
 
-//     render(<TableView results={TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_SV.searchHits} />)
+    render(<TableView searchData={RESEARCH_SEARCH_DATA_SV} />)
 
-//     const rows = screen.queryAllByRole('row')
-//     const columnHeaders = screen.getAllByRole('columnheader')
-//     expect(rows).toHaveLength(4) // 3 courses + 1 header row
-//     expect(columnHeaders).toHaveLength(8)
+    const rows = screen.queryAllByRole('row')
+    const columnHeaders = screen.getAllByRole('columnheader')
+    expect(rows).toHaveLength(4) // 3 courses + 1 header row
+    expect(columnHeaders).toHaveLength(4)
 
-//     columnHeaders.forEach((colHeader, index) => {
-//       expect(colHeader).toHaveTextContent(reseacrhHitsColHeaders.sv[index])
-//     })
+    columnHeaders.forEach((colHeader, index) => {
+      expect(colHeader).toHaveTextContent(reseacrhHitsColHeaders.sv[index])
+    })
 
-//     rows.slice(1).forEach((row, index) => {
-//       const utils = within(row)
-//       const course = TEST_SEARCH_RESEARCH_THIRD_CYCLE_COURSES_SV.searchHits[index]
-//       expect(utils.getAllByRole('cell')[0]).toHaveTextContent(course.kod)
-//       expect(utils.getAllByRole('cell')[1]).toHaveTextContent(course.benamning)
-//       expect(utils.getAllByRole('cell')[2]).toHaveTextContent(course.omfattning.formattedWithUnit)
-//       expect(utils.getAllByRole('cell')[3]).toHaveTextContent('Forskarnivå')
-//     })
-//   })
-// })
+    rows.slice(1).forEach((row, index) => {
+      const utils = within(row)
+      const course = RESEARCH_SEARCH_DATA_SV.results[index]
+      expect(utils.getAllByRole('cell')[0]).toHaveTextContent(course.kod)
+      expect(utils.getAllByRole('cell')[1]).toHaveTextContent(course.benamning)
+      expect(utils.getAllByRole('cell')[2]).toHaveTextContent(course.omfattning)
+      expect(utils.getAllByRole('cell')[3]).toHaveTextContent('Forskarnivå')
+    })
+  })
+})
 
 const EXPECTED_TEST_SEARCH_HITS_MIXED_PERIODS_TEXTS_EN = [
   'P0 Autumn 25',
