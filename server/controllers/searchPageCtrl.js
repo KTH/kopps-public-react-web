@@ -5,13 +5,11 @@ const language = require('@kth/kth-node-web-common/lib/language')
 
 const i18n = require('../../i18n')
 
-// eslint-disable-next-line no-unused-vars
 const { searchCourseInstances, searchCourseVersions, getSchoolsList } = require('../ladok/ladokApi')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 
 const { createBreadcrumbs, createThirdCycleBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
-const { compareSchools, filterOutDeprecatedSchools } = require('../../domain/schools')
 const { ResultType } = require('../../shared/ResultType')
 
 async function renderSearchPage(
@@ -114,11 +112,12 @@ async function performCourseSearch(req, res, next) {
   //   })
   //   return acc
   // }, []) // todo - we can use it again when we had the data for periods from ladok
+  // TODO Benni periods
 
   const searchParams = {
     kodEllerBenamning: query.pattern ? query.pattern : undefined,
     organisation: query.department ? query.department : undefined,
-    sprak: query.showOptions?.includes('onlyEnglish') ? 'ENG' : undefined,
+    sprak: query.showOptions?.includes('onlyEnglish') ? 'ENG' : undefined, // TODO Benni, make this a boolean?
     avvecklad: query.showOptions?.includes('showCancelled') ? 'true' : undefined,
     startPeriod: query.semesters ?? undefined,
     utbildningsniva: query.eduLevel ?? undefined,
@@ -130,24 +129,12 @@ async function performCourseSearch(req, res, next) {
 
     // TODO Benni we should be able to return "no query restriction was specified" error already here (or even better in the client)
 
-    // TODO Benni - this is where we want to build the correct response
-
-    // searchParams for courseInstance
-    // sprak
-    // startPeriod
-
-    // searchParams to go for courseVersion
-    // kodEllerBenamning
-    // organisation
-    // avvecklad
-
     let type = ResultType.VERSION
     let apiResponse
 
-    // Here we are deciding which API to call based on the searchParams - still WIP
     if (searchParams.sprak || searchParams.startPeriod) {
       apiResponse = await searchCourseInstances(searchParams, lang)
-      type = ResultType.INSTANCE // We have an enum for this, but it is in the TS-client: ResultType
+      type = ResultType.INSTANCE
     } else {
       apiResponse = await searchCourseVersions(searchParams, lang)
       type = ResultType.VERSION
