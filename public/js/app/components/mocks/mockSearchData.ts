@@ -1,4 +1,5 @@
-import { CourseInstanceResult, ResultType, SearchData } from '../../hooks/types/UseCourseSearchTypes'
+import { ResultType } from '../../../../../shared/ResultType'
+import { CourseInstanceResult, SearchData } from '../../hooks/types/UseCourseSearchTypes'
 
 export const SEARCH_DATA_WITH_INSTANCE_RESULTS: CourseInstanceResult = {
   results: [
