@@ -1,9 +1,5 @@
 import { CourseInstanceSearchDTO, CourseVersionDTO } from '@kth/om-kursen-ladok-client/dist/search/types'
-
-export enum ResultType {
-  VERSION = 'courseVersion',
-  INSTANCE = 'courseInstance',
-}
+import { ResultType } from '../../../../../shared/ResultType'
 
 export type CourseVersionResult = {
   type: ResultType.VERSION

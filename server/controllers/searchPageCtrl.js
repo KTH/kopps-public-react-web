@@ -12,6 +12,7 @@ const { browser: browserConfig, server: serverConfig } = require('../configurati
 const { createBreadcrumbs, createThirdCycleBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
 const { compareSchools, filterOutDeprecatedSchools } = require('../../domain/schools')
+const { ResultType } = require('../../shared/ResultType')
 
 async function renderSearchPage(
   req,
@@ -140,16 +141,16 @@ async function performCourseSearch(req, res, next) {
     // organisation
     // avvecklad
 
-    let type = 'courseVersion'
+    let type = ResultType.VERSION
     let apiResponse
 
     // Here we are deciding which API to call based on the searchParams - still WIP
     if (searchParams.sprak || searchParams.startPeriod) {
       apiResponse = await searchCourseInstances(searchParams, lang)
-      type = 'courseInstance' // We have an enum for this, but it is in the TS-client: ResultType
+      type = ResultType.INSTANCE // We have an enum for this, but it is in the TS-client: ResultType
     } else {
       apiResponse = await searchCourseVersions(searchParams, lang)
-      type = 'courseVersion'
+      type = ResultType.VERSION
     }
 
     log.debug(` performCourseSearch to ${type} with searchParams:`, searchParams)
