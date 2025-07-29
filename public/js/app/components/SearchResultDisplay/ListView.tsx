@@ -2,9 +2,10 @@ import React from 'react'
 import './style.scss'
 
 import { useLanguage } from '../../hooks/useLanguage'
-import { ResultType, SearchData } from '../../hooks/types/UseCourseSearchTypes'
+import { SearchData } from '../../hooks/types/UseCourseSearchTypes'
 import { CourseVersionCardView } from './CourseVersionCardView'
 import { CourseInstanceCardView } from './CourseInstanceCardView'
+import { ResultType } from '../../../../../shared/ResultType'
 
 export const ListView: React.FC<{
   searchData: SearchData
