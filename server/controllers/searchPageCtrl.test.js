@@ -6,7 +6,6 @@ const { performCourseSearch } = require('./searchPageCtrl')
 
 jest.mock('../configuration', () => ({ server: {} }))
 jest.mock('../ladok/ladokApi', () => ({ searchCourseInstances: jest.fn() }))
-jest.mock('../kopps/koppsApi', () => ({ searchCourses: jest.fn() }))
 jest.mock('@kth/log')
 log.info = jest.fn()
 log.debug = jest.fn()
