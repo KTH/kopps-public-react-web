@@ -19,7 +19,6 @@ import DepartmentsList from './pages/DepartmentsList'
 import Eligibility from './pages/Eligibility'
 import Extent from './pages/Extent'
 import Implementation from './pages/Implementation'
-import LiteratureList from './pages/LiteratureList'
 import Objectives from './pages/Objectives'
 import Programme from './pages/Programme'
 import ProgrammesList from './pages/ProgrammesList'
@@ -33,7 +32,6 @@ import SearchPage from './pages/SearchPage'
 
 import getCurriculumMenuData from './config/curriculumMenuData'
 import getDepartmentMenuData from './config/departmentMenuData'
-import getLiteratureList from './config/literatureListMenuData'
 import getMenuData from './config/menuData'
 import getProgrammeMenuData from './config/programmeMenuData'
 import getStudyProgrammeMenuData from './config/studyProgrammeMenuData'
@@ -344,22 +342,6 @@ function appFactory(serverSideApplicationStore = null) {
             createMenuData={store => ({
               selectedId: `year-${store.studyYear}`,
               ...getCurriculumMenuData(store),
-            })}
-          />
-        }
-      />
-      <Route
-        key="literature-list"
-        exact
-        path="/student/kurser/lit/:term/:school"
-        element={
-          <ElementWrapper
-            component={LiteratureList}
-            layout={PageLayout}
-            initApplicationStoreCallback={() => _initStore({ storeId: 'literatureList' })}
-            createMenuData={store => ({
-              selectedId: store.selectedSchoolCode,
-              ...getLiteratureList(store),
             })}
           />
         }
