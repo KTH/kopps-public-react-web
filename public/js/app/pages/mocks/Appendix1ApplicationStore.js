@@ -13,7 +13,6 @@ const applicationStores = [
         thirdCycleCourseSearch: '/utbildning/forskarutbildning/kurser/sok',
         thirdCycleSchoolsAndDepartments: '/utbildning/forskarutbildning/kurser/avdelning',
         thirdCycleCoursesPerDepartment: '/utbildning/forskarutbildning/kurser/org',
-        literatureList: '/student/kurser/lit',
         programmeSyllabusPDF: '/student/kurser/intern-api/PDFRenderFunction',
       },
       redirectProxyPath: {
@@ -529,7 +528,6 @@ const applicationStores = [
         thirdCycleCourseSearch: '/utbildning/forskarutbildning/kurser/sok',
         thirdCycleSchoolsAndDepartments: '/utbildning/forskarutbildning/kurser/avdelning',
         thirdCycleCoursesPerDepartment: '/utbildning/forskarutbildning/kurser/org',
-        literatureList: '/student/kurser/lit',
         programmeSyllabusPDF: '/student/kurser/intern-api/PDFRenderFunction',
       },
       redirectProxyPath: {
@@ -3513,7 +3511,6 @@ const applicationStores = [
         thirdCycleCourseSearch: '/utbildning/forskarutbildning/kurser/sok',
         thirdCycleSchoolsAndDepartments: '/utbildning/forskarutbildning/kurser/avdelning',
         thirdCycleCoursesPerDepartment: '/utbildning/forskarutbildning/kurser/org',
-        literatureList: '/student/kurser/lit',
         programmeSyllabusPDF: '/student/kurser/intern-api/PDFRenderFunction',
       },
       redirectProxyPath: {

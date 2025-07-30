@@ -315,17 +315,6 @@ const messages = {
     searchLabel: 'Search programme syllabus',
     noResults: 'No results found',
   },
-  literatureList: {
-    title: (term, schoolCode) => `Reading list ${term} ${schoolCode}`,
-    heading: 'Reading list',
-    subHeading: (schoolName, term) => `${schoolName}, ${term}`,
-    navHeading: 'Reading lists',
-    breadcrumb: 'Reading lists',
-    intro: (schoolName, term) =>
-      `Literature from established syllabus for courses given by  ${schoolName} active in ${term}.`,
-    missing: '(information not available)',
-    departmentsOtherUni: 'Cooperation with other universities',
-  },
   searchAlarms: {
     errorUnknown: { text: 'An unknown error occurred - failed to retrieve course data' },
     errorKodEllerBenamning: { text: 'Search input must be equal or more than 3 characters.' },
