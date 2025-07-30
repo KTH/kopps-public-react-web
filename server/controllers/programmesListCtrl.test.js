@@ -1,5 +1,4 @@
 jest.mock('../configuration', () => ({ server: {} }))
-jest.mock('../kopps/koppsApi', () => {})
 
 const { _categorizeProgrammes: categorizeProgrammes, _sortProgrammes: sortProgrammes } = require('./programmesListCtrl')
 

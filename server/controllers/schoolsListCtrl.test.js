@@ -1,5 +1,4 @@
 jest.mock('../configuration', () => ({ server: {} }))
-jest.mock('../kopps/koppsApi', () => {})
 
 const { filterOutDeprecatedSchools, deprecatedSchools } = require('../../domain/schools')
 

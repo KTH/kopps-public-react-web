@@ -6,7 +6,6 @@ const language = require('@kth/kth-node-web-common/lib/language')
 const i18n = require('../../i18n')
 
 // eslint-disable-next-line no-unused-vars
-const koppsApi = require('../kopps/koppsApi')
 const { searchCourseInstances, searchCourseVersions, getSchoolsList } = require('../ladok/ladokApi')
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
 
