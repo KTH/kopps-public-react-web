@@ -1,6 +1,5 @@
 /* eslint no-use-before-define: ["error", "nofunc"] */
 
-// eslint-disable-next-line no-unused-vars
 import { observable } from 'mobx'
 import createCommonStore from './commonStore'
 import createCurriculumStore from './curriculumStore'

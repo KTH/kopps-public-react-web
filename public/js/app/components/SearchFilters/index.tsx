@@ -72,6 +72,35 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
         </div>
       )}
 
+      {(filterMode.includes('currentYear') || filterMode.includes('nextYear')) && (
+        <div className={collapsable ? 'row' : ''}>
+          {filterMode.includes('currentYear') && (
+            <div className={collapsable ? 'col' : ''}>
+              <SearchOptions
+                paramAliasName="currentYear"
+                paramName="period"
+                overrideSearchHead={currentYearLabel}
+                selectedValues={courseSearchParams.period as Period[]}
+                onChange={handleFilterValueChange}
+                disabled={disabled}
+              />
+            </div>
+          )}
+          {filterMode.includes('nextYear') && (
+            <div className={collapsable ? 'col' : ''}>
+              <SearchOptions
+                paramAliasName="nextYear"
+                paramName="period"
+                overrideSearchHead={nextYearLabel}
+                selectedValues={courseSearchParams.period as Period[]}
+                onChange={handleFilterValueChange}
+                disabled={disabled}
+              />
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Education Level and Show Options */}
       {(filterMode.includes('eduLevel') || filterMode.includes('showOptions') || filterMode.includes('onlyMHU')) && (
         <div className={collapsable ? 'row' : ''}>
