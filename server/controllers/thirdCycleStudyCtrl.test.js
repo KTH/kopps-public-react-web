@@ -1,4 +1,10 @@
-jest.mock('../configuration', () => ({ server: {} }))
+jest.mock('../configuration', () => ({
+  server: {
+    ladokMellanlagerApi: { baseUrl: 'http://mock-ladok-url' },
+    proxyPrefixPath: { programmesList: '', uri: '' },
+    toolbar: { url: '' },
+  },
+}))
 jest.mock('../kopps/koppsApi', () => {})
 
 const { coursesFromKopps, expectedThirdCycleCourseList } = require('../mocks/mockKoppsCoursesPerDepartment')
