@@ -61,7 +61,8 @@ function mapCourse(course) {
 }
 
 function calculateCreditsPerPeriod(course) {
-  const creditsPerPeriod = Array(6).fill(0)
+  const PERIOD_COUNT = 6
+  const creditsPerPeriod = Array(PERIOD_COUNT).fill(0)
   course.Tillfallesperioder?.forEach(period => {
     period.Lasperiodsfordelning?.forEach(lasperiod => {
       const index = LASPERIOD_INDEX[lasperiod.Lasperiodskod] || 0
