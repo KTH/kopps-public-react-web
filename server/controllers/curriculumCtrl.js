@@ -6,7 +6,6 @@ const i18n = require('../../i18n')
 
 const koppsApi = require('../kopps/koppsApi')
 const { curriculumInfo, setFirstSpec } = require('../../domain/curriculum')
-const { calculateStartTerm } = require('../../domain/academicYear')
 
 const { createProgrammeBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')

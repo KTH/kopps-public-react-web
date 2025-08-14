@@ -1,6 +1,3 @@
-const { isSpringTerm, splitTerm, termConstants } = require('./term')
-const { academicYearStartAndEnd } = require('./academicYear')
-
 const LASPERIOD_INDEX = {
   P0: 0,
   P1: 1,
@@ -10,86 +7,129 @@ const LASPERIOD_INDEX = {
   P5: 5,
 }
 
+const getSpecializationInfo = programmeSpecialization => {
+  if (!programmeSpecialization) {
+    return { code: '', specializationName: null, isCommon: true }
+  }
+  return {
+    code: programmeSpecialization.programmeSpecializationCode,
+    specializationName: programmeSpecialization.title,
+    isCommon: false,
+  }
+}
+
+const findStudyYear = (studyYears, studyYear) => {
+  return studyYears.find(s => Math.abs(s.yearNumber) === Math.abs(studyYear))
+}
+
+const baseResult = ({ code, specializationName, isCommon }) => {
+  return {
+    code,
+    specializationName,
+    isCommon,
+    participations: {},
+    supplementaryInformation: undefined,
+    conditionallyElectiveCoursesInformation: undefined,
+    htmlCourses: undefined,
+    isFirstSpec: false,
+    hasInfo: false,
+    freeTexts: undefined,
+  }
+}
+
+function sortParticipationsByTerm(participations) {
+  for (const valvillkor in participations) {
+    participations[valvillkor].sort((a, b) => {
+      if (!a.term && !b.term) return 0
+      if (!a.term) return 1
+      if (!b.term) return -1
+      return a.term.localeCompare(b.term)
+    })
+  }
+}
+
+function mapCourse(course) {
+  return {
+    courseCode: course.kod,
+    title: course.benamning,
+    credits: course.omfattning?.number,
+    formattedCredits: course.omfattning?.formattedWithUnit,
+    educationalLevel: course.utbildningstyp?.level?.name,
+    electiveCondition: course.Valvillkor,
+    status: course.status,
+  }
+}
+
+function calculateCreditsPerPeriod(course) {
+  const creditsPerPeriod = Array(6).fill(0)
+  course.Tillfallesperioder?.forEach(period => {
+    period.Lasperiodsfordelning?.forEach(lasperiod => {
+      const index = LASPERIOD_INDEX[lasperiod.Lasperiodskod] || 0
+      creditsPerPeriod[index] += lasperiod.Omfattningsvarde
+    })
+  })
+  return creditsPerPeriod
+}
+
+const processCourses = (courses, studyYearData) => {
+  const participations = {}
+
+  for (const course of courses) {
+    if (!participations[course.Valvillkor]) {
+      participations[course.Valvillkor] = []
+    }
+
+    const creditsPerPeriod = calculateCreditsPerPeriod(course)
+    participations[course.Valvillkor].push({
+      course: mapCourse(course),
+      applicationCode: course.tillfalleskod,
+      term: course?.startperiod?.inDigits,
+      creditsPerPeriod,
+    })
+  }
+
+  sortParticipationsByTerm(participations)
+
+  return {
+    participations,
+    supplementaryInformation: studyYearData.supplementaryInfo,
+    conditionallyElectiveCoursesInformation: studyYearData.conditionallyElectiveCoursesInfo,
+    freeTexts: studyYearData.freeTexts,
+  }
+}
+
 /**
+ * Extract curriculum information for a given programme term year.
+ * @param {object} options
  * @param {object} options.programmeTermYear
  * @param {object} options.curriculum
  * @returns {object}
  */
 function curriculumInfo({ programmeTermYear = {}, curriculum }) {
-  let code = ''
-  let specializationName = null
-  let isCommon = true
-
-  let supplementaryInformation
-  let conditionallyElectiveCoursesInformation
-  let freeTexts
-  const participations = {}
-  const isFirstSpec = false
-
   const { programmeSpecialization, studyYears } = curriculum
   const { studyYear } = programmeTermYear
 
-  if (programmeSpecialization) {
-    code = programmeSpecialization.programmeSpecializationCode
-    specializationName = programmeSpecialization.title
-    isCommon = false
+  const { code, specializationName, isCommon } = getSpecializationInfo(programmeSpecialization)
+
+  const curriculumStudyYear = findStudyYear(studyYears, studyYear)
+  if (!curriculumStudyYear) {
+    return baseResult({ code, specializationName, isCommon })
   }
 
-  const [curriculumStudyYear] = studyYears.filter(s => Math.abs(s.yearNumber) === Math.abs(studyYear))
-
-  let hasInfo = false
-  let htmlCourses = undefined
-
-  if (curriculumStudyYear) {
-    if (typeof curriculumStudyYear.courses === 'string') {
-      htmlCourses = curriculumStudyYear.courses
-      hasInfo = true
-    } else {
-      supplementaryInformation = curriculumStudyYear.supplementaryInfo
-      conditionallyElectiveCoursesInformation = curriculumStudyYear.conditionallyElectiveCoursesInfo
-      freeTexts = curriculumStudyYear.freeTexts
-      for (const course of curriculumStudyYear.courses) {
-        if (!participations[course.Valvillkor]) participations[course.Valvillkor] = []
-
-        const term = course?.startperiod?.inDigits
-
-        const creditsPerPeriod = [0, 0, 0, 0, 0, 0]
-        course.Tillfallesperioder?.forEach(period => {
-          period.Lasperiodsfordelning?.forEach(lasperiod => {
-            const periodIndex = LASPERIOD_INDEX[lasperiod.Lasperiodskod] || 0
-            creditsPerPeriod[periodIndex] += lasperiod.Omfattningsvarde
-          })
-        })
-
-        participations[course.Valvillkor].push({
-          course: {
-            courseCode: course.kod,
-            title: course.benamning,
-            credits: course.omfattning?.number,
-            formattedCredits: course.omfattning?.formattedWithUnit,
-            educationalLevel: course.utbildningstyp?.level?.name,
-            electiveCondition: course.Valvillkor,
-            status: course.status,
-          },
-          applicationCode: course.tillfalleskod, // A course instance in Ladok can have only one tillfalleskod
-          term,
-          creditsPerPeriod,
-        })
-      }
-
-      for (const valvillkor in participations) {
-        participations[valvillkor].sort((a, b) => {
-          if (!a.term && !b.term) return 0
-          if (!a.term) return 1 // 'a' is undefined → goes after 'b'
-          if (!b.term) return -1 // 'b' is undefined → goes after 'a'
-          return a.term.localeCompare(b.term)
-        })
-      }
-
-      hasInfo =
-        Object.keys(participations).length !== 0 || conditionallyElectiveCoursesInformation || supplementaryInformation
+  if (typeof curriculumStudyYear.courses === 'string') {
+    return {
+      ...baseResult({ code, specializationName, isCommon }),
+      htmlCourses: curriculumStudyYear.courses,
+      hasInfo: true,
     }
   }
+  const { participations, supplementaryInformation, conditionallyElectiveCoursesInformation, freeTexts } =
+    processCourses(curriculumStudyYear.courses, curriculumStudyYear)
+
+  const hasInfo =
+    Object.keys(participations).length > 0 ||
+    Boolean(conditionallyElectiveCoursesInformation) ||
+    Boolean(supplementaryInformation)
 
   return {
     code,
@@ -98,8 +138,8 @@ function curriculumInfo({ programmeTermYear = {}, curriculum }) {
     participations,
     supplementaryInformation,
     conditionallyElectiveCoursesInformation,
-    htmlCourses,
-    isFirstSpec,
+    htmlCourses: undefined,
+    isFirstSpec: false,
     hasInfo,
     freeTexts,
   }
