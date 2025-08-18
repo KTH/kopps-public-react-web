@@ -132,6 +132,16 @@ function Courses({ curriculumInfo }) {
   return (
     <>
       <LadokData html={curriculumInfo.supplementaryInformation} />
+      {freeTexts?.length > 0 && (
+        <>
+          <h3 id={`heading-free-texts`}>{t('free_texts_header')}</h3>
+          <ul>
+            {freeTexts.map((textObj, index) => (
+              <li key={textObj.FritextUID || index}>{textObj.Text}</li>
+            ))}
+          </ul>
+        </>
+      )}
       {ELECTIVE_CONDITIONS.map(electiveCondition => {
         const participations = allParticipations[electiveCondition] || []
         return (
@@ -161,16 +171,6 @@ function Courses({ curriculumInfo }) {
           )
         )
       })}
-      {freeTexts?.length > 0 && (
-        <>
-          <h3 id={`heading-free-texts`}>{t('free_texts_header')}</h3>
-          <ul>
-            {freeTexts.map((textObj, index) => (
-              <li key={textObj.FritextUID || index}>{textObj.Text}</li>
-            ))}
-          </ul>
-        </>
-      )}
     </>
   )
 }
