@@ -227,7 +227,6 @@ const {
   Implementation,
   Appendix1,
   Appendix2,
-  LiteratureList,
   PDFExport,
   SearchPage,
 } = require('./controllers')
@@ -443,11 +442,6 @@ appRoute.get(
   'public.curriculumRoot_five_digit',
   _addProgramProxy('/:programmeCode/:term([0-9]{4}[1-2])/arskurs:studyYear([1-5])'),
   Curriculum.getIndex
-)
-appRoute.get(
-  'public.programme_literature_list',
-  proxyPrefixPath.literatureList + '/:term([0-9]{4}[1-2])/:school([A-Z]+)',
-  LiteratureList.getLiteratureList
 )
 
 server.use('/', appRoute.getRouter())

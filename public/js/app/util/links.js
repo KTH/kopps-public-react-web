@@ -53,10 +53,6 @@ function koppsEmail() {
   return 'mailto:kopps@kth.se'
 }
 
-function literatureListLink(schoolCode, term, lang) {
-  return pageLink(`/student/kurser/lit/${term}/${schoolCode}`, lang)
-}
-
 function thirdCycleStudyCatalogLink(language) {
   return pageLink(`/utbildning/forskarutbildning/kurser/avdelning`, language)
 }
@@ -90,7 +86,6 @@ export {
   programmeWebLink,
   thirdCycleDepartmentLink,
   appendix1Link,
-  literatureListLink,
   programLinkYear1,
   replaceSiteLink,
   replaceSiteLinkForThirdCyclePages,

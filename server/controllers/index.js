@@ -12,7 +12,6 @@ module.exports = {
   Eligibility: require('./eligibilityCtrl'),
   Extent: require('./extentCtrl'),
   Implementation: require('./implementationCtrl'),
-  LiteratureList: require('./literatureListCtrl'),
   Objectives: require('./objectivesCtrl'),
   Programme: require('./programmeCtrl'),
   ProgrammesList: require('./programmesListCtrl'),

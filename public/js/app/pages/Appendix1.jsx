@@ -189,6 +189,7 @@ function StudyYear({ studyYear, code }) {
     <Fragment key={studyYear}>
       <div className="page-break-inside">
         <h3>{studyYearHeader}</h3>
+        <FreeTexts studyYear={studyYear} code={code} />
         {ELECTIVE_CONDITIONS.map(electiveCondition => (
           <ElectiveCondition
             key={electiveCondition}
@@ -200,7 +201,6 @@ function StudyYear({ studyYear, code }) {
       </div>
       <SupplementaryInfo studyYear={studyYear} code={code} />
       <ConditionallyElectiveCoursesInfo studyYear={studyYear} code={code} />
-      <FreeTexts studyYear={studyYear} code={code} />
     </Fragment>
   )
 }

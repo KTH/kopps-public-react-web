@@ -32,15 +32,10 @@ function thirdCycleDepartmentLink(departmentCode, language) {
   return pageLink(`/utbildning/forskarutbildning/kurser/org/${departmentCode}`, language)
 }
 
-function literatureListLink(schoolCode, term, language) {
-  return pageLink(`/student/kurser/lit/${term}/${schoolCode}`, language)
-}
-
 module.exports = {
   departmentLink,
   pageLink,
   possiblyChangeBaseUrl,
   programmeLink,
   thirdCycleDepartmentLink,
-  literatureListLink,
 }

@@ -306,17 +306,6 @@ const messages = {
     searchLabel: 'Sök utbildningsplan',
     noResults: 'Inga resultat hittades',
   },
-  literatureList: {
-    title: (term, schoolCode) => `Litteraturlista ${term} ${schoolCode}`,
-    heading: 'Litteraturlista',
-    subHeading: (schoolName, term) => `${schoolName}, ${term}`,
-    navHeading: 'Litteraturlistor',
-    breadcrumb: 'Litteraturlistor',
-    intro: (schoolName, term) =>
-      `Här visas information om kurslitteratur enligt gällande kursplan för kurser som ges av ${schoolName} och pågår ${term}.`,
-    missing: '(information saknas)',
-    departmentsOtherUni: 'Samarbete med andra universitet',
-  },
   searchAlarms: {
     errorUnknown: { text: 'Ett okänt fel inträffade - misslyckad hämtning av kursdata' },
     errorKodEllerBenamning: { text: 'Sökinmatningen måste vara lika med eller större än 3 tecken.' },
