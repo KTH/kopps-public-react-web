@@ -27,7 +27,6 @@ module.exports = {
     thirdCycleCourseSearchResult: `${thirdCycleRoot}/sok/resultat`,
     thirdCycleSchoolsAndDepartments: `${thirdCycleRoot}/avdelning`,
     thirdCycleCoursesPerDepartment: `${thirdCycleRoot}/org`,
-    literatureList: `${studentRoot}/lit`,
     programmeSyllabusPDF: `${studentRoot}/intern-api/PDFRenderFunction`,
   },
   // Don't contain any content

@@ -6,13 +6,7 @@
 // See https://confluence.sys.kth.se/confluence/x/6wYJDQ for more information.
 
 const commonSettings = require('../../config/commonSettings')
-const {
-  pageLink,
-  programmeLink,
-  departmentLink,
-  thirdCycleDepartmentLink,
-  literatureListLink,
-} = require('../../domain/links')
+const { pageLink, programmeLink, departmentLink, thirdCycleDepartmentLink } = require('../../domain/links')
 const translate = require('../../domain/translate')
 const i18n = require('../../i18n')
 
@@ -114,24 +108,9 @@ function createThirdCycleBreadcrumbs(language, departmentName, departmentCode) {
   return items
 }
 
-function createLiteratureBreadcrumbs(language, selectedSchoolCode, selectedTerm) {
-  const langIndex = language === 'en' ? 0 : 1
-  const { breadcrumb } = i18n.messages[langIndex].literatureList
-  const baseItems = createBaseItems(language)
-  return [
-    baseItems.student,
-    baseItems.studies,
-    {
-      url: literatureListLink(selectedSchoolCode, selectedTerm, language),
-      label: breadcrumb,
-    },
-  ]
-}
-
 module.exports = {
   createBreadcrumbs,
   createProgrammeBreadcrumbs,
   createDepartmentBreadcrumbs,
   createThirdCycleBreadcrumbs,
-  createLiteratureBreadcrumbs,
 }

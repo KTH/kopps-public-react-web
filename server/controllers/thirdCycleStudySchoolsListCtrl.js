@@ -3,7 +3,6 @@ const language = require('@kth/kth-node-web-common/lib/language')
 
 const { server: serverConfig } = require('../configuration')
 const i18n = require('../../i18n')
-const koppsApi = require('../kopps/koppsApi')
 
 const { createThirdCycleBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')

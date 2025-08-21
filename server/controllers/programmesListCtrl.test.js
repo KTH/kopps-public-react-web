@@ -5,7 +5,6 @@ jest.mock('../configuration', () => ({
     toolbar: { url: '' },
   },
 }))
-jest.mock('../kopps/koppsApi', () => {})
 
 const { _categorizeProgrammes: categorizeProgrammes, _sortProgrammes: sortProgrammes } = require('./programmesListCtrl')
 

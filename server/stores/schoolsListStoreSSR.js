@@ -1,8 +1,6 @@
 const log = require('@kth/log')
 
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
-const i18n = require('../../i18n')
-const koppsApi = require('../kopps/koppsApi')
 const { getSchoolsListForCoursesPerSchool } = require('../ladok/ladokApi')
 
 module.exports = {

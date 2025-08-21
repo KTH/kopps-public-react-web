@@ -6,12 +6,6 @@ function setErrorKoppsCallingUri(uri, statusCode) {
   return error
 }
 
-function setErrorInProgramVersion() {
-  const error = new Error('Exception calling KOPPS API in koppsApi.getStudyProgrammeVersion')
-  log.error(error)
-  return error
-}
 module.exports = {
-  setErrorInProgramVersion,
   setErrorKoppsCallingUri,
 }
