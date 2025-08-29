@@ -1,5 +1,3 @@
-version: '3.7'
-
 services:
   mock-api:
     build: ./test/mock-api
@@ -15,6 +13,7 @@ services:
     image: $LOCAL_IMAGE_ID
     environment:
       KOPPS_API_BASEURL: 'http://mock-api:3000/kopps/' # port spelar inte roll, prod ignores port of kopps api
+      LADOK_BASE_URL: 'http://some-url'
       NODE_ENV: 'production' # changing this will not help, it will be production mode anyway
       TEST_TYPE: 'performance'
       SESSION_USE_REDIS: 'false'
