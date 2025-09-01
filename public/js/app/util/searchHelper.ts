@@ -4,7 +4,7 @@ import { Link } from '@kth/kth-reactstrap/dist/components/studinfo'
 import { courseLink } from './links'
 import React, { ReactElement } from 'react'
 import { formatTermByYearAndPeriod } from '../../../../domain/term'
-import { CourseRoundSearchDTO, CourseVersionDTO } from '@kth/om-kursen-ladok-client/dist/search/types'
+import { CourseInstanceSearchDTO, CourseVersionDTO } from '@kth/om-kursen-ladok-client/dist/search/types'
 
 export const getHelpText = (langIndex: number, nameOfInstruction: string, instructionKeys: string[]): string[] => {
   /**
@@ -74,7 +74,7 @@ const createLinkInSortableCell = ({
   }
 }
 
-export const compareCourseDTOBy = <K extends CourseVersionDTO | CourseRoundSearchDTO, T extends keyof K>(key: T) => {
+export const compareCourseDTOBy = <K extends CourseVersionDTO | CourseInstanceSearchDTO, T extends keyof K>(key: T) => {
   return function compare(a: K, b: K): number {
     if (a[key] < b[key]) {
       return -1
@@ -108,7 +108,7 @@ export const periodsStr = ({
   return `P${startPeriod} ${formatTermByYearAndPeriod(startPeriod, startPeriodYear, language)} - P${endPeriod} ${formatTermByYearAndPeriod(endPeriod, endPeriodYear, language)}`
 }
 
-export const formatCourseInstance = (course: CourseRoundSearchDTO, language: string) => {
+export const formatCourseInstance = (course: CourseInstanceSearchDTO, language: string) => {
   const periodTexts = course.perioder.map(period => periodsStr({ ...period, language }))
 
   const areAllPeriodTextsEmpty = periodTexts.every((value: string) => value === '')
@@ -153,7 +153,7 @@ export const parseCourseVersionsForTableView = (courses: CourseVersionDTO[], lan
   })
 }
 
-export const parseCourseInstancesForTableView = (courses: CourseRoundSearchDTO[], language: string): DataItem[][] => {
+export const parseCourseInstancesForTableView = (courses: CourseInstanceSearchDTO[], language: string): DataItem[][] => {
   const { generalSearch } = i18n.messages[language === 'en' ? '0' : '1']
 
   courses.sort(compareCourseDTOBy('kod')) // TODO Benni make sure we only sort once
