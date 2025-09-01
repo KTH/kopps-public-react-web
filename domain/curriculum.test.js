@@ -1,4 +1,5 @@
 const { curriculumInfo } = require('./curriculum')
+const { curriculumMock, programmeTermYearMock, curriculumInfoDataMock } = require('./mocks/curriculumMock')
 
 const firstYear = 1
 const secondYear = 2
@@ -222,5 +223,9 @@ describe('curriculumInfo - edge cases', () => {
     expect(result.participations['O'].length).toBe(1)
     expect(result.participations['V'].length).toBe(1)
     expect(result.participations['F'].length).toBe(1)
+  })
+  test('test that the final output is correct', () => {
+    const result = curriculumInfo({ programmeTermYear: programmeTermYearMock, curriculum: curriculumMock })
+    expect(result).toStrictEqual(curriculumInfoDataMock)
   })
 })

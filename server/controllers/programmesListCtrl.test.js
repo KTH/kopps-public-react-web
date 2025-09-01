@@ -1,4 +1,10 @@
-jest.mock('../configuration', () => ({ server: {} }))
+jest.mock('../configuration', () => ({
+  server: {
+    ladokMellanlagerApi: { baseUrl: 'http://mock-ladok-url' },
+    proxyPrefixPath: { programmesList: '', uri: '' },
+    toolbar: { url: '' },
+  },
+}))
 
 const { _categorizeProgrammes: categorizeProgrammes, _sortProgrammes: sortProgrammes } = require('./programmesListCtrl')
 
