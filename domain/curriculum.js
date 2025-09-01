@@ -60,6 +60,7 @@ function mapCourse(course) {
   }
 }
 
+function calculateCreditsPerPeriod(course) {
   const PERIOD_COUNT = Object.keys(LASPERIOD_INDEX).length
   const creditsPerPeriod = Array(PERIOD_COUNT).fill(0)
   course.Tillfallesperioder?.forEach(period => {
