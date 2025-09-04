@@ -1,0 +1,57 @@
+// i18nWrapper.d.ts
+
+import {messages as _messages} from './messages.en'
+
+type Messages = typeof _messages
+
+/**
+ * One entry in the `messages` array.
+ * Mirrors the shape of your individual message-*.d.ts files.
+ */
+export interface LanguageEntry {
+  /** e.g. ['sv', 'se'] */
+  shortNames: string[]
+  /** e.g. 'Svenska' */
+  longNameSe: string
+  /** e.g. 'Swedish' */
+  longNameEn: string
+
+  /**
+   * All the keyed messages for that language.
+   * keys like 'date_format_short', 'ready_paths', …
+   */
+  messages: 
+}
+
+/**
+ * The shape of the entire i18n object you’re wrapping.
+ */
+export interface I18nWrapper {
+  /** Returns the matching LanguageEntry or `undefined` */
+  getLanguageByShortname(shortName?: string): LanguageEntry | undefined
+
+  /** The default language code, e.g. 'sv' */
+  DEFAULT_LANG: string
+
+  /** All loaded language entries */
+  messages: Messages
+
+  /**
+   * Look up a single message by key in the active language.
+   * Falls back to DEFAULT_LANG if missing.
+   */
+  message(key: string, overrideLang?: string): string
+
+  /** true if cookie-language is 'sv' or unset */
+  isSwedish(): boolean
+
+  /** true if cookie-language is 'en' */
+  isEnglish(): boolean
+}
+
+/**
+ * Because your JS does `module.exports = i18n`,
+ * we use `export =` to mirror that exactly.
+ */
+declare const i18n: I18nWrapper
+export default i18n

@@ -1,4 +1,4 @@
-import { EducationalLevelCode } from "@kth/om-kursen-ladok-client"
+import { EducationalLevelCode } from '@kth/om-kursen-ladok-client'
 
 export type Pattern = string
 

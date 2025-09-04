@@ -27,6 +27,7 @@ const MainContent: React.FC<MainContentProps> = ({ children }) => {
   )
 }
 
+// TODO Benni make this more readable
 function _getThisHost(thisHostBaseUrl: string) {
   return thisHostBaseUrl.slice(-1) === '/' ? thisHostBaseUrl.slice(0, -1) : thisHostBaseUrl
 }
