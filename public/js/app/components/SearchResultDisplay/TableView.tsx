@@ -6,9 +6,10 @@ import translate from '../../../../../domain/translate'
 import { parseCourseVersionsForTableView, parseCourseInstancesForTableView } from '../../util/searchHelper'
 
 import { SortableTable } from '@kth/kth-reactstrap/dist/components/studinfo'
-import { ResultType, SearchData } from '../../hooks/types/UseCourseSearchTypes'
+import { SearchData } from '../../hooks/types/UseCourseSearchTypes'
 import { DataItem } from '../../util/types/SearchDisplayTypes'
 import { useLanguage } from '../../hooks/useLanguage'
+import { ResultType } from '../../../../../shared/ResultType'
 
 const TableView: React.FC<{
   searchData: SearchData

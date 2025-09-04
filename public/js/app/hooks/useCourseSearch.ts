@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer, Dispatch } from 'react'
-import { Action, ERROR_ASYNC, ResultType, STATUS, SearchResponse, State } from './types/UseCourseSearchTypes'
+import { Action, ERROR_ASYNC, STATUS, SearchResponse, State } from './types/UseCourseSearchTypes'
 import { SearchErrorCode } from '@kth/om-kursen-ladok-client'
+import { ResultType } from '../../../../shared/ResultType'
 
 function asyncReducer<T>(state: State, action: Action): State {
   switch (action.type) {
