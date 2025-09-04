@@ -62,7 +62,7 @@ function composePublicPathString(...subDirParts) {
 }
 
 function getTransformationRules({ contextIsNode, subDir = null }) {
-  const MAGIC_EXTENSIONS_IF_OMITTED_WITH_IMPORT = ['.js', '.jsx', '.json', '.tsx', '.ts']
+  const MAGIC_EXTENSIONS_IF_OMITTED_WITH_IMPORT = ['.ts', '.tsx', '.js', '.jsx', '.json']
   const ALLOW_MIX_OF_CJS_AND_ESM_IMPORTS = { sourceType: 'unambiguous' }
 
   // @ts-ignore
@@ -73,6 +73,10 @@ function getTransformationRules({ contextIsNode, subDir = null }) {
     plugins: [...AVOID_EMPTY_JS_FILES_ON_SCSS_ENTRYPOINTS, new MiniCssExtractPlugin()],
     resolve: {
       extensions: MAGIC_EXTENSIONS_IF_OMITTED_WITH_IMPORT,
+      alias: {
+        // import from 'domain/…' → point at your domain folder
+        domain: path.resolve(__dirname, 'domain'),
+      },
     },
     target: contextIsNode ? 'node' : 'browserslist:> 0.25%, not dead',
     module: {

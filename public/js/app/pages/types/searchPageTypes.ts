@@ -21,6 +21,7 @@ export interface CourseSearchParams {
   eduLevel: EduLevel[]
   showOptions: ShowOptions[]
   department: DepartmentCodeOrPrefix
+  period: Period[]
 }
 
 export interface SearchPageProps {

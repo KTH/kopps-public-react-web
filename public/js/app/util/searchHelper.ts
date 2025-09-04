@@ -99,7 +99,7 @@ export const periodsStr = ({
   endPeriod?: number
   endPeriodYear: string
   tillfallesperioderNummer?: number
-  language: string
+  language: 'en' | 'sv'
 }): string => {
   if (!startPeriod && startPeriod !== 0) return ''
   if (startPeriod === endPeriod && tillfallesperioderNummer === 1)
@@ -108,7 +108,8 @@ export const periodsStr = ({
   return `P${startPeriod} ${formatTermByYearAndPeriod(startPeriod, startPeriodYear, language)} - P${endPeriod} ${formatTermByYearAndPeriod(endPeriod, endPeriodYear, language)}`
 }
 
-export const formatCourseInstance = (course: CourseRoundSearchDTO, language: string) => {
+export const formatCourseInstance = (course: CourseRoundSearchDTO, language: 'en' | 'sv') => {
+  // TODO Benni - here we have to update the generation of period strings. Ideally, we can just use whatever we get from OmKursenLadokClient, i.e. the DTO should contain two strings for start/end
   const periodTexts = course.perioder.map(period => periodsStr({ ...period, language }))
 
   const areAllPeriodTextsEmpty = periodTexts.every((value: string) => value === '')
@@ -153,7 +154,10 @@ export const parseCourseVersionsForTableView = (courses: CourseVersionDTO[], lan
   })
 }
 
-export const parseCourseInstancesForTableView = (courses: CourseRoundSearchDTO[], language: string): DataItem[][] => {
+export const parseCourseInstancesForTableView = (
+  courses: CourseRoundSearchDTO[],
+  language: 'en' | 'sv'
+): DataItem[][] => {
   const { generalSearch } = i18n.messages[language === 'en' ? '0' : '1']
 
   courses.sort(compareCourseDTOBy('kod')) // TODO Benni make sure we only sort once

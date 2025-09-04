@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2020", // matches your Node >20 runtime
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowJs": true, // ✅ let .js files live here
+    "checkJs": true, // optional: get warnings on your .js
+    "declaration": true, // emit .d.ts alongside .js
+    "outDir": "dist", // where compiled .js/.d.ts land
+    "rootDir": ".", // the domain/ folder root
+    "composite": true, // (pre-req if you later use project refs)
+    // "typeRoots": ["../types", "../node_modules/@types"],
+    "types": ["jest", "jest-extended"]
+  },
+  "include": ["**/*.js", "**/*.ts"]
+}

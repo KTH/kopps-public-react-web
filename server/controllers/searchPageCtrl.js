@@ -85,34 +85,20 @@ async function searchThirdCycleCourses(req, res, next) {
   })
 }
 
+function convertSummerToPeriods(kthPeriods) {
+  return kthPeriods.flatMap(period => {
+    if (period.includes('summer')) return [period.replace('summer', 'P5'), period.replace('summer', 'P0')]
+
+    return [period]
+  })
+}
+
 async function performCourseSearch(req, res, next) {
   const { lang } = req.params
 
   const { query } = req
 
-  // const convertedPeriods = query.period?.reduce((acc, period) => {
-  //   const splitedPeriod = period.split(':')
-  //   const codes =
-  //     splitedPeriod[1] === 'summer' ? [`VT${splitedPeriod[0]}`, `HT${splitedPeriod[0]}`] : [splitedPeriod[0]]
-  //   const value = splitedPeriod[1] === 'summer' ? ['0', '5'] : splitedPeriod[1]
-
-  //   codes.forEach(code => {
-  //     const existingEntry = acc.find(entry => entry.code === code)
-
-  //     if (existingEntry) {
-  //       existingEntry.periods = Array.isArray(existingEntry.periods)
-  //         ? [...existingEntry.periods, ...value]
-  //         : [existingEntry.periods, ...value]
-  //     } else {
-  //       acc.push({
-  //         code: code,
-  //         periods: value,
-  //       })
-  //     }
-  //   })
-  //   return acc
-  // }, []) // todo - we can use it again when we had the data for periods from ladok
-  // TODO Benni periods
+  const kthPeriods = query.period && convertSummerToPeriods(query.period)
 
   const searchParams = {
     kodEllerBenamning: query.pattern ? query.pattern : undefined,
@@ -122,6 +108,7 @@ async function performCourseSearch(req, res, next) {
     startPeriod: query.semesters ?? undefined,
     utbildningsniva: query.eduLevel ?? undefined,
     onlyMHU: query.showOptions?.includes('onlyMHU') ? 'true' : undefined,
+    kthPeriods,
   }
 
   try {
@@ -132,7 +119,7 @@ async function performCourseSearch(req, res, next) {
     let type = ResultType.VERSION
     let apiResponse
 
-    if (searchParams.sprak || searchParams.startPeriod) {
+    if (searchParams.sprak || searchParams.startPeriod || searchParams.kthPeriods) {
       apiResponse = await searchCourseInstances(searchParams, lang)
       type = ResultType.INSTANCE
     } else {

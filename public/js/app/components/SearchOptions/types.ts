@@ -15,7 +15,7 @@ export interface SearchOptionReturnValues {
 export interface SearchOptionsProps {
   overrideSearchHead?: string
   paramAliasName?: 'currentYear' | 'nextYear' | 'onlyMHU' | ''
-  paramName: 'eduLevel' | 'semesters' | 'period' | 'showOptions'
+  paramName: 'eduLevel' | 'semesters' | 'period' | 'showOptions' | 'currentYear' | 'nextYear'
   selectedValues: SearchOptionValues
   onChange: (params: SearchOptionReturnValues) => void
   disabled?: boolean

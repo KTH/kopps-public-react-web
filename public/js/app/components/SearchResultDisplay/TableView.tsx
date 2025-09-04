@@ -25,7 +25,10 @@ const TableView: React.FC<{
   )
 }
 
-const getTableData = (searchData: SearchData, languageShortname: string): { headers: string[]; data: DataItem[][] } => {
+const getTableData = (
+  searchData: SearchData,
+  languageShortname: 'en' | 'sv'
+): { headers: string[]; data: DataItem[][] } => {
   const t = translate(languageShortname)
 
   const COURSE_VERSION_HEADERS: string[] = [

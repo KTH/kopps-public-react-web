@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useStore } from '../../mobx'
 import i18n from '../../../../../i18n'
-import { getParamConfig } from '../../../../../domain/searchParams'
+import { getParamConfig } from 'domain/searchParams'
 import { SearchOptionConfig, SearchOptionValues, SearchOptionsProps } from './types'
 
 const SearchOptions: React.FC<SearchOptionsProps> = ({

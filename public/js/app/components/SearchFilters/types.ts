@@ -30,8 +30,8 @@ export interface SearchFilterStore extends SearchCoursesStore {
   languageIndex: number
 }
 export const FILTER_MODES: Record<string, FilterModeKey[]> = {
-  default: ['semesters', 'eduLevel', 'showOptions', 'department'],
+  default: ['eduLevel', 'showOptions', 'department', 'currentYear', 'nextYear'],
   thirdCycleCourses: ['onlyMHU', 'department'],
 } as const
 
-type FilterModeKey = 'semesters' | 'eduLevel' | 'showOptions' | 'department' | 'onlyMHU'
+type FilterModeKey = 'semesters' | 'eduLevel' | 'showOptions' | 'department' | 'onlyMHU' | 'currentYear' | 'nextYear'

@@ -42,6 +42,7 @@ describe('<SearchFilters />', () => {
 
   const courseSearchParams = {
     pattern: '',
+    period: [] as Period[],
     semesters: [] as Semester[],
     eduLevel: [] as EduLevel[],
     showOptions: [] as ShowOptions[],
