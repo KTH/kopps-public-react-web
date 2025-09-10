@@ -1,7 +1,7 @@
 const log = require('@kth/log')
 
 const ladokApi = require('../ladok/ladokApi')
-const { TEST_API_ANSWER_ALGEBRA } = require('../mocks/mockLadokApi')
+const { TEST_API_ANSWER_ALGEBRA, TEST_API_ANSWER_ALGEBRA_PART } = require('../mocks/mockLadokApi')
 const { performCourseSearch } = require('./searchPageCtrl')
 const { ResultType } = require('../../shared/ResultType')
 
@@ -32,14 +32,17 @@ const mockNext = () => {
   return next
 }
 
-// TODO Benni write tests for this once it is implemented completely
 describe('Controller searchCtrl, function performCourseSearch', () => {
+  beforeEach(() => {
+    jest.restoreAllMocks()
+  })
+
   describe('Calls searchCourseVersions', () => {
     test('search by pattern with interface language english', async () => {
       searchCourseVersions.mockReturnValue(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
       await performCourseSearch(mReq({ pattern: 'Algebra' }, langEn), mRes, mockNext())
 
-      expect(ladokApi.searchCourseVersions).toHaveBeenCalledWith(
+      expect(ladokApi.searchCourseVersions).toHaveBeenLastCalledWith(
         {
           kodEllerBenamning: 'Algebra',
           avvecklad: undefined,
@@ -50,17 +53,17 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
         },
         langEn
       )
-      expect(mRes.status().json).toHaveBeenCalledWith({
+      expect(mRes.status().json).toHaveBeenLastCalledWith({
         searchData: { results: TEST_API_ANSWER_ALGEBRA.searchHits, type: ResultType.VERSION },
         errorCode: undefined,
       })
     })
 
     test('search by pattern with interface language swedish', async () => {
-      searchCourseInstances.mockReturnValue(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
+      searchCourseVersions.mockReturnValue(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
       await performCourseSearch(mReq({ pattern: 'Algebra' }, langSv), mRes, mockNext())
 
-      expect(ladokApi.searchCourseVersions).toHaveBeenCalledWith(
+      expect(ladokApi.searchCourseVersions).toHaveBeenLastCalledWith(
         {
           kodEllerBenamning: 'Algebra',
           avvecklad: undefined,
@@ -71,17 +74,17 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
         },
         langSv
       )
-      expect(mRes.status().json).toHaveBeenCalledWith({
+      expect(mRes.status().json).toHaveBeenLastCalledWith({
         searchData: { results: TEST_API_ANSWER_ALGEBRA.searchHits, type: ResultType.VERSION },
         errorCode: undefined,
       })
     })
 
-    test('search by one educational level param in english', async () => {
-      searchCourseInstances.mockReturnValue(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
+    test('search by one educational level param with interface language english', async () => {
+      searchCourseVersions.mockReturnValueOnce(Promise.resolve(TEST_API_ANSWER_ALGEBRA_PART))
       await performCourseSearch(mReq({ eduLevel: ['99'] }, langEn), mRes, mockNext())
 
-      expect(ladokApi.searchCourseVersions).toHaveBeenCalledWith(
+      expect(ladokApi.searchCourseVersions).toHaveBeenLastCalledWith(
         {
           kodEllerBenamning: undefined,
           avvecklad: undefined,
@@ -92,17 +95,17 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
         },
         'en'
       )
-      expect(mRes.status().json).toHaveBeenCalledWith({
-        searchData: { results: TEST_API_ANSWER_ALGEBRA.searchHits, type: ResultType.VERSION },
+      expect(mRes.status().json).toHaveBeenLastCalledWith({
+        searchData: { results: TEST_API_ANSWER_ALGEBRA_PART.searchHits, type: ResultType.VERSION },
         errorCode: undefined,
       })
     })
 
-    test('search by all educational level param in english', async () => {
-      searchCourseInstances.mockReturnValue(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
+    test('search by all educational level param with interface language english', async () => {
+      searchCourseVersions.mockReturnValueOnce(Promise.resolve(TEST_API_ANSWER_ALGEBRA_PART))
       await performCourseSearch(mReq({ eduLevel: ['99', '1', '2', '3'] }, langEn), mRes, mockNext())
 
-      expect(ladokApi.searchCourseVersions).toHaveBeenCalledWith(
+      expect(ladokApi.searchCourseVersions).toHaveBeenLastCalledWith(
         {
           kodEllerBenamning: undefined,
           avvecklad: undefined,
@@ -113,17 +116,17 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
         },
         'en'
       )
-      expect(mRes.status().json).toHaveBeenCalledWith({
-        searchData: { results: TEST_API_ANSWER_ALGEBRA.searchHits, type: ResultType.VERSION },
+      expect(mRes.status().json).toHaveBeenLastCalledWith({
+        searchData: { results: TEST_API_ANSWER_ALGEBRA_PART.searchHits, type: ResultType.VERSION },
         errorCode: undefined,
       })
     })
 
-    test('search cancelled courses in english', async () => {
-      searchCourseInstances.mockReturnValue(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
+    test('search cancelled courses with interface language english', async () => {
+      searchCourseVersions.mockReturnValueOnce(Promise.resolve(TEST_API_ANSWER_ALGEBRA_PART))
       await performCourseSearch(mReq({ showOptions: ['showCancelled'] }, langEn), mRes, mockNext())
 
-      expect(ladokApi.searchCourseVersions).toHaveBeenCalledWith(
+      expect(ladokApi.searchCourseVersions).toHaveBeenLastCalledWith(
         {
           kodEllerBenamning: undefined,
           avvecklad: 'true',
@@ -134,17 +137,17 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
         },
         'en'
       )
-      expect(mRes.status().json).toHaveBeenCalledWith({
-        searchData: { results: TEST_API_ANSWER_ALGEBRA.searchHits, type: ResultType.VERSION },
+      expect(mRes.status().json).toHaveBeenLastCalledWith({
+        searchData: { results: TEST_API_ANSWER_ALGEBRA_PART.searchHits, type: ResultType.VERSION },
         errorCode: undefined,
       })
     })
 
-    test('search by school/department ABD in english', async () => {
-      searchCourseInstances.mockReturnValue(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
+    test('search by school/department ABD with interface language english', async () => {
+      searchCourseVersions.mockReturnValueOnce(Promise.resolve(TEST_API_ANSWER_ALGEBRA_PART))
       await performCourseSearch(mReq({ department: 'ADB' }, langEn), mRes, mockNext())
 
-      expect(ladokApi.searchCourseVersions).toHaveBeenCalledWith(
+      expect(ladokApi.searchCourseVersions).toHaveBeenLastCalledWith(
         {
           kodEllerBenamning: undefined,
           avvecklad: undefined,
@@ -155,14 +158,14 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
         },
         'en'
       )
-      expect(mRes.status().json).toHaveBeenCalledWith({
-        searchData: { results: TEST_API_ANSWER_ALGEBRA.searchHits, type: ResultType.VERSION },
+      expect(mRes.status().json).toHaveBeenLastCalledWith({
+        searchData: { results: TEST_API_ANSWER_ALGEBRA_PART.searchHits, type: ResultType.VERSION },
         errorCode: undefined,
       })
     })
 
-    test('search all parameters in english', async () => {
-      searchCourseInstances.mockReturnValue(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
+    test('search all parameters with interface language english', async () => {
+      searchCourseInstances.mockReturnValueOnce(Promise.resolve(TEST_API_ANSWER_ALGEBRA_PART))
       await performCourseSearch(
         mReq(
           {
@@ -178,7 +181,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
         mockNext()
       )
 
-      expect(ladokApi.searchCourseInstances).toHaveBeenCalledWith(
+      expect(ladokApi.searchCourseInstances).toHaveBeenLastCalledWith(
         {
           kodEllerBenamning: 'Algebra',
           avvecklad: 'true',
@@ -189,8 +192,8 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
         },
         'en'
       )
-      expect(mRes.status().json).toHaveBeenCalledWith({
-        searchData: { results: TEST_API_ANSWER_ALGEBRA.searchHits, type: ResultType.INSTANCE },
+      expect(mRes.status().json).toHaveBeenLastCalledWith({
+        searchData: { results: TEST_API_ANSWER_ALGEBRA_PART.searchHits, type: ResultType.INSTANCE },
         errorCode: undefined,
       })
     })
@@ -198,10 +201,10 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
 
   describe('calls searchCourseInstances', () => {
     test('search by pattern + english with interface language swedish', async () => {
-      searchCourseInstances.mockReturnValue(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
+      searchCourseInstances.mockReturnValueOnce(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
       await performCourseSearch(mReq({ pattern: 'Algebra', showOptions: ['onlyEnglish'] }, langSv), mRes, mockNext())
 
-      expect(ladokApi.searchCourseInstances).toHaveBeenCalledWith(
+      expect(ladokApi.searchCourseInstances).toHaveBeenLastCalledWith(
         {
           kodEllerBenamning: 'Algebra',
           avvecklad: undefined,
@@ -212,17 +215,17 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
         },
         langSv
       )
-      expect(mRes.status().json).toHaveBeenCalledWith({
+      expect(mRes.status().json).toHaveBeenLastCalledWith({
         searchData: { results: TEST_API_ANSWER_ALGEBRA.searchHits, type: ResultType.INSTANCE },
         errorCode: undefined,
       })
     })
 
     test('search by pattern + semesters/startPeriod with interface language swedish', async () => {
-      searchCourseInstances.mockReturnValue(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
+      searchCourseInstances.mockReturnValueOnce(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
       await performCourseSearch(mReq({ pattern: 'Algebra', semesters: ['HT2021', 'VT2021'] }, langSv), mRes, mockNext())
 
-      expect(ladokApi.searchCourseInstances).toHaveBeenCalledWith(
+      expect(ladokApi.searchCourseInstances).toHaveBeenLastCalledWith(
         {
           kodEllerBenamning: 'Algebra',
           avvecklad: undefined,
@@ -234,17 +237,17 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
         },
         langSv
       )
-      expect(mRes.status().json).toHaveBeenCalledWith({
+      expect(mRes.status().json).toHaveBeenLastCalledWith({
         searchData: { results: TEST_API_ANSWER_ALGEBRA.searchHits, type: ResultType.INSTANCE },
         errorCode: undefined,
       })
     })
 
     test('search by all extra options flag level param in english', async () => {
-      searchCourseInstances.mockReturnValue(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
+      searchCourseInstances.mockReturnValueOnce(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
       await performCourseSearch(mReq({ showOptions: ['onlyEnglish', 'showCancelled'] }, langEn), mRes, mockNext())
 
-      expect(ladokApi.searchCourseInstances).toHaveBeenCalledWith(
+      expect(ladokApi.searchCourseInstances).toHaveBeenLastCalledWith(
         {
           kodEllerBenamning: undefined,
           avvecklad: 'true',
@@ -255,7 +258,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
         },
         'en'
       )
-      expect(mRes.status().json).toHaveBeenCalledWith({
+      expect(mRes.status().json).toHaveBeenLastCalledWith({
         searchData: { results: TEST_API_ANSWER_ALGEBRA.searchHits, type: ResultType.INSTANCE },
         errorCode: undefined,
       })
@@ -263,7 +266,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
 
     // all parameters
     test('search all parameters in english', async () => {
-      searchCourseInstances.mockReturnValue(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
+      searchCourseInstances.mockReturnValueOnce(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
       await performCourseSearch(
         mReq(
           {
@@ -279,7 +282,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
         mockNext()
       )
 
-      expect(ladokApi.searchCourseInstances).toHaveBeenCalledWith(
+      expect(ladokApi.searchCourseInstances).toHaveBeenLastCalledWith(
         {
           kodEllerBenamning: 'Algebra',
           avvecklad: 'true',
@@ -291,7 +294,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
         },
         'en'
       )
-      expect(mRes.status().json).toHaveBeenCalledWith({
+      expect(mRes.status().json).toHaveBeenLastCalledWith({
         searchData: { results: TEST_API_ANSWER_ALGEBRA.searchHits, type: ResultType.INSTANCE },
         errorCode: undefined,
       })

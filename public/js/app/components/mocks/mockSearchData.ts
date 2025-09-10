@@ -244,7 +244,7 @@ export const RESEARCH_SEARCH_DATA_SV: SearchData = {
     },
     {
       kod: 'FEI3362',
-      benamning: 'Matematisk statistisk för elkraftsystem',
+      benamning: 'Matematisk statistik för elkraftsystem',
       omfattning: '8,0 hp',
       utbildningstyp: 'Forskarnivå',
     },
