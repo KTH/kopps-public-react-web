@@ -1,4 +1,4 @@
-FROM kthregistry.azurecr.io/kth-nodejs-18:latest
+FROM kthregistry.azurecr.io/kth-nodejs-20:latest
 LABEL maintainer="KTH-studadm studadm.developers@kth.se"
 
 WORKDIR /application
@@ -11,6 +11,7 @@ COPY ["i18n", "i18n"]
 COPY ["public", "public"]
 COPY ["server", "server"]
 COPY ["domain", "domain"]
+COPY ["shared", "shared"]
 
 COPY ["app.js", "app.js"]
 COPY ["build.sh", "build.sh"]

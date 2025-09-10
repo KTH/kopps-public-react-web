@@ -1,4 +1,5 @@
-import { CourseInstanceResult, ResultType, SearchData } from '../../hooks/types/UseCourseSearchTypes'
+import { ResultType } from '../../../../../shared/ResultType'
+import { CourseInstanceResult, SearchData } from '../../hooks/types/UseCourseSearchTypes'
 
 export const SEARCH_DATA_WITH_INSTANCE_RESULTS: CourseInstanceResult = {
   results: [
@@ -204,6 +205,54 @@ export const MIXED_SEARCH_DATA_EN: CourseInstanceResult = {
           tillfallesperioderNummer: 1,
         },
       ],
+    },
+  ],
+}
+
+export const RESEARCH_SEARCH_DATA_EN: SearchData = {
+  type: ResultType.VERSION,
+  results: [
+    {
+      kod: 'FEG3324',
+      benamning: 'Applied Optimization and mathematical Decompositions',
+      omfattning: '10.0 credits',
+      utbildningstyp: 'Third cycle',
+    },
+    {
+      kod: 'FEI3362',
+      benamning: 'Power System Mathematical Statistics',
+      omfattning: '8.0 credits',
+      utbildningstyp: 'Third cycle',
+    },
+    {
+      kod: 'FME3542',
+      benamning: 'Mathematics',
+      omfattning: '7.5 credits',
+      utbildningstyp: 'Third cycle',
+    },
+  ],
+}
+
+export const RESEARCH_SEARCH_DATA_SV: SearchData = {
+  type: ResultType.VERSION,
+  results: [
+    {
+      kod: 'FEG3324',
+      benamning: 'Tillämpad optimering och matematiska dekompositioner',
+      omfattning: '10,0 hp',
+      utbildningstyp: 'Forskarnivå',
+    },
+    {
+      kod: 'FEI3362',
+      benamning: 'Matematisk statistik för elkraftsystem',
+      omfattning: '8,0 hp',
+      utbildningstyp: 'Forskarnivå',
+    },
+    {
+      kod: 'FME3542',
+      benamning: 'Matematik',
+      omfattning: '7,5 hp',
+      utbildningstyp: 'Forskarnivå',
     },
   ],
 }
