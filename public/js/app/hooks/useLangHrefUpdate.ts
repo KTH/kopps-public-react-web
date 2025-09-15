@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react'
 import { stringifyUrlParams } from '../../../../domain/searchParams'
 import { CourseSearchParams } from '../pages/types/searchPageTypes'
 import { useStore } from '../mobx'
+import { isEnglishCode, LanguageCode } from '../util/languageUtil'
 
 export const useLangHrefUpdate = (courseSearchParams?: CourseSearchParams) => {
   const { language } = useStore()
@@ -12,7 +13,8 @@ export const useLangHrefUpdate = (courseSearchParams?: CourseSearchParams) => {
       langRef.current = document.querySelector('.kth-menu-item.language')
     }
 
-    if (langRef.current && !courseSearchParams) langRef.current.href = `?l=${language === 'en' ? 'se' : 'en'}`
+    if (langRef.current && !courseSearchParams)
+      langRef.current.href = `?l=${isEnglishCode(language) ? LanguageCode.Swedish : LanguageCode.English}`
 
     if (langRef.current && courseSearchParams) {
       const filteredSearchParams = Object.fromEntries(
@@ -26,7 +28,7 @@ export const useLangHrefUpdate = (courseSearchParams?: CourseSearchParams) => {
 
       const queryParams = stringifyUrlParams({
         ...filteredSearchParams,
-        l: language === 'en' ? 'se' : 'en',
+        l: isEnglishCode(language) ? LanguageCode.Swedish : LanguageCode.English,
       })
 
       langRef.current.href = `?${queryParams}`
