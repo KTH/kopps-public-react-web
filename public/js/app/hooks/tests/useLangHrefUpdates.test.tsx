@@ -33,7 +33,7 @@ describe('useLangHrefUpdate', () => {
   test('updates href to Swedish version when no search params are provided', () => {
     render(<TestComponent />)
 
-    expect(mockLanguageAnchor?.href).toContain('?l=se')
+    expect(mockLanguageAnchor?.href).toContain('?l=sv')
   })
 
   test('updates href to English version when language is Swedish and no search params are provided', () => {
@@ -56,7 +56,7 @@ describe('useLangHrefUpdate', () => {
     render(<TestComponent courseSearchParams={courseSearchParams} />)
 
     expect(mockLanguageAnchor?.href).toContain(
-      '?pattern=test&department=A&semesters=HT2024&semesters=VT2025&semesters=HT2025&eduLevel=99&eduLevel=1&eduLevel=2&eduLevel=3&showOptions=onlyEnglish&showOptions=onlyMHU&showOptions=showCancelled&l=se'
+      '?pattern=test&department=A&semesters=HT2024&semesters=VT2025&semesters=HT2025&eduLevel=99&eduLevel=1&eduLevel=2&eduLevel=3&showOptions=onlyEnglish&showOptions=onlyMHU&showOptions=showCancelled&l=sv'
     )
   })
 
@@ -70,6 +70,6 @@ describe('useLangHrefUpdate', () => {
 
     render(<TestComponent courseSearchParams={courseSearchParams} />)
 
-    expect(mockLanguageAnchor?.href).toContain('?eduLevel=99&l=se')
+    expect(mockLanguageAnchor?.href).toContain('?eduLevel=99&l=sv')
   })
 })
