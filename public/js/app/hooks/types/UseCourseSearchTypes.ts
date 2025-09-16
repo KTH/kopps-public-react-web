@@ -1,4 +1,4 @@
-import { CourseRoundSearchDTO, CourseVersionDTO } from '@kth/om-kursen-ladok-client/dist/search/types'
+import { CourseInstanceSearchDTO, CourseVersionDTO } from '@kth/om-kursen-ladok-client/dist/search/types'
 import { ResultType } from '../../../../../shared/ResultType'
 
 export type CourseVersionResult = {
@@ -8,7 +8,7 @@ export type CourseVersionResult = {
 
 export type CourseInstanceResult = {
   type: ResultType.INSTANCE
-  results: CourseRoundSearchDTO[]
+  results: CourseInstanceSearchDTO[]
 }
 
 export type SearchData = CourseVersionResult | CourseInstanceResult

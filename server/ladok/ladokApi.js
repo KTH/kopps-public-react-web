@@ -5,7 +5,7 @@ const serverConfig = require('../configuration').server
 const client = createApiClient(serverConfig.ladokMellanlagerApi)
 
 async function searchCourseInstances(pattern, lang) {
-  const courses = await client.Search.searchCourses(pattern, lang)
+  const courses = await client.Search.searchCoursesInstances(pattern, lang)
   return courses
 }
 
@@ -15,18 +15,18 @@ async function searchCourseVersions(pattern, lang) {
 }
 
 async function getProgramVersion(programCode, semester, lang) {
-  const programVersion = await client.getProgramVersion(programCode, semester, lang)
+  const programVersion = await client.getProgrammeVersion(programCode, semester, lang)
   return programVersion
 }
 
 async function getProgramCurriculum(programCode, semester, lang) {
-  const programCurriculum = await client.getProgramCurriculum(programCode, semester, lang)
+  const programCurriculum = await client.getProgrammeCurriculum(programCode, semester, lang)
 
   return programCurriculum
 }
 
 async function getProgramSyllabus(programCode, semester, lang) {
-  const programSyllabus = await client.getProgramSyllabus(programCode, semester, lang)
+  const programSyllabus = await client.getProgrammeSyllabus(programCode, semester, lang)
 
   return programSyllabus
 }
@@ -66,8 +66,8 @@ async function getAllProgrammeVersions(lang, avvecklad = true) {
 module.exports = {
   searchCourseInstances,
   searchCourseVersions,
-  getProgramCurriculum,
-  getProgramVersion,
+  getProgrammeCurriculum: getProgramCurriculum,
+  getProgrammeVersion: getProgramVersion,
   getProgramSyllabus,
   getSchoolsList,
   getSchoolsListForCoursesPerSchool,

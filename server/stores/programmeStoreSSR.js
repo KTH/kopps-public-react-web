@@ -1,7 +1,7 @@
 const log = require('@kth/log')
 
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
-const { getProgramCurriculum, getProgramVersion, getProgramSyllabus } = require('../ladok/ladokApi')
+const { getProgrammeCurriculum, getProgrammeVersion, getProgramSyllabus } = require('../ladok/ladokApi')
 const { isOldProgramme } = require('../../domain/oldProgrammes')
 
 /**
@@ -59,7 +59,7 @@ async function fetchAndFillProgrammeDetails({ applicationStore, term, lang, prog
   }
 
   try {
-    const { programInstans, statusCode } = await getProgramVersion(programmeCode, convertedSemester, lang)
+    const { programInstans, statusCode } = await getProgrammeVersion(programmeCode, convertedSemester, lang)
 
     if (!programInstans) {
       return {
@@ -314,7 +314,7 @@ async function fetchAndFillCurriculumList(options) {
   const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
 
   try {
-    curriculumData = await getProgramCurriculum(programmeCode, convertedSemester, lang)
+    curriculumData = await getProgrammeCurriculum(programmeCode, convertedSemester, lang)
   } catch (error) {
     applicationStore.setStatusCode(503)
     return
@@ -337,7 +337,7 @@ async function fetchAndFillSpecializations(options) {
   const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
 
   try {
-    curriculumData = await getProgramCurriculum(programmeCode, convertedSemester, lang)
+    curriculumData = await getProgrammeCurriculum(programmeCode, convertedSemester, lang)
   } catch (error) {
     applicationStore.setStatusCode(503)
     return

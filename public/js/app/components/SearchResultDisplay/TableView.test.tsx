@@ -9,7 +9,7 @@ import {
   RESEARCH_SEARCH_DATA_EN,
   RESEARCH_SEARCH_DATA_SV,
 } from '../mocks/mockSearchData'
-import { CourseRoundSearchDTO } from '@kth/om-kursen-ladok-client/dist/search/types'
+import { CourseInstanceSearchDTO } from '@kth/om-kursen-ladok-client/dist/search/types'
 
 jest.mock('../../mobx')
 
@@ -105,7 +105,7 @@ describe('Component <TableView> for MIXED types of courses', () => {
 
     rows.slice(1).forEach((row, index) => {
       const utils = within(row)
-      const course: CourseRoundSearchDTO = MIXED_SEARCH_DATA_EN.results[index]
+      const course: CourseInstanceSearchDTO = MIXED_SEARCH_DATA_EN.results[index]
       expect(utils.getAllByRole('cell')[0]).toHaveTextContent(course.kod)
       expect(utils.getAllByRole('cell')[1]).toHaveTextContent(course.benamning)
       expect(utils.getAllByRole('cell')[2]).toHaveTextContent(course.omfattning)
@@ -133,7 +133,7 @@ describe('Component <TableView> for MIXED types of courses', () => {
 
     rows.slice(1).forEach((row, index) => {
       const utils = within(row)
-      const course: CourseRoundSearchDTO = MIXED_SEARCH_DATA_SE.results[index]
+      const course: CourseInstanceSearchDTO = MIXED_SEARCH_DATA_SE.results[index]
       expect(utils.getAllByRole('cell')[0]).toHaveTextContent(course.kod)
       expect(utils.getAllByRole('cell')[1]).toHaveTextContent(course.benamning)
       expect(utils.getAllByRole('cell')[2]).toHaveTextContent(course.omfattning)
