@@ -1,6 +1,6 @@
 const curriculumMock = {
-  programmeSpecialization: {
-    programmeSpecializationCode: 'A',
+  programmeSpecialisation: {
+    programmeSpecialisationCode: 'A',
     title: 'Special Title',
   },
   studyYears: [
