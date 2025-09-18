@@ -3,9 +3,9 @@ import './style.scss'
 import { CourseHeader } from './ListView'
 import { useLanguage } from '../../hooks/useLanguage'
 import { compareCourseDTOBy, createLinkElement, formatCourseInstance } from '../../util/searchHelper'
-import { CourseRoundSearchDTO } from '@kth/om-kursen-ladok-client/dist/search/types'
+import { CourseInstanceSearchDTO } from '@kth/om-kursen-ladok-client/dist/search/types'
 
-export const CourseInstanceCardView: React.FC<{ results: CourseRoundSearchDTO[] }> = ({ results }) => {
+export const CourseInstanceCardView: React.FC<{ results: CourseInstanceSearchDTO[] }> = ({ results }) => {
   const { translation, languageShortname } = useLanguage()
 
   const { linkToInforKursval } = translation.generalSearch

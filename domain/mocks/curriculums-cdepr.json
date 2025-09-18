@@ -285,8 +285,8 @@
     ]
   },
   {
-    "programmeSpecialization": {
-      "programmeSpecializationCode": "AEE",
+    "programmeSpecialisation": {
+      "programmeSpecialisationCode": "AEE",
       "title": "Master, flyg- och rymdteknik"
     },
     "studyYears": [
@@ -367,8 +367,8 @@
     ]
   },
   {
-    "programmeSpecialization": {
-      "programmeSpecializationCode": "FOR",
+    "programmeSpecialisation": {
+      "programmeSpecialisationCode": "FOR",
       "title": "Master, fordonsteknik"
     },
     "studyYears": [
@@ -523,8 +523,8 @@
     ]
   },
   {
-    "programmeSpecialization": {
-      "programmeSpecializationCode": "INE",
+    "programmeSpecialisation": {
+      "programmeSpecialisationCode": "INE",
       "title": "Master, industriell ekonomi"
     },
     "studyYears": [
@@ -969,8 +969,8 @@
     ]
   },
   {
-    "programmeSpecialization": {
-      "programmeSpecializationCode": "IPDC",
+    "programmeSpecialisation": {
+      "programmeSpecialisationCode": "IPDC",
       "title": "Spår, teknisk design"
     },
     "studyYears": [
@@ -1033,8 +1033,8 @@
     ]
   },
   {
-    "programmeSpecialization": {
-      "programmeSpecializationCode": "IPDE",
+    "programmeSpecialisation": {
+      "programmeSpecialisationCode": "IPDE",
       "title": "Spår, innovationsledning och produktutveckling"
     },
     "studyYears": [
@@ -1190,8 +1190,8 @@
     ]
   },
   {
-    "programmeSpecialization": {
-      "programmeSpecializationCode": "IPUB",
+    "programmeSpecialisation": {
+      "programmeSpecialisationCode": "IPUB",
       "title": "Spår, maskinkonstruktion"
     },
     "studyYears": [
@@ -1347,8 +1347,8 @@
     ]
   },
   {
-    "programmeSpecialization": {
-      "programmeSpecializationCode": "IPUC",
+    "programmeSpecialisation": {
+      "programmeSpecialisationCode": "IPUC",
       "title": "Spår, mekatronik"
     },
     "studyYears": [
@@ -1410,8 +1410,8 @@
     ]
   },
   {
-    "programmeSpecialization": {
-      "programmeSpecializationCode": "MRS",
+    "programmeSpecialisation": {
+      "programmeSpecialisationCode": "MRS",
       "title": "Master, marina system"
     },
     "studyYears": [
@@ -1557,8 +1557,8 @@
     ]
   },
   {
-    "programmeSpecialization": {
-      "programmeSpecializationCode": "PRM",
+    "programmeSpecialisation": {
+      "programmeSpecialisationCode": "PRM",
       "title": "Master, industriell produktion"
     },
     "studyYears": [
@@ -1620,8 +1620,8 @@
     ]
   },
   {
-    "programmeSpecialization": {
-      "programmeSpecializationCode": "SUE",
+    "programmeSpecialisation": {
+      "programmeSpecialisationCode": "SUE",
       "title": "Master, hållbar energiteknik"
     },
     "studyYears": [
@@ -1684,8 +1684,8 @@
     ]
   },
   {
-    "programmeSpecialization": {
-      "programmeSpecializationCode": "TEMA",
+    "programmeSpecialisation": {
+      "programmeSpecialisationCode": "TEMA",
       "title": "Spår, Fluidmekanik"
     },
     "studyYears": [
@@ -1831,8 +1831,8 @@
     ]
   },
   {
-    "programmeSpecialization": {
-      "programmeSpecializationCode": "TEMB",
+    "programmeSpecialisation": {
+      "programmeSpecialisationCode": "TEMB",
       "title": "Spår, Hållfasthetsteknik"
     },
     "studyYears": [
@@ -1988,8 +1988,8 @@
     ]
   },
   {
-    "programmeSpecialization": {
-      "programmeSpecializationCode": "TEMC",
+    "programmeSpecialisation": {
+      "programmeSpecialisationCode": "TEMC",
       "title": "Spår, Ljud och vibrationer"
     },
     "studyYears": [

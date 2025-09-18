@@ -1,7 +1,7 @@
 const log = require('@kth/log')
 
 const { browser: browserConfig, server: serverConfig } = require('../configuration')
-const { getProgramCurriculum, getProgramVersion, getProgramSyllabus } = require('../ladok/ladokApi')
+const { getProgrammeCurriculum, getProgrammeVersion, getProgrammeSyllabus } = require('../ladok/ladokApi')
 const { isOldProgramme } = require('../../domain/oldProgrammes')
 
 /**
@@ -59,9 +59,9 @@ async function fetchAndFillProgrammeDetails({ applicationStore, term, lang, prog
   }
 
   try {
-    const { programInstans, statusCode } = await getProgramVersion(programmeCode, convertedSemester, lang)
+    const { programmeVersion, statusCode } = await getProgrammeVersion(programmeCode, convertedSemester, lang)
 
-    if (!programInstans) {
+    if (!programmeVersion) {
       return {
         programmeName: programmeCode,
         approvedStudyProgrammeTerms: [],
@@ -69,17 +69,17 @@ async function fetchAndFillProgrammeDetails({ applicationStore, term, lang, prog
     }
 
     programDetails = {
-      title: programInstans?.benamning,
-      lengthInStudyYears: programInstans?.lengthInStudyYears,
-      creditUnitAbbr: programInstans?.creditUnitAbbr,
-      owningSchoolCode: programInstans?.organisation.name,
-      credits: programInstans?.omfattning?.number,
-      titleOtherLanguage: programInstans?.benamningOther,
-      educationalLevel: programInstans?.tilltradesniva?.name ?? programInstans?.utbildningstyp?.level?.name,
-      approvedStudyProgrammeTerms: programInstans?.approvedStudyProgrammeTerms,
-      lastAdmissionTerm: programInstans?.sistaAntagningstermin?.toKTHSemesterString(),
-      firstAdmissionTerm: programInstans?.firstAdmissionTerm?.toKTHSemesterString(),
-      isOldProgramme: isOldProgramme(programInstans?.utbildningstyp?.code),
+      title: programmeVersion?.benamning,
+      lengthInStudyYears: programmeVersion?.lengthInStudyYears,
+      creditUnitAbbr: programmeVersion?.creditUnitAbbr,
+      owningSchoolCode: programmeVersion?.organisation.name,
+      credits: programmeVersion?.omfattning?.number,
+      titleOtherLanguage: programmeVersion?.benamningOther,
+      educationalLevel: programmeVersion?.tilltradesniva?.name ?? programmeVersion?.utbildningstyp?.level?.name,
+      approvedStudyProgrammeTerms: programmeVersion?.approvedStudyProgrammeSemesters,
+      lastAdmissionTerm: programmeVersion?.sistaAntagningstermin?.toKTHSemesterString(),
+      firstAdmissionTerm: programmeVersion?.firstAdmissionSemester?.toKTHSemesterString(),
+      isOldProgramme: isOldProgramme(programmeVersion?.utbildningstyp?.code),
     }
     applicationStore.setStatusCode(statusCode)
   } catch (error) {
@@ -133,7 +133,7 @@ async function fetchAndFillStudyProgrammeVersion({ applicationStore, lang, progr
 
   const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
   try {
-    studyProgramme = await getProgramSyllabus(programmeCode, convertedSemester, lang)
+    studyProgramme = await getProgrammeSyllabus(programmeCode, convertedSemester, lang)
     if (!studyProgramme) {
       applicationStore.setStatusCode(404)
       return
@@ -164,13 +164,13 @@ async function fetchAndFillStudyProgrammeVersion({ applicationStore, lang, progr
 function _parseCurriculumsAndFillStore(applicationStore, curriculums) {
   curriculums.forEach(curriculum => {
     if (
-      curriculum.programmeSpecialization &&
+      curriculum.programmeSpecialisation &&
       Array.isArray(curriculum.studyYears) &&
       curriculum.studyYears.some(studyYear => studyYear.courses?.length > 0)
     ) {
       // Specialization
-      const { programmeSpecialization, studyYears } = curriculum
-      const { programmeSpecializationCode: code, title, description } = programmeSpecialization
+      const { programmeSpecialisation, studyYears } = curriculum
+      const { programmeSpecialisationCode: code, title, description } = programmeSpecialisation
       applicationStore.addSpecialization({
         code,
         title,
@@ -285,11 +285,11 @@ function _parseCurriculumsAndFillStore(applicationStore, curriculums) {
  */
 function _parseSpecializations(curriculums) {
   return curriculums
-    .filter(curriculum => curriculum.programmeSpecialization)
+    .filter(curriculum => curriculum.programmeSpecialisation)
     .map(curriculum => {
-      const { programmeSpecialization } = curriculum
-      const { programmeSpecializationCode: code, title } = programmeSpecialization
-      const description = programmeSpecialization.description || null
+      const { programmeSpecialisation } = curriculum
+      const { programmeSpecialisationCode: code, title } = programmeSpecialisation
+      const description = programmeSpecialisation.description || null
       const specialization = {
         code,
         title,
@@ -314,7 +314,7 @@ async function fetchAndFillCurriculumList(options) {
   const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
 
   try {
-    curriculumData = await getProgramCurriculum(programmeCode, convertedSemester, lang)
+    curriculumData = await getProgrammeCurriculum(programmeCode, convertedSemester, lang)
   } catch (error) {
     applicationStore.setStatusCode(503)
     return
@@ -337,7 +337,7 @@ async function fetchAndFillSpecializations(options) {
   const convertedSemester = `${term.endsWith('1') ? 'VT' : 'HT'}${term.slice(0, 4)}`
 
   try {
-    curriculumData = await getProgramCurriculum(programmeCode, convertedSemester, lang)
+    curriculumData = await getProgrammeCurriculum(programmeCode, convertedSemester, lang)
   } catch (error) {
     applicationStore.setStatusCode(503)
     return

@@ -7,13 +7,13 @@ const LASPERIOD_INDEX = {
   P5: 5,
 }
 
-const getSpecializationInfo = programmeSpecialization => {
-  if (!programmeSpecialization) {
+const getSpecializationInfo = programmeSpecialisation => {
+  if (!programmeSpecialisation) {
     return { code: '', specializationName: null, isCommon: true }
   }
   return {
-    code: programmeSpecialization.programmeSpecializationCode,
-    specializationName: programmeSpecialization.title,
+    code: programmeSpecialisation.programmeSpecialisationCode,
+    specializationName: programmeSpecialisation.title,
     isCommon: false,
   }
 }
@@ -107,10 +107,10 @@ const processCourses = (courses, studyYearData) => {
  * @returns {object}
  */
 function curriculumInfo({ programmeTermYear = {}, curriculum }) {
-  const { programmeSpecialization, studyYears } = curriculum
+  const { programmeSpecialisation, studyYears } = curriculum
   const { studyYear } = programmeTermYear
 
-  const { code, specializationName, isCommon } = getSpecializationInfo(programmeSpecialization)
+  const { code, specializationName, isCommon } = getSpecializationInfo(programmeSpecialisation)
 
   const curriculumStudyYear = findStudyYear(studyYears, studyYear)
   if (!curriculumStudyYear) {

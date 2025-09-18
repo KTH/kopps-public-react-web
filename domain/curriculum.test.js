@@ -38,8 +38,8 @@ const mockCourse = (overrides = {}) => {
 }
 
 const curriculumWithStructure = {
-  programmeSpecialization: {
-    programmeSpecializationCode: 'A',
+  programmeSpecialisation: {
+    programmeSpecialisationCode: 'A',
     title: 'Special Title',
   },
   studyYears: [
