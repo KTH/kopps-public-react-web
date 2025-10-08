@@ -145,30 +145,34 @@ function Courses({ curriculumInfo }) {
       {ELECTIVE_CONDITIONS.map(electiveCondition => {
         const participations = allParticipations[electiveCondition] || []
         return (
-          participations.length !== 0 && (
-            <Fragment key={electiveCondition}>
-              {/* Information about conditionally elective courses for this study year, only if there are such courses to display */}
-              {electiveCondition === 'VV' && (
-                <div className="conditionallyElectiveInfo">
-                  <LadokData html={curriculumInfo.conditionallyElectiveCoursesInformation} />
-                </div>
-              )}
-              {code ? (
-                <h4 id={`heading-${code}-${electiveCondition}`}>
-                  {`${t('elective_condition')[electiveCondition]} ${t('courses').toLowerCase()}`}
-                </h4>
-              ) : (
-                <h3 id={`heading-common-${electiveCondition}`}>
-                  {`${t('elective_condition')[electiveCondition]} ${t('courses').toLowerCase()}`}
-                </h3>
-              )}
-              <CourseTable
-                curriculumInfo={curriculumInfo}
-                participations={participations}
-                electiveCondition={electiveCondition}
-              />
-            </Fragment>
-          )
+          <Fragment key={electiveCondition}>
+            {/* Always show this section if electiveCondition === 'VV' */}
+            {electiveCondition === 'VV' && (
+              <div className="conditionallyElectiveInfo">
+                <LadokData html={curriculumInfo.conditionallyElectiveCoursesInformation} />
+              </div>
+            )}
+
+            {/* Only render this part if there are participations */}
+            {participations.length !== 0 && (
+              <>
+                {code ? (
+                  <h4 id={`heading-${code}-${electiveCondition}`}>
+                    {`${t('elective_condition')[electiveCondition]} ${t('courses').toLowerCase()}`}
+                  </h4>
+                ) : (
+                  <h3 id={`heading-common-${electiveCondition}`}>
+                    {`${t('elective_condition')[electiveCondition]} ${t('courses').toLowerCase()}`}
+                  </h3>
+                )}
+                <CourseTable
+                  curriculumInfo={curriculumInfo}
+                  participations={participations}
+                  electiveCondition={electiveCondition}
+                />
+              </>
+            )}
+          </Fragment>
         )
       })}
     </>
