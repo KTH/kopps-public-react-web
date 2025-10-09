@@ -56,11 +56,7 @@ function CourseTableRows({ participations }) {
     const currentTerm = getCurrentTerm()
     const courseNameCellData = (
       <>
-        {term ? (
-          <a href={courseLink(courseCode, language, { term })}>{`${courseCode} ${title}`}</a>
-        ) : (
-          `${courseCode} ${title}`
-        )}
+        <a href={courseLink(courseCode, language, { term })}>{`${courseCode} ${title}`}</a>
       </>
     )
     const applicationCodeCellData =
