@@ -82,6 +82,7 @@ function getTransformationRules({ contextIsNode, subDir = null }) {
       alias: {
         domain: path.resolve(__dirname, 'domain'),
         shared: path.resolve(__dirname, 'shared'),
+        'kopps-public-react-web': path.resolve(__dirname),
       },
     },
     target: contextIsNode ? 'node' : 'browserslist:> 0.25%, not dead',

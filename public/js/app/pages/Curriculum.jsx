@@ -6,7 +6,7 @@ import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildnings
 import { Link, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 
 import { LadokStatusCode } from '@kth/om-kursen-ladok-client'
-import { ORDINARY_PERIODS } from '../../../../shared/dist/periods'
+import { ORDINARY_PERIODS } from 'kopps-public-react-web/shared/periods'
 import Alert from '../components-shared/Alert'
 import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'

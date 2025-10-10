@@ -10,4 +10,8 @@ module.exports = {
   transform: {
     '^.+\\.tsx?$': ['ts-jest', { tsconfig: '<rootDir>/shared/tsconfig.json' }],
   },
+  moduleNameMapper: {
+    '^kopps-public-react-web/shared/(.*)$': '<rootDir>/shared/$1',
+    '^kopps-public-react-web/domain/(.*)$': '<rootDir>/domain/$1',
+  },
 }

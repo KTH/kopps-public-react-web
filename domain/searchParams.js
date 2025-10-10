@@ -1,5 +1,5 @@
 const querystring = require('querystring')
-const { getSummerPeriodsList, groupedPeriodsBySeasonInCorrectOrder } = require('shared/dist/periods')
+const { getSummerPeriodsList, groupedPeriodsBySeasonInCorrectOrder } = require('kopps-public-react-web/shared/periods')
 const i18n = require('../i18n')
 const { formatLongTerm, getRelevantTerms, isSpringTerm } = require('./term')
 const { CLIENT_EDU_LEVELS, educationalLevel } = require('./eduLevels')

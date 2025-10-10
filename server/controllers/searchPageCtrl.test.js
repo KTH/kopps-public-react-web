@@ -1,8 +1,8 @@
 const log = require('@kth/log')
 
+const { ResultType } = require('kopps-public-react-web/shared/ResultType')
 const ladokApi = require('../ladok/ladokApi')
 const { TEST_API_ANSWER_ALGEBRA, TEST_API_ANSWER_ALGEBRA_PART } = require('../mocks/mockLadokApi')
-const { ResultType } = require('../../shared/dist/ResultType')
 const { performCourseSearch } = require('./searchPageCtrl')
 
 jest.mock('../configuration', () => ({ server: {} }))

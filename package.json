@@ -13,15 +13,33 @@
   "engines": {
     "node": "20"
   },
+  "exports": {
+    "./shared/*": {
+      "types": "./shared/dist/*.d.ts",
+      "require": "./shared/dist/*.js",
+      "default": "./shared/dist/*.js"
+    },
+    "./domain/*": {
+      "require": "./domain/*.js",
+      "default": "./domain/*.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "shared/*": [
+        "shared/dist/*.d.ts"
+      ]
+    }
+  },
   "scripts": {
-    "build": "bash ./build.sh prod",
+    "build": "npm run build:shared && bash ./build.sh prod",
     "dev": "concurrently -n ts,webpack,server --kill-others \"npm:dev:shared\" \"npm:dev:client\" \"npm:dev:server\"",
     "dev:shared": "tsc -p shared/tsconfig.json -w --preserveWatchOutput",
     "dev:client": "bash ./build.sh dev",
     "dev:server": "nodemon --config nodemon.json",
     "build:shared": "tsc -p shared/tsconfig.json",
     "build-dev": "npm run build:shared && bash ./build.sh dev",
-    "docker:pack-dev": "bash ./build.sh docker",
+    "docker:pack-dev": "npm run build:shared && bash ./build.sh docker",
     "docker:build": "bash ./docker-build-image.sh dev",
     "docker:run": "bash ./docker-run-image.sh dev",
     "docker:start-dev": "npm run docker:build && npm run docker:run",
@@ -107,6 +125,7 @@
     "css-loader": "^6.11.0",
     "decache": "^4.6.2",
     "eslint": "^8.57.1",
+    "eslint-import-resolver-webpack": "^0.13.10",
     "file-loader": "^6.2.0",
     "husky": "^8.0.3",
     "jest": "^29.7.0",
