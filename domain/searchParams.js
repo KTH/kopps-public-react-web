@@ -1,7 +1,7 @@
 const querystring = require('querystring')
+const { getSummerPeriodsList, groupedPeriodsBySeasonInCorrectOrder } = require('shared/dist/periods')
 const i18n = require('../i18n')
 const { formatLongTerm, getRelevantTerms, isSpringTerm } = require('./term')
-const { getSummerPeriodsList, groupedPeriodsBySeasonInCorrectOrder } = require('./periods')
 const { CLIENT_EDU_LEVELS, educationalLevel } = require('./eduLevels')
 const { CLIENT_SHOW_OPTIONS, ONLY_MHU, getShowOptions } = require('./courseOptions')
 

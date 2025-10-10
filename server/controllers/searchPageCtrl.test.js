@@ -2,8 +2,8 @@ const log = require('@kth/log')
 
 const ladokApi = require('../ladok/ladokApi')
 const { TEST_API_ANSWER_ALGEBRA, TEST_API_ANSWER_ALGEBRA_PART } = require('../mocks/mockLadokApi')
+const { ResultType } = require('../../shared/dist/ResultType')
 const { performCourseSearch } = require('./searchPageCtrl')
-const { ResultType } = require('../../shared/ResultType')
 
 jest.mock('../configuration', () => ({ server: {} }))
 jest.mock('../ladok/ladokApi', () => ({ searchCourseInstances: jest.fn(), searchCourseVersions: jest.fn() }))

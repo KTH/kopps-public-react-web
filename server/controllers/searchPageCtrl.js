@@ -10,7 +10,7 @@ const { browser: browserConfig, server: serverConfig } = require('../configurati
 
 const { createBreadcrumbs, createThirdCycleBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
-const { ResultType } = require('../../shared/ResultType')
+const { ResultType } = require('../../shared/dist/ResultType')
 
 async function renderSearchPage(
   req,
