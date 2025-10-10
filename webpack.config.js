@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
 const path = require('path')
+const webpack = require('webpack')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
@@ -33,7 +34,6 @@ const TerserPlugin = require('terser-webpack-plugin')
 // const BabelConfig = require('./.babelrc.json')
 const { babel: BabelConfig } = require('./package.json')
 
-process.env.NODE_ENV = 'development'
 const { uri: PROXY_PREFIX_URI } = require('./config/commonSettings').proxyPrefixPath
 // const PROXY_PREFIX_URI = '/node'
 
@@ -62,7 +62,7 @@ function composePublicPathString(...subDirParts) {
 }
 
 function getTransformationRules({ contextIsNode, subDir = null }) {
-  const MAGIC_EXTENSIONS_IF_OMITTED_WITH_IMPORT = ['.js', '.jsx', '.json', '.tsx', '.ts']
+  const MAGIC_EXTENSIONS_IF_OMITTED_WITH_IMPORT = ['.ts', '.tsx', '.js', '.jsx', '.json']
   const ALLOW_MIX_OF_CJS_AND_ESM_IMPORTS = { sourceType: 'unambiguous' }
 
   // @ts-ignore
@@ -70,9 +70,19 @@ function getTransformationRules({ contextIsNode, subDir = null }) {
   const AVOID_EMPTY_JS_FILES_ON_SCSS_ENTRYPOINTS = typeof RemovePlugin === 'undefined' ? [] : [new RemovePlugin()]
 
   return {
-    plugins: [...AVOID_EMPTY_JS_FILES_ON_SCSS_ENTRYPOINTS, new MiniCssExtractPlugin()],
+    plugins: [
+      ...AVOID_EMPTY_JS_FILES_ON_SCSS_ENTRYPOINTS,
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(ENV_IS_DEV ? 'development' : 'production'),
+      }),
+      new MiniCssExtractPlugin(),
+    ],
     resolve: {
       extensions: MAGIC_EXTENSIONS_IF_OMITTED_WITH_IMPORT,
+      alias: {
+        domain: path.resolve(__dirname, 'domain'),
+        shared: path.resolve(__dirname, 'shared'),
+      },
     },
     target: contextIsNode ? 'node' : 'browserslist:> 0.25%, not dead',
     module: {
@@ -86,10 +96,14 @@ function getTransformationRules({ contextIsNode, subDir = null }) {
           },
         },
         {
-          test: /\.ts|tsx?$/,
+          test: /\.tsx?$/,
           exclude: /node_modules/,
           use: {
             loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+              projectReferences: true,
+            },
           },
         },
         {

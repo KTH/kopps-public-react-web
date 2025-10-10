@@ -15,7 +15,12 @@
   },
   "scripts": {
     "build": "bash ./build.sh prod",
-    "build-dev": "bash ./build.sh dev",
+    "dev": "concurrently -n ts,webpack,server --kill-others \"npm:dev:shared\" \"npm:dev:client\" \"npm:dev:server\"",
+    "dev:shared": "tsc -p shared/tsconfig.json -w --preserveWatchOutput",
+    "dev:client": "bash ./build.sh dev",
+    "dev:server": "nodemon --config nodemon.json",
+    "build:shared": "tsc -p shared/tsconfig.json",
+    "build-dev": "npm run build:shared && bash ./build.sh dev",
     "docker:pack-dev": "bash ./build.sh docker",
     "docker:build": "bash ./docker-build-image.sh dev",
     "docker:run": "bash ./docker-run-image.sh dev",
