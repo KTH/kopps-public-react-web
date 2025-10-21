@@ -1,0 +1,20 @@
+{
+  "name": "vulnerable-test-app",
+  "version": "1.0.0",
+  "description": "Test app with known vulnerable dependencies for Trivy demo",
+  "dependencies": {
+    "lodash": "4.17.15",
+    "express": "4.16.0",
+    "jquery": "3.4.1",
+    "serialize-javascript": "3.1.0",
+    "handlebars": "4.7.6",
+    "minimist": "1.2.5",
+    "node-forge": "0.10.0",
+    "ws": "7.4.5",
+    "axios": "0.21.0"
+  },
+  "devDependencies": {
+    "webpack": "4.44.0",
+    "webpack-dev-server": "3.11.0"
+  }
+}
