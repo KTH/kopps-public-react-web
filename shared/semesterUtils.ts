@@ -15,8 +15,8 @@ export enum SemesterNumber {
 /**
  * Takes a yearSemesterNumber and returns a yearSemesterNumber representing the semester previous to the given semester
  *
- * @param {Object} yearSemesterNumber
- * @returns
+ * @param param0 YearSemesterNumber, e.g. { year: 2024, semesterNumber: 1 }
+ * @returns YearSemesterNumber, e.g. { year: 2023, semesterNumber: 2 }
  */
 export const calcPreviousSemester = ({ year, semesterNumber }: YearSemesterNumber) => {
   if (semesterNumber === 2) {
@@ -33,9 +33,13 @@ export const calcPreviousSemester = ({ year, semesterNumber }: YearSemesterNumbe
 }
 
 /**
+ * Takes a KTH semester in string or number format, returns an array with year at index 0
+ * and semester number at index 1.
+ * YearSemesterNumberArray is a legacy format, which is used in some parts of our code.
+ * The preferred format is YearSemesterNumber.
  *
- * @param {number} semester
- * @returns
+ * @param semester "20241" or 20241
+ * @returns [2024, 1]
  */
 export const parseSemesterIntoYearSemesterNumberArray = (semester: string | number) => {
   const yearSemesterNumberArrayStrings = semester.toString().match(/.{1,4}/g)
@@ -43,6 +47,13 @@ export const parseSemesterIntoYearSemesterNumberArray = (semester: string | numb
   return yearSemesterNumberArrayStrings.map(str => Number(str))
 }
 
+// TODO Refactor this, confusing name as "Period" is ladok-speak, but here we create a KTH semester string
+/**
+ * Returns a KTH semester string.
+ *
+ * @param date
+ * @returns a KTH semester string "20241"
+ */
 export const getPeriodCodeForDate = (date: Date) => {
   const JULY = 6
   const year = date.getFullYear()
@@ -51,6 +62,15 @@ export const getPeriodCodeForDate = (date: Date) => {
   return `${year}${semester}`
 }
 
+/**
+ * Takes a string in LadokPeriod format and returns a YearSemesterNumberArray
+ * Note that YearSemesterNumberArray is a legacy format.
+ * YearSemesterNumber or AcademicSemester are preferred.
+ * If possible, use {parseSemesterIntoYearSemesterNumber}.
+ *
+ * @param semester Semester string in ladok format, e.g. "VT2024"
+ * @returns YearSemesterNumberArray, e.g. [2024, 1]
+ */
 const parseLadokSemester = (semester: string) => {
   let match = undefined
   if (semester) {
@@ -65,6 +85,15 @@ const parseLadokSemester = (semester: string) => {
   return [Number(year), semesterNumber]
 }
 
+/**
+ * Takes a string in KTH semester format and returns a YearSemesterNumberArray
+ * Note that YearSemesterNumberArray is a legacy format.
+ * YearSemesterNumber or AcademicSemester are preferred.
+ * If possible, use {parseSemesterIntoYearSemesterNumber}.
+ *
+ * @param semester Semester string in KTH format, e.g. 20241
+ * @returns  YearSemesterNumberArray, e.g. [2024, 1]
+ */
 export const parseSemester = (semester: string) => {
   let match = undefined
   if (semester) {
@@ -80,6 +109,13 @@ export const parseSemester = (semester: string) => {
   return [Number(year), semesterNumber]
 }
 
+/**
+ * Takes a semester, either in LadokPeriod string format or KTH Semester string or number format.
+ * Returns a YearSemesterNumber.
+ *
+ * @param semester A semester string|number in either KTH or Ladok format, e.g. "VT2024", "20241", 20241
+ * @returns YearSemesterNumber, e.g. { year: 2024, semesterNumber: 1 }
+ */
 export const parseSemesterIntoYearSemesterNumber = (semester: string | number): YearSemesterNumber => {
   const semesterString = semester.toString()
   const semesterRegex = /^([A-Za-z]{2}\d{4})$/
