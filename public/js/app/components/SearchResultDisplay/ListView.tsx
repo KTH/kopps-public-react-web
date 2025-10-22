@@ -5,7 +5,7 @@ import { useLanguage } from '../../hooks/useLanguage'
 import { SearchData } from '../../hooks/types/UseCourseSearchTypes'
 import { CourseVersionCardView } from './CourseVersionCardView'
 import { CourseInstanceCardView } from './CourseInstanceCardView'
-import { ResultType } from '../../../../../shared/ResultType'
+import { ResultType } from '../../../../../shared/dist/ResultType'
 
 export const ListView: React.FC<{
   searchData: SearchData

@@ -1,0 +1,418 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: '1.0'
+servers:
+  - url: https://apim-mellanlagring2.azure-api.net
+paths:
+  '/utbildningstillfalle/{uid}':
+    get:
+      tags:
+        - RO API
+      summary: Få  utbildningstillfalle via UID
+      description: Få  utbildningstillfalle via UID
+      operationId: utbildningstillfalle
+      parameters:
+        - name: uid
+          in: path
+          description: UID för utbildningstillfalle  att hämta
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Found the item
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonNode'
+              examples:
+                default:
+                  value:
+        '404':
+          description: Item not found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonNode'
+              examples:
+                default:
+                  value:
+  '/utbildningstillfalle/{uid}/struktur':
+    get:
+      tags:
+        - RO API
+      summary: Få  utbildningstillfalle struktur via UID
+      description: Få  utbildningstillfalle struktur via UID
+      operationId: utbildningstillfalleStruktur
+      parameters:
+        - name: uid
+          in: path
+          description: UID för utbildningstillfalle struktur att hämta
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Found the item
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonNode'
+              examples:
+                default:
+                  value:
+        '404':
+          description: Item not found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonNode'
+              examples:
+                default:
+                  value:
+  '/utbildningsinstans/{uid}':
+    get:
+      tags:
+        - RO API
+      summary: Få  utbildningsinstans via UID
+      description: Få  utbildningsinstans via UID
+      operationId: utbildningsinstans
+      parameters:
+        - name: uid
+          in: path
+          description: UID för utbildningsinstans  att hämta
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Found the item
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonNode'
+              examples:
+                default:
+                  value:
+        '404':
+          description: Item not found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonNode'
+              examples:
+                default:
+                  value:
+  '/utbildningsinstans/{uid}/struktur':
+    get:
+      tags:
+        - RO API
+      summary: Få  utbildningsinstans struktur via UID
+      description: Få  utbildningsinstans struktur via UID
+      operationId: utbildningsinstansStruktur
+      parameters:
+        - name: uid
+          in: path
+          description: UID för utbildningsinstans struktur   att hämta
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Found the item
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonNode'
+              examples:
+                default:
+                  value:
+        '404':
+          description: Item not found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonNode'
+              examples:
+                default:
+                  value:
+  '/plan_for_utbildning/{uid}':
+    get:
+      tags:
+        - RO API
+      summary: Få plan för utbildning via UID
+      description: Få plan för utbildning via UID
+      operationId: planForUtbildning
+      parameters:
+        - name: uid
+          in: path
+          description: UID för plan för utbildning att hämta
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Found the item
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonNode'
+              examples:
+                default:
+                  value:
+        '404':
+          description: Item not found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonNode'
+              examples:
+                default:
+                  value:
+  '/plan_for_utbildning/utbildningsinstans/{uid}':
+    get:
+      tags:
+        - RO API
+      summary: Få plan för utbildning av en utbildningsintans via UID
+      description: Få plan för utbildning av en utbildningsintans via UID
+      operationId: planForUtbildningUtbildningsinstans
+      parameters:
+        - name: uid
+          in: path
+          description: UID för plan för utbildning för utbildningsinstans att hämta
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Found the item
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonNode'
+              examples:
+                default:
+                  value:
+        '404':
+          description: Item not found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonNode'
+              examples:
+                default:
+                  value:
+  /:
+    get:
+      tags:
+        - RO API
+      summary: Kolla om tjänsten är uppe
+      description: Kolla om tjänsten är uppe
+      operationId: hello
+      responses:
+        '200':
+          description: Ok
+          content:
+            '*/*':
+              schema:
+                type: string
+              examples:
+                default:
+                  value: string
+  /sokKurs:
+    get:
+      tags:
+        - RO API
+      summary: Sök kurs (utbildningstillfälle) med benämningar eller kod
+      description: Sök kurs (utbildningstillfälle) med benämningar eller kod
+      operationId: sokKurs
+      parameters:
+        - name: kodEllerBenamning
+          in: query
+          description: Ange ett sökord som ska matcha kursens namn eller kod. Det krävs minst 3 tecken.
+          required: true
+          schema:
+            type: string
+        - name: avvecklad
+          in: query
+          description: Är det avvecklad?
+          schema:
+            type: string
+          examples:
+            default:
+              value: 'false'
+            'including avvecklade kurser':
+              value: 'true'
+        - name: utbildningsniva
+          in: query
+          description: Utbildningsnivå
+          schema:
+            type: string
+        - name: sprak
+          in: query
+          description: Språk
+          schema:
+            type: string
+        - name: organisation
+          in: query
+          description: Organisatoriska tillhörighet
+          schema:
+            type: string
+        - name: startPeriod
+          in: query
+          description: Start period, kommer att returnerar kurser som ges denna period
+          schema:
+            type: string
+          example: 'HT2024'
+        - name: antalHP
+          in: query
+          description: Antal HP
+          schema:
+            type: string
+        - name: studieOrt
+          in: query
+          description: Studie Ort
+          schema:
+            type: string
+        - name: amnesgrupp
+          in: query
+          description: Ämnes grupp
+          schema:
+            type: string
+        - name: amnesord
+          in: query
+          description: Ämnesord
+          schema:
+            type: string
+        - name: undervisningstid
+          in: query
+          description: Undervisningstid
+          schema:
+            type: string
+        - name: undervisningsform
+          in: query
+          description: Undervisningsform
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Found a list of items
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JsonNode'
+              examples:
+                default:
+                  value:
+        '404':
+          description: Item not found
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JsonNode'
+              examples:
+                default:
+                  value:
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JsonNode'
+              examples:
+                default:
+                  value:
+  /sokProgram:
+    get:
+      tags:
+        - RO API
+      summary: Sök program med benämningar eller kod
+      description: Sök program med benämningar eller kod
+      operationId: sokProgram
+      parameters:
+        - name: kodEllerBenamning
+          in: query
+          description: Ange ett sökord som ska matcha kursens namn eller kod. Det krävs minst 3 tecken.
+          required: true
+          schema:
+            type: string
+        - name: avvecklad
+          in: query
+          description: Är det avvecklad?
+          schema:
+            type: string
+        - name: organisation
+          in: query
+          description: Organisatoriska tillhörighet
+          schema:
+            type: string
+        - name: startPeriod
+          in: query
+          description: Start period
+          schema:
+            type: string
+        - name: continuationToken
+          in: query
+          description: Continuation token för att se nästa sida av resultat
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Found a list of items
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JsonNode'
+              examples:
+                default:
+                  value:
+        '404':
+          description: Item not found
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JsonNode'
+              examples:
+                default:
+                  value:
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JsonNode'
+              examples:
+                default:
+                  value:
+components:
+  schemas:
+    JsonNode:
+      type: object
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: []
+  - apiKeyQuery: []
+tags:
+  - name: RO API
+    description: Utbildningsinformation mellanlagring endpoints

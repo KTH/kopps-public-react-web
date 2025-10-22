@@ -19,4 +19,4 @@ services:
 
     # The unit test command that triggers tests to be run
     # inside the container
-    command: ['sh', '-c', 'npm install --development && npm test']
+    command: ["sh", "-c", "npm install include=dev && npm test"]

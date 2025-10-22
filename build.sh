@@ -1,68 +1,28 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-ENV=$1
-
-function echoYellow() {
-  MSG=$1
-  printf "\033[1;33m$MSG\033[0m\n"
-}
+ENV="${1:-dev}"
 
 echo
-echoYellow "|--------------------------------------------------------|"
-echoYellow "| Building the application with Bash and Webpack         |"   
-echoYellow "|--------------------------------------------------------|\n"
+echo -e "\033[1;33m|--------------------------------------------------------|\033[0m"
+echo -e "\033[1;33m| Building the application with Bash and Webpack         |\033[0m"
+echo -e "\033[1;33m|--------------------------------------------------------|\033[0m\n"
 
-#if [ "$ENV" == "dev" ]; then
-#  export NODE_ENV=development
-#else
-#  export NODE_ENV=production
-#fi
-
-#echoYellow "  1. Cleaning up & copying files"
-echoYellow "  1. Copying files"
-
-# Removing the dist folder. Important for development environement. 
-#if [ -d ./dist ]; then
-#  echoYellow "     -> Removing all files from the /dist folder"
-#  rm -rf ./dist/*
-#fi
-
-echoYellow "     -> Creating the server view folders"
+echo -e "\033[1;33m  1. Copying files\033[0m"
 mkdir -p ./server/views/system ./server/views/layouts
-
-echoYellow "     -> Copying error.handlebars to server/views/system folder"
 cp -R ./node_modules/@kth/kth-node-web-common/lib/handlebars/pages/views/. server/views/system
-
-echoYellow "     -> Copying errorLayout.handlebars to server/views/layouts folder"
 cp -R ./node_modules/@kth/kth-node-web-common/lib/handlebars/pages/layouts/. server/views/layouts
 
-if [ "$ENV" == "prod" ]; then
-  echo
-  echoYellow "  2. Bundling the client app into the /dist folder\n"
+if [[ "$ENV" == "prod" ]]; then
+  echo -e "\n\033[1;33m  2. Bundling client (prod)\033[0m\n"
   WEBPACK_ENV=prod WEBPACK_MODE=build webpack
-
-  if [ $? -ne 0 ]; then
-    exit 1
-  fi
-
-  echo
-  echoYellow "  Done.\n"
-fi
-
-if [ "$ENV" == "dev" ]; then
-  echo
-  echoYellow "  2. Bundling the client app into the /dist folder to list results\n"
+elif [[ "$ENV" == "dev" ]]; then
+  echo -e "\n\033[1;33m  2. Bundling client once (dev)\033[0m\n"
   WEBPACK_ENV=dev WEBPACK_MODE=build webpack
 
-  echo
-  echoYellow "  3. Running watch on client app. Check /dist for changes\n"
+  echo -e "\n\033[1;33m  3. Watching client (dev)\033[0m\n"
   WEBPACK_ENV=dev WEBPACK_MODE=watch webpack
-fi
-
-if [ "$ENV" == "docker" ]; then
-  echo
-  echoYellow "  2. Bundling the client app into the /dist folder to list results\n"
+elif [[ "$ENV" == "docker" ]]; then
+  echo -e "\n\033[1;33m  2. Bundling client (docker)\033[0m\n"
   WEBPACK_ENV=dev WEBPACK_MODE=build webpack
-
 fi
-

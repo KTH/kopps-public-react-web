@@ -1,4 +1,5 @@
 import { ERROR_ASYNC, SearchResponse } from '../hooks/types/UseCourseSearchTypes'
+import { CourseSearchParams } from '../pages/types/searchPageTypes'
 
 export async function courseSearch(
   language: string,
@@ -8,14 +9,15 @@ export async function courseSearch(
   try {
     // Constructing the URL with query parameters
     const baseUrl = new URL(proxyUrl, window.location.origin).href
-    const url = new URL(`${baseUrl}/intern-api/sok/${language}`) // TODO Benni here we have the API call
-    Object.keys(params).forEach(key => {
-      if (Array.isArray(params[key])) {
-        params[key].forEach((item: any) => url.searchParams.append(`${key}[]`, item))
+    const url = new URL(`${baseUrl}/intern-api/sok/${language}`)
+
+    for (const [key, value] of Object.entries(params)) {
+      if (Array.isArray(value)) {
+        value.forEach((item: any) => url.searchParams.append(`${key}[]`, item))
       } else {
-        url.searchParams.append(key, params[key])
+        url.searchParams.append(key, value)
       }
-    })
+    }
 
     // Making the request using fetch
     const response = await fetch(url.toString())
@@ -36,8 +38,4 @@ export async function courseSearch(
     }
     throw error
   }
-}
-
-type CourseSearchParams = {
-  [key: string]: any // Allowing any key-value pair as params
 }

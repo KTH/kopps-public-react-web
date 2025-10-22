@@ -10,7 +10,7 @@ const { browser: browserConfig, server: serverConfig } = require('../configurati
 
 const { createBreadcrumbs, createThirdCycleBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
-const { ResultType } = require('../../shared/ResultType')
+const { ResultType } = require('../../shared/dist/ResultType')
 
 async function renderSearchPage(
   req,
@@ -85,43 +85,54 @@ async function searchThirdCycleCourses(req, res, next) {
   })
 }
 
+/**
+ *
+ * @param {*} kthPeriods array containing year:KTHPeriodLabel or year:summer, e.g. ['2025:P1', '2025:summer']
+ * @returns array containing year:KTHPeriodLabel, e.g. ['2025:P1', '2025:P5', '2025:P0']
+ */
+function convertSummerToPeriods(kthPeriods) {
+  return kthPeriods.flatMap(period => {
+    const summerString = 'summer'
+    if (period.includes(summerString)) return [period.replace(summerString, 'P5'), period.replace(summerString, 'P0')]
+
+    return [period]
+  })
+}
+
 async function performCourseSearch(req, res, next) {
   const { lang } = req.params
 
   const { query } = req
 
-  // const convertedPeriods = query.period?.reduce((acc, period) => {
-  //   const splitedPeriod = period.split(':')
-  //   const codes =
-  //     splitedPeriod[1] === 'summer' ? [`VT${splitedPeriod[0]}`, `HT${splitedPeriod[0]}`] : [splitedPeriod[0]]
-  //   const value = splitedPeriod[1] === 'summer' ? ['0', '5'] : splitedPeriod[1]
+  // const queryV = {
+  //   pattern: 'matem',
+  //   eduLevel: ['99', '1', '2', '3'],
+  //   showOptions: ['onlyEnglish', 'onlyMHU', 'showCancelled'],
+  //   department: 'AGF',
+  //   period: ['2025:P1', '2025:P2'],
+  // }
 
-  //   codes.forEach(code => {
-  //     const existingEntry = acc.find(entry => entry.code === code)
-
-  //     if (existingEntry) {
-  //       existingEntry.periods = Array.isArray(existingEntry.periods)
-  //         ? [...existingEntry.periods, ...value]
-  //         : [existingEntry.periods, ...value]
-  //     } else {
-  //       acc.push({
-  //         code: code,
-  //         periods: value,
-  //       })
-  //     }
-  //   })
-  //   return acc
-  // }, []) // todo - we can use it again when we had the data for periods from ladok
-  // TODO Benni periods
+  // const sarchParamsV = {
+  //   kodEllerBenamning: 'matem',
+  //   organisation: 'AGF',
+  //   sprak: 'ENG',
+  //   avvecklad: 'true',
+  //   startPeriod: undefined,
+  //   utbildningsniva: ['99', '1', '2', '3'],
+  //   onlyMHU: 'true',
+  //   semesterKthPeriods: ['2025:P1', '2025:P2'],
+  // }
+  const semesterKthPeriods = query.period && convertSummerToPeriods(query.period)
 
   const searchParams = {
     kodEllerBenamning: query.pattern ? query.pattern : undefined,
     organisation: query.department ? query.department : undefined,
     sprak: query.showOptions?.includes('onlyEnglish') ? 'ENG' : undefined, // TODO Benni, make this a boolean?
     avvecklad: query.showOptions?.includes('showCancelled') ? 'true' : undefined,
-    startPeriod: query.semesters ?? undefined,
+    // startPeriod: query.semesters ?? undefined, // This is not used anymore
     utbildningsniva: query.eduLevel ?? undefined,
     onlyMHU: query.showOptions?.includes('onlyMHU') ? 'true' : undefined,
+    semesterKthPeriods,
   }
 
   try {
@@ -132,7 +143,7 @@ async function performCourseSearch(req, res, next) {
     let type = ResultType.VERSION
     let apiResponse
 
-    if (searchParams.sprak || searchParams.startPeriod) {
+    if (searchParams.sprak || searchParams.startPeriod || searchParams.semesterKthPeriods) {
       apiResponse = await searchCourseInstances(searchParams, lang)
       type = ResultType.INSTANCE
     } else {
@@ -154,7 +165,7 @@ async function performCourseSearch(req, res, next) {
     return res.json(searchResponse)
   } catch (error) {
     log.error(` Exception from performCourseSearch with ${searchParams}`, { error })
-    next(error)
+    return next(error)
   }
 }
 

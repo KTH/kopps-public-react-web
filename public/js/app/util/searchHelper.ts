@@ -3,8 +3,14 @@ import { DataItem } from './types/SearchDisplayTypes'
 import { Link } from '@kth/kth-reactstrap/dist/components/studinfo'
 import { courseLink } from './links'
 import React, { ReactElement } from 'react'
-import { formatTermByYearAndPeriod } from '../../../../domain/term'
-import { CourseInstanceSearchDTO, CourseVersionDTO } from '@kth/om-kursen-ladok-client/dist/search/types'
+// import { formatLongTerm, formatShortTerm, formatTermByYearAndPeriod } from '../../../../domain/term'
+import {
+  CourseInstanceSearchDTO,
+  CourseVersionDTO,
+  KTHPeriodSemesterDTO,
+} from '@kth/om-kursen-ladok-client/dist/search/types'
+import { getLangIndex, isEnglishCode, LanguageCode } from './languageUtil'
+import { formatShortSemester, formatShortYear, formattedSemesterTemplate } from 'shared/term'
 
 export const getHelpText = (langIndex: number, nameOfInstruction: string, instructionKeys: string[]): string[] => {
   /**
@@ -86,33 +92,61 @@ export const compareCourseDTOBy = <K extends CourseVersionDTO | CourseInstanceSe
   }
 }
 
-export const periodsStr = ({
-  startPeriod,
-  startPeriodYear,
-  endPeriod,
-  endPeriodYear,
-  tillfallesperioderNummer,
-  language,
-}: {
-  startPeriod?: number
-  startPeriodYear: string
-  endPeriod?: number
-  endPeriodYear: string
-  tillfallesperioderNummer?: number
-  language: string
-}): string => {
-  if (!startPeriod && startPeriod !== 0) return ''
-  if (startPeriod === endPeriod && tillfallesperioderNummer === 1)
-    return `P${startPeriod} ${formatTermByYearAndPeriod(startPeriod, startPeriodYear, language)}`
+// export const periodsStr = ({
+//   startPeriod,
+//   startPeriodYear,
+//   endPeriod,
+//   endPeriodYear,
+//   tillfallesperioderNummer,
+//   language,
+// }: {
+//   startPeriod?: number
+//   startPeriodYear: string
+//   endPeriod?: number
+//   endPeriodYear: string
+//   tillfallesperioderNummer?: number
+//   language: 'en' | 'sv'
+// }): string => {
+//   if (!startPeriod && startPeriod !== 0) return ''
+//   if (startPeriod === endPeriod && tillfallesperioderNummer === 1)
+//     return `P${startPeriod} ${formatTermByYearAndPeriod(startPeriod, startPeriodYear, language)}`
 
-  return `P${startPeriod} ${formatTermByYearAndPeriod(startPeriod, startPeriodYear, language)} - P${endPeriod} ${formatTermByYearAndPeriod(endPeriod, endPeriodYear, language)}`
+//   return `P${startPeriod} ${formatTermByYearAndPeriod(startPeriod, startPeriodYear, language)} - P${endPeriod} ${formatTermByYearAndPeriod(endPeriod, endPeriodYear, language)}`
+// }
+
+export const newPeriodString = (
+  language: LanguageCode,
+  kthPeriodRange?: { start: KTHPeriodSemesterDTO; end?: KTHPeriodSemesterDTO }
+): string => {
+  if (!kthPeriodRange) return ''
+
+  const start = createPeriodString(kthPeriodRange.start, language)
+  const end = kthPeriodRange.end !== undefined ? createPeriodString(kthPeriodRange.end, language) : undefined
+
+  const range = [start]
+  if (end) {
+    range.push(end)
+  }
+  const newLocal = range.join(' - ')
+  return newLocal
 }
 
-export const formatCourseInstance = (course: CourseInstanceSearchDTO, language: string) => {
-  const periodTexts = course.perioder.map(period => periodsStr({ ...period, language }))
+const createPeriodString = (kthPeriodSemester: KTHPeriodSemesterDTO, languageCode: LanguageCode) => {
+  const { messages } = i18n.messages[getLangIndex(languageCode)]
 
-  const areAllPeriodTextsEmpty = periodTexts.every((value: string) => value === '')
-  const courseHasNoRounds = periodTexts.length === 0 || areAllPeriodTextsEmpty
+  const semesterLabel = messages.semester[kthPeriodSemester.semester.semesterNumber]
+
+  return `${kthPeriodSemester.period} ${formattedSemesterTemplate(semesterLabel, isEnglishCode(languageCode), formatShortYear(kthPeriodSemester.semester.year))}`
+}
+
+export const formatCourseInstance = (course: CourseInstanceSearchDTO, language: LanguageCode) => {
+  // TODO Benni - here we have to update the generation of period strings. Ideally, we can just use whatever we get from OmKursenLadokClient, i.e. the DTO should contain two strings for start/end
+  // const periodTexts = course.perioder.map(period => periodsStr({ ...period, language }))
+
+  const periodTexts = [newPeriodString(language, course.kthPeriodRange)]
+
+  // const areAllPeriodTextsEmpty = periodTexts.every((value: string) => value === '')
+  // const courseHasNoRounds = periodTexts.length === 0 || areAllPeriodTextsEmpty
 
   const studietakterWithPercentage = course.studietakter.map(studietakt => `${studietakt}%`)
 
@@ -126,7 +160,7 @@ export const formatCourseInstance = (course: CourseInstanceSearchDTO, language: 
     campuses: course.studieorter,
     studyPaces: studietakterWithPercentage,
     periodTexts,
-    courseHasNoRounds,
+    courseHasNoRounds: course.courseHasNoInstances,
   }
 }
 
@@ -153,8 +187,11 @@ export const parseCourseVersionsForTableView = (courses: CourseVersionDTO[], lan
   })
 }
 
-export const parseCourseInstancesForTableView = (courses: CourseInstanceSearchDTO[], language: string): DataItem[][] => {
-  const { generalSearch } = i18n.messages[language === 'en' ? '0' : '1']
+export const parseCourseInstancesForTableView = (
+  courses: CourseInstanceSearchDTO[],
+  languageCode: LanguageCode
+): DataItem[][] => {
+  const { generalSearch } = i18n.messages[getLangIndex(languageCode)]
 
   courses.sort(compareCourseDTOBy('kod')) // TODO Benni make sure we only sort once
 
@@ -170,7 +207,7 @@ export const parseCourseInstancesForTableView = (courses: CourseInstanceSearchDT
       studyPaces,
       campuses,
       periodTexts,
-    } = formatCourseInstance(course, language)
+    } = formatCourseInstance(course, languageCode)
 
     const educationalLevelText = utbildningsTypes.join('\n')
     const courseLanguageText = languages.join('\n')
@@ -184,14 +221,14 @@ export const parseCourseInstancesForTableView = (courses: CourseInstanceSearchDT
       createLinkInSortableCell({
         // Code Cell
         code: courseCode,
-        language,
+        language: languageCode,
         startTerm,
         text: courseCode,
       }),
       createLinkInSortableCell({
         // Title Cell
         code: courseCode,
-        language,
+        language: languageCode,
         startTerm,
         text: title,
       }),

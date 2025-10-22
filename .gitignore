@@ -49,3 +49,5 @@ test/performance-artillery-dev/docker-compose.yml
 # Developer notes
 notes/
 notes*
+
+coverage

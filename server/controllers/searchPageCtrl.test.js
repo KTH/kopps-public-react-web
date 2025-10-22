@@ -2,8 +2,8 @@ const log = require('@kth/log')
 
 const ladokApi = require('../ladok/ladokApi')
 const { TEST_API_ANSWER_ALGEBRA, TEST_API_ANSWER_ALGEBRA_PART } = require('../mocks/mockLadokApi')
+const { ResultType } = require('../../shared/dist/ResultType')
 const { performCourseSearch } = require('./searchPageCtrl')
-const { ResultType } = require('../../shared/ResultType')
 
 jest.mock('../configuration', () => ({ server: {} }))
 jest.mock('../ladok/ladokApi', () => ({ searchCourseInstances: jest.fn(), searchCourseVersions: jest.fn() }))
@@ -171,7 +171,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
           {
             eduLevel: ['99', '1', '2', '3'],
             department: 'ADB',
-            semesters: ['HT2021', 'VT2021'],
+            period: ['2021:P1', '2021:P3', '2021:summer'],
             pattern: 'Algebra',
             showOptions: ['showCancelled', 'onlyMHU'],
           },
@@ -186,7 +186,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
           kodEllerBenamning: 'Algebra',
           avvecklad: 'true',
           organisation: 'ADB',
-          startPeriod: ['HT2021', 'VT2021'],
+          semesterKthPeriods: ['2021:P1', '2021:P3', '2021:P5', '2021:P0'],
           utbildningsniva: ['99', '1', '2', '3'],
           onlyMHU: 'true',
         },
@@ -223,7 +223,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
 
     test('search by pattern + semesters/startPeriod with interface language swedish', async () => {
       searchCourseInstances.mockReturnValueOnce(Promise.resolve(TEST_API_ANSWER_ALGEBRA))
-      await performCourseSearch(mReq({ pattern: 'Algebra', semesters: ['HT2021', 'VT2021'] }, langSv), mRes, mockNext())
+      await performCourseSearch(mReq({ pattern: 'Algebra', period: ['2021:P1', '2021:P3'] }, langSv), mRes, mockNext())
 
       expect(ladokApi.searchCourseInstances).toHaveBeenLastCalledWith(
         {
@@ -232,7 +232,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
           organisation: undefined,
           onlyMHU: undefined,
           sprak: undefined,
-          startPeriod: ['HT2021', 'VT2021'],
+          semesterKthPeriods: ['2021:P1', '2021:P3'],
           utbildningsniva: undefined,
         },
         langSv
@@ -272,7 +272,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
           {
             eduLevel: ['99', '1', '2', '3'],
             department: 'ADB',
-            semesters: ['HT2021', 'VT2021'],
+            period: ['2021:P1', '2021:P3'],
             pattern: 'Algebra',
             showOptions: ['onlyEnglish', 'showCancelled', 'onlyMHU'],
           },
@@ -288,7 +288,7 @@ describe('Controller searchCtrl, function performCourseSearch', () => {
           avvecklad: 'true',
           organisation: 'ADB',
           sprak: 'ENG',
-          startPeriod: ['HT2021', 'VT2021'],
+          semesterKthPeriods: ['2021:P1', '2021:P3'],
           utbildningsniva: ['99', '1', '2', '3'],
           onlyMHU: 'true',
         },

@@ -8,7 +8,16 @@ import { MIXED_SEARCH_DATA_SE } from '../components/mocks/mockSearchData'
 
 jest.mock('../util/searchApi')
 
-const periods = ['Autumn 2024', 'Spring 2025', 'Autumn 2025']
+const expectedPeriodFilters = [
+  '2024 summer',
+  'Autumn 2024 period 1',
+  'Autumn 2024 period 2',
+  'Spring 2025 period 3',
+  'Spring 2025 period 4',
+  '2025 summer',
+  'Autumn 2025 period 1',
+  'Autumn 2025 period 2',
+]
 const eduLevels = ['Pre-university level', 'First cycle', 'Second cycle', 'Third cycle']
 const showOptions = [
   'Courses taught in English',
@@ -71,8 +80,8 @@ describe('<SearchPage />', () => {
 
     // Add multiple values for the 'semesters' key
     mockSearchParams.append('pattern', 'Math')
-    mockSearchParams.append('semesters', 'HT2024')
-    mockSearchParams.append('semesters', 'VT2024')
+    mockSearchParams.append('period', '2024:P1')
+    mockSearchParams.append('period', '2024:P2')
     mockSearchParams.append('eduLevel', '1')
     mockSearchParams.append('showOptions', 'onlyEnglish')
 
@@ -80,7 +89,7 @@ describe('<SearchPage />', () => {
 
     expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
       pattern: 'Math',
-      semesters: ['HT2024', 'VT2024'],
+      period: ['2024:P1', '2024:P2'],
       eduLevel: ['1'],
       showOptions: ['onlyEnglish'],
       department: '',
@@ -88,7 +97,7 @@ describe('<SearchPage />', () => {
 
     expect(screen.getByRole('textbox')).toHaveValue('Math')
 
-    const periodCheckbox = screen.getByLabelText('Autumn 2024')
+    const periodCheckbox = screen.getByLabelText('Autumn 2024 period 1')
     expect(periodCheckbox).toBeChecked()
 
     const eduLevelCheckbox = screen.getByLabelText('First cycle')
@@ -118,7 +127,8 @@ describe('<SearchPage />', () => {
         pattern: 'Physics',
         department: '',
         eduLevel: [],
-        semesters: [],
+
+        period: [],
         showOptions: [],
       })
     })
@@ -140,8 +150,8 @@ describe('<SearchPage />', () => {
     const searchInput = screen.getByRole('textbox')
     expect(searchInput).toBeDisabled()
 
-    periods.forEach(semesters => {
-      const periodCheckbox = screen.getByLabelText(semesters)
+    expectedPeriodFilters.forEach(period => {
+      const periodCheckbox = screen.getByLabelText(period)
       expect(periodCheckbox).toBeDisabled()
     })
 
@@ -163,8 +173,8 @@ describe('<SearchPage />', () => {
     const searchInputAfterResolve = await screen.findByRole('textbox')
     expect(searchInputAfterResolve).not.toBeDisabled()
 
-    periods.forEach(semesters => {
-      const periodCheckbox = screen.getByLabelText(semesters)
+    expectedPeriodFilters.forEach(period => {
+      const periodCheckbox = screen.getByLabelText(period)
       expect(periodCheckbox).not.toBeDisabled()
     })
 
@@ -189,23 +199,22 @@ describe('<SearchPage />', () => {
       pattern: '',
       department: '',
       eduLevel: [],
-      semesters: [],
+      period: [],
       showOptions: [],
     })
-    const firstPeriodCheckbox = screen.getByLabelText(periods[0])
+    const firstPeriodCheckbox = screen.getByLabelText(expectedPeriodFilters[0])
     expect(firstPeriodCheckbox).not.toBeChecked()
     fireEvent.click(firstPeriodCheckbox)
     await waitFor(async () => {
-      expect(mockSearchParams.getAll('semesters')).toEqual(['HT2024'])
       expect(courseSearch).toHaveBeenCalledWith('en', '/student/kurser', {
         pattern: '',
         department: '',
         eduLevel: [],
-        semesters: ['HT2024'],
+        period: ['2024:summer'],
         showOptions: [],
       })
 
-      const secondPeriodCheckbox = screen.getByLabelText(periods[1])
+      const secondPeriodCheckbox = screen.getByLabelText(expectedPeriodFilters[1])
       expect(secondPeriodCheckbox).not.toBeChecked()
       fireEvent.click(secondPeriodCheckbox)
     })
@@ -215,11 +224,11 @@ describe('<SearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: [],
-        semesters: ['HT2024', 'VT2025'],
+        period: ['2024:summer', '2024:P1'],
         showOptions: [],
       })
 
-      const thirdPeriodCheckbox = screen.getByLabelText(periods[2])
+      const thirdPeriodCheckbox = screen.getByLabelText(expectedPeriodFilters[2])
       expect(thirdPeriodCheckbox).not.toBeChecked()
       fireEvent.click(thirdPeriodCheckbox)
     })
@@ -229,7 +238,7 @@ describe('<SearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: [],
-        semesters: ['HT2024', 'VT2025', 'HT2025'],
+        period: ['2024:summer', '2024:P1', '2024:P2'],
         showOptions: [],
       })
 
@@ -243,7 +252,7 @@ describe('<SearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: ['99'],
-        semesters: ['HT2024', 'VT2025', 'HT2025'],
+        period: ['2024:summer', '2024:P1', '2024:P2'],
         showOptions: [],
       })
 
@@ -257,7 +266,7 @@ describe('<SearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: ['99', '1'],
-        semesters: ['HT2024', 'VT2025', 'HT2025'],
+        period: ['2024:summer', '2024:P1', '2024:P2'],
         showOptions: [],
       })
 
@@ -271,7 +280,7 @@ describe('<SearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: ['99', '1', '2'],
-        semesters: ['HT2024', 'VT2025', 'HT2025'],
+        period: ['2024:summer', '2024:P1', '2024:P2'],
         showOptions: [],
       })
 
@@ -285,7 +294,7 @@ describe('<SearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: ['99', '1', '2', '3'],
-        semesters: ['HT2024', 'VT2025', 'HT2025'],
+        period: ['2024:summer', '2024:P1', '2024:P2'],
         showOptions: [],
       })
 
@@ -299,7 +308,7 @@ describe('<SearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: ['99', '1', '2', '3'],
-        semesters: ['HT2024', 'VT2025', 'HT2025'],
+        period: ['2024:summer', '2024:P1', '2024:P2'],
         showOptions: ['onlyEnglish'],
       })
 
@@ -313,7 +322,7 @@ describe('<SearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: ['99', '1', '2', '3'],
-        semesters: ['HT2024', 'VT2025', 'HT2025'],
+        period: ['2024:summer', '2024:P1', '2024:P2'],
         showOptions: ['onlyEnglish', 'onlyMHU'],
       })
 
@@ -327,7 +336,7 @@ describe('<SearchPage />', () => {
         pattern: '',
         department: '',
         eduLevel: ['99', '1', '2', '3'],
-        semesters: ['HT2024', 'VT2025', 'HT2025'],
+        period: ['2024:summer', '2024:P1', '2024:P2'],
         showOptions: ['onlyEnglish', 'onlyMHU', 'showCancelled'],
       })
     })

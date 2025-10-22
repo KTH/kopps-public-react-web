@@ -9,7 +9,8 @@ import { SortableTable } from '@kth/kth-reactstrap/dist/components/studinfo'
 import { SearchData } from '../../hooks/types/UseCourseSearchTypes'
 import { DataItem } from '../../util/types/SearchDisplayTypes'
 import { useLanguage } from '../../hooks/useLanguage'
-import { ResultType } from '../../../../../shared/ResultType'
+import { ResultType } from '../../../../../shared/dist/ResultType'
+import { LanguageCode } from 'js/app/util/languageUtil'
 
 const TableView: React.FC<{
   searchData: SearchData
@@ -25,7 +26,10 @@ const TableView: React.FC<{
   )
 }
 
-const getTableData = (searchData: SearchData, languageShortname: string): { headers: string[]; data: DataItem[][] } => {
+const getTableData = (
+  searchData: SearchData,
+  languageShortname: LanguageCode
+): { headers: string[]; data: DataItem[][] } => {
   const t = translate(languageShortname)
 
   const COURSE_VERSION_HEADERS: string[] = [

@@ -6,3 +6,5 @@ export enum LanguageCode {
 export const isEnglishCode = (language: LanguageCode) => {
   return language === LanguageCode.English
 }
+
+export const getLangIndex = (language: LanguageCode) => (isEnglishCode(language) ? 0 : 1)

@@ -8,4 +8,9 @@
 - miljö-filter
 - utbildningsnivå DONE
 - errorCodes
+
   - ERROR-courseSearch that is coming from KP-backend
+
+- periods
+  - fix periodRange (start/end)
+  - display periodRange (start/end) in table view
