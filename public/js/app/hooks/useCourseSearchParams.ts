@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom'
 import { CourseSearchParams, SetCourseSearchParams } from '../pages/types/searchPageTypes'
 import { useMemo } from 'react'
-import { EduLevel, Period, ShowOptions, Pattern, DepartmentCodeOrPrefix, Semester } from '../stores/types/searchPageStoreTypes'
+import { EduLevel, Period, ShowOptions, Pattern, DepartmentCodeOrPrefix } from '../stores/types/searchPageStoreTypes'
 
 /**
  * Wrapper hooks around useSearchParams that handles conversion between url state (URLSearchParams)
@@ -11,11 +11,11 @@ export const useCourseSearchParams = (): [CourseSearchParams, SetCourseSearchPar
   const [searchParams, setSearchParams] = useSearchParams()
   const courseSearchParams: CourseSearchParams = useMemo(
     () => ({
-      pattern: searchParams.get('pattern') as Pattern ?? '',
-      semesters: (searchParams.getAll('semesters').filter(Boolean) as Semester[]),
-      eduLevel: (searchParams.getAll('eduLevel').filter(Boolean) as EduLevel[]),
-      showOptions: (searchParams.getAll('showOptions').filter(Boolean) as ShowOptions[]),
-      department: searchParams.get('department') as DepartmentCodeOrPrefix ?? '',
+      pattern: (searchParams.get('pattern') as Pattern) ?? '',
+      eduLevel: searchParams.getAll('eduLevel').filter(Boolean) as EduLevel[],
+      showOptions: searchParams.getAll('showOptions').filter(Boolean) as ShowOptions[],
+      department: (searchParams.get('department') as DepartmentCodeOrPrefix) ?? '',
+      period: searchParams.getAll('period').filter(Boolean) as Period[],
     }),
     [searchParams]
   )

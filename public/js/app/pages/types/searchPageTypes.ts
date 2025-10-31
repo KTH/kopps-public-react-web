@@ -1,13 +1,6 @@
 import React from 'react'
 
-import {
-  Pattern,
-  Period,
-  EduLevel,
-  ShowOptions,
-  DepartmentCodeOrPrefix,
-  Semester,
-} from '../../stores/types/searchPageStoreTypes'
+import { Pattern, Period, EduLevel, ShowOptions, DepartmentCodeOrPrefix } from '../../stores/types/searchPageStoreTypes'
 
 export interface MainContentProps {
   children: React.ReactNode
@@ -17,10 +10,10 @@ export type SetCourseSearchParams = (params: Partial<CourseSearchParams>) => voi
 
 export interface CourseSearchParams {
   pattern: Pattern
-  semesters: Semester[]
   eduLevel: EduLevel[]
   showOptions: ShowOptions[]
   department: DepartmentCodeOrPrefix
+  period: Period[]
 }
 
 export interface SearchPageProps {
