@@ -103,7 +103,10 @@ function getTransformationRules({ contextIsNode, subDir = null }) {
             loader: 'ts-loader',
             options: {
               transpileOnly: true,
-              projectReferences: true,
+              // projectReferences: true,
+              // Avoid TS project reference mode inside webpack build to prevent TS6307
+              // We build referenced projects (e.g. shared/) separately via npm scripts
+              // and resolve them via path/webpack aliases during bundling.
             },
           },
         },
