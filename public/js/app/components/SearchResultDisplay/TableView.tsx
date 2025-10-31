@@ -6,10 +6,11 @@ import translate from '../../../../../domain/translate'
 import { parseCourseVersionsForTableView, parseCourseInstancesForTableView } from '../../util/searchHelper'
 
 import { SortableTable } from '@kth/kth-reactstrap/dist/components/studinfo'
-import { SearchData } from '../../hooks/types/UseCourseSearchTypes'
 import { DataItem } from '../../util/types/SearchDisplayTypes'
 import { useLanguage } from '../../hooks/useLanguage'
-import { ResultType } from '../../../../../shared/ResultType'
+import { ResultType } from 'kopps-public-react-web/shared/ResultType'
+import { SearchData } from 'kopps-public-react-web/shared/SearchTypes'
+import { LanguageCode } from 'kopps-public-react-web/shared/languageUtil'
 
 const TableView: React.FC<{
   searchData: SearchData
@@ -25,7 +26,10 @@ const TableView: React.FC<{
   )
 }
 
-const getTableData = (searchData: SearchData, languageShortname: string): { headers: string[]; data: DataItem[][] } => {
+const getTableData = (
+  searchData: SearchData,
+  languageShortname: LanguageCode
+): { headers: string[]; data: DataItem[][] } => {
   const t = translate(languageShortname)
 
   const COURSE_VERSION_HEADERS: string[] = [
