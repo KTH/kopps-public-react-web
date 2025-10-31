@@ -1,4 +1,6 @@
-import { ERROR_ASYNC, SearchResponse } from '../hooks/types/UseCourseSearchTypes'
+import { SearchResponse } from 'kopps-public-react-web/shared/SearchTypes'
+import { ERROR_ASYNC } from '../hooks/types/UseCourseSearchTypes'
+import { CourseSearchParams } from '../pages/types/searchPageTypes'
 
 export async function courseSearch(
   language: string,
