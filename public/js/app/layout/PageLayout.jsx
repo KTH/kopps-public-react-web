@@ -13,7 +13,7 @@ function MainContent({ children }) {
   )
 }
 
-function PageLayout({ menuData, children }) {
+function PageLayout({ menuData = {}, children }) {
   return (
     // Container in publicLayout.handlebars – begin
     <Row>
@@ -48,7 +48,4 @@ PageLayout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
 }
 
-PageLayout.defaultProps = {
-  menuData: {},
-}
 export default PageLayout
