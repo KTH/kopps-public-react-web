@@ -2,7 +2,8 @@ import React from 'react'
 import { View, VIEW } from './types'
 import StandardView from './ListView'
 import TableView from './TableView'
-import { SearchData } from '../../hooks/types/UseCourseSearchTypes'
+import { SearchData } from 'kopps-public-react-web/shared/SearchTypes'
+
 const SearchResultContent: React.FC<{
   searchData: SearchData
   view: View
