@@ -2,6 +2,7 @@
 
 const { createApiClient, EducationalLevelCode } = require('@kth/om-kursen-ladok-client')
 const serverConfig = require('../configuration').server
+
 const client = createApiClient(serverConfig.ladokMellanlagerApi)
 
 async function searchCourseInstances(pattern, lang) {
