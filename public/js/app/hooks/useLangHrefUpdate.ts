@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react'
 import { stringifyUrlParams } from '../../../../domain/searchParams'
 import { CourseSearchParams } from '../pages/types/searchPageTypes'
 import { useStore } from '../mobx'
-import { isEnglishCode, LanguageCode } from '../util/languageUtil'
+import { isEnglishCode, LanguageCode } from 'kopps-public-react-web/shared/languageUtil'
 
 export const useLangHrefUpdate = (courseSearchParams?: CourseSearchParams) => {
   const { language } = useStore()

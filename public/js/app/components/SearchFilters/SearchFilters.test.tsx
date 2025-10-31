@@ -3,8 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import SearchFilters from './index'
 import { useStore } from '../../mobx'
-import { EduLevel, Period, Semester, ShowOptions } from '../../stores/types/searchPageStoreTypes'
-import { SEARCH_MODES } from '../../pages/types/searchPageTypes'
+import { CourseSearchParams, SEARCH_MODES } from '../../pages/types/searchPageTypes'
 
 // Mocking the useStore hook
 jest.mock('../../mobx')
@@ -33,18 +32,13 @@ jest.mock('../../hooks/useLangHrefUpdate', () => ({
 }))
 
 describe('<SearchFilters />', () => {
-  const ancestorItem = {
-    href: '/back',
-    label: 'Back',
-  }
-
   const mockSetCourseSearchParams = jest.fn()
 
-  const courseSearchParams = {
+  const courseSearchParams: CourseSearchParams = {
     pattern: '',
-    semesters: [] as Semester[],
-    eduLevel: [] as EduLevel[],
-    showOptions: [] as ShowOptions[],
+    eduLevel: [],
+    showOptions: [],
+    period: [],
     department: '',
   }
 
