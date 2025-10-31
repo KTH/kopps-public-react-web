@@ -71,7 +71,7 @@ function ObsoleteProgrammeDescription({ programme }) {
   return <>{`, ${programmeParts.join(', ')}`}</>
 }
 
-function ProgrammesListItem({ programme, variant }) {
+function ProgrammesListItem({ programme, variant = '' }) {
   const { language } = useStore()
   const { programmeCode, title } = programme
   return (
@@ -206,10 +206,6 @@ ProgrammesListItem.propTypes = {
   variant: PropTypes.string,
 }
 
-ProgrammesListItem.defaultProps = {
-  variant: '',
-}
-
 CurrentProgrammesList.propTypes = {
   programmes: PropTypes.arrayOf(
     PropTypes.shape({
@@ -227,10 +223,6 @@ ObsololeteProgrammesList.propTypes = {
       title: PropTypes.string.isRequired,
     })
   ),
-}
-
-ObsololeteProgrammesList.defaultProps = {
-  programmes: [],
 }
 
 export default ProgrammesList

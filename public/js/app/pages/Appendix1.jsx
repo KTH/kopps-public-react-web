@@ -50,7 +50,7 @@ CourseListTableRow.propTypes = {
   course: courseType.isRequired,
 }
 
-function CourseListTable({ courses }) {
+function CourseListTable({ courses = [] }) {
   const { language } = useStore()
   const t = translate(language)
   return Array.isArray(courses) && courses.length ? (
@@ -82,10 +82,6 @@ function CourseListTable({ courses }) {
 
 CourseListTable.propTypes = {
   courses: PropTypes.arrayOf(courseType),
-}
-
-CourseListTable.defaultProps = {
-  courses: [],
 }
 
 function ElectiveCondition({ studyYear, electiveCondition, code }) {

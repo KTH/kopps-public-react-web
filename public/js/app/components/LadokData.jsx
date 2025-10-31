@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 
 import { useStore } from '../mobx'
 
-function LadokData({ html }) {
-  if (!html) return null
+function LadokData({ html = null }) {
   const { browserConfig } = useStore()
+  if (!html) return null
   const { markHtmlFromLadok } = browserConfig
   return markHtmlFromLadok ? (
     <div key="marked-data-from-ladok" data-from-ladok dangerouslySetInnerHTML={{ __html: html }} />
@@ -17,10 +17,6 @@ function LadokData({ html }) {
 
 LadokData.propTypes = {
   html: PropTypes.string,
-}
-
-LadokData.defaultProps = {
-  html: null,
 }
 
 export default LadokData
