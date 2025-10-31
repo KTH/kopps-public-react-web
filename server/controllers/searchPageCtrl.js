@@ -41,13 +41,13 @@ async function renderSearchPage(
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
     const { [basenameKey]: basename, uri: proxyPrefix } = serverConfig.proxyPrefixPath
-    const html = renderStaticPage({ applicationStore, location: req.url, basename: basename })
+    const view = renderStaticPage({ applicationStore, location: req.url, basename })
 
     const title = i18n.message(titleKey, lang)
     const breadcrumbsList = breadcrumbsFn(lang)
 
     res.render('app/index', {
-      html,
+      html: view,
       title,
       compressedStoreCode,
       description,
