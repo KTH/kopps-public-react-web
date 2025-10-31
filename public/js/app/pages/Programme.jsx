@@ -12,8 +12,7 @@ import { programTermLink } from '../util/links'
 import { formatShortTerm, studyYear as calculateStudyYear } from '../../../../domain/term'
 import { pageLink } from '../../../../domain/links'
 
-function programmeTermLinkText(term) {
-  const { language } = useStore()
+function programmeTermLinkText(term, language) {
   const t = translate(language)
   return `${t('programme_admitted_year')} ${formatShortTerm(term, language)}`
 }
@@ -23,7 +22,7 @@ function ProgrammeTermsLinkListItem({ term }) {
   const studyYear = calculateStudyYear(term, lengthInStudyYears)
   return (
     <Link key={term} href={programTermLink(programmeCode, term, `arskurs${studyYear}`, language)}>
-      {programmeTermLinkText(term)}
+      {programmeTermLinkText(term, language)}
     </Link>
   )
 }

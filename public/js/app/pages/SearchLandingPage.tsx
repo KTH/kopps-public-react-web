@@ -41,6 +41,7 @@ const SearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODE
   const [courseSearchParams, setCourseSearchParams] = useReducer(paramsReducer, {
     pattern: '',
     semesters: [],
+    period: [],
     eduLevel: [],
     showOptions: [],
     department: '',
@@ -123,7 +124,7 @@ const SearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODE
     <div className="search-landing-page">
       <PageHeading>{searchHeading}</PageHeading>
       <Lead text={leadIntro} />
-      <SearchInput caption={searchButton} onSubmit={handleSubmit} searchLabel={searchLabel}/>
+      <SearchInput caption={searchButton} onSubmit={handleSubmit} searchLabel={searchLabel} />
       <SearchFilters
         searchMode={searchMode}
         courseSearchParams={courseSearchParams}

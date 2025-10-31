@@ -7,15 +7,9 @@ import i18n from '../../../../../i18n'
 import SearchDepartments from '../SearchDepartments'
 import SearchOptions from '../SearchOptions'
 import { FilterParams, SearchFilterStore, SearchFiltersProps, FILTER_MODES } from './types'
-import {
-  DepartmentCodeOrPrefix,
-  EduLevel,
-  Period,
-  Semester,
-  ShowOptions,
-} from '../../stores/types/searchPageStoreTypes'
 import { SEARCH_MODES } from '../../pages/types/searchPageTypes'
 import { EducationalLevelCode } from '@kth/om-kursen-ladok-client'
+
 const SearchFilters: React.FC<SearchFiltersProps> = ({
   disabled,
   courseSearchParams,
@@ -40,7 +34,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
 
   function handleClearFilters() {
     setCourseSearchParams({
-      semesters: [],
+      period: [],
       eduLevel: searchMode === SEARCH_MODES.thirdCycleCourses ? [EducationalLevelCode.Research] : [],
       showOptions: [],
       department: '',
@@ -59,16 +53,32 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
 
   const renderFilterGroup = (
     <>
-      {filterMode.includes('semesters') && (
+      {(filterMode.includes('currentYear') || filterMode.includes('nextYear')) && (
         <div className={collapsable ? 'row' : ''}>
-          <div className={collapsable ? 'col' : ''}>
-            <SearchOptions
-              paramName="semesters"
-              selectedValues={courseSearchParams.semesters as Semester[]}
-              onChange={handleFilterValueChange}
-              disabled={disabled}
-            />
-          </div>
+          {filterMode.includes('currentYear') && (
+            <div className={collapsable ? 'col' : ''}>
+              <SearchOptions
+                paramAliasName="currentYear"
+                paramName="period"
+                overrideSearchHead={currentYearLabel}
+                selectedValues={courseSearchParams.period}
+                onChange={handleFilterValueChange}
+                disabled={disabled}
+              />
+            </div>
+          )}
+          {filterMode.includes('nextYear') && (
+            <div className={collapsable ? 'col' : ''}>
+              <SearchOptions
+                paramAliasName="nextYear"
+                paramName="period"
+                overrideSearchHead={nextYearLabel}
+                selectedValues={courseSearchParams.period}
+                onChange={handleFilterValueChange}
+                disabled={disabled}
+              />
+            </div>
+          )}
         </div>
       )}
 
@@ -79,7 +89,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
             <div className={collapsable ? 'col' : ''}>
               <SearchOptions
                 paramName="eduLevel"
-                selectedValues={courseSearchParams.eduLevel as EduLevel[]}
+                selectedValues={courseSearchParams.eduLevel}
                 onChange={handleFilterValueChange}
                 disabled={disabled}
               />
@@ -89,7 +99,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
             <div className={collapsable ? 'col' : ''}>
               <SearchOptions
                 paramName="showOptions"
-                selectedValues={courseSearchParams.showOptions as ShowOptions[]}
+                selectedValues={courseSearchParams.showOptions}
                 onChange={handleFilterValueChange}
                 disabled={disabled}
               />
@@ -99,7 +109,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
             <SearchOptions
               paramName="showOptions"
               paramAliasName="onlyMHU"
-              selectedValues={courseSearchParams.showOptions as ShowOptions[]}
+              selectedValues={courseSearchParams.showOptions}
               onChange={handleFilterValueChange}
               overrideSearchHead={onlyMHULabel}
             />
@@ -111,7 +121,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
         <div className={collapsable ? 'row' : ''}>
           <div className={collapsable ? 'col' : ''}>
             <SearchDepartments
-              departmentCode={courseSearchParams.department as DepartmentCodeOrPrefix}
+              departmentCode={courseSearchParams.department}
               onChange={handleFilterValueChange}
               disabled={disabled}
             />
