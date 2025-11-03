@@ -35,7 +35,7 @@ const errorDispatch = (errorCode: string, dispatch: Dispatch<Action>) => {
       break
 
     default:
-      console.error(errorCode) // TODO Benni fix logging
+      console.error(errorCode)
       dispatch({ type: 'rejected' })
       break
   }
