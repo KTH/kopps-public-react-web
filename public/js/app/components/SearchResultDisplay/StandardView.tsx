@@ -7,7 +7,7 @@ import { CourseInstanceCardView } from './CourseInstanceCardView'
 import { ResultType } from 'kopps-public-react-web/shared/ResultType'
 import { SearchData } from 'kopps-public-react-web/shared/SearchTypes'
 
-export const ListView: React.FC<{
+export const StandardView: React.FC<{
   searchData: SearchData
 }> = ({ searchData }) => {
   const { type, results } = searchData
@@ -42,4 +42,4 @@ export const CourseHeader: React.FC<{
   )
 }
 
-export default ListView
+export default StandardView

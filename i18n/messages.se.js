@@ -298,7 +298,7 @@ const messages = {
     linkToInforKursval: 'Sidan inför kursval',
     filtersLabel: 'Filtrera dina sökval',
     toggleButton: {
-      list: 'Standard',
+      standard: 'Standard',
       table: 'Kompakt',
     },
   },
