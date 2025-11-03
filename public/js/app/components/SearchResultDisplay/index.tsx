@@ -14,7 +14,7 @@ const SearchResultDisplay: React.FC<{
   searchState: State
 }> = ({ searchState }) => {
   const { languageIndex } = useLanguage()
-  const [view, setView] = useState<View>(VIEW.list)
+  const [view, setView] = useState<View>(VIEW.standard)
   const { searchData, status: searchStatus, error: errorType } = searchState
 
   if (errorType) {
