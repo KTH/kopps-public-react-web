@@ -307,7 +307,7 @@ const messages = {
     linkToInforKursval: 'The page before course selection',
     filtersLabel: 'Filter your search choices',
     toggleButton: {
-      list: 'Standard',
+      standard: 'Standard',
       table: 'Compact',
     },
   },
