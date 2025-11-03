@@ -207,6 +207,14 @@
     width: 100%;
     overflow-x: auto;
     animation: fadeIn 0.5s ease forwards;
+    table {
+      table-layout: auto;
+      min-width: 980px;
+    }
+    thead th {
+      white-space: nowrap;
+      word-break: normal;
+    }
     th,
     td {
       vertical-align: middle;
