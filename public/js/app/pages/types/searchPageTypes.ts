@@ -20,9 +20,9 @@ export interface SearchPageProps {
   searchMode?: SearchModes
 }
 
-export const SEARCH_MODES: Record<string, SearchModes> = {
-  default: 'default',
-  thirdCycleCourses: 'thirdCycleCourses',
-} as const
+export enum SEARCH_MODES {
+  default = 'default',
+  thirdCycleCourses = 'thirdCycleCourses',
+}
 
 export type SearchModes = 'default' | 'thirdCycleCourses'

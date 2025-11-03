@@ -1,0 +1,729 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchFilters /> Course Start filter options during autumn semester to match snapshot 1`] = `
+<div>
+  <div
+    class=""
+  >
+    <div
+      class=""
+    >
+      <div
+        class="form-group"
+      >
+        <fieldset>
+          <legend
+            class="form-control-label"
+          >
+            Course Start 2024
+          </legend>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="2024:summer"
+              name="currentYear"
+              type="checkbox"
+              value="2024:summer"
+            />
+            <label
+              class="form-control-label"
+              for="2024:summer"
+            >
+              2024 summer
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="2024:P1"
+              name="currentYear"
+              type="checkbox"
+              value="2024:P1"
+            />
+            <label
+              class="form-control-label"
+              for="2024:P1"
+            >
+              Autumn 2024 period 1
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="2024:P2"
+              name="currentYear"
+              type="checkbox"
+              value="2024:P2"
+            />
+            <label
+              class="form-control-label"
+              for="2024:P2"
+            >
+              Autumn 2024 period 2
+            </label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div
+      class=""
+    >
+      <div
+        class="form-group"
+      >
+        <fieldset>
+          <legend
+            class="form-control-label"
+          >
+            Course Start 2025
+          </legend>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="2025:P3"
+              name="nextYear"
+              type="checkbox"
+              value="2025:P3"
+            />
+            <label
+              class="form-control-label"
+              for="2025:P3"
+            >
+              Spring 2025 period 3
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="2025:P4"
+              name="nextYear"
+              type="checkbox"
+              value="2025:P4"
+            />
+            <label
+              class="form-control-label"
+              for="2025:P4"
+            >
+              Spring 2025 period 4
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="2025:summer"
+              name="nextYear"
+              type="checkbox"
+              value="2025:summer"
+            />
+            <label
+              class="form-control-label"
+              for="2025:summer"
+            >
+              2025 summer
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="2025:P1"
+              name="nextYear"
+              type="checkbox"
+              value="2025:P1"
+            />
+            <label
+              class="form-control-label"
+              for="2025:P1"
+            >
+              Autumn 2025 period 1
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="2025:P2"
+              name="nextYear"
+              type="checkbox"
+              value="2025:P2"
+            />
+            <label
+              class="form-control-label"
+              for="2025:P2"
+            >
+              Autumn 2025 period 2
+            </label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  <div
+    class=""
+  >
+    <div
+      class=""
+    >
+      <div
+        class="form-group"
+      >
+        <fieldset>
+          <legend
+            class="form-control-label"
+          >
+            Educational level:
+          </legend>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="PREPARATORY"
+              name="eduLevel"
+              type="checkbox"
+              value="99"
+            />
+            <label
+              class="form-control-label"
+              for="PREPARATORY"
+            >
+              Pre-university level
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="BASIC"
+              name="eduLevel"
+              type="checkbox"
+              value="1"
+            />
+            <label
+              class="form-control-label"
+              for="BASIC"
+            >
+              First cycle
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="ADVANCED"
+              name="eduLevel"
+              type="checkbox"
+              value="2"
+            />
+            <label
+              class="form-control-label"
+              for="ADVANCED"
+            >
+              Second cycle
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="RESEARCH"
+              name="eduLevel"
+              type="checkbox"
+              value="3"
+            />
+            <label
+              class="form-control-label"
+              for="RESEARCH"
+            >
+              Third cycle
+            </label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div
+      class=""
+    >
+      <div
+        class="form-group"
+      >
+        <fieldset>
+          <legend
+            class="form-control-label"
+          >
+            Other options:
+          </legend>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="onlyEnglish"
+              name="showOptions"
+              type="checkbox"
+              value="onlyEnglish"
+            />
+            <label
+              class="form-control-label"
+              for="onlyEnglish"
+            >
+              Courses taught in English
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="onlyMHU"
+              name="showOptions"
+              type="checkbox"
+              value="onlyMHU"
+            />
+            <label
+              class="form-control-label"
+              for="onlyMHU"
+            >
+              Courses that deal with environment, environmental technology or sustainable development
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="showCancelled"
+              name="showOptions"
+              type="checkbox"
+              value="showCancelled"
+            />
+            <label
+              class="form-control-label"
+              for="showCancelled"
+            >
+              Dormant/Terminated course
+            </label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  <div
+    class=""
+  >
+    <div
+      class=""
+    >
+      <div
+        class="form-group"
+      >
+        <fieldset>
+          <legend
+            class="form-control-label"
+          >
+            School, department, etc
+          </legend>
+          <select
+            aria-label="School, department, etc"
+            class="form-control"
+            id="department"
+            name="department"
+          >
+            <option
+              value=""
+            >
+              All schools
+            </option>
+            <option
+              class="form-control-label"
+            >
+              Older Schools
+            </option>
+          </select>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<SearchFilters /> Course Start filter options to match snapshot 1`] = `
+<div>
+  <div
+    class=""
+  >
+    <div
+      class=""
+    >
+      <div
+        class="form-group"
+      >
+        <fieldset>
+          <legend
+            class="form-control-label"
+          >
+            Course Start 2024
+          </legend>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="2024:P3"
+              name="currentYear"
+              type="checkbox"
+              value="2024:P3"
+            />
+            <label
+              class="form-control-label"
+              for="2024:P3"
+            >
+              Spring 2024 period 3
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="2024:P4"
+              name="currentYear"
+              type="checkbox"
+              value="2024:P4"
+            />
+            <label
+              class="form-control-label"
+              for="2024:P4"
+            >
+              Spring 2024 period 4
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="2024:summer"
+              name="currentYear"
+              type="checkbox"
+              value="2024:summer"
+            />
+            <label
+              class="form-control-label"
+              for="2024:summer"
+            >
+              2024 summer
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="2024:P1"
+              name="currentYear"
+              type="checkbox"
+              value="2024:P1"
+            />
+            <label
+              class="form-control-label"
+              for="2024:P1"
+            >
+              Autumn 2024 period 1
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="2024:P2"
+              name="currentYear"
+              type="checkbox"
+              value="2024:P2"
+            />
+            <label
+              class="form-control-label"
+              for="2024:P2"
+            >
+              Autumn 2024 period 2
+            </label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div
+      class=""
+    >
+      <div
+        class="form-group"
+      >
+        <fieldset>
+          <legend
+            class="form-control-label"
+          >
+            Course Start 2025
+          </legend>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="2025:P3"
+              name="nextYear"
+              type="checkbox"
+              value="2025:P3"
+            />
+            <label
+              class="form-control-label"
+              for="2025:P3"
+            >
+              Spring 2025 period 3
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="2025:P4"
+              name="nextYear"
+              type="checkbox"
+              value="2025:P4"
+            />
+            <label
+              class="form-control-label"
+              for="2025:P4"
+            >
+              Spring 2025 period 4
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="2025:summer"
+              name="nextYear"
+              type="checkbox"
+              value="2025:summer"
+            />
+            <label
+              class="form-control-label"
+              for="2025:summer"
+            >
+              2025 summer
+            </label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  <div
+    class=""
+  >
+    <div
+      class=""
+    >
+      <div
+        class="form-group"
+      >
+        <fieldset>
+          <legend
+            class="form-control-label"
+          >
+            Educational level:
+          </legend>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="PREPARATORY"
+              name="eduLevel"
+              type="checkbox"
+              value="99"
+            />
+            <label
+              class="form-control-label"
+              for="PREPARATORY"
+            >
+              Pre-university level
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="BASIC"
+              name="eduLevel"
+              type="checkbox"
+              value="1"
+            />
+            <label
+              class="form-control-label"
+              for="BASIC"
+            >
+              First cycle
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="ADVANCED"
+              name="eduLevel"
+              type="checkbox"
+              value="2"
+            />
+            <label
+              class="form-control-label"
+              for="ADVANCED"
+            >
+              Second cycle
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="RESEARCH"
+              name="eduLevel"
+              type="checkbox"
+              value="3"
+            />
+            <label
+              class="form-control-label"
+              for="RESEARCH"
+            >
+              Third cycle
+            </label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div
+      class=""
+    >
+      <div
+        class="form-group"
+      >
+        <fieldset>
+          <legend
+            class="form-control-label"
+          >
+            Other options:
+          </legend>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="onlyEnglish"
+              name="showOptions"
+              type="checkbox"
+              value="onlyEnglish"
+            />
+            <label
+              class="form-control-label"
+              for="onlyEnglish"
+            >
+              Courses taught in English
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="onlyMHU"
+              name="showOptions"
+              type="checkbox"
+              value="onlyMHU"
+            />
+            <label
+              class="form-control-label"
+              for="onlyMHU"
+            >
+              Courses that deal with environment, environmental technology or sustainable development
+            </label>
+          </div>
+          <div
+            class="form-check form-group"
+          >
+            <input
+              class="form-check-input"
+              id="showCancelled"
+              name="showOptions"
+              type="checkbox"
+              value="showCancelled"
+            />
+            <label
+              class="form-control-label"
+              for="showCancelled"
+            >
+              Dormant/Terminated course
+            </label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  <div
+    class=""
+  >
+    <div
+      class=""
+    >
+      <div
+        class="form-group"
+      >
+        <fieldset>
+          <legend
+            class="form-control-label"
+          >
+            School, department, etc
+          </legend>
+          <select
+            aria-label="School, department, etc"
+            class="form-control"
+            id="department"
+            name="department"
+          >
+            <option
+              value=""
+            >
+              All schools
+            </option>
+            <option
+              class="form-control-label"
+            >
+              Older Schools
+            </option>
+          </select>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+`;
