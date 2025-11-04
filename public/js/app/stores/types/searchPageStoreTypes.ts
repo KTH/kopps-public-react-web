@@ -1,4 +1,4 @@
-import { EducationalLevelCode } from "@kth/om-kursen-ladok-client"
+import { EducationalLevelCode } from '@kth/om-kursen-ladok-client'
 
 export type Pattern = string
 
@@ -19,9 +19,7 @@ export type EduLevel = `${EducationalLevelCode}`
 
 export type SetEduLevels = (eduLevels: EduLevel[]) => void
 
-export type Period = `${number}:${'1' | '2' | '3' | '4' | 'summer'}`
-
-export type Semester = `${'VT' | 'HT'}${number}}`
+export type Period = `${number}:P${'1' | '2' | '3' | '4' | 'summer'}`
 
 export type SetPeriods = (periods: Period[]) => void
 

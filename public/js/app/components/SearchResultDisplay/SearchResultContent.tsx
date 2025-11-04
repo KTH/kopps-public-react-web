@@ -1,14 +1,15 @@
 import React from 'react'
 import { View, VIEW } from './types'
-import StandardView from './ListView'
+import StandardView from './StandardView'
 import TableView from './TableView'
-import { SearchData } from '../../hooks/types/UseCourseSearchTypes'
+import { SearchData } from 'kopps-public-react-web/shared/SearchTypes'
+
 const SearchResultContent: React.FC<{
   searchData: SearchData
   view: View
 }> = ({ searchData, view }) => {
   switch (view) {
-    case VIEW.list:
+    case VIEW.standard:
       return <StandardView searchData={searchData} />
     case VIEW.table:
       return <TableView searchData={searchData} />

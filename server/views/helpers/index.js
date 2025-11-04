@@ -1,6 +1,7 @@
+/* eslint-disable import/newline-after-import */
+/* eslint-disable import/order */
+/* eslint-disable arrow-body-style */
 'use strict'
-
-const Handlebars = require('handlebars')
 
 const registerHeaderContentHelper = require('@kth/kth-node-web-common/lib/handlebars/helpers/headerContent')
 const { registerBreadcrumbHelper } = require('@kth/kth-node-web-common/lib/handlebars/helpers/breadcrumbs')
@@ -9,7 +10,6 @@ const log = require('@kth/log')
 const config = require('../../configuration').server
 const packageFile = require('../../../package.json')
 const { getCurrentTerm } = require('../../../domain/term.js')
-const translate = require('../../../domain/translate')
 
 let { version } = packageFile
 

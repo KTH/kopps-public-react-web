@@ -46,8 +46,3 @@ const summerTermsAndPeriods = (year: string | number) => {
   const summerAutumn = `${year}${termConstants.AUTUMN_TERM_NUMBER}:${SUMMER_PERIOD_AUTUMN}`
   return [summerSpring, summerAutumn]
 }
-
-export const getSummerPeriodsList = (termString: string = '1900:summer') => {
-  const year = termString.substring(0, 4)
-  return summerTermsAndPeriods(year)
-}

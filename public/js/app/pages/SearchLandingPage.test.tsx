@@ -14,7 +14,16 @@ jest.mock('react-router-dom', () => ({
   useNavigate: jest.fn(),
   useSearchParams: jest.fn(() => [new URLSearchParams(), jest.fn()]),
 }))
-const periods = ['Autumn 2024', 'Spring 2025', 'Autumn 2025']
+const expectedPeriodFilters = [
+  '2024 summer',
+  'Autumn 2024 period 1',
+  'Autumn 2024 period 2',
+  'Spring 2025 period 3',
+  'Spring 2025 period 4',
+  '2025 summer',
+  'Autumn 2025 period 1',
+  'Autumn 2025 period 2',
+]
 const eduLevels = ['Pre-university level', 'First cycle', 'Second cycle', 'Third cycle']
 const showOptions = [
   'Courses taught in English',
@@ -58,7 +67,7 @@ describe('<searchLandingPage />', () => {
   test('should select all filters and submit search', async () => {
     render(<SearchLandingPage />)
 
-    periods.forEach(label => {
+    expectedPeriodFilters.forEach(label => {
       const checkbox = screen.getByLabelText(label)
       fireEvent.click(checkbox)
       expect(checkbox).toBeChecked()
@@ -80,7 +89,7 @@ describe('<searchLandingPage />', () => {
     fireEvent.click(button)
 
     const searchParams = stringifyUrlParams({
-      semesters: ['HT2024', 'VT2025', 'HT2025'],
+      period: ['2024:summer', '2024:P1', '2024:P2', '2025:P3', '2025:P4', '2025:summer', '2025:P1', '2025:P2'],
       eduLevel: ['99', '1', '2', '3'],
       showOptions: ['onlyEnglish', 'onlyMHU', 'showCancelled'],
     })
@@ -95,7 +104,7 @@ describe('<searchLandingPage />', () => {
   test('should unselect a filter and submit search', async () => {
     render(<SearchLandingPage />)
 
-    const firstPeriodCheckbox = screen.getByLabelText(periods[0])
+    const firstPeriodCheckbox = screen.getByLabelText(expectedPeriodFilters[0])
     fireEvent.click(firstPeriodCheckbox) // Check it
     expect(firstPeriodCheckbox).toBeChecked()
 
@@ -140,7 +149,7 @@ describe('<searchLandingPage />', () => {
   test('should navigate to correct result page with specific parameters', async () => {
     render(<SearchLandingPage />)
 
-    const firstPeriodCheckbox = screen.getByLabelText(periods[0])
+    const firstPeriodCheckbox = screen.getByLabelText(expectedPeriodFilters[0])
     fireEvent.click(firstPeriodCheckbox) // Select a period
 
     const firstEduLevelCheckbox = screen.getByLabelText(eduLevels[0])
@@ -153,7 +162,7 @@ describe('<searchLandingPage />', () => {
     fireEvent.click(button)
 
     const searchParams = stringifyUrlParams({
-      semesters: ['HT2024'],
+      period: ['2024:summer'],
       eduLevel: ['99'],
       showOptions: ['onlyEnglish'],
     })

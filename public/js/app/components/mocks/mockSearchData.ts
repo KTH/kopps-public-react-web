@@ -1,5 +1,6 @@
+import { AcademicSemester, SemesterNumber } from '@kth/om-kursen-ladok-client'
 import { ResultType } from '../../../../../shared/ResultType'
-import { CourseInstanceResult, SearchData } from '../../hooks/types/UseCourseSearchTypes'
+import { CourseInstanceResult, SearchData } from 'kopps-public-react-web/shared/SearchTypes'
 
 export const SEARCH_DATA_WITH_INSTANCE_RESULTS: CourseInstanceResult = {
   results: [
@@ -12,15 +13,13 @@ export const SEARCH_DATA_WITH_INSTANCE_RESULTS: CourseInstanceResult = {
       undervisningssprak: ['Swedish'],
       studieorter: ['KTH Campus'],
       startTerm: 'VT2025',
-      perioder: [
-        {
-          startPeriodYear: '2025',
-          startPeriod: 4,
-          endPeriodYear: '2025',
-          endPeriod: 4,
-          tillfallesperioderNummer: 1,
+      courseHasNoInstances: false,
+      kthPeriodRange: {
+        start: {
+          period: 'P4',
+          semester: new AcademicSemester(2025, SemesterNumber.Spring),
         },
-      ],
+      },
     },
     {
       kod: 'AI1178',
@@ -31,15 +30,13 @@ export const SEARCH_DATA_WITH_INSTANCE_RESULTS: CourseInstanceResult = {
       undervisningssprak: ['Swedish'],
       studieorter: ['KTH Campus'],
       startTerm: 'VT2025',
-      perioder: [
-        {
-          startPeriodYear: '2025',
-          startPeriod: 4,
-          endPeriodYear: '2025',
-          endPeriod: 4,
-          tillfallesperioderNummer: 1,
+      courseHasNoInstances: false,
+      kthPeriodRange: {
+        start: {
+          period: 'P4',
+          semester: new AcademicSemester(2025, SemesterNumber.Spring),
         },
-      ],
+      },
     },
   ],
   type: ResultType.INSTANCE,
@@ -57,15 +54,13 @@ export const MIXED_SEARCH_DATA_SE: CourseInstanceResult = {
       undervisningssprak: ['Svenska'],
       studieorter: ['KTH Campus'],
       startTerm: 'HT2025',
-      perioder: [
-        {
-          startPeriodYear: '2025',
-          startPeriod: 0,
-          endPeriodYear: '2025',
-          endPeriod: 0,
-          tillfallesperioderNummer: 1,
+      courseHasNoInstances: false,
+      kthPeriodRange: {
+        start: {
+          period: 'P0',
+          semester: new AcademicSemester(2025, SemesterNumber.Autumn),
         },
-      ],
+      },
     },
     {
       kod: 'AF1764',
@@ -76,15 +71,17 @@ export const MIXED_SEARCH_DATA_SE: CourseInstanceResult = {
       undervisningssprak: ['Svenska'],
       studieorter: ['KTH Campus'],
       startTerm: 'HT2025',
-      perioder: [
-        {
-          startPeriodYear: '2025',
-          startPeriod: 2,
-          endPeriodYear: '2026',
-          endPeriod: 3,
-          tillfallesperioderNummer: 2,
+      courseHasNoInstances: false,
+      kthPeriodRange: {
+        start: {
+          period: 'P2',
+          semester: new AcademicSemester(2025, SemesterNumber.Autumn),
         },
-      ],
+        end: {
+          period: 'P3',
+          semester: new AcademicSemester(2026, SemesterNumber.Spring),
+        },
+      },
     },
     {
       kod: 'LT2047',
@@ -95,15 +92,17 @@ export const MIXED_SEARCH_DATA_SE: CourseInstanceResult = {
       undervisningssprak: ['Svenska'],
       studieorter: ['KTH Campus'],
       startTerm: 'HT2025',
-      perioder: [
-        {
-          startPeriodYear: '2025',
-          startPeriod: 1,
-          endPeriodYear: '2026',
-          endPeriod: 2,
-          tillfallesperioderNummer: 1,
+      courseHasNoInstances: false,
+      kthPeriodRange: {
+        start: {
+          period: 'P1',
+          semester: new AcademicSemester(2025, SemesterNumber.Autumn),
         },
-      ],
+        end: {
+          period: 'P2',
+          semester: new AcademicSemester(2026, SemesterNumber.Autumn),
+        },
+      },
     },
     {
       kod: 'SF2725',
@@ -114,15 +113,13 @@ export const MIXED_SEARCH_DATA_SE: CourseInstanceResult = {
       undervisningssprak: ['Engelska'],
       studieorter: ['KTH Campus'],
       startTerm: 'HT2025',
-      perioder: [
-        {
-          startPeriodYear: '2025',
-          startPeriod: 1,
-          endPeriodYear: '2025',
-          endPeriod: 1,
-          tillfallesperioderNummer: 1,
+      courseHasNoInstances: false,
+      kthPeriodRange: {
+        start: {
+          period: 'P1',
+          semester: new AcademicSemester(2025, SemesterNumber.Autumn),
         },
-      ],
+      },
     },
   ],
 }
@@ -139,15 +136,13 @@ export const MIXED_SEARCH_DATA_EN: CourseInstanceResult = {
       undervisningssprak: ['Swedish'],
       studieorter: ['KTH Campus'],
       startTerm: 'HT2025',
-      perioder: [
-        {
-          startPeriodYear: '2025',
-          startPeriod: 0,
-          endPeriodYear: '2025',
-          endPeriod: 0,
-          tillfallesperioderNummer: 1,
+      courseHasNoInstances: false,
+      kthPeriodRange: {
+        start: {
+          period: 'P0',
+          semester: new AcademicSemester(2025, SemesterNumber.Autumn),
         },
-      ],
+      },
     },
     {
       kod: 'AF1764',
@@ -158,15 +153,17 @@ export const MIXED_SEARCH_DATA_EN: CourseInstanceResult = {
       undervisningssprak: ['Swedish'],
       studieorter: ['KTH Campus'],
       startTerm: 'HT2025',
-      perioder: [
-        {
-          startPeriodYear: '2025',
-          startPeriod: 2,
-          endPeriodYear: '2026',
-          endPeriod: 3,
-          tillfallesperioderNummer: 2,
+      courseHasNoInstances: false,
+      kthPeriodRange: {
+        start: {
+          period: 'P2',
+          semester: new AcademicSemester(2025, SemesterNumber.Autumn),
         },
-      ],
+        end: {
+          period: 'P3',
+          semester: new AcademicSemester(2026, SemesterNumber.Spring),
+        },
+      },
     },
     {
       kod: 'LT2047',
@@ -177,15 +174,17 @@ export const MIXED_SEARCH_DATA_EN: CourseInstanceResult = {
       undervisningssprak: ['Swedish'],
       studieorter: ['KTH Campus'],
       startTerm: 'HT2025',
-      perioder: [
-        {
-          startPeriodYear: '2025',
-          startPeriod: 1,
-          endPeriodYear: '2026',
-          endPeriod: 2,
-          tillfallesperioderNummer: 1,
+      courseHasNoInstances: false,
+      kthPeriodRange: {
+        start: {
+          period: 'P1',
+          semester: new AcademicSemester(2025, SemesterNumber.Autumn),
         },
-      ],
+        end: {
+          period: 'P2',
+          semester: new AcademicSemester(2026, SemesterNumber.Autumn),
+        },
+      },
     },
     {
       kod: 'SF2725',
@@ -196,15 +195,13 @@ export const MIXED_SEARCH_DATA_EN: CourseInstanceResult = {
       undervisningssprak: ['English'],
       studieorter: ['KTH Campus'],
       startTerm: 'HT2025',
-      perioder: [
-        {
-          startPeriodYear: '2025',
-          startPeriod: 1,
-          endPeriodYear: '2025',
-          endPeriod: 1,
-          tillfallesperioderNummer: 1,
+      courseHasNoInstances: false,
+      kthPeriodRange: {
+        start: {
+          period: 'P1',
+          semester: new AcademicSemester(2025, SemesterNumber.Autumn),
         },
-      ],
+      },
     },
   ],
 }

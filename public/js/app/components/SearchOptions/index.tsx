@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useStore } from '../../mobx'
 import i18n from '../../../../../i18n'
-import { getParamConfig } from '../../../../../domain/searchParams'
+import { getParamConfig } from 'kopps-public-react-web/domain/searchParams'
 import { SearchOptionConfig, SearchOptionValues, SearchOptionsProps } from './types'
 
 const SearchOptions: React.FC<SearchOptionsProps> = ({
@@ -10,7 +10,7 @@ const SearchOptions: React.FC<SearchOptionsProps> = ({
   paramAliasName = '',
   paramName,
   onChange,
-  disabled,
+  disabled = false,
   selectedValues,
 }) => {
   const store = useStore()
@@ -54,12 +54,6 @@ const SearchOptions: React.FC<SearchOptionsProps> = ({
       </fieldset>
     </div>
   )
-}
-
-SearchOptions.defaultProps = {
-  overrideSearchHead: '',
-  paramAliasName: '',
-  disabled: false,
 }
 
 export default observer(SearchOptions)

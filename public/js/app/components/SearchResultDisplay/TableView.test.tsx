@@ -25,6 +25,7 @@ const eduLevelTranslations = {
   SV: { PREPARATORY: 'Förberedande nivå', BASIC: 'Grundnivå', ADVANCED: 'Avancerad nivå', RESEARCH: 'Forskarnivå' },
 } as any
 
+// TODO Benni fix third cycle search
 describe('Component <TableView> for RESEARCH courses', () => {
   test('creates a table with 4 columns for RESEARCH courses (without column for period intervals). English. 1A', () => {
     ;(useStore as jest.Mock).mockReturnValue({ language: 'en', languageIndex: 0 })

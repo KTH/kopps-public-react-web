@@ -1,14 +1,14 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import StandardView from './ListView'
+import StandardView from './StandardView'
 import { useStore } from '../../mobx'
 import { MIXED_SEARCH_DATA_EN, SEARCH_DATA_WITH_INSTANCE_RESULTS } from '../mocks/mockSearchData'
-import { CourseInstanceResult } from '../../hooks/types/UseCourseSearchTypes'
+import { CourseInstanceResult } from 'kopps-public-react-web/shared/SearchTypes'
 
 jest.mock('../../mobx')
 
-describe('ListView component', () => {
+describe('StandardView component', () => {
   beforeEach(() => {
     ;(useStore as jest.Mock).mockReturnValue({ language: 'en', languageIndex: 0 })
   })
@@ -23,14 +23,13 @@ describe('ListView component', () => {
     expect(screen.getByText(/AI1178/i)).toBeInTheDocument()
   })
 
-  // TODO Benni move this case to mockSearchData.ts
   test('renders a message when no rounds are available', () => {
     const modifiedResults: CourseInstanceResult = {
       ...SEARCH_DATA_WITH_INSTANCE_RESULTS,
       results: [
         {
           ...SEARCH_DATA_WITH_INSTANCE_RESULTS.results[0],
-          perioder: [],
+          courseHasNoInstances: true,
         },
       ],
     }

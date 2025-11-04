@@ -103,7 +103,6 @@ function getTransformationRules({ contextIsNode, subDir = null }) {
             loader: 'ts-loader',
             options: {
               transpileOnly: true,
-              projectReferences: true,
             },
           },
         },
