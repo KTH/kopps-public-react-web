@@ -75,6 +75,12 @@ function calculateCreditsPerPeriod(course) {
 const processCourses = (courses, studyYearData) => {
   const participations = {}
 
+  /**
+   * KUI-2095 - this seems to be the place where we turn courses to participations
+   * The assumption here is that `courses` can possibly contain both course versions and course instances
+   * In case we have two courses/participations with the same courseCode, we want to keep the one that is a course instance
+   */
+
   for (const course of courses) {
     if (!participations[course.Valvillkor]) {
       participations[course.Valvillkor] = []
@@ -88,6 +94,8 @@ const processCourses = (courses, studyYearData) => {
       creditsPerPeriod,
     })
   }
+
+  // KUI-2095 here's probably the best place to filter out if we haven't managed to discern before push
 
   sortParticipationsByTerm(participations)
 

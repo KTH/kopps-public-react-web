@@ -57,6 +57,7 @@ async function _fetchAndFillCurriculumByStudyYear(options, storeId) {
   }
 
   applicationStore.setCurriculums(curriculumData)
+  // KUI-2095: the courses we turn to participations come from ProgrammeCurriculum.studyYears.courses
   const curriculumInfos = curriculumData
     .map(curriculum => {
       return curriculumInfo({ programmeTermYear: { programStartTerm: term, studyYear }, curriculum })
