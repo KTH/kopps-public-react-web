@@ -18,24 +18,20 @@ const getSpecializationInfo = programmeSpecialisation => {
   }
 }
 
-const findStudyYear = (studyYears, studyYear) => {
-  return studyYears.find(s => Math.abs(s.yearNumber) === Math.abs(studyYear))
-}
+const findStudyYear = (studyYears, studyYear) => studyYears.find(s => Math.abs(s.yearNumber) === Math.abs(studyYear))
 
-const baseResult = ({ code, specializationName, isCommon }) => {
-  return {
-    code,
-    specializationName,
-    isCommon,
-    participations: {},
-    supplementaryInformation: undefined,
-    conditionallyElectiveCoursesInformation: undefined,
-    htmlCourses: undefined,
-    isFirstSpec: false,
-    hasInfo: false,
-    freeTexts: undefined,
-  }
-}
+const baseResult = ({ code, specializationName, isCommon }) => ({
+  code,
+  specializationName,
+  isCommon,
+  participations: {},
+  supplementaryInformation: undefined,
+  conditionallyElectiveCoursesInformation: undefined,
+  htmlCourses: undefined,
+  isFirstSpec: false,
+  hasInfo: false,
+  freeTexts: undefined,
+})
 
 function sortParticipationsByTerm(participations) {
   for (const valvillkor in participations) {

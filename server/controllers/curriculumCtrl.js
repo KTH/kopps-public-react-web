@@ -58,9 +58,7 @@ async function _fetchAndFillCurriculumByStudyYear(options, storeId) {
 
   applicationStore.setCurriculums(curriculumData)
   const curriculumInfos = curriculumData
-    .map(curriculum => {
-      return curriculumInfo({ programmeTermYear: { programStartTerm: term, studyYear }, curriculum })
-    })
+    .map(curriculum => curriculumInfo({ programmeTermYear: { programStartTerm: term, studyYear }, curriculum }))
     .filter(ci => ci.hasInfo)
   curriculumInfos.sort(_compareCurriculum)
   setFirstSpec(curriculumInfos)
