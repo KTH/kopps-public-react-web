@@ -1,15 +1,14 @@
 module.exports = {
-  globals: {
-    NODE_ENV: 'test',
-  },
-  clearMocks: true,
+  notify: true,
   notifyMode: 'failure-change',
-  transformIgnorePatterns: ['node_modules/(?!(@kth|@babel|@jest|uuid|nanoid)/)'],
-  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
-  moduleNameMapper: {
-    '\\.(css|less|scss|sass)$': '<rootDir>/public/__mocks__/styleMock.js',
-  },
-  setupFilesAfterEnv: ['jest-extended/all'],
-  testEnvironment: 'jsdom',
-  verbose: true,
+  projects: [
+    '<rootDir>/jest.client.config.js',
+    '<rootDir>/jest.shared.config.js',
+    '<rootDir>/jest.domain.config.js',
+    '<rootDir>/jest.server.config.js',
+  ],
+  reporters: [
+    'default',
+    ['summary', { summaryThreshold: 0 }], // Enable failed test summary at the end of test run
+  ],
 }
