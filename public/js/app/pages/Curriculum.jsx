@@ -53,18 +53,15 @@ function CourseTableRows({ participations }) {
     const { course, applicationCode, term, creditsPerPeriod } = participation
 
     const { courseCode, title, formattedCredits, status } = course
+    const isActive = status?.code === LadokStatusCode.Started || status?.code === LadokStatusCode.Complete
     const currentTerm = getCurrentTerm()
     const courseNameCellData = (
       <>
         <a href={courseLink(courseCode, language, { term })}>{`${courseCode} ${title}`}</a>
       </>
     )
-    const applicationCodeCellData =
-      applicationCode &&
-      currentTerm <= term &&
-      (status?.code === LadokStatusCode.Started || status?.code === LadokStatusCode.Complete)
-        ? applicationCode
-        : ''
+    const applicationCodeCellData = applicationCode && currentTerm <= term && isActive ? applicationCode : ''
+    const activeCreditsPerPeriod = isActive ? creditsPerPeriod : []
     return (
       <CourseTableRow
         key={courseCode}
@@ -72,7 +69,7 @@ function CourseTableRows({ participations }) {
         courseNameCellData={courseNameCellData}
         applicationCodeCellData={applicationCodeCellData}
         credits={formattedCredits}
-        creditsPerPeriod={creditsPerPeriod}
+        creditsPerPeriod={activeCreditsPerPeriod}
       />
     )
   })
