@@ -10,5 +10,8 @@
     "./*.svg"
   ],
   "ext": "js,jsx,handlebars,scss,svg,png",
-  "delay": 3000
+  "delay": 3000,
+  "watch": ["server", "domain", "shared/dist"],
+  "exec": "node app.js",
+  "env": { "NODE_ENV": "development" }
 }

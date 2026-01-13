@@ -13,10 +13,33 @@
   "engines": {
     "node": "20"
   },
+  "exports": {
+    "./shared/*": {
+      "types": "./shared/dist/*.d.ts",
+      "require": "./shared/dist/*.js",
+      "default": "./shared/dist/*.js"
+    },
+    "./domain/*": {
+      "require": "./domain/*.js",
+      "default": "./domain/*.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "shared/*": [
+        "shared/dist/*.d.ts"
+      ]
+    }
+  },
   "scripts": {
-    "build": "bash ./build.sh prod",
-    "build-dev": "bash ./build.sh dev",
-    "docker:pack-dev": "bash ./build.sh docker",
+    "build": "npm run build:shared && bash ./build.sh prod",
+    "dev": "concurrently -n ts,webpack,server --kill-others \"npm:dev:shared\" \"npm:dev:client\" \"npm:dev:server\"",
+    "dev:shared": "tsc -p shared/tsconfig.json -w --preserveWatchOutput",
+    "dev:client": "bash ./build.sh dev",
+    "dev:server": "nodemon --config nodemon.json",
+    "build:shared": "tsc -p shared/tsconfig.json",
+    "build-dev": "npm run build:shared && bash ./build.sh dev",
+    "docker:pack-dev": "npm run build:shared && bash ./build.sh docker",
     "docker:build": "bash ./docker-build-image.sh dev",
     "docker:run": "bash ./docker-run-image.sh dev",
     "docker:start-dev": "npm run docker:build && npm run docker:run",
@@ -30,13 +53,18 @@
     "start-dev": "bash -c 'NODE_ENV=development concurrently --kill-others -n build,app \"npm run build-dev\" \"nodemon app.js\"'",
     "start-in-dev-docker": "bash -c 'NODE_ENV=development HAS_PRUNED_DEV_DEPEND=true node --inspect=0.0.0.0 app.js'",
     "start-in-prod-performance-docker": "bash -c 'NODE_ENV=production TEST_TYPE=performance node app.js'",
-    "test": "cross-env NODE_ENV=test jest",
-    "test:components": "NODE_ENV=test jest ./public/js/app/components/SearchResultDisplay.test.js --watch --notify",
+    "test": "jest",
+    "test:components": "jest ./public/js/app/components/SearchResultDisplay.test.js --watch --notify",
     "test-dev:load": "echo 'Start your service before running this test' && docker-compose -f test/performance-artillery-dev/docker-compose.yml up --build --abort-on-container-exit --remove-orphans",
     "test-ref:load": "docker-compose -f test/performance-artillery-ref-stage/docker-compose.yml up --build --abort-on-container-exit --remove-orphans",
-    "test:notify": "NODE_ENV=test jest --watch --notify",
-    "test:pages": "NODE_ENV=test jest ./public/js/app/pages/CourseSearchLayout.test.js --watch --notify",
-    "test:watch": "NODE_ENV=test jest --watch"
+    "test:notify": "jest --watch --notify",
+    "test:pages": "jest ./public/js/app/pages/CourseSearchLayout.test.js --watch --notify",
+    "test:watch": "jest --watch",
+    "test:client": "jest --selectProjects client",
+    "test:server": "jest --selectProjects server",
+    "test:domain": "jest --selectProjects domain",
+    "test:shared": "jest --selectProjects shared",
+    "test:changed": "jest -o"
   },
   "dependencies": {
     "@babel/runtime": "^7.28.4",
@@ -74,7 +102,8 @@
     "react-dom": "^18.3.1",
     "react-router": "^6.30.1",
     "react-router-dom": "^6.30.1",
-    "reactstrap": "^9.2.3"
+    "reactstrap": "^9.2.3",
+    "ts-jest": "^29.4.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.28.3",
@@ -96,6 +125,7 @@
     "css-loader": "^6.11.0",
     "decache": "^4.6.2",
     "eslint": "^8.57.1",
+    "eslint-import-resolver-webpack": "^0.13.10",
     "file-loader": "^6.2.0",
     "husky": "^8.0.3",
     "jest": "^29.7.0",

@@ -5,6 +5,8 @@ import { Col, Row } from 'reactstrap'
 import { CollapseDetails } from '@kth/kth-reactstrap/dist/components/utbildningsinfo'
 import { Link, PageHeading } from '@kth/kth-reactstrap/dist/components/studinfo'
 
+import { LadokStatusCode } from '@kth/om-kursen-ladok-client'
+import { ORDINARY_PERIODS } from 'kopps-public-react-web/shared/periods'
 import Alert from '../components-shared/Alert'
 import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'
@@ -17,9 +19,7 @@ import { formatCredits } from '../../../../domain/credits'
 import { formatLongTerm, getCurrentTerm } from '../../../../domain/term'
 import { formatAcademicYear, calculateStartTerm } from '../../../../domain/academicYear'
 import { ELECTIVE_CONDITIONS } from '../../../../domain/curriculum'
-import { ORDINARY_PERIODS } from '../../../../domain/periods'
 import { courseLink, programSyllabusLink, programmeWebLink } from '../util/links'
-import { LadokStatusCode } from '@kth/om-kursen-ladok-client'
 
 function CourseTablePeriodCols({ language, creditsPerPeriod, courseCode }) {
   return ORDINARY_PERIODS.map(period => {

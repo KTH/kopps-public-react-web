@@ -1,4 +1,4 @@
-export declare enum ResultType {
+export enum ResultType {
   VERSION = 'courseVersion',
   INSTANCE = 'courseInstance',
 }

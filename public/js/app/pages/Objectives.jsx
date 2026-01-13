@@ -7,7 +7,6 @@ import { useStore } from '../mobx'
 
 import translate from '../../../../domain/translate'
 import { formatLongTerm } from '../../../../domain/term'
-import { formatISODate } from '../../../../domain/date'
 
 import Article from '../components/Article'
 import FooterContent from '../components/FooterContent'

@@ -1,6 +1,11 @@
 {
   "extends": ["@kth/eslint-config-kth"],
   "rules": {
-    "react/prop-types": "warn"
-  }
+    "react/prop-types": "warn",
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": { "config": "webpack.config.js" },
+    },
+  },
 }

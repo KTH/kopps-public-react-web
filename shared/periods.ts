@@ -1,4 +1,4 @@
-const { termConstants } = require('./term')
+import { termConstants } from './term'
 
 const KthPeriod = {
   P0: 0,
@@ -9,9 +9,9 @@ const KthPeriod = {
   P5: 5,
 }
 
-const ALL_PERIODS = [KthPeriod.P0, KthPeriod.P1, KthPeriod.P2, KthPeriod.P3, KthPeriod.P4, KthPeriod.P5]
+export const ALL_PERIODS = [KthPeriod.P0, KthPeriod.P1, KthPeriod.P2, KthPeriod.P3, KthPeriod.P4, KthPeriod.P5]
 
-const ORDINARY_PERIODS = [KthPeriod.P1, KthPeriod.P2, KthPeriod.P3, KthPeriod.P4]
+export const ORDINARY_PERIODS = [KthPeriod.P1, KthPeriod.P2, KthPeriod.P3, KthPeriod.P4]
 
 const AUTUMN_FIRST_PERIOD = KthPeriod.P1
 /**
@@ -35,26 +35,19 @@ const SUMMER_PERIOD_SPRING = KthPeriod.P5
  */
 const SUMMER_PERIOD_AUTUMN = KthPeriod.P0
 
-const groupedPeriodsBySeasonInCorrectOrder = {
+export const groupedPeriodsBySeasonInCorrectOrder = {
   spring: [SPRING_FIRST_PERIOD, SPRING_SECOND_PERIOD],
   summerGroup: [SUMMER_PERIOD_SPRING, SUMMER_PERIOD_AUTUMN],
   autumn: [AUTUMN_FIRST_PERIOD, AUTUMN_SECOND_PERIOD],
 }
 
-function _summerTermsAndPeriods(year) {
+const summerTermsAndPeriods = (year: string | number) => {
   const summerSpring = `${year}${termConstants.SPRING_TERM_NUMBER}:${SUMMER_PERIOD_SPRING}`
   const summerAutumn = `${year}${termConstants.AUTUMN_TERM_NUMBER}:${SUMMER_PERIOD_AUTUMN}`
   return [summerSpring, summerAutumn]
 }
 
-function getSummerPeriodsList(termString = '1900:summer') {
+export const getSummerPeriodsList = (termString: string = '1900:summer') => {
   const year = termString.substring(0, 4)
-  return _summerTermsAndPeriods(year)
-}
-
-module.exports = {
-  ALL_PERIODS,
-  getSummerPeriodsList,
-  groupedPeriodsBySeasonInCorrectOrder,
-  ORDINARY_PERIODS,
+  return summerTermsAndPeriods(year)
 }
