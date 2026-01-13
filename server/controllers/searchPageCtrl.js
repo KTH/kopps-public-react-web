@@ -1,5 +1,4 @@
-/* eslint no-use-before-define: ["error", "nofunc"] */
-
+/* eslint-disable no-use-before-define */
 const log = require('@kth/log')
 const language = require('@kth/kth-node-web-common/lib/language')
 
@@ -10,7 +9,7 @@ const { browser: browserConfig, server: serverConfig } = require('../configurati
 
 const { createBreadcrumbs, createThirdCycleBreadcrumbs } = require('../utils/breadcrumbUtil')
 const { getServerSideFunctions } = require('../utils/serverSideRendering')
-const { ResultType } = require('kopps-public-react-web/shared/ResultType')
+const { performCourseSearchTS } = require('kopps-public-react-web/shared/searchPageCtrlUtils')
 
 async function renderSearchPage(
   req,
@@ -41,13 +40,13 @@ async function renderSearchPage(
     const compressedStoreCode = getCompressedStoreCode(applicationStore)
 
     const { [basenameKey]: basename, uri: proxyPrefix } = serverConfig.proxyPrefixPath
-    const html = renderStaticPage({ applicationStore, location: req.url, basename: basename })
+    const view = renderStaticPage({ applicationStore, location: req.url, basename })
 
     const title = i18n.message(titleKey, lang)
     const breadcrumbsList = breadcrumbsFn(lang)
 
     res.render('app/index', {
-      html,
+      html: view,
       title,
       compressedStoreCode,
       description,
@@ -86,76 +85,7 @@ async function searchThirdCycleCourses(req, res, next) {
 }
 
 async function performCourseSearch(req, res, next) {
-  const { lang } = req.params
-
-  const { query } = req
-
-  // const convertedPeriods = query.period?.reduce((acc, period) => {
-  //   const splitedPeriod = period.split(':')
-  //   const codes =
-  //     splitedPeriod[1] === 'summer' ? [`VT${splitedPeriod[0]}`, `HT${splitedPeriod[0]}`] : [splitedPeriod[0]]
-  //   const value = splitedPeriod[1] === 'summer' ? ['0', '5'] : splitedPeriod[1]
-
-  //   codes.forEach(code => {
-  //     const existingEntry = acc.find(entry => entry.code === code)
-
-  //     if (existingEntry) {
-  //       existingEntry.periods = Array.isArray(existingEntry.periods)
-  //         ? [...existingEntry.periods, ...value]
-  //         : [existingEntry.periods, ...value]
-  //     } else {
-  //       acc.push({
-  //         code: code,
-  //         periods: value,
-  //       })
-  //     }
-  //   })
-  //   return acc
-  // }, []) // todo - we can use it again when we had the data for periods from ladok
-  // TODO Benni periods
-
-  const searchParams = {
-    kodEllerBenamning: query.pattern ? query.pattern : undefined,
-    organisation: query.department ? query.department : undefined,
-    sprak: query.showOptions?.includes('onlyEnglish') ? 'ENG' : undefined, // TODO Benni, make this a boolean?
-    avvecklad: query.showOptions?.includes('showCancelled') ? 'true' : undefined,
-    startPeriod: query.semesters ?? undefined,
-    utbildningsniva: query.eduLevel ?? undefined,
-    onlyMHU: query.showOptions?.includes('onlyMHU') ? 'true' : undefined,
-  }
-
-  try {
-    log.debug(` trying to perform a search of courses with ${searchParams} transformed from parameters: `, { query })
-
-    // TODO Benni we should be able to return "no query restriction was specified" error already here (or even better in the client)
-
-    let type = ResultType.VERSION
-    let apiResponse
-
-    if (searchParams.sprak || searchParams.startPeriod) {
-      apiResponse = await searchCourseInstances(searchParams, lang)
-      type = ResultType.INSTANCE
-    } else {
-      apiResponse = await searchCourseVersions(searchParams, lang)
-      type = ResultType.VERSION
-    }
-
-    log.debug(` performCourseSearch to ${type} with searchParams:`, searchParams)
-
-    // Types for this are in the TS-client: SearchResponse
-    const searchResponse = {
-      searchData: {
-        results: apiResponse.searchHits,
-        type,
-      },
-      errorCode: apiResponse.errorCode,
-    }
-
-    return res.json(searchResponse)
-  } catch (error) {
-    log.error(` Exception from performCourseSearch with ${searchParams}`, { error })
-    next(error)
-  }
+  return performCourseSearchTS(req, res, next, searchCourseInstances, searchCourseVersions)
 }
 
 const _fillApplicationStoreWithAllLadokSchools = async ({ applicationStore, lang }) => {

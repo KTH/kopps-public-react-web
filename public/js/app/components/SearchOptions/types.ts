@@ -1,11 +1,11 @@
-import { EduLevel, Period, Semester, ShowOptions } from '../../stores/types/searchPageStoreTypes'
+import { EduLevel, Period, ShowOptions } from '../../stores/types/searchPageStoreTypes'
 
-export type SearchOptionValues = (EduLevel | Semester | Period | ShowOptions)[]
+export type SearchOptionValues = (EduLevel | Period | ShowOptions)[]
 
 export interface SearchOptionConfig {
   label: string
   id: string
-  value: EduLevel | Semester | Period | ShowOptions
+  value: EduLevel | Period | ShowOptions
 }
 
 export interface SearchOptionReturnValues {
@@ -15,7 +15,7 @@ export interface SearchOptionReturnValues {
 export interface SearchOptionsProps {
   overrideSearchHead?: string
   paramAliasName?: 'currentYear' | 'nextYear' | 'onlyMHU' | ''
-  paramName: 'eduLevel' | 'semesters' | 'period' | 'showOptions'
+  paramName: 'eduLevel' | 'period' | 'showOptions' | 'currentYear' | 'nextYear'
   selectedValues: SearchOptionValues
   onChange: (params: SearchOptionReturnValues) => void
   disabled?: boolean

@@ -14,10 +14,10 @@ const SearchResultHeader: React.FC<SearchResultHeaderParams> = ({ resultsLength,
   const handleChangeResultView = (current: string) => {
     switch (view) {
       case VIEW.table:
-        if (current !== VIEW.table) setView(VIEW.list)
+        if (current !== VIEW.table) setView(VIEW.standard)
         break
-      case VIEW.list:
-        if (current !== VIEW.list) setView(VIEW.table)
+      case VIEW.standard:
+        if (current !== VIEW.standard) setView(VIEW.table)
         break
       default:
         break
@@ -37,10 +37,10 @@ const SearchResultHeader: React.FC<SearchResultHeaderParams> = ({ resultsLength,
           </p>
           <div className="toggle-container">
             <button
-              onClick={() => handleChangeResultView(VIEW.list)}
-              className={`toggle-button list-btn ${view === VIEW.list ? 'active' : ''}`}
+              onClick={() => handleChangeResultView(VIEW.standard)}
+              className={`toggle-button standard-btn ${view === VIEW.standard ? 'active' : ''}`}
             >
-              {toggleButton.list}
+              {toggleButton.standard}
             </button>
             <button
               onClick={() => handleChangeResultView(VIEW.table)}

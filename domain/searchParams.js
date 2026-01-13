@@ -1,30 +1,16 @@
 const querystring = require('querystring')
-const { getSummerPeriodsList, groupedPeriodsBySeasonInCorrectOrder } = require('kopps-public-react-web/shared/periods')
 const i18n = require('../i18n')
-const { formatLongTerm, getRelevantTerms, isSpringTerm } = require('./term')
+const { getRelevantTerms } = require('./term')
 const { CLIENT_EDU_LEVELS, educationalLevel } = require('./eduLevels')
 const { CLIENT_SHOW_OPTIONS, ONLY_MHU, getShowOptions } = require('./courseOptions')
-
-function _transformIfSummerOrEmptyPeriods(initialPeriods) {
-  const transformedPeriods = []
-
-  initialPeriods.forEach(p => {
-    if (!p) return
-
-    if (p.includes(':summer')) {
-      const summerPeriodsList = getSummerPeriodsList(p)
-      summerPeriodsList.forEach(summerPeriod => transformedPeriods.push(summerPeriod))
-    } else transformedPeriods.push(p)
-  })
-  return transformedPeriods
-}
+const { periodConfigForOneYear } = require('kopps-public-react-web/shared/periodSearchUtils')
+const { isEnglishLangIndex } = require('kopps-public-react-web/shared/languageUtil')
 
 function _transformSearchParams(params) {
-  const { eduLevel = [], pattern = '', showOptions = [], period = [], department = '' } = params
+  const { eduLevel = [], pattern = '', showOptions = [], department = '' } = params
   const formatParams = {
     educational_level: eduLevel.map(level => educationalLevel(level)), // ['RESEARCH', 'ADVANCED'],
     flag: showOptions.map(opt => getShowOptions(opt)), // Example: flag: [only_mhu, in_english_only, include_non_active]
-    term_period: _transformIfSummerOrEmptyPeriods(period), // ['2018:2']
   }
   if (pattern) formatParams.text_pattern = pattern
   if (department) formatParams.department_prefix = department
@@ -102,52 +88,23 @@ function _combineTermsByYear(arrWithYearsAndPeriod) {
   return groupedTerms
 }
 
-function _periodConfigForOneYear({ year, terms }, langIndex) {
-  const hasOnlyOneTerm = !!terms.length === 1
-
-  const { summer: summerLabel } = i18n.messages[langIndex].bigSearch
-  const { spring: springPeriods, summerGroup, autumn: autumnPeriods } = groupedPeriodsBySeasonInCorrectOrder
-
-  let periodsForThisTerm = []
-
-  const language = langIndex === 0 ? 'en' : 'sv'
-  const resultPeriodsConfig = []
-  terms.forEach(term => {
-    if (hasOnlyOneTerm)
-      periodsForThisTerm = isSpringTerm(term)
-        ? [...springPeriods, [summerGroup[0]]]
-        : [[summerGroup[1]], ...autumnPeriods]
-    else periodsForThisTerm = isSpringTerm(term) ? [...springPeriods, summerGroup] : [...autumnPeriods]
-
-    periodsForThisTerm.forEach(periodNum => {
-      if (typeof periodNum === 'object') {
-        // summer has two periods, but in search it shown as summer with merged results for both
-        const value = `${year}:summer`
-        const label = `${year} ${summerLabel}`
-        return resultPeriodsConfig.push({
-          label,
-          id: value,
-          value,
-        })
-      }
-      const value = `${term == 2 ? 'HT' : 'VT'}${year}:${periodNum}`
-      const label = `${formatLongTerm(`${year}${term}`, language)} period ${periodNum}`
-      return resultPeriodsConfig.push({ label, id: value, value })
-    })
-  })
-
-  return resultPeriodsConfig
-}
-
 function _periodConfigByYearType(yearType, langIndex) {
+  const { summer: summerLabel } = i18n.messages[langIndex].bigSearch
+  const semesterLabel = i18n.messages[langIndex].messages.semester
+  const config = {
+    isEnglish: isEnglishLangIndex(langIndex),
+    summerLabel,
+    semesterLabel,
+  }
+
   const relevantTerms = getRelevantTerms(2)
   const yearsAndPeriod = _separateYearAndPeriod(relevantTerms)
   const { current, next } = _combineTermsByYear(yearsAndPeriod)
   switch (yearType) {
     case 'currentYear':
-      return _periodConfigForOneYear(current, langIndex)
+      return periodConfigForOneYear(current, config)
     case 'nextYear':
-      return _periodConfigForOneYear(next, langIndex)
+      return periodConfigForOneYear(next, config)
     default:
       throw new Error(`Unknown yearType: ${yearType}. Allowed values: currentYear and nextYear`)
   }

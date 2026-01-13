@@ -4,11 +4,9 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { toHaveNoViolations } from 'jest-axe'
-import { axe } from './test-config/axeWithoutLandmarkUniqueRule'
 import { StaticRouter } from 'react-router-dom/server'
 import { MobxStoreProvider } from '../mobx'
 
-import Programme from './Programme'
 import ElementWrapper from '../components/ElementWrapper'
 import PageLayout from '../layout/PageLayout'
 
@@ -16,6 +14,8 @@ import createApplicationStore from '../stores/createApplicationStore'
 import getProgrammeMenuData from '../config/programmeMenuData'
 
 import commonSettings from '../config/mocks/mockCommonSettings'
+import Programme from './Programme'
+import { axe } from './test-config/axeWithoutLandmarkUniqueRule'
 
 expect.extend(toHaveNoViolations)
 

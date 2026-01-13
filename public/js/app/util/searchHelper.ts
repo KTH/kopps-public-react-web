@@ -3,8 +3,13 @@ import { DataItem } from './types/SearchDisplayTypes'
 import { Link } from '@kth/kth-reactstrap/dist/components/studinfo'
 import { courseLink } from './links'
 import React, { ReactElement } from 'react'
-import { formatTermByYearAndPeriod } from '../../../../domain/term'
-import { CourseInstanceSearchDTO, CourseVersionDTO } from '@kth/om-kursen-ladok-client/dist/search/types'
+import {
+  CourseInstanceSearchDTO,
+  CourseVersionDTO,
+  KTHPeriodSemesterDTO,
+} from '@kth/om-kursen-ladok-client/dist/search/types'
+import { getLangIndex, isEnglishCode, LanguageCode } from 'kopps-public-react-web/shared/languageUtil'
+import { formatShortYear, formattedSemesterTemplate } from 'kopps-public-react-web/shared/term'
 
 export const getHelpText = (langIndex: number, nameOfInstruction: string, instructionKeys: string[]): string[] => {
   /**
@@ -86,33 +91,32 @@ export const compareCourseDTOBy = <K extends CourseVersionDTO | CourseInstanceSe
   }
 }
 
-export const periodsStr = ({
-  startPeriod,
-  startPeriodYear,
-  endPeriod,
-  endPeriodYear,
-  tillfallesperioderNummer,
-  language,
-}: {
-  startPeriod?: number
-  startPeriodYear: string
-  endPeriod?: number
-  endPeriodYear: string
-  tillfallesperioderNummer?: number
-  language: string
-}): string => {
-  if (!startPeriod && startPeriod !== 0) return ''
-  if (startPeriod === endPeriod && tillfallesperioderNummer === 1)
-    return `P${startPeriod} ${formatTermByYearAndPeriod(startPeriod, startPeriodYear, language)}`
+export const createPeriodTexts = (
+  language: LanguageCode,
+  kthPeriodRange?: { start: KTHPeriodSemesterDTO; end?: KTHPeriodSemesterDTO }
+): string => {
+  if (!kthPeriodRange) return ''
 
-  return `P${startPeriod} ${formatTermByYearAndPeriod(startPeriod, startPeriodYear, language)} - P${endPeriod} ${formatTermByYearAndPeriod(endPeriod, endPeriodYear, language)}`
+  const start = createPeriodString(kthPeriodRange.start, language)
+  const end = kthPeriodRange.end !== undefined ? createPeriodString(kthPeriodRange.end, language) : undefined
+
+  const range = [start]
+  if (end) {
+    range.push(end)
+  }
+  return range.join(' - ')
 }
 
-export const formatCourseInstance = (course: CourseInstanceSearchDTO, language: string) => {
-  const periodTexts = course.perioder.map(period => periodsStr({ ...period, language }))
+const createPeriodString = (kthPeriodSemester: KTHPeriodSemesterDTO, languageCode: LanguageCode) => {
+  const { messages } = i18n.messages[getLangIndex(languageCode)]
 
-  const areAllPeriodTextsEmpty = periodTexts.every((value: string) => value === '')
-  const courseHasNoRounds = periodTexts.length === 0 || areAllPeriodTextsEmpty
+  const semesterLabel = messages.semester[kthPeriodSemester.semester.semesterNumber]
+
+  return `${kthPeriodSemester.period} ${formattedSemesterTemplate(semesterLabel, isEnglishCode(languageCode), formatShortYear(kthPeriodSemester.semester.year))}`
+}
+
+export const formatCourseInstance = (course: CourseInstanceSearchDTO, language: LanguageCode) => {
+  const periodTexts = createPeriodTexts(language, course.kthPeriodRange)
 
   const studietakterWithPercentage = course.studietakter.map(studietakt => `${studietakt}%`)
 
@@ -126,7 +130,7 @@ export const formatCourseInstance = (course: CourseInstanceSearchDTO, language: 
     campuses: course.studieorter,
     studyPaces: studietakterWithPercentage,
     periodTexts,
-    courseHasNoRounds,
+    courseHasNoRounds: course.courseHasNoInstances,
   }
 }
 
@@ -153,10 +157,13 @@ export const parseCourseVersionsForTableView = (courses: CourseVersionDTO[], lan
   })
 }
 
-export const parseCourseInstancesForTableView = (courses: CourseInstanceSearchDTO[], language: string): DataItem[][] => {
-  const { generalSearch } = i18n.messages[language === 'en' ? '0' : '1']
+export const parseCourseInstancesForTableView = (
+  courses: CourseInstanceSearchDTO[],
+  languageCode: LanguageCode
+): DataItem[][] => {
+  const { generalSearch } = i18n.messages[getLangIndex(languageCode)]
 
-  courses.sort(compareCourseDTOBy('kod')) // TODO Benni make sure we only sort once
+  courses.sort(compareCourseDTOBy('kod'))
 
   const parsedCourses: DataItem[][] = courses.map(course => {
     const {
@@ -170,7 +177,7 @@ export const parseCourseInstancesForTableView = (courses: CourseInstanceSearchDT
       studyPaces,
       campuses,
       periodTexts,
-    } = formatCourseInstance(course, language)
+    } = formatCourseInstance(course, languageCode)
 
     const educationalLevelText = utbildningsTypes.join('\n')
     const courseLanguageText = languages.join('\n')
@@ -178,20 +185,20 @@ export const parseCourseInstancesForTableView = (courses: CourseInstanceSearchDT
     const coursePaceText = studyPaces.join('\n')
     const courseCampusText = campuses.join('\n')
 
-    const periodText = courseHasNoRounds ? generalSearch.courseHasNoRoundsInTableCell : periodTexts.join('\n')
+    const periodText = courseHasNoRounds ? generalSearch.courseHasNoRoundsInTableCell : periodTexts
 
     return [
       createLinkInSortableCell({
         // Code Cell
         code: courseCode,
-        language,
+        language: languageCode,
         startTerm,
         text: courseCode,
       }),
       createLinkInSortableCell({
         // Title Cell
         code: courseCode,
-        language,
+        language: languageCode,
         startTerm,
         text: title,
       }),

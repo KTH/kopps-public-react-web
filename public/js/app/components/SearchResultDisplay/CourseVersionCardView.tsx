@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.scss'
 import { CourseVersionDTO } from '@kth/om-kursen-ladok-client/dist/search/types'
-import { CourseHeader } from './ListView'
+import { CourseHeader } from './StandardView'
 import { compareCourseDTOBy, createLinkElement } from '../../util/searchHelper'
 import { useLanguage } from '../../hooks/useLanguage'
 

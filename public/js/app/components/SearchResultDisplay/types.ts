@@ -9,14 +9,14 @@ export interface SearchResultHeaderParams {
 }
 
 export const VIEW = {
-  list: 'list',
+  standard: 'standard',
   table: 'table',
 } as const
 
 export type View = (typeof VIEW)[keyof typeof VIEW]
 
-export interface ListViewParams {
+export interface StandardViewParams {
   results: CourseVersionDTO[]
 }
 
-export interface TableViewParams extends ListViewParams {}
+export interface TableViewParams extends StandardViewParams {}

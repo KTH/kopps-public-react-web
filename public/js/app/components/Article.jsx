@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Article({ classNames, children, uiKey = '' }) {
+function Article({ classNames = [], children, uiKey = '' }) {
   return (
     <article className={`article article--no-start-margin ${classNames ? classNames.join(' ') : ''}`} key={uiKey}>
       {children}
@@ -12,10 +12,7 @@ function Article({ classNames, children, uiKey = '' }) {
 Article.propTypes = {
   classNames: PropTypes.arrayOf(PropTypes.string),
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-}
-
-Article.defaultProps = {
-  classNames: [],
+  uiKey: PropTypes.string,
 }
 
 export default Article

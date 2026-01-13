@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 
 import { useStore } from '../mobx'
 
-function KoppsData({ html }) {
-  if (!html) return null
+function KoppsData({ html = null }) {
   const { browserConfig } = useStore()
+  if (!html) return null
   const { markHtmlFromKopps } = browserConfig
   return markHtmlFromKopps ? (
     <div key="marked-data-from-kopps" data-from-kopps dangerouslySetInnerHTML={{ __html: html }} />
@@ -17,10 +17,6 @@ function KoppsData({ html }) {
 
 KoppsData.propTypes = {
   html: PropTypes.string,
-}
-
-KoppsData.defaultProps = {
-  html: null,
 }
 
 export default KoppsData

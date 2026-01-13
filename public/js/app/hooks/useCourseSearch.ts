@@ -1,7 +1,8 @@
 import React, { useEffect, useReducer, Dispatch } from 'react'
-import { Action, ERROR_ASYNC, STATUS, SearchResponse, State } from './types/UseCourseSearchTypes'
+import { Action, ERROR_ASYNC, STATUS, State } from './types/UseCourseSearchTypes'
 import { SearchErrorCode } from '@kth/om-kursen-ladok-client'
-import { ResultType } from '../../../../shared/ResultType'
+import { ResultType } from 'kopps-public-react-web/shared/ResultType'
+import { SearchResponse } from 'kopps-public-react-web/shared/SearchTypes'
 
 function asyncReducer<T>(state: State, action: Action): State {
   switch (action.type) {
@@ -34,7 +35,7 @@ const errorDispatch = (errorCode: string, dispatch: Dispatch<Action>) => {
       break
 
     default:
-      console.error(errorCode) // TODO Benni fix logging
+      console.error(errorCode)
       dispatch({ type: 'rejected' })
       break
   }
