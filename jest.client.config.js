@@ -20,8 +20,7 @@ module.exports = {
   },
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': '<rootDir>/public/__mocks__/styleMock.js',
-    '^kopps-public-react-web/shared/(.*)$': '<rootDir>/shared/$1',
-    '^@kth/kopps-public-react-web/shared/(.*)$': '<rootDir>/shared/$1',
+    '^@kth/kopps-public-react-web/shared/(.*)$': '<rootDir>/shared/dist/$1',
     '^@kth/kopps-public-react-web/domain/(.*)$': '<rootDir>/domain/$1',
   },
 }

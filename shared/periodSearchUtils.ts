@@ -37,7 +37,7 @@ export const periodConfigForOneYear = (
       tokens = [...autumnPeriods]
     }
 
-    const termLabelPrefix = formatLongTerm(`${year}${term}`, semesterLabel[term as keyof typeof semesterLabel], isEnglish)
+    const termLabelPrefix = formatLongTerm(`${year}${term}`, semesterLabel[term], isEnglish)
 
     tokens.forEach(token => {
       if (token === 'summer') {
