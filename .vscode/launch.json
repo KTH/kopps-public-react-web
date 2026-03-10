@@ -1,0 +1,40 @@
+  {
+    "version": "0.2.0",
+    "configurations": [
+        {
+          "type": "node",
+          "request": "launch",
+          "name": "Debug server",
+          "program": "${workspaceFolder}/app.js",
+          "cwd": "${workspaceFolder}",
+          "env": { "NODE_ENV": "development" },
+          "sourceMaps": true,
+          "outFiles": [
+            "${workspaceFolder}/dist/**/*.js",
+            "${workspaceFolder}/../studadm-om-kursen-packages/packages/om-kursen-ladok-client/dist/**/*.js"
+          ],
+          "resolveSourceMapLocations": [
+            "${workspaceFolder}/**",
+            "!**/node_modules/**",
+            "${workspaceFolder}/../studadm-om-kursen-packages/packages/om-kursen-ladok-client/**"
+          ]
+        },
+        {
+          "type": "node",
+          "request": "attach",
+          "name": "Attach toDebug server",
+          "port": 9229,
+          "restart": true,
+          "sourceMaps": true,
+          "outFiles": [
+            "${workspaceFolder}/dist/**/*.js",
+            "${workspaceFolder}/../studadm-om-kursen-packages/packages/om-kursen-ladok-client/dist/**/*.js"
+          ],
+          "resolveSourceMapLocations": [
+            "${workspaceFolder}/**",
+            "!**/node_modules/**",
+            "${workspaceFolder}/../studadm-om-kursen-packages/packages/om-kursen-ladok-client/**"
+          ]
+        },
+    ]
+  }

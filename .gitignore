@@ -7,7 +7,6 @@
 *.iml
 
 # VS Code specific
-.vscode
 jsconfig.json
 typings/*
 typings.json
