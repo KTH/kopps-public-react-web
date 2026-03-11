@@ -37,6 +37,7 @@
     "dev:shared": "rimraf shared/dist && tsc -p shared/tsconfig.json -w --preserveWatchOutput",
     "dev:client": "bash ./build.sh dev",
     "dev:server": "nodemon --config nodemon.json",
+    "dev:debug": "nodemon --config nodemon.json --exec 'node --inspect=9229 app.js'",
     "build:shared": "tsc -p shared/tsconfig.json",
     "build-dev": "npm run build:shared && bash ./build.sh dev",
     "docker:pack-dev": "npm run build:shared && bash ./build.sh docker",
