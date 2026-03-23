@@ -121,6 +121,8 @@
     "@types/node": "^20.19.17",
     "@types/webpack": "^5.28.5",
     "@types/webpack-env": "^1.18.8",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
     "babel-loader": "^9.2.1",
     "concurrently": "^8.2.2",
     "css-loader": "^6.11.0",
