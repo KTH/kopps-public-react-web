@@ -341,4 +341,14 @@ describe('<SearchPage />', () => {
       })
     })
   })
+  test('should display "too short" alert when search input is less than 3 characters', async () => {
+    render(<SearchPage searchMode="default" />)
+  
+    const searchInput = screen.getByRole('textbox')
+    fireEvent.change(searchInput, { target: { value: 'ab' } })
+    fireEvent.submit(searchInput)
+  
+    expect(await screen.findByText('Your search must contain a minimum of three letters or digits.')).toBeInTheDocument()
+    expect(courseSearch).not.toHaveBeenCalledWith('en', '/student/kurser', expect.objectContaining({ pattern: 'ab' }))
+  })
 })

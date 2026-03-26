@@ -317,7 +317,6 @@ const messages = {
   },
   searchAlarms: {
     errorUnknown: { text: 'An unknown error occurred - failed to retrieve course data' },
-    errorKodEllerBenamning: { text: 'Search input must be equal or more than 3 characters.' },
     errorEmpty: {
       header: 'Your search returned no results',
       // we don't have this link anymore so we should decide what we are going to show as a help text

@@ -308,7 +308,6 @@ const messages = {
   },
   searchAlarms: {
     errorUnknown: { text: 'Ett okänt fel inträffade - misslyckad hämtning av kursdata' },
-    errorKodEllerBenamning: { text: 'Sökinmatningen måste vara lika med eller större än 3 tecken.' },
     errorEmpty: {
       header: 'Din sökning gav inga träffar.',
       // we don't have this link anymore so we should decide what we are going to show as a help text
