@@ -7,6 +7,7 @@ export const STATUS = {
   noQueryProvided: 'noQueryProvided',
   noHits: 'noHits',
   rejected: 'rejected',
+  inputTooShort: 'inputTooShort',
   idle: 'idle',
 } as const
 
@@ -15,6 +16,7 @@ export const ERROR_ASYNC = {
   noQueryProvided: 'noQueryProvided',
   noHits: 'errorEmpty',
   rejected: 'errorUnknown',
+  inputTooShort: 'errorInputTooShort',
 } as const
 
 export type Status = (typeof STATUS)[keyof typeof STATUS]
@@ -34,3 +36,4 @@ export type Action =
   | { type: 'noQueryProvided' }
   | { type: 'noHits' }
   | { type: 'rejected' }
+  | { type: 'inputTooShort' }

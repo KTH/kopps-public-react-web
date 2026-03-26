@@ -261,7 +261,7 @@ const messages = {
   searchInstructions: {
     search_help_collapse_header: 'Instructions for searching',
     search_help_1:
-      'You can search using part of the course name or code. Searching for "data" will return "Data Storage Paradigms" as well as "Database Techniques" and "Algorithms, Data Structures and Complexity".',
+      'You can search using part of the course name or code. Searching for "data" will return "Data Storage Paradigms" as well as "Database Techniques" and "Algorithms, Data Structures and Complexity". <strong>Your search must contain a minimum of three letters or digits.</strong>',
     search_help_2:
       'Searching for more than one word will return courses containing all of the words. Searching for "part 1" will return courses with both part and 1 in course name or code, for example "SI2610 Many Particle Physics" and "DD1343 Computer Science and Numerical Methods, part 1".',
     search_help_3:
@@ -329,6 +329,9 @@ const messages = {
     },
     noQueryProvided: {
       text: 'No query restriction was specified',
+    },
+    errorInputTooShort: {
+      text: `Your search must contain a minimum of three letters or digits.`,
     },
   },
   footerContent: {
