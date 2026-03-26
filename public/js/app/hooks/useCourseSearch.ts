@@ -18,6 +18,8 @@ function asyncReducer<T>(state: State, action: Action): State {
       return { status: STATUS.noHits, searchData: null, error: ERROR_ASYNC.noHits }
     case 'rejected':
       return { status: STATUS.rejected, searchData: null, error: ERROR_ASYNC.rejected }
+    case 'inputTooShort':
+      return { status: STATUS.inputTooShort, searchData: null, error: ERROR_ASYNC.inputTooShort }
     default:
       throw new Error(`Unhandled action type: ${(action as Action).type}`)
   }
@@ -33,7 +35,9 @@ const errorDispatch = (errorCode: string, dispatch: Dispatch<Action>) => {
     case SearchErrorCode.NO_RESTRICTIONS:
       dispatch({ type: 'noQueryProvided' })
       break
-
+    case SearchErrorCode.SEARCH_INPUT_TOO_SHORT:
+      dispatch({ type: 'inputTooShort' })
+      break
     default:
       console.error(errorCode)
       dispatch({ type: 'rejected' })

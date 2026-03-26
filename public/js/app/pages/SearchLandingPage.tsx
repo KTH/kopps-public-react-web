@@ -76,7 +76,7 @@ const SearchLandingPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODE
       collapseHeader = defaultCollapseHeader
       helptextsProps = {
         helptexts: defaultHelptexts,
-        htmlIndexes: [9],
+        htmlIndexes: [0, 9],
       }
       break
     case SEARCH_MODES.thirdCycleCourses:

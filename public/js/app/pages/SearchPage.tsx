@@ -18,6 +18,7 @@ import { STATUS } from '../hooks/types/UseCourseSearchTypes'
 import SearchResultDisplay from '../components/SearchResultDisplay'
 import { useLangHrefUpdate } from '../hooks/useLangHrefUpdate'
 import { SidebarFilters } from '../components/SidebarFilters'
+import { ResultType } from 'kopps-public-react-web/shared/ResultType'
 
 const MainContent: React.FC<MainContentProps> = ({ children }) => {
   return (
@@ -43,6 +44,9 @@ const SearchPage: React.FC<SearchPageProps> = ({ searchMode = SEARCH_MODES.defau
   let ancestorItemObj
 
   const asyncCallback = React.useCallback(() => {
+    if (courseSearchParams.pattern.length > 0 && courseSearchParams.pattern.length < 3) {
+      return Promise.resolve({ errorCode: 'search-input-too-short', searchData: { results: [], type: ResultType.VERSION } })
+    }
     const proxyUrl = _getThisHost(browserConfig.proxyPrefixPath.uri)
     return courseSearch(language, proxyUrl, courseSearchParams)
   }, [courseSearchParams, language])
