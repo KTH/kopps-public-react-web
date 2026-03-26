@@ -255,7 +255,7 @@ const messages = {
   searchInstructions: {
     search_help_collapse_header: 'Få hjälp med sökningen',
     search_help_1:
-      'Du kan söka på del av kursnamn eller kurskod. En sökning efter "data" hittar exempelvis såväl "Databasteknik", "Datalogi" som "Algoritmer, datastrukturer och komplexitet".',
+      'Du kan söka på del av kursnamn eller kurskod. En sökning efter "data" hittar exempelvis såväl "Databasteknik", "Datalogi" som "Algoritmer, datastrukturer och komplexitet". <strong>Din sökning måste dock innehålla minst tre bokstäver eller siffror.</strong>',
     search_help_2: 'Skriver du flera ord i fältet hittas kurser som innehåller samtliga ord.',
     search_help_3: 'Du kan även söka på kursens engelska namn.',
     search_help_4: 'Sökningen visar max 250 träffar. Får du för många träffar, försök att förfina sökvillkoren.',
@@ -308,7 +308,6 @@ const messages = {
   },
   searchAlarms: {
     errorUnknown: { text: 'Ett okänt fel inträffade - misslyckad hämtning av kursdata' },
-    errorKodEllerBenamning: { text: 'Sökinmatningen måste vara lika med eller större än 3 tecken.' },
     errorEmpty: {
       header: 'Din sökning gav inga träffar.',
       // we don't have this link anymore so we should decide what we are going to show as a help text
@@ -320,6 +319,9 @@ const messages = {
     },
     noQueryProvided: {
       text: `Ingen frågebegränsning angavs`,
+    },
+    errorInputTooShort: {
+      text: `Sökningen måste innehålla minst tre bokstäver eller siffror.`,
     },
   },
   footerContent: {
